@@ -1,0 +1,8 @@
+.up.lock
+.claude/settings.local.json
+**/.tmp/
+
+**/__pycache__/**
+*.crt
+*.pem
+*.key
