@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Edit",
+      "Bash(git status)",
+      "Bash(git log *)",
+      "Bash(git branch --show-current)",
+      "Bash(make build)",
+      "Bash(make test)",
+      "Bash(make cover)",
+      "Bash(make xsd2go-build)",
+      "Bash(make xsd2go-test)",
+      "Bash(make xsd2go-cover)",
+      "Bash(make xsd2go-gen)",
+      "Bash(make gml-parser-build)",
+      "Bash(make gml-parser-run)",
+      "Bash(go version)",
+      "Bash(go env)",
+      "Bash(go build ./...)",
+      "Bash(go vet ./...)",
+      "Bash(go generate ./...)",
+      "Bash(go mod tidy)",
+      "Bash(go mod verify)"
+    ],
+    "deny": [
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Read(**/certs/**)",
+      "Read(*.crt)",
+      "Read(*.key)",
+      "Read(*.pem)"
+    ]
+  },
+  "includeCoAuthoredBy": false,
+  "attribution":{
+    "commit": "",
+    "pr": ""
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /workspace/go-gml/.claude/hooks/check_compound_commands.py",
+            "statusMessage": "複合コマンドチェック中..."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /workspace/go-gml/.claude/hooks/format_on_edit.py"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /workspace/go-gml/.claude/hooks/check_ng_words.py",
+            "statusMessage": "NGワードチェック中..."
+          }
+        ]
+      }
+    ]
+  }
+}
