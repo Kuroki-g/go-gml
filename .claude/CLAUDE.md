@@ -25,22 +25,35 @@
 
 **go-gml** — GML (ISO 19136) パーサの Pure Go 実装。国土数値情報・基盤地図情報・PLATEAU など実際の日本政府 GML データが読める SDK。
 
-**基本方針:** 実データで使われる GML 要素を順次対応する。
+**基本方針:** 実データで使われる GML 要素を順次対応する。OGC GML Simple Features Profile (OGC 10-100r3) の SF-1 完了を当面のマイルストーンとする。
 
-| ジオメトリ要素 | 変換先 | 状態 |
+### マイルストーン
+
+| レベル | 状態 | 説明 |
 |---|---|---|
-| `gml:Point` | `Point` | ✓ |
-| `gml:LineString` | `LineString` | ✓ |
-| `gml:Polygon` | `Polygon` | ✓ |
-| `gml:MultiPoint` | `MultiPoint` | ✓ |
-| `gml:MultiCurve` / `gml:MultiLineString` | `MultiLineString` | ✓ (curveMember が LineString の場合のみ) |
-| `gml:MultiSurface` / `gml:MultiPolygon` | `MultiPolygon` | ✓ (surfaceMember が Polygon の場合のみ) |
-| `gml:Envelope` | `Bound` | ✓ |
-| `gml:Surface` + `PolygonPatch` | `Polygon` | ✓ (N03 新形式: 2024年〜 KsjAppSchema-N03-v4_0 以降) |
-| `gml:Curve` + `LineStringSegment` | `LineString` | ✓ (N03 旧形式: 〜2023年 KsjAppSchema-N03-v3_x 以前) |
-| `gml:CompositeCurve` | `LineString` | 未実装 (W09 湖沼) |
-| Arc/Circle 等の曲線補間 | — | 未実装 |
-| Topology / Coverage | — | 未実装 |
+| **SF-0** | ✓ 完了 | Point / LineString / Polygon / Multi* / Envelope (線形補間のみ) |
+| **SF-1** | △ 実装中 | Curve / Surface / OrientableCurve + CompositeCurve / CompositeSurface / OrientableSurface |
+| **SF-2** | 未実装 | Arc / Circle 等の曲線補間 (日本政府データでは不要なため低優先) |
+
+### 要素別実装状況
+
+| ジオメトリ要素 | 変換先 | SF レベル | 状態 |
+|---|---|---|---|
+| `gml:Point` | `Point` | SF-0 | ✓ |
+| `gml:LineString` | `LineString` | SF-0 | ✓ |
+| `gml:Polygon` | `Polygon` | SF-0 | ✓ |
+| `gml:MultiPoint` | `MultiPoint` | SF-0 | ✓ |
+| `gml:MultiCurve` / `gml:MultiLineString` | `MultiLineString` | SF-0 | ✓ (curveMember が LineString の場合のみ) |
+| `gml:MultiSurface` / `gml:MultiPolygon` | `MultiPolygon` | SF-0 | ✓ (surfaceMember が Polygon の場合のみ) |
+| `gml:Envelope` | `Bound` | SF-0 | ✓ |
+| `gml:Curve` + `LineStringSegment` | `LineString` | SF-1 | ✓ (N03 旧形式: 〜2023年 KsjAppSchema-N03-v3_x 以前) |
+| `gml:Surface` + `PolygonPatch` | `Polygon` | SF-1 | ✓ (N03 新形式: 2024年〜 KsjAppSchema-N03-v4_0 以降) |
+| `gml:OrientableCurve` | `LineString` | SF-1 | ✓ (xlink:href 解決) |
+| `gml:CompositeCurve` | `LineString` | SF-1 | 未実装 (W09 湖沼) |
+| `gml:CompositeSurface` | `Polygon` | SF-1 | 未実装 |
+| `gml:OrientableSurface` | `Polygon` | SF-1 | 未実装 |
+| Arc/Circle 等の曲線補間 | — | SF-2 | 未実装 |
+| Topology / Coverage | — | — | 未実装 |
 
 ---
 
@@ -82,9 +95,7 @@ CityGML は同一リポジトリ内の別モジュール (`extensions/citygml/`)
 
 ```bash
 make build          # go build ./...
-make test           # Small テストのみ
-make test-medium    # Medium も含む
-make test-large     # 全サイズ
+make test           # 全テスト実行
 make cover          # カバレッジレポート
 
 make xsd2go-build   # xsd2go-lite バイナリビルド
@@ -97,13 +108,9 @@ make gml-parser-run
 
 ---
 
-## テスト方針 (Google Test Sizes)
+## テスト方針
 
-| サイズ | build tag | 対象 |
-|---|---|---|
-| Small | なし | 純粋関数テスト (coords, crs 等) |
-| Medium | `//go:build medium` | `testdata/` の実 GML ファイルを読むテスト |
-| Large | `//go:build large` | 外部サーバー・大容量ファイル |
+`make test` で全テストを実行する。build tag による分離は現状未使用。
 
 ---
 
