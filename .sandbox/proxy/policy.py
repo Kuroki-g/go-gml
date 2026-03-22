@@ -88,10 +88,13 @@ POLICIES: dict[str, DomainPolicy] = {
     "zenn.dev":                 DomainPolicy(),
     "testing.googleblog.com":   DomainPolicy(),
     "www.w3.org":               DomainPolicy(),
+    "schemas.opengis.net":      DomainPolicy(),
     # --- Geometry---
+    "www.geospatial.jp":        DomainPolicy(),
     "nlftp.mlit.go.jp":         DomainPolicy(),
-    "www.geopackage.org"        DomainPolicy(),
-    "gdal.org"                  DomainPolicy(),
+    "www.mlit.go.jp":           DomainPolicy(),
+    "www.geopackage.org":       DomainPolicy(),
+    "gdal.org":                 DomainPolicy(),
     # --- 学術論文 ---
     "jstage.jst.go.jp":         DomainPolicy(),
     "ci.nii.ac.jp":             DomainPolicy(),
