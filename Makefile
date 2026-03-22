@@ -11,7 +11,9 @@ help:
 	@echo "  xsd2go-build     バイナリビルド"
 	@echo "  xsd2go-test      ユニットテスト実行"
 	@echo "  xsd2go-cover     カバレッジレポート生成"
-	@echo "  xsd2go-gen       GML XSD → pkg/gml/v3_2_1/geometry.go 生成"
+	@echo "  xsd2go-gen [GML_VERSION=3.2.1|3.1.1|2.1.2]"
+	@echo "               GML XSD → pkg/gml/v<version>/geometry.go 生成"
+	@echo "               デフォルト: GML_VERSION=3.2.1"
 	@echo ""
 	@echo "gml-parser (CLI example)"
 	@echo "  gml-parser-build バイナリビルド"
@@ -20,8 +22,28 @@ help:
 XSD2GO_DIR := docs/go/xsd2go-lite
 XSD2GO_BIN := $(XSD2GO_DIR)/xsd2go-lite
 XSD2GO_TMP := $(XSD2GO_DIR)/.tmp
-GML_NS     := http://www.opengis.net/gml/3.2
 GML_TMP    := .tmp
+
+# ---- xsd2go-gen version configuration ----
+GML_VERSION ?= 3.2.1
+
+ifeq ($(GML_VERSION),3.2.1)
+  _GEN_NS  := http://www.opengis.net/gml/3.2
+  _GEN_OUT := pkg/gml/v3_2_1/geometry.go
+  _GEN_XSD := $(XSD2GO_DIR)/schemas/gml/3.2.1/geometryAggregates.xsd
+else ifeq ($(GML_VERSION),3.1.1)
+  _GEN_NS  := http://www.opengis.net/gml
+  _GEN_OUT := pkg/gml/v3_1_1/geometry.go
+  _GEN_XSD := $(XSD2GO_DIR)/schemas/gml/3.1.1/base/geometryAggregates.xsd
+else ifeq ($(GML_VERSION),2.1.2)
+  _GEN_NS  := http://www.opengis.net/gml
+  _GEN_OUT := pkg/gml/v2_1_2/geometry.go
+  _GEN_XSD := $(XSD2GO_DIR)/schemas/gml/2.1.2/geometry.xsd
+else
+  _GEN_NS  :=
+  _GEN_OUT :=
+  _GEN_XSD :=
+endif
 
 # ---- go-gml (main library) ----
 
@@ -54,28 +76,18 @@ xsd2go-cover: $(XSD2GO_TMP)
 	cd $(XSD2GO_DIR) && GOWORK=off GOTMPDIR=$(abspath $(XSD2GO_TMP)) go test -count=1 -coverprofile=.tmp/cover.out ./...
 	cd $(XSD2GO_DIR) && go tool cover -func=.tmp/cover.out
 
-GML2_NS := http://www.opengis.net/gml
-
 XLINK_NS  := http://www.w3.org/1999/xlink
 XLINK_XSD := $(XSD2GO_DIR)/schemas/xlink/xlink.xsd
 
 xsd2go-gen: xsd2go-build
+	@test -n "$(_GEN_OUT)" || (echo "Unknown GML_VERSION=$(GML_VERSION). Valid values: 3.2.1, 3.1.1, 2.1.2" >&2 && exit 1)
 	$(XSD2GO_BIN) \
-		-n "$(GML_NS)" \
+		-n "$(_GEN_NS)" \
 		-p gml \
 		--with-doc \
 		--catalog "$(XLINK_NS)=$(XLINK_XSD)" \
-		-o pkg/gml/v3_2_1/geometry.go \
-		$(XSD2GO_DIR)/schemas/gml/3.2.1/geometryAggregates.xsd
-
-xsd2go-gen-v2: xsd2go-build
-	$(XSD2GO_BIN) \
-		-n "$(GML2_NS)" \
-		-p gml \
-		--with-doc \
-		--catalog "$(XLINK_NS)=$(XLINK_XSD)" \
-		-o pkg/gml/v2_1_2/geometry.go \
-		$(XSD2GO_DIR)/schemas/gml/2.1.2/geometry.xsd
+		-o $(_GEN_OUT) \
+		$(_GEN_XSD)
 
 $(XSD2GO_TMP):
 	mkdir -p $(XSD2GO_TMP)
