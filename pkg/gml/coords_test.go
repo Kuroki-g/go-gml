@@ -153,26 +153,26 @@ func TestToPoints(t *testing.T) {
 		name    string
 		coords  []float64
 		dim     int
-		want    [][2]float64
+		want    []Point
 		wantErr bool
 	}{
 		{
 			name:   "2D two points",
 			coords: []float64{139.7, 35.6, 139.8, 35.7},
 			dim:    2,
-			want:   [][2]float64{{139.7, 35.6}, {139.8, 35.7}},
+			want:   []Point{{139.7, 35.6}, {139.8, 35.7}},
 		},
 		{
-			name:   "3D drops Z",
+			name:   "3D keeps Z",
 			coords: []float64{139.7, 35.6, 10.5, 139.8, 35.7, 11.0},
 			dim:    3,
-			want:   [][2]float64{{139.7, 35.6}, {139.8, 35.7}},
+			want:   []Point{{139.7, 35.6, 10.5}, {139.8, 35.7, 11.0}},
 		},
 		{
 			name:   "dim 0 defaults to 2",
 			coords: []float64{139.7, 35.6},
 			dim:    0,
-			want:   [][2]float64{{139.7, 35.6}},
+			want:   []Point{{139.7, 35.6}},
 		},
 		{
 			name:   "empty coords",
@@ -216,7 +216,7 @@ func TestToPoints(t *testing.T) {
 				t.Fatalf("len=%d, want %d", len(got), len(tt.want))
 			}
 			for i := range got {
-				if got[i] != tt.want[i] {
+				if !pointEq(got[i], tt.want[i]) {
 					t.Errorf("[%d] got %v, want %v", i, got[i], tt.want[i])
 				}
 			}

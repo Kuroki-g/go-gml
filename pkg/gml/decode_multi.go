@@ -3,22 +3,14 @@ package gml
 import (
 	"encoding/xml"
 	"fmt"
+
+	v3 "github.com/Kuroki-g/go-gml/pkg/gml/v3"
 )
 
 // ---- multi-point ----
 
-type xmlPointMember struct {
-	Point *xmlPoint `xml:"Point"`
-}
-
-type xmlMultiPoint struct {
-	SrsName      string           `xml:"srsName,attr,omitempty"`
-	SrsDimension int              `xml:"srsDimension,attr,omitempty"`
-	PointMember  []xmlPointMember `xml:"pointMember"`
-}
-
 func decodeMultiPointElement(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
-	var x xmlMultiPoint
+	var x v3.MultiPointType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return Geometry{}, fmt.Errorf("gml: MultiPoint: %w", err)
 	}
@@ -36,95 +28,67 @@ func decodeMultiPointElement(dec *xml.Decoder, se xml.StartElement) (Geometry, e
 		}
 		pts = append(pts, pt)
 	}
-	return Geometry{Value: pts, EPSG: EPSGFromSRSName(x.SrsName)}, nil
+	return Geometry{Value: pts, SRSName: x.SrsName}, nil
 }
 
 // ---- multi-curve / multi-linestring ----
 
-type xmlCurveMember struct {
-	LineString *xmlLineString `xml:"LineString"`
-}
-
-type xmlMultiCurve struct {
-	SrsName          string           `xml:"srsName,attr,omitempty"`
-	SrsDimension     int              `xml:"srsDimension,attr,omitempty"`
-	CurveMember      []xmlCurveMember `xml:"curveMember"`      // GML 3.x
-	LineStringMember []xmlCurveMember `xml:"lineStringMember"` // GML 2.x
-}
-
 func decodeMultiCurveElement(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
-	var x xmlMultiCurve
+	if se.Name.Space == gmlNS2 {
+		return decodeMultiLineStringV2(dec, se)
+	}
+	var x v3.MultiCurveType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return Geometry{}, fmt.Errorf("gml: %s: %w", se.Name.Local, err)
 	}
 	var lines MultiLineString
-	for _, members := range [2][]xmlCurveMember{x.CurveMember, x.LineStringMember} {
-		for _, m := range members {
-			if m.LineString == nil {
-				continue
-			}
-			if m.LineString.SrsDimension == 0 {
-				m.LineString.SrsDimension = x.SrsDimension
-			}
-			ls, err := lineStringFromXML(m.LineString)
-			if err != nil {
-				return Geometry{}, err
-			}
-			lines = append(lines, ls)
+	for _, m := range x.CurveMember {
+		if m.LineString == nil {
+			continue
 		}
+		if m.LineString.SrsDimension == 0 {
+			m.LineString.SrsDimension = x.SrsDimension
+		}
+		ls, err := lineStringFromXML(m.LineString)
+		if err != nil {
+			return Geometry{}, err
+		}
+		lines = append(lines, ls)
 	}
-	return Geometry{Value: lines, EPSG: EPSGFromSRSName(x.SrsName)}, nil
+	return Geometry{Value: lines, SRSName: x.SrsName}, nil
 }
 
 // ---- multi-surface / multi-polygon ----
 
-type xmlSurfaceMember struct {
-	Polygon *xmlPolygon `xml:"Polygon"`
-}
-
-type xmlMultiSurface struct {
-	SrsName       string             `xml:"srsName,attr,omitempty"`
-	SrsDimension  int                `xml:"srsDimension,attr,omitempty"`
-	SurfaceMember []xmlSurfaceMember `xml:"surfaceMember"` // GML 3.x
-	PolygonMember []xmlSurfaceMember `xml:"polygonMember"` // GML 2.x
-}
-
 func decodeMultiSurfaceElement(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
-	var x xmlMultiSurface
+	if se.Name.Space == gmlNS2 {
+		return decodeMultiPolygonV2(dec, se)
+	}
+	var x v3.MultiSurfaceType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return Geometry{}, fmt.Errorf("gml: %s: %w", se.Name.Local, err)
 	}
 	var polys MultiPolygon
-	for _, members := range [2][]xmlSurfaceMember{x.SurfaceMember, x.PolygonMember} {
-		for _, m := range members {
-			if m.Polygon == nil {
-				continue
-			}
-			if m.Polygon.SrsDimension == 0 {
-				m.Polygon.SrsDimension = x.SrsDimension
-			}
-			p, err := polygonFromXML(m.Polygon)
-			if err != nil {
-				return Geometry{}, err
-			}
-			polys = append(polys, p)
+	for _, m := range x.SurfaceMember {
+		if m.Polygon == nil {
+			continue
 		}
+		if m.Polygon.SrsDimension == 0 {
+			m.Polygon.SrsDimension = x.SrsDimension
+		}
+		p, err := polygonFromXML(m.Polygon)
+		if err != nil {
+			return Geometry{}, err
+		}
+		polys = append(polys, p)
 	}
-	return Geometry{Value: polys, EPSG: EPSGFromSRSName(x.SrsName)}, nil
+	return Geometry{Value: polys, SRSName: x.SrsName}, nil
 }
 
 // ---- envelope ----
 
-type xmlEnvelope struct {
-	SrsName      string         `xml:"srsName,attr,omitempty"`
-	SrsDimension int            `xml:"srsDimension,attr,omitempty"`
-	LowerCorner  *xmlDirectPos  `xml:"lowerCorner"`
-	UpperCorner  *xmlDirectPos  `xml:"upperCorner"`
-	Pos          []xmlDirectPos `xml:"pos"`
-}
-
 func decodeEnvelopeElement(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
-	var x xmlEnvelope
+	var x v3.EnvelopeType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return Geometry{}, fmt.Errorf("gml: Envelope: %w", err)
 	}
@@ -132,10 +96,10 @@ func decodeEnvelopeElement(dec *xml.Decoder, se xml.StartElement) (Geometry, err
 	if err != nil {
 		return Geometry{}, err
 	}
-	return Geometry{Value: b, EPSG: EPSGFromSRSName(x.SrsName)}, nil
+	return Geometry{Value: b, SRSName: x.SrsName}, nil
 }
 
-func boundFromXML(x *xmlEnvelope) (Bound, error) {
+func boundFromXML(x *v3.EnvelopeType) (Bound, error) {
 	dim := x.SrsDimension
 	if x.LowerCorner != nil && x.UpperCorner != nil {
 		d := preferDim(dim, x.LowerCorner.SrsDimension)

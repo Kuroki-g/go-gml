@@ -19,14 +19,14 @@ func decodeSurfaceElement(dec *xml.Decoder, se xml.StartElement) (Geometry, erro
 	if err != nil {
 		return Geometry{}, err
 	}
-	return Geometry{Value: poly, EPSG: EPSGFromSRSName(x.SrsName)}, nil
+	return Geometry{Value: poly, SRSName: x.SrsName}, nil
 }
 
 func polygonFromSurface(x *v3.SurfaceType) (Polygon, error) {
-	if x.Patches == nil || x.Patches.PolygonPatch == nil {
+	if x.Patches == nil || len(x.Patches.PolygonPatch) == 0 {
 		return Polygon{}, nil
 	}
-	return polygonFromPatch(x.Patches.PolygonPatch, x.SrsDimension)
+	return polygonFromPatch(&x.Patches.PolygonPatch[0], x.SrsDimension)
 }
 
 func polygonFromPatch(patch *v3.PolygonPatchType, inheritDim int) (Polygon, error) {

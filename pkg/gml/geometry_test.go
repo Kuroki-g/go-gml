@@ -2,6 +2,20 @@ package gml
 
 import "testing"
 
+// pointEq compares two Points element-by-element.
+// Required because Point is []float64 and cannot be compared with ==.
+func pointEq(a, b Point) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i := range a {
+		if a[i] != b[i] {
+			return false
+		}
+	}
+	return true
+}
+
 func TestPointFromFlat(t *testing.T) {
 	tests := []struct {
 		name    string
@@ -11,7 +25,7 @@ func TestPointFromFlat(t *testing.T) {
 		wantErr bool
 	}{
 		{"2D", []float64{139.7, 35.6}, 2, Point{139.7, 35.6}, false},
-		{"3D drops Z", []float64{139.7, 35.6, 10.5}, 3, Point{139.7, 35.6}, false},
+		{"3D keeps Z", []float64{139.7, 35.6, 10.5}, 3, Point{139.7, 35.6, 10.5}, false},
 		{"dim 0 infer", []float64{139.7, 35.6}, 0, Point{139.7, 35.6}, false},
 		{"too short", []float64{139.7}, 2, Point{}, true},
 	}
@@ -27,7 +41,7 @@ func TestPointFromFlat(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			if got != tt.want {
+			if !pointEq(got, tt.want) {
 				t.Errorf("got %v, want %v", got, tt.want)
 			}
 		})
@@ -45,7 +59,7 @@ func TestLineStringFromFlat(t *testing.T) {
 		t.Fatalf("len=%d want %d", len(got), len(want))
 	}
 	for i := range got {
-		if got[i] != want[i] {
+		if !pointEq(got[i], want[i]) {
 			t.Errorf("[%d] got %v want %v", i, got[i], want[i])
 		}
 	}
@@ -61,7 +75,7 @@ func TestRingFromFlat(t *testing.T) {
 	if len(got) != 4 {
 		t.Fatalf("len=%d want 4", len(got))
 	}
-	if got[0] != got[3] {
+	if !pointEq(got[0], got[3]) {
 		t.Error("first and last point should be equal for a closed ring")
 	}
 }
@@ -73,8 +87,8 @@ func TestPointFromPosString(t *testing.T) {
 		want  Point
 	}{
 		{"139.691667 35.689722", 2, Point{139.691667, 35.689722}},
-		{"139.7 35.6 10.5", 3, Point{139.7, 35.6}},
-		{"139.7 35.6 10.5", 0, Point{139.7, 35.6}}, // infer 3D
+		{"139.7 35.6 10.5", 3, Point{139.7, 35.6, 10.5}},
+		{"139.7 35.6 10.5", 0, Point{139.7, 35.6, 10.5}}, // infer 3D from value count
 	}
 	for _, tt := range tests {
 		t.Run(tt.input, func(t *testing.T) {
@@ -82,7 +96,7 @@ func TestPointFromPosString(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			if got != tt.want {
+			if !pointEq(got, tt.want) {
 				t.Errorf("got %v want %v", got, tt.want)
 			}
 		})
@@ -99,7 +113,7 @@ func TestLineStringFromPosListString(t *testing.T) {
 		t.Fatalf("len=%d want %d", len(got), len(want))
 	}
 	for i := range got {
-		if got[i] != want[i] {
+		if !pointEq(got[i], want[i]) {
 			t.Errorf("[%d] %v want %v", i, got[i], want[i])
 		}
 	}

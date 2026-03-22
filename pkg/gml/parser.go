@@ -14,42 +14,25 @@ const (
 
 func isGMLNS(ns string) bool { return ns == gmlNS32 || ns == gmlNS2 }
 
-// ---- shared mini XML structs (used across multiple decoders) ----
-
-type xmlDirectPos struct {
-	Value        string `xml:",chardata"`
-	SrsDimension int    `xml:"srsDimension,attr,omitempty"`
-}
-
-type xmlPosList struct {
-	Value        string `xml:",chardata"`
-	SrsDimension int    `xml:"srsDimension,attr,omitempty"`
-}
-
-type xmlCoordinates struct {
-	Value string `xml:",chardata"`
-	Cs    string `xml:"cs,attr,omitempty"`
-	Ts    string `xml:"ts,attr,omitempty"`
-}
-
 // ---- public types ----
 
 // Geometry wraps a parsed GML geometry element with CRS metadata.
 // Value is one of: Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon, Bound.
 type Geometry struct {
-	Value interface{}
-	EPSG  int // 0 = not determined
+	Value   interface{}
+	SRSName string // raw srsName attribute value from the GML element; empty if absent
 }
 
 // Reader scans a GML document for geometry elements.
 type Reader struct {
-	dec *xml.Decoder
+	dec        *xml.Decoder
+	defaultSRS string // last srsName seen on any element in the stream
 }
 
 // NewReader creates a Reader that streams geometry elements from r.
 // For non-UTF-8 encoded files (e.g. Shift-JIS), call SetCharsetReader after creation.
 func NewReader(r io.Reader) *Reader {
-	dec := xml.NewDecoder(r)
+	dec := xml.NewDecoder(newNSNormReader(r))
 	dec.CharsetReader = func(charset string, input io.Reader) (io.Reader, error) {
 		return nil, fmt.Errorf("unsupported charset %q: call SetCharsetReader to handle non-UTF-8 files", charset)
 	}
@@ -102,13 +85,29 @@ func (r *Reader) Next() (Geometry, error) {
 			return Geometry{}, err // includes io.EOF
 		}
 		se, ok := tok.(xml.StartElement)
-		if !ok || !isGMLNS(se.Name.Space) {
+		if !ok {
+			continue
+		}
+		// Track srsName from any element encountered in the stream.
+		// GML commonly declares srsName once on a bounding box or feature collection
+		// element; individual geometry elements then inherit it implicitly.
+		for _, attr := range se.Attr {
+			if attr.Name.Local == "srsName" && attr.Name.Space == "" && attr.Value != "" {
+				r.defaultSRS = attr.Value
+			}
+		}
+		if !isGMLNS(se.Name.Space) {
 			continue
 		}
 		h, ok := handlers[se.Name.Local]
 		if !ok {
 			continue
 		}
-		return h(r.dec, se)
+		g, err := h(r.dec, se)
+		// Inherit document-level srsName when the geometry element has none.
+		if g.SRSName == "" && r.defaultSRS != "" {
+			g.SRSName = r.defaultSRS
+		}
+		return g, err
 	}
 }

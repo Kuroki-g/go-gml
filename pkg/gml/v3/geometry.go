@@ -1,85 +1,131 @@
 package gml
 
 type AbstractCRSType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	Remarks              *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     []string               `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
-	Scope                []string               `xml:"http://www.opengis.net/gml/3.2 scope"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
 }
 
 type AbstractContinuousCoverageType struct {
-	MetaDataProperty     []MetaDataPropertyType        `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType              `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType        `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                    `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                        `xml:"id,attr,omitempty"`
-	BoundedBy            *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
-	Location             *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
-	PriorityLocation     *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
-	DomainSet            *DomainSetType                `xml:"http://www.opengis.net/gml/3.2 domainSet,omitempty"`
-	GridDomain           *DomainSetType                `xml:"http://www.opengis.net/gml/3.2 gridDomain,omitempty"`
-	MultiCurveDomain     *DomainSetType                `xml:"http://www.opengis.net/gml/3.2 multiCurveDomain,omitempty"`
-	MultiPointDomain     *DomainSetType                `xml:"http://www.opengis.net/gml/3.2 multiPointDomain,omitempty"`
-	MultiSolidDomain     *DomainSetType                `xml:"http://www.opengis.net/gml/3.2 multiSolidDomain,omitempty"`
-	MultiSurfaceDomain   *DomainSetType                `xml:"http://www.opengis.net/gml/3.2 multiSurfaceDomain,omitempty"`
-	RectifiedGridDomain  *DomainSetType                `xml:"http://www.opengis.net/gml/3.2 rectifiedGridDomain,omitempty"`
-	RangeSet             *RangeSetType                 `xml:"http://www.opengis.net/gml/3.2 rangeSet,omitempty"`
-	CoverageFunction     *CoverageFunctionType         `xml:"http://www.opengis.net/gml/3.2 coverageFunction,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
+	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
+	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
+	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
+	PriorityLocation *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
+	// The gml:domainSet property element describes the spatio-temporal region of interest, within which the coverage is defined. Its content model is given by gml:DomainSetType.
+	// The value of the domain is thus a choice between a gml:AbstractGeometry and a gml:AbstractTimeObject.  In the instance these abstract elements will normally be substituted by a geometry complex or temporal complex, to represent spatial coverages and time-series, respectively.
+	// The presence of the gml:AssociationAttributeGroup means that domainSet follows the usual GML property model and may use the xlink:href attribute to point to the domain, as an alternative to describing the domain inline. Ownership semantics may be provided using the gml:OwnershipAttributeGroup.
+	DomainSet           *DomainSetType `xml:"http://www.opengis.net/gml/3.2 domainSet,omitempty"`
+	GridDomain          *DomainSetType `xml:"http://www.opengis.net/gml/3.2 gridDomain,omitempty"`
+	MultiCurveDomain    *DomainSetType `xml:"http://www.opengis.net/gml/3.2 multiCurveDomain,omitempty"`
+	MultiPointDomain    *DomainSetType `xml:"http://www.opengis.net/gml/3.2 multiPointDomain,omitempty"`
+	MultiSolidDomain    *DomainSetType `xml:"http://www.opengis.net/gml/3.2 multiSolidDomain,omitempty"`
+	MultiSurfaceDomain  *DomainSetType `xml:"http://www.opengis.net/gml/3.2 multiSurfaceDomain,omitempty"`
+	RectifiedGridDomain *DomainSetType `xml:"http://www.opengis.net/gml/3.2 rectifiedGridDomain,omitempty"`
+	// The gml:rangeSet property element contains the values of the coverage (sometimes called the attribute values).  Its content model is given by gml:RangeSetType.
+	// This content model supports a structural description of the range.  The semantic information describing the range set is embedded using a uniform method, as part of the explicit values, or as a template value accompanying the representation using gml:DataBlock and gml:File.
+	// The values from each component (or "band") in the range may be encoded within a gml:ValueArray element or a concrete member of the gml:AbstractScalarValueList substitution group . Use of these elements satisfies the value-type homogeneity requirement.
+	RangeSet *RangeSetType `xml:"http://www.opengis.net/gml/3.2 rangeSet,omitempty"`
+	// The gml:coverageFunction property describes the mapping function from the domain to the range of the coverage.
+	// The value of the CoverageFunction is one of gml:CoverageMappingRule and gml:GridFunction.
+	// If the gml:coverageFunction property is omitted for a gridded coverage (including rectified gridded coverages) the gml:startPoint is assumed to be the value of the gml:low property in the gml:Grid geometry, and the gml:sequenceRule is assumed to be linear and the gml:axisOrder property is assumed to be "+1 +2".
+	CoverageFunction *CoverageFunctionType `xml:"http://www.opengis.net/gml/3.2 coverageFunction,omitempty"`
 }
 
 type AbstractCoordinateOperationType struct {
-	MetaDataProperty            []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description                 *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference        *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier                  *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                        []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                          string                 `xml:"id,attr,omitempty"`
-	Remarks                     *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity            *string                `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
-	Scope                       []string               `xml:"http://www.opengis.net/gml/3.2 scope"`
-	OperationVersion            *string                `xml:"http://www.opengis.net/gml/3.2 operationVersion,omitempty"`
-	CoordinateOperationAccuracy []string               `xml:"http://www.opengis.net/gml/3.2 coordinateOperationAccuracy"`
-	SourceCRS                   *CRSPropertyType       `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
-	TargetCRS                   *CRSPropertyType       `xml:"http://www.opengis.net/gml/3.2 targetCRS,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:operationVersion is the version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters). Mandatory when describing a transformation, and should not be supplied for a conversion.
+	OperationVersion *string `xml:"http://www.opengis.net/gml/3.2 operationVersion,omitempty"`
+	// gml:coordinateOperationAccuracy is an association role to a DQ_PositionalAccuracy object as encoded in ISO/TS 19139, either referencing or containing the definition of that positional accuracy. That object contains an estimate of the impact of this coordinate operation on point accuracy. That is, it gives position error estimates for the target coordinates of this coordinate operation, assuming no errors in the source coordinates.
+	CoordinateOperationAccuracy []string `xml:"http://www.opengis.net/gml/3.2 coordinateOperationAccuracy"`
+	// gml:sourceCRS is an association role to the source CRS (coordinate reference system) of this coordinate operation.
+	SourceCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
+	// gml:targetCRS is an association role to the target CRS (coordinate reference system) of this coordinate operation.
+	TargetCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 targetCRS,omitempty"`
 }
 
 type AbstractCoordinateSystemType struct {
-	MetaDataProperty     []MetaDataPropertyType             `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType                   `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                     `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType             `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                         `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                             `xml:"id,attr,omitempty"`
-	Remarks              *string                            `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	Axis                 []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
-	UsesAxis             *CoordinateSystemAxisPropertyType  `xml:"http://www.opengis.net/gml/3.2 usesAxis,omitempty"`
-	AggregationType      string                             `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
+	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
+	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
+	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
 }
 
 type AbstractCoverageType struct {
-	MetaDataProperty     []MetaDataPropertyType        `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType              `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType        `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                    `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                        `xml:"id,attr,omitempty"`
-	BoundedBy            *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
-	Location             *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
-	PriorityLocation     *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
-	DomainSet            *DomainSetType                `xml:"http://www.opengis.net/gml/3.2 domainSet,omitempty"`
-	GridDomain           *DomainSetType                `xml:"http://www.opengis.net/gml/3.2 gridDomain,omitempty"`
-	MultiCurveDomain     *DomainSetType                `xml:"http://www.opengis.net/gml/3.2 multiCurveDomain,omitempty"`
-	MultiPointDomain     *DomainSetType                `xml:"http://www.opengis.net/gml/3.2 multiPointDomain,omitempty"`
-	MultiSolidDomain     *DomainSetType                `xml:"http://www.opengis.net/gml/3.2 multiSolidDomain,omitempty"`
-	MultiSurfaceDomain   *DomainSetType                `xml:"http://www.opengis.net/gml/3.2 multiSurfaceDomain,omitempty"`
-	RectifiedGridDomain  *DomainSetType                `xml:"http://www.opengis.net/gml/3.2 rectifiedGridDomain,omitempty"`
-	RangeSet             *RangeSetType                 `xml:"http://www.opengis.net/gml/3.2 rangeSet,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
+	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
+	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
+	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
+	PriorityLocation *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
+	// The gml:domainSet property element describes the spatio-temporal region of interest, within which the coverage is defined. Its content model is given by gml:DomainSetType.
+	// The value of the domain is thus a choice between a gml:AbstractGeometry and a gml:AbstractTimeObject.  In the instance these abstract elements will normally be substituted by a geometry complex or temporal complex, to represent spatial coverages and time-series, respectively.
+	// The presence of the gml:AssociationAttributeGroup means that domainSet follows the usual GML property model and may use the xlink:href attribute to point to the domain, as an alternative to describing the domain inline. Ownership semantics may be provided using the gml:OwnershipAttributeGroup.
+	DomainSet           *DomainSetType `xml:"http://www.opengis.net/gml/3.2 domainSet,omitempty"`
+	GridDomain          *DomainSetType `xml:"http://www.opengis.net/gml/3.2 gridDomain,omitempty"`
+	MultiCurveDomain    *DomainSetType `xml:"http://www.opengis.net/gml/3.2 multiCurveDomain,omitempty"`
+	MultiPointDomain    *DomainSetType `xml:"http://www.opengis.net/gml/3.2 multiPointDomain,omitempty"`
+	MultiSolidDomain    *DomainSetType `xml:"http://www.opengis.net/gml/3.2 multiSolidDomain,omitempty"`
+	MultiSurfaceDomain  *DomainSetType `xml:"http://www.opengis.net/gml/3.2 multiSurfaceDomain,omitempty"`
+	RectifiedGridDomain *DomainSetType `xml:"http://www.opengis.net/gml/3.2 rectifiedGridDomain,omitempty"`
+	// The gml:rangeSet property element contains the values of the coverage (sometimes called the attribute values).  Its content model is given by gml:RangeSetType.
+	// This content model supports a structural description of the range.  The semantic information describing the range set is embedded using a uniform method, as part of the explicit values, or as a template value accompanying the representation using gml:DataBlock and gml:File.
+	// The values from each component (or "band") in the range may be encoded within a gml:ValueArray element or a concrete member of the gml:AbstractScalarValueList substitution group . Use of these elements satisfies the value-type homogeneity requirement.
+	RangeSet *RangeSetType `xml:"http://www.opengis.net/gml/3.2 rangeSet,omitempty"`
 }
 
 type AbstractCurveSegmentType struct {
@@ -89,45 +135,66 @@ type AbstractCurveSegmentType struct {
 }
 
 type AbstractCurveType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	SrsName              string                 `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                    `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                 `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                 `xml:"uomLabels,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string     `xml:"id,attr,omitempty"`
+	SrsName      string     `xml:"srsName,attr,omitempty"`
+	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
+	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
 }
 
 type AbstractDatumType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	Remarks              *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     *string                `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
-	Scope                []string               `xml:"http://www.opengis.net/gml/3.2 scope"`
-	AnchorDefinition     *CodeType              `xml:"http://www.opengis.net/gml/3.2 anchorDefinition,omitempty"`
-	AnchorPoint          *CodeType              `xml:"http://www.opengis.net/gml/3.2 anchorPoint,omitempty"`
-	RealizationEpoch     *string                `xml:"http://www.opengis.net/gml/3.2 realizationEpoch,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:anchorDefinition is a description, possibly including coordinates, of the definition used to anchor the datum to the Earth. Also known as the "origin", especially for engineering and image datums. The codeSpace attribute may be used to reference a source of more detailed on this point or surface, or on a set of such descriptions.
+	// -	For a geodetic datum, this point is also known as the fundamental point, which is traditionally the point where the relationship between geoid and ellipsoid is defined. In some cases, the "fundamental point" may consist of a number of points. In those cases, the parameters defining the geoid/ellipsoid relationship have been averaged for these points, and the averages adopted as the datum definition.
+	// -	For an engineering datum, the anchor definition may be a physical point, or it may be a point with defined coordinates in another CRS.may
+	// -	For an image datum, the anchor definition is usually either the centre of the image or the corner of the image.
+	// -	For a temporal datum, this attribute is not defined. Instead of the anchor definition, a temporal datum carries a separate time origin of type DateTime.
+	AnchorDefinition *CodeType `xml:"http://www.opengis.net/gml/3.2 anchorDefinition,omitempty"`
+	AnchorPoint      *CodeType `xml:"http://www.opengis.net/gml/3.2 anchorPoint,omitempty"`
+	// gml:realizationEpoch is the time after which this datum definition is valid. See ISO 19111 Table 32 for details.
+	RealizationEpoch *string `xml:"http://www.opengis.net/gml/3.2 realizationEpoch,omitempty"`
 }
 
 type AbstractFeatureCollectionType struct {
-	MetaDataProperty     []MetaDataPropertyType        `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType              `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType        `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                    `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                        `xml:"id,attr,omitempty"`
-	BoundedBy            *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
-	Location             *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
-	PriorityLocation     *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
-	FeatureMember        []FeaturePropertyType         `xml:"http://www.opengis.net/gml/3.2 featureMember"`
-	FeatureMembers       *FeatureArrayPropertyType     `xml:"http://www.opengis.net/gml/3.2 featureMembers,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
+	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
+	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
+	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
+	PriorityLocation *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
+	FeatureMember    []FeaturePropertyType         `xml:"http://www.opengis.net/gml/3.2 featureMember"`
+	FeatureMembers   *FeatureArrayPropertyType     `xml:"http://www.opengis.net/gml/3.2 featureMembers,omitempty"`
 }
 
 type AbstractFeatureMemberType struct {
@@ -135,57 +202,84 @@ type AbstractFeatureMemberType struct {
 }
 
 type AbstractFeatureType struct {
-	MetaDataProperty     []MetaDataPropertyType        `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType              `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType        `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                    `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                        `xml:"id,attr,omitempty"`
-	BoundedBy            *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
-	Location             *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
-	PriorityLocation     *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
+	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
+	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
+	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
+	PriorityLocation *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
 }
 
 type AbstractGMLType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
 }
 
 type AbstractGeneralConversionType struct {
-	MetaDataProperty            []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description                 *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference        *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier                  *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                        []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                          string                 `xml:"id,attr,omitempty"`
-	Remarks                     *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity            *string                `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
-	Scope                       []string               `xml:"http://www.opengis.net/gml/3.2 scope"`
-	OperationVersion            *string                `xml:"http://www.opengis.net/gml/3.2 operationVersion,omitempty"`
-	CoordinateOperationAccuracy []string               `xml:"http://www.opengis.net/gml/3.2 coordinateOperationAccuracy"`
-	SourceCRS                   *CRSPropertyType       `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
-	TargetCRS                   *CRSPropertyType       `xml:"http://www.opengis.net/gml/3.2 targetCRS,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:operationVersion is the version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters). Mandatory when describing a transformation, and should not be supplied for a conversion.
+	OperationVersion *string `xml:"http://www.opengis.net/gml/3.2 operationVersion,omitempty"`
+	// gml:coordinateOperationAccuracy is an association role to a DQ_PositionalAccuracy object as encoded in ISO/TS 19139, either referencing or containing the definition of that positional accuracy. That object contains an estimate of the impact of this coordinate operation on point accuracy. That is, it gives position error estimates for the target coordinates of this coordinate operation, assuming no errors in the source coordinates.
+	CoordinateOperationAccuracy []string `xml:"http://www.opengis.net/gml/3.2 coordinateOperationAccuracy"`
+	// gml:sourceCRS is an association role to the source CRS (coordinate reference system) of this coordinate operation.
+	SourceCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
+	// gml:targetCRS is an association role to the target CRS (coordinate reference system) of this coordinate operation.
+	TargetCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 targetCRS,omitempty"`
 }
 
 type AbstractGeneralDerivedCRSType struct {
-	MetaDataProperty     []MetaDataPropertyType         `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType               `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                 `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType         `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                     `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                         `xml:"id,attr,omitempty"`
-	Remarks              *string                        `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     []string                       `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
-	Scope                []string                       `xml:"http://www.opengis.net/gml/3.2 scope"`
-	Conversion           *GeneralConversionPropertyType `xml:"http://www.opengis.net/gml/3.2 conversion,omitempty"`
-	DefinedByConversion  *GeneralConversionPropertyType `xml:"http://www.opengis.net/gml/3.2 definedByConversion,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:conversion is an association role to the coordinate conversion used to define the derived CRS.
+	Conversion          *GeneralConversionPropertyType `xml:"http://www.opengis.net/gml/3.2 conversion,omitempty"`
+	DefinedByConversion *GeneralConversionPropertyType `xml:"http://www.opengis.net/gml/3.2 definedByConversion,omitempty"`
 }
 
 type AbstractGeneralOperationParameterPropertyType struct {
+	// gml:GeneralOperationParameter is the abstract definition of a parameter or group of parameters used by an operation method.
 	AbstractGeneralOperationParameter *AbstractGeneralOperationParameterType `xml:"http://www.opengis.net/gml/3.2 AbstractGeneralOperationParameter,omitempty"`
 	OperationParameter                *OperationParameterType                `xml:"http://www.opengis.net/gml/3.2 OperationParameter,omitempty"`
 	OperationParameterGroup           *OperationParameterGroupType           `xml:"http://www.opengis.net/gml/3.2 OperationParameterGroup,omitempty"`
@@ -194,17 +288,24 @@ type AbstractGeneralOperationParameterPropertyType struct {
 }
 
 type AbstractGeneralOperationParameterType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	Remarks              *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	MinimumOccurs        *int                   `xml:"http://www.opengis.net/gml/3.2 minimumOccurs,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// gml:minimumOccurs is the minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number shall be one.
+	MinimumOccurs *int `xml:"http://www.opengis.net/gml/3.2 minimumOccurs,omitempty"`
 }
 
 type AbstractGeneralParameterValuePropertyType struct {
+	// gml:AbstractGeneralParameterValue is an abstract parameter value or group of parameter values.
+	// This abstract complexType is expected to be extended and restricted for well-known operation methods with many instances, in Application Schemas that define operation-method-specialized element names and contents. Specific parameter value elements are directly contained in concrete subtypes, not in this abstract type. All concrete types derived from this type shall extend this type to include one "...Value" element with an appropriate type, which should be one of the element types allowed in the ParameterValueType. In addition, all derived concrete types shall extend this type to include a "operationParameter" property element that references one element substitutable for the "OperationParameter" object element.
 	AbstractGeneralParameterValue *AbstractGeneralParameterValueType `xml:"http://www.opengis.net/gml/3.2 AbstractGeneralParameterValue,omitempty"`
 	ParameterValue                *ParameterValueType                `xml:"http://www.opengis.net/gml/3.2 ParameterValue,omitempty"`
 	ParameterValueGroup           *ParameterValueGroupType           `xml:"http://www.opengis.net/gml/3.2 ParameterValueGroup,omitempty"`
@@ -214,59 +315,81 @@ type AbstractGeneralParameterValueType struct {
 }
 
 type AbstractGeneralTransformationType struct {
-	MetaDataProperty            []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description                 *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference        *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier                  *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                        []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                          string                 `xml:"id,attr,omitempty"`
-	Remarks                     *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity            *string                `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
-	Scope                       []string               `xml:"http://www.opengis.net/gml/3.2 scope"`
-	OperationVersion            *string                `xml:"http://www.opengis.net/gml/3.2 operationVersion,omitempty"`
-	CoordinateOperationAccuracy []string               `xml:"http://www.opengis.net/gml/3.2 coordinateOperationAccuracy"`
-	SourceCRS                   *CRSPropertyType       `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
-	TargetCRS                   *CRSPropertyType       `xml:"http://www.opengis.net/gml/3.2 targetCRS,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:operationVersion is the version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters). Mandatory when describing a transformation, and should not be supplied for a conversion.
+	OperationVersion *string `xml:"http://www.opengis.net/gml/3.2 operationVersion,omitempty"`
+	// gml:coordinateOperationAccuracy is an association role to a DQ_PositionalAccuracy object as encoded in ISO/TS 19139, either referencing or containing the definition of that positional accuracy. That object contains an estimate of the impact of this coordinate operation on point accuracy. That is, it gives position error estimates for the target coordinates of this coordinate operation, assuming no errors in the source coordinates.
+	CoordinateOperationAccuracy []string `xml:"http://www.opengis.net/gml/3.2 coordinateOperationAccuracy"`
+	// gml:sourceCRS is an association role to the source CRS (coordinate reference system) of this coordinate operation.
+	SourceCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
+	// gml:targetCRS is an association role to the target CRS (coordinate reference system) of this coordinate operation.
+	TargetCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 targetCRS,omitempty"`
 }
 
 type AbstractGeometricAggregateType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	SrsName              string                 `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                    `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                 `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                 `xml:"uomLabels,attr,omitempty"`
-	AggregationType      string                 `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name            []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id              string     `xml:"id,attr,omitempty"`
+	SrsName         string     `xml:"srsName,attr,omitempty"`
+	SrsDimension    int        `xml:"srsDimension,attr,omitempty"`
+	AxisLabels      string     `xml:"axisLabels,attr,omitempty"`
+	UomLabels       string     `xml:"uomLabels,attr,omitempty"`
+	AggregationType string     `xml:"aggregationType,attr,omitempty"`
 }
 
 type AbstractGeometricPrimitiveType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	SrsName              string                 `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                    `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                 `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                 `xml:"uomLabels,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string     `xml:"id,attr,omitempty"`
+	SrsName      string     `xml:"srsName,attr,omitempty"`
+	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
+	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
 }
 
 type AbstractGeometryType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	SrsName              string                 `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                    `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                 `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                 `xml:"uomLabels,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string     `xml:"id,attr,omitempty"`
+	SrsName      string     `xml:"srsName,attr,omitempty"`
+	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
+	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
 }
 
 type AbstractGriddedSurfaceType struct {
@@ -292,149 +415,203 @@ type AbstractParametricCurveSurfaceType struct {
 }
 
 type AbstractRingPropertyType struct {
+	// An abstraction of a ring to support surface boundaries of different complexity.
+	// The AbstractRing element is the abstract head of the substituition group for all closed boundaries of a surface patch.
 	AbstractRing *AbstractRingType `xml:"http://www.opengis.net/gml/3.2 AbstractRing,omitempty"`
 	LinearRing   *LinearRingType   `xml:"http://www.opengis.net/gml/3.2 LinearRing,omitempty"`
 	Ring         *RingType         `xml:"http://www.opengis.net/gml/3.2 Ring,omitempty"`
 }
 
 type AbstractRingType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	SrsName              string                 `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                    `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                 `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                 `xml:"uomLabels,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string     `xml:"id,attr,omitempty"`
+	SrsName      string     `xml:"srsName,attr,omitempty"`
+	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
+	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
 }
 
 type AbstractSolidType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	SrsName              string                 `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                    `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                 `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                 `xml:"uomLabels,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string     `xml:"id,attr,omitempty"`
+	SrsName      string     `xml:"srsName,attr,omitempty"`
+	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
+	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
 }
 
 type AbstractSurfacePatchType struct {
 }
 
 type AbstractSurfaceType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	SrsName              string                 `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                    `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                 `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                 `xml:"uomLabels,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string     `xml:"id,attr,omitempty"`
+	SrsName      string     `xml:"srsName,attr,omitempty"`
+	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
+	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
 }
 
 type AbstractTimeComplexType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
 }
 
 type AbstractTimeGeometricPrimitiveType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	RelatedTime          []RelatedTimeType      `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
-	Frame                string                 `xml:"frame,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name        []CodeType        `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id          string            `xml:"id,attr,omitempty"`
+	RelatedTime []RelatedTimeType `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
+	Frame       string            `xml:"frame,attr,omitempty"`
 }
 
 type AbstractTimeObjectType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
 }
 
 type AbstractTimePrimitiveType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	RelatedTime          []RelatedTimeType      `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name        []CodeType        `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id          string            `xml:"id,attr,omitempty"`
+	RelatedTime []RelatedTimeType `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
 }
 
 type AbstractTimeSliceType struct {
-	MetaDataProperty     []MetaDataPropertyType     `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType           `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType             `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType     `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                 `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                     `xml:"id,attr,omitempty"`
-	ValidTime            *TimePrimitivePropertyType `xml:"http://www.opengis.net/gml/3.2 validTime,omitempty"`
-	DataSource           *StringOrRefType           `xml:"http://www.opengis.net/gml/3.2 dataSource,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
+	// gml:validTime is a convenience property element.
+	ValidTime *TimePrimitivePropertyType `xml:"http://www.opengis.net/gml/3.2 validTime,omitempty"`
+	// Evidence is represented by a simple gml:dataSource or gml:dataSourceReference property that indicates the source of the temporal data. The remote link attributes of the gml:dataSource element have been deprecated along with its current type.
+	DataSource *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 dataSource,omitempty"`
 }
 
 type AbstractTimeTopologyPrimitiveType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	RelatedTime          []RelatedTimeType      `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
-	Complex              *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 complex,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name        []CodeType        `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id          string            `xml:"id,attr,omitempty"`
+	RelatedTime []RelatedTimeType `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
+	Complex     *ReferenceType    `xml:"http://www.opengis.net/gml/3.2 complex,omitempty"`
 }
 
 type AbstractTopoPrimitiveType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
 }
 
 type AbstractTopologyType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
 }
 
 type AffineCSPropertyType struct {
+	// gml:AffineCS is a two- or three-dimensional coordinate system with straight axes that are not necessarily orthogonal. An AffineCS shall have two or three gml:axis property elements; the number of property elements shall equal the dimension of the CS.
 	AffineCS     *AffineCSType `xml:"http://www.opengis.net/gml/3.2 AffineCS,omitempty"`
 	NilReason    string        `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string        `xml:"remoteSchema,attr,omitempty"`
 }
 
 type AffineCSType struct {
-	MetaDataProperty     []MetaDataPropertyType             `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType                   `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                     `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType             `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                         `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                             `xml:"id,attr,omitempty"`
-	Remarks              *string                            `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	Axis                 []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
-	UsesAxis             *CoordinateSystemAxisPropertyType  `xml:"http://www.opengis.net/gml/3.2 usesAxis,omitempty"`
-	AggregationType      string                             `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
+	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
+	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
+	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
 }
 
 type AffinePlacementType struct {
@@ -445,6 +622,7 @@ type AffinePlacementType struct {
 }
 
 type AngleChoiceType struct {
+	// The gml:angle property element is used to record the value of an angle quantity as a single number, with its units.
 	Angle    *AngleType    `xml:"http://www.opengis.net/gml/3.2 angle,omitempty"`
 	DmsAngle *DMSAngleType `xml:"http://www.opengis.net/gml/3.2 dmsAngle,omitempty"`
 }
@@ -461,11 +639,12 @@ type ArcByBulgeType struct {
 	Normal                []VectorType            `xml:"http://www.opengis.net/gml/3.2 normal"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
-	Pos                   *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
-	PointProperty         *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
-	PointRep              *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
-	Interpolation         string                  `xml:"interpolation,attr,omitempty"`
-	NumArc                int                     `xml:"numArc,attr,omitempty"`
+	Pos                   []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
+	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
+	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
+	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
+	Interpolation string              `xml:"interpolation,attr,omitempty"`
+	NumArc        int                 `xml:"numArc,attr,omitempty"`
 }
 
 type ArcByCenterPointType struct {
@@ -478,10 +657,11 @@ type ArcByCenterPointType struct {
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
 	Pos                   *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
-	PointProperty         *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
-	PointRep              *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
-	Interpolation         string                  `xml:"interpolation,attr,omitempty"`
-	NumArc                int                     `xml:"numArc,attr"`
+	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
+	PointProperty *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
+	PointRep      *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
+	Interpolation string             `xml:"interpolation,attr,omitempty"`
+	NumArc        int                `xml:"numArc,attr"`
 }
 
 type ArcStringByBulgeType struct {
@@ -492,11 +672,12 @@ type ArcStringByBulgeType struct {
 	Normal                []VectorType            `xml:"http://www.opengis.net/gml/3.2 normal"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
-	Pos                   *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
-	PointProperty         *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
-	PointRep              *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
-	Interpolation         string                  `xml:"interpolation,attr,omitempty"`
-	NumArc                int                     `xml:"numArc,attr,omitempty"`
+	Pos                   []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
+	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
+	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
+	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
+	Interpolation string              `xml:"interpolation,attr,omitempty"`
+	NumArc        int                 `xml:"numArc,attr,omitempty"`
 }
 
 type ArcStringType struct {
@@ -505,11 +686,12 @@ type ArcStringType struct {
 	NumDerivativeInterior int                     `xml:"numDerivativeInterior,attr,omitempty"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
-	Pos                   *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
-	PointProperty         *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
-	PointRep              *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
-	Interpolation         string                  `xml:"interpolation,attr,omitempty"`
-	NumArc                int                     `xml:"numArc,attr,omitempty"`
+	Pos                   []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
+	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
+	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
+	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
+	Interpolation string              `xml:"interpolation,attr,omitempty"`
+	NumArc        int                 `xml:"numArc,attr,omitempty"`
 }
 
 type ArcType struct {
@@ -518,11 +700,12 @@ type ArcType struct {
 	NumDerivativeInterior int                     `xml:"numDerivativeInterior,attr,omitempty"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
-	Pos                   *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
-	PointProperty         *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
-	PointRep              *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
-	Interpolation         string                  `xml:"interpolation,attr,omitempty"`
-	NumArc                int                     `xml:"numArc,attr,omitempty"`
+	Pos                   []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
+	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
+	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
+	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
+	Interpolation string              `xml:"interpolation,attr,omitempty"`
+	NumArc        int                 `xml:"numArc,attr,omitempty"`
 }
 
 type AreaType struct {
@@ -530,30 +713,35 @@ type AreaType struct {
 }
 
 type ArrayAssociationType struct {
-	AbstractObject                []string                           `xml:"http://www.opengis.net/gml/3.2 AbstractObject"`
-	AbstractCurveSegment          *AbstractCurveSegmentType          `xml:"http://www.opengis.net/gml/3.2 AbstractCurveSegment,omitempty"`
-	AbstractGML                   *AbstractGMLType                   `xml:"http://www.opengis.net/gml/3.2 AbstractGML,omitempty"`
-	AbstractGeneralParameterValue *AbstractGeneralParameterValueType `xml:"http://www.opengis.net/gml/3.2 AbstractGeneralParameterValue,omitempty"`
-	AbstractMetaData              *AbstractMetaDataType              `xml:"http://www.opengis.net/gml/3.2 AbstractMetaData,omitempty"`
-	AbstractValue                 *string                            `xml:"http://www.opengis.net/gml/3.2 AbstractValue,omitempty"`
-	AffinePlacement               *AffinePlacementType               `xml:"http://www.opengis.net/gml/3.2 AffinePlacement,omitempty"`
-	CoverageMappingRule           *MappingRuleType                   `xml:"http://www.opengis.net/gml/3.2 CoverageMappingRule,omitempty"`
-	DataBlock                     *DataBlockType                     `xml:"http://www.opengis.net/gml/3.2 DataBlock,omitempty"`
-	Envelope                      *EnvelopeType                      `xml:"http://www.opengis.net/gml/3.2 Envelope,omitempty"`
-	File                          *FileType                          `xml:"http://www.opengis.net/gml/3.2 File,omitempty"`
-	GridFunction                  *GridFunctionType                  `xml:"http://www.opengis.net/gml/3.2 GridFunction,omitempty"`
-	CoverageFunction              *CoverageFunctionType              `xml:"http://www.opengis.net/gml/3.2 coverageFunction,omitempty"`
-	Owns                          bool                               `xml:"owns,attr,omitempty"`
+	// This element has no type defined, and is therefore implicitly (according to the rules of W3C XML Schema) an XML Schema anyType. It is used as the head of an XML Schema substitution group which unifies complex content and certain simple content elements used for datatypes in GML, including the gml:AbstractGML substitution group.
+	AbstractObject                []string                            `xml:"http://www.opengis.net/gml/3.2 AbstractObject"`
+	AbstractCurveSegment          []AbstractCurveSegmentType          `xml:"http://www.opengis.net/gml/3.2 AbstractCurveSegment"`
+	AbstractGML                   []AbstractGMLType                   `xml:"http://www.opengis.net/gml/3.2 AbstractGML"`
+	AbstractGeneralParameterValue []AbstractGeneralParameterValueType `xml:"http://www.opengis.net/gml/3.2 AbstractGeneralParameterValue"`
+	AbstractMetaData              []AbstractMetaDataType              `xml:"http://www.opengis.net/gml/3.2 AbstractMetaData"`
+	AbstractValue                 []string                            `xml:"http://www.opengis.net/gml/3.2 AbstractValue"`
+	AffinePlacement               []AffinePlacementType               `xml:"http://www.opengis.net/gml/3.2 AffinePlacement"`
+	CoverageMappingRule           []MappingRuleType                   `xml:"http://www.opengis.net/gml/3.2 CoverageMappingRule"`
+	DataBlock                     []DataBlockType                     `xml:"http://www.opengis.net/gml/3.2 DataBlock"`
+	Envelope                      []EnvelopeType                      `xml:"http://www.opengis.net/gml/3.2 Envelope"`
+	File                          []FileType                          `xml:"http://www.opengis.net/gml/3.2 File"`
+	GridFunction                  []GridFunctionType                  `xml:"http://www.opengis.net/gml/3.2 GridFunction"`
+	CoverageFunction              []CoverageFunctionType              `xml:"http://www.opengis.net/gml/3.2 coverageFunction"`
+	Owns                          bool                                `xml:"owns,attr,omitempty"`
 }
 
 type ArrayType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	Members              *ArrayAssociationType  `xml:"http://www.opengis.net/gml/3.2 members,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType            `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string                `xml:"id,attr,omitempty"`
+	Members *ArrayAssociationType `xml:"http://www.opengis.net/gml/3.2 members,omitempty"`
 }
 
 type AssociationRoleType struct {
@@ -570,37 +758,51 @@ type BSplineType struct {
 	Knot                  []KnotPropertyType      `xml:"http://www.opengis.net/gml/3.2 knot"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
-	Pos                   *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
-	PointProperty         *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
-	PointRep              *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
-	Interpolation         string                  `xml:"interpolation,attr,omitempty"`
-	IsPolynomial          bool                    `xml:"isPolynomial,attr,omitempty"`
-	KnotType              string                  `xml:"knotType,attr,omitempty"`
+	Pos                   []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
+	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
+	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
+	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
+	Interpolation string              `xml:"interpolation,attr,omitempty"`
+	IsPolynomial  bool                `xml:"isPolynomial,attr,omitempty"`
+	KnotType      string              `xml:"knotType,attr,omitempty"`
 }
 
 type BagType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	Member               []AssociationRoleType  `xml:"http://www.opengis.net/gml/3.2 member"`
-	Members              *ArrayAssociationType  `xml:"http://www.opengis.net/gml/3.2 members,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType            `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string                `xml:"id,attr,omitempty"`
+	Member  []AssociationRoleType `xml:"http://www.opengis.net/gml/3.2 member"`
+	Members *ArrayAssociationType `xml:"http://www.opengis.net/gml/3.2 members,omitempty"`
 }
 
 type BaseUnitType struct {
-	MetaDataProperty      []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description           *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference  *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier            *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                  []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                    string                 `xml:"id,attr,omitempty"`
-	Remarks               *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	QuantityType          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 quantityType,omitempty"`
-	QuantityTypeReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 quantityTypeReference,omitempty"`
-	CatalogSymbol         *CodeType              `xml:"http://www.opengis.net/gml/3.2 catalogSymbol,omitempty"`
-	UnitsSystem           *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 unitsSystem,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:quantityType property indicates the phenomenon to which the units apply. This element contains an informal description of the phenomenon or type of physical quantity that is measured or observed. When the physical quantity is the result of an observation or measurement, this term is known as observable type or measurand.
+	// The use of gml:quantityType for references to remote values is deprecated.
+	QuantityType *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 quantityType,omitempty"`
+	// The gml:quantityTypeReference property indicates the phenomenon to which the units apply. The content is a reference to a remote value.
+	QuantityTypeReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 quantityTypeReference,omitempty"`
+	// The catalogSymbol is the preferred lexical symbol used for this unit of measure.
+	// The codeSpace attribute in gml:CodeType identifies a namespace for the catalog symbol value, and might reference the external catalog. The string value in gml:CodeType contains the value of a symbol that should be unique within this catalog namespace. This symbol often appears explicitly in the catalog, but it could be a combination of symbols using a specified algebra of units.
+	CatalogSymbol *CodeType      `xml:"http://www.opengis.net/gml/3.2 catalogSymbol,omitempty"`
+	UnitsSystem   *ReferenceType `xml:"http://www.opengis.net/gml/3.2 unitsSystem,omitempty"`
 }
 
 type BezierType struct {
@@ -611,12 +813,13 @@ type BezierType struct {
 	Knot                  []KnotPropertyType      `xml:"http://www.opengis.net/gml/3.2 knot"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
-	Pos                   *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
-	PointProperty         *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
-	PointRep              *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
-	Interpolation         string                  `xml:"interpolation,attr,omitempty"`
-	IsPolynomial          bool                    `xml:"isPolynomial,attr,omitempty"`
-	KnotType              string                  `xml:"knotType,attr,omitempty"`
+	Pos                   []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
+	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
+	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
+	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
+	Interpolation string              `xml:"interpolation,attr,omitempty"`
+	IsPolynomial  bool                `xml:"isPolynomial,attr,omitempty"`
+	KnotType      string              `xml:"knotType,attr,omitempty"`
 }
 
 type BooleanPropertyType struct {
@@ -626,18 +829,25 @@ type BooleanPropertyType struct {
 }
 
 type BoundedFeatureType struct {
-	MetaDataProperty     []MetaDataPropertyType        `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType              `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType        `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                    `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                        `xml:"id,attr,omitempty"`
-	BoundedBy            *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
-	Location             *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
-	PriorityLocation     *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
+	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
+	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
+	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
+	PriorityLocation *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
 }
 
 type BoundingShapeType struct {
+	// Envelope defines an extent using a pair of positions defining opposite corners in arbitrary dimensions. The first direct position is the "lower corner" (a coordinate position consisting of all the minimal ordinates for each dimension for all points within the envelope), the second one the "upper corner" (a coordinate position consisting of all the maximal ordinates for each dimension for all points within the envelope).
+	// The use of the properties "coordinates" and "pos" has been deprecated. The explicitly named properties "lowerCorner" and "upperCorner" shall be used instead.
 	Envelope               *EnvelopeType               `xml:"http://www.opengis.net/gml/3.2 Envelope,omitempty"`
 	EnvelopeWithTimePeriod *EnvelopeWithTimePeriodType `xml:"http://www.opengis.net/gml/3.2 EnvelopeWithTimePeriod,omitempty"`
 	Null                   *string                     `xml:"http://www.opengis.net/gml/3.2 Null,omitempty"`
@@ -645,6 +855,7 @@ type BoundingShapeType struct {
 }
 
 type CRSPropertyType struct {
+	// gml:AbstractCRS specifies a coordinate reference system which is usually single but may be compound. This abstract complex type shall not be used, extended, or restricted, in a GML Application Schema, to define a concrete subtype with a meaning equivalent to a concrete subtype specified in this document.
 	AbstractCRS       *AbstractCRSType `xml:"http://www.opengis.net/gml/3.2 AbstractCRS,omitempty"`
 	AbstractSingleCRS *AbstractCRSType `xml:"http://www.opengis.net/gml/3.2 AbstractSingleCRS,omitempty"`
 	CompoundCRS       *CompoundCRSType `xml:"http://www.opengis.net/gml/3.2 CompoundCRS,omitempty"`
@@ -653,22 +864,28 @@ type CRSPropertyType struct {
 }
 
 type CartesianCSPropertyType struct {
+	// gml:CartesianCS is a 1-, 2-, or 3-dimensional coordinate system. In the 1-dimensional case, it contains a single straight coordinate axis. In the 2- and 3-dimensional cases gives the position of points relative to orthogonal straight axes. In the multi-dimensional case, all axes shall have the same length unit of measure. A CartesianCS shall have one, two, or three gml:axis property elements.
 	CartesianCS  *CartesianCSType `xml:"http://www.opengis.net/gml/3.2 CartesianCS,omitempty"`
 	NilReason    string           `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string           `xml:"remoteSchema,attr,omitempty"`
 }
 
 type CartesianCSType struct {
-	MetaDataProperty     []MetaDataPropertyType             `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType                   `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                     `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType             `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                         `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                             `xml:"id,attr,omitempty"`
-	Remarks              *string                            `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	Axis                 []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
-	UsesAxis             *CoordinateSystemAxisPropertyType  `xml:"http://www.opengis.net/gml/3.2 usesAxis,omitempty"`
-	AggregationType      string                             `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
+	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
+	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
+	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
 }
 
 type CategoryExtentType struct {
@@ -676,6 +893,7 @@ type CategoryExtentType struct {
 }
 
 type CategoryPropertyType struct {
+	// A gml:Category has an optional XML attribute codeSpace, whose value is a URI which identifies a dictionary, codelist or authority for the term.
 	Category     *string `xml:"http://www.opengis.net/gml/3.2 Category,omitempty"`
 	NilReason    string  `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string  `xml:"remoteSchema,attr,omitempty"`
@@ -691,10 +909,11 @@ type CircleByCenterPointType struct {
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
 	Pos                   *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
-	PointProperty         *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
-	PointRep              *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
-	Interpolation         string                  `xml:"interpolation,attr,omitempty"`
-	NumArc                int                     `xml:"numArc,attr"`
+	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
+	PointProperty *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
+	PointRep      *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
+	Interpolation string             `xml:"interpolation,attr,omitempty"`
+	NumArc        int                `xml:"numArc,attr"`
 }
 
 type CircleType struct {
@@ -703,11 +922,12 @@ type CircleType struct {
 	NumDerivativeInterior int                     `xml:"numDerivativeInterior,attr,omitempty"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
-	Pos                   *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
-	PointProperty         *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
-	PointRep              *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
-	Interpolation         string                  `xml:"interpolation,attr,omitempty"`
-	NumArc                int                     `xml:"numArc,attr,omitempty"`
+	Pos                   []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
+	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
+	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
+	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
+	Interpolation string              `xml:"interpolation,attr,omitempty"`
+	NumArc        int                 `xml:"numArc,attr,omitempty"`
 }
 
 type ClothoidType struct {
@@ -742,80 +962,108 @@ type CodeWithAuthorityType struct {
 }
 
 type CompositeCurveType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	SrsName              string                 `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                    `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                 `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                 `xml:"uomLabels,attr,omitempty"`
-	CurveMember          []CurvePropertyType    `xml:"http://www.opengis.net/gml/3.2 curveMember"`
-	AggregationType      string                 `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name            []CodeType          `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id              string              `xml:"id,attr,omitempty"`
+	SrsName         string              `xml:"srsName,attr,omitempty"`
+	SrsDimension    int                 `xml:"srsDimension,attr,omitempty"`
+	AxisLabels      string              `xml:"axisLabels,attr,omitempty"`
+	UomLabels       string              `xml:"uomLabels,attr,omitempty"`
+	CurveMember     []CurvePropertyType `xml:"http://www.opengis.net/gml/3.2 curveMember"`
+	AggregationType string              `xml:"aggregationType,attr,omitempty"`
 }
 
 type CompositeSolidType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	SrsName              string                 `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                    `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                 `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                 `xml:"uomLabels,attr,omitempty"`
-	SolidMember          []SolidPropertyType    `xml:"http://www.opengis.net/gml/3.2 solidMember"`
-	AggregationType      string                 `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string     `xml:"id,attr,omitempty"`
+	SrsName      string     `xml:"srsName,attr,omitempty"`
+	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
+	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	// This property element either references a solid via the XLink-attributes or contains the solid element. A solid element is any element, which is substitutable for gml:AbstractSolid.
+	SolidMember     []SolidPropertyType `xml:"http://www.opengis.net/gml/3.2 solidMember"`
+	AggregationType string              `xml:"aggregationType,attr,omitempty"`
 }
 
 type CompositeSurfaceType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	SrsName              string                 `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                    `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                 `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                 `xml:"uomLabels,attr,omitempty"`
-	SurfaceMember        []SurfacePropertyType  `xml:"http://www.opengis.net/gml/3.2 surfaceMember"`
-	AggregationType      string                 `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string     `xml:"id,attr,omitempty"`
+	SrsName      string     `xml:"srsName,attr,omitempty"`
+	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
+	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	// This property element either references a surface via the XLink-attributes or contains the surface element. A surface element is any element, which is substitutable for gml:AbstractSurface.
+	SurfaceMember   []SurfacePropertyType `xml:"http://www.opengis.net/gml/3.2 surfaceMember"`
+	AggregationType string                `xml:"aggregationType,attr,omitempty"`
 }
 
 type CompositeValueType struct {
-	MetaDataProperty     []MetaDataPropertyType  `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType        `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType          `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType  `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                  `xml:"id,attr,omitempty"`
-	ValueComponent       []ValuePropertyType     `xml:"http://www.opengis.net/gml/3.2 valueComponent"`
-	ValueComponents      *ValueArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 valueComponents,omitempty"`
-	AggregationType      string                  `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
+	// Property that refers to, or contains, a Value.
+	ValueComponent []ValuePropertyType `xml:"http://www.opengis.net/gml/3.2 valueComponent"`
+	// Property that contains Values.
+	ValueComponents *ValueArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 valueComponents,omitempty"`
+	AggregationType string                  `xml:"aggregationType,attr,omitempty"`
 }
 
 type CompoundCRSPropertyType struct {
+	// gml:CompundCRS is a coordinate reference system describing the position of points through two or more independent coordinate reference systems. It is associated with a non-repeating sequence of two or more instances of SingleCRS.
 	CompoundCRS  *CompoundCRSType `xml:"http://www.opengis.net/gml/3.2 CompoundCRS,omitempty"`
 	NilReason    string           `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string           `xml:"remoteSchema,attr,omitempty"`
 }
 
 type CompoundCRSType struct {
-	MetaDataProperty         []MetaDataPropertyType  `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description              *StringOrRefType        `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference     *ReferenceType          `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier               *CodeWithAuthorityType  `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                     []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                       string                  `xml:"id,attr,omitempty"`
-	Remarks                  *string                 `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity         []string                `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
-	Scope                    []string                `xml:"http://www.opengis.net/gml/3.2 scope"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// The gml:componentReferenceSystem elements are an ordered sequence of associations to all the component coordinate reference systems included in this compound coordinate reference system. The gml:AggregationAttributeGroup should be used to specify that the gml:componentReferenceSystem properties are ordered.
 	ComponentReferenceSystem []SingleCRSPropertyType `xml:"http://www.opengis.net/gml/3.2 componentReferenceSystem"`
-	IncludesSingleCRS        *SingleCRSPropertyType  `xml:"http://www.opengis.net/gml/3.2 includesSingleCRS,omitempty"`
+	IncludesSingleCRS        []SingleCRSPropertyType `xml:"http://www.opengis.net/gml/3.2 includesSingleCRS"`
 	AggregationType          string                  `xml:"aggregationType,attr,omitempty"`
 }
 
@@ -826,23 +1074,34 @@ type ConcatenatedOperationPropertyType struct {
 }
 
 type ConcatenatedOperationType struct {
-	MetaDataProperty            []MetaDataPropertyType            `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description                 *StringOrRefType                  `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference        *ReferenceType                    `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier                  *CodeWithAuthorityType            `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                        []CodeType                        `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                          string                            `xml:"id,attr,omitempty"`
-	Remarks                     *string                           `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity            *string                           `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
-	Scope                       []string                          `xml:"http://www.opengis.net/gml/3.2 scope"`
-	OperationVersion            *string                           `xml:"http://www.opengis.net/gml/3.2 operationVersion,omitempty"`
-	CoordinateOperationAccuracy []string                          `xml:"http://www.opengis.net/gml/3.2 coordinateOperationAccuracy"`
-	SourceCRS                   *CRSPropertyType                  `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
-	TargetCRS                   *CRSPropertyType                  `xml:"http://www.opengis.net/gml/3.2 targetCRS,omitempty"`
-	CoordOperation              []CoordinateOperationPropertyType `xml:"http://www.opengis.net/gml/3.2 coordOperation"`
-	UsesOperation               *CoordinateOperationPropertyType  `xml:"http://www.opengis.net/gml/3.2 usesOperation,omitempty"`
-	UsesSingleOperation         *CoordinateOperationPropertyType  `xml:"http://www.opengis.net/gml/3.2 usesSingleOperation,omitempty"`
-	AggregationType             string                            `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:operationVersion is the version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters). Mandatory when describing a transformation, and should not be supplied for a conversion.
+	OperationVersion *string `xml:"http://www.opengis.net/gml/3.2 operationVersion,omitempty"`
+	// gml:coordinateOperationAccuracy is an association role to a DQ_PositionalAccuracy object as encoded in ISO/TS 19139, either referencing or containing the definition of that positional accuracy. That object contains an estimate of the impact of this coordinate operation on point accuracy. That is, it gives position error estimates for the target coordinates of this coordinate operation, assuming no errors in the source coordinates.
+	CoordinateOperationAccuracy []string `xml:"http://www.opengis.net/gml/3.2 coordinateOperationAccuracy"`
+	// gml:sourceCRS is an association role to the source CRS (coordinate reference system) of this coordinate operation.
+	SourceCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
+	// gml:targetCRS is an association role to the target CRS (coordinate reference system) of this coordinate operation.
+	TargetCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 targetCRS,omitempty"`
+	// gml:coordOperation is an association role to a coordinate operation.
+	CoordOperation      []CoordinateOperationPropertyType `xml:"http://www.opengis.net/gml/3.2 coordOperation"`
+	UsesOperation       []CoordinateOperationPropertyType `xml:"http://www.opengis.net/gml/3.2 usesOperation"`
+	UsesSingleOperation []CoordinateOperationPropertyType `xml:"http://www.opengis.net/gml/3.2 usesSingleOperation"`
+	AggregationType     string                            `xml:"aggregationType,attr,omitempty"`
 }
 
 type ConeType struct {
@@ -854,22 +1113,38 @@ type ConeType struct {
 }
 
 type ConventionalUnitType struct {
-	MetaDataProperty               []MetaDataPropertyType         `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description                    *StringOrRefType               `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference           *ReferenceType                 `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier                     *CodeWithAuthorityType         `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                           []CodeType                     `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                             string                         `xml:"id,attr,omitempty"`
-	Remarks                        *string                        `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	QuantityType                   *StringOrRefType               `xml:"http://www.opengis.net/gml/3.2 quantityType,omitempty"`
-	QuantityTypeReference          *ReferenceType                 `xml:"http://www.opengis.net/gml/3.2 quantityTypeReference,omitempty"`
-	CatalogSymbol                  *CodeType                      `xml:"http://www.opengis.net/gml/3.2 catalogSymbol,omitempty"`
-	DerivationUnitTerm             []DerivationUnitTermType       `xml:"http://www.opengis.net/gml/3.2 derivationUnitTerm"`
-	ConversionToPreferredUnit      *ConversionToPreferredUnitType `xml:"http://www.opengis.net/gml/3.2 conversionToPreferredUnit,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:quantityType property indicates the phenomenon to which the units apply. This element contains an informal description of the phenomenon or type of physical quantity that is measured or observed. When the physical quantity is the result of an observation or measurement, this term is known as observable type or measurand.
+	// The use of gml:quantityType for references to remote values is deprecated.
+	QuantityType *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 quantityType,omitempty"`
+	// The gml:quantityTypeReference property indicates the phenomenon to which the units apply. The content is a reference to a remote value.
+	QuantityTypeReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 quantityTypeReference,omitempty"`
+	// The catalogSymbol is the preferred lexical symbol used for this unit of measure.
+	// The codeSpace attribute in gml:CodeType identifies a namespace for the catalog symbol value, and might reference the external catalog. The string value in gml:CodeType contains the value of a symbol that should be unique within this catalog namespace. This symbol often appears explicitly in the catalog, but it could be a combination of symbols using a specified algebra of units.
+	CatalogSymbol *CodeType `xml:"http://www.opengis.net/gml/3.2 catalogSymbol,omitempty"`
+	// A set of gml:derivationUnitTerm elements describes a derived unit of measure.  Each element carries an integer exponent.  The terms are combined by raising each referenced unit to the power of its exponent and forming the product.
+	// This unit term references another unit of measure (uom) and provides an integer exponent applied to that unit in defining the compound unit. The exponent may be positive or negative, but not zero.
+	DerivationUnitTerm []DerivationUnitTermType `xml:"http://www.opengis.net/gml/3.2 derivationUnitTerm"`
+	// The elements gml:conversionToPreferredUnit and gml:roughConversionToPreferredUnit represent parameters used to convert conventional units to preferred units for this physical quantity type.  A preferred unit is either a Base Unit or a Derived Unit that is selected for all values of one physical quantity type.
+	ConversionToPreferredUnit *ConversionToPreferredUnitType `xml:"http://www.opengis.net/gml/3.2 conversionToPreferredUnit,omitempty"`
+	// The elements gml:conversionToPreferredUnit and gml:roughConversionToPreferredUnit represent parameters used to convert conventional units to preferred units for this physical quantity type.  A preferred unit is either a Base Unit or a Derived Unit that is selected for all values of one physical quantity type.
 	RoughConversionToPreferredUnit *ConversionToPreferredUnitType `xml:"http://www.opengis.net/gml/3.2 roughConversionToPreferredUnit,omitempty"`
 }
 
 type ConversionPropertyType struct {
+	// gml:Conversion is a concrete operation on coordinates that does not include any change of Datum. The best-known example of a coordinate conversion is a map projection. The parameters describing coordinate conversions are defined rather than empirically derived. Note that some conversions have no parameters.
+	// This concrete complex type can be used without using a GML Application Schema that defines operation-method-specialized element names and contents, especially for methods with only one Conversion instance.
+	// The usesValue property elements are an unordered list of composition associations to the set of parameter values used by this conversion operation.
 	Conversion   *ConversionType `xml:"http://www.opengis.net/gml/3.2 Conversion,omitempty"`
 	NilReason    string          `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string          `xml:"remoteSchema,attr,omitempty"`
@@ -882,27 +1157,41 @@ type ConversionToPreferredUnitType struct {
 }
 
 type ConversionType struct {
-	MetaDataProperty            []MetaDataPropertyType                      `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description                 *StringOrRefType                            `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference        *ReferenceType                              `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier                  *CodeWithAuthorityType                      `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                        []CodeType                                  `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                          string                                      `xml:"id,attr,omitempty"`
-	Remarks                     *string                                     `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity            *string                                     `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
-	Scope                       []string                                    `xml:"http://www.opengis.net/gml/3.2 scope"`
-	OperationVersion            *string                                     `xml:"http://www.opengis.net/gml/3.2 operationVersion,omitempty"`
-	CoordinateOperationAccuracy []string                                    `xml:"http://www.opengis.net/gml/3.2 coordinateOperationAccuracy"`
-	SourceCRS                   *CRSPropertyType                            `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
-	TargetCRS                   *CRSPropertyType                            `xml:"http://www.opengis.net/gml/3.2 targetCRS,omitempty"`
-	Method                      *OperationMethodPropertyType                `xml:"http://www.opengis.net/gml/3.2 method,omitempty"`
-	UsesMethod                  *OperationMethodPropertyType                `xml:"http://www.opengis.net/gml/3.2 usesMethod,omitempty"`
-	ParameterValue              []AbstractGeneralParameterValuePropertyType `xml:"http://www.opengis.net/gml/3.2 parameterValue"`
-	IncludesValue               *AbstractGeneralParameterValuePropertyType  `xml:"http://www.opengis.net/gml/3.2 includesValue,omitempty"`
-	UsesValue                   *AbstractGeneralParameterValuePropertyType  `xml:"http://www.opengis.net/gml/3.2 usesValue,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:operationVersion is the version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters). Mandatory when describing a transformation, and should not be supplied for a conversion.
+	OperationVersion *string `xml:"http://www.opengis.net/gml/3.2 operationVersion,omitempty"`
+	// gml:coordinateOperationAccuracy is an association role to a DQ_PositionalAccuracy object as encoded in ISO/TS 19139, either referencing or containing the definition of that positional accuracy. That object contains an estimate of the impact of this coordinate operation on point accuracy. That is, it gives position error estimates for the target coordinates of this coordinate operation, assuming no errors in the source coordinates.
+	CoordinateOperationAccuracy []string `xml:"http://www.opengis.net/gml/3.2 coordinateOperationAccuracy"`
+	// gml:sourceCRS is an association role to the source CRS (coordinate reference system) of this coordinate operation.
+	SourceCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
+	// gml:targetCRS is an association role to the target CRS (coordinate reference system) of this coordinate operation.
+	TargetCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 targetCRS,omitempty"`
+	// gml:method is an association role to the operation method used by a coordinate operation.
+	Method     *OperationMethodPropertyType `xml:"http://www.opengis.net/gml/3.2 method,omitempty"`
+	UsesMethod *OperationMethodPropertyType `xml:"http://www.opengis.net/gml/3.2 usesMethod,omitempty"`
+	// gml:parameterValue is a composition association to a parameter value or group of parameter values used by a coordinate operation.
+	ParameterValue []AbstractGeneralParameterValuePropertyType `xml:"http://www.opengis.net/gml/3.2 parameterValue"`
+	IncludesValue  []AbstractGeneralParameterValuePropertyType `xml:"http://www.opengis.net/gml/3.2 includesValue"`
+	UsesValue      []AbstractGeneralParameterValuePropertyType `xml:"http://www.opengis.net/gml/3.2 usesValue"`
 }
 
 type CoordinateOperationPropertyType struct {
+	// gml:AbstractCoordinateOperation is a mathematical operation on coordinates that transforms or converts coordinates to another coordinate reference system. Many but not all coordinate operations (from CRS A to CRS B) also uniquely define the inverse operation (from CRS B to CRS A). In some cases, the operation method algorithm for the inverse operation is the same as for the forward algorithm, but the signs of some operation parameter values shall be reversed. In other cases, different algorithms are required for the forward and inverse operations, but the same operation parameter values are used. If (some) entirely different parameter values are needed, a different coordinate operation shall be defined.
+	// The optional coordinateOperationAccuracy property elements provide estimates of the impact of this coordinate operation on point position accuracy.
 	AbstractCoordinateOperation *AbstractCoordinateOperationType `xml:"http://www.opengis.net/gml/3.2 AbstractCoordinateOperation,omitempty"`
 	AbstractSingleOperation     *AbstractCoordinateOperationType `xml:"http://www.opengis.net/gml/3.2 AbstractSingleOperation,omitempty"`
 	ConcatenatedOperation       *ConcatenatedOperationType       `xml:"http://www.opengis.net/gml/3.2 ConcatenatedOperation,omitempty"`
@@ -911,28 +1200,42 @@ type CoordinateOperationPropertyType struct {
 }
 
 type CoordinateSystemAxisPropertyType struct {
+	// gml:CoordinateSystemAxis is a definition of a coordinate system axis.
 	CoordinateSystemAxis *CoordinateSystemAxisType `xml:"http://www.opengis.net/gml/3.2 CoordinateSystemAxis,omitempty"`
 	NilReason            string                    `xml:"nilReason,attr,omitempty"`
 	RemoteSchema         string                    `xml:"remoteSchema,attr,omitempty"`
 }
 
 type CoordinateSystemAxisType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	Remarks              *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	AxisAbbrev           *CodeType              `xml:"http://www.opengis.net/gml/3.2 axisAbbrev,omitempty"`
-	AxisDirection        *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 axisDirection,omitempty"`
-	MinimumValue         *float64               `xml:"http://www.opengis.net/gml/3.2 minimumValue,omitempty"`
-	MaximumValue         *float64               `xml:"http://www.opengis.net/gml/3.2 maximumValue,omitempty"`
-	RangeMeaning         *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 rangeMeaning,omitempty"`
-	Uom                  string                 `xml:"uom,attr"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// gml:axisAbbrev is the abbreviation used for this coordinate system axis; this abbreviation is also used to identify the coordinates in the coordinate tuple. The codeSpace attribute may reference a source of more information on a set of standardized abbreviations, or on this abbreviation.
+	AxisAbbrev *CodeType `xml:"http://www.opengis.net/gml/3.2 axisAbbrev,omitempty"`
+	// gml:axisDirection is the direction of this coordinate system axis (or in the case of Cartesian projected coordinates, the direction of this coordinate system axis at the origin).
+	// Within any set of coordinate system axes, only one of each pair of terms may be used. For earth-fixed CRSs, this direction is often approximate and intended to provide a human interpretable meaning to the axis. When a geodetic datum is used, the precise directions of the axes may therefore vary slightly from this approximate direction.
+	// The codeSpace attribute shall reference a source of information specifying the values and meanings of all the allowed string values for this property.
+	AxisDirection *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 axisDirection,omitempty"`
+	// The gml:minimumValue and gml:maximumValue properties allow the specification of minimum and maximum value normally allowed for this axis, in the unit of measure for the axis. For a continuous angular axis such as longitude, the values wrap-around at this value. Also, values beyond this minimum/maximum can be used for specified purposes, such as in a bounding box. A value of minus infinity shall be allowed for the gml:minimumValue element, a value of plus infiniy for the gml:maximumValue element. If these elements are omitted, the value is unspecified.
+	MinimumValue *float64 `xml:"http://www.opengis.net/gml/3.2 minimumValue,omitempty"`
+	// The gml:minimumValue and gml:maximumValue properties allow the specification of minimum and maximum value normally allowed for this axis, in the unit of measure for the axis. For a continuous angular axis such as longitude, the values wrap-around at this value. Also, values beyond this minimum/maximum can be used for specified purposes, such as in a bounding box. A value of minus infinity shall be allowed for the gml:minimumValue element, a value of plus infiniy for the gml:maximumValue element. If these elements are omitted, the value is unspecified.
+	MaximumValue *float64 `xml:"http://www.opengis.net/gml/3.2 maximumValue,omitempty"`
+	// gml:rangeMeaning describes the meaning of axis value range specified by gml:minimumValue and gml:maximumValue. This element shall be omitted when both gml:minimumValue and gml:maximumValue are omitted. This element should be included when gml:minimumValue and/or gml:maximumValue are included. If this element is omitted when the gml:minimumValue and/or gml:maximumValue are included, the meaning is unspecified. The codeSpace attribute shall reference a source of information specifying the values and meanings of all the allowed string values for this property.
+	RangeMeaning *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 rangeMeaning,omitempty"`
+	// The uom attribute provides an identifier of the unit of measure used for this coordinate system axis. The value of this coordinate in a coordinate tuple shall be recorded using this unit of measure, whenever those coordinates use a coordinate reference system that uses a coordinate system that uses this axis.
+	Uom string `xml:"uom,attr"`
 }
 
 type CoordinateSystemPropertyType struct {
+	// gml:AbstractCoordinateSystem is a coordinate system (CS) is the non-repeating sequence of coordinate system axes that spans a given coordinate space. A CS is derived from a set of mathematical rules for specifying how coordinates in a given space are to be assigned to points. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded. This abstract complex type shall not be used, extended, or restricted, in an Application Schema, to define a concrete subtype with a meaning equivalent to a concrete subtype specified in this document.
 	AbstractCoordinateSystem *AbstractCoordinateSystemType `xml:"http://www.opengis.net/gml/3.2 AbstractCoordinateSystem,omitempty"`
 	AffineCS                 *AffineCSType                 `xml:"http://www.opengis.net/gml/3.2 AffineCS,omitempty"`
 	CartesianCS              *CartesianCSType              `xml:"http://www.opengis.net/gml/3.2 CartesianCS,omitempty"`
@@ -964,9 +1267,14 @@ type CountPropertyType struct {
 }
 
 type CoverageFunctionType struct {
-	MappingRule         *StringOrRefType  `xml:"http://www.opengis.net/gml/3.2 MappingRule,omitempty"`
-	CoverageMappingRule *MappingRuleType  `xml:"http://www.opengis.net/gml/3.2 CoverageMappingRule,omitempty"`
-	GridFunction        *GridFunctionType `xml:"http://www.opengis.net/gml/3.2 GridFunction,omitempty"`
+	MappingRule *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 MappingRule,omitempty"`
+	// gml:CoverageMappingRule provides a formal or informal description of the coverage function.
+	// The mapping rule may be defined as an in-line string (gml:ruleDefinition) or via a remote reference through xlink:href (gml:ruleReference).
+	// If no rule name is specified, the default is 'Linear' with respect to members of the domain in document order.
+	CoverageMappingRule *MappingRuleType `xml:"http://www.opengis.net/gml/3.2 CoverageMappingRule,omitempty"`
+	// gml:GridFunction provides an explicit mapping rule for grid geometries, i.e. the domain shall be a geometry of type grid.  It describes the mapping of grid posts (discrete point grid coverage) or grid cells (discrete surface coverage) to the values in the range set.
+	// The gml:startPoint is the index position of a point in the grid that is mapped to the first point in the range set (this is also the index position of the first grid post).  If the gml:startPoint property is omitted the gml:startPoint is assumed to be equal to the value of gml:low in the gml:Grid geometry. Subsequent points in the mapping are determined by the value of the gml:sequenceRule.
+	GridFunction *GridFunctionType `xml:"http://www.opengis.net/gml/3.2 GridFunction,omitempty"`
 }
 
 type CubicSplineType struct {
@@ -977,24 +1285,27 @@ type CubicSplineType struct {
 	VectorAtEnd           *VectorType             `xml:"http://www.opengis.net/gml/3.2 vectorAtEnd,omitempty"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
-	Pos                   *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
-	PointProperty         *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
-	PointRep              *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
-	Interpolation         string                  `xml:"interpolation,attr,omitempty"`
-	Degree                int                     `xml:"degree,attr,omitempty"`
+	Pos                   []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
+	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
+	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
+	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
+	Interpolation string              `xml:"interpolation,attr,omitempty"`
+	Degree        int                 `xml:"degree,attr,omitempty"`
 }
 
 type CurveArrayPropertyType struct {
-	AbstractCurve   *AbstractCurveType   `xml:"http://www.opengis.net/gml/3.2 AbstractCurve,omitempty"`
-	AbstractRing    *AbstractRingType    `xml:"http://www.opengis.net/gml/3.2 AbstractRing,omitempty"`
-	CompositeCurve  *CompositeCurveType  `xml:"http://www.opengis.net/gml/3.2 CompositeCurve,omitempty"`
-	Curve           *CurveType           `xml:"http://www.opengis.net/gml/3.2 Curve,omitempty"`
-	LineString      *LineStringType      `xml:"http://www.opengis.net/gml/3.2 LineString,omitempty"`
-	OrientableCurve *OrientableCurveType `xml:"http://www.opengis.net/gml/3.2 OrientableCurve,omitempty"`
-	Owns            bool                 `xml:"owns,attr,omitempty"`
+	// The AbstractCurve element is the abstract head of the substitution group for all (continuous) curve elements.
+	AbstractCurve   []AbstractCurveType   `xml:"http://www.opengis.net/gml/3.2 AbstractCurve"`
+	AbstractRing    []AbstractRingType    `xml:"http://www.opengis.net/gml/3.2 AbstractRing"`
+	CompositeCurve  []CompositeCurveType  `xml:"http://www.opengis.net/gml/3.2 CompositeCurve"`
+	Curve           []CurveType           `xml:"http://www.opengis.net/gml/3.2 Curve"`
+	LineString      []LineStringType      `xml:"http://www.opengis.net/gml/3.2 LineString"`
+	OrientableCurve []OrientableCurveType `xml:"http://www.opengis.net/gml/3.2 OrientableCurve"`
+	Owns            bool                  `xml:"owns,attr,omitempty"`
 }
 
 type CurvePropertyType struct {
+	// The AbstractCurve element is the abstract head of the substitution group for all (continuous) curve elements.
 	AbstractCurve   *AbstractCurveType   `xml:"http://www.opengis.net/gml/3.2 AbstractCurve,omitempty"`
 	AbstractRing    *AbstractRingType    `xml:"http://www.opengis.net/gml/3.2 AbstractRing,omitempty"`
 	CompositeCurve  *CompositeCurveType  `xml:"http://www.opengis.net/gml/3.2 CompositeCurve,omitempty"`
@@ -1007,30 +1318,39 @@ type CurvePropertyType struct {
 }
 
 type CurveSegmentArrayPropertyType struct {
-	AbstractCurveSegment *AbstractCurveSegmentType `xml:"http://www.opengis.net/gml/3.2 AbstractCurveSegment,omitempty"`
-	ArcByCenterPoint     *ArcByCenterPointType     `xml:"http://www.opengis.net/gml/3.2 ArcByCenterPoint,omitempty"`
-	ArcString            *ArcStringType            `xml:"http://www.opengis.net/gml/3.2 ArcString,omitempty"`
-	ArcStringByBulge     *ArcStringByBulgeType     `xml:"http://www.opengis.net/gml/3.2 ArcStringByBulge,omitempty"`
-	BSpline              *BSplineType              `xml:"http://www.opengis.net/gml/3.2 BSpline,omitempty"`
-	Clothoid             *ClothoidType             `xml:"http://www.opengis.net/gml/3.2 Clothoid,omitempty"`
-	CubicSpline          *CubicSplineType          `xml:"http://www.opengis.net/gml/3.2 CubicSpline,omitempty"`
-	GeodesicString       *GeodesicStringType       `xml:"http://www.opengis.net/gml/3.2 GeodesicString,omitempty"`
-	LineStringSegment    *LineStringSegmentType    `xml:"http://www.opengis.net/gml/3.2 LineStringSegment,omitempty"`
-	OffsetCurve          *OffsetCurveType          `xml:"http://www.opengis.net/gml/3.2 OffsetCurve,omitempty"`
+	// A curve segment defines a homogeneous segment of a curve.
+	// The attributes numDerivativesAtStart, numDerivativesAtEnd and numDerivativesInterior specify the type of continuity as specified in ISO 19107:2003, 6.4.9.3.
+	// The AbstractCurveSegment element is the abstract head of the substituition group for all curve segment elements, i.e. continuous segments of the same interpolation mechanism.
+	// All curve segments shall have an attribute interpolation with type gml:CurveInterpolationType specifying the curve interpolation mechanism used for this segment. This mechanism uses the control points and control parameters to determine the position of this curve segment.
+	AbstractCurveSegment []AbstractCurveSegmentType `xml:"http://www.opengis.net/gml/3.2 AbstractCurveSegment"`
+	ArcByCenterPoint     []ArcByCenterPointType     `xml:"http://www.opengis.net/gml/3.2 ArcByCenterPoint"`
+	ArcString            []ArcStringType            `xml:"http://www.opengis.net/gml/3.2 ArcString"`
+	ArcStringByBulge     []ArcStringByBulgeType     `xml:"http://www.opengis.net/gml/3.2 ArcStringByBulge"`
+	BSpline              []BSplineType              `xml:"http://www.opengis.net/gml/3.2 BSpline"`
+	Clothoid             []ClothoidType             `xml:"http://www.opengis.net/gml/3.2 Clothoid"`
+	CubicSpline          []CubicSplineType          `xml:"http://www.opengis.net/gml/3.2 CubicSpline"`
+	GeodesicString       []GeodesicStringType       `xml:"http://www.opengis.net/gml/3.2 GeodesicString"`
+	LineStringSegment    []LineStringSegmentType    `xml:"http://www.opengis.net/gml/3.2 LineStringSegment"`
+	OffsetCurve          []OffsetCurveType          `xml:"http://www.opengis.net/gml/3.2 OffsetCurve"`
 }
 
 type CurveType struct {
-	MetaDataProperty     []MetaDataPropertyType         `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType               `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                 `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType         `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                     `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                         `xml:"id,attr,omitempty"`
-	SrsName              string                         `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                            `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                         `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                         `xml:"uomLabels,attr,omitempty"`
-	Segments             *CurveSegmentArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 segments,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string     `xml:"id,attr,omitempty"`
+	SrsName      string     `xml:"srsName,attr,omitempty"`
+	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
+	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	// This property element contains a list of curve segments. The order of the elements is significant and shall be preserved when processing the array.
+	Segments *CurveSegmentArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 segments,omitempty"`
 }
 
 type CylinderType struct {
@@ -1042,22 +1362,28 @@ type CylinderType struct {
 }
 
 type CylindricalCSPropertyType struct {
+	// gml:CylindricalCS is a three-dimensional coordinate system consisting of a polar coordinate system extended by a straight coordinate axis perpendicular to the plane spanned by the polar coordinate system. A CylindricalCS shall have three gml:axis property elements.
 	CylindricalCS *CylindricalCSType `xml:"http://www.opengis.net/gml/3.2 CylindricalCS,omitempty"`
 	NilReason     string             `xml:"nilReason,attr,omitempty"`
 	RemoteSchema  string             `xml:"remoteSchema,attr,omitempty"`
 }
 
 type CylindricalCSType struct {
-	MetaDataProperty     []MetaDataPropertyType             `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType                   `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                     `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType             `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                         `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                             `xml:"id,attr,omitempty"`
-	Remarks              *string                            `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	Axis                 []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
-	UsesAxis             *CoordinateSystemAxisPropertyType  `xml:"http://www.opengis.net/gml/3.2 usesAxis,omitempty"`
-	AggregationType      string                             `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
+	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
+	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
+	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
 }
 
 type DMSAngleType struct {
@@ -1068,12 +1394,16 @@ type DMSAngleType struct {
 }
 
 type DataBlockType struct {
-	RangeParameters            *AssociationRoleType `xml:"http://www.opengis.net/gml/3.2 rangeParameters,omitempty"`
-	TupleList                  *CoordinatesType     `xml:"http://www.opengis.net/gml/3.2 tupleList,omitempty"`
-	DoubleOrNilReasonTupleList *string              `xml:"http://www.opengis.net/gml/3.2 doubleOrNilReasonTupleList,omitempty"`
+	RangeParameters *AssociationRoleType `xml:"http://www.opengis.net/gml/3.2 rangeParameters,omitempty"`
+	// gml:CoordinatesType consists of a list of coordinate tuples, with each coordinate tuple separated by the ts or tuple separator (whitespace), and each coordinate in the tuple by the cs or coordinate separator (comma).
+	// The gml:tupleList encoding is effectively "band-interleaved".
+	TupleList *CoordinatesType `xml:"http://www.opengis.net/gml/3.2 tupleList,omitempty"`
+	// gml:doubleOrNilReasonList consists of a list of gml:doubleOrNilReason values, each separated by a whitespace. The gml:doubleOrNilReason values are grouped into tuples where the dimension of each tuple in the list is equal to the number of range parameters.
+	DoubleOrNilReasonTupleList *string `xml:"http://www.opengis.net/gml/3.2 doubleOrNilReasonTupleList,omitempty"`
 }
 
 type DatumPropertyType struct {
+	// A gml:AbstractDatum specifies the relationship of a coordinate system to the earth, thus creating a coordinate reference system. A datum uses a parameter or set of parameters that determine the location of the origin of the coordinate reference system. Each datum subtype may be associated with only specific types of coordinate systems. This abstract complex type shall not be used, extended, or restricted, in a GML Application Schema, to define a concrete subtype with a meaning equivalent to a concrete subtype specified in this document.
 	AbstractDatum    *AbstractDatumType    `xml:"http://www.opengis.net/gml/3.2 AbstractDatum,omitempty"`
 	EngineeringDatum *EngineeringDatumType `xml:"http://www.opengis.net/gml/3.2 EngineeringDatum,omitempty"`
 	GeodeticDatum    *GeodeticDatumType    `xml:"http://www.opengis.net/gml/3.2 GeodeticDatum,omitempty"`
@@ -1085,33 +1415,45 @@ type DatumPropertyType struct {
 }
 
 type DefinitionBaseType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
 }
 
 type DefinitionProxyType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	Remarks              *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DefinitionRef        *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 definitionRef,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name          []CodeType     `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id            string         `xml:"id,attr,omitempty"`
+	Remarks       *string        `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	DefinitionRef *ReferenceType `xml:"http://www.opengis.net/gml/3.2 definitionRef,omitempty"`
 }
 
 type DefinitionType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	Remarks              *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 }
 
 type DegreesType struct {
@@ -1125,45 +1467,73 @@ type DerivationUnitTermType struct {
 }
 
 type DerivedCRSPropertyType struct {
+	// gml:DerivedCRS is a single coordinate reference system that is defined by its coordinate conversion from another single coordinate reference system known as the base CRS. The base CRS can be a projected coordinate reference system, if this DerivedCRS is used for a georectified grid coverage as described in ISO 19123, Clause 8.
 	DerivedCRS   *DerivedCRSType `xml:"http://www.opengis.net/gml/3.2 DerivedCRS,omitempty"`
 	NilReason    string          `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string          `xml:"remoteSchema,attr,omitempty"`
 }
 
 type DerivedCRSType struct {
-	MetaDataProperty     []MetaDataPropertyType         `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType               `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                 `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType         `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                     `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                         `xml:"id,attr,omitempty"`
-	Remarks              *string                        `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     []string                       `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
-	Scope                []string                       `xml:"http://www.opengis.net/gml/3.2 scope"`
-	Conversion           *GeneralConversionPropertyType `xml:"http://www.opengis.net/gml/3.2 conversion,omitempty"`
-	DefinedByConversion  *GeneralConversionPropertyType `xml:"http://www.opengis.net/gml/3.2 definedByConversion,omitempty"`
-	BaseCRS              *SingleCRSPropertyType         `xml:"http://www.opengis.net/gml/3.2 baseCRS,omitempty"`
-	DerivedCRSType       *CodeWithAuthorityType         `xml:"http://www.opengis.net/gml/3.2 derivedCRSType,omitempty"`
-	CoordinateSystem     *CoordinateSystemPropertyType  `xml:"http://www.opengis.net/gml/3.2 coordinateSystem,omitempty"`
-	UsesCS               *CoordinateSystemPropertyType  `xml:"http://www.opengis.net/gml/3.2 usesCS,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:conversion is an association role to the coordinate conversion used to define the derived CRS.
+	Conversion          *GeneralConversionPropertyType `xml:"http://www.opengis.net/gml/3.2 conversion,omitempty"`
+	DefinedByConversion *GeneralConversionPropertyType `xml:"http://www.opengis.net/gml/3.2 definedByConversion,omitempty"`
+	// gml:baseCRS is an association role to the coordinate reference system used by this derived CRS.
+	BaseCRS *SingleCRSPropertyType `xml:"http://www.opengis.net/gml/3.2 baseCRS,omitempty"`
+	// The gml:derivedCRSType property describes the type of a derived coordinate reference system. The required codeSpace attribute shall reference a source of information specifying the values and meanings of all the allowed string values for this property.
+	DerivedCRSType *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 derivedCRSType,omitempty"`
+	// An association role to the coordinate system used by this CRS.
+	CoordinateSystem *CoordinateSystemPropertyType `xml:"http://www.opengis.net/gml/3.2 coordinateSystem,omitempty"`
+	UsesCS           *CoordinateSystemPropertyType `xml:"http://www.opengis.net/gml/3.2 usesCS,omitempty"`
 }
 
 type DerivedUnitType struct {
-	MetaDataProperty      []MetaDataPropertyType   `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description           *StringOrRefType         `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference  *ReferenceType           `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier            *CodeWithAuthorityType   `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                  []CodeType               `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                    string                   `xml:"id,attr,omitempty"`
-	Remarks               *string                  `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	QuantityType          *StringOrRefType         `xml:"http://www.opengis.net/gml/3.2 quantityType,omitempty"`
-	QuantityTypeReference *ReferenceType           `xml:"http://www.opengis.net/gml/3.2 quantityTypeReference,omitempty"`
-	CatalogSymbol         *CodeType                `xml:"http://www.opengis.net/gml/3.2 catalogSymbol,omitempty"`
-	DerivationUnitTerm    []DerivationUnitTermType `xml:"http://www.opengis.net/gml/3.2 derivationUnitTerm"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:quantityType property indicates the phenomenon to which the units apply. This element contains an informal description of the phenomenon or type of physical quantity that is measured or observed. When the physical quantity is the result of an observation or measurement, this term is known as observable type or measurand.
+	// The use of gml:quantityType for references to remote values is deprecated.
+	QuantityType *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 quantityType,omitempty"`
+	// The gml:quantityTypeReference property indicates the phenomenon to which the units apply. The content is a reference to a remote value.
+	QuantityTypeReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 quantityTypeReference,omitempty"`
+	// The catalogSymbol is the preferred lexical symbol used for this unit of measure.
+	// The codeSpace attribute in gml:CodeType identifies a namespace for the catalog symbol value, and might reference the external catalog. The string value in gml:CodeType contains the value of a symbol that should be unique within this catalog namespace. This symbol often appears explicitly in the catalog, but it could be a combination of symbols using a specified algebra of units.
+	CatalogSymbol *CodeType `xml:"http://www.opengis.net/gml/3.2 catalogSymbol,omitempty"`
+	// A set of gml:derivationUnitTerm elements describes a derived unit of measure.  Each element carries an integer exponent.  The terms are combined by raising each referenced unit to the power of its exponent and forming the product.
+	// This unit term references another unit of measure (uom) and provides an integer exponent applied to that unit in defining the compound unit. The exponent may be positive or negative, but not zero.
+	DerivationUnitTerm []DerivationUnitTermType `xml:"http://www.opengis.net/gml/3.2 derivationUnitTerm"`
 }
 
 type DictionaryEntryType struct {
-	Owns                              bool                                   `xml:"owns,attr,omitempty"`
+	Owns bool `xml:"owns,attr,omitempty"`
+	// The basic gml:Definition element specifies a definition, which can be included in or referenced by a dictionary.
+	// The content model for a generic definition is a derivation from gml:AbstractGMLType.
+	// The gml:description property element shall hold the definition if this can be captured in a simple text string, or the gml:descriptionReference property element may carry a link to a description elsewhere.
+	// The gml:identifier element shall provide one identifier identifying this definition. The identifier shall be unique within the dictionaries using this definition.
+	// The gml:name elements shall provide zero or more terms and synonyms for which this is the definition.
+	// The gml:remarks element shall be used to hold additional textual information that is not conceptually part of the definition but is useful in understanding the definition.
 	Definition                        *DefinitionType                        `xml:"http://www.opengis.net/gml/3.2 Definition,omitempty"`
 	AbstractCRS                       *AbstractCRSType                       `xml:"http://www.opengis.net/gml/3.2 AbstractCRS,omitempty"`
 	AbstractCoordinateOperation       *AbstractCoordinateOperationType       `xml:"http://www.opengis.net/gml/3.2 AbstractCoordinateOperation,omitempty"`
@@ -1184,17 +1554,24 @@ type DictionaryEntryType struct {
 }
 
 type DictionaryType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	Remarks              *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DictionaryEntry      *DictionaryEntryType   `xml:"http://www.opengis.net/gml/3.2 dictionaryEntry,omitempty"`
-	DefinitionMember     *DictionaryEntryType   `xml:"http://www.opengis.net/gml/3.2 definitionMember,omitempty"`
-	IndirectEntry        *IndirectEntryType     `xml:"http://www.opengis.net/gml/3.2 indirectEntry,omitempty"`
-	AggregationType      string                 `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// This property element contains or refers to the definitions which are members of a dictionary.
+	// The content model follows the standard GML property pattern, so a gml:dictionaryEntry may either contain or refer to a single gml:Definition. Since gml:Dictionary is substitutable for gml:Definition, the content of an entry may itself be a lower level dictionary.
+	// Note that if the value is provided by reference, this definition does not carry a handle (gml:id) in this context, so does not allow external references to this specific definition in this context.  When used in this way the referenced definition will usually be in a dictionary in the same XML document.
+	DictionaryEntry  []DictionaryEntryType `xml:"http://www.opengis.net/gml/3.2 dictionaryEntry"`
+	DefinitionMember []DictionaryEntryType `xml:"http://www.opengis.net/gml/3.2 definitionMember"`
+	IndirectEntry    []IndirectEntryType   `xml:"http://www.opengis.net/gml/3.2 indirectEntry"`
+	AggregationType  string                `xml:"aggregationType,attr,omitempty"`
 }
 
 type DirectPositionListType struct {
@@ -1215,6 +1592,11 @@ type DirectPositionType struct {
 }
 
 type DirectedEdgePropertyType struct {
+	// gml:Edge represents the 1-dimensional primitive.
+	// The topological boundary of an Edge (gml:directedNode) consists of a negatively directed start Node and a positively directed end Node.
+	// The optional coboundary of an edge (gml:directedFace) is a circular sequence of directed faces which are incident on this edge in document order. In the 2D case, the orientation of the face on the left of the edge is "+"; the orientation of the face on the right on its right is "-".
+	// If provided, the aggregationType attribute shall have the value "sequence".
+	// An edge may optionally be realised by a 1-dimensional geometric primitive (gml:curveProperty).
 	Edge         *EdgeType `xml:"http://www.opengis.net/gml/3.2 Edge,omitempty"`
 	Orientation  string    `xml:"orientation,attr,omitempty"`
 	NilReason    string    `xml:"nilReason,attr,omitempty"`
@@ -1223,6 +1605,10 @@ type DirectedEdgePropertyType struct {
 }
 
 type DirectedFacePropertyType struct {
+	// gml:Face represents the 2-dimensional topology primitive.
+	// The topological boundary of a face (gml:directedEdge) consists of a sequence of directed edges. If provided, the aggregationType attribute shall have the value "sequence".
+	// The optional coboundary of a face (gml:directedTopoSolid) is a pair of directed solids which are bounded by this face. A positively directed solid corresponds to a solid which lies in the direction of the negatively directed normal to the face in any geometric realisation.
+	// A face may optionally be realised by a 2-dimensional geometric primitive (gml:surfaceProperty).
 	Face         *FaceType `xml:"http://www.opengis.net/gml/3.2 Face,omitempty"`
 	Orientation  string    `xml:"orientation,attr,omitempty"`
 	NilReason    string    `xml:"nilReason,attr,omitempty"`
@@ -1231,6 +1617,10 @@ type DirectedFacePropertyType struct {
 }
 
 type DirectedNodePropertyType struct {
+	// gml:Node represents the 0-dimensional primitive.
+	// The optional coboundary of a node (gml:directedEdge) is a sequence of directed edges which are incident on this node. Edges emanating from this node appear in the node coboundary with a negative orientation.
+	// If provided, the aggregationType attribute shall have the value "sequence".
+	// A node may optionally be realised by a 0-dimensional geometric primitive (gml:pointProperty).
 	Node         *NodeType `xml:"http://www.opengis.net/gml/3.2 Node,omitempty"`
 	Orientation  string    `xml:"orientation,attr,omitempty"`
 	NilReason    string    `xml:"nilReason,attr,omitempty"`
@@ -1239,43 +1629,60 @@ type DirectedNodePropertyType struct {
 }
 
 type DirectedObservationAtDistanceType struct {
-	MetaDataProperty     []MetaDataPropertyType        `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType              `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType        `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                    `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                        `xml:"id,attr,omitempty"`
-	BoundedBy            *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
-	Location             *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
-	PriorityLocation     *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
-	ValidTime            *TimePrimitivePropertyType    `xml:"http://www.opengis.net/gml/3.2 validTime,omitempty"`
-	Using                *ProcedurePropertyType        `xml:"http://www.opengis.net/gml/3.2 using,omitempty"`
-	Target               *TargetPropertyType           `xml:"http://www.opengis.net/gml/3.2 target,omitempty"`
-	Subject              *TargetPropertyType           `xml:"http://www.opengis.net/gml/3.2 subject,omitempty"`
-	ResultOf             *ResultType                   `xml:"http://www.opengis.net/gml/3.2 resultOf,omitempty"`
-	Direction            *DirectionPropertyType        `xml:"http://www.opengis.net/gml/3.2 direction,omitempty"`
-	Distance             *MeasureType                  `xml:"http://www.opengis.net/gml/3.2 distance,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
+	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
+	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
+	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
+	PriorityLocation *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
+	// gml:validTime is a convenience property element.
+	ValidTime *TimePrimitivePropertyType `xml:"http://www.opengis.net/gml/3.2 validTime,omitempty"`
+	Using     *ProcedurePropertyType     `xml:"http://www.opengis.net/gml/3.2 using,omitempty"`
+	Target    *TargetPropertyType        `xml:"http://www.opengis.net/gml/3.2 target,omitempty"`
+	Subject   *TargetPropertyType        `xml:"http://www.opengis.net/gml/3.2 subject,omitempty"`
+	ResultOf  *ResultType                `xml:"http://www.opengis.net/gml/3.2 resultOf,omitempty"`
+	// The property gml:direction is intended as a pre-defined property expressing a direction to be assigned to features defined in a GML application schema.
+	Direction *DirectionPropertyType `xml:"http://www.opengis.net/gml/3.2 direction,omitempty"`
+	Distance  *MeasureType           `xml:"http://www.opengis.net/gml/3.2 distance,omitempty"`
 }
 
 type DirectedObservationType struct {
-	MetaDataProperty     []MetaDataPropertyType        `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType              `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType        `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                    `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                        `xml:"id,attr,omitempty"`
-	BoundedBy            *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
-	Location             *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
-	PriorityLocation     *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
-	ValidTime            *TimePrimitivePropertyType    `xml:"http://www.opengis.net/gml/3.2 validTime,omitempty"`
-	Using                *ProcedurePropertyType        `xml:"http://www.opengis.net/gml/3.2 using,omitempty"`
-	Target               *TargetPropertyType           `xml:"http://www.opengis.net/gml/3.2 target,omitempty"`
-	Subject              *TargetPropertyType           `xml:"http://www.opengis.net/gml/3.2 subject,omitempty"`
-	ResultOf             *ResultType                   `xml:"http://www.opengis.net/gml/3.2 resultOf,omitempty"`
-	Direction            *DirectionPropertyType        `xml:"http://www.opengis.net/gml/3.2 direction,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
+	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
+	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
+	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
+	PriorityLocation *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
+	// gml:validTime is a convenience property element.
+	ValidTime *TimePrimitivePropertyType `xml:"http://www.opengis.net/gml/3.2 validTime,omitempty"`
+	Using     *ProcedurePropertyType     `xml:"http://www.opengis.net/gml/3.2 using,omitempty"`
+	Target    *TargetPropertyType        `xml:"http://www.opengis.net/gml/3.2 target,omitempty"`
+	Subject   *TargetPropertyType        `xml:"http://www.opengis.net/gml/3.2 subject,omitempty"`
+	ResultOf  *ResultType                `xml:"http://www.opengis.net/gml/3.2 resultOf,omitempty"`
+	// The property gml:direction is intended as a pre-defined property expressing a direction to be assigned to features defined in a GML application schema.
+	Direction *DirectionPropertyType `xml:"http://www.opengis.net/gml/3.2 direction,omitempty"`
 }
 
 type DirectedTopoSolidPropertyType struct {
+	// gml:TopoSolid represents the 3-dimensional topology primitive.
+	// The topological boundary of a solid (gml:directedFace) consists of a set of directed faces.
+	// A solid may optionally be realised by a 3-dimensional geometric primitive (gml:solidProperty).
 	TopoSolid    *TopoSolidType `xml:"http://www.opengis.net/gml/3.2 TopoSolid,omitempty"`
 	Orientation  string         `xml:"orientation,attr,omitempty"`
 	NilReason    string         `xml:"nilReason,attr,omitempty"`
@@ -1308,175 +1715,256 @@ type DirectionVectorType struct {
 }
 
 type DiscreteCoverageType struct {
-	MetaDataProperty     []MetaDataPropertyType        `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType              `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType        `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                    `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                        `xml:"id,attr,omitempty"`
-	BoundedBy            *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
-	Location             *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
-	PriorityLocation     *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
-	DomainSet            *DomainSetType                `xml:"http://www.opengis.net/gml/3.2 domainSet,omitempty"`
-	GridDomain           *DomainSetType                `xml:"http://www.opengis.net/gml/3.2 gridDomain,omitempty"`
-	MultiCurveDomain     *DomainSetType                `xml:"http://www.opengis.net/gml/3.2 multiCurveDomain,omitempty"`
-	MultiPointDomain     *DomainSetType                `xml:"http://www.opengis.net/gml/3.2 multiPointDomain,omitempty"`
-	MultiSolidDomain     *DomainSetType                `xml:"http://www.opengis.net/gml/3.2 multiSolidDomain,omitempty"`
-	MultiSurfaceDomain   *DomainSetType                `xml:"http://www.opengis.net/gml/3.2 multiSurfaceDomain,omitempty"`
-	RectifiedGridDomain  *DomainSetType                `xml:"http://www.opengis.net/gml/3.2 rectifiedGridDomain,omitempty"`
-	RangeSet             *RangeSetType                 `xml:"http://www.opengis.net/gml/3.2 rangeSet,omitempty"`
-	CoverageFunction     *CoverageFunctionType         `xml:"http://www.opengis.net/gml/3.2 coverageFunction,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
+	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
+	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
+	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
+	PriorityLocation *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
+	// The gml:domainSet property element describes the spatio-temporal region of interest, within which the coverage is defined. Its content model is given by gml:DomainSetType.
+	// The value of the domain is thus a choice between a gml:AbstractGeometry and a gml:AbstractTimeObject.  In the instance these abstract elements will normally be substituted by a geometry complex or temporal complex, to represent spatial coverages and time-series, respectively.
+	// The presence of the gml:AssociationAttributeGroup means that domainSet follows the usual GML property model and may use the xlink:href attribute to point to the domain, as an alternative to describing the domain inline. Ownership semantics may be provided using the gml:OwnershipAttributeGroup.
+	DomainSet           *DomainSetType `xml:"http://www.opengis.net/gml/3.2 domainSet,omitempty"`
+	GridDomain          *DomainSetType `xml:"http://www.opengis.net/gml/3.2 gridDomain,omitempty"`
+	MultiCurveDomain    *DomainSetType `xml:"http://www.opengis.net/gml/3.2 multiCurveDomain,omitempty"`
+	MultiPointDomain    *DomainSetType `xml:"http://www.opengis.net/gml/3.2 multiPointDomain,omitempty"`
+	MultiSolidDomain    *DomainSetType `xml:"http://www.opengis.net/gml/3.2 multiSolidDomain,omitempty"`
+	MultiSurfaceDomain  *DomainSetType `xml:"http://www.opengis.net/gml/3.2 multiSurfaceDomain,omitempty"`
+	RectifiedGridDomain *DomainSetType `xml:"http://www.opengis.net/gml/3.2 rectifiedGridDomain,omitempty"`
+	// The gml:rangeSet property element contains the values of the coverage (sometimes called the attribute values).  Its content model is given by gml:RangeSetType.
+	// This content model supports a structural description of the range.  The semantic information describing the range set is embedded using a uniform method, as part of the explicit values, or as a template value accompanying the representation using gml:DataBlock and gml:File.
+	// The values from each component (or "band") in the range may be encoded within a gml:ValueArray element or a concrete member of the gml:AbstractScalarValueList substitution group . Use of these elements satisfies the value-type homogeneity requirement.
+	RangeSet *RangeSetType `xml:"http://www.opengis.net/gml/3.2 rangeSet,omitempty"`
+	// The gml:coverageFunction property describes the mapping function from the domain to the range of the coverage.
+	// The value of the CoverageFunction is one of gml:CoverageMappingRule and gml:GridFunction.
+	// If the gml:coverageFunction property is omitted for a gridded coverage (including rectified gridded coverages) the gml:startPoint is assumed to be the value of the gml:low property in the gml:Grid geometry, and the gml:sequenceRule is assumed to be linear and the gml:axisOrder property is assumed to be "+1 +2".
+	CoverageFunction *CoverageFunctionType `xml:"http://www.opengis.net/gml/3.2 coverageFunction,omitempty"`
 }
 
 type DomainSetType struct {
+	// The AbstractGeometry element is the abstract head of the substitution group for all geometry elements of GML. This includes pre-defined and user-defined geometry elements. Any geometry element shall be a direct or indirect extension/restriction of AbstractGeometryType and shall be directly or indirectly in the substitution group of AbstractGeometry.
 	AbstractGeometry           *AbstractGeometryType           `xml:"http://www.opengis.net/gml/3.2 AbstractGeometry,omitempty"`
 	AbstractGeometricAggregate *AbstractGeometricAggregateType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricAggregate,omitempty"`
 	AbstractGeometricPrimitive *AbstractGeometricPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricPrimitive,omitempty"`
 	AbstractImplicitGeometry   *AbstractGeometryType           `xml:"http://www.opengis.net/gml/3.2 AbstractImplicitGeometry,omitempty"`
 	GeometricComplex           *GeometricComplexType           `xml:"http://www.opengis.net/gml/3.2 GeometricComplex,omitempty"`
-	AbstractTimeObject         *AbstractTimeObjectType         `xml:"http://www.opengis.net/gml/3.2 AbstractTimeObject,omitempty"`
-	AbstractTimeComplex        *AbstractTimeComplexType        `xml:"http://www.opengis.net/gml/3.2 AbstractTimeComplex,omitempty"`
-	AbstractTimePrimitive      *AbstractTimePrimitiveType      `xml:"http://www.opengis.net/gml/3.2 AbstractTimePrimitive,omitempty"`
-	Owns                       bool                            `xml:"owns,attr,omitempty"`
-	NilReason                  string                          `xml:"nilReason,attr,omitempty"`
-	RemoteSchema               string                          `xml:"remoteSchema,attr,omitempty"`
+	// gml:AbstractTimeObject acts as the head of a substitution group for all temporal primitives and complexes.
+	AbstractTimeObject    *AbstractTimeObjectType    `xml:"http://www.opengis.net/gml/3.2 AbstractTimeObject,omitempty"`
+	AbstractTimeComplex   *AbstractTimeComplexType   `xml:"http://www.opengis.net/gml/3.2 AbstractTimeComplex,omitempty"`
+	AbstractTimePrimitive *AbstractTimePrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractTimePrimitive,omitempty"`
+	Owns                  bool                       `xml:"owns,attr,omitempty"`
+	NilReason             string                     `xml:"nilReason,attr,omitempty"`
+	RemoteSchema          string                     `xml:"remoteSchema,attr,omitempty"`
 }
 
 type DynamicFeatureCollectionType struct {
-	MetaDataProperty     []MetaDataPropertyType        `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType              `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType        `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                    `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                        `xml:"id,attr,omitempty"`
-	BoundedBy            *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
-	Location             *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
-	PriorityLocation     *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
-	DynamicMembers       *DynamicFeatureMemberType     `xml:"http://www.opengis.net/gml/3.2 dynamicMembers,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
+	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
+	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
+	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
+	PriorityLocation *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
+	DynamicMembers   *DynamicFeatureMemberType     `xml:"http://www.opengis.net/gml/3.2 dynamicMembers,omitempty"`
 }
 
 type DynamicFeatureMemberType struct {
-	Owns                     bool                          `xml:"owns,attr,omitempty"`
-	DynamicFeature           []DynamicFeatureType          `xml:"http://www.opengis.net/gml/3.2 DynamicFeature"`
-	DynamicFeatureCollection *DynamicFeatureCollectionType `xml:"http://www.opengis.net/gml/3.2 DynamicFeatureCollection,omitempty"`
-	NilReason                string                        `xml:"nilReason,attr,omitempty"`
-	RemoteSchema             string                        `xml:"remoteSchema,attr,omitempty"`
+	Owns bool `xml:"owns,attr,omitempty"`
+	// States are captured by time-stamped instances of a feature. The content model extends the standard gml:AbstractFeatureType with the gml:dynamicProperties model group.
+	// Each time-stamped instance represents a 'snapshot' of a feature. The dynamic feature classes will normally be extended to suit particular applications.  A dynamic feature bears either a time stamp or a history.
+	DynamicFeature           []DynamicFeatureType           `xml:"http://www.opengis.net/gml/3.2 DynamicFeature"`
+	DynamicFeatureCollection []DynamicFeatureCollectionType `xml:"http://www.opengis.net/gml/3.2 DynamicFeatureCollection"`
+	NilReason                string                         `xml:"nilReason,attr,omitempty"`
+	RemoteSchema             string                         `xml:"remoteSchema,attr,omitempty"`
 }
 
 type DynamicFeatureType struct {
-	MetaDataProperty     []MetaDataPropertyType        `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType              `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType        `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                    `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                        `xml:"id,attr,omitempty"`
-	BoundedBy            *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
-	Location             *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
-	PriorityLocation     *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
+	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
+	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
+	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
+	PriorityLocation *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
 }
 
 type EdgeType struct {
-	MetaDataProperty     []MetaDataPropertyType     `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType           `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType             `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType     `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                 `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                     `xml:"id,attr,omitempty"`
-	Container            *TopoSolidPropertyType     `xml:"http://www.opengis.net/gml/3.2 container,omitempty"`
-	DirectedNode         []DirectedNodePropertyType `xml:"http://www.opengis.net/gml/3.2 directedNode"`
-	DirectedFace         []DirectedFacePropertyType `xml:"http://www.opengis.net/gml/3.2 directedFace"`
-	CurveProperty        *CurvePropertyType         `xml:"http://www.opengis.net/gml/3.2 curveProperty,omitempty"`
-	AggregationType      string                     `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name      []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id        string                 `xml:"id,attr,omitempty"`
+	Container *TopoSolidPropertyType `xml:"http://www.opengis.net/gml/3.2 container,omitempty"`
+	// A gml:directedNode property element describes the boundary of topology edges and is used in the support of topological point features via the gml:TopoPoint expression, see below. The orientation attribute of type gml:SignType expresses the sense in which the included node is used: start ("-") or end ("+") node.
+	DirectedNode []DirectedNodePropertyType `xml:"http://www.opengis.net/gml/3.2 directedNode"`
+	// The gml:directedFace property element describes the boundary of topology solids, in the coBoundary of topology edges and is used in the support of surface features via the gml:TopoSurface expression, see below. The orientation attribute of type gml:SignType expresses the sense in which the included face is used i.e. inward or outward with respect to the surface normal in any geometric realisation.
+	DirectedFace []DirectedFacePropertyType `xml:"http://www.opengis.net/gml/3.2 directedFace"`
+	// This property element either references a curve via the XLink-attributes or contains the curve element. curveProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for AbstractCurve.
+	CurveProperty   *CurvePropertyType `xml:"http://www.opengis.net/gml/3.2 curveProperty,omitempty"`
+	AggregationType string             `xml:"aggregationType,attr,omitempty"`
 }
 
 type EllipsoidPropertyType struct {
+	// A gml:Ellipsoid is a geometric figure that may be used to describe the approximate shape of the earth. In mathematical terms, it is a surface formed by the rotation of an ellipse about its minor axis.
 	Ellipsoid    *EllipsoidType `xml:"http://www.opengis.net/gml/3.2 Ellipsoid,omitempty"`
 	NilReason    string         `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string         `xml:"remoteSchema,attr,omitempty"`
 }
 
 type EllipsoidType struct {
-	MetaDataProperty        []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description             *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference    *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier              *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                    []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                      string                 `xml:"id,attr,omitempty"`
-	Remarks                 *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	SemiMajorAxis           *MeasureType           `xml:"http://www.opengis.net/gml/3.2 semiMajorAxis,omitempty"`
-	SecondDefiningParameter *string                `xml:"http://www.opengis.net/gml/3.2 secondDefiningParameter,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// gml:semiMajorAxis specifies the length of the semi-major axis of the ellipsoid, with its units. Uses the MeasureType with the restriction that the unit of measure referenced by uom must be suitable for a length, such as metres or feet.
+	SemiMajorAxis *MeasureType `xml:"http://www.opengis.net/gml/3.2 semiMajorAxis,omitempty"`
+	// gml:secondDefiningParameter is a property containing the definition of the second parameter that defines the shape of an ellipsoid. An ellipsoid requires two defining parameters: semi-major axis and inverse flattening or semi-major axis and semi-minor axis. When the reference body is a sphere rather than an ellipsoid, only a single defining parameter is required, namely the radius of the sphere; in that case, the semi-major axis "degenerates" into the radius of the sphere.
+	// The inverseFlattening element contains the inverse flattening value of the ellipsoid. This value is a scale factor (or ratio). It uses gml:LengthType with the restriction that the unit of measure referenced by the uom attribute must be suitable for a scale factor, such as percent, permil, or parts-per-million.
+	// The semiMinorAxis element contains the length of the semi-minor axis of the ellipsoid. When the isSphere element is included, the ellipsoid is degenerate and is actually a sphere. The sphere is completely defined by the semi-major axis, which is the radius of the sphere.
+	SecondDefiningParameter *string `xml:"http://www.opengis.net/gml/3.2 secondDefiningParameter,omitempty"`
 }
 
 type EllipsoidalCSPropertyType struct {
+	// gml:EllipsoidalCS is a two- or three-dimensional coordinate system in which position is specified by geodetic latitude, geodetic longitude, and (in the three-dimensional case) ellipsoidal height. An EllipsoidalCS shall have two or three gml:axis property elements; the number of associations shall equal the dimension of the CS.
 	EllipsoidalCS *EllipsoidalCSType `xml:"http://www.opengis.net/gml/3.2 EllipsoidalCS,omitempty"`
 	NilReason     string             `xml:"nilReason,attr,omitempty"`
 	RemoteSchema  string             `xml:"remoteSchema,attr,omitempty"`
 }
 
 type EllipsoidalCSType struct {
-	MetaDataProperty     []MetaDataPropertyType             `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType                   `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                     `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType             `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                         `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                             `xml:"id,attr,omitempty"`
-	Remarks              *string                            `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	Axis                 []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
-	UsesAxis             *CoordinateSystemAxisPropertyType  `xml:"http://www.opengis.net/gml/3.2 usesAxis,omitempty"`
-	AggregationType      string                             `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
+	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
+	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
+	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
 }
 
 type EngineeringCRSPropertyType struct {
+	// gml:EngineeringCRS is a contextually local coordinate reference system which can be divided into two broad categories:
+	// -	earth-fixed systems applied to engineering activities on or near the surface of the earth;
+	// -	CRSs on moving platforms such as road vehicles, vessels, aircraft, or spacecraft, see ISO 19111 8.3.
 	EngineeringCRS *EngineeringCRSType `xml:"http://www.opengis.net/gml/3.2 EngineeringCRS,omitempty"`
 	NilReason      string              `xml:"nilReason,attr,omitempty"`
 	RemoteSchema   string              `xml:"remoteSchema,attr,omitempty"`
 }
 
 type EngineeringCRSType struct {
-	MetaDataProperty     []MetaDataPropertyType        `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType              `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType        `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                    `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                        `xml:"id,attr,omitempty"`
-	Remarks              *string                       `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     []string                      `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
-	Scope                []string                      `xml:"http://www.opengis.net/gml/3.2 scope"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:engineeringDatum is an association role to the engineering datum used by this CRS.
 	EngineeringDatum     *EngineeringDatumPropertyType `xml:"http://www.opengis.net/gml/3.2 engineeringDatum,omitempty"`
 	UsesEngineeringDatum *EngineeringDatumPropertyType `xml:"http://www.opengis.net/gml/3.2 usesEngineeringDatum,omitempty"`
-	AffineCS             *AffineCSPropertyType         `xml:"http://www.opengis.net/gml/3.2 affineCS,omitempty"`
-	UsesAffineCS         *AffineCSPropertyType         `xml:"http://www.opengis.net/gml/3.2 usesAffineCS,omitempty"`
-	CartesianCS          *CartesianCSPropertyType      `xml:"http://www.opengis.net/gml/3.2 cartesianCS,omitempty"`
-	UsesCartesianCS      *CartesianCSPropertyType      `xml:"http://www.opengis.net/gml/3.2 usesCartesianCS,omitempty"`
-	CylindricalCS        *CylindricalCSPropertyType    `xml:"http://www.opengis.net/gml/3.2 cylindricalCS,omitempty"`
-	LinearCS             *LinearCSPropertyType         `xml:"http://www.opengis.net/gml/3.2 linearCS,omitempty"`
-	PolarCS              *PolarCSPropertyType          `xml:"http://www.opengis.net/gml/3.2 polarCS,omitempty"`
-	SphericalCS          *SphericalCSPropertyType      `xml:"http://www.opengis.net/gml/3.2 sphericalCS,omitempty"`
-	UsesSphericalCS      *SphericalCSPropertyType      `xml:"http://www.opengis.net/gml/3.2 usesSphericalCS,omitempty"`
-	UserDefinedCS        *UserDefinedCSPropertyType    `xml:"http://www.opengis.net/gml/3.2 userDefinedCS,omitempty"`
-	CoordinateSystem     *CoordinateSystemPropertyType `xml:"http://www.opengis.net/gml/3.2 coordinateSystem,omitempty"`
-	UsesCS               *CoordinateSystemPropertyType `xml:"http://www.opengis.net/gml/3.2 usesCS,omitempty"`
+	// gml:affineCS is an association role to the affine coordinate system used by this CRS.
+	AffineCS     *AffineCSPropertyType `xml:"http://www.opengis.net/gml/3.2 affineCS,omitempty"`
+	UsesAffineCS *AffineCSPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAffineCS,omitempty"`
+	// gml:cartesianCS is an association role to the Cartesian coordinate system used by this CRS.
+	CartesianCS     *CartesianCSPropertyType `xml:"http://www.opengis.net/gml/3.2 cartesianCS,omitempty"`
+	UsesCartesianCS *CartesianCSPropertyType `xml:"http://www.opengis.net/gml/3.2 usesCartesianCS,omitempty"`
+	// gml:cylindricalCS is an association role to the cylindrical coordinate system used by this CRS.
+	CylindricalCS *CylindricalCSPropertyType `xml:"http://www.opengis.net/gml/3.2 cylindricalCS,omitempty"`
+	// gml:linearCS is an association role to the linear coordinate system used by this CRS.
+	LinearCS *LinearCSPropertyType `xml:"http://www.opengis.net/gml/3.2 linearCS,omitempty"`
+	// gml:polarCS is an association role to the polar coordinate system used by this CRS.
+	PolarCS *PolarCSPropertyType `xml:"http://www.opengis.net/gml/3.2 polarCS,omitempty"`
+	// gml:sphericalCS is an association role to the spherical coordinate system used by this CRS.
+	SphericalCS     *SphericalCSPropertyType `xml:"http://www.opengis.net/gml/3.2 sphericalCS,omitempty"`
+	UsesSphericalCS *SphericalCSPropertyType `xml:"http://www.opengis.net/gml/3.2 usesSphericalCS,omitempty"`
+	// gml:userDefinedCS is an association role to the user defined coordinate system used by this CRS.
+	UserDefinedCS *UserDefinedCSPropertyType `xml:"http://www.opengis.net/gml/3.2 userDefinedCS,omitempty"`
+	// An association role to the coordinate system used by this CRS.
+	CoordinateSystem *CoordinateSystemPropertyType `xml:"http://www.opengis.net/gml/3.2 coordinateSystem,omitempty"`
+	UsesCS           *CoordinateSystemPropertyType `xml:"http://www.opengis.net/gml/3.2 usesCS,omitempty"`
 }
 
 type EngineeringDatumPropertyType struct {
+	// gml:EngineeringDatum defines the origin of an engineering coordinate reference system, and is used in a region around that origin. This origin may be fixed with respect to the earth (such as a defined point at a construction site), or be a defined point on a moving vehicle (such as on a ship or satellite).
 	EngineeringDatum *EngineeringDatumType `xml:"http://www.opengis.net/gml/3.2 EngineeringDatum,omitempty"`
 	NilReason        string                `xml:"nilReason,attr,omitempty"`
 	RemoteSchema     string                `xml:"remoteSchema,attr,omitempty"`
 }
 
 type EngineeringDatumType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	Remarks              *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     *string                `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
-	Scope                []string               `xml:"http://www.opengis.net/gml/3.2 scope"`
-	AnchorDefinition     *CodeType              `xml:"http://www.opengis.net/gml/3.2 anchorDefinition,omitempty"`
-	AnchorPoint          *CodeType              `xml:"http://www.opengis.net/gml/3.2 anchorPoint,omitempty"`
-	RealizationEpoch     *string                `xml:"http://www.opengis.net/gml/3.2 realizationEpoch,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:anchorDefinition is a description, possibly including coordinates, of the definition used to anchor the datum to the Earth. Also known as the "origin", especially for engineering and image datums. The codeSpace attribute may be used to reference a source of more detailed on this point or surface, or on a set of such descriptions.
+	// -	For a geodetic datum, this point is also known as the fundamental point, which is traditionally the point where the relationship between geoid and ellipsoid is defined. In some cases, the "fundamental point" may consist of a number of points. In those cases, the parameters defining the geoid/ellipsoid relationship have been averaged for these points, and the averages adopted as the datum definition.
+	// -	For an engineering datum, the anchor definition may be a physical point, or it may be a point with defined coordinates in another CRS.may
+	// -	For an image datum, the anchor definition is usually either the centre of the image or the corner of the image.
+	// -	For a temporal datum, this attribute is not defined. Instead of the anchor definition, a temporal datum carries a separate time origin of type DateTime.
+	AnchorDefinition *CodeType `xml:"http://www.opengis.net/gml/3.2 anchorDefinition,omitempty"`
+	AnchorPoint      *CodeType `xml:"http://www.opengis.net/gml/3.2 anchorPoint,omitempty"`
+	// gml:realizationEpoch is the time after which this datum definition is valid. See ISO 19111 Table 32 for details.
+	RealizationEpoch *string `xml:"http://www.opengis.net/gml/3.2 realizationEpoch,omitempty"`
 }
 
 type EnvelopeType struct {
@@ -1505,7 +1993,14 @@ type EnvelopeWithTimePeriodType struct {
 }
 
 type FaceOrTopoSolidPropertyType struct {
-	Face         *FaceType      `xml:"http://www.opengis.net/gml/3.2 Face,omitempty"`
+	// gml:Face represents the 2-dimensional topology primitive.
+	// The topological boundary of a face (gml:directedEdge) consists of a sequence of directed edges. If provided, the aggregationType attribute shall have the value "sequence".
+	// The optional coboundary of a face (gml:directedTopoSolid) is a pair of directed solids which are bounded by this face. A positively directed solid corresponds to a solid which lies in the direction of the negatively directed normal to the face in any geometric realisation.
+	// A face may optionally be realised by a 2-dimensional geometric primitive (gml:surfaceProperty).
+	Face *FaceType `xml:"http://www.opengis.net/gml/3.2 Face,omitempty"`
+	// gml:TopoSolid represents the 3-dimensional topology primitive.
+	// The topological boundary of a solid (gml:directedFace) consists of a set of directed faces.
+	// A solid may optionally be realised by a 3-dimensional geometric primitive (gml:solidProperty).
 	TopoSolid    *TopoSolidType `xml:"http://www.opengis.net/gml/3.2 TopoSolid,omitempty"`
 	NilReason    string         `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string         `xml:"remoteSchema,attr,omitempty"`
@@ -1513,45 +2008,62 @@ type FaceOrTopoSolidPropertyType struct {
 }
 
 type FaceType struct {
-	MetaDataProperty     []MetaDataPropertyType          `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType                `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                  `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType          `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                      `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                          `xml:"id,attr,omitempty"`
-	Isolated             []NodePropertyType              `xml:"http://www.opengis.net/gml/3.2 isolated"`
-	DirectedEdge         []DirectedEdgePropertyType      `xml:"http://www.opengis.net/gml/3.2 directedEdge"`
-	DirectedTopoSolid    []DirectedTopoSolidPropertyType `xml:"http://www.opengis.net/gml/3.2 directedTopoSolid"`
-	SurfaceProperty      *SurfacePropertyType            `xml:"http://www.opengis.net/gml/3.2 surfaceProperty,omitempty"`
-	Universal            bool                            `xml:"universal,attr,omitempty"`
-	AggregationType      string                          `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name     []CodeType         `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id       string             `xml:"id,attr,omitempty"`
+	Isolated []NodePropertyType `xml:"http://www.opengis.net/gml/3.2 isolated"`
+	// A gml:directedEdge property element describes the boundary of topology faces, the coBoundary of topology nodes and is used in the support of topological line features via the gml:TopoCurve expression, see below. The orientation attribute of type gml:SignType expresses the sense in which the included edge is used, i.e. forward or reverse.
+	DirectedEdge []DirectedEdgePropertyType `xml:"http://www.opengis.net/gml/3.2 directedEdge"`
+	// The gml:directedSolid property element describes the coBoundary of topology faces and is used in the support of volume features via the gml:TopoVolume expression, see below. The orientation attribute of type gml:SignType expresses the sense in which the included solid appears in the face coboundary. In the context of a gml:TopoVolume the orientation attribute has no meaning.
+	DirectedTopoSolid []DirectedTopoSolidPropertyType `xml:"http://www.opengis.net/gml/3.2 directedTopoSolid"`
+	// This property element either references a surface via the XLink-attributes or contains the surface element. surfaceProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for AbstractSurface.
+	SurfaceProperty *SurfacePropertyType `xml:"http://www.opengis.net/gml/3.2 surfaceProperty,omitempty"`
+	// If the topological representation exists an unbounded manifold (e.g. Euclidean plane), a gml:Face must indicate whether it is a universal face or not, to ensure a lossless topology representation as defined by Kuijpers, et. al. (see OGC 05-102 Topology IPR). The optional universal attribute of type boolean is used to indicate this. NOTE The universal face is normally not part of any feature, and is used to represent the unbounded portion of the data set. Its interior boundary (it has no exterior boundary) would normally be considered the exterior boundary of the map represented by the data set.
+	Universal       bool   `xml:"universal,attr,omitempty"`
+	AggregationType string `xml:"aggregationType,attr,omitempty"`
 }
 
 type FeatureArrayPropertyType struct {
-	AbstractFeature            *AbstractFeatureType            `xml:"http://www.opengis.net/gml/3.2 AbstractFeature,omitempty"`
-	AbstractContinuousCoverage *AbstractContinuousCoverageType `xml:"http://www.opengis.net/gml/3.2 AbstractContinuousCoverage,omitempty"`
-	AbstractCoverage           *AbstractCoverageType           `xml:"http://www.opengis.net/gml/3.2 AbstractCoverage,omitempty"`
-	AbstractFeatureCollection  *AbstractFeatureCollectionType  `xml:"http://www.opengis.net/gml/3.2 AbstractFeatureCollection,omitempty"`
-	DynamicFeature             *DynamicFeatureType             `xml:"http://www.opengis.net/gml/3.2 DynamicFeature,omitempty"`
-	FeatureCollection          *FeatureCollectionType          `xml:"http://www.opengis.net/gml/3.2 FeatureCollection,omitempty"`
-	Observation                *ObservationType                `xml:"http://www.opengis.net/gml/3.2 Observation,omitempty"`
+	// This abstract element serves as the head of a substitution group which may contain any elements whose content model is derived from gml:AbstractFeatureType.  This may be used as a variable in the construction of content models.
+	// gml:AbstractFeature may be thought of as "anything that is a GML feature" and may be used to define variables or templates in which the value of a GML property is "any feature". This occurs in particular in a GML feature collection where the feature member properties contain one or multiple copies of gml:AbstractFeature respectively.
+	AbstractFeature            []AbstractFeatureType            `xml:"http://www.opengis.net/gml/3.2 AbstractFeature"`
+	AbstractContinuousCoverage []AbstractContinuousCoverageType `xml:"http://www.opengis.net/gml/3.2 AbstractContinuousCoverage"`
+	AbstractCoverage           []AbstractCoverageType           `xml:"http://www.opengis.net/gml/3.2 AbstractCoverage"`
+	AbstractFeatureCollection  []AbstractFeatureCollectionType  `xml:"http://www.opengis.net/gml/3.2 AbstractFeatureCollection"`
+	DynamicFeature             []DynamicFeatureType             `xml:"http://www.opengis.net/gml/3.2 DynamicFeature"`
+	FeatureCollection          []FeatureCollectionType          `xml:"http://www.opengis.net/gml/3.2 FeatureCollection"`
+	Observation                []ObservationType                `xml:"http://www.opengis.net/gml/3.2 Observation"`
 }
 
 type FeatureCollectionType struct {
-	MetaDataProperty     []MetaDataPropertyType        `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType              `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType        `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                    `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                        `xml:"id,attr,omitempty"`
-	BoundedBy            *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
-	Location             *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
-	PriorityLocation     *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
-	FeatureMember        []FeaturePropertyType         `xml:"http://www.opengis.net/gml/3.2 featureMember"`
-	FeatureMembers       *FeatureArrayPropertyType     `xml:"http://www.opengis.net/gml/3.2 featureMembers,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
+	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
+	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
+	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
+	PriorityLocation *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
+	FeatureMember    []FeaturePropertyType         `xml:"http://www.opengis.net/gml/3.2 featureMember"`
+	FeatureMembers   *FeatureArrayPropertyType     `xml:"http://www.opengis.net/gml/3.2 featureMembers,omitempty"`
 }
 
 type FeaturePropertyType struct {
+	// This abstract element serves as the head of a substitution group which may contain any elements whose content model is derived from gml:AbstractFeatureType.  This may be used as a variable in the construction of content models.
+	// gml:AbstractFeature may be thought of as "anything that is a GML feature" and may be used to define variables or templates in which the value of a GML property is "any feature". This occurs in particular in a GML feature collection where the feature member properties contain one or multiple copies of gml:AbstractFeature respectively.
 	AbstractFeature            *AbstractFeatureType            `xml:"http://www.opengis.net/gml/3.2 AbstractFeature,omitempty"`
 	AbstractContinuousCoverage *AbstractContinuousCoverageType `xml:"http://www.opengis.net/gml/3.2 AbstractContinuousCoverage,omitempty"`
 	AbstractCoverage           *AbstractCoverageType           `xml:"http://www.opengis.net/gml/3.2 AbstractCoverage,omitempty"`
@@ -1581,6 +2093,8 @@ type FormulaType struct {
 }
 
 type GeneralConversionPropertyType struct {
+	// gm:AbstractGeneralConversion is an abstract operation on coordinates that does not include any change of datum. The best-known example of a coordinate conversion is a map projection. The parameters describing coordinate conversions are defined rather than empirically derived. Note that some conversions have no parameters. The operationVersion, sourceCRS, and targetCRS elements are omitted in a coordinate conversion.
+	// This abstract complex type is expected to be extended for well-known operation methods with many Conversion instances, in GML Application Schemas that define operation-method-specialized element names and contents. This conversion uses an operation method, usually with associated parameter values. However, operation methods and parameter values are directly associated with concrete subtypes, not with this abstract type. All concrete types derived from this type shall extend this type to include a "usesMethod" element that references the "OperationMethod" element. Similarly, all concrete types derived from this type shall extend this type to include zero or more elements each named "uses...Value" that each use the type of an element substitutable for the "AbstractGeneralParameterValue" element.
 	AbstractGeneralConversion *AbstractGeneralConversionType `xml:"http://www.opengis.net/gml/3.2 AbstractGeneralConversion,omitempty"`
 	Conversion                *ConversionType                `xml:"http://www.opengis.net/gml/3.2 Conversion,omitempty"`
 	NilReason                 string                         `xml:"nilReason,attr,omitempty"`
@@ -1588,6 +2102,8 @@ type GeneralConversionPropertyType struct {
 }
 
 type GeneralTransformationPropertyType struct {
+	// gml:AbstractGeneralTransformation is an abstract operation on coordinates that usually includes a change of Datum. The parameters of a coordinate transformation are empirically derived from data containing the coordinates of a series of points in both coordinate reference systems. This computational process is usually "over-determined", allowing derivation of error (or accuracy) estimates for the transformation. Also, the stochastic nature of the parameters may result in multiple (different) versions of the same coordinate transformation. The operationVersion, sourceCRS, and targetCRS proeprty elements are mandatory in a coordinate transformation.
+	// This abstract complex type is expected to be extended for well-known operation methods with many Transformation instances, in Application Schemas that define operation-method-specialized value element names and contents. This transformation uses an operation method with associated parameter values. However, operation methods and parameter values are directly associated with concrete subtypes, not with this abstract type. All concrete types derived from this type shall extend this type to include a "usesMethod" element that references one "OperationMethod" element. Similarly, all concrete types derived from this type shall extend this type to include one or more elements each named "uses...Value" that each use the type of an element substitutable for the "AbstractGeneralParameterValue" element.
 	AbstractGeneralTransformation *AbstractGeneralTransformationType `xml:"http://www.opengis.net/gml/3.2 AbstractGeneralTransformation,omitempty"`
 	Transformation                *TransformationType                `xml:"http://www.opengis.net/gml/3.2 Transformation,omitempty"`
 	NilReason                     string                             `xml:"nilReason,attr,omitempty"`
@@ -1605,18 +2121,24 @@ type GeocentricCRSPropertyType struct {
 }
 
 type GeocentricCRSType struct {
-	MetaDataProperty     []MetaDataPropertyType     `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType           `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType             `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType     `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                 `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                     `xml:"id,attr,omitempty"`
-	Remarks              *string                    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     []string                   `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
-	Scope                []string                   `xml:"http://www.opengis.net/gml/3.2 scope"`
-	UsesGeodeticDatum    *GeodeticDatumPropertyType `xml:"http://www.opengis.net/gml/3.2 usesGeodeticDatum,omitempty"`
-	UsesCartesianCS      *CartesianCSPropertyType   `xml:"http://www.opengis.net/gml/3.2 usesCartesianCS,omitempty"`
-	UsesSphericalCS      *SphericalCSPropertyType   `xml:"http://www.opengis.net/gml/3.2 usesSphericalCS,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope             []string                   `xml:"http://www.opengis.net/gml/3.2 scope"`
+	UsesGeodeticDatum *GeodeticDatumPropertyType `xml:"http://www.opengis.net/gml/3.2 usesGeodeticDatum,omitempty"`
+	UsesCartesianCS   *CartesianCSPropertyType   `xml:"http://www.opengis.net/gml/3.2 usesCartesianCS,omitempty"`
+	UsesSphericalCS   *SphericalCSPropertyType   `xml:"http://www.opengis.net/gml/3.2 usesSphericalCS,omitempty"`
 }
 
 type GeodesicStringType struct {
@@ -1625,8 +2147,9 @@ type GeodesicStringType struct {
 	NumDerivativeInterior int                     `xml:"numDerivativeInterior,attr,omitempty"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Pos                   *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
-	PointProperty         *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
-	Interpolation         string                  `xml:"interpolation,attr,omitempty"`
+	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
+	PointProperty *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
+	Interpolation string             `xml:"interpolation,attr,omitempty"`
 }
 
 type GeodesicType struct {
@@ -1635,8 +2158,9 @@ type GeodesicType struct {
 	NumDerivativeInterior int                     `xml:"numDerivativeInterior,attr,omitempty"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Pos                   *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
-	PointProperty         *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
-	Interpolation         string                  `xml:"interpolation,attr,omitempty"`
+	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
+	PointProperty *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
+	Interpolation string             `xml:"interpolation,attr,omitempty"`
 }
 
 type GeodeticCRSPropertyType struct {
@@ -1646,48 +2170,73 @@ type GeodeticCRSPropertyType struct {
 }
 
 type GeodeticCRSType struct {
-	MetaDataProperty     []MetaDataPropertyType     `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType           `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType             `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType     `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                 `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                     `xml:"id,attr,omitempty"`
-	Remarks              *string                    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     []string                   `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
-	Scope                []string                   `xml:"http://www.opengis.net/gml/3.2 scope"`
-	GeodeticDatum        *GeodeticDatumPropertyType `xml:"http://www.opengis.net/gml/3.2 geodeticDatum,omitempty"`
-	UsesGeodeticDatum    *GeodeticDatumPropertyType `xml:"http://www.opengis.net/gml/3.2 usesGeodeticDatum,omitempty"`
-	EllipsoidalCS        *EllipsoidalCSPropertyType `xml:"http://www.opengis.net/gml/3.2 ellipsoidalCS,omitempty"`
-	UsesEllipsoidalCS    *EllipsoidalCSPropertyType `xml:"http://www.opengis.net/gml/3.2 usesEllipsoidalCS,omitempty"`
-	CartesianCS          *CartesianCSPropertyType   `xml:"http://www.opengis.net/gml/3.2 cartesianCS,omitempty"`
-	UsesCartesianCS      *CartesianCSPropertyType   `xml:"http://www.opengis.net/gml/3.2 usesCartesianCS,omitempty"`
-	SphericalCS          *SphericalCSPropertyType   `xml:"http://www.opengis.net/gml/3.2 sphericalCS,omitempty"`
-	UsesSphericalCS      *SphericalCSPropertyType   `xml:"http://www.opengis.net/gml/3.2 usesSphericalCS,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:geodeticDatum is an association role to the geodetic datum used by this CRS.
+	GeodeticDatum     *GeodeticDatumPropertyType `xml:"http://www.opengis.net/gml/3.2 geodeticDatum,omitempty"`
+	UsesGeodeticDatum *GeodeticDatumPropertyType `xml:"http://www.opengis.net/gml/3.2 usesGeodeticDatum,omitempty"`
+	// gml:ellipsoidalCS is an association role to the ellipsoidal coordinate system used by this CRS.
+	EllipsoidalCS     *EllipsoidalCSPropertyType `xml:"http://www.opengis.net/gml/3.2 ellipsoidalCS,omitempty"`
+	UsesEllipsoidalCS *EllipsoidalCSPropertyType `xml:"http://www.opengis.net/gml/3.2 usesEllipsoidalCS,omitempty"`
+	// gml:cartesianCS is an association role to the Cartesian coordinate system used by this CRS.
+	CartesianCS     *CartesianCSPropertyType `xml:"http://www.opengis.net/gml/3.2 cartesianCS,omitempty"`
+	UsesCartesianCS *CartesianCSPropertyType `xml:"http://www.opengis.net/gml/3.2 usesCartesianCS,omitempty"`
+	// gml:sphericalCS is an association role to the spherical coordinate system used by this CRS.
+	SphericalCS     *SphericalCSPropertyType `xml:"http://www.opengis.net/gml/3.2 sphericalCS,omitempty"`
+	UsesSphericalCS *SphericalCSPropertyType `xml:"http://www.opengis.net/gml/3.2 usesSphericalCS,omitempty"`
 }
 
 type GeodeticDatumPropertyType struct {
+	// gml:GeodeticDatum is a geodetic datum defines the precise location and orientation in 3-dimensional space of a defined ellipsoid (or sphere), or of a Cartesian coordinate system centered in this ellipsoid (or sphere).
 	GeodeticDatum *GeodeticDatumType `xml:"http://www.opengis.net/gml/3.2 GeodeticDatum,omitempty"`
 	NilReason     string             `xml:"nilReason,attr,omitempty"`
 	RemoteSchema  string             `xml:"remoteSchema,attr,omitempty"`
 }
 
 type GeodeticDatumType struct {
-	MetaDataProperty     []MetaDataPropertyType     `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType           `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType             `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType     `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                 `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                     `xml:"id,attr,omitempty"`
-	Remarks              *string                    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     *string                    `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
-	Scope                []string                   `xml:"http://www.opengis.net/gml/3.2 scope"`
-	AnchorDefinition     *CodeType                  `xml:"http://www.opengis.net/gml/3.2 anchorDefinition,omitempty"`
-	AnchorPoint          *CodeType                  `xml:"http://www.opengis.net/gml/3.2 anchorPoint,omitempty"`
-	RealizationEpoch     *string                    `xml:"http://www.opengis.net/gml/3.2 realizationEpoch,omitempty"`
-	PrimeMeridian        *PrimeMeridianPropertyType `xml:"http://www.opengis.net/gml/3.2 primeMeridian,omitempty"`
-	UsesPrimeMeridian    *PrimeMeridianPropertyType `xml:"http://www.opengis.net/gml/3.2 usesPrimeMeridian,omitempty"`
-	Ellipsoid            *EllipsoidPropertyType     `xml:"http://www.opengis.net/gml/3.2 ellipsoid,omitempty"`
-	UsesEllipsoid        *EllipsoidPropertyType     `xml:"http://www.opengis.net/gml/3.2 usesEllipsoid,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:anchorDefinition is a description, possibly including coordinates, of the definition used to anchor the datum to the Earth. Also known as the "origin", especially for engineering and image datums. The codeSpace attribute may be used to reference a source of more detailed on this point or surface, or on a set of such descriptions.
+	// -	For a geodetic datum, this point is also known as the fundamental point, which is traditionally the point where the relationship between geoid and ellipsoid is defined. In some cases, the "fundamental point" may consist of a number of points. In those cases, the parameters defining the geoid/ellipsoid relationship have been averaged for these points, and the averages adopted as the datum definition.
+	// -	For an engineering datum, the anchor definition may be a physical point, or it may be a point with defined coordinates in another CRS.may
+	// -	For an image datum, the anchor definition is usually either the centre of the image or the corner of the image.
+	// -	For a temporal datum, this attribute is not defined. Instead of the anchor definition, a temporal datum carries a separate time origin of type DateTime.
+	AnchorDefinition *CodeType `xml:"http://www.opengis.net/gml/3.2 anchorDefinition,omitempty"`
+	AnchorPoint      *CodeType `xml:"http://www.opengis.net/gml/3.2 anchorPoint,omitempty"`
+	// gml:realizationEpoch is the time after which this datum definition is valid. See ISO 19111 Table 32 for details.
+	RealizationEpoch *string `xml:"http://www.opengis.net/gml/3.2 realizationEpoch,omitempty"`
+	// gml:primeMeridian is an association role to the prime meridian used by this geodetic datum.
+	PrimeMeridian     *PrimeMeridianPropertyType `xml:"http://www.opengis.net/gml/3.2 primeMeridian,omitempty"`
+	UsesPrimeMeridian *PrimeMeridianPropertyType `xml:"http://www.opengis.net/gml/3.2 usesPrimeMeridian,omitempty"`
+	// gml:ellipsoid is an association role to the ellipsoid used by this geodetic datum.
+	Ellipsoid     *EllipsoidPropertyType `xml:"http://www.opengis.net/gml/3.2 ellipsoid,omitempty"`
+	UsesEllipsoid *EllipsoidPropertyType `xml:"http://www.opengis.net/gml/3.2 usesEllipsoid,omitempty"`
 }
 
 type GeographicCRSPropertyType struct {
@@ -1697,45 +2246,65 @@ type GeographicCRSPropertyType struct {
 }
 
 type GeographicCRSType struct {
-	MetaDataProperty     []MetaDataPropertyType     `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType           `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType             `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType     `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                 `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                     `xml:"id,attr,omitempty"`
-	Remarks              *string                    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     []string                   `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
-	Scope                []string                   `xml:"http://www.opengis.net/gml/3.2 scope"`
-	UsesEllipsoidalCS    *EllipsoidalCSPropertyType `xml:"http://www.opengis.net/gml/3.2 usesEllipsoidalCS,omitempty"`
-	UsesGeodeticDatum    *GeodeticDatumPropertyType `xml:"http://www.opengis.net/gml/3.2 usesGeodeticDatum,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope             []string                   `xml:"http://www.opengis.net/gml/3.2 scope"`
+	UsesEllipsoidalCS *EllipsoidalCSPropertyType `xml:"http://www.opengis.net/gml/3.2 usesEllipsoidalCS,omitempty"`
+	UsesGeodeticDatum *GeodeticDatumPropertyType `xml:"http://www.opengis.net/gml/3.2 usesGeodeticDatum,omitempty"`
 }
 
 type GeometricComplexPropertyType struct {
 	GeometricComplex *GeometricComplexType `xml:"http://www.opengis.net/gml/3.2 GeometricComplex,omitempty"`
-	CompositeCurve   *CompositeCurveType   `xml:"http://www.opengis.net/gml/3.2 CompositeCurve,omitempty"`
+	// A gml:CompositeCurve is represented by a sequence of (orientable) curves such that each curve in the sequence terminates at the start point of the subsequent curve in the list.
+	// curveMember references or contains inline one curve in the composite curve.
+	// The curves are contiguous, the collection of curves is ordered. Therefore, if provided, the aggregationType attribute shall have the value "sequence".
+	CompositeCurve *CompositeCurveType `xml:"http://www.opengis.net/gml/3.2 CompositeCurve,omitempty"`
+	// A gml:CompositeSurface is represented by a set of orientable surfaces. It is geometry type with all the geometric properties of a (primitive) surface. Essentially, a composite surface is a collection of surfaces that join in pairs on common boundary curves and which, when considered as a whole, form a single surface.
+	// surfaceMember references or contains inline one surface in the composite surface.
+	// The surfaces are contiguous.
 	CompositeSurface *CompositeSurfaceType `xml:"http://www.opengis.net/gml/3.2 CompositeSurface,omitempty"`
-	CompositeSolid   *CompositeSolidType   `xml:"http://www.opengis.net/gml/3.2 CompositeSolid,omitempty"`
-	Owns             bool                  `xml:"owns,attr,omitempty"`
-	NilReason        string                `xml:"nilReason,attr,omitempty"`
-	RemoteSchema     string                `xml:"remoteSchema,attr,omitempty"`
+	// gml:CompositeSolid implements ISO 19107 GM_CompositeSolid (see ISO 19107:2003, 6.6.7) as specified in D.2.3.6.
+	// A gml:CompositeSolid is represented by a set of orientable surfaces. It is a geometry type with all the geometric properties of a (primitive) solid. Essentially, a composite solid is a collection of solids that join in pairs on common boundary surfaces and which, when considered as a whole, form a single solid.
+	// solidMember references or contains one solid in the composite solid. The solids are contiguous.
+	CompositeSolid *CompositeSolidType `xml:"http://www.opengis.net/gml/3.2 CompositeSolid,omitempty"`
+	Owns           bool                `xml:"owns,attr,omitempty"`
+	NilReason      string              `xml:"nilReason,attr,omitempty"`
+	RemoteSchema   string              `xml:"remoteSchema,attr,omitempty"`
 }
 
 type GeometricComplexType struct {
-	MetaDataProperty     []MetaDataPropertyType           `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType                 `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                   `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType           `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                       `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                           `xml:"id,attr,omitempty"`
-	SrsName              string                           `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                              `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                           `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                           `xml:"uomLabels,attr,omitempty"`
-	Element              []GeometricPrimitivePropertyType `xml:"http://www.opengis.net/gml/3.2 element"`
-	AggregationType      string                           `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name            []CodeType                       `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id              string                           `xml:"id,attr,omitempty"`
+	SrsName         string                           `xml:"srsName,attr,omitempty"`
+	SrsDimension    int                              `xml:"srsDimension,attr,omitempty"`
+	AxisLabels      string                           `xml:"axisLabels,attr,omitempty"`
+	UomLabels       string                           `xml:"uomLabels,attr,omitempty"`
+	Element         []GeometricPrimitivePropertyType `xml:"http://www.opengis.net/gml/3.2 element"`
+	AggregationType string                           `xml:"aggregationType,attr,omitempty"`
 }
 
 type GeometricPrimitivePropertyType struct {
+	// The AbstractGeometricPrimitive element is the abstract head of the substitution group for all (pre- and user-defined) geometric primitives.
 	AbstractGeometricPrimitive *AbstractGeometricPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricPrimitive,omitempty"`
 	AbstractCurve              *AbstractCurveType              `xml:"http://www.opengis.net/gml/3.2 AbstractCurve,omitempty"`
 	AbstractSolid              *AbstractSolidType              `xml:"http://www.opengis.net/gml/3.2 AbstractSolid,omitempty"`
@@ -1747,15 +2316,17 @@ type GeometricPrimitivePropertyType struct {
 }
 
 type GeometryArrayPropertyType struct {
-	AbstractGeometry           *AbstractGeometryType           `xml:"http://www.opengis.net/gml/3.2 AbstractGeometry,omitempty"`
-	AbstractGeometricAggregate *AbstractGeometricAggregateType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricAggregate,omitempty"`
-	AbstractGeometricPrimitive *AbstractGeometricPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricPrimitive,omitempty"`
-	AbstractImplicitGeometry   *AbstractGeometryType           `xml:"http://www.opengis.net/gml/3.2 AbstractImplicitGeometry,omitempty"`
-	GeometricComplex           *GeometricComplexType           `xml:"http://www.opengis.net/gml/3.2 GeometricComplex,omitempty"`
-	Owns                       bool                            `xml:"owns,attr,omitempty"`
+	// The AbstractGeometry element is the abstract head of the substitution group for all geometry elements of GML. This includes pre-defined and user-defined geometry elements. Any geometry element shall be a direct or indirect extension/restriction of AbstractGeometryType and shall be directly or indirectly in the substitution group of AbstractGeometry.
+	AbstractGeometry           []AbstractGeometryType           `xml:"http://www.opengis.net/gml/3.2 AbstractGeometry"`
+	AbstractGeometricAggregate []AbstractGeometricAggregateType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricAggregate"`
+	AbstractGeometricPrimitive []AbstractGeometricPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricPrimitive"`
+	AbstractImplicitGeometry   []AbstractGeometryType           `xml:"http://www.opengis.net/gml/3.2 AbstractImplicitGeometry"`
+	GeometricComplex           []GeometricComplexType           `xml:"http://www.opengis.net/gml/3.2 GeometricComplex"`
+	Owns                       bool                             `xml:"owns,attr,omitempty"`
 }
 
 type GeometryPropertyType struct {
+	// The AbstractGeometry element is the abstract head of the substitution group for all geometry elements of GML. This includes pre-defined and user-defined geometry elements. Any geometry element shall be a direct or indirect extension/restriction of AbstractGeometryType and shall be directly or indirectly in the substitution group of AbstractGeometry.
 	AbstractGeometry           *AbstractGeometryType           `xml:"http://www.opengis.net/gml/3.2 AbstractGeometry,omitempty"`
 	AbstractGeometricAggregate *AbstractGeometricAggregateType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricAggregate,omitempty"`
 	AbstractGeometricPrimitive *AbstractGeometricPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricPrimitive,omitempty"`
@@ -1785,82 +2356,118 @@ type GridLimitsType struct {
 }
 
 type GridType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	SrsName              string                 `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                    `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                 `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                 `xml:"uomLabels,attr,omitempty"`
-	Limits               *GridLimitsType        `xml:"http://www.opengis.net/gml/3.2 limits,omitempty"`
-	AxisName             []string               `xml:"http://www.opengis.net/gml/3.2 axisName"`
-	Dimension            int                    `xml:"dimension,attr"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType      `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string          `xml:"id,attr,omitempty"`
+	SrsName      string          `xml:"srsName,attr,omitempty"`
+	SrsDimension int             `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   string          `xml:"axisLabels,attr,omitempty"`
+	UomLabels    string          `xml:"uomLabels,attr,omitempty"`
+	Limits       *GridLimitsType `xml:"http://www.opengis.net/gml/3.2 limits,omitempty"`
+	AxisName     []string        `xml:"http://www.opengis.net/gml/3.2 axisName"`
+	Dimension    int             `xml:"dimension,attr"`
 }
 
 type HistoryPropertyType struct {
-	AbstractTimeSlice  []AbstractTimeSliceType `xml:"http://www.opengis.net/gml/3.2 AbstractTimeSlice"`
-	MovingObjectStatus *MovingObjectStatusType `xml:"http://www.opengis.net/gml/3.2 MovingObjectStatus,omitempty"`
-	Owns               bool                    `xml:"owns,attr,omitempty"`
+	// To describe an event — an action that occurs at an instant or over an interval of time — GML provides the gml:AbtractTimeSlice element. A timeslice encapsulates the time-varying properties of a dynamic feature -- it shall be extended to represent a time stamped projection of a specific feature. The gml:dataSource property describes how the temporal data was acquired.
+	// A gml:AbstractTimeSlice instance is a GML object that encapsulates updates of the dynamic—or volatile—properties that reflect some change event; it thus includes only those feature properties that have actually changed due to some process.
+	// gml:AbstractTimeSlice basically provides a facility for attribute-level time stamping, in contrast to the object-level time stamping of dynamic feature instances.
+	// The time slice can thus be viewed as event or process-oriented, whereas a snapshot is more state or structure-oriented. A timeslice has richer causality, whereas a snapshot merely portrays the status of the whole.
+	AbstractTimeSlice  []AbstractTimeSliceType  `xml:"http://www.opengis.net/gml/3.2 AbstractTimeSlice"`
+	MovingObjectStatus []MovingObjectStatusType `xml:"http://www.opengis.net/gml/3.2 MovingObjectStatus"`
+	Owns               bool                     `xml:"owns,attr,omitempty"`
 }
 
 type IdentifiedObjectType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	Remarks              *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 }
 
 type ImageCRSPropertyType struct {
+	// gml:ImageCRS is an engineering coordinate reference system applied to locations in images. Image coordinate reference systems are treated as a separate sub-type because the definition of the associated image datum contains two attributes not relevant to other engineering datums.
 	ImageCRS     *ImageCRSType `xml:"http://www.opengis.net/gml/3.2 ImageCRS,omitempty"`
 	NilReason    string        `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string        `xml:"remoteSchema,attr,omitempty"`
 }
 
 type ImageCRSType struct {
-	MetaDataProperty       []MetaDataPropertyType          `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description            *StringOrRefType                `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference   *ReferenceType                  `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier             *CodeWithAuthorityType          `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                   []CodeType                      `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                     string                          `xml:"id,attr,omitempty"`
-	Remarks                *string                         `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity       []string                        `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
-	Scope                  []string                        `xml:"http://www.opengis.net/gml/3.2 scope"`
-	ImageDatum             *ImageDatumPropertyType         `xml:"http://www.opengis.net/gml/3.2 imageDatum,omitempty"`
-	UsesImageDatum         *ImageDatumPropertyType         `xml:"http://www.opengis.net/gml/3.2 usesImageDatum,omitempty"`
-	CartesianCS            *CartesianCSPropertyType        `xml:"http://www.opengis.net/gml/3.2 cartesianCS,omitempty"`
-	UsesCartesianCS        *CartesianCSPropertyType        `xml:"http://www.opengis.net/gml/3.2 usesCartesianCS,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:imageDatum is an association role to the image datum used by this CRS.
+	ImageDatum     *ImageDatumPropertyType `xml:"http://www.opengis.net/gml/3.2 imageDatum,omitempty"`
+	UsesImageDatum *ImageDatumPropertyType `xml:"http://www.opengis.net/gml/3.2 usesImageDatum,omitempty"`
+	// gml:cartesianCS is an association role to the Cartesian coordinate system used by this CRS.
+	CartesianCS     *CartesianCSPropertyType `xml:"http://www.opengis.net/gml/3.2 cartesianCS,omitempty"`
+	UsesCartesianCS *CartesianCSPropertyType `xml:"http://www.opengis.net/gml/3.2 usesCartesianCS,omitempty"`
+	// gml:affineCS is an association role to the affine coordinate system used by this CRS.
 	AffineCS               *AffineCSPropertyType           `xml:"http://www.opengis.net/gml/3.2 affineCS,omitempty"`
 	UsesAffineCS           *AffineCSPropertyType           `xml:"http://www.opengis.net/gml/3.2 usesAffineCS,omitempty"`
 	UsesObliqueCartesianCS *ObliqueCartesianCSPropertyType `xml:"http://www.opengis.net/gml/3.2 usesObliqueCartesianCS,omitempty"`
 }
 
 type ImageDatumPropertyType struct {
+	// gml:ImageDatum defines the origin of an image coordinate reference system, and is used in a local context only. For an image datum, the anchor definition is usually either the centre of the image or the corner of the image. For more information, see ISO 19111 B.3.5.
 	ImageDatum   *ImageDatumType `xml:"http://www.opengis.net/gml/3.2 ImageDatum,omitempty"`
 	NilReason    string          `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string          `xml:"remoteSchema,attr,omitempty"`
 }
 
 type ImageDatumType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	Remarks              *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     *string                `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
-	Scope                []string               `xml:"http://www.opengis.net/gml/3.2 scope"`
-	AnchorDefinition     *CodeType              `xml:"http://www.opengis.net/gml/3.2 anchorDefinition,omitempty"`
-	AnchorPoint          *CodeType              `xml:"http://www.opengis.net/gml/3.2 anchorPoint,omitempty"`
-	RealizationEpoch     *string                `xml:"http://www.opengis.net/gml/3.2 realizationEpoch,omitempty"`
-	PixelInCell          *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 pixelInCell,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:anchorDefinition is a description, possibly including coordinates, of the definition used to anchor the datum to the Earth. Also known as the "origin", especially for engineering and image datums. The codeSpace attribute may be used to reference a source of more detailed on this point or surface, or on a set of such descriptions.
+	// -	For a geodetic datum, this point is also known as the fundamental point, which is traditionally the point where the relationship between geoid and ellipsoid is defined. In some cases, the "fundamental point" may consist of a number of points. In those cases, the parameters defining the geoid/ellipsoid relationship have been averaged for these points, and the averages adopted as the datum definition.
+	// -	For an engineering datum, the anchor definition may be a physical point, or it may be a point with defined coordinates in another CRS.may
+	// -	For an image datum, the anchor definition is usually either the centre of the image or the corner of the image.
+	// -	For a temporal datum, this attribute is not defined. Instead of the anchor definition, a temporal datum carries a separate time origin of type DateTime.
+	AnchorDefinition *CodeType `xml:"http://www.opengis.net/gml/3.2 anchorDefinition,omitempty"`
+	AnchorPoint      *CodeType `xml:"http://www.opengis.net/gml/3.2 anchorPoint,omitempty"`
+	// gml:realizationEpoch is the time after which this datum definition is valid. See ISO 19111 Table 32 for details.
+	RealizationEpoch *string `xml:"http://www.opengis.net/gml/3.2 realizationEpoch,omitempty"`
+	// gml:pixelInCell is a specification of the way an image grid is associated with the image data attributes. The required codeSpace attribute shall reference a source of information specifying the values and meanings of all the allowed string values for this property.
+	PixelInCell *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 pixelInCell,omitempty"`
 }
 
 type IndirectEntryType struct {
@@ -1872,6 +2479,10 @@ type InlinePropertyType struct {
 }
 
 type KnotPropertyType struct {
+	// A knot is a breakpoint on a piecewise spline curve.
+	// value is the value of the parameter at the knot of the spline (see ISO 19107:2003, 6.4.24.2).
+	// multiplicity is the multiplicity of this knot used in the definition of the spline (with the same weight).
+	// weight is the value of the averaging weight used for this knot of the spline.
 	Knot *KnotType `xml:"http://www.opengis.net/gml/3.2 Knot,omitempty"`
 }
 
@@ -1886,7 +2497,9 @@ type LengthType struct {
 }
 
 type LineStringSegmentArrayPropertyType struct {
-	LineStringSegment *LineStringSegmentType `xml:"http://www.opengis.net/gml/3.2 LineStringSegment,omitempty"`
+	// A LineStringSegment is a curve segment that is defined by two or more control points including the start and end point, with linear interpolation between them.
+	// The content model follows the general pattern for the encoding of curve segments.
+	LineStringSegment []LineStringSegmentType `xml:"http://www.opengis.net/gml/3.2 LineStringSegment"`
 }
 
 type LineStringSegmentType struct {
@@ -1895,72 +2508,91 @@ type LineStringSegmentType struct {
 	NumDerivativeInterior int                     `xml:"numDerivativeInterior,attr,omitempty"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
-	Pos                   *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
-	PointProperty         *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
-	PointRep              *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
-	Interpolation         string                  `xml:"interpolation,attr,omitempty"`
+	Pos                   []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
+	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
+	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
+	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
+	Interpolation string              `xml:"interpolation,attr,omitempty"`
 }
 
 type LineStringType struct {
-	MetaDataProperty     []MetaDataPropertyType  `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType        `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType          `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType  `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                  `xml:"id,attr,omitempty"`
-	SrsName              string                  `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                     `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                  `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                  `xml:"uomLabels,attr,omitempty"`
-	PosList              *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
-	Coordinates          *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
-	Pos                  *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
-	PointProperty        *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
-	PointRep             *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string                  `xml:"id,attr,omitempty"`
+	SrsName      string                  `xml:"srsName,attr,omitempty"`
+	SrsDimension int                     `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   string                  `xml:"axisLabels,attr,omitempty"`
+	UomLabels    string                  `xml:"uomLabels,attr,omitempty"`
+	PosList      *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
+	Coordinates  *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
+	Pos          []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
+	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
+	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
+	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
 }
 
 type LinearCSPropertyType struct {
+	// gml:LinearCS is a one-dimensional coordinate system that consists of the points that lie on the single axis described. The associated coordinate is the distance – with or without offset – from the specified datum to the point along the axis. A LinearCS shall have one gml:axis property element.
 	LinearCS     *LinearCSType `xml:"http://www.opengis.net/gml/3.2 LinearCS,omitempty"`
 	NilReason    string        `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string        `xml:"remoteSchema,attr,omitempty"`
 }
 
 type LinearCSType struct {
-	MetaDataProperty     []MetaDataPropertyType             `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType                   `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                     `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType             `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                         `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                             `xml:"id,attr,omitempty"`
-	Remarks              *string                            `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	Axis                 []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
-	UsesAxis             *CoordinateSystemAxisPropertyType  `xml:"http://www.opengis.net/gml/3.2 usesAxis,omitempty"`
-	AggregationType      string                             `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
+	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
+	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
+	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
 }
 
 type LinearRingPropertyType struct {
+	// A LinearRing is defined by four or more coordinate tuples, with linear interpolation between them; the first and last coordinates shall be coincident. The number of direct positions in the list shall be at least four.
 	LinearRing *LinearRingType `xml:"http://www.opengis.net/gml/3.2 LinearRing,omitempty"`
 }
 
 type LinearRingType struct {
-	MetaDataProperty     []MetaDataPropertyType  `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType        `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType          `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType  `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                  `xml:"id,attr,omitempty"`
-	SrsName              string                  `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                     `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                  `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                  `xml:"uomLabels,attr,omitempty"`
-	PosList              *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
-	Coordinates          *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
-	Pos                  *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
-	PointProperty        *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
-	PointRep             *PointPropertyType      `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string                  `xml:"id,attr,omitempty"`
+	SrsName      string                  `xml:"srsName,attr,omitempty"`
+	SrsDimension int                     `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   string                  `xml:"axisLabels,attr,omitempty"`
+	UomLabels    string                  `xml:"uomLabels,attr,omitempty"`
+	PosList      *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
+	Coordinates  *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
+	Pos          []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
+	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
+	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
+	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
 }
 
 type LocationPropertyType struct {
+	// The AbstractGeometry element is the abstract head of the substitution group for all geometry elements of GML. This includes pre-defined and user-defined geometry elements. Any geometry element shall be a direct or indirect extension/restriction of AbstractGeometryType and shall be directly or indirectly in the substitution group of AbstractGeometry.
 	AbstractGeometry           *AbstractGeometryType           `xml:"http://www.opengis.net/gml/3.2 AbstractGeometry,omitempty"`
 	AbstractGeometricAggregate *AbstractGeometricAggregateType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricAggregate,omitempty"`
 	AbstractGeometricPrimitive *AbstractGeometricPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricPrimitive,omitempty"`
@@ -2002,29 +2634,39 @@ type MetaDataPropertyType struct {
 }
 
 type MovingObjectStatusType struct {
-	MetaDataProperty     []MetaDataPropertyType        `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType              `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType        `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                    `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                        `xml:"id,attr,omitempty"`
-	ValidTime            *TimePrimitivePropertyType    `xml:"http://www.opengis.net/gml/3.2 validTime,omitempty"`
-	DataSource           *StringOrRefType              `xml:"http://www.opengis.net/gml/3.2 dataSource,omitempty"`
-	Speed                *MeasureType                  `xml:"http://www.opengis.net/gml/3.2 speed,omitempty"`
-	Bearing              *DirectionPropertyType        `xml:"http://www.opengis.net/gml/3.2 bearing,omitempty"`
-	Acceleration         *MeasureType                  `xml:"http://www.opengis.net/gml/3.2 acceleration,omitempty"`
-	Elevation            *MeasureType                  `xml:"http://www.opengis.net/gml/3.2 elevation,omitempty"`
-	Status               *StringOrRefType              `xml:"http://www.opengis.net/gml/3.2 status,omitempty"`
-	StatusReference      *ReferenceType                `xml:"http://www.opengis.net/gml/3.2 statusReference,omitempty"`
-	Position             *GeometryPropertyType         `xml:"http://www.opengis.net/gml/3.2 position,omitempty"`
-	Pos                  *DirectPositionType           `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
-	LocationName         *CodeType                     `xml:"http://www.opengis.net/gml/3.2 locationName,omitempty"`
-	LocationReference    *ReferenceType                `xml:"http://www.opengis.net/gml/3.2 locationReference,omitempty"`
-	Location             *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
-	PriorityLocation     *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
+	// gml:validTime is a convenience property element.
+	ValidTime *TimePrimitivePropertyType `xml:"http://www.opengis.net/gml/3.2 validTime,omitempty"`
+	// Evidence is represented by a simple gml:dataSource or gml:dataSourceReference property that indicates the source of the temporal data. The remote link attributes of the gml:dataSource element have been deprecated along with its current type.
+	DataSource      *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 dataSource,omitempty"`
+	Speed           *MeasureType           `xml:"http://www.opengis.net/gml/3.2 speed,omitempty"`
+	Bearing         *DirectionPropertyType `xml:"http://www.opengis.net/gml/3.2 bearing,omitempty"`
+	Acceleration    *MeasureType           `xml:"http://www.opengis.net/gml/3.2 acceleration,omitempty"`
+	Elevation       *MeasureType           `xml:"http://www.opengis.net/gml/3.2 elevation,omitempty"`
+	Status          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 status,omitempty"`
+	StatusReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 statusReference,omitempty"`
+	Position        *GeometryPropertyType  `xml:"http://www.opengis.net/gml/3.2 position,omitempty"`
+	Pos             *DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
+	// The gml:locationName property element is a convenience property where the text value describes the location of the feature. If the location names are selected from a controlled list, then the list shall be identified in the codeSpace attribute.
+	LocationName *CodeType `xml:"http://www.opengis.net/gml/3.2 locationName,omitempty"`
+	// The gml:locationReference property element is a convenience property where the text value referenced by the xlink:href attribute describes the location of the feature.
+	LocationReference *ReferenceType                `xml:"http://www.opengis.net/gml/3.2 locationReference,omitempty"`
+	Location          *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
+	PriorityLocation  *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
 }
 
 type MultiCurvePropertyType struct {
+	// A gml:MultiCurve is defined by one or more gml:AbstractCurves.
+	// The members of the geometric aggregate may be specified either using the "standard" property (gml:curveMember) or the array property (gml:curveMembers). It is also valid to use both the "standard" and the array properties in the same collection.
 	MultiCurve   *MultiCurveType `xml:"http://www.opengis.net/gml/3.2 MultiCurve,omitempty"`
 	NilReason    string          `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string          `xml:"remoteSchema,attr,omitempty"`
@@ -2032,22 +2674,28 @@ type MultiCurvePropertyType struct {
 }
 
 type MultiCurveType struct {
-	MetaDataProperty     []MetaDataPropertyType  `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType        `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType          `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType  `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                  `xml:"id,attr,omitempty"`
-	SrsName              string                  `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                     `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                  `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                  `xml:"uomLabels,attr,omitempty"`
-	AggregationType      string                  `xml:"aggregationType,attr,omitempty"`
-	CurveMember          []CurvePropertyType     `xml:"http://www.opengis.net/gml/3.2 curveMember"`
-	CurveMembers         *CurveArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 curveMembers,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name            []CodeType          `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id              string              `xml:"id,attr,omitempty"`
+	SrsName         string              `xml:"srsName,attr,omitempty"`
+	SrsDimension    int                 `xml:"srsDimension,attr,omitempty"`
+	AxisLabels      string              `xml:"axisLabels,attr,omitempty"`
+	UomLabels       string              `xml:"uomLabels,attr,omitempty"`
+	AggregationType string              `xml:"aggregationType,attr,omitempty"`
+	CurveMember     []CurvePropertyType `xml:"http://www.opengis.net/gml/3.2 curveMember"`
+	// This property element contains a list of curves. The order of the elements is significant and shall be preserved when processing the array.
+	CurveMembers *CurveArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 curveMembers,omitempty"`
 }
 
 type MultiGeometryPropertyType struct {
+	// gml:AbstractGeometricAggregate is the abstract head of the substitution group for all geometric aggregates.
 	AbstractGeometricAggregate *AbstractGeometricAggregateType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricAggregate,omitempty"`
 	MultiCurve                 *MultiCurveType                 `xml:"http://www.opengis.net/gml/3.2 MultiCurve,omitempty"`
 	MultiGeometry              *MultiGeometryType              `xml:"http://www.opengis.net/gml/3.2 MultiGeometry,omitempty"`
@@ -2060,22 +2708,30 @@ type MultiGeometryPropertyType struct {
 }
 
 type MultiGeometryType struct {
-	MetaDataProperty     []MetaDataPropertyType     `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType           `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType             `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType     `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                 `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                     `xml:"id,attr,omitempty"`
-	SrsName              string                     `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                     `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                     `xml:"uomLabels,attr,omitempty"`
-	AggregationType      string                     `xml:"aggregationType,attr,omitempty"`
-	GeometryMember       []GeometryPropertyType     `xml:"http://www.opengis.net/gml/3.2 geometryMember"`
-	GeometryMembers      *GeometryArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 geometryMembers,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name            []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id              string     `xml:"id,attr,omitempty"`
+	SrsName         string     `xml:"srsName,attr,omitempty"`
+	SrsDimension    int        `xml:"srsDimension,attr,omitempty"`
+	AxisLabels      string     `xml:"axisLabels,attr,omitempty"`
+	UomLabels       string     `xml:"uomLabels,attr,omitempty"`
+	AggregationType string     `xml:"aggregationType,attr,omitempty"`
+	// This property element either references a geometry element via the XLink-attributes or contains the geometry element.
+	GeometryMember []GeometryPropertyType `xml:"http://www.opengis.net/gml/3.2 geometryMember"`
+	// This property element contains a list of geometry elements. The order of the elements is significant and shall be preserved when processing the array.
+	GeometryMembers *GeometryArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 geometryMembers,omitempty"`
 }
 
 type MultiPointPropertyType struct {
+	// A gml:MultiPoint consists of one or more gml:Points.
+	// The members of the geometric aggregate may be specified either using the "standard" property (gml:pointMember) or the array property (gml:pointMembers). It is also valid to use both the "standard" and the array properties in the same collection.
 	MultiPoint   *MultiPointType `xml:"http://www.opengis.net/gml/3.2 MultiPoint,omitempty"`
 	NilReason    string          `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string          `xml:"remoteSchema,attr,omitempty"`
@@ -2083,22 +2739,30 @@ type MultiPointPropertyType struct {
 }
 
 type MultiPointType struct {
-	MetaDataProperty     []MetaDataPropertyType  `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType        `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType          `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType  `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                  `xml:"id,attr,omitempty"`
-	SrsName              string                  `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                     `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                  `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                  `xml:"uomLabels,attr,omitempty"`
-	AggregationType      string                  `xml:"aggregationType,attr,omitempty"`
-	PointMember          []PointPropertyType     `xml:"http://www.opengis.net/gml/3.2 pointMember"`
-	PointMembers         *PointArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 pointMembers,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name            []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id              string     `xml:"id,attr,omitempty"`
+	SrsName         string     `xml:"srsName,attr,omitempty"`
+	SrsDimension    int        `xml:"srsDimension,attr,omitempty"`
+	AxisLabels      string     `xml:"axisLabels,attr,omitempty"`
+	UomLabels       string     `xml:"uomLabels,attr,omitempty"`
+	AggregationType string     `xml:"aggregationType,attr,omitempty"`
+	// This property element either references a Point via the XLink-attributes or contains the Point element.
+	PointMember []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointMember"`
+	// This property element contains a list of points. The order of the elements is significant and shall be preserved when processing the array.
+	PointMembers *PointArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 pointMembers,omitempty"`
 }
 
 type MultiSolidPropertyType struct {
+	// A gml:MultiSolid is defined by one or more gml:AbstractSolids.
+	// The members of the geometric aggregate may be specified either using the "standard" property (gml:solidMember) or the array property (gml:solidMembers). It is also valid to use both the "standard" and the array properties in the same collection.
 	MultiSolid   *MultiSolidType `xml:"http://www.opengis.net/gml/3.2 MultiSolid,omitempty"`
 	NilReason    string          `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string          `xml:"remoteSchema,attr,omitempty"`
@@ -2106,22 +2770,30 @@ type MultiSolidPropertyType struct {
 }
 
 type MultiSolidType struct {
-	MetaDataProperty     []MetaDataPropertyType  `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType        `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType          `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType  `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                  `xml:"id,attr,omitempty"`
-	SrsName              string                  `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                     `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                  `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                  `xml:"uomLabels,attr,omitempty"`
-	AggregationType      string                  `xml:"aggregationType,attr,omitempty"`
-	SolidMember          []SolidPropertyType     `xml:"http://www.opengis.net/gml/3.2 solidMember"`
-	SolidMembers         *SolidArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 solidMembers,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name            []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id              string     `xml:"id,attr,omitempty"`
+	SrsName         string     `xml:"srsName,attr,omitempty"`
+	SrsDimension    int        `xml:"srsDimension,attr,omitempty"`
+	AxisLabels      string     `xml:"axisLabels,attr,omitempty"`
+	UomLabels       string     `xml:"uomLabels,attr,omitempty"`
+	AggregationType string     `xml:"aggregationType,attr,omitempty"`
+	// This property element either references a solid via the XLink-attributes or contains the solid element. A solid element is any element, which is substitutable for gml:AbstractSolid.
+	SolidMember []SolidPropertyType `xml:"http://www.opengis.net/gml/3.2 solidMember"`
+	// This property element contains a list of solids. The order of the elements is significant and shall be preserved when processing the array.
+	SolidMembers *SolidArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 solidMembers,omitempty"`
 }
 
 type MultiSurfacePropertyType struct {
+	// A gml:MultiSurface is defined by one or more gml:AbstractSurfaces.
+	// The members of the geometric aggregate may be specified either using the "standard" property (gml:surfaceMember) or the array property (gml:surfaceMembers). It is also valid to use both the "standard" and the array properties in the same collection.
 	MultiSurface *MultiSurfaceType `xml:"http://www.opengis.net/gml/3.2 MultiSurface,omitempty"`
 	NilReason    string            `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string            `xml:"remoteSchema,attr,omitempty"`
@@ -2129,23 +2801,38 @@ type MultiSurfacePropertyType struct {
 }
 
 type MultiSurfaceType struct {
-	MetaDataProperty     []MetaDataPropertyType    `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType          `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType            `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType    `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                    `xml:"id,attr,omitempty"`
-	SrsName              string                    `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                       `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                    `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                    `xml:"uomLabels,attr,omitempty"`
-	AggregationType      string                    `xml:"aggregationType,attr,omitempty"`
-	SurfaceMember        []SurfacePropertyType     `xml:"http://www.opengis.net/gml/3.2 surfaceMember"`
-	SurfaceMembers       *SurfaceArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 surfaceMembers,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name            []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id              string     `xml:"id,attr,omitempty"`
+	SrsName         string     `xml:"srsName,attr,omitempty"`
+	SrsDimension    int        `xml:"srsDimension,attr,omitempty"`
+	AxisLabels      string     `xml:"axisLabels,attr,omitempty"`
+	UomLabels       string     `xml:"uomLabels,attr,omitempty"`
+	AggregationType string     `xml:"aggregationType,attr,omitempty"`
+	// This property element either references a surface via the XLink-attributes or contains the surface element. A surface element is any element, which is substitutable for gml:AbstractSurface.
+	SurfaceMember []SurfacePropertyType `xml:"http://www.opengis.net/gml/3.2 surfaceMember"`
+	// This property element contains a list of surfaces. The order of the elements is significant and shall be preserved when processing the array.
+	SurfaceMembers *SurfaceArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 surfaceMembers,omitempty"`
 }
 
 type NodeOrEdgePropertyType struct {
-	Node         *NodeType `xml:"http://www.opengis.net/gml/3.2 Node,omitempty"`
+	// gml:Node represents the 0-dimensional primitive.
+	// The optional coboundary of a node (gml:directedEdge) is a sequence of directed edges which are incident on this node. Edges emanating from this node appear in the node coboundary with a negative orientation.
+	// If provided, the aggregationType attribute shall have the value "sequence".
+	// A node may optionally be realised by a 0-dimensional geometric primitive (gml:pointProperty).
+	Node *NodeType `xml:"http://www.opengis.net/gml/3.2 Node,omitempty"`
+	// gml:Edge represents the 1-dimensional primitive.
+	// The topological boundary of an Edge (gml:directedNode) consists of a negatively directed start Node and a positively directed end Node.
+	// The optional coboundary of an edge (gml:directedFace) is a circular sequence of directed faces which are incident on this edge in document order. In the 2D case, the orientation of the face on the left of the edge is "+"; the orientation of the face on the right on its right is "-".
+	// If provided, the aggregationType attribute shall have the value "sequence".
+	// An edge may optionally be realised by a 1-dimensional geometric primitive (gml:curveProperty).
 	Edge         *EdgeType `xml:"http://www.opengis.net/gml/3.2 Edge,omitempty"`
 	NilReason    string    `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string    `xml:"remoteSchema,attr,omitempty"`
@@ -2153,6 +2840,10 @@ type NodeOrEdgePropertyType struct {
 }
 
 type NodePropertyType struct {
+	// gml:Node represents the 0-dimensional primitive.
+	// The optional coboundary of a node (gml:directedEdge) is a sequence of directed edges which are incident on this node. Edges emanating from this node appear in the node coboundary with a negative orientation.
+	// If provided, the aggregationType attribute shall have the value "sequence".
+	// A node may optionally be realised by a 0-dimensional geometric primitive (gml:pointProperty).
 	Node         *NodeType `xml:"http://www.opengis.net/gml/3.2 Node,omitempty"`
 	NilReason    string    `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string    `xml:"remoteSchema,attr,omitempty"`
@@ -2160,16 +2851,22 @@ type NodePropertyType struct {
 }
 
 type NodeType struct {
-	MetaDataProperty     []MetaDataPropertyType       `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType             `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType               `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType       `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                   `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                       `xml:"id,attr,omitempty"`
-	Container            *FaceOrTopoSolidPropertyType `xml:"http://www.opengis.net/gml/3.2 container,omitempty"`
-	DirectedEdge         []DirectedEdgePropertyType   `xml:"http://www.opengis.net/gml/3.2 directedEdge"`
-	PointProperty        *PointPropertyType           `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
-	AggregationType      string                       `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name      []CodeType                   `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id        string                       `xml:"id,attr,omitempty"`
+	Container *FaceOrTopoSolidPropertyType `xml:"http://www.opengis.net/gml/3.2 container,omitempty"`
+	// In the case of planar topology, a gml:Node must have a clockwise sequence of gml:directedEdge properties, to ensure a lossless topology representation as defined by Kuijpers, et. al. (see OGC 05-102 Topology IPR).
+	DirectedEdge []DirectedEdgePropertyType `xml:"http://www.opengis.net/gml/3.2 directedEdge"`
+	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
+	PointProperty   *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
+	AggregationType string             `xml:"aggregationType,attr,omitempty"`
 }
 
 type ObliqueCartesianCSPropertyType struct {
@@ -2179,33 +2876,44 @@ type ObliqueCartesianCSPropertyType struct {
 }
 
 type ObliqueCartesianCSType struct {
-	MetaDataProperty     []MetaDataPropertyType             `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType                   `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                     `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType             `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                         `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                             `xml:"id,attr,omitempty"`
-	Remarks              *string                            `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	Axis                 []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
-	UsesAxis             *CoordinateSystemAxisPropertyType  `xml:"http://www.opengis.net/gml/3.2 usesAxis,omitempty"`
-	AggregationType      string                             `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
+	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
+	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
+	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
 }
 
 type ObservationType struct {
-	MetaDataProperty     []MetaDataPropertyType        `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType              `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType        `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                    `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                        `xml:"id,attr,omitempty"`
-	BoundedBy            *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
-	Location             *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
-	PriorityLocation     *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
-	ValidTime            *TimePrimitivePropertyType    `xml:"http://www.opengis.net/gml/3.2 validTime,omitempty"`
-	Using                *ProcedurePropertyType        `xml:"http://www.opengis.net/gml/3.2 using,omitempty"`
-	Target               *TargetPropertyType           `xml:"http://www.opengis.net/gml/3.2 target,omitempty"`
-	Subject              *TargetPropertyType           `xml:"http://www.opengis.net/gml/3.2 subject,omitempty"`
-	ResultOf             *ResultType                   `xml:"http://www.opengis.net/gml/3.2 resultOf,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
+	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
+	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
+	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
+	PriorityLocation *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
+	// gml:validTime is a convenience property element.
+	ValidTime *TimePrimitivePropertyType `xml:"http://www.opengis.net/gml/3.2 validTime,omitempty"`
+	Using     *ProcedurePropertyType     `xml:"http://www.opengis.net/gml/3.2 using,omitempty"`
+	Target    *TargetPropertyType        `xml:"http://www.opengis.net/gml/3.2 target,omitempty"`
+	Subject   *TargetPropertyType        `xml:"http://www.opengis.net/gml/3.2 subject,omitempty"`
+	ResultOf  *ResultType                `xml:"http://www.opengis.net/gml/3.2 resultOf,omitempty"`
 }
 
 type OffsetCurveType struct {
@@ -2218,65 +2926,91 @@ type OffsetCurveType struct {
 }
 
 type OperationMethodPropertyType struct {
+	// gml:OperationMethod is a method (algorithm or procedure) used to perform a coordinate operation. Most operation methods use a number of operation parameters, although some coordinate conversions use none. Each coordinate operation using the method assigns values to these parameters.
+	// The parameter elements are an unordered list of associations to the set of operation parameters and parameter groups used by this operation method.
 	OperationMethod *OperationMethodType `xml:"http://www.opengis.net/gml/3.2 OperationMethod,omitempty"`
 	NilReason       string               `xml:"nilReason,attr,omitempty"`
 	RemoteSchema    string               `xml:"remoteSchema,attr,omitempty"`
 }
 
 type OperationMethodType struct {
-	MetaDataProperty          []MetaDataPropertyType                          `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description               *StringOrRefType                                `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference      *ReferenceType                                  `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier                *CodeWithAuthorityType                          `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                      []CodeType                                      `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                        string                                          `xml:"id,attr,omitempty"`
-	Remarks                   *string                                         `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	SourceDimensions          *int                                            `xml:"http://www.opengis.net/gml/3.2 sourceDimensions,omitempty"`
-	TargetDimensions          *int                                            `xml:"http://www.opengis.net/gml/3.2 targetDimensions,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// gml:sourceDimensions is the number of dimensions in the source CRS of this operation method.
+	SourceDimensions *int `xml:"http://www.opengis.net/gml/3.2 sourceDimensions,omitempty"`
+	// gml:targetDimensions is the number of dimensions in the target CRS of this operation method.
+	TargetDimensions *int `xml:"http://www.opengis.net/gml/3.2 targetDimensions,omitempty"`
+	// gml:parameter is an association to an operation parameter or parameter group.
 	Parameter                 []AbstractGeneralOperationParameterPropertyType `xml:"http://www.opengis.net/gml/3.2 parameter"`
-	GeneralOperationParameter *AbstractGeneralOperationParameterPropertyType  `xml:"http://www.opengis.net/gml/3.2 generalOperationParameter,omitempty"`
-	IncludesParameter         *AbstractGeneralOperationParameterPropertyType  `xml:"http://www.opengis.net/gml/3.2 includesParameter,omitempty"`
-	FormulaCitation           *string                                         `xml:"http://www.opengis.net/gml/3.2 formulaCitation,omitempty"`
-	Formula                   *CodeType                                       `xml:"http://www.opengis.net/gml/3.2 formula,omitempty"`
-	MethodFormula             *CodeType                                       `xml:"http://www.opengis.net/gml/3.2 methodFormula,omitempty"`
+	GeneralOperationParameter []AbstractGeneralOperationParameterPropertyType `xml:"http://www.opengis.net/gml/3.2 generalOperationParameter"`
+	IncludesParameter         []AbstractGeneralOperationParameterPropertyType `xml:"http://www.opengis.net/gml/3.2 includesParameter"`
+	// gml:formulaCitation provides a reference to a publication giving the formula(s) or procedure used by an coordinate operation method.
+	FormulaCitation *string `xml:"http://www.opengis.net/gml/3.2 formulaCitation,omitempty"`
+	// gml:formula Formula(s) or procedure used by an operation method. The use of the codespace attribite has been deprecated. The property value shall be a character string.
+	Formula       *CodeType `xml:"http://www.opengis.net/gml/3.2 formula,omitempty"`
+	MethodFormula *CodeType `xml:"http://www.opengis.net/gml/3.2 methodFormula,omitempty"`
 }
 
 type OperationParameterGroupPropertyType struct {
+	// gml:OperationParameterGroup is the definition of a group of parameters used by an operation method. This complex type is expected to be used or extended for all applicable operation methods, without defining operation-method-specialized element names.
+	// The generalOperationParameter elements are an unordered list of associations to the set of operation parameters that are members of this group.
 	OperationParameterGroup *OperationParameterGroupType `xml:"http://www.opengis.net/gml/3.2 OperationParameterGroup,omitempty"`
 	NilReason               string                       `xml:"nilReason,attr,omitempty"`
 	RemoteSchema            string                       `xml:"remoteSchema,attr,omitempty"`
 }
 
 type OperationParameterGroupType struct {
-	MetaDataProperty          []MetaDataPropertyType                          `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description               *StringOrRefType                                `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference      *ReferenceType                                  `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier                *CodeWithAuthorityType                          `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                      []CodeType                                      `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                        string                                          `xml:"id,attr,omitempty"`
-	Remarks                   *string                                         `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	MinimumOccurs             *int                                            `xml:"http://www.opengis.net/gml/3.2 minimumOccurs,omitempty"`
-	MaximumOccurs             *int                                            `xml:"http://www.opengis.net/gml/3.2 maximumOccurs,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// gml:minimumOccurs is the minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number shall be one.
+	MinimumOccurs *int `xml:"http://www.opengis.net/gml/3.2 minimumOccurs,omitempty"`
+	// gml:maximumOccurs is the maximum number of times that values for this parameter group may be included. If this attribute is omitted, the maximum number shall be one.
+	MaximumOccurs *int `xml:"http://www.opengis.net/gml/3.2 maximumOccurs,omitempty"`
+	// gml:parameter is an association to an operation parameter or parameter group.
 	Parameter                 []AbstractGeneralOperationParameterPropertyType `xml:"http://www.opengis.net/gml/3.2 parameter"`
-	GeneralOperationParameter *AbstractGeneralOperationParameterPropertyType  `xml:"http://www.opengis.net/gml/3.2 generalOperationParameter,omitempty"`
-	IncludesParameter         *AbstractGeneralOperationParameterPropertyType  `xml:"http://www.opengis.net/gml/3.2 includesParameter,omitempty"`
+	GeneralOperationParameter []AbstractGeneralOperationParameterPropertyType `xml:"http://www.opengis.net/gml/3.2 generalOperationParameter"`
+	IncludesParameter         []AbstractGeneralOperationParameterPropertyType `xml:"http://www.opengis.net/gml/3.2 includesParameter"`
 }
 
 type OperationParameterPropertyType struct {
+	// gml:OperationParameter is the definition of a parameter used by an operation method. Most parameter values are numeric, but other types of parameter values are possible. This complex type is expected to be used or extended for all operation methods, without defining operation-method-specialized element names.
 	OperationParameter *OperationParameterType `xml:"http://www.opengis.net/gml/3.2 OperationParameter,omitempty"`
 	NilReason          string                  `xml:"nilReason,attr,omitempty"`
 	RemoteSchema       string                  `xml:"remoteSchema,attr,omitempty"`
 }
 
 type OperationParameterType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	Remarks              *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	MinimumOccurs        *int                   `xml:"http://www.opengis.net/gml/3.2 minimumOccurs,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// gml:minimumOccurs is the minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number shall be one.
+	MinimumOccurs *int `xml:"http://www.opengis.net/gml/3.2 minimumOccurs,omitempty"`
 }
 
 type OperationPropertyType struct {
@@ -2288,89 +3022,125 @@ type OperationPropertyType struct {
 }
 
 type OrientableCurveType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	SrsName              string                 `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                    `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                 `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                 `xml:"uomLabels,attr,omitempty"`
-	BaseCurve            *CurvePropertyType     `xml:"http://www.opengis.net/gml/3.2 baseCurve,omitempty"`
-	Orientation          string                 `xml:"orientation,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string     `xml:"id,attr,omitempty"`
+	SrsName      string     `xml:"srsName,attr,omitempty"`
+	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
+	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	// The property baseCurve references or contains the base curve, i.e. it either references the base curve via the XLink-attributes or contains the curve element. A curve element is any element which is substitutable for AbstractCurve. The base curve has positive orientation.
+	BaseCurve   *CurvePropertyType `xml:"http://www.opengis.net/gml/3.2 baseCurve,omitempty"`
+	Orientation string             `xml:"orientation,attr,omitempty"`
 }
 
 type OrientableSurfaceType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	SrsName              string                 `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                    `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                 `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                 `xml:"uomLabels,attr,omitempty"`
-	BaseSurface          *SurfacePropertyType   `xml:"http://www.opengis.net/gml/3.2 baseSurface,omitempty"`
-	Orientation          string                 `xml:"orientation,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string     `xml:"id,attr,omitempty"`
+	SrsName      string     `xml:"srsName,attr,omitempty"`
+	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
+	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	// The property baseSurface references or contains the base surface. The property baseSurface either references the base surface via the XLink-attributes or contains the surface element. A surface element is any element which is substitutable for gml:AbstractSurface. The base surface has positive orientation.
+	BaseSurface *SurfacePropertyType `xml:"http://www.opengis.net/gml/3.2 baseSurface,omitempty"`
+	Orientation string               `xml:"orientation,attr,omitempty"`
 }
 
 type ParameterValueGroupType struct {
+	// gml:parameterValue is a composition association to a parameter value or group of parameter values used by a coordinate operation.
 	ParameterValue []AbstractGeneralParameterValuePropertyType `xml:"http://www.opengis.net/gml/3.2 parameterValue"`
-	IncludesValue  *AbstractGeneralParameterValuePropertyType  `xml:"http://www.opengis.net/gml/3.2 includesValue,omitempty"`
-	UsesValue      *AbstractGeneralParameterValuePropertyType  `xml:"http://www.opengis.net/gml/3.2 usesValue,omitempty"`
-	Group          *OperationParameterGroupPropertyType        `xml:"http://www.opengis.net/gml/3.2 group,omitempty"`
-	ValuesOfGroup  *OperationParameterGroupPropertyType        `xml:"http://www.opengis.net/gml/3.2 valuesOfGroup,omitempty"`
+	IncludesValue  []AbstractGeneralParameterValuePropertyType `xml:"http://www.opengis.net/gml/3.2 includesValue"`
+	UsesValue      []AbstractGeneralParameterValuePropertyType `xml:"http://www.opengis.net/gml/3.2 usesValue"`
+	// gml:group is an association role to the operation parameter group for which this element provides parameter values.
+	Group         *OperationParameterGroupPropertyType `xml:"http://www.opengis.net/gml/3.2 group,omitempty"`
+	ValuesOfGroup *OperationParameterGroupPropertyType `xml:"http://www.opengis.net/gml/3.2 valuesOfGroup,omitempty"`
 }
 
 type ParameterValueType struct {
+	// gml:operationParameter is an association role to the operation parameter of which this is a value.
 	OperationParameter *OperationParameterPropertyType `xml:"http://www.opengis.net/gml/3.2 operationParameter,omitempty"`
 	ValueOfParameter   *OperationParameterPropertyType `xml:"http://www.opengis.net/gml/3.2 valueOfParameter,omitempty"`
-	Value              *MeasureType                    `xml:"http://www.opengis.net/gml/3.2 value,omitempty"`
-	DmsAngleValue      *DMSAngleType                   `xml:"http://www.opengis.net/gml/3.2 dmsAngleValue,omitempty"`
-	StringValue        *string                         `xml:"http://www.opengis.net/gml/3.2 stringValue,omitempty"`
-	IntegerValue       *int                            `xml:"http://www.opengis.net/gml/3.2 integerValue,omitempty"`
-	BooleanValue       *bool                           `xml:"http://www.opengis.net/gml/3.2 booleanValue,omitempty"`
-	ValueList          *MeasureListType                `xml:"http://www.opengis.net/gml/3.2 valueList,omitempty"`
-	IntegerValueList   *string                         `xml:"http://www.opengis.net/gml/3.2 integerValueList,omitempty"`
-	ValueFile          *string                         `xml:"http://www.opengis.net/gml/3.2 valueFile,omitempty"`
+	// gml:value is a numeric value of an operation parameter, with its associated unit of measure.
+	Value         *MeasureType  `xml:"http://www.opengis.net/gml/3.2 value,omitempty"`
+	DmsAngleValue *DMSAngleType `xml:"http://www.opengis.net/gml/3.2 dmsAngleValue,omitempty"`
+	// gml:stringValue is a character string value of an operation parameter. A string value does not have an associated unit of measure.
+	StringValue *string `xml:"http://www.opengis.net/gml/3.2 stringValue,omitempty"`
+	// gml:integerValue is a positive integer value of an operation parameter, usually used for a count. An integer value does not have an associated unit of measure.
+	IntegerValue *int `xml:"http://www.opengis.net/gml/3.2 integerValue,omitempty"`
+	// gml:booleanValue is a boolean value of an operation parameter. A Boolean value does not have an associated unit of measure.
+	BooleanValue *bool `xml:"http://www.opengis.net/gml/3.2 booleanValue,omitempty"`
+	// gml:valueList is an ordered sequence of two or more numeric values of an operation parameter list, where each value has the same associated unit of measure. An element of this type contains a space-separated sequence of double values.
+	ValueList *MeasureListType `xml:"http://www.opengis.net/gml/3.2 valueList,omitempty"`
+	// gml:integerValueList is an ordered sequence of two or more integer values of an operation parameter list, usually used for counts. These integer values do not have an associated unit of measure. An element of this type contains a space-separated sequence of integer values.
+	IntegerValueList *string `xml:"http://www.opengis.net/gml/3.2 integerValueList,omitempty"`
+	// gml:valueFile is a reference to a file or a part of a file containing one or more parameter values, each numeric value with its associated unit of measure. When referencing a part of a file, that file shall contain multiple identified parts, such as an XML encoded document. Furthermore, the referenced file or part of a file may reference another part of the same or different files, as allowed in XML documents.
+	ValueFile *string `xml:"http://www.opengis.net/gml/3.2 valueFile,omitempty"`
 }
 
 type PassThroughOperationPropertyType struct {
+	// gml:PassThroughOperation is a pass-through operation specifies that a subset of a coordinate tuple is subject to a specific coordinate operation.
+	// The modifiedCoordinate property elements are an ordered sequence of positive integers defining the positions in a coordinate tuple of the coordinates affected by this pass-through operation. The AggregationAttributeGroup should be used to specify that the modifiedCoordinate elements are ordered.
 	PassThroughOperation *PassThroughOperationType `xml:"http://www.opengis.net/gml/3.2 PassThroughOperation,omitempty"`
 	NilReason            string                    `xml:"nilReason,attr,omitempty"`
 	RemoteSchema         string                    `xml:"remoteSchema,attr,omitempty"`
 }
 
 type PassThroughOperationType struct {
-	MetaDataProperty            []MetaDataPropertyType           `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description                 *StringOrRefType                 `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference        *ReferenceType                   `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier                  *CodeWithAuthorityType           `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                        []CodeType                       `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                          string                           `xml:"id,attr,omitempty"`
-	Remarks                     *string                          `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity            *string                          `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
-	Scope                       []string                         `xml:"http://www.opengis.net/gml/3.2 scope"`
-	OperationVersion            *string                          `xml:"http://www.opengis.net/gml/3.2 operationVersion,omitempty"`
-	CoordinateOperationAccuracy []string                         `xml:"http://www.opengis.net/gml/3.2 coordinateOperationAccuracy"`
-	SourceCRS                   *CRSPropertyType                 `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
-	TargetCRS                   *CRSPropertyType                 `xml:"http://www.opengis.net/gml/3.2 targetCRS,omitempty"`
-	ModifiedCoordinate          []int                            `xml:"http://www.opengis.net/gml/3.2 modifiedCoordinate"`
-	CoordOperation              *CoordinateOperationPropertyType `xml:"http://www.opengis.net/gml/3.2 coordOperation,omitempty"`
-	UsesOperation               *CoordinateOperationPropertyType `xml:"http://www.opengis.net/gml/3.2 usesOperation,omitempty"`
-	UsesSingleOperation         *CoordinateOperationPropertyType `xml:"http://www.opengis.net/gml/3.2 usesSingleOperation,omitempty"`
-	AggregationType             string                           `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:operationVersion is the version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters). Mandatory when describing a transformation, and should not be supplied for a conversion.
+	OperationVersion *string `xml:"http://www.opengis.net/gml/3.2 operationVersion,omitempty"`
+	// gml:coordinateOperationAccuracy is an association role to a DQ_PositionalAccuracy object as encoded in ISO/TS 19139, either referencing or containing the definition of that positional accuracy. That object contains an estimate of the impact of this coordinate operation on point accuracy. That is, it gives position error estimates for the target coordinates of this coordinate operation, assuming no errors in the source coordinates.
+	CoordinateOperationAccuracy []string `xml:"http://www.opengis.net/gml/3.2 coordinateOperationAccuracy"`
+	// gml:sourceCRS is an association role to the source CRS (coordinate reference system) of this coordinate operation.
+	SourceCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
+	// gml:targetCRS is an association role to the target CRS (coordinate reference system) of this coordinate operation.
+	TargetCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 targetCRS,omitempty"`
+	// gml:modifiedCoordinate is a positive integer defining a position in a coordinate tuple.
+	ModifiedCoordinate []int `xml:"http://www.opengis.net/gml/3.2 modifiedCoordinate"`
+	// gml:coordOperation is an association role to a coordinate operation.
+	CoordOperation      *CoordinateOperationPropertyType `xml:"http://www.opengis.net/gml/3.2 coordOperation,omitempty"`
+	UsesOperation       *CoordinateOperationPropertyType `xml:"http://www.opengis.net/gml/3.2 usesOperation,omitempty"`
+	UsesSingleOperation *CoordinateOperationPropertyType `xml:"http://www.opengis.net/gml/3.2 usesSingleOperation,omitempty"`
+	AggregationType     string                           `xml:"aggregationType,attr,omitempty"`
 }
 
 type PointArrayPropertyType struct {
-	Point *PointType `xml:"http://www.opengis.net/gml/3.2 Point,omitempty"`
-	Owns  bool       `xml:"owns,attr,omitempty"`
+	// A Point is defined by a single coordinate tuple. The direct position of a point is specified by the pos element which is of type DirectPositionType.
+	Point []PointType `xml:"http://www.opengis.net/gml/3.2 Point"`
+	Owns  bool        `xml:"owns,attr,omitempty"`
 }
 
 type PointPropertyType struct {
+	// A Point is defined by a single coordinate tuple. The direct position of a point is specified by the pos element which is of type DirectPositionType.
 	Point        *PointType `xml:"http://www.opengis.net/gml/3.2 Point,omitempty"`
 	NilReason    string     `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string     `xml:"remoteSchema,attr,omitempty"`
@@ -2378,78 +3148,103 @@ type PointPropertyType struct {
 }
 
 type PointType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	SrsName              string                 `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                    `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                 `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                 `xml:"uomLabels,attr,omitempty"`
-	Pos                  *DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
-	Coordinates          *CoordinatesType       `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType          `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string              `xml:"id,attr,omitempty"`
+	SrsName      string              `xml:"srsName,attr,omitempty"`
+	SrsDimension int                 `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   string              `xml:"axisLabels,attr,omitempty"`
+	UomLabels    string              `xml:"uomLabels,attr,omitempty"`
+	Pos          *DirectPositionType `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
+	Coordinates  *CoordinatesType    `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
 }
 
 type PolarCSPropertyType struct {
+	// gml:PolarCS ia s two-dimensional coordinate system in which position is specified by the distance from the origin and the angle between the line from the origin to a point and a reference direction. A PolarCS shall have two gml:axis property elements.
 	PolarCS      *PolarCSType `xml:"http://www.opengis.net/gml/3.2 PolarCS,omitempty"`
 	NilReason    string       `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string       `xml:"remoteSchema,attr,omitempty"`
 }
 
 type PolarCSType struct {
-	MetaDataProperty     []MetaDataPropertyType             `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType                   `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                     `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType             `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                         `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                             `xml:"id,attr,omitempty"`
-	Remarks              *string                            `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	Axis                 []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
-	UsesAxis             *CoordinateSystemAxisPropertyType  `xml:"http://www.opengis.net/gml/3.2 usesAxis,omitempty"`
-	AggregationType      string                             `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
+	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
+	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
+	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
 }
 
 type PolygonPatchType struct {
-	Exterior      *AbstractRingPropertyType  `xml:"http://www.opengis.net/gml/3.2 exterior,omitempty"`
+	// A boundary of a surface consists of a number of rings. In the normal 2D case, one of these rings is distinguished as being the exterior boundary. In a general manifold this is not always possible, in which case all boundaries shall be listed as interior boundaries, and the exterior will be empty.
+	Exterior *AbstractRingPropertyType `xml:"http://www.opengis.net/gml/3.2 exterior,omitempty"`
+	// A boundary of a surface consists of a number of rings. The "interior" rings separate the surface / surface patch from the area enclosed by the rings.
 	Interior      []AbstractRingPropertyType `xml:"http://www.opengis.net/gml/3.2 interior"`
 	Interpolation string                     `xml:"interpolation,attr,omitempty"`
 }
 
 type PolygonType struct {
-	MetaDataProperty     []MetaDataPropertyType     `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType           `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType             `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType     `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                 `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                     `xml:"id,attr,omitempty"`
-	SrsName              string                     `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                     `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                     `xml:"uomLabels,attr,omitempty"`
-	Exterior             *AbstractRingPropertyType  `xml:"http://www.opengis.net/gml/3.2 exterior,omitempty"`
-	Interior             []AbstractRingPropertyType `xml:"http://www.opengis.net/gml/3.2 interior"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string     `xml:"id,attr,omitempty"`
+	SrsName      string     `xml:"srsName,attr,omitempty"`
+	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
+	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	// A boundary of a surface consists of a number of rings. In the normal 2D case, one of these rings is distinguished as being the exterior boundary. In a general manifold this is not always possible, in which case all boundaries shall be listed as interior boundaries, and the exterior will be empty.
+	Exterior *AbstractRingPropertyType `xml:"http://www.opengis.net/gml/3.2 exterior,omitempty"`
+	// A boundary of a surface consists of a number of rings. The "interior" rings separate the surface / surface patch from the area enclosed by the rings.
+	Interior []AbstractRingPropertyType `xml:"http://www.opengis.net/gml/3.2 interior"`
 }
 
 type PrimeMeridianPropertyType struct {
+	// A gml:PrimeMeridian defines the origin from which longitude values are determined. The default value for the prime meridian gml:identifier value is "Greenwich".
 	PrimeMeridian *PrimeMeridianType `xml:"http://www.opengis.net/gml/3.2 PrimeMeridian,omitempty"`
 	NilReason     string             `xml:"nilReason,attr,omitempty"`
 	RemoteSchema  string             `xml:"remoteSchema,attr,omitempty"`
 }
 
 type PrimeMeridianType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	Remarks              *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	GreenwichLongitude   *AngleType             `xml:"http://www.opengis.net/gml/3.2 greenwichLongitude,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// gml:greenwichLongitude is the longitude of the prime meridian measured from the Greenwich meridian, positive eastward. If the value of the prime meridian "name" is "Greenwich" then the value of greenwichLongitude shall be 0 degrees.
+	GreenwichLongitude *AngleType `xml:"http://www.opengis.net/gml/3.2 greenwichLongitude,omitempty"`
 }
 
 type PriorityLocationPropertyType struct {
+	// The AbstractGeometry element is the abstract head of the substitution group for all geometry elements of GML. This includes pre-defined and user-defined geometry elements. Any geometry element shall be a direct or indirect extension/restriction of AbstractGeometryType and shall be directly or indirectly in the substitution group of AbstractGeometry.
 	AbstractGeometry           *AbstractGeometryType           `xml:"http://www.opengis.net/gml/3.2 AbstractGeometry,omitempty"`
 	AbstractGeometricAggregate *AbstractGeometricAggregateType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricAggregate,omitempty"`
 	AbstractGeometricPrimitive *AbstractGeometricPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricPrimitive,omitempty"`
@@ -2464,6 +3259,8 @@ type PriorityLocationPropertyType struct {
 }
 
 type ProcedurePropertyType struct {
+	// This abstract element serves as the head of a substitution group which may contain any elements whose content model is derived from gml:AbstractFeatureType.  This may be used as a variable in the construction of content models.
+	// gml:AbstractFeature may be thought of as "anything that is a GML feature" and may be used to define variables or templates in which the value of a GML property is "any feature". This occurs in particular in a GML feature collection where the feature member properties contain one or multiple copies of gml:AbstractFeature respectively.
 	AbstractFeature            *AbstractFeatureType            `xml:"http://www.opengis.net/gml/3.2 AbstractFeature,omitempty"`
 	AbstractContinuousCoverage *AbstractContinuousCoverageType `xml:"http://www.opengis.net/gml/3.2 AbstractContinuousCoverage,omitempty"`
 	AbstractCoverage           *AbstractCoverageType           `xml:"http://www.opengis.net/gml/3.2 AbstractCoverage,omitempty"`
@@ -2477,27 +3274,37 @@ type ProcedurePropertyType struct {
 }
 
 type ProjectedCRSPropertyType struct {
+	// gml:ProjectedCRS is a 2D coordinate reference system used to approximate the shape of the earth on a planar surface, but in such a way that the distortion that is inherent to the approximation is carefully controlled and known. Distortion correction is commonly applied to calculated bearings and distances to produce values that are a close match to actual field values.
 	ProjectedCRS *ProjectedCRSType `xml:"http://www.opengis.net/gml/3.2 ProjectedCRS,omitempty"`
 	NilReason    string            `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string            `xml:"remoteSchema,attr,omitempty"`
 }
 
 type ProjectedCRSType struct {
-	MetaDataProperty     []MetaDataPropertyType         `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType               `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                 `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType         `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                     `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                         `xml:"id,attr,omitempty"`
-	Remarks              *string                        `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     []string                       `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
-	Scope                []string                       `xml:"http://www.opengis.net/gml/3.2 scope"`
-	Conversion           *GeneralConversionPropertyType `xml:"http://www.opengis.net/gml/3.2 conversion,omitempty"`
-	DefinedByConversion  *GeneralConversionPropertyType `xml:"http://www.opengis.net/gml/3.2 definedByConversion,omitempty"`
-	CartesianCS          *CartesianCSPropertyType       `xml:"http://www.opengis.net/gml/3.2 cartesianCS,omitempty"`
-	UsesCartesianCS      *CartesianCSPropertyType       `xml:"http://www.opengis.net/gml/3.2 usesCartesianCS,omitempty"`
-	BaseGeodeticCRS      *GeodeticCRSPropertyType       `xml:"http://www.opengis.net/gml/3.2 baseGeodeticCRS,omitempty"`
-	BaseGeographicCRS    *GeographicCRSPropertyType     `xml:"http://www.opengis.net/gml/3.2 baseGeographicCRS,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:conversion is an association role to the coordinate conversion used to define the derived CRS.
+	Conversion          *GeneralConversionPropertyType `xml:"http://www.opengis.net/gml/3.2 conversion,omitempty"`
+	DefinedByConversion *GeneralConversionPropertyType `xml:"http://www.opengis.net/gml/3.2 definedByConversion,omitempty"`
+	// gml:cartesianCS is an association role to the Cartesian coordinate system used by this CRS.
+	CartesianCS     *CartesianCSPropertyType `xml:"http://www.opengis.net/gml/3.2 cartesianCS,omitempty"`
+	UsesCartesianCS *CartesianCSPropertyType `xml:"http://www.opengis.net/gml/3.2 usesCartesianCS,omitempty"`
+	// gml:baseGeodeticCRS is an association role to the geodetic coordinate reference system used by this projected CRS.
+	BaseGeodeticCRS   *GeodeticCRSPropertyType   `xml:"http://www.opengis.net/gml/3.2 baseGeodeticCRS,omitempty"`
+	BaseGeographicCRS *GeographicCRSPropertyType `xml:"http://www.opengis.net/gml/3.2 baseGeographicCRS,omitempty"`
 }
 
 type QuantityExtentType struct {
@@ -2505,43 +3312,63 @@ type QuantityExtentType struct {
 }
 
 type QuantityPropertyType struct {
+	// An XML attribute uom ("unit of measure") is required, whose value is a URI which identifies the definition of a ratio scale or units by which the numeric value shall be multiplied, or an interval or position scale on which the value occurs.
 	Quantity     *string `xml:"http://www.opengis.net/gml/3.2 Quantity,omitempty"`
 	NilReason    string  `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string  `xml:"remoteSchema,attr,omitempty"`
 }
 
 type RangeSetType struct {
-	ValueArray              []ValueArrayType            `xml:"http://www.opengis.net/gml/3.2 ValueArray"`
-	AbstractScalarValueList []string                    `xml:"http://www.opengis.net/gml/3.2 AbstractScalarValueList"`
-	BooleanList             *string                     `xml:"http://www.opengis.net/gml/3.2 BooleanList,omitempty"`
-	CategoryList            *CodeOrNilReasonListType    `xml:"http://www.opengis.net/gml/3.2 CategoryList,omitempty"`
-	CountList               *string                     `xml:"http://www.opengis.net/gml/3.2 CountList,omitempty"`
-	QuantityList            *MeasureOrNilReasonListType `xml:"http://www.opengis.net/gml/3.2 QuantityList,omitempty"`
-	DataBlock               *DataBlockType              `xml:"http://www.opengis.net/gml/3.2 DataBlock,omitempty"`
-	File                    *FileType                   `xml:"http://www.opengis.net/gml/3.2 File,omitempty"`
+	// A Value Array is used for homogeneous arrays of primitive and aggregate values.
+	// The member values may be scalars, composites, arrays or lists.
+	// ValueArray has the same content model as CompositeValue, but the member values shall be homogeneous.  The element declaration contains a Schematron constraint which expresses this restriction precisely.  Since the members are homogeneous, the gml:referenceSystem (uom, codeSpace) may be specified on the gml:ValueArray itself and inherited by all the members if desired.
+	ValueArray []ValueArrayType `xml:"http://www.opengis.net/gml/3.2 ValueArray"`
+	// gml:AbstractScalarValueList is an abstract element which acts as the head of a substitution group which contains gml:BooleanList, gml:CategoryList, gml:CountList and gml:QuantityList, and (transitively) the elements in their substitution groups.
+	AbstractScalarValueList []string                     `xml:"http://www.opengis.net/gml/3.2 AbstractScalarValueList"`
+	BooleanList             []string                     `xml:"http://www.opengis.net/gml/3.2 BooleanList"`
+	CategoryList            []CodeOrNilReasonListType    `xml:"http://www.opengis.net/gml/3.2 CategoryList"`
+	CountList               []string                     `xml:"http://www.opengis.net/gml/3.2 CountList"`
+	QuantityList            []MeasureOrNilReasonListType `xml:"http://www.opengis.net/gml/3.2 QuantityList"`
+	// gml:DataBlock describes the Range as a block of text encoded values similar to a Common Separated Value (CSV) representation.
+	// The range set parameterization is described by the property gml:rangeParameters.
+	DataBlock *DataBlockType `xml:"http://www.opengis.net/gml/3.2 DataBlock,omitempty"`
+	// for efficiency reasons, GML also provides a means of encoding the range set in an arbitrary external encoding, such as a binary file.  This encoding may be "well-known" but this is not required. This mode uses the gml:File element.
+	// The values of the coverage (attribute values in the range set) are transmitted in a external file that is referenced from the XML structure described by gml:FileType.  The external file is referenced by the gml:fileReference property that is an anyURI (the gml:fileName property has been deprecated).  This means that the external file may be located remotely from the referencing GML instance.
+	// The gml:compression property points to a definition of a compression algorithm through an anyURI.  This may be a retrievable, computable definition or simply a reference to an unambiguous name for the compression method.
+	// The gml:mimeType property points to a definition of the file mime type.
+	// The gml:fileStructure property is defined by a codelist. Note further that all values shall be enclosed in a single file. Multi-file structures for values are not supported in GML.
+	// The semantics of the range set is described as above using the gml:rangeParameters property.
+	// Note that if any compression algorithm is applied, the structure above applies only to the pre-compression or post-decompression structure of the file.
+	// Note that the fields within a record match the gml:valueComponents of the gml:CompositeValue in document order.
+	File *FileType `xml:"http://www.opengis.net/gml/3.2 File,omitempty"`
 }
 
 type RectangleType struct {
+	// A boundary of a surface consists of a number of rings. In the normal 2D case, one of these rings is distinguished as being the exterior boundary. In a general manifold this is not always possible, in which case all boundaries shall be listed as interior boundaries, and the exterior will be empty.
 	Exterior      *AbstractRingPropertyType `xml:"http://www.opengis.net/gml/3.2 exterior,omitempty"`
 	Interpolation string                    `xml:"interpolation,attr,omitempty"`
 }
 
 type RectifiedGridType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	SrsName              string                 `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                    `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                 `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                 `xml:"uomLabels,attr,omitempty"`
-	Limits               *GridLimitsType        `xml:"http://www.opengis.net/gml/3.2 limits,omitempty"`
-	AxisName             []string               `xml:"http://www.opengis.net/gml/3.2 axisName"`
-	Dimension            int                    `xml:"dimension,attr"`
-	Origin               *PointPropertyType     `xml:"http://www.opengis.net/gml/3.2 origin,omitempty"`
-	OffsetVector         []VectorType           `xml:"http://www.opengis.net/gml/3.2 offsetVector"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType         `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string             `xml:"id,attr,omitempty"`
+	SrsName      string             `xml:"srsName,attr,omitempty"`
+	SrsDimension int                `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   string             `xml:"axisLabels,attr,omitempty"`
+	UomLabels    string             `xml:"uomLabels,attr,omitempty"`
+	Limits       *GridLimitsType    `xml:"http://www.opengis.net/gml/3.2 limits,omitempty"`
+	AxisName     []string           `xml:"http://www.opengis.net/gml/3.2 axisName"`
+	Dimension    int                `xml:"dimension,attr"`
+	Origin       *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 origin,omitempty"`
+	OffsetVector []VectorType       `xml:"http://www.opengis.net/gml/3.2 offsetVector"`
 }
 
 type ReferenceType struct {
@@ -2551,6 +3378,7 @@ type ReferenceType struct {
 }
 
 type RelatedTimeType struct {
+	// gml:AbstractTimePrimitive acts as the head of a substitution group for geometric and topological temporal primitives.
 	AbstractTimePrimitive          *AbstractTimePrimitiveType          `xml:"http://www.opengis.net/gml/3.2 AbstractTimePrimitive,omitempty"`
 	AbstractTimeGeometricPrimitive *AbstractTimeGeometricPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractTimeGeometricPrimitive,omitempty"`
 	AbstractTimeTopologyPrimitive  *AbstractTimeTopologyPrimitiveType  `xml:"http://www.opengis.net/gml/3.2 AbstractTimeTopologyPrimitive,omitempty"`
@@ -2567,22 +3395,29 @@ type ResultType struct {
 }
 
 type RingPropertyType struct {
+	// A ring is used to represent a single connected component of a surface boundary as specified in ISO 19107:2003, 6.3.6.
+	// Every gml:curveMember references or contains one curve, i.e. any element which is substitutable for gml:AbstractCurve. In the context of a ring, the curves describe the boundary of the surface. The sequence of curves shall be contiguous and connected in a cycle.
+	// If provided, the aggregationType attribute shall have the value "sequence".
 	Ring *RingType `xml:"http://www.opengis.net/gml/3.2 Ring,omitempty"`
 }
 
 type RingType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	SrsName              string                 `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                    `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                 `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                 `xml:"uomLabels,attr,omitempty"`
-	CurveMember          []CurvePropertyType    `xml:"http://www.opengis.net/gml/3.2 curveMember"`
-	AggregationType      string                 `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name            []CodeType          `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id              string              `xml:"id,attr,omitempty"`
+	SrsName         string              `xml:"srsName,attr,omitempty"`
+	SrsDimension    int                 `xml:"srsDimension,attr,omitempty"`
+	AxisLabels      string              `xml:"axisLabels,attr,omitempty"`
+	UomLabels       string              `xml:"uomLabels,attr,omitempty"`
+	CurveMember     []CurvePropertyType `xml:"http://www.opengis.net/gml/3.2 curveMember"`
+	AggregationType string              `xml:"aggregationType,attr,omitempty"`
 }
 
 type ScaleType struct {
@@ -2596,25 +3431,34 @@ type SequenceRuleType struct {
 }
 
 type ShellPropertyType struct {
+	// A shell is used to represent a single connected component of a solid boundary as specified in ISO 19107:2003, 6.3.8.
+	// Every gml:surfaceMember references or contains one surface, i.e. any element which is substitutable for gml:AbstractSurface. In the context of a shell, the surfaces describe the boundary of the solid.
+	// If provided, the aggregationType attribute shall have the value "set".
 	Shell *ShellType `xml:"http://www.opengis.net/gml/3.2 Shell,omitempty"`
 }
 
 type ShellType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	SrsName              string                 `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                    `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                 `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                 `xml:"uomLabels,attr,omitempty"`
-	SurfaceMember        []SurfacePropertyType  `xml:"http://www.opengis.net/gml/3.2 surfaceMember"`
-	AggregationType      string                 `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string     `xml:"id,attr,omitempty"`
+	SrsName      string     `xml:"srsName,attr,omitempty"`
+	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
+	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	// This property element either references a surface via the XLink-attributes or contains the surface element. A surface element is any element, which is substitutable for gml:AbstractSurface.
+	SurfaceMember   []SurfacePropertyType `xml:"http://www.opengis.net/gml/3.2 surfaceMember"`
+	AggregationType string                `xml:"aggregationType,attr,omitempty"`
 }
 
 type SingleCRSPropertyType struct {
+	// gml:AbstractSingleCRS implements a coordinate reference system consisting of one coordinate system and one datum (as opposed to a Compound CRS).
 	AbstractSingleCRS         *AbstractCRSType               `xml:"http://www.opengis.net/gml/3.2 AbstractSingleCRS,omitempty"`
 	AbstractGeneralDerivedCRS *AbstractGeneralDerivedCRSType `xml:"http://www.opengis.net/gml/3.2 AbstractGeneralDerivedCRS,omitempty"`
 	EngineeringCRS            *EngineeringCRSType            `xml:"http://www.opengis.net/gml/3.2 EngineeringCRS,omitempty"`
@@ -2629,6 +3473,7 @@ type SingleCRSPropertyType struct {
 }
 
 type SingleOperationPropertyType struct {
+	// gml:AbstractSingleOperation is a single (not concatenated) coordinate operation.
 	AbstractSingleOperation *AbstractCoordinateOperationType `xml:"http://www.opengis.net/gml/3.2 AbstractSingleOperation,omitempty"`
 	AbstractOperation       *AbstractCoordinateOperationType `xml:"http://www.opengis.net/gml/3.2 AbstractOperation,omitempty"`
 	PassThroughOperation    *PassThroughOperationType        `xml:"http://www.opengis.net/gml/3.2 PassThroughOperation,omitempty"`
@@ -2637,13 +3482,15 @@ type SingleOperationPropertyType struct {
 }
 
 type SolidArrayPropertyType struct {
-	AbstractSolid  *AbstractSolidType  `xml:"http://www.opengis.net/gml/3.2 AbstractSolid,omitempty"`
-	CompositeSolid *CompositeSolidType `xml:"http://www.opengis.net/gml/3.2 CompositeSolid,omitempty"`
-	Solid          *SolidType          `xml:"http://www.opengis.net/gml/3.2 Solid,omitempty"`
-	Owns           bool                `xml:"owns,attr,omitempty"`
+	// The AbstractSolid element is the abstract head of the substituition group for all (continuous) solid elements.
+	AbstractSolid  []AbstractSolidType  `xml:"http://www.opengis.net/gml/3.2 AbstractSolid"`
+	CompositeSolid []CompositeSolidType `xml:"http://www.opengis.net/gml/3.2 CompositeSolid"`
+	Solid          []SolidType          `xml:"http://www.opengis.net/gml/3.2 Solid"`
+	Owns           bool                 `xml:"owns,attr,omitempty"`
 }
 
 type SolidPropertyType struct {
+	// The AbstractSolid element is the abstract head of the substituition group for all (continuous) solid elements.
 	AbstractSolid  *AbstractSolidType  `xml:"http://www.opengis.net/gml/3.2 AbstractSolid,omitempty"`
 	CompositeSolid *CompositeSolidType `xml:"http://www.opengis.net/gml/3.2 CompositeSolid,omitempty"`
 	Solid          *SolidType          `xml:"http://www.opengis.net/gml/3.2 Solid,omitempty"`
@@ -2653,18 +3500,22 @@ type SolidPropertyType struct {
 }
 
 type SolidType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	SrsName              string                 `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                    `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                 `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                 `xml:"uomLabels,attr,omitempty"`
-	Exterior             *ShellPropertyType     `xml:"http://www.opengis.net/gml/3.2 exterior,omitempty"`
-	Interior             []ShellPropertyType    `xml:"http://www.opengis.net/gml/3.2 interior"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType          `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string              `xml:"id,attr,omitempty"`
+	SrsName      string              `xml:"srsName,attr,omitempty"`
+	SrsDimension int                 `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   string              `xml:"axisLabels,attr,omitempty"`
+	UomLabels    string              `xml:"uomLabels,attr,omitempty"`
+	Exterior     *ShellPropertyType  `xml:"http://www.opengis.net/gml/3.2 exterior,omitempty"`
+	Interior     []ShellPropertyType `xml:"http://www.opengis.net/gml/3.2 interior"`
 }
 
 type SpeedType struct {
@@ -2680,22 +3531,28 @@ type SphereType struct {
 }
 
 type SphericalCSPropertyType struct {
+	// gml:SphericalCS is a three-dimensional coordinate system with one distance measured from the origin and two angular coordinates. A SphericalCS shall have three gml:axis property elements.
 	SphericalCS  *SphericalCSType `xml:"http://www.opengis.net/gml/3.2 SphericalCS,omitempty"`
 	NilReason    string           `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string           `xml:"remoteSchema,attr,omitempty"`
 }
 
 type SphericalCSType struct {
-	MetaDataProperty     []MetaDataPropertyType             `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType                   `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                     `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType             `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                         `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                             `xml:"id,attr,omitempty"`
-	Remarks              *string                            `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	Axis                 []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
-	UsesAxis             *CoordinateSystemAxisPropertyType  `xml:"http://www.opengis.net/gml/3.2 usesAxis,omitempty"`
-	AggregationType      string                             `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
+	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
+	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
+	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
 }
 
 type StringOrRefType struct {
@@ -2705,24 +3562,29 @@ type StringOrRefType struct {
 }
 
 type SurfaceArrayPropertyType struct {
-	AbstractSurface   *AbstractSurfaceType   `xml:"http://www.opengis.net/gml/3.2 AbstractSurface,omitempty"`
-	CompositeSurface  *CompositeSurfaceType  `xml:"http://www.opengis.net/gml/3.2 CompositeSurface,omitempty"`
-	OrientableSurface *OrientableSurfaceType `xml:"http://www.opengis.net/gml/3.2 OrientableSurface,omitempty"`
-	Polygon           *PolygonType           `xml:"http://www.opengis.net/gml/3.2 Polygon,omitempty"`
-	Shell             *ShellType             `xml:"http://www.opengis.net/gml/3.2 Shell,omitempty"`
-	Surface           *SurfaceType           `xml:"http://www.opengis.net/gml/3.2 Surface,omitempty"`
-	Owns              bool                   `xml:"owns,attr,omitempty"`
+	// The AbstractSurface element is the abstract head of the substitution group for all (continuous) surface elements.
+	AbstractSurface   []AbstractSurfaceType   `xml:"http://www.opengis.net/gml/3.2 AbstractSurface"`
+	CompositeSurface  []CompositeSurfaceType  `xml:"http://www.opengis.net/gml/3.2 CompositeSurface"`
+	OrientableSurface []OrientableSurfaceType `xml:"http://www.opengis.net/gml/3.2 OrientableSurface"`
+	Polygon           []PolygonType           `xml:"http://www.opengis.net/gml/3.2 Polygon"`
+	Shell             []ShellType             `xml:"http://www.opengis.net/gml/3.2 Shell"`
+	Surface           []SurfaceType           `xml:"http://www.opengis.net/gml/3.2 Surface"`
+	Owns              bool                    `xml:"owns,attr,omitempty"`
 }
 
 type SurfacePatchArrayPropertyType struct {
-	AbstractSurfacePatch           *AbstractSurfacePatchType           `xml:"http://www.opengis.net/gml/3.2 AbstractSurfacePatch,omitempty"`
-	AbstractParametricCurveSurface *AbstractParametricCurveSurfaceType `xml:"http://www.opengis.net/gml/3.2 AbstractParametricCurveSurface,omitempty"`
-	PolygonPatch                   *PolygonPatchType                   `xml:"http://www.opengis.net/gml/3.2 PolygonPatch,omitempty"`
-	Rectangle                      *RectangleType                      `xml:"http://www.opengis.net/gml/3.2 Rectangle,omitempty"`
-	Triangle                       *TriangleType                       `xml:"http://www.opengis.net/gml/3.2 Triangle,omitempty"`
+	// A surface patch defines a homogenuous portion of a surface.
+	// The AbstractSurfacePatch element is the abstract head of the substituition group for all surface patch elements describing a continuous portion of a surface.
+	// All surface patches shall have an attribute interpolation (declared in the types derived from gml:AbstractSurfacePatchType) specifying the interpolation mechanism used for the patch using gml:SurfaceInterpolationType.
+	AbstractSurfacePatch           []AbstractSurfacePatchType           `xml:"http://www.opengis.net/gml/3.2 AbstractSurfacePatch"`
+	AbstractParametricCurveSurface []AbstractParametricCurveSurfaceType `xml:"http://www.opengis.net/gml/3.2 AbstractParametricCurveSurface"`
+	PolygonPatch                   []PolygonPatchType                   `xml:"http://www.opengis.net/gml/3.2 PolygonPatch"`
+	Rectangle                      []RectangleType                      `xml:"http://www.opengis.net/gml/3.2 Rectangle"`
+	Triangle                       []TriangleType                       `xml:"http://www.opengis.net/gml/3.2 Triangle"`
 }
 
 type SurfacePropertyType struct {
+	// The AbstractSurface element is the abstract head of the substitution group for all (continuous) surface elements.
 	AbstractSurface   *AbstractSurfaceType   `xml:"http://www.opengis.net/gml/3.2 AbstractSurface,omitempty"`
 	CompositeSurface  *CompositeSurfaceType  `xml:"http://www.opengis.net/gml/3.2 CompositeSurface,omitempty"`
 	OrientableSurface *OrientableSurfaceType `xml:"http://www.opengis.net/gml/3.2 OrientableSurface,omitempty"`
@@ -2735,22 +3597,29 @@ type SurfacePropertyType struct {
 }
 
 type SurfaceType struct {
-	MetaDataProperty     []MetaDataPropertyType         `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType               `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                 `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType         `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                     `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                         `xml:"id,attr,omitempty"`
-	SrsName              string                         `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                            `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                         `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                         `xml:"uomLabels,attr,omitempty"`
-	Patches              *SurfacePatchArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 patches,omitempty"`
-	PolygonPatches       *SurfacePatchArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 polygonPatches,omitempty"`
-	TrianglePatches      *SurfacePatchArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 trianglePatches,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string     `xml:"id,attr,omitempty"`
+	SrsName      string     `xml:"srsName,attr,omitempty"`
+	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
+	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	// The patches property element contains the sequence of surface patches. The order of the elements is significant and shall be preserved when processing the array.
+	Patches         *SurfacePatchArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 patches,omitempty"`
+	PolygonPatches  *SurfacePatchArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 polygonPatches,omitempty"`
+	TrianglePatches *SurfacePatchArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 trianglePatches,omitempty"`
 }
 
 type TargetPropertyType struct {
+	// This abstract element serves as the head of a substitution group which may contain any elements whose content model is derived from gml:AbstractFeatureType.  This may be used as a variable in the construction of content models.
+	// gml:AbstractFeature may be thought of as "anything that is a GML feature" and may be used to define variables or templates in which the value of a GML property is "any feature". This occurs in particular in a GML feature collection where the feature member properties contain one or multiple copies of gml:AbstractFeature respectively.
 	AbstractFeature            *AbstractFeatureType            `xml:"http://www.opengis.net/gml/3.2 AbstractFeature,omitempty"`
 	AbstractContinuousCoverage *AbstractContinuousCoverageType `xml:"http://www.opengis.net/gml/3.2 AbstractContinuousCoverage,omitempty"`
 	AbstractCoverage           *AbstractCoverageType           `xml:"http://www.opengis.net/gml/3.2 AbstractCoverage,omitempty"`
@@ -2758,6 +3627,7 @@ type TargetPropertyType struct {
 	DynamicFeature             *DynamicFeatureType             `xml:"http://www.opengis.net/gml/3.2 DynamicFeature,omitempty"`
 	FeatureCollection          *FeatureCollectionType          `xml:"http://www.opengis.net/gml/3.2 FeatureCollection,omitempty"`
 	Observation                *ObservationType                `xml:"http://www.opengis.net/gml/3.2 Observation,omitempty"`
+	// The AbstractGeometry element is the abstract head of the substitution group for all geometry elements of GML. This includes pre-defined and user-defined geometry elements. Any geometry element shall be a direct or indirect extension/restriction of AbstractGeometryType and shall be directly or indirectly in the substitution group of AbstractGeometry.
 	AbstractGeometry           *AbstractGeometryType           `xml:"http://www.opengis.net/gml/3.2 AbstractGeometry,omitempty"`
 	AbstractGeometricAggregate *AbstractGeometricAggregateType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricAggregate,omitempty"`
 	AbstractGeometricPrimitive *AbstractGeometricPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricPrimitive,omitempty"`
@@ -2769,26 +3639,35 @@ type TargetPropertyType struct {
 }
 
 type TemporalCRSPropertyType struct {
+	// gml:TemporalCRS is a 1D coordinate reference system used for the recording of time.
 	TemporalCRS  *TemporalCRSType `xml:"http://www.opengis.net/gml/3.2 TemporalCRS,omitempty"`
 	NilReason    string           `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string           `xml:"remoteSchema,attr,omitempty"`
 }
 
 type TemporalCRSType struct {
-	MetaDataProperty     []MetaDataPropertyType     `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType           `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType             `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType     `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                 `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                     `xml:"id,attr,omitempty"`
-	Remarks              *string                    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     []string                   `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
-	Scope                []string                   `xml:"http://www.opengis.net/gml/3.2 scope"`
-	TemporalDatum        *TemporalDatumPropertyType `xml:"http://www.opengis.net/gml/3.2 temporalDatum,omitempty"`
-	UsesTemporalDatum    *TemporalDatumPropertyType `xml:"http://www.opengis.net/gml/3.2 usesTemporalDatum,omitempty"`
-	TimeCS               *TimeCSPropertyType        `xml:"http://www.opengis.net/gml/3.2 timeCS,omitempty"`
-	UsesTimeCS           *TimeCSPropertyType        `xml:"http://www.opengis.net/gml/3.2 usesTimeCS,omitempty"`
-	UsesTemporalCS       *TemporalCSPropertyType    `xml:"http://www.opengis.net/gml/3.2 usesTemporalCS,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:temporalDatum is an association role to the temporal datum used by this CRS.
+	TemporalDatum     *TemporalDatumPropertyType `xml:"http://www.opengis.net/gml/3.2 temporalDatum,omitempty"`
+	UsesTemporalDatum *TemporalDatumPropertyType `xml:"http://www.opengis.net/gml/3.2 usesTemporalDatum,omitempty"`
+	// gml:timeCS is an association role to the time coordinate system used by this CRS.
+	TimeCS         *TimeCSPropertyType     `xml:"http://www.opengis.net/gml/3.2 timeCS,omitempty"`
+	UsesTimeCS     *TimeCSPropertyType     `xml:"http://www.opengis.net/gml/3.2 usesTimeCS,omitempty"`
+	UsesTemporalCS *TemporalCSPropertyType `xml:"http://www.opengis.net/gml/3.2 usesTemporalCS,omitempty"`
 }
 
 type TemporalCSPropertyType struct {
@@ -2798,75 +3677,117 @@ type TemporalCSPropertyType struct {
 }
 
 type TemporalCSType struct {
-	MetaDataProperty     []MetaDataPropertyType             `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType                   `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                     `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType             `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                         `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                             `xml:"id,attr,omitempty"`
-	Remarks              *string                            `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	Axis                 []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
-	UsesAxis             *CoordinateSystemAxisPropertyType  `xml:"http://www.opengis.net/gml/3.2 usesAxis,omitempty"`
-	AggregationType      string                             `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
+	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
+	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
+	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
 }
 
 type TemporalDatumBaseType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	Remarks              *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     *string                `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
-	Scope                []string               `xml:"http://www.opengis.net/gml/3.2 scope"`
-	AnchorDefinition     *CodeType              `xml:"http://www.opengis.net/gml/3.2 anchorDefinition,omitempty"`
-	AnchorPoint          *CodeType              `xml:"http://www.opengis.net/gml/3.2 anchorPoint,omitempty"`
-	RealizationEpoch     *string                `xml:"http://www.opengis.net/gml/3.2 realizationEpoch,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:anchorDefinition is a description, possibly including coordinates, of the definition used to anchor the datum to the Earth. Also known as the "origin", especially for engineering and image datums. The codeSpace attribute may be used to reference a source of more detailed on this point or surface, or on a set of such descriptions.
+	// -	For a geodetic datum, this point is also known as the fundamental point, which is traditionally the point where the relationship between geoid and ellipsoid is defined. In some cases, the "fundamental point" may consist of a number of points. In those cases, the parameters defining the geoid/ellipsoid relationship have been averaged for these points, and the averages adopted as the datum definition.
+	// -	For an engineering datum, the anchor definition may be a physical point, or it may be a point with defined coordinates in another CRS.may
+	// -	For an image datum, the anchor definition is usually either the centre of the image or the corner of the image.
+	// -	For a temporal datum, this attribute is not defined. Instead of the anchor definition, a temporal datum carries a separate time origin of type DateTime.
+	AnchorDefinition *CodeType `xml:"http://www.opengis.net/gml/3.2 anchorDefinition,omitempty"`
+	AnchorPoint      *CodeType `xml:"http://www.opengis.net/gml/3.2 anchorPoint,omitempty"`
+	// gml:realizationEpoch is the time after which this datum definition is valid. See ISO 19111 Table 32 for details.
+	RealizationEpoch *string `xml:"http://www.opengis.net/gml/3.2 realizationEpoch,omitempty"`
 }
 
 type TemporalDatumPropertyType struct {
+	// A gml:TemporalDatum defines the origin of a Temporal Reference System. This type omits the "anchorDefinition" and "realizationEpoch" elements and adds the "origin" element with the dateTime type.
 	TemporalDatum *TemporalDatumType `xml:"http://www.opengis.net/gml/3.2 TemporalDatum,omitempty"`
 	NilReason     string             `xml:"nilReason,attr,omitempty"`
 	RemoteSchema  string             `xml:"remoteSchema,attr,omitempty"`
 }
 
 type TemporalDatumType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	Remarks              *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     *string                `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
-	Scope                []string               `xml:"http://www.opengis.net/gml/3.2 scope"`
-	AnchorDefinition     *CodeType              `xml:"http://www.opengis.net/gml/3.2 anchorDefinition,omitempty"`
-	AnchorPoint          *CodeType              `xml:"http://www.opengis.net/gml/3.2 anchorPoint,omitempty"`
-	RealizationEpoch     *string                `xml:"http://www.opengis.net/gml/3.2 realizationEpoch,omitempty"`
-	Origin               *string                `xml:"http://www.opengis.net/gml/3.2 origin,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:anchorDefinition is a description, possibly including coordinates, of the definition used to anchor the datum to the Earth. Also known as the "origin", especially for engineering and image datums. The codeSpace attribute may be used to reference a source of more detailed on this point or surface, or on a set of such descriptions.
+	// -	For a geodetic datum, this point is also known as the fundamental point, which is traditionally the point where the relationship between geoid and ellipsoid is defined. In some cases, the "fundamental point" may consist of a number of points. In those cases, the parameters defining the geoid/ellipsoid relationship have been averaged for these points, and the averages adopted as the datum definition.
+	// -	For an engineering datum, the anchor definition may be a physical point, or it may be a point with defined coordinates in another CRS.may
+	// -	For an image datum, the anchor definition is usually either the centre of the image or the corner of the image.
+	// -	For a temporal datum, this attribute is not defined. Instead of the anchor definition, a temporal datum carries a separate time origin of type DateTime.
+	AnchorDefinition *CodeType `xml:"http://www.opengis.net/gml/3.2 anchorDefinition,omitempty"`
+	AnchorPoint      *CodeType `xml:"http://www.opengis.net/gml/3.2 anchorPoint,omitempty"`
+	// gml:realizationEpoch is the time after which this datum definition is valid. See ISO 19111 Table 32 for details.
+	RealizationEpoch *string `xml:"http://www.opengis.net/gml/3.2 realizationEpoch,omitempty"`
+	// gml:origin is the date and time origin of this temporal datum.
+	Origin *string `xml:"http://www.opengis.net/gml/3.2 origin,omitempty"`
 }
 
 type TimeCSPropertyType struct {
+	// gml:TimeCS is a one-dimensional coordinate system containing a time axis, used to describe the temporal position of a point in the specified time units from a specified time origin. A TimeCS shall have one gml:axis property element.
 	TimeCS       *TimeCSType `xml:"http://www.opengis.net/gml/3.2 TimeCS,omitempty"`
 	NilReason    string      `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string      `xml:"remoteSchema,attr,omitempty"`
 }
 
 type TimeCSType struct {
-	MetaDataProperty     []MetaDataPropertyType             `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType                   `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                     `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType             `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                         `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                             `xml:"id,attr,omitempty"`
-	Remarks              *string                            `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	Axis                 []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
-	UsesAxis             *CoordinateSystemAxisPropertyType  `xml:"http://www.opengis.net/gml/3.2 usesAxis,omitempty"`
-	AggregationType      string                             `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
+	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
+	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
+	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
 }
 
 type TimeCalendarEraPropertyType struct {
+	// gml:TimeCalendarEra inherits basic properties from gml:DefinitionType and has the following additional properties:
+	// -	gml:referenceEvent is the name or description of a mythical or historic event which fixes the position of the base scale of the calendar era.  This is given as text or using a link to description held elsewhere.
+	// -	gml:referenceDate specifies the date of the referenceEvent expressed as a date in the given calendar.  In most calendars, this date is the origin (i.e., the first day) of the scale, but this is not always true.
+	// -	gml:julianReference specifies the Julian date that corresponds to the reference date.  The Julian day number is an integer value; the Julian date is a decimal value that allows greater resolution.  Transforming calendar dates to and from Julian dates provides a relatively simple basis for transforming dates from one calendar to another.
+	// -	gml:epochOfUse is the period for which the calendar era was used as a basis for dating.
 	TimeCalendarEra *TimeCalendarEraType `xml:"http://www.opengis.net/gml/3.2 TimeCalendarEra,omitempty"`
 	Owns            bool                 `xml:"owns,attr,omitempty"`
 	NilReason       string               `xml:"nilReason,attr,omitempty"`
@@ -2874,20 +3795,27 @@ type TimeCalendarEraPropertyType struct {
 }
 
 type TimeCalendarEraType struct {
-	MetaDataProperty     []MetaDataPropertyType  `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType        `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType          `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType  `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                  `xml:"id,attr,omitempty"`
-	Remarks              *string                 `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	ReferenceEvent       *StringOrRefType        `xml:"http://www.opengis.net/gml/3.2 referenceEvent,omitempty"`
-	ReferenceDate        string                  `xml:"http://www.opengis.net/gml/3.2 referenceDate,omitempty"`
-	JulianReference      float64                 `xml:"http://www.opengis.net/gml/3.2 julianReference,omitempty"`
-	EpochOfUse           *TimePeriodPropertyType `xml:"http://www.opengis.net/gml/3.2 epochOfUse,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name            []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id              string                  `xml:"id,attr,omitempty"`
+	Remarks         *string                 `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	ReferenceEvent  *StringOrRefType        `xml:"http://www.opengis.net/gml/3.2 referenceEvent,omitempty"`
+	ReferenceDate   string                  `xml:"http://www.opengis.net/gml/3.2 referenceDate,omitempty"`
+	JulianReference float64                 `xml:"http://www.opengis.net/gml/3.2 julianReference,omitempty"`
+	EpochOfUse      *TimePeriodPropertyType `xml:"http://www.opengis.net/gml/3.2 epochOfUse,omitempty"`
 }
 
 type TimeCalendarPropertyType struct {
+	// A calendar is a discrete temporal reference system that provides a basis for defining temporal position to a resolution of one day.
+	// gml:TimeCalendar adds one property to those inherited from gml:TimeReferenceSystem. A gml:referenceFrame provides a link to a gml:TimeCalendarEra that it uses. A  gml:TimeCalendar may reference more than one calendar era.
+	// The referenceFrame element follows the standard GML property model, allowing the association to be instantiated either using an inline description using the gml:TimeCalendarEra element, or a link to a gml:TimeCalendarEra which is explicit elsewhere.
 	TimeCalendar *TimeCalendarType `xml:"http://www.opengis.net/gml/3.2 TimeCalendar,omitempty"`
 	Owns         bool              `xml:"owns,attr,omitempty"`
 	NilReason    string            `xml:"nilReason,attr,omitempty"`
@@ -2895,18 +3823,28 @@ type TimeCalendarPropertyType struct {
 }
 
 type TimeCalendarType struct {
-	MetaDataProperty     []MetaDataPropertyType        `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType              `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType        `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                    `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                        `xml:"id,attr,omitempty"`
-	Remarks              *string                       `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     string                        `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
-	ReferenceFrame       []TimeCalendarEraPropertyType `xml:"http://www.opengis.net/gml/3.2 referenceFrame"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name             []CodeType                    `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id               string                        `xml:"id,attr,omitempty"`
+	Remarks          *string                       `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	DomainOfValidity string                        `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	ReferenceFrame   []TimeCalendarEraPropertyType `xml:"http://www.opengis.net/gml/3.2 referenceFrame"`
 }
 
 type TimeClockPropertyType struct {
+	// A clock provides a basis for defining temporal position within a day. A clock shall be used with a calendar in order to provide a complete description of a temporal position within a specific day.
+	// gml:TimeClock adds the following properties to those inherited from gml:TimeReferenceSystemType:
+	// -	gml:referenceEvent is the name or description of an event, such as solar noon or sunrise, which fixes the position of the base scale of the clock.
+	// -	gml:referenceTime specifies the time of day associated with the reference event expressed as a time of day in the given clock. The reference time is usually the origin of the clock scale.
+	// -	gml:utcReference specifies the 24 hour local or UTC time that corresponds to the reference time.
+	// -	gml:dateBasis contains or references the calendars that use this clock.
 	TimeClock    *TimeClockType `xml:"http://www.opengis.net/gml/3.2 TimeClock,omitempty"`
 	Owns         bool           `xml:"owns,attr,omitempty"`
 	NilReason    string         `xml:"nilReason,attr,omitempty"`
@@ -2914,35 +3852,44 @@ type TimeClockPropertyType struct {
 }
 
 type TimeClockType struct {
-	MetaDataProperty     []MetaDataPropertyType     `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType           `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType             `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType     `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                 `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                     `xml:"id,attr,omitempty"`
-	Remarks              *string                    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     string                     `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
-	ReferenceEvent       *StringOrRefType           `xml:"http://www.opengis.net/gml/3.2 referenceEvent,omitempty"`
-	ReferenceTime        string                     `xml:"http://www.opengis.net/gml/3.2 referenceTime,omitempty"`
-	UtcReference         string                     `xml:"http://www.opengis.net/gml/3.2 utcReference,omitempty"`
-	DateBasis            []TimeCalendarPropertyType `xml:"http://www.opengis.net/gml/3.2 dateBasis"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name             []CodeType                 `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id               string                     `xml:"id,attr,omitempty"`
+	Remarks          *string                    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	DomainOfValidity string                     `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	ReferenceEvent   *StringOrRefType           `xml:"http://www.opengis.net/gml/3.2 referenceEvent,omitempty"`
+	ReferenceTime    string                     `xml:"http://www.opengis.net/gml/3.2 referenceTime,omitempty"`
+	UtcReference     string                     `xml:"http://www.opengis.net/gml/3.2 utcReference,omitempty"`
+	DateBasis        []TimeCalendarPropertyType `xml:"http://www.opengis.net/gml/3.2 dateBasis"`
 }
 
 type TimeCoordinateSystemType struct {
-	MetaDataProperty     []MetaDataPropertyType   `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType         `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType           `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType   `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType               `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                   `xml:"id,attr,omitempty"`
-	Remarks              *string                  `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     string                   `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
-	Interval             *TimeIntervalLengthType  `xml:"http://www.opengis.net/gml/3.2 interval,omitempty"`
-	OriginPosition       *TimePositionType        `xml:"http://www.opengis.net/gml/3.2 originPosition,omitempty"`
-	Origin               *TimeInstantPropertyType `xml:"http://www.opengis.net/gml/3.2 origin,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name             []CodeType               `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id               string                   `xml:"id,attr,omitempty"`
+	Remarks          *string                  `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	DomainOfValidity string                   `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	Interval         *TimeIntervalLengthType  `xml:"http://www.opengis.net/gml/3.2 interval,omitempty"`
+	OriginPosition   *TimePositionType        `xml:"http://www.opengis.net/gml/3.2 originPosition,omitempty"`
+	Origin           *TimeInstantPropertyType `xml:"http://www.opengis.net/gml/3.2 origin,omitempty"`
 }
 
 type TimeEdgePropertyType struct {
+	// A time edge is a one-dimensional topological primitive. It is an open interval that starts and ends at a node. The edge may be realised as a geometry whose value is a time period.
 	TimeEdge     *TimeEdgeType `xml:"http://www.opengis.net/gml/3.2 TimeEdge,omitempty"`
 	NilReason    string        `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string        `xml:"remoteSchema,attr,omitempty"`
@@ -2950,20 +3897,25 @@ type TimeEdgePropertyType struct {
 }
 
 type TimeEdgeType struct {
-	MetaDataProperty     []MetaDataPropertyType  `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType        `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType          `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType  `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                  `xml:"id,attr,omitempty"`
-	RelatedTime          []RelatedTimeType       `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
-	Complex              *ReferenceType          `xml:"http://www.opengis.net/gml/3.2 complex,omitempty"`
-	Start                *TimeNodePropertyType   `xml:"http://www.opengis.net/gml/3.2 start,omitempty"`
-	End                  *TimeNodePropertyType   `xml:"http://www.opengis.net/gml/3.2 end,omitempty"`
-	Extent               *TimePeriodPropertyType `xml:"http://www.opengis.net/gml/3.2 extent,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name        []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id          string                  `xml:"id,attr,omitempty"`
+	RelatedTime []RelatedTimeType       `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
+	Complex     *ReferenceType          `xml:"http://www.opengis.net/gml/3.2 complex,omitempty"`
+	Start       *TimeNodePropertyType   `xml:"http://www.opengis.net/gml/3.2 start,omitempty"`
+	End         *TimeNodePropertyType   `xml:"http://www.opengis.net/gml/3.2 end,omitempty"`
+	Extent      *TimePeriodPropertyType `xml:"http://www.opengis.net/gml/3.2 extent,omitempty"`
 }
 
 type TimeInstantPropertyType struct {
+	// gml:TimeInstant acts as a zero-dimensional geometric primitive that represents an identifiable position in time.
 	TimeInstant  *TimeInstantType `xml:"http://www.opengis.net/gml/3.2 TimeInstant,omitempty"`
 	NilReason    string           `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string           `xml:"remoteSchema,attr,omitempty"`
@@ -2971,15 +3923,20 @@ type TimeInstantPropertyType struct {
 }
 
 type TimeInstantType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	RelatedTime          []RelatedTimeType      `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
-	Frame                string                 `xml:"frame,attr,omitempty"`
-	TimePosition         *TimePositionType      `xml:"http://www.opengis.net/gml/3.2 timePosition,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name        []CodeType        `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id          string            `xml:"id,attr,omitempty"`
+	RelatedTime []RelatedTimeType `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
+	Frame       string            `xml:"frame,attr,omitempty"`
+	// This element is used directly as a property of gml:TimeInstant (see 15.2.2.3), and may also be used in application schemas.
+	TimePosition *TimePositionType `xml:"http://www.opengis.net/gml/3.2 timePosition,omitempty"`
 }
 
 type TimeIntervalLengthType struct {
@@ -2990,6 +3947,7 @@ type TimeIntervalLengthType struct {
 }
 
 type TimeNodePropertyType struct {
+	// A time node is a zero-dimensional topological primitive that represents an identifiable node in time (it is equivalent to a point in space). A node may act as the termination or initiation of any number of time edges. A time node may be realised as a geometry, its position, whose value is a time instant.
 	TimeNode     *TimeNodeType `xml:"http://www.opengis.net/gml/3.2 TimeNode,omitempty"`
 	NilReason    string        `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string        `xml:"remoteSchema,attr,omitempty"`
@@ -2997,20 +3955,26 @@ type TimeNodePropertyType struct {
 }
 
 type TimeNodeType struct {
-	MetaDataProperty     []MetaDataPropertyType   `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType         `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType           `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType   `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType               `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                   `xml:"id,attr,omitempty"`
-	RelatedTime          []RelatedTimeType        `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
-	Complex              *ReferenceType           `xml:"http://www.opengis.net/gml/3.2 complex,omitempty"`
-	PreviousEdge         []TimeEdgePropertyType   `xml:"http://www.opengis.net/gml/3.2 previousEdge"`
-	NextEdge             []TimeEdgePropertyType   `xml:"http://www.opengis.net/gml/3.2 nextEdge"`
-	Position             *TimeInstantPropertyType `xml:"http://www.opengis.net/gml/3.2 position,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType               `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string                   `xml:"id,attr,omitempty"`
+	RelatedTime  []RelatedTimeType        `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
+	Complex      *ReferenceType           `xml:"http://www.opengis.net/gml/3.2 complex,omitempty"`
+	PreviousEdge []TimeEdgePropertyType   `xml:"http://www.opengis.net/gml/3.2 previousEdge"`
+	NextEdge     []TimeEdgePropertyType   `xml:"http://www.opengis.net/gml/3.2 nextEdge"`
+	Position     *TimeInstantPropertyType `xml:"http://www.opengis.net/gml/3.2 position,omitempty"`
 }
 
 type TimeOrdinalEraPropertyType struct {
+	// Its content model follows the pattern of gml:TimeEdge, inheriting standard properties from gml:DefinitionType, and adding gml:start, gml:end and gml:extent properties, a set of gml:member properties which indicate ordered gml:TimeOrdinalEra elements, and a gml:group property which points to the parent era.
+	// The recursive inclusion of gml:TimeOrdinalEra elements allow the construction of an arbitrary depth hierarchical ordinal reference schema, such that an ordinal era at a given level of the hierarchy includes a sequence of shorter, coterminous ordinal eras.
 	TimeOrdinalEra *TimeOrdinalEraType `xml:"http://www.opengis.net/gml/3.2 TimeOrdinalEra,omitempty"`
 	Owns           bool                `xml:"owns,attr,omitempty"`
 	NilReason      string              `xml:"nilReason,attr,omitempty"`
@@ -3018,34 +3982,46 @@ type TimeOrdinalEraPropertyType struct {
 }
 
 type TimeOrdinalEraType struct {
-	MetaDataProperty     []MetaDataPropertyType       `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType             `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType               `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType       `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                   `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                       `xml:"id,attr,omitempty"`
-	Remarks              *string                      `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	RelatedTime          []RelatedTimeType            `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
-	Start                *TimeNodePropertyType        `xml:"http://www.opengis.net/gml/3.2 start,omitempty"`
-	End                  *TimeNodePropertyType        `xml:"http://www.opengis.net/gml/3.2 end,omitempty"`
-	Extent               *TimePeriodPropertyType      `xml:"http://www.opengis.net/gml/3.2 extent,omitempty"`
-	Member               []TimeOrdinalEraPropertyType `xml:"http://www.opengis.net/gml/3.2 member"`
-	Group                *ReferenceType               `xml:"http://www.opengis.net/gml/3.2 group,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name        []CodeType                   `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id          string                       `xml:"id,attr,omitempty"`
+	Remarks     *string                      `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	RelatedTime []RelatedTimeType            `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
+	Start       *TimeNodePropertyType        `xml:"http://www.opengis.net/gml/3.2 start,omitempty"`
+	End         *TimeNodePropertyType        `xml:"http://www.opengis.net/gml/3.2 end,omitempty"`
+	Extent      *TimePeriodPropertyType      `xml:"http://www.opengis.net/gml/3.2 extent,omitempty"`
+	Member      []TimeOrdinalEraPropertyType `xml:"http://www.opengis.net/gml/3.2 member"`
+	Group       *ReferenceType               `xml:"http://www.opengis.net/gml/3.2 group,omitempty"`
 }
 
 type TimeOrdinalReferenceSystemType struct {
-	MetaDataProperty     []MetaDataPropertyType       `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType             `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType               `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType       `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                   `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                       `xml:"id,attr,omitempty"`
-	Remarks              *string                      `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     string                       `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
-	Component            []TimeOrdinalEraPropertyType `xml:"http://www.opengis.net/gml/3.2 component"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name             []CodeType                   `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id               string                       `xml:"id,attr,omitempty"`
+	Remarks          *string                      `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	DomainOfValidity string                       `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	Component        []TimeOrdinalEraPropertyType `xml:"http://www.opengis.net/gml/3.2 component"`
 }
 
 type TimePeriodPropertyType struct {
+	// gml:TimePeriod acts as a one-dimensional geometric primitive that represents an identifiable extent in time.
+	// The location in of a gml:TimePeriod is described by the temporal positions of the instants at which it begins and ends. The length of the period is equal to the temporal distance between the two bounding temporal positions.
+	// Both beginning and end may be described in terms of their direct position using gml:TimePositionType which is an XML Schema simple content type, or by reference to an indentifiable time instant using gml:TimeInstantPropertyType.
+	// Alternatively a limit of a gml:TimePeriod may use the conventional GML property model to make a reference to a time instant described elsewhere, or a limit may be indicated as a direct position.
 	TimePeriod   *TimePeriodType `xml:"http://www.opengis.net/gml/3.2 TimePeriod,omitempty"`
 	NilReason    string          `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string          `xml:"remoteSchema,attr,omitempty"`
@@ -3053,20 +4029,28 @@ type TimePeriodPropertyType struct {
 }
 
 type TimePeriodType struct {
-	MetaDataProperty     []MetaDataPropertyType   `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType         `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType           `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType   `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType               `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                   `xml:"id,attr,omitempty"`
-	RelatedTime          []RelatedTimeType        `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
-	Frame                string                   `xml:"frame,attr,omitempty"`
-	BeginPosition        *TimePositionType        `xml:"http://www.opengis.net/gml/3.2 beginPosition,omitempty"`
-	Begin                *TimeInstantPropertyType `xml:"http://www.opengis.net/gml/3.2 begin,omitempty"`
-	EndPosition          *TimePositionType        `xml:"http://www.opengis.net/gml/3.2 endPosition,omitempty"`
-	End                  *TimeInstantPropertyType `xml:"http://www.opengis.net/gml/3.2 end,omitempty"`
-	Duration             *string                  `xml:"http://www.opengis.net/gml/3.2 duration,omitempty"`
-	TimeInterval         *TimeIntervalLengthType  `xml:"http://www.opengis.net/gml/3.2 timeInterval,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name          []CodeType               `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id            string                   `xml:"id,attr,omitempty"`
+	RelatedTime   []RelatedTimeType        `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
+	Frame         string                   `xml:"frame,attr,omitempty"`
+	BeginPosition *TimePositionType        `xml:"http://www.opengis.net/gml/3.2 beginPosition,omitempty"`
+	Begin         *TimeInstantPropertyType `xml:"http://www.opengis.net/gml/3.2 begin,omitempty"`
+	EndPosition   *TimePositionType        `xml:"http://www.opengis.net/gml/3.2 endPosition,omitempty"`
+	End           *TimeInstantPropertyType `xml:"http://www.opengis.net/gml/3.2 end,omitempty"`
+	// gml:duration conforms to the ISO 8601 syntax for temporal length as implemented by the XML Schema duration type.
+	Duration *string `xml:"http://www.opengis.net/gml/3.2 duration,omitempty"`
+	// gml:timeInterval conforms to ISO 11404 which is based on floating point values for temporal length.
+	// ISO 11404 syntax specifies the use of a positiveInteger together with appropriate values for radix and factor. The resolution of the time interval is to one radix ^(-factor) of the specified time unit.
+	// The value of the unit is either selected from the units for time intervals from ISO 31-1:1992, or is another suitable unit.  The encoding is defined for GML in gml:TimeUnitType. The second component of this union type provides a method for indicating time units other than the six standard units given in the enumeration.
+	TimeInterval *TimeIntervalLengthType `xml:"http://www.opengis.net/gml/3.2 timeInterval,omitempty"`
 }
 
 type TimePositionType struct {
@@ -3077,6 +4061,7 @@ type TimePositionType struct {
 }
 
 type TimePrimitivePropertyType struct {
+	// gml:AbstractTimePrimitive acts as the head of a substitution group for geometric and topological temporal primitives.
 	AbstractTimePrimitive          *AbstractTimePrimitiveType          `xml:"http://www.opengis.net/gml/3.2 AbstractTimePrimitive,omitempty"`
 	AbstractTimeGeometricPrimitive *AbstractTimeGeometricPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractTimeGeometricPrimitive,omitempty"`
 	AbstractTimeTopologyPrimitive  *AbstractTimeTopologyPrimitiveType  `xml:"http://www.opengis.net/gml/3.2 AbstractTimeTopologyPrimitive,omitempty"`
@@ -3086,17 +4071,24 @@ type TimePrimitivePropertyType struct {
 }
 
 type TimeReferenceSystemType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	Remarks              *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     string                 `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name             []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id               string     `xml:"id,attr,omitempty"`
+	Remarks          *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	DomainOfValidity string     `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
 }
 
 type TimeTopologyComplexPropertyType struct {
+	// A temporal topology complex shall be the connected acyclic directed graph composed of temporal topological primitives, i.e. time nodes and time edges. Because a time edge may not exist without two time nodes on its boundaries, static features have time edges from a temporal topology complex as the values of their temporal properties, regardless of explicit declarations.
+	// A temporal topology complex expresses a linear or a non-linear graph. A temporal linear graph, composed of a sequence of time edges, provides a lineage described only by "substitution" of feature instances or feature element values. A time node as the start or the end of the graph connects with at least one time edge. A time node other than the start and the end shall connect to at least two time edges: one of starting from the node, and another ending at the node.
+	// A temporal topological complex is a set of connected temporal topological primitives. The member primtives are indicated, either by reference or by value, using the primitive property.
 	TimeTopologyComplex *TimeTopologyComplexType `xml:"http://www.opengis.net/gml/3.2 TimeTopologyComplex,omitempty"`
 	NilReason           string                   `xml:"nilReason,attr,omitempty"`
 	RemoteSchema        string                   `xml:"remoteSchema,attr,omitempty"`
@@ -3104,16 +4096,23 @@ type TimeTopologyComplexPropertyType struct {
 }
 
 type TimeTopologyComplexType struct {
-	MetaDataProperty     []MetaDataPropertyType              `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType                    `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                      `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType              `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                          `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                              `xml:"id,attr,omitempty"`
-	Primitive            []TimeTopologyPrimitivePropertyType `xml:"http://www.opengis.net/gml/3.2 primitive"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name      []CodeType                          `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id        string                              `xml:"id,attr,omitempty"`
+	Primitive []TimeTopologyPrimitivePropertyType `xml:"http://www.opengis.net/gml/3.2 primitive"`
 }
 
 type TimeTopologyPrimitivePropertyType struct {
+	// gml:TimeTopologyPrimitive acts as the head of a substitution group for topological temporal primitives.
+	// Temporal topology primitives shall imply the ordering information between features or feature properties. The temporal connection of features can be examined if they have temporal topology primitives as values of their properties. Usually, an instantaneous feature associates with a time node, and a static feature associates with a time edge.  A feature with both modes associates with the temporal topology primitive: a supertype of time nodes and time edges.
+	// A topological primitive is always connected to one or more other topological primitives, and is, therefore, always a member of a topological complex. In a GML instance, this will often be indicated by the primitives being described by elements that are descendents of an element describing a complex. However, in order to support the case where a temporal topological primitive is described in another context, the optional complex property is provided, which carries a reference to the parent temporal topological complex.
 	AbstractTimeTopologyPrimitive *AbstractTimeTopologyPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractTimeTopologyPrimitive,omitempty"`
 	TimeEdge                      *TimeEdgeType                      `xml:"http://www.opengis.net/gml/3.2 TimeEdge,omitempty"`
 	TimeNode                      *TimeNodeType                      `xml:"http://www.opengis.net/gml/3.2 TimeNode,omitempty"`
@@ -3127,88 +4126,122 @@ type TimeType struct {
 }
 
 type TinType struct {
-	MetaDataProperty     []MetaDataPropertyType               `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType                     `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                       `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType               `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                           `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                               `xml:"id,attr,omitempty"`
-	SrsName              string                               `xml:"srsName,attr,omitempty"`
-	SrsDimension         int                                  `xml:"srsDimension,attr,omitempty"`
-	AxisLabels           string                               `xml:"axisLabels,attr,omitempty"`
-	UomLabels            string                               `xml:"uomLabels,attr,omitempty"`
-	Patches              *SurfacePatchArrayPropertyType       `xml:"http://www.opengis.net/gml/3.2 patches,omitempty"`
-	PolygonPatches       *SurfacePatchArrayPropertyType       `xml:"http://www.opengis.net/gml/3.2 polygonPatches,omitempty"`
-	TrianglePatches      *SurfacePatchArrayPropertyType       `xml:"http://www.opengis.net/gml/3.2 trianglePatches,omitempty"`
-	StopLines            []LineStringSegmentArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 stopLines"`
-	BreakLines           []LineStringSegmentArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 breakLines"`
-	MaxLength            *LengthType                          `xml:"http://www.opengis.net/gml/3.2 maxLength,omitempty"`
-	ControlPoint         string                               `xml:"http://www.opengis.net/gml/3.2 controlPoint,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id           string     `xml:"id,attr,omitempty"`
+	SrsName      string     `xml:"srsName,attr,omitempty"`
+	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
+	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	// The patches property element contains the sequence of surface patches. The order of the elements is significant and shall be preserved when processing the array.
+	Patches         *SurfacePatchArrayPropertyType       `xml:"http://www.opengis.net/gml/3.2 patches,omitempty"`
+	PolygonPatches  *SurfacePatchArrayPropertyType       `xml:"http://www.opengis.net/gml/3.2 polygonPatches,omitempty"`
+	TrianglePatches *SurfacePatchArrayPropertyType       `xml:"http://www.opengis.net/gml/3.2 trianglePatches,omitempty"`
+	StopLines       []LineStringSegmentArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 stopLines"`
+	BreakLines      []LineStringSegmentArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 breakLines"`
+	MaxLength       *LengthType                          `xml:"http://www.opengis.net/gml/3.2 maxLength,omitempty"`
+	ControlPoint    string                               `xml:"http://www.opengis.net/gml/3.2 controlPoint,omitempty"`
 }
 
 type TopoComplexPropertyType struct {
+	// gml:TopoComplex is a collection of topological primitives.
+	// Each complex holds a reference to its maximal complex (gml:maximalComplex) and optionally to sub- or super-complexes (gml:subComplex, gml:superComplex).
+	// A topology complex contains its primitive and sub-complex members.
 	TopoComplex  *TopoComplexType `xml:"http://www.opengis.net/gml/3.2 TopoComplex,omitempty"`
 	NilReason    string           `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string           `xml:"remoteSchema,attr,omitempty"`
 }
 
 type TopoComplexType struct {
-	MetaDataProperty     []MetaDataPropertyType             `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType                   `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                     `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType             `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                         `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                             `xml:"id,attr,omitempty"`
-	MaximalComplex       *TopoComplexPropertyType           `xml:"http://www.opengis.net/gml/3.2 maximalComplex,omitempty"`
-	SuperComplex         []TopoComplexPropertyType          `xml:"http://www.opengis.net/gml/3.2 superComplex"`
-	SubComplex           []TopoComplexPropertyType          `xml:"http://www.opengis.net/gml/3.2 subComplex"`
-	TopoPrimitiveMember  []TopoPrimitiveMemberType          `xml:"http://www.opengis.net/gml/3.2 topoPrimitiveMember"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
+	// The property elements gml:subComplex, gml:superComplex and gml:maximalComplex provide an encoding for relationships between topology complexes as described for gml:TopoComplex above.
+	MaximalComplex *TopoComplexPropertyType `xml:"http://www.opengis.net/gml/3.2 maximalComplex,omitempty"`
+	// The property elements gml:subComplex, gml:superComplex and gml:maximalComplex provide an encoding for relationships between topology complexes as described for gml:TopoComplex above.
+	SuperComplex []TopoComplexPropertyType `xml:"http://www.opengis.net/gml/3.2 superComplex"`
+	// The property elements gml:subComplex, gml:superComplex and gml:maximalComplex provide an encoding for relationships between topology complexes as described for gml:TopoComplex above.
+	SubComplex []TopoComplexPropertyType `xml:"http://www.opengis.net/gml/3.2 subComplex"`
+	// The gml:topoPrimitiveMember property element encodes for the relationship between a topology complex and a single topology primitive.
+	TopoPrimitiveMember []TopoPrimitiveMemberType `xml:"http://www.opengis.net/gml/3.2 topoPrimitiveMember"`
+	// The gml:topoPrimitiveMembers property element encodes the relationship between a topology complex and an arbitrary number of topology primitives.
 	TopoPrimitiveMembers *TopoPrimitiveArrayAssociationType `xml:"http://www.opengis.net/gml/3.2 topoPrimitiveMembers,omitempty"`
 	IsMaximal            bool                               `xml:"isMaximal,attr,omitempty"`
 	AggregationType      string                             `xml:"aggregationType,attr,omitempty"`
 }
 
 type TopoCurvePropertyType struct {
+	// gml:TopoCurve represents a homogeneous topological expression, a sequence of directed edges, which if realised are isomorphic to a geometric curve primitive. The intended use of gml:TopoCurve is to appear within a line feature to express the structural and geometric relationships of this feature to other features via the shared edge definitions.
+	// If provided, the aggregationType attribute shall have the value "sequence".
 	TopoCurve *TopoCurveType `xml:"http://www.opengis.net/gml/3.2 TopoCurve,omitempty"`
 	Owns      bool           `xml:"owns,attr,omitempty"`
 }
 
 type TopoCurveType struct {
-	MetaDataProperty     []MetaDataPropertyType     `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType           `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType             `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType     `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                 `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                     `xml:"id,attr,omitempty"`
-	DirectedEdge         []DirectedEdgePropertyType `xml:"http://www.opengis.net/gml/3.2 directedEdge"`
-	AggregationType      string                     `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
+	// A gml:directedEdge property element describes the boundary of topology faces, the coBoundary of topology nodes and is used in the support of topological line features via the gml:TopoCurve expression, see below. The orientation attribute of type gml:SignType expresses the sense in which the included edge is used, i.e. forward or reverse.
+	DirectedEdge    []DirectedEdgePropertyType `xml:"http://www.opengis.net/gml/3.2 directedEdge"`
+	AggregationType string                     `xml:"aggregationType,attr,omitempty"`
 }
 
 type TopoPointPropertyType struct {
+	// The intended use of gml:TopoPoint is to appear within a point feature to express the structural and possibly geometric relationships of this feature to other features via shared node definitions.
 	TopoPoint *TopoPointType `xml:"http://www.opengis.net/gml/3.2 TopoPoint,omitempty"`
 	Owns      bool           `xml:"owns,attr,omitempty"`
 }
 
 type TopoPointType struct {
-	MetaDataProperty     []MetaDataPropertyType    `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType          `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType            `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType    `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                    `xml:"id,attr,omitempty"`
-	DirectedNode         *DirectedNodePropertyType `xml:"http://www.opengis.net/gml/3.2 directedNode,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
+	// A gml:directedNode property element describes the boundary of topology edges and is used in the support of topological point features via the gml:TopoPoint expression, see below. The orientation attribute of type gml:SignType expresses the sense in which the included node is used: start ("-") or end ("+") node.
+	DirectedNode *DirectedNodePropertyType `xml:"http://www.opengis.net/gml/3.2 directedNode,omitempty"`
 }
 
 type TopoPrimitiveArrayAssociationType struct {
-	AbstractTopoPrimitive *AbstractTopoPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractTopoPrimitive,omitempty"`
-	Edge                  *EdgeType                  `xml:"http://www.opengis.net/gml/3.2 Edge,omitempty"`
-	Face                  *FaceType                  `xml:"http://www.opengis.net/gml/3.2 Face,omitempty"`
-	Node                  *NodeType                  `xml:"http://www.opengis.net/gml/3.2 Node,omitempty"`
-	TopoSolid             *TopoSolidType             `xml:"http://www.opengis.net/gml/3.2 TopoSolid,omitempty"`
-	Owns                  bool                       `xml:"owns,attr,omitempty"`
+	// gml:AbstractTopoPrimitive acts as the base type for all topological primitives. Topology primitives are the atomic (smallest possible) units of a topology complex.
+	// Each topology primitive may contain references to other topology primitives of codimension 2 or more (gml:isolated). Conversely, nodes may have faces as containers and nodes and edges may have solids as containers (gml:container).
+	AbstractTopoPrimitive []AbstractTopoPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractTopoPrimitive"`
+	Edge                  []EdgeType                  `xml:"http://www.opengis.net/gml/3.2 Edge"`
+	Face                  []FaceType                  `xml:"http://www.opengis.net/gml/3.2 Face"`
+	Node                  []NodeType                  `xml:"http://www.opengis.net/gml/3.2 Node"`
+	TopoSolid             []TopoSolidType             `xml:"http://www.opengis.net/gml/3.2 TopoSolid"`
+	Owns                  bool                        `xml:"owns,attr,omitempty"`
 }
 
 type TopoPrimitiveMemberType struct {
+	// gml:AbstractTopoPrimitive acts as the base type for all topological primitives. Topology primitives are the atomic (smallest possible) units of a topology complex.
+	// Each topology primitive may contain references to other topology primitives of codimension 2 or more (gml:isolated). Conversely, nodes may have faces as containers and nodes and edges may have solids as containers (gml:container).
 	AbstractTopoPrimitive *AbstractTopoPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractTopoPrimitive,omitempty"`
 	Edge                  *EdgeType                  `xml:"http://www.opengis.net/gml/3.2 Edge,omitempty"`
 	Face                  *FaceType                  `xml:"http://www.opengis.net/gml/3.2 Face,omitempty"`
@@ -3220,6 +4253,9 @@ type TopoPrimitiveMemberType struct {
 }
 
 type TopoSolidPropertyType struct {
+	// gml:TopoSolid represents the 3-dimensional topology primitive.
+	// The topological boundary of a solid (gml:directedFace) consists of a set of directed faces.
+	// A solid may optionally be realised by a 3-dimensional geometric primitive (gml:solidProperty).
 	TopoSolid    *TopoSolidType `xml:"http://www.opengis.net/gml/3.2 TopoSolid,omitempty"`
 	NilReason    string         `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string         `xml:"remoteSchema,attr,omitempty"`
@@ -3227,94 +4263,138 @@ type TopoSolidPropertyType struct {
 }
 
 type TopoSolidType struct {
-	MetaDataProperty     []MetaDataPropertyType     `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType           `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType             `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType     `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                 `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                     `xml:"id,attr,omitempty"`
-	Isolated             []NodeOrEdgePropertyType   `xml:"http://www.opengis.net/gml/3.2 isolated"`
-	DirectedFace         []DirectedFacePropertyType `xml:"http://www.opengis.net/gml/3.2 directedFace"`
-	SolidProperty        *SolidPropertyType         `xml:"http://www.opengis.net/gml/3.2 solidProperty,omitempty"`
-	Universal            bool                       `xml:"universal,attr,omitempty"`
-	AggregationType      string                     `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name     []CodeType               `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id       string                   `xml:"id,attr,omitempty"`
+	Isolated []NodeOrEdgePropertyType `xml:"http://www.opengis.net/gml/3.2 isolated"`
+	// The gml:directedFace property element describes the boundary of topology solids, in the coBoundary of topology edges and is used in the support of surface features via the gml:TopoSurface expression, see below. The orientation attribute of type gml:SignType expresses the sense in which the included face is used i.e. inward or outward with respect to the surface normal in any geometric realisation.
+	DirectedFace []DirectedFacePropertyType `xml:"http://www.opengis.net/gml/3.2 directedFace"`
+	// This property element either references a solid via the XLink-attributes or contains the solid element. solidProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for AbstractSolid.
+	SolidProperty *SolidPropertyType `xml:"http://www.opengis.net/gml/3.2 solidProperty,omitempty"`
+	// A gml:TopoSolid must indicate whether it is a universal topo-solid or not, to ensure a lossless topology representation as defined by Kuijpers, et. al. (see OGC 05-102 Topology IPR). The optional universal attribute of type boolean is used to indicate this and the default is fault. NOTE The universal topo-solid is normally not part of any feature, and is used to represent the unbounded portion of the data set. Its interior boundary (it has no exterior boundary) would normally be considered the exterior boundary of the data set.
+	Universal       bool   `xml:"universal,attr,omitempty"`
+	AggregationType string `xml:"aggregationType,attr,omitempty"`
 }
 
 type TopoSurfacePropertyType struct {
+	// gml:TopoSurface represents a homogeneous topological expression, a set of directed faces, which if realised are isomorphic to a geometric surface primitive. The intended use of gml:TopoSurface is to appear within a surface feature to express the structural and possibly geometric relationships of this surface feature to other features via the shared face definitions.
 	TopoSurface *TopoSurfaceType `xml:"http://www.opengis.net/gml/3.2 TopoSurface,omitempty"`
 	Owns        bool             `xml:"owns,attr,omitempty"`
 }
 
 type TopoSurfaceType struct {
-	MetaDataProperty     []MetaDataPropertyType     `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType           `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType             `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType     `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                 `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                     `xml:"id,attr,omitempty"`
-	DirectedFace         []DirectedFacePropertyType `xml:"http://www.opengis.net/gml/3.2 directedFace"`
-	AggregationType      string                     `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
+	// The gml:directedFace property element describes the boundary of topology solids, in the coBoundary of topology edges and is used in the support of surface features via the gml:TopoSurface expression, see below. The orientation attribute of type gml:SignType expresses the sense in which the included face is used i.e. inward or outward with respect to the surface normal in any geometric realisation.
+	DirectedFace    []DirectedFacePropertyType `xml:"http://www.opengis.net/gml/3.2 directedFace"`
+	AggregationType string                     `xml:"aggregationType,attr,omitempty"`
 }
 
 type TopoVolumePropertyType struct {
+	// gml:TopoVolume represents a homogeneous topological expression, a set of directed topologic solids, which if realised are isomorphic to a geometric solid primitive. The intended use of gml:TopoVolume is to appear within a solid feature to express the structural and geometric relationships of this solid feature to other features via the shared solid definitions.
 	TopoVolume *TopoVolumeType `xml:"http://www.opengis.net/gml/3.2 TopoVolume,omitempty"`
 	Owns       bool            `xml:"owns,attr,omitempty"`
 }
 
 type TopoVolumeType struct {
-	MetaDataProperty     []MetaDataPropertyType          `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType                `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                  `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType          `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                      `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                          `xml:"id,attr,omitempty"`
-	DirectedTopoSolid    []DirectedTopoSolidPropertyType `xml:"http://www.opengis.net/gml/3.2 directedTopoSolid"`
-	AggregationType      string                          `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
+	// The gml:directedSolid property element describes the coBoundary of topology faces and is used in the support of volume features via the gml:TopoVolume expression, see below. The orientation attribute of type gml:SignType expresses the sense in which the included solid appears in the face coboundary. In the context of a gml:TopoVolume the orientation attribute has no meaning.
+	DirectedTopoSolid []DirectedTopoSolidPropertyType `xml:"http://www.opengis.net/gml/3.2 directedTopoSolid"`
+	AggregationType   string                          `xml:"aggregationType,attr,omitempty"`
 }
 
 type TransformationPropertyType struct {
+	// gml:Transformation is a concrete object element derived from gml:GeneralTransformation (13.6.2.13).
+	// This concrete object can be used for all operation methods, without using a GML Application Schema that defines operation-method-specialized element names and contents, especially for methods with only one Transformation instance.
+	// The parameterValue elements are an unordered list of composition associations to the set of parameter values used by this conversion operation.
 	Transformation *TransformationType `xml:"http://www.opengis.net/gml/3.2 Transformation,omitempty"`
 	NilReason      string              `xml:"nilReason,attr,omitempty"`
 	RemoteSchema   string              `xml:"remoteSchema,attr,omitempty"`
 }
 
 type TransformationType struct {
-	MetaDataProperty            []MetaDataPropertyType                      `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description                 *StringOrRefType                            `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference        *ReferenceType                              `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier                  *CodeWithAuthorityType                      `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                        []CodeType                                  `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                          string                                      `xml:"id,attr,omitempty"`
-	Remarks                     *string                                     `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity            *string                                     `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
-	Scope                       []string                                    `xml:"http://www.opengis.net/gml/3.2 scope"`
-	OperationVersion            *string                                     `xml:"http://www.opengis.net/gml/3.2 operationVersion,omitempty"`
-	CoordinateOperationAccuracy []string                                    `xml:"http://www.opengis.net/gml/3.2 coordinateOperationAccuracy"`
-	SourceCRS                   *CRSPropertyType                            `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
-	TargetCRS                   *CRSPropertyType                            `xml:"http://www.opengis.net/gml/3.2 targetCRS,omitempty"`
-	Method                      *OperationMethodPropertyType                `xml:"http://www.opengis.net/gml/3.2 method,omitempty"`
-	UsesMethod                  *OperationMethodPropertyType                `xml:"http://www.opengis.net/gml/3.2 usesMethod,omitempty"`
-	ParameterValue              []AbstractGeneralParameterValuePropertyType `xml:"http://www.opengis.net/gml/3.2 parameterValue"`
-	IncludesValue               *AbstractGeneralParameterValuePropertyType  `xml:"http://www.opengis.net/gml/3.2 includesValue,omitempty"`
-	UsesValue                   *AbstractGeneralParameterValuePropertyType  `xml:"http://www.opengis.net/gml/3.2 usesValue,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:operationVersion is the version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters). Mandatory when describing a transformation, and should not be supplied for a conversion.
+	OperationVersion *string `xml:"http://www.opengis.net/gml/3.2 operationVersion,omitempty"`
+	// gml:coordinateOperationAccuracy is an association role to a DQ_PositionalAccuracy object as encoded in ISO/TS 19139, either referencing or containing the definition of that positional accuracy. That object contains an estimate of the impact of this coordinate operation on point accuracy. That is, it gives position error estimates for the target coordinates of this coordinate operation, assuming no errors in the source coordinates.
+	CoordinateOperationAccuracy []string `xml:"http://www.opengis.net/gml/3.2 coordinateOperationAccuracy"`
+	// gml:sourceCRS is an association role to the source CRS (coordinate reference system) of this coordinate operation.
+	SourceCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
+	// gml:targetCRS is an association role to the target CRS (coordinate reference system) of this coordinate operation.
+	TargetCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 targetCRS,omitempty"`
+	// gml:method is an association role to the operation method used by a coordinate operation.
+	Method     *OperationMethodPropertyType `xml:"http://www.opengis.net/gml/3.2 method,omitempty"`
+	UsesMethod *OperationMethodPropertyType `xml:"http://www.opengis.net/gml/3.2 usesMethod,omitempty"`
+	// gml:parameterValue is a composition association to a parameter value or group of parameter values used by a coordinate operation.
+	ParameterValue []AbstractGeneralParameterValuePropertyType `xml:"http://www.opengis.net/gml/3.2 parameterValue"`
+	IncludesValue  []AbstractGeneralParameterValuePropertyType `xml:"http://www.opengis.net/gml/3.2 includesValue"`
+	UsesValue      []AbstractGeneralParameterValuePropertyType `xml:"http://www.opengis.net/gml/3.2 usesValue"`
 }
 
 type TriangleType struct {
+	// A boundary of a surface consists of a number of rings. In the normal 2D case, one of these rings is distinguished as being the exterior boundary. In a general manifold this is not always possible, in which case all boundaries shall be listed as interior boundaries, and the exterior will be empty.
 	Exterior      *AbstractRingPropertyType `xml:"http://www.opengis.net/gml/3.2 exterior,omitempty"`
 	Interpolation string                    `xml:"interpolation,attr,omitempty"`
 }
 
 type UnitDefinitionType struct {
-	MetaDataProperty      []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description           *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference  *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier            *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                  []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                    string                 `xml:"id,attr,omitempty"`
-	Remarks               *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	QuantityType          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 quantityType,omitempty"`
-	QuantityTypeReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 quantityTypeReference,omitempty"`
-	CatalogSymbol         *CodeType              `xml:"http://www.opengis.net/gml/3.2 catalogSymbol,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:quantityType property indicates the phenomenon to which the units apply. This element contains an informal description of the phenomenon or type of physical quantity that is measured or observed. When the physical quantity is the result of an observation or measurement, this term is known as observable type or measurand.
+	// The use of gml:quantityType for references to remote values is deprecated.
+	QuantityType *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 quantityType,omitempty"`
+	// The gml:quantityTypeReference property indicates the phenomenon to which the units apply. The content is a reference to a remote value.
+	QuantityTypeReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 quantityTypeReference,omitempty"`
+	// The catalogSymbol is the preferred lexical symbol used for this unit of measure.
+	// The codeSpace attribute in gml:CodeType identifies a namespace for the catalog symbol value, and might reference the external catalog. The string value in gml:CodeType contains the value of a symbol that should be unique within this catalog namespace. This symbol often appears explicitly in the catalog, but it could be a combination of symbols using a specified algebra of units.
+	CatalogSymbol *CodeType `xml:"http://www.opengis.net/gml/3.2 catalogSymbol,omitempty"`
 }
 
 type UnitOfMeasureType struct {
@@ -3322,78 +4402,98 @@ type UnitOfMeasureType struct {
 }
 
 type UserDefinedCSPropertyType struct {
+	// gml:UserDefinedCS is a two- or three-dimensional coordinate system that consists of any combination of coordinate axes not covered by any other coordinate system type. A UserDefinedCS shall have two or three gml:axis property elements; the number of property elements shall equal the dimension of the CS.
 	UserDefinedCS *UserDefinedCSType `xml:"http://www.opengis.net/gml/3.2 UserDefinedCS,omitempty"`
 	NilReason     string             `xml:"nilReason,attr,omitempty"`
 	RemoteSchema  string             `xml:"remoteSchema,attr,omitempty"`
 }
 
 type UserDefinedCSType struct {
-	MetaDataProperty     []MetaDataPropertyType             `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType                   `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                     `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType             `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                         `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                             `xml:"id,attr,omitempty"`
-	Remarks              *string                            `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	Axis                 []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
-	UsesAxis             *CoordinateSystemAxisPropertyType  `xml:"http://www.opengis.net/gml/3.2 usesAxis,omitempty"`
-	AggregationType      string                             `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
+	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
+	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
+	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
 }
 
 type ValueArrayPropertyType struct {
-	AbstractValue              *string                         `xml:"http://www.opengis.net/gml/3.2 AbstractValue,omitempty"`
-	AbstractScalarValue        *string                         `xml:"http://www.opengis.net/gml/3.2 AbstractScalarValue,omitempty"`
-	AbstractScalarValueList    *string                         `xml:"http://www.opengis.net/gml/3.2 AbstractScalarValueList,omitempty"`
-	CategoryExtent             *CategoryExtentType             `xml:"http://www.opengis.net/gml/3.2 CategoryExtent,omitempty"`
-	CompositeValue             *CompositeValueType             `xml:"http://www.opengis.net/gml/3.2 CompositeValue,omitempty"`
-	CountExtent                *string                         `xml:"http://www.opengis.net/gml/3.2 CountExtent,omitempty"`
-	QuantityExtent             *QuantityExtentType             `xml:"http://www.opengis.net/gml/3.2 QuantityExtent,omitempty"`
+	// gml:AbstractValue is an abstract element which acts as the head of a substitution group which contains gml:AbstractScalarValue, gml:AbstractScalarValueList, gml:CompositeValue and gml:ValueExtent, and (transitively) the elements in their substitution groups.
+	// These elements may be used in an application schema as variables, so that in an XML instance document any member of its substitution group may occur.
+	AbstractValue           *string             `xml:"http://www.opengis.net/gml/3.2 AbstractValue,omitempty"`
+	AbstractScalarValue     *string             `xml:"http://www.opengis.net/gml/3.2 AbstractScalarValue,omitempty"`
+	AbstractScalarValueList *string             `xml:"http://www.opengis.net/gml/3.2 AbstractScalarValueList,omitempty"`
+	CategoryExtent          *CategoryExtentType `xml:"http://www.opengis.net/gml/3.2 CategoryExtent,omitempty"`
+	CompositeValue          *CompositeValueType `xml:"http://www.opengis.net/gml/3.2 CompositeValue,omitempty"`
+	CountExtent             *string             `xml:"http://www.opengis.net/gml/3.2 CountExtent,omitempty"`
+	QuantityExtent          *QuantityExtentType `xml:"http://www.opengis.net/gml/3.2 QuantityExtent,omitempty"`
+	// The AbstractGeometry element is the abstract head of the substitution group for all geometry elements of GML. This includes pre-defined and user-defined geometry elements. Any geometry element shall be a direct or indirect extension/restriction of AbstractGeometryType and shall be directly or indirectly in the substitution group of AbstractGeometry.
 	AbstractGeometry           *AbstractGeometryType           `xml:"http://www.opengis.net/gml/3.2 AbstractGeometry,omitempty"`
 	AbstractGeometricAggregate *AbstractGeometricAggregateType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricAggregate,omitempty"`
 	AbstractGeometricPrimitive *AbstractGeometricPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricPrimitive,omitempty"`
 	AbstractImplicitGeometry   *AbstractGeometryType           `xml:"http://www.opengis.net/gml/3.2 AbstractImplicitGeometry,omitempty"`
 	GeometricComplex           *GeometricComplexType           `xml:"http://www.opengis.net/gml/3.2 GeometricComplex,omitempty"`
-	AbstractTimeObject         *AbstractTimeObjectType         `xml:"http://www.opengis.net/gml/3.2 AbstractTimeObject,omitempty"`
-	AbstractTimeComplex        *AbstractTimeComplexType        `xml:"http://www.opengis.net/gml/3.2 AbstractTimeComplex,omitempty"`
-	AbstractTimePrimitive      *AbstractTimePrimitiveType      `xml:"http://www.opengis.net/gml/3.2 AbstractTimePrimitive,omitempty"`
-	Null                       *string                         `xml:"http://www.opengis.net/gml/3.2 Null,omitempty"`
-	Owns                       bool                            `xml:"owns,attr,omitempty"`
+	// gml:AbstractTimeObject acts as the head of a substitution group for all temporal primitives and complexes.
+	AbstractTimeObject    *AbstractTimeObjectType    `xml:"http://www.opengis.net/gml/3.2 AbstractTimeObject,omitempty"`
+	AbstractTimeComplex   *AbstractTimeComplexType   `xml:"http://www.opengis.net/gml/3.2 AbstractTimeComplex,omitempty"`
+	AbstractTimePrimitive *AbstractTimePrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractTimePrimitive,omitempty"`
+	Null                  *string                    `xml:"http://www.opengis.net/gml/3.2 Null,omitempty"`
+	Owns                  bool                       `xml:"owns,attr,omitempty"`
 }
 
 type ValueArrayType struct {
-	MetaDataProperty     []MetaDataPropertyType  `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType        `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType          `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType  `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                  `xml:"id,attr,omitempty"`
-	ValueComponent       []ValuePropertyType     `xml:"http://www.opengis.net/gml/3.2 valueComponent"`
-	ValueComponents      *ValueArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 valueComponents,omitempty"`
-	AggregationType      string                  `xml:"aggregationType,attr,omitempty"`
-	CodeSpace            string                  `xml:"codeSpace,attr,omitempty"`
-	Uom                  string                  `xml:"uom,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id   string     `xml:"id,attr,omitempty"`
+	// Property that refers to, or contains, a Value.
+	ValueComponent []ValuePropertyType `xml:"http://www.opengis.net/gml/3.2 valueComponent"`
+	// Property that contains Values.
+	ValueComponents *ValueArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 valueComponents,omitempty"`
+	AggregationType string                  `xml:"aggregationType,attr,omitempty"`
+	CodeSpace       string                  `xml:"codeSpace,attr,omitempty"`
+	Uom             string                  `xml:"uom,attr,omitempty"`
 }
 
 type ValuePropertyType struct {
-	AbstractValue              *string                         `xml:"http://www.opengis.net/gml/3.2 AbstractValue,omitempty"`
-	AbstractScalarValue        *string                         `xml:"http://www.opengis.net/gml/3.2 AbstractScalarValue,omitempty"`
-	AbstractScalarValueList    *string                         `xml:"http://www.opengis.net/gml/3.2 AbstractScalarValueList,omitempty"`
-	CategoryExtent             *CategoryExtentType             `xml:"http://www.opengis.net/gml/3.2 CategoryExtent,omitempty"`
-	CompositeValue             *CompositeValueType             `xml:"http://www.opengis.net/gml/3.2 CompositeValue,omitempty"`
-	CountExtent                *string                         `xml:"http://www.opengis.net/gml/3.2 CountExtent,omitempty"`
-	QuantityExtent             *QuantityExtentType             `xml:"http://www.opengis.net/gml/3.2 QuantityExtent,omitempty"`
+	// gml:AbstractValue is an abstract element which acts as the head of a substitution group which contains gml:AbstractScalarValue, gml:AbstractScalarValueList, gml:CompositeValue and gml:ValueExtent, and (transitively) the elements in their substitution groups.
+	// These elements may be used in an application schema as variables, so that in an XML instance document any member of its substitution group may occur.
+	AbstractValue           *string             `xml:"http://www.opengis.net/gml/3.2 AbstractValue,omitempty"`
+	AbstractScalarValue     *string             `xml:"http://www.opengis.net/gml/3.2 AbstractScalarValue,omitempty"`
+	AbstractScalarValueList *string             `xml:"http://www.opengis.net/gml/3.2 AbstractScalarValueList,omitempty"`
+	CategoryExtent          *CategoryExtentType `xml:"http://www.opengis.net/gml/3.2 CategoryExtent,omitempty"`
+	CompositeValue          *CompositeValueType `xml:"http://www.opengis.net/gml/3.2 CompositeValue,omitempty"`
+	CountExtent             *string             `xml:"http://www.opengis.net/gml/3.2 CountExtent,omitempty"`
+	QuantityExtent          *QuantityExtentType `xml:"http://www.opengis.net/gml/3.2 QuantityExtent,omitempty"`
+	// The AbstractGeometry element is the abstract head of the substitution group for all geometry elements of GML. This includes pre-defined and user-defined geometry elements. Any geometry element shall be a direct or indirect extension/restriction of AbstractGeometryType and shall be directly or indirectly in the substitution group of AbstractGeometry.
 	AbstractGeometry           *AbstractGeometryType           `xml:"http://www.opengis.net/gml/3.2 AbstractGeometry,omitempty"`
 	AbstractGeometricAggregate *AbstractGeometricAggregateType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricAggregate,omitempty"`
 	AbstractGeometricPrimitive *AbstractGeometricPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricPrimitive,omitempty"`
 	AbstractImplicitGeometry   *AbstractGeometryType           `xml:"http://www.opengis.net/gml/3.2 AbstractImplicitGeometry,omitempty"`
 	GeometricComplex           *GeometricComplexType           `xml:"http://www.opengis.net/gml/3.2 GeometricComplex,omitempty"`
-	AbstractTimeObject         *AbstractTimeObjectType         `xml:"http://www.opengis.net/gml/3.2 AbstractTimeObject,omitempty"`
-	AbstractTimeComplex        *AbstractTimeComplexType        `xml:"http://www.opengis.net/gml/3.2 AbstractTimeComplex,omitempty"`
-	AbstractTimePrimitive      *AbstractTimePrimitiveType      `xml:"http://www.opengis.net/gml/3.2 AbstractTimePrimitive,omitempty"`
-	Null                       *string                         `xml:"http://www.opengis.net/gml/3.2 Null,omitempty"`
-	NilReason                  string                          `xml:"nilReason,attr,omitempty"`
-	RemoteSchema               string                          `xml:"remoteSchema,attr,omitempty"`
-	Owns                       bool                            `xml:"owns,attr,omitempty"`
+	// gml:AbstractTimeObject acts as the head of a substitution group for all temporal primitives and complexes.
+	AbstractTimeObject    *AbstractTimeObjectType    `xml:"http://www.opengis.net/gml/3.2 AbstractTimeObject,omitempty"`
+	AbstractTimeComplex   *AbstractTimeComplexType   `xml:"http://www.opengis.net/gml/3.2 AbstractTimeComplex,omitempty"`
+	AbstractTimePrimitive *AbstractTimePrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractTimePrimitive,omitempty"`
+	Null                  *string                    `xml:"http://www.opengis.net/gml/3.2 Null,omitempty"`
+	NilReason             string                     `xml:"nilReason,attr,omitempty"`
+	RemoteSchema          string                     `xml:"remoteSchema,attr,omitempty"`
+	Owns                  bool                       `xml:"owns,attr,omitempty"`
 }
 
 type VectorType struct {
@@ -3401,65 +4501,93 @@ type VectorType struct {
 }
 
 type VerticalCRSPropertyType struct {
+	// gml:VerticalCRS is a 1D coordinate reference system used for recording heights or depths. Vertical CRSs make use of the direction of gravity to define the concept of height or depth, but the relationship with gravity may not be straightforward. By implication, ellipsoidal heights (h) cannot be captured in a vertical coordinate reference system. Ellipsoidal heights cannot exist independently, but only as an inseparable part of a 3D coordinate tuple defined in a geographic 3D coordinate reference system.
 	VerticalCRS  *VerticalCRSType `xml:"http://www.opengis.net/gml/3.2 VerticalCRS,omitempty"`
 	NilReason    string           `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string           `xml:"remoteSchema,attr,omitempty"`
 }
 
 type VerticalCRSType struct {
-	MetaDataProperty     []MetaDataPropertyType     `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType           `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType             `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType     `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                 `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                     `xml:"id,attr,omitempty"`
-	Remarks              *string                    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     []string                   `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
-	Scope                []string                   `xml:"http://www.opengis.net/gml/3.2 scope"`
-	VerticalCS           *VerticalCSPropertyType    `xml:"http://www.opengis.net/gml/3.2 verticalCS,omitempty"`
-	UsesVerticalCS       *VerticalCSPropertyType    `xml:"http://www.opengis.net/gml/3.2 usesVerticalCS,omitempty"`
-	VerticalDatum        *VerticalDatumPropertyType `xml:"http://www.opengis.net/gml/3.2 verticalDatum,omitempty"`
-	UsesVerticalDatum    *VerticalDatumPropertyType `xml:"http://www.opengis.net/gml/3.2 usesVerticalDatum,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:verticalCS is an association role to the vertical coordinate system used by this CRS.
+	VerticalCS     *VerticalCSPropertyType `xml:"http://www.opengis.net/gml/3.2 verticalCS,omitempty"`
+	UsesVerticalCS *VerticalCSPropertyType `xml:"http://www.opengis.net/gml/3.2 usesVerticalCS,omitempty"`
+	// gml:verticalDatum is an association role to the vertical datum used by this CRS.
+	VerticalDatum     *VerticalDatumPropertyType `xml:"http://www.opengis.net/gml/3.2 verticalDatum,omitempty"`
+	UsesVerticalDatum *VerticalDatumPropertyType `xml:"http://www.opengis.net/gml/3.2 usesVerticalDatum,omitempty"`
 }
 
 type VerticalCSPropertyType struct {
+	// gml:VerticalCS is a one-dimensional coordinate system used to record the heights or depths of points. Such a coordinate system is usually dependent on the Earth's gravity field, perhaps loosely as when atmospheric pressure is the basis for the vertical coordinate system axis. A VerticalCS shall have one gml:axis property element.
 	VerticalCS   *VerticalCSType `xml:"http://www.opengis.net/gml/3.2 VerticalCS,omitempty"`
 	NilReason    string          `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string          `xml:"remoteSchema,attr,omitempty"`
 }
 
 type VerticalCSType struct {
-	MetaDataProperty     []MetaDataPropertyType             `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType                   `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType                     `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType             `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType                         `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                             `xml:"id,attr,omitempty"`
-	Remarks              *string                            `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	Axis                 []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
-	UsesAxis             *CoordinateSystemAxisPropertyType  `xml:"http://www.opengis.net/gml/3.2 usesAxis,omitempty"`
-	AggregationType      string                             `xml:"aggregationType,attr,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
+	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
+	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
+	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
 }
 
 type VerticalDatumPropertyType struct {
+	// gml:VerticalDatum is a textual description and/or a set of parameters identifying a particular reference level surface used as a zero-height surface, including its position with respect to the Earth for any of the height types recognized by this International Standard.
 	VerticalDatum *VerticalDatumType `xml:"http://www.opengis.net/gml/3.2 VerticalDatum,omitempty"`
 	NilReason     string             `xml:"nilReason,attr,omitempty"`
 	RemoteSchema  string             `xml:"remoteSchema,attr,omitempty"`
 }
 
 type VerticalDatumType struct {
-	MetaDataProperty     []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
-	Description          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	DescriptionReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
-	Identifier           *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
-	Name                 []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id                   string                 `xml:"id,attr,omitempty"`
-	Remarks              *string                `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity     *string                `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
-	Scope                []string               `xml:"http://www.opengis.net/gml/3.2 scope"`
-	AnchorDefinition     *CodeType              `xml:"http://www.opengis.net/gml/3.2 anchorDefinition,omitempty"`
-	AnchorPoint          *CodeType              `xml:"http://www.opengis.net/gml/3.2 anchorPoint,omitempty"`
-	RealizationEpoch     *string                `xml:"http://www.opengis.net/gml/3.2 realizationEpoch,omitempty"`
+	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
+	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
+	DescriptionReference *ReferenceType `xml:"http://www.opengis.net/gml/3.2 descriptionReference,omitempty"`
+	// Often, a special identifier is assigned to an object by the maintaining authority with the intention that it is used in references to the object For such cases, the codeSpace shall be provided. That identifier is usually unique either globally or within an application domain. gml:identifier is a pre-defined property for such identifiers.
+	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
+	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
+	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
+	Id      string     `xml:"id,attr,omitempty"`
+	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
+	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
+	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
+	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	// gml:anchorDefinition is a description, possibly including coordinates, of the definition used to anchor the datum to the Earth. Also known as the "origin", especially for engineering and image datums. The codeSpace attribute may be used to reference a source of more detailed on this point or surface, or on a set of such descriptions.
+	// -	For a geodetic datum, this point is also known as the fundamental point, which is traditionally the point where the relationship between geoid and ellipsoid is defined. In some cases, the "fundamental point" may consist of a number of points. In those cases, the parameters defining the geoid/ellipsoid relationship have been averaged for these points, and the averages adopted as the datum definition.
+	// -	For an engineering datum, the anchor definition may be a physical point, or it may be a point with defined coordinates in another CRS.may
+	// -	For an image datum, the anchor definition is usually either the centre of the image or the corner of the image.
+	// -	For a temporal datum, this attribute is not defined. Instead of the anchor definition, a temporal datum carries a separate time origin of type DateTime.
+	AnchorDefinition *CodeType `xml:"http://www.opengis.net/gml/3.2 anchorDefinition,omitempty"`
+	AnchorPoint      *CodeType `xml:"http://www.opengis.net/gml/3.2 anchorPoint,omitempty"`
+	// gml:realizationEpoch is the time after which this datum definition is valid. See ISO 19111 Table 32 for details.
+	RealizationEpoch *string `xml:"http://www.opengis.net/gml/3.2 realizationEpoch,omitempty"`
 }
 
 type VolumeType struct {

@@ -4,18 +4,15 @@ import (
 	"encoding/xml"
 	"fmt"
 	"strings"
+
+	v3 "github.com/Kuroki-g/go-gml/pkg/gml/v3"
 )
 
-type xmlLineString struct {
-	SrsName      string          `xml:"srsName,attr,omitempty"`
-	SrsDimension int             `xml:"srsDimension,attr,omitempty"`
-	PosList      *xmlPosList     `xml:"posList"`
-	Pos          []xmlDirectPos  `xml:"pos"`
-	Coordinates  *xmlCoordinates `xml:"coordinates"`
-}
-
 func decodeLineStringElement(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
-	var x xmlLineString
+	if se.Name.Space == gmlNS2 {
+		return decodeLineStringV2(dec, se)
+	}
+	var x v3.LineStringType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return Geometry{}, fmt.Errorf("gml: LineString: %w", err)
 	}
@@ -23,10 +20,10 @@ func decodeLineStringElement(dec *xml.Decoder, se xml.StartElement) (Geometry, e
 	if err != nil {
 		return Geometry{}, err
 	}
-	return Geometry{Value: ls, EPSG: EPSGFromSRSName(x.SrsName)}, nil
+	return Geometry{Value: ls, SRSName: x.SrsName}, nil
 }
 
-func lineStringFromXML(x *xmlLineString) (LineString, error) {
+func lineStringFromXML(x *v3.LineStringType) (LineString, error) {
 	dim := x.SrsDimension
 	if x.PosList != nil {
 		return LineStringFromPosListString(x.PosList.Value, preferDim(dim, x.PosList.SrsDimension))

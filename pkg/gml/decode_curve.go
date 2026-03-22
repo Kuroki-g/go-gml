@@ -18,26 +18,39 @@ func decodeCurveElement(dec *xml.Decoder, se xml.StartElement) (Geometry, error)
 	if err != nil {
 		return Geometry{}, err
 	}
-	return Geometry{Value: ls, EPSG: EPSGFromSRSName(x.SrsName)}, nil
+	return Geometry{Value: ls, SRSName: x.SrsName}, nil
 }
 
 // lineStringFromCurve converts a gml:Curve to a LineString.
 // inheritDim is used when the Curve element itself has no srsDimension attribute.
 func lineStringFromCurve(x *v3.CurveType, inheritDim int) (LineString, error) {
-	if x.Segments == nil || x.Segments.LineStringSegment == nil {
+	if x.Segments == nil || len(x.Segments.LineStringSegment) == 0 {
 		return nil, fmt.Errorf("gml: Curve has no LineStringSegment")
 	}
-	seg := x.Segments.LineStringSegment
-	if seg.PosList != nil {
-		dim := preferDim(preferDim(inheritDim, x.SrsDimension), seg.PosList.SrsDimension)
-		return LineStringFromPosListString(seg.PosList.Value, dim)
-	}
-	if seg.Coordinates != nil {
-		coords, err := ParseCoordinates(seg.Coordinates.Value, seg.Coordinates.Cs, seg.Coordinates.Ts)
+	var result LineString
+	for i, seg := range x.Segments.LineStringSegment {
+		var ls LineString
+		var err error
+		if seg.PosList != nil {
+			dim := preferDim(preferDim(inheritDim, x.SrsDimension), seg.PosList.SrsDimension)
+			ls, err = LineStringFromPosListString(seg.PosList.Value, dim)
+		} else if seg.Coordinates != nil {
+			var coords []float64
+			coords, err = ParseCoordinates(seg.Coordinates.Value, seg.Coordinates.Cs, seg.Coordinates.Ts)
+			if err == nil {
+				ls, err = LineStringFromFlat(coords, 2)
+			}
+		} else {
+			return nil, fmt.Errorf("gml: LineStringSegment[%d] has no coordinate data", i)
+		}
 		if err != nil {
 			return nil, err
 		}
-		return LineStringFromFlat(coords, 2)
+		if len(result) > 0 && len(ls) > 0 {
+			result = append(result, ls[1:]...)
+		} else {
+			result = append(result, ls...)
+		}
 	}
-	return nil, fmt.Errorf("gml: LineStringSegment has no coordinate data")
+	return result, nil
 }

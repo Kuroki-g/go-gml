@@ -3,29 +3,12 @@ package gml
 import (
 	"encoding/xml"
 	"fmt"
+
+	v3 "github.com/Kuroki-g/go-gml/pkg/gml/v3"
 )
 
-type xmlLinearRing struct {
-	SrsDimension int             `xml:"srsDimension,attr,omitempty"`
-	PosList      *xmlPosList     `xml:"posList"`
-	Coordinates  *xmlCoordinates `xml:"coordinates"`
-}
-
-// xmlRingProp wraps exterior/interior that contain a LinearRing.
-// Note: gml:Ring (xlink-based topology) is not handled here.
-type xmlRingProp struct {
-	LinearRing *xmlLinearRing `xml:"LinearRing"`
-}
-
-type xmlPolygon struct {
-	SrsName      string        `xml:"srsName,attr,omitempty"`
-	SrsDimension int           `xml:"srsDimension,attr,omitempty"`
-	Exterior     *xmlRingProp  `xml:"exterior"`
-	Interior     []xmlRingProp `xml:"interior"`
-}
-
 func decodePolygonElement(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
-	var x xmlPolygon
+	var x v3.PolygonType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return Geometry{}, fmt.Errorf("gml: Polygon: %w", err)
 	}
@@ -33,28 +16,28 @@ func decodePolygonElement(dec *xml.Decoder, se xml.StartElement) (Geometry, erro
 	if err != nil {
 		return Geometry{}, err
 	}
-	return Geometry{Value: poly, EPSG: EPSGFromSRSName(x.SrsName)}, nil
+	return Geometry{Value: poly, SRSName: x.SrsName}, nil
 }
 
-func ringFromXML(ring *xmlLinearRing, inheritDim int) (Ring, error) {
-	if ring == nil {
+func ringFromLinearRing(lr *v3.LinearRingType, inheritDim int) (Ring, error) {
+	if lr == nil {
 		return nil, fmt.Errorf("gml: nil LinearRing")
 	}
-	dim := preferDim(inheritDim, ring.SrsDimension)
-	if ring.PosList != nil {
-		return RingFromPosListString(ring.PosList.Value, preferDim(dim, ring.PosList.SrsDimension))
+	dim := preferDim(inheritDim, lr.SrsDimension)
+	if lr.PosList != nil {
+		return RingFromPosListString(lr.PosList.Value, preferDim(dim, lr.PosList.SrsDimension))
 	}
-	if ring.Coordinates != nil {
-		return RingFromCoordinatesString(ring.Coordinates.Value, ring.Coordinates.Cs, ring.Coordinates.Ts)
+	if lr.Coordinates != nil {
+		return RingFromCoordinatesString(lr.Coordinates.Value, lr.Coordinates.Cs, lr.Coordinates.Ts)
 	}
 	return nil, fmt.Errorf("gml: LinearRing has no coordinate data")
 }
 
-func polygonFromXML(x *xmlPolygon) (Polygon, error) {
+func polygonFromXML(x *v3.PolygonType) (Polygon, error) {
 	dim := x.SrsDimension
 	var rings []Ring
 	if x.Exterior != nil && x.Exterior.LinearRing != nil {
-		r, err := ringFromXML(x.Exterior.LinearRing, dim)
+		r, err := ringFromLinearRing(x.Exterior.LinearRing, dim)
 		if err != nil {
 			return nil, fmt.Errorf("gml: Polygon exterior: %w", err)
 		}
@@ -64,7 +47,7 @@ func polygonFromXML(x *xmlPolygon) (Polygon, error) {
 		if ir.LinearRing == nil {
 			continue
 		}
-		r, err := ringFromXML(ir.LinearRing, dim)
+		r, err := ringFromLinearRing(ir.LinearRing, dim)
 		if err != nil {
 			return nil, fmt.Errorf("gml: Polygon interior[%d]: %w", i, err)
 		}

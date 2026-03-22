@@ -7,6 +7,7 @@ import (
 	"io"
 	"os"
 
+	"github.com/Kuroki-g/go-gml/pkg/gml"
 	"github.com/spf13/cobra"
 )
 
@@ -15,6 +16,7 @@ type inspectStats struct {
 	TotalFeatures int            `json:"total_features"`
 	GeometryTypes map[string]int `json:"geometry_types"`
 	EPSGCodes     map[string]int `json:"epsg_codes"`
+	SRSNames      map[string]int `json:"srs_names"`
 }
 
 var inspectCmd = &cobra.Command{
@@ -34,6 +36,7 @@ var inspectCmd = &cobra.Command{
 			File:          inFile,
 			GeometryTypes: map[string]int{},
 			EPSGCodes:     map[string]int{},
+			SRSNames:      map[string]int{},
 		}
 
 		reader := newGMLReader(r)
@@ -49,11 +52,18 @@ var inspectCmd = &cobra.Command{
 			stats.TotalFeatures++
 			stats.GeometryTypes[geomTypeName(g.Value)]++
 
-			epsgKey := fmt.Sprintf("EPSG:%d", g.EPSG)
-			if g.EPSG == 0 {
+			epsg := gml.EPSGFromSRSName(g.SRSName)
+			epsgKey := fmt.Sprintf("EPSG:%d", epsg)
+			if epsg == 0 {
 				epsgKey = "unknown"
 			}
 			stats.EPSGCodes[epsgKey]++
+
+			srsKey := g.SRSName
+			if srsKey == "" {
+				srsKey = "(none)"
+			}
+			stats.SRSNames[srsKey]++
 		}
 
 		enc := json.NewEncoder(os.Stdout)

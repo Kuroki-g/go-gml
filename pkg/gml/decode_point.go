@@ -3,17 +3,15 @@ package gml
 import (
 	"encoding/xml"
 	"fmt"
+
+	v3 "github.com/Kuroki-g/go-gml/pkg/gml/v3"
 )
 
-type xmlPoint struct {
-	SrsName      string          `xml:"srsName,attr,omitempty"`
-	SrsDimension int             `xml:"srsDimension,attr,omitempty"`
-	Pos          *xmlDirectPos   `xml:"pos"`
-	Coordinates  *xmlCoordinates `xml:"coordinates"`
-}
-
 func decodePointElement(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
-	var x xmlPoint
+	if se.Name.Space == gmlNS2 {
+		return decodePointV2(dec, se)
+	}
+	var x v3.PointType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return Geometry{}, fmt.Errorf("gml: Point: %w", err)
 	}
@@ -21,10 +19,10 @@ func decodePointElement(dec *xml.Decoder, se xml.StartElement) (Geometry, error)
 	if err != nil {
 		return Geometry{}, err
 	}
-	return Geometry{Value: pt, EPSG: EPSGFromSRSName(x.SrsName)}, nil
+	return Geometry{Value: pt, SRSName: x.SrsName}, nil
 }
 
-func pointFromXML(x *xmlPoint) (Point, error) {
+func pointFromXML(x *v3.PointType) (Point, error) {
 	if x.Pos != nil {
 		return PointFromPosString(x.Pos.Value, preferDim(x.SrsDimension, x.Pos.SrsDimension))
 	}

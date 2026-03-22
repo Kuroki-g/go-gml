@@ -54,10 +54,10 @@ func ParseCoordinates(s, cs, ts string) ([]float64, error) {
 	return result, nil
 }
 
-// ToPoints converts a flat coordinate slice into [][2]float64 points (2D).
+// ToPoints converts a flat coordinate slice into a slice of Points.
 // dim specifies the coordinate dimension (2 or 3). If dim <= 0 it defaults to 2.
-// For 3D input the Z value is silently dropped.
-func ToPoints(coords []float64, dim int) ([][2]float64, error) {
+// When srsDimension=3 is present in the GML source, pass dim=3 to preserve Z values.
+func ToPoints(coords []float64, dim int) ([]Point, error) {
 	if dim <= 0 {
 		dim = 2
 	}
@@ -70,9 +70,9 @@ func ToPoints(coords []float64, dim int) ([][2]float64, error) {
 	if len(coords)%dim != 0 {
 		return nil, fmt.Errorf("gml: coordinate count %d is not a multiple of dimension %d", len(coords), dim)
 	}
-	pts := make([][2]float64, len(coords)/dim)
+	pts := make([]Point, len(coords)/dim)
 	for i := range pts {
-		pts[i] = [2]float64{coords[i*dim], coords[i*dim+1]}
+		pts[i] = append(Point(nil), coords[i*dim:(i+1)*dim]...)
 	}
 	return pts, nil
 }

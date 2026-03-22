@@ -2,10 +2,9 @@ package gml
 
 import "fmt"
 
-// Point is a 2D coordinate pair [x, y] (longitude/easting, latitude/northing).
-// Memory layout is identical to [2]float64, so users can cast to
-// github.com/paulmach/orb.Point without copying.
-type Point [2]float64
+// Point is a coordinate tuple whose length equals the srsDimension of the source
+// GML element: [x, y] for 2D or [x, y, z] for 3D. Use len(p) to check dimension.
+type Point []float64
 
 // LineString is an ordered sequence of Points.
 type LineString []Point
@@ -34,8 +33,8 @@ type Bound struct {
 
 // -- helpers: flat []float64 → geometry types --
 
-// PointFromFlat builds a Point from a flat coord slice of length >= 2.
-// If dim > 2, extra ordinates (Z, M) are ignored.
+// PointFromFlat builds a Point from a flat coord slice.
+// Takes the first dim values. If dim <= 0 it defaults to 2.
 func PointFromFlat(coords []float64, dim int) (Point, error) {
 	if dim <= 0 {
 		dim = 2
@@ -43,12 +42,12 @@ func PointFromFlat(coords []float64, dim int) (Point, error) {
 	if len(coords) < dim {
 		return Point{}, fmt.Errorf("gml: need at least %d values for a point, got %d", dim, len(coords))
 	}
-	return Point{coords[0], coords[1]}, nil
+	return append(Point(nil), coords[:dim]...), nil
 }
 
 // LineStringFromFlat builds a LineString from a flat coord slice.
 func LineStringFromFlat(coords []float64, dim int) (LineString, error) {
-	pts, err := toPoints(coords, dim)
+	pts, err := ToPoints(coords, dim)
 	if err != nil {
 		return nil, err
 	}
@@ -57,7 +56,7 @@ func LineStringFromFlat(coords []float64, dim int) (LineString, error) {
 
 // RingFromFlat builds a Ring from a flat coord slice.
 func RingFromFlat(coords []float64, dim int) (Ring, error) {
-	pts, err := toPoints(coords, dim)
+	pts, err := ToPoints(coords, dim)
 	if err != nil {
 		return nil, err
 	}
@@ -101,21 +100,6 @@ func RingFromCoordinatesString(s, cs, ts string) (Ring, error) {
 		return nil, err
 	}
 	return RingFromFlat(coords, 2)
-}
-
-// -- internal --
-
-// toPoints converts []float64 → []Point, reusing ToPoints from coords.go.
-func toPoints(coords []float64, dim int) ([]Point, error) {
-	raw, err := ToPoints(coords, dim)
-	if err != nil {
-		return nil, err
-	}
-	pts := make([]Point, len(raw))
-	for i, p := range raw {
-		pts[i] = Point(p)
-	}
-	return pts, nil
 }
 
 // effectiveDim returns dim if > 0, otherwise infers from total coord count.

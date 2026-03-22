@@ -44,9 +44,6 @@ func TestParsePoint_pos(t *testing.T) {
 	if pt[0] != 139.691667 || pt[1] != 35.689722 {
 		t.Errorf("got %v", pt)
 	}
-	if gs[0].EPSG != 6668 {
-		t.Errorf("EPSG: got %d, want 6668", gs[0].EPSG)
-	}
 }
 
 func TestParsePoint_coordinates(t *testing.T) {
@@ -69,8 +66,10 @@ func TestParsePoint_3D(t *testing.T) {
 	</gml:Point>`
 	gs := readAll(t, xml)
 	pt := gs[0].Value.(Point)
-	// Z is dropped
-	if pt[0] != 139.7 || pt[1] != 35.6 {
+	if len(pt) != 3 {
+		t.Fatalf("expected 3D point (len=3), got len=%d", len(pt))
+	}
+	if pt[0] != 139.7 || pt[1] != 35.6 || pt[2] != 10.5 {
 		t.Errorf("got %v", pt)
 	}
 }
@@ -89,7 +88,7 @@ func TestParseLineString_posList(t *testing.T) {
 	if len(ls) != 3 {
 		t.Fatalf("len=%d want 3", len(ls))
 	}
-	if ls[0] != (Point{139.7, 35.6}) {
+	if !pointEq(ls[0], Point{139.7, 35.6}) {
 		t.Errorf("ls[0]=%v", ls[0])
 	}
 }
@@ -172,7 +171,7 @@ func TestParseMultiPoint(t *testing.T) {
 	if len(mp) != 2 {
 		t.Fatalf("len=%d want 2", len(mp))
 	}
-	if mp[0] != (Point{139.7, 35.6}) {
+	if !pointEq(mp[0], Point{139.7, 35.6}) {
 		t.Errorf("mp[0]=%v", mp[0])
 	}
 }
@@ -259,25 +258,22 @@ func TestParseEnvelope_lowerUpper(t *testing.T) {
 	</gml:Envelope>`
 	gs := readAll(t, xml)
 	b := gs[0].Value.(Bound)
-	if b.Min != (Point{139.0, 35.0}) {
+	if !pointEq(b.Min, Point{139.0, 35.0}) {
 		t.Errorf("Min=%v", b.Min)
 	}
-	if b.Max != (Point{140.0, 36.0}) {
+	if !pointEq(b.Max, Point{140.0, 36.0}) {
 		t.Errorf("Max=%v", b.Max)
-	}
-	if gs[0].EPSG != 6668 {
-		t.Errorf("EPSG=%d want 6668", gs[0].EPSG)
 	}
 }
 
 func TestParseEnvelope_pos(t *testing.T) {
-	xml := `<gml:Envelope ` + gml2NS + ` srsDimension="2">
+	xml := `<gml:Envelope ` + gml3NS + ` srsDimension="2">
 		<gml:pos>139.0 35.0</gml:pos>
 		<gml:pos>140.0 36.0</gml:pos>
 	</gml:Envelope>`
 	gs := readAll(t, xml)
 	b := gs[0].Value.(Bound)
-	if b.Min != (Point{139.0, 35.0}) || b.Max != (Point{140.0, 36.0}) {
+	if !pointEq(b.Min, Point{139.0, 35.0}) || !pointEq(b.Max, Point{140.0, 36.0}) {
 		t.Errorf("got %v", b)
 	}
 }
@@ -338,11 +334,8 @@ func TestParseCurve_posList(t *testing.T) {
 	if len(ls) != 3 {
 		t.Fatalf("len=%d want 3", len(ls))
 	}
-	if ls[0] != (Point{35.74504, 139.71950}) {
+	if !pointEq(ls[0], Point{35.74504, 139.71950}) {
 		t.Errorf("ls[0]=%v", ls[0])
-	}
-	if gs[0].EPSG != 6668 {
-		t.Errorf("EPSG=%d want 6668", gs[0].EPSG)
 	}
 }
 
@@ -439,8 +432,5 @@ func TestParseSurface_ringCurveMember(t *testing.T) {
 	// 4 curves × 3 pts each, shared endpoints elided: 3 + 2 + 2 + 2 = 9
 	if len(poly[0]) != 9 {
 		t.Fatalf("exterior points=%d want 9", len(poly[0]))
-	}
-	if gs[0].EPSG != 6668 {
-		t.Errorf("EPSG=%d want 6668", gs[0].EPSG)
 	}
 }
