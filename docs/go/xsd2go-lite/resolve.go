@@ -24,6 +24,8 @@ type Resolver struct {
 	allSimpleTypes map[string]*SimpleType
 	// All global elements across all schemas, keyed by "targetNS localName" → type string.
 	allElements map[string]string
+	// All global element docs, keyed by "targetNS localName" → documentation text.
+	allElementDocs map[string]string
 	// All attributeGroups across all schemas, keyed by "targetNS localName".
 	allAttrGroups map[string]*AttrGroup
 	// All groups across all schemas, keyed by "targetNS localName".
@@ -42,6 +44,7 @@ func newResolver() *Resolver {
 		allComplexTypes: make(map[string]*ComplexType),
 		allSimpleTypes:  make(map[string]*SimpleType),
 		allElements:     make(map[string]string),
+		allElementDocs:  make(map[string]string),
 		allAttrGroups:   make(map[string]*AttrGroup),
 		allGroups:       make(map[string][]rawField),
 		substHeads:      make(map[string][]substMember),
@@ -127,6 +130,10 @@ func (r *Resolver) Load(filename string) (*Schema, error) {
 	for name, typ := range s.Elements {
 		key := ns + " " + name
 		r.allElements[key] = typ
+	}
+	for name, doc := range s.ElementDocs {
+		key := ns + " " + name
+		r.allElementDocs[key] = doc
 	}
 	for name, ag := range s.AttributeGroups {
 		agCopy := ag
@@ -285,12 +292,17 @@ func (r *Resolver) resolveRawField(rf rawField, schemaNS string, visiting map[st
 		if resolvedType == "" {
 			resolvedType = "string"
 		}
+		doc := rf.Doc
+		if doc == "" {
+			doc = r.allElementDocs[refKey]
+		}
 		f := Field{
 			GoName: goName(refName),
 			XMLTag: buildXMLTag(refNS, refName, false),
 			GoType: resolvedType,
 			Omit:   rf.MinOccurs == "0" || rf.MinOccurs == "",
 			Slice:  rf.MaxOccurs == "unbounded" || (rf.MaxOccurs != "" && rf.MaxOccurs != "1"),
+			Doc:    doc,
 		}
 		if f.Slice {
 			f.GoType = "[]" + strings.TrimPrefix(f.GoType, "[]")
@@ -305,13 +317,17 @@ func (r *Resolver) resolveRawField(rf rawField, schemaNS string, visiting map[st
 			if memberGoType == "" {
 				memberGoType = "string"
 			}
-			memberGoType = "*" + strings.TrimPrefix(memberGoType, "*")
+			if f.Slice {
+				memberGoType = "[]" + strings.TrimPrefix(memberGoType, "[]")
+			} else {
+				memberGoType = "*" + strings.TrimPrefix(memberGoType, "*")
+			}
 			result = append(result, Field{
 				GoName: goName(member.Name),
 				XMLTag: buildXMLTag(member.NS, member.Name, false),
 				GoType: memberGoType,
-				Omit:   true,
-				Slice:  false,
+				Omit:   !f.Slice,
+				Slice:  f.Slice,
 			})
 		}
 		return result
@@ -399,6 +415,7 @@ func (r *Resolver) resolveRawField(rf rawField, schemaNS string, visiting map[st
 		IsAttr: rf.IsAttr,
 		Omit:   isOmit,
 		Slice:  isSlice,
+		Doc:    rf.Doc,
 	}
 
 	if isSlice && !rf.IsAttr {

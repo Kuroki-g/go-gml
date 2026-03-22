@@ -36,6 +36,7 @@ type xsdComplexType struct {
 	Name           string             `xml:"name,attr"`
 	Abstract       string             `xml:"abstract,attr"`
 	Mixed          string             `xml:"mixed,attr"`
+	Annotation     *xsdAnnotation     `xml:"annotation"`
 	SimpleContent  *xsdSimpleContent  `xml:"simpleContent"`
 	ComplexContent *xsdComplexContent `xml:"complexContent"`
 	Sequence       *xsdSequence       `xml:"sequence"`
@@ -88,6 +89,7 @@ type xsdElement struct {
 	Type        string          `xml:"type,attr"`
 	MinOccurs   string          `xml:"minOccurs,attr"`
 	MaxOccurs   string          `xml:"maxOccurs,attr"`
+	Annotation  *xsdAnnotation  `xml:"annotation"`
 	ComplexType *xsdComplexType `xml:"complexType"`
 	SimpleType  *xsdSimpleType  `xml:"simpleType"`
 	SubstGroup  string          `xml:"substitutionGroup,attr"`
@@ -95,12 +97,13 @@ type xsdElement struct {
 }
 
 type xsdAttribute struct {
-	Name    string         `xml:"name,attr"`
-	Ref     string         `xml:"ref,attr"`
-	Type    string         `xml:"type,attr"`
-	Use     string         `xml:"use,attr"`
-	Default string         `xml:"default,attr"`
-	Simple  *xsdSimpleType `xml:"simpleType"`
+	Name       string         `xml:"name,attr"`
+	Ref        string         `xml:"ref,attr"`
+	Type       string         `xml:"type,attr"`
+	Use        string         `xml:"use,attr"`
+	Default    string         `xml:"default,attr"`
+	Annotation *xsdAnnotation `xml:"annotation"`
+	Simple     *xsdSimpleType `xml:"simpleType"`
 }
 
 type xsdAttrGroup struct {
@@ -126,6 +129,10 @@ type xsdGroupRef struct {
 	Ref       string `xml:"ref,attr"`
 	MinOccurs string `xml:"minOccurs,attr"`
 	MaxOccurs string `xml:"maxOccurs,attr"`
+}
+
+type xsdAnnotation struct {
+	Documentation string `xml:"documentation"`
 }
 
 type xsdSimpleType struct {
@@ -157,6 +164,7 @@ type Schema struct {
 	ComplexTypes    []ComplexType
 	SimpleTypes     []SimpleType
 	Elements        map[string]string    // name → type (global elements)
+	ElementDocs     map[string]string    // name → xs:annotation/xs:documentation (global elements)
 	SubstGroups     map[string]string    // concrete element name → abstract element head (QName)
 	GlobalAttrs     map[string]Attribute // name → Attribute
 	AttributeGroups map[string]AttrGroup
@@ -174,12 +182,14 @@ type rawField struct {
 	MinOccurs string
 	MaxOccurs string
 	GroupRef  string // group ref="ns:name"
+	Doc       string // xs:annotation/xs:documentation text
 }
 
 type ComplexType struct {
 	Name       string
 	Abstract   bool
 	Mixed      bool
+	Doc        string // xs:annotation/xs:documentation text
 	RawFields  []rawField
 	AttrGroups []string // list of attributeGroup ref names
 	Source     string   // targetNamespace of the defining schema
@@ -195,6 +205,7 @@ type Field struct {
 	IsChar bool
 	Omit   bool
 	Slice  bool
+	Doc    string // xs:annotation/xs:documentation text
 }
 
 type SimpleType struct {
@@ -255,6 +266,7 @@ func parseSchema(filename string) (*Schema, error) {
 		Filename:        filename,
 		NSMap:           nsMap,
 		Elements:        make(map[string]string),
+		ElementDocs:     make(map[string]string),
 		SubstGroups:     make(map[string]string),
 		GlobalAttrs:     make(map[string]Attribute),
 		AttributeGroups: make(map[string]AttrGroup),
@@ -270,6 +282,12 @@ func parseSchema(filename string) (*Schema, error) {
 		s.Elements[el.Name] = t
 		if el.SubstGroup != "" {
 			s.SubstGroups[el.Name] = el.SubstGroup
+		}
+		if el.Annotation != nil {
+			doc := strings.TrimSpace(el.Annotation.Documentation)
+			if doc != "" {
+				s.ElementDocs[el.Name] = doc
+			}
 		}
 	}
 
@@ -333,6 +351,9 @@ func convertComplexType(ct xsdComplexType, ns string) ComplexType {
 		Abstract: ct.Abstract == "true",
 		Mixed:    ct.Mixed == "true",
 		Source:   ns,
+	}
+	if ct.Annotation != nil {
+		result.Doc = strings.TrimSpace(ct.Annotation.Documentation)
 	}
 
 	switch {
@@ -416,12 +437,13 @@ func collectSequenceFields(seq *xsdSequence) []rawField {
 	}
 	var fields []rawField
 	for _, el := range seq.Elements {
+		var rf rawField
 		if el.Ref != "" {
-			fields = append(fields, rawField{
+			rf = rawField{
 				Ref:       el.Ref,
 				MinOccurs: el.MinOccurs,
 				MaxOccurs: el.MaxOccurs,
-			})
+			}
 		} else {
 			t := el.Type
 			if t == "" && el.ComplexType != nil {
@@ -429,20 +451,44 @@ func collectSequenceFields(seq *xsdSequence) []rawField {
 			} else if t == "" {
 				t = "string"
 			}
-			fields = append(fields, rawField{
+			rf = rawField{
 				LocalName: el.Name,
 				TypeRef:   t,
 				MinOccurs: el.MinOccurs,
 				MaxOccurs: el.MaxOccurs,
-			})
+			}
 		}
+		if el.Annotation != nil {
+			rf.Doc = strings.TrimSpace(el.Annotation.Documentation)
+		}
+		// If this sequence/choice container has maxOccurs="unbounded", propagate
+		// it to direct child elements so they become slices.
+		if seq.MaxOccurs == "unbounded" && rf.MaxOccurs != "unbounded" {
+			rf.MaxOccurs = "unbounded"
+		}
+		fields = append(fields, rf)
 	}
-	// Recurse into nested sequences/choices
+	// Recurse into nested sequences/choices.
+	// If the container itself has maxOccurs="unbounded", propagate it to all
+	// child fields so that elements like gml:pos inside
+	// <xs:choice maxOccurs="unbounded"> become slices.
 	for i := range seq.Sequences {
-		fields = append(fields, collectSequenceFields(&seq.Sequences[i])...)
+		childFields := collectSequenceFields(&seq.Sequences[i])
+		if seq.Sequences[i].MaxOccurs == "unbounded" {
+			for j := range childFields {
+				childFields[j].MaxOccurs = "unbounded"
+			}
+		}
+		fields = append(fields, childFields...)
 	}
 	for i := range seq.Choices {
-		fields = append(fields, collectSequenceFields(&seq.Choices[i])...)
+		childFields := collectSequenceFields(&seq.Choices[i])
+		if seq.Choices[i].MaxOccurs == "unbounded" {
+			for j := range childFields {
+				childFields[j].MaxOccurs = "unbounded"
+			}
+		}
+		fields = append(fields, childFields...)
 	}
 	// Group refs
 	for _, gr := range seq.Groups {
@@ -460,10 +506,15 @@ func collectSequenceFields(seq *xsdSequence) []rawField {
 func convertAttributes(attrs []xsdAttribute) []rawField {
 	var fields []rawField
 	for _, a := range attrs {
+		doc := ""
+		if a.Annotation != nil {
+			doc = strings.TrimSpace(a.Annotation.Documentation)
+		}
 		if a.Ref != "" {
 			fields = append(fields, rawField{
 				AttrRef: a.Ref,
 				IsAttr:  true,
+				Doc:     doc,
 			})
 		} else {
 			fields = append(fields, rawField{
@@ -471,6 +522,7 @@ func convertAttributes(attrs []xsdAttribute) []rawField {
 				TypeRef:   a.Type,
 				IsAttr:    true,
 				MinOccurs: a.Use, // "required" | "optional" | ""
+				Doc:       doc,
 			})
 		}
 	}

@@ -14,6 +14,7 @@ var (
 	pkgName      string
 	outputFile   string
 	skipAbstract bool
+	withDoc      bool
 )
 
 var rootCmd = &cobra.Command{
@@ -37,6 +38,7 @@ func init() {
 	rootCmd.Flags().StringVarP(&pkgName, "package", "p", "gml", "Go package name")
 	rootCmd.Flags().StringVarP(&outputFile, "output", "o", "", "Output file path (default: stdout)")
 	rootCmd.Flags().BoolVar(&skipAbstract, "skip-abstract", false, "Skip abstract types")
+	rootCmd.Flags().BoolVar(&withDoc, "with-doc", false, "Include XSD documentation as field comments")
 	_ = rootCmd.MarkFlagRequired("namespace")
 }
 
@@ -55,7 +57,7 @@ func run(inputXSD string) error {
 		fmt.Fprintf(os.Stderr, "warn: no types found for namespace %q\n", namespace)
 	}
 
-	src, err := Generate(types, pkgName, skipAbstract)
+	src, err := Generate(types, pkgName, skipAbstract, withDoc)
 	if err != nil {
 		// Print unformatted source for debugging, but still report error.
 		fmt.Fprint(os.Stderr, src)

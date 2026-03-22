@@ -9,7 +9,8 @@ import (
 )
 
 // Generate produces a Go source file string for the given types.
-func Generate(types []*ComplexType, pkgName string, skipAbstract bool) (string, error) {
+// withDoc controls whether XSD documentation is emitted as field comments.
+func Generate(types []*ComplexType, pkgName string, skipAbstract bool, withDoc bool) (string, error) {
 	// Sort for deterministic output.
 	sort.Slice(types, func(i, j int) bool {
 		return types[i].Name < types[j].Name
@@ -28,7 +29,7 @@ func Generate(types []*ComplexType, pkgName string, skipAbstract bool) (string, 
 		if ct.Name == "" {
 			continue
 		}
-		writeStruct(&sb, ct)
+		writeStruct(&sb, ct, withDoc)
 	}
 
 	src := sb.String()
@@ -40,12 +41,15 @@ func Generate(types []*ComplexType, pkgName string, skipAbstract bool) (string, 
 	return string(formatted), nil
 }
 
-func writeStruct(sb *strings.Builder, ct *ComplexType) {
+func writeStruct(sb *strings.Builder, ct *ComplexType, withDoc bool) {
 	sb.WriteString("type ")
 	sb.WriteString(goTypeName(ct.Name))
 	sb.WriteString(" struct {\n")
 
 	for _, f := range ct.Fields {
+		if withDoc && f.Doc != "" {
+			writeComment(sb, f.Doc)
+		}
 		sb.WriteString("\t")
 		sb.WriteString(f.GoName)
 		sb.WriteString(" ")
@@ -58,6 +62,15 @@ func writeStruct(sb *strings.Builder, ct *ComplexType) {
 	}
 
 	sb.WriteString("}\n\n")
+}
+
+// writeComment emits a doc string as Go line comments inside a struct body.
+func writeComment(sb *strings.Builder, doc string) {
+	for _, line := range strings.Split(doc, "\n") {
+		sb.WriteString("\t// ")
+		sb.WriteString(strings.TrimSpace(line))
+		sb.WriteString("\n")
+	}
 }
 
 // buildTagSuffix returns the options part of the xml tag after the name/ns.

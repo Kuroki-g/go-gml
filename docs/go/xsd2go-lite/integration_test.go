@@ -368,7 +368,7 @@ func TestEndToEnd_basicPipeline(t *testing.T) {
 	}
 
 	types := r.ResolveAll("http://example.com/geo")
-	src, err := Generate(types, "geo", false)
+	src, err := Generate(types, "geo", false, false)
 	if err != nil {
 		t.Fatalf("Generate: %v\n%s", err, src)
 	}
@@ -440,7 +440,7 @@ func TestBug1_simpleTypeRestrictionNonBuiltinBase(t *testing.T) {
 	}
 	types := r.ResolveAll("http://example.com/test")
 
-	src, err := Generate(types, "test", false)
+	src, err := Generate(types, "test", false, false)
 	// Before the fix, Generate would produce `Code * \`xml:...\`` (invalid Go)
 	// and go/format would fail. After the fix it must compile cleanly.
 	if err != nil {
@@ -484,7 +484,7 @@ func TestBug2_elementRefWithEmptyGoType(t *testing.T) {
 	}
 	types := r.ResolveAll("http://example.com/test")
 
-	src, err := Generate(types, "test", false)
+	src, err := Generate(types, "test", false, false)
 	if err != nil {
 		t.Fatalf("Generate produced invalid Go (bug2): %v", err)
 	}
@@ -494,7 +494,7 @@ func TestBug2_elementRefWithEmptyGoType(t *testing.T) {
 }
 
 // Bug3: __base__:simpleType path passed baseST.GoType="" directly into Field.GoType.
-// This produced `Value  \`xml:",chardata"\`` which is invalid Go.
+// This produced `Value  \`xml:",chardata"\“ which is invalid Go.
 func TestBug3_baseSimpleTypeWithEmptyGoType(t *testing.T) {
 	xsd := `<?xml version="1.0" encoding="UTF-8"?>
 <schema targetNamespace="http://example.com/test"
@@ -524,7 +524,7 @@ func TestBug3_baseSimpleTypeWithEmptyGoType(t *testing.T) {
 	}
 	types := r.ResolveAll("http://example.com/test")
 
-	src, err := Generate(types, "test", false)
+	src, err := Generate(types, "test", false, false)
 	if err != nil {
 		t.Fatalf("Generate produced invalid Go (bug3): %v", err)
 	}
