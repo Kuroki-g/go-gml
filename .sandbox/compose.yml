@@ -47,6 +47,9 @@ services:
       mitmproxy:
         condition: service_healthy
 
+    ports:
+      - "6060:6060"
+
     networks:
       - internal
 
