@@ -45,21 +45,32 @@ cover: $(GML_TMP)
 .PHONY: xsd2go-build xsd2go-test xsd2go-cover xsd2go-gen
 
 xsd2go-build:
-	cd $(XSD2GO_DIR) && go build -o xsd2go-lite .
+	cd $(XSD2GO_DIR) && GOWORK=off go build -o xsd2go-lite .
 
 xsd2go-test: $(XSD2GO_TMP)
-	cd $(XSD2GO_DIR) && GOTMPDIR=.tmp go test -count=1 ./...
+	cd $(XSD2GO_DIR) && GOWORK=off GOTMPDIR=.tmp go test -count=1 ./...
 
 xsd2go-cover: $(XSD2GO_TMP)
-	cd $(XSD2GO_DIR) && GOTMPDIR=.tmp go test -count=1 -coverprofile=.tmp/cover.out ./...
+	cd $(XSD2GO_DIR) && GOWORK=off GOTMPDIR=.tmp go test -count=1 -coverprofile=.tmp/cover.out ./...
 	cd $(XSD2GO_DIR) && go tool cover -func=.tmp/cover.out
+
+GML2_NS := http://www.opengis.net/gml
 
 xsd2go-gen: xsd2go-build
 	$(XSD2GO_BIN) \
 		-n "$(GML_NS)" \
 		-p gml \
+		--with-doc \
 		-o pkg/gml/v3/geometry.go \
 		$(XSD2GO_DIR)/schemas/gml/3.2.1/geometryAggregates.xsd
+
+xsd2go-gen-v2: xsd2go-build
+	$(XSD2GO_BIN) \
+		-n "$(GML2_NS)" \
+		-p gml \
+		--with-doc \
+		-o pkg/gml/v2/geometry.go \
+		$(XSD2GO_DIR)/schemas/gml/2.1.2/geometry.xsd
 
 $(XSD2GO_TMP):
 	mkdir -p $(XSD2GO_TMP)
