@@ -8,6 +8,7 @@ import (
 
 // TestN03_2022Format parses a 2022 N03 file that uses standalone gml:Curve/LineStringSegment
 // with the non-standard namespace http://schemas.opengis.net/gml/3.2.1/gml.xsd.
+// gml:Surface references gml:Curve via xlink:href; Polygons must have non-empty coordinates.
 func TestN03_2022Format(t *testing.T) {
 	f, err := os.Open("../../testdata/N03/N03-22_13_220101.xml")
 	if err != nil {
@@ -16,7 +17,7 @@ func TestN03_2022Format(t *testing.T) {
 	defer f.Close()
 
 	r := NewReader(f)
-	var curves, others int
+	var curves, polygons, emptyPolygons int
 	for {
 		g, err := r.Next()
 		if err == io.EOF {
@@ -25,16 +26,29 @@ func TestN03_2022Format(t *testing.T) {
 		if err != nil {
 			t.Fatalf("parse error: %v", err)
 		}
-		if _, ok := g.Value.(LineString); ok {
+		switch v := g.Value.(type) {
+		case LineString:
 			curves++
-		} else {
-			others++
+		case Polygon:
+			polygons++
+			if len(v) == 0 || len(v[0]) == 0 {
+				emptyPolygons++
+			}
 		}
 	}
 	if curves == 0 {
-		t.Errorf("expected at least one LineString (from gml:Curve), got 0")
+		t.Errorf("expected LineStrings (from gml:Curve), got 0")
 	}
-	t.Logf("N03 2022 format: %d LineStrings, %d other geometries", curves, others)
+	if polygons == 0 {
+		t.Errorf("expected Polygons (from gml:Surface via xlink:href), got 0")
+	}
+	// N03-22 の大部分の Surface は xlink:href が dangling reference（データバグ）のため
+	// 空 Polygon を返す。これは XSD 準拠の正しい挙動。
+	// OrientableCurve が存在する sf0/sf128/sf129/sf140 のみ解決される。
+	if emptyPolygons == polygons {
+		t.Errorf("all %d Polygons are empty: expected at least some to resolve via OrientableCurve", polygons)
+	}
+	t.Logf("N03 2022 format: %d LineStrings, %d Polygons (%d empty)", curves, polygons, emptyPolygons)
 }
 
 // TestN03_2024Format parses a 2024 N03 file that uses gml:Surface/PolygonPatch

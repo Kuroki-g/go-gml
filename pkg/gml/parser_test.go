@@ -369,6 +369,50 @@ func TestParseSurface_linearRing(t *testing.T) {
 	}
 }
 
+// ---- Surface with xlink:href → OrientableCurve → Curve (N03 2022 old format) ----
+
+func TestParseSurface_xlinkHref_via_orientablecurve(t *testing.T) {
+	const xlinkNS = `xmlns:xlink="http://www.w3.org/1999/xlink"`
+	xmlStr := `<root ` + gml3NS + ` ` + xlinkNS + `>
+		<gml:Curve gml:id="cv1_0">
+			<gml:segments>
+				<gml:LineStringSegment>
+					<gml:posList>0 0 10 0 10 10 0 10 0 0</gml:posList>
+				</gml:LineStringSegment>
+			</gml:segments>
+		</gml:Curve>
+		<gml:OrientableCurve gml:id="_cv1_0" orientation="+">
+			<gml:baseCurve xlink:href="#cv1_0"/>
+		</gml:OrientableCurve>
+		<gml:Surface>
+			<gml:patches>
+				<gml:PolygonPatch>
+					<gml:exterior>
+						<gml:Ring>
+							<gml:curveMember xlink:href="#_cv1_0"/>
+						</gml:Ring>
+					</gml:exterior>
+				</gml:PolygonPatch>
+			</gml:patches>
+		</gml:Surface>
+	</root>`
+	gs := readAll(t, xmlStr)
+	// Expect: 1 LineString (from Curve) + 1 Polygon (from Surface)
+	if len(gs) != 2 {
+		t.Fatalf("expected 2 geometries (LineString+Polygon), got %d", len(gs))
+	}
+	poly, ok := gs[1].Value.(Polygon)
+	if !ok {
+		t.Fatalf("expected Polygon, got %T", gs[1].Value)
+	}
+	if len(poly) == 0 || len(poly[0]) == 0 {
+		t.Fatalf("Polygon has empty coordinates: xlink:href resolution failed")
+	}
+	if len(poly[0]) != 5 {
+		t.Errorf("exterior points=%d want 5", len(poly[0]))
+	}
+}
+
 // ---- Surface with gml:Ring > curveMember > Curve (N03 new format) ----
 
 func TestParseSurface_ringCurveMember(t *testing.T) {

@@ -25,7 +25,8 @@ type Geometry struct {
 
 // Reader scans a GML document for geometry elements.
 type Reader struct {
-	dec *xml.Decoder
+	dec      *xml.Decoder
+	resolver *curveResolver // gml:id → Curve/OrientableCurve, for xlink:href resolution
 }
 
 // NewReader creates a Reader that streams geometry elements from r.
@@ -35,7 +36,7 @@ func NewReader(r io.Reader) *Reader {
 	dec.CharsetReader = func(charset string, input io.Reader) (io.Reader, error) {
 		return nil, fmt.Errorf("unsupported charset %q: call SetCharsetReader to handle non-UTF-8 files", charset)
 	}
-	return &Reader{dec: dec}
+	return &Reader{dec: dec, resolver: newCurveResolver()}
 }
 
 // SetCharsetReader installs a charset conversion function on the underlying decoder.
@@ -62,9 +63,7 @@ var handlers = map[string]handlerFunc{
 	"Point":      decodePointElement,
 	"LineString": decodeLineStringElement,
 	"Polygon":    decodePolygonElement,
-	// Real-data elements (gml:Curve and gml:Surface with patch/segment pattern)
-	"Curve":   decodeCurveElement,
-	"Surface": decodeSurfaceElement,
+	// Curve and Surface are handled via Reader methods in Next() for xlink:href support.
 	// Multi-geometry
 	"MultiPoint":      decodeMultiPointElement,
 	"MultiCurve":      decodeMultiCurveElement,
@@ -89,6 +88,18 @@ func (r *Reader) Next() (Geometry, error) {
 		}
 		if !isGMLNS(se.Name.Space) {
 			continue
+		}
+		// Curve, OrientableCurve, Surface need Reader state for xlink:href resolution.
+		switch se.Name.Local {
+		case "Curve":
+			return r.handleCurve(r.dec, se)
+		case "OrientableCurve":
+			if err := r.cacheOrientableCurve(r.dec, se); err != nil {
+				return Geometry{}, err
+			}
+			continue
+		case "Surface":
+			return r.handleSurface(r.dec, se)
 		}
 		h, ok := handlers[se.Name.Local]
 		if !ok {

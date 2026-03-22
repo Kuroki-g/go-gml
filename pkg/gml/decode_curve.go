@@ -27,8 +27,10 @@ func newCurveResolver() *curveResolver {
 // Resolution order:
 //  1. Direct Curve lookup by id.
 //  2. OrientableCurve lookup by id → follow baseCurve to Curve.
-//  3. Fallback: strip a leading '_' and repeat (N03 old-format convention where
-//     #_cvX_Y references Curve cvX_Y directly without an intermediate OrientableCurve).
+//
+// Unresolvable references return nil; the caller emits an empty ring.
+// Per GML 3.2.1 XSD, xlink:href="#foo" must match an existing gml:id="foo"
+// exactly (gml:id is xs:ID; xlink:href is anyURI with fragment semantics).
 func (cr *curveResolver) resolve(id string) *v3.CurveType {
 	if c, ok := cr.curves[id]; ok {
 		return c
@@ -40,10 +42,6 @@ func (cr *curveResolver) resolve(id string) *v3.CurveType {
 		if oc.BaseCurve.Href != "" {
 			return cr.curves[strings.TrimPrefix(oc.BaseCurve.Href, "#")]
 		}
-	}
-	// N03 old-format: "#_cvX_Y" → no OrientableCurve present, resolve to "cvX_Y".
-	if strings.HasPrefix(id, "_") {
-		return cr.curves[id[1:]]
 	}
 	return nil
 }
