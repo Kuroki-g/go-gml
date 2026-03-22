@@ -52,14 +52,18 @@ var inspectCmd = &cobra.Command{
 			stats.TotalFeatures++
 			stats.GeometryTypes[geomTypeName(g.Value)]++
 
-			epsg := gml.EPSGFromSRSName(g.SRSName)
+			srsName := ""
+			if g.SRSName != nil {
+				srsName = *g.SRSName
+			}
+			epsg := gml.EPSGFromSRSName(srsName)
 			epsgKey := fmt.Sprintf("EPSG:%d", epsg)
 			if epsg == 0 {
 				epsgKey = "unknown"
 			}
 			stats.EPSGCodes[epsgKey]++
 
-			srsKey := g.SRSName
+			srsKey := srsName
 			if srsKey == "" {
 				srsKey = "(none)"
 			}

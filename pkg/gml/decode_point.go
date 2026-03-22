@@ -24,10 +24,10 @@ func decodePointElement(dec *xml.Decoder, se xml.StartElement) (Geometry, error)
 
 func pointFromXML(x *v3.PointType) (Point, error) {
 	if x.Pos != nil {
-		return PointFromPosString(x.Pos.Value, preferDim(x.SrsDimension, x.Pos.SrsDimension))
+		return PointFromPosString(x.Pos.Value, preferDim(derefDim(x.SrsDimension), derefDim(x.Pos.SrsDimension)))
 	}
 	if x.Coordinates != nil {
-		coords, err := ParseCoordinates(x.Coordinates.Value, x.Coordinates.Cs, x.Coordinates.Ts)
+		coords, err := ParseCoordinates(x.Coordinates.Value, derefStrOr(x.Coordinates.Cs, ","), derefStrOr(x.Coordinates.Ts, " "))
 		if err != nil {
 			return Point{}, err
 		}
@@ -42,4 +42,20 @@ func preferDim(a, b int) int {
 		return a
 	}
 	return b
+}
+
+// derefDim dereferences a *int dimension attribute; nil → 0.
+func derefDim(p *int) int {
+	if p == nil {
+		return 0
+	}
+	return *p
+}
+
+// derefStrOr dereferences a *string attribute; nil → def (the XSD default value).
+func derefStrOr(p *string, def string) string {
+	if p == nil {
+		return def
+	}
+	return *p
 }

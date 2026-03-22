@@ -32,11 +32,11 @@ func lineStringFromCurve(x *v3.CurveType, inheritDim int) (LineString, error) {
 		var ls LineString
 		var err error
 		if seg.PosList != nil {
-			dim := preferDim(preferDim(inheritDim, x.SrsDimension), seg.PosList.SrsDimension)
+			dim := preferDim(preferDim(inheritDim, derefDim(x.SrsDimension)), derefDim(seg.PosList.SrsDimension))
 			ls, err = LineStringFromPosListString(seg.PosList.Value, dim)
 		} else if seg.Coordinates != nil {
 			var coords []float64
-			coords, err = ParseCoordinates(seg.Coordinates.Value, seg.Coordinates.Cs, seg.Coordinates.Ts)
+			coords, err = ParseCoordinates(seg.Coordinates.Value, derefStrOr(seg.Coordinates.Cs, ","), derefStrOr(seg.Coordinates.Ts, " "))
 			if err == nil {
 				ls, err = LineStringFromFlat(coords, 2)
 			}

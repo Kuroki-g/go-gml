@@ -16,7 +16,7 @@ func decodePointV2(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
 		return Geometry{}, fmt.Errorf("gml: Point(v2): %w", err)
 	}
 	if x.Coordinates != nil {
-		coords, err := ParseCoordinates(x.Coordinates.Value, x.Coordinates.Cs, x.Coordinates.Ts)
+		coords, err := ParseCoordinates(x.Coordinates.Value, derefStrOr(x.Coordinates.Cs, ","), derefStrOr(x.Coordinates.Ts, " "))
 		if err != nil {
 			return Geometry{}, err
 		}
@@ -35,7 +35,7 @@ func decodeLineStringV2(dec *xml.Decoder, se xml.StartElement) (Geometry, error)
 		return Geometry{}, fmt.Errorf("gml: LineString(v2): %w", err)
 	}
 	if x.Coordinates != nil {
-		coords, err := ParseCoordinates(x.Coordinates.Value, x.Coordinates.Cs, x.Coordinates.Ts)
+		coords, err := ParseCoordinates(x.Coordinates.Value, derefStrOr(x.Coordinates.Cs, ","), derefStrOr(x.Coordinates.Ts, " "))
 		if err != nil {
 			return Geometry{}, err
 		}
@@ -60,7 +60,7 @@ func decodeMultiLineStringV2(dec *xml.Decoder, se xml.StartElement) (Geometry, e
 		}
 		ls := m.LineString
 		if ls.Coordinates != nil {
-			coords, err := ParseCoordinates(ls.Coordinates.Value, ls.Coordinates.Cs, ls.Coordinates.Ts)
+			coords, err := ParseCoordinates(ls.Coordinates.Value, derefStrOr(ls.Coordinates.Cs, ","), derefStrOr(ls.Coordinates.Ts, " "))
 			if err != nil {
 				return Geometry{}, err
 			}
@@ -117,7 +117,7 @@ func polygonFromV2(x *v2.PolygonType) (Polygon, error) {
 
 func ringFromV2LinearRing(lr *v2.LinearRingType) (Ring, error) {
 	if lr.Coordinates != nil {
-		return RingFromCoordinatesString(lr.Coordinates.Value, lr.Coordinates.Cs, lr.Coordinates.Ts)
+		return RingFromCoordinatesString(lr.Coordinates.Value, derefStrOr(lr.Coordinates.Cs, ","), derefStrOr(lr.Coordinates.Ts, " "))
 	}
 	return nil, fmt.Errorf("gml: LinearRing(v2) has no coordinate data")
 }

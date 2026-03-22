@@ -4,14 +4,14 @@ type AbstractFeatureCollectionBaseType struct {
 	Description *string            `xml:"http://www.opengis.net/gml description,omitempty"`
 	Name        *string            `xml:"http://www.opengis.net/gml name,omitempty"`
 	BoundedBy   *BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
-	Fid         string             `xml:"fid,attr,omitempty"`
+	Fid         *string            `xml:"fid,attr,omitempty"`
 }
 
 type AbstractFeatureCollectionType struct {
 	Description   *string                  `xml:"http://www.opengis.net/gml description,omitempty"`
 	Name          *string                  `xml:"http://www.opengis.net/gml name,omitempty"`
 	BoundedBy     *BoundingShapeType       `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
-	Fid           string                   `xml:"fid,attr,omitempty"`
+	Fid           *string                  `xml:"fid,attr,omitempty"`
 	FeatureMember []FeatureAssociationType `xml:"http://www.opengis.net/gml featureMember"`
 }
 
@@ -19,19 +19,19 @@ type AbstractFeatureType struct {
 	Description *string            `xml:"http://www.opengis.net/gml description,omitempty"`
 	Name        *string            `xml:"http://www.opengis.net/gml name,omitempty"`
 	BoundedBy   *BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
-	Fid         string             `xml:"fid,attr,omitempty"`
+	Fid         *string            `xml:"fid,attr,omitempty"`
 }
 
 type AbstractGeometryCollectionBaseType struct {
-	Value   string `xml:",chardata"`
-	Gid     string `xml:"gid,attr,omitempty"`
-	SrsName string `xml:"srsName,attr,omitempty"`
+	Value   string  `xml:",chardata"`
+	Gid     *string `xml:"gid,attr,omitempty"`
+	SrsName *string `xml:"srsName,attr,omitempty"`
 }
 
 type AbstractGeometryType struct {
-	Value   string `xml:",chardata"`
-	Gid     string `xml:"gid,attr,omitempty"`
-	SrsName string `xml:"srsName,attr,omitempty"`
+	Value   string  `xml:",chardata"`
+	Gid     *string `xml:"gid,attr,omitempty"`
+	SrsName *string `xml:"srsName,attr,omitempty"`
 }
 
 type BoundingShapeType struct {
@@ -41,8 +41,8 @@ type BoundingShapeType struct {
 
 type BoxType struct {
 	Value       string           `xml:",chardata"`
-	Gid         string           `xml:"gid,attr,omitempty"`
-	SrsName     string           `xml:"srsName,attr,omitempty"`
+	Gid         *string          `xml:"gid,attr,omitempty"`
+	SrsName     *string          `xml:"srsName,attr,omitempty"`
 	Coord       []CoordType      `xml:"http://www.opengis.net/gml coord"`
 	Coordinates *CoordinatesType `xml:"http://www.opengis.net/gml coordinates,omitempty"`
 }
@@ -54,10 +54,10 @@ type CoordType struct {
 }
 
 type CoordinatesType struct {
-	Value   string `xml:",chardata"`
-	Decimal string `xml:"decimal,attr,omitempty"`
-	Cs      string `xml:"cs,attr,omitempty"`
-	Ts      string `xml:"ts,attr,omitempty"`
+	Value   string  `xml:",chardata"`
+	Decimal *string `xml:"decimal,attr,omitempty"`
+	Cs      *string `xml:"cs,attr,omitempty"`
+	Ts      *string `xml:"ts,attr,omitempty"`
 }
 
 type FeatureAssociationType struct {
@@ -82,8 +82,8 @@ type GeometryAssociationType struct {
 
 type GeometryCollectionType struct {
 	Value            string                    `xml:",chardata"`
-	Gid              string                    `xml:"gid,attr,omitempty"`
-	SrsName          string                    `xml:"srsName,attr,omitempty"`
+	Gid              *string                   `xml:"gid,attr,omitempty"`
+	SrsName          *string                   `xml:"srsName,attr,omitempty"`
 	GeometryMember   []GeometryAssociationType `xml:"http://www.opengis.net/gml geometryMember"`
 	LineStringMember []LineStringMemberType    `xml:"http://www.opengis.net/gml lineStringMember"`
 	PointMember      []PointMemberType         `xml:"http://www.opengis.net/gml pointMember"`
@@ -134,8 +134,8 @@ type LineStringPropertyType struct {
 
 type LineStringType struct {
 	Value       string           `xml:",chardata"`
-	Gid         string           `xml:"gid,attr,omitempty"`
-	SrsName     string           `xml:"srsName,attr,omitempty"`
+	Gid         *string          `xml:"gid,attr,omitempty"`
+	SrsName     *string          `xml:"srsName,attr,omitempty"`
 	Coord       []CoordType      `xml:"http://www.opengis.net/gml coord"`
 	Coordinates *CoordinatesType `xml:"http://www.opengis.net/gml coordinates,omitempty"`
 }
@@ -156,8 +156,8 @@ type LinearRingMemberType struct {
 
 type LinearRingType struct {
 	Value       string           `xml:",chardata"`
-	Gid         string           `xml:"gid,attr,omitempty"`
-	SrsName     string           `xml:"srsName,attr,omitempty"`
+	Gid         *string          `xml:"gid,attr,omitempty"`
+	SrsName     *string          `xml:"srsName,attr,omitempty"`
 	Coord       []CoordType      `xml:"http://www.opengis.net/gml coord"`
 	Coordinates *CoordinatesType `xml:"http://www.opengis.net/gml coordinates,omitempty"`
 }
@@ -192,8 +192,8 @@ type MultiLineStringPropertyType struct {
 
 type MultiLineStringType struct {
 	Value            string                    `xml:",chardata"`
-	Gid              string                    `xml:"gid,attr,omitempty"`
-	SrsName          string                    `xml:"srsName,attr,omitempty"`
+	Gid              *string                   `xml:"gid,attr,omitempty"`
+	SrsName          *string                   `xml:"srsName,attr,omitempty"`
 	GeometryMember   []GeometryAssociationType `xml:"http://www.opengis.net/gml geometryMember"`
 	LineStringMember []LineStringMemberType    `xml:"http://www.opengis.net/gml lineStringMember"`
 	PointMember      []PointMemberType         `xml:"http://www.opengis.net/gml pointMember"`
@@ -216,8 +216,8 @@ type MultiPointPropertyType struct {
 
 type MultiPointType struct {
 	Value            string                    `xml:",chardata"`
-	Gid              string                    `xml:"gid,attr,omitempty"`
-	SrsName          string                    `xml:"srsName,attr,omitempty"`
+	Gid              *string                   `xml:"gid,attr,omitempty"`
+	SrsName          *string                   `xml:"srsName,attr,omitempty"`
 	GeometryMember   []GeometryAssociationType `xml:"http://www.opengis.net/gml geometryMember"`
 	LineStringMember []LineStringMemberType    `xml:"http://www.opengis.net/gml lineStringMember"`
 	PointMember      []PointMemberType         `xml:"http://www.opengis.net/gml pointMember"`
@@ -240,8 +240,8 @@ type MultiPolygonPropertyType struct {
 
 type MultiPolygonType struct {
 	Value            string                    `xml:",chardata"`
-	Gid              string                    `xml:"gid,attr,omitempty"`
-	SrsName          string                    `xml:"srsName,attr,omitempty"`
+	Gid              *string                   `xml:"gid,attr,omitempty"`
+	SrsName          *string                   `xml:"srsName,attr,omitempty"`
 	GeometryMember   []GeometryAssociationType `xml:"http://www.opengis.net/gml geometryMember"`
 	LineStringMember []LineStringMemberType    `xml:"http://www.opengis.net/gml lineStringMember"`
 	PointMember      []PointMemberType         `xml:"http://www.opengis.net/gml pointMember"`
@@ -278,8 +278,8 @@ type PointPropertyType struct {
 
 type PointType struct {
 	Value       string           `xml:",chardata"`
-	Gid         string           `xml:"gid,attr,omitempty"`
-	SrsName     string           `xml:"srsName,attr,omitempty"`
+	Gid         *string          `xml:"gid,attr,omitempty"`
+	SrsName     *string          `xml:"srsName,attr,omitempty"`
 	Coord       *CoordType       `xml:"http://www.opengis.net/gml coord,omitempty"`
 	Coordinates *CoordinatesType `xml:"http://www.opengis.net/gml coordinates,omitempty"`
 }
@@ -314,8 +314,8 @@ type PolygonPropertyType struct {
 
 type PolygonType struct {
 	Value           string                 `xml:",chardata"`
-	Gid             string                 `xml:"gid,attr,omitempty"`
-	SrsName         string                 `xml:"srsName,attr,omitempty"`
+	Gid             *string                `xml:"gid,attr,omitempty"`
+	SrsName         *string                `xml:"srsName,attr,omitempty"`
 	OuterBoundaryIs *LinearRingMemberType  `xml:"http://www.opengis.net/gml outerBoundaryIs,omitempty"`
 	InnerBoundaryIs []LinearRingMemberType `xml:"http://www.opengis.net/gml innerBoundaryIs"`
 }

@@ -23,18 +23,18 @@ func ringFromLinearRing(lr *v3.LinearRingType, inheritDim int) (Ring, error) {
 	if lr == nil {
 		return nil, fmt.Errorf("gml: nil LinearRing")
 	}
-	dim := preferDim(inheritDim, lr.SrsDimension)
+	dim := preferDim(inheritDim, derefDim(lr.SrsDimension))
 	if lr.PosList != nil {
-		return RingFromPosListString(lr.PosList.Value, preferDim(dim, lr.PosList.SrsDimension))
+		return RingFromPosListString(lr.PosList.Value, preferDim(dim, derefDim(lr.PosList.SrsDimension)))
 	}
 	if lr.Coordinates != nil {
-		return RingFromCoordinatesString(lr.Coordinates.Value, lr.Coordinates.Cs, lr.Coordinates.Ts)
+		return RingFromCoordinatesString(lr.Coordinates.Value, derefStrOr(lr.Coordinates.Cs, ","), derefStrOr(lr.Coordinates.Ts, " "))
 	}
 	return nil, fmt.Errorf("gml: LinearRing has no coordinate data")
 }
 
 func polygonFromXML(x *v3.PolygonType) (Polygon, error) {
-	dim := x.SrsDimension
+	dim := derefDim(x.SrsDimension)
 	var rings []Ring
 	if x.Exterior != nil && x.Exterior.LinearRing != nil {
 		r, err := ringFromLinearRing(x.Exterior.LinearRing, dim)

@@ -19,7 +19,7 @@ func decodeMultiPointElement(dec *xml.Decoder, se xml.StartElement) (Geometry, e
 		if m.Point == nil {
 			continue
 		}
-		if m.Point.SrsDimension == 0 {
+		if m.Point.SrsDimension == nil {
 			m.Point.SrsDimension = x.SrsDimension
 		}
 		pt, err := pointFromXML(m.Point)
@@ -46,7 +46,7 @@ func decodeMultiCurveElement(dec *xml.Decoder, se xml.StartElement) (Geometry, e
 		if m.LineString == nil {
 			continue
 		}
-		if m.LineString.SrsDimension == 0 {
+		if m.LineString.SrsDimension == nil {
 			m.LineString.SrsDimension = x.SrsDimension
 		}
 		ls, err := lineStringFromXML(m.LineString)
@@ -73,7 +73,7 @@ func decodeMultiSurfaceElement(dec *xml.Decoder, se xml.StartElement) (Geometry,
 		if m.Polygon == nil {
 			continue
 		}
-		if m.Polygon.SrsDimension == 0 {
+		if m.Polygon.SrsDimension == nil {
 			m.Polygon.SrsDimension = x.SrsDimension
 		}
 		p, err := polygonFromXML(m.Polygon)
@@ -100,9 +100,9 @@ func decodeEnvelopeElement(dec *xml.Decoder, se xml.StartElement) (Geometry, err
 }
 
 func boundFromXML(x *v3.EnvelopeType) (Bound, error) {
-	dim := x.SrsDimension
+	dim := derefDim(x.SrsDimension)
 	if x.LowerCorner != nil && x.UpperCorner != nil {
-		d := preferDim(dim, x.LowerCorner.SrsDimension)
+		d := preferDim(dim, derefDim(x.LowerCorner.SrsDimension))
 		lo, err := PointFromPosString(x.LowerCorner.Value, d)
 		if err != nil {
 			return Bound{}, fmt.Errorf("gml: Envelope lowerCorner: %w", err)
@@ -114,7 +114,7 @@ func boundFromXML(x *v3.EnvelopeType) (Bound, error) {
 		return Bound{Min: lo, Max: hi}, nil
 	}
 	if len(x.Pos) >= 2 {
-		d := preferDim(dim, x.Pos[0].SrsDimension)
+		d := preferDim(dim, derefDim(x.Pos[0].SrsDimension))
 		lo, err := PointFromPosString(x.Pos[0].Value, d)
 		if err != nil {
 			return Bound{}, fmt.Errorf("gml: Envelope pos[0]: %w", err)

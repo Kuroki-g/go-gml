@@ -94,7 +94,7 @@ type AbstractCoordinateSystemType struct {
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
 	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
-	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string                            `xml:"aggregationType,attr,omitempty"`
 }
 
 type AbstractCoverageType struct {
@@ -129,9 +129,9 @@ type AbstractCoverageType struct {
 }
 
 type AbstractCurveSegmentType struct {
-	NumDerivativesAtStart int `xml:"numDerivativesAtStart,attr,omitempty"`
-	NumDerivativesAtEnd   int `xml:"numDerivativesAtEnd,attr,omitempty"`
-	NumDerivativeInterior int `xml:"numDerivativeInterior,attr,omitempty"`
+	NumDerivativesAtStart *int `xml:"numDerivativesAtStart,attr,omitempty"`
+	NumDerivativesAtEnd   *int `xml:"numDerivativesAtEnd,attr,omitempty"`
+	NumDerivativeInterior *int `xml:"numDerivativeInterior,attr,omitempty"`
 }
 
 type AbstractCurveType struct {
@@ -145,10 +145,10 @@ type AbstractCurveType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"id,attr,omitempty"`
-	SrsName      string     `xml:"srsName,attr,omitempty"`
-	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string    `xml:"srsName,attr,omitempty"`
+	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 }
 
 type AbstractDatumType struct {
@@ -198,7 +198,7 @@ type AbstractFeatureCollectionType struct {
 }
 
 type AbstractFeatureMemberType struct {
-	Owns bool `xml:"owns,attr,omitempty"`
+	Owns *bool `xml:"owns,attr,omitempty"`
 }
 
 type AbstractFeatureType struct {
@@ -283,7 +283,7 @@ type AbstractGeneralOperationParameterPropertyType struct {
 	AbstractGeneralOperationParameter *AbstractGeneralOperationParameterType `xml:"http://www.opengis.net/gml/3.2 AbstractGeneralOperationParameter,omitempty"`
 	OperationParameter                *OperationParameterType                `xml:"http://www.opengis.net/gml/3.2 OperationParameter,omitempty"`
 	OperationParameterGroup           *OperationParameterGroupType           `xml:"http://www.opengis.net/gml/3.2 OperationParameterGroup,omitempty"`
-	NilReason                         string                                 `xml:"nilReason,attr,omitempty"`
+	NilReason                         *string                                `xml:"nilReason,attr,omitempty"`
 	RemoteSchema                      string                                 `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -351,11 +351,11 @@ type AbstractGeometricAggregateType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name            []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id              string     `xml:"id,attr,omitempty"`
-	SrsName         string     `xml:"srsName,attr,omitempty"`
-	SrsDimension    int        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels      string     `xml:"axisLabels,attr,omitempty"`
-	UomLabels       string     `xml:"uomLabels,attr,omitempty"`
-	AggregationType string     `xml:"aggregationType,attr,omitempty"`
+	SrsName         *string    `xml:"srsName,attr,omitempty"`
+	SrsDimension    *int       `xml:"srsDimension,attr,omitempty"`
+	AxisLabels      *string    `xml:"axisLabels,attr,omitempty"`
+	UomLabels       *string    `xml:"uomLabels,attr,omitempty"`
+	AggregationType *string    `xml:"aggregationType,attr,omitempty"`
 }
 
 type AbstractGeometricPrimitiveType struct {
@@ -369,10 +369,10 @@ type AbstractGeometricPrimitiveType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"id,attr,omitempty"`
-	SrsName      string     `xml:"srsName,attr,omitempty"`
-	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string    `xml:"srsName,attr,omitempty"`
+	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 }
 
 type AbstractGeometryType struct {
@@ -386,20 +386,20 @@ type AbstractGeometryType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"id,attr,omitempty"`
-	SrsName      string     `xml:"srsName,attr,omitempty"`
-	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string    `xml:"srsName,attr,omitempty"`
+	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 }
 
 type AbstractGriddedSurfaceType struct {
-	AggregationType string `xml:"aggregationType,attr,omitempty"`
-	Rows            string `xml:"http://www.opengis.net/gml/3.2 rows,omitempty"`
-	Columns         int    `xml:"columns,attr,omitempty"`
+	AggregationType *string `xml:"aggregationType,attr,omitempty"`
+	Rows            string  `xml:"http://www.opengis.net/gml/3.2 rows,omitempty"`
+	Columns         *int    `xml:"columns,attr,omitempty"`
 }
 
 type AbstractMemberType struct {
-	Owns bool `xml:"owns,attr,omitempty"`
+	Owns *bool `xml:"owns,attr,omitempty"`
 }
 
 type AbstractMetaDataType struct {
@@ -407,11 +407,11 @@ type AbstractMetaDataType struct {
 }
 
 type AbstractMetadataPropertyType struct {
-	Owns bool `xml:"owns,attr,omitempty"`
+	Owns *bool `xml:"owns,attr,omitempty"`
 }
 
 type AbstractParametricCurveSurfaceType struct {
-	AggregationType string `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string `xml:"aggregationType,attr,omitempty"`
 }
 
 type AbstractRingPropertyType struct {
@@ -433,10 +433,10 @@ type AbstractRingType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"id,attr,omitempty"`
-	SrsName      string     `xml:"srsName,attr,omitempty"`
-	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string    `xml:"srsName,attr,omitempty"`
+	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 }
 
 type AbstractSolidType struct {
@@ -450,10 +450,10 @@ type AbstractSolidType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"id,attr,omitempty"`
-	SrsName      string     `xml:"srsName,attr,omitempty"`
-	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string    `xml:"srsName,attr,omitempty"`
+	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 }
 
 type AbstractSurfacePatchType struct {
@@ -470,10 +470,10 @@ type AbstractSurfaceType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"id,attr,omitempty"`
-	SrsName      string     `xml:"srsName,attr,omitempty"`
-	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string    `xml:"srsName,attr,omitempty"`
+	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 }
 
 type AbstractTimeComplexType struct {
@@ -501,7 +501,7 @@ type AbstractTimeGeometricPrimitiveType struct {
 	Name        []CodeType        `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id          string            `xml:"id,attr,omitempty"`
 	RelatedTime []RelatedTimeType `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
-	Frame       string            `xml:"frame,attr,omitempty"`
+	Frame       *string           `xml:"frame,attr,omitempty"`
 }
 
 type AbstractTimeObjectType struct {
@@ -592,7 +592,7 @@ type AbstractTopologyType struct {
 type AffineCSPropertyType struct {
 	// gml:AffineCS is a two- or three-dimensional coordinate system with straight axes that are not necessarily orthogonal. An AffineCS shall have two or three gml:axis property elements; the number of property elements shall equal the dimension of the CS.
 	AffineCS     *AffineCSType `xml:"http://www.opengis.net/gml/3.2 AffineCS,omitempty"`
-	NilReason    string        `xml:"nilReason,attr,omitempty"`
+	NilReason    *string       `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string        `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -611,7 +611,7 @@ type AffineCSType struct {
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
 	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
-	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string                            `xml:"aggregationType,attr,omitempty"`
 }
 
 type AffinePlacementType struct {
@@ -632,9 +632,9 @@ type AngleType struct {
 }
 
 type ArcByBulgeType struct {
-	NumDerivativesAtStart int                     `xml:"numDerivativesAtStart,attr,omitempty"`
-	NumDerivativesAtEnd   int                     `xml:"numDerivativesAtEnd,attr,omitempty"`
-	NumDerivativeInterior int                     `xml:"numDerivativeInterior,attr,omitempty"`
+	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
+	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
+	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
 	Bulge                 []float64               `xml:"http://www.opengis.net/gml/3.2 bulge"`
 	Normal                []VectorType            `xml:"http://www.opengis.net/gml/3.2 normal"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
@@ -643,14 +643,14 @@ type ArcByBulgeType struct {
 	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
 	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
 	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
-	Interpolation string              `xml:"interpolation,attr,omitempty"`
-	NumArc        int                 `xml:"numArc,attr,omitempty"`
+	Interpolation *string             `xml:"interpolation,attr,omitempty"`
+	NumArc        *int                `xml:"numArc,attr,omitempty"`
 }
 
 type ArcByCenterPointType struct {
-	NumDerivativesAtStart int                     `xml:"numDerivativesAtStart,attr,omitempty"`
-	NumDerivativesAtEnd   int                     `xml:"numDerivativesAtEnd,attr,omitempty"`
-	NumDerivativeInterior int                     `xml:"numDerivativeInterior,attr,omitempty"`
+	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
+	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
+	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
 	Radius                *LengthType             `xml:"http://www.opengis.net/gml/3.2 radius,omitempty"`
 	StartAngle            *AngleType              `xml:"http://www.opengis.net/gml/3.2 startAngle,omitempty"`
 	EndAngle              *AngleType              `xml:"http://www.opengis.net/gml/3.2 endAngle,omitempty"`
@@ -660,14 +660,14 @@ type ArcByCenterPointType struct {
 	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
 	PointProperty *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
 	PointRep      *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
-	Interpolation string             `xml:"interpolation,attr,omitempty"`
+	Interpolation *string            `xml:"interpolation,attr,omitempty"`
 	NumArc        int                `xml:"numArc,attr"`
 }
 
 type ArcStringByBulgeType struct {
-	NumDerivativesAtStart int                     `xml:"numDerivativesAtStart,attr,omitempty"`
-	NumDerivativesAtEnd   int                     `xml:"numDerivativesAtEnd,attr,omitempty"`
-	NumDerivativeInterior int                     `xml:"numDerivativeInterior,attr,omitempty"`
+	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
+	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
+	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
 	Bulge                 []float64               `xml:"http://www.opengis.net/gml/3.2 bulge"`
 	Normal                []VectorType            `xml:"http://www.opengis.net/gml/3.2 normal"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
@@ -676,36 +676,36 @@ type ArcStringByBulgeType struct {
 	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
 	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
 	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
-	Interpolation string              `xml:"interpolation,attr,omitempty"`
-	NumArc        int                 `xml:"numArc,attr,omitempty"`
+	Interpolation *string             `xml:"interpolation,attr,omitempty"`
+	NumArc        *int                `xml:"numArc,attr,omitempty"`
 }
 
 type ArcStringType struct {
-	NumDerivativesAtStart int                     `xml:"numDerivativesAtStart,attr,omitempty"`
-	NumDerivativesAtEnd   int                     `xml:"numDerivativesAtEnd,attr,omitempty"`
-	NumDerivativeInterior int                     `xml:"numDerivativeInterior,attr,omitempty"`
+	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
+	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
+	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
 	Pos                   []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
 	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
 	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
 	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
-	Interpolation string              `xml:"interpolation,attr,omitempty"`
-	NumArc        int                 `xml:"numArc,attr,omitempty"`
+	Interpolation *string             `xml:"interpolation,attr,omitempty"`
+	NumArc        *int                `xml:"numArc,attr,omitempty"`
 }
 
 type ArcType struct {
-	NumDerivativesAtStart int                     `xml:"numDerivativesAtStart,attr,omitempty"`
-	NumDerivativesAtEnd   int                     `xml:"numDerivativesAtEnd,attr,omitempty"`
-	NumDerivativeInterior int                     `xml:"numDerivativeInterior,attr,omitempty"`
+	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
+	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
+	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
 	Pos                   []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
 	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
 	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
 	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
-	Interpolation string              `xml:"interpolation,attr,omitempty"`
-	NumArc        int                 `xml:"numArc,attr,omitempty"`
+	Interpolation *string             `xml:"interpolation,attr,omitempty"`
+	NumArc        *int                `xml:"numArc,attr,omitempty"`
 }
 
 type AreaType struct {
@@ -727,7 +727,7 @@ type ArrayAssociationType struct {
 	File                          []FileType                          `xml:"http://www.opengis.net/gml/3.2 File"`
 	GridFunction                  []GridFunctionType                  `xml:"http://www.opengis.net/gml/3.2 GridFunction"`
 	CoverageFunction              []CoverageFunctionType              `xml:"http://www.opengis.net/gml/3.2 coverageFunction"`
-	Owns                          bool                                `xml:"owns,attr,omitempty"`
+	Owns                          *bool                               `xml:"owns,attr,omitempty"`
 }
 
 type ArrayType struct {
@@ -745,15 +745,15 @@ type ArrayType struct {
 }
 
 type AssociationRoleType struct {
-	Owns         bool   `xml:"owns,attr,omitempty"`
-	NilReason    string `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string `xml:"remoteSchema,attr,omitempty"`
+	Owns         *bool   `xml:"owns,attr,omitempty"`
+	NilReason    *string `xml:"nilReason,attr,omitempty"`
+	RemoteSchema string  `xml:"remoteSchema,attr,omitempty"`
 }
 
 type BSplineType struct {
-	NumDerivativesAtStart int                     `xml:"numDerivativesAtStart,attr,omitempty"`
-	NumDerivativesAtEnd   int                     `xml:"numDerivativesAtEnd,attr,omitempty"`
-	NumDerivativeInterior int                     `xml:"numDerivativeInterior,attr,omitempty"`
+	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
+	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
+	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
 	Degree                int                     `xml:"http://www.opengis.net/gml/3.2 degree,omitempty"`
 	Knot                  []KnotPropertyType      `xml:"http://www.opengis.net/gml/3.2 knot"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
@@ -762,9 +762,9 @@ type BSplineType struct {
 	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
 	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
 	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
-	Interpolation string              `xml:"interpolation,attr,omitempty"`
-	IsPolynomial  bool                `xml:"isPolynomial,attr,omitempty"`
-	KnotType      string              `xml:"knotType,attr,omitempty"`
+	Interpolation *string             `xml:"interpolation,attr,omitempty"`
+	IsPolynomial  *bool               `xml:"isPolynomial,attr,omitempty"`
+	KnotType      *string             `xml:"knotType,attr,omitempty"`
 }
 
 type BagType struct {
@@ -806,9 +806,9 @@ type BaseUnitType struct {
 }
 
 type BezierType struct {
-	NumDerivativesAtStart int                     `xml:"numDerivativesAtStart,attr,omitempty"`
-	NumDerivativesAtEnd   int                     `xml:"numDerivativesAtEnd,attr,omitempty"`
-	NumDerivativeInterior int                     `xml:"numDerivativeInterior,attr,omitempty"`
+	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
+	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
+	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
 	Degree                int                     `xml:"http://www.opengis.net/gml/3.2 degree,omitempty"`
 	Knot                  []KnotPropertyType      `xml:"http://www.opengis.net/gml/3.2 knot"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
@@ -817,14 +817,14 @@ type BezierType struct {
 	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
 	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
 	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
-	Interpolation string              `xml:"interpolation,attr,omitempty"`
-	IsPolynomial  bool                `xml:"isPolynomial,attr,omitempty"`
-	KnotType      string              `xml:"knotType,attr,omitempty"`
+	Interpolation *string             `xml:"interpolation,attr,omitempty"`
+	IsPolynomial  *bool               `xml:"isPolynomial,attr,omitempty"`
+	KnotType      *string             `xml:"knotType,attr,omitempty"`
 }
 
 type BooleanPropertyType struct {
 	Boolean      *string `xml:"http://www.opengis.net/gml/3.2 Boolean,omitempty"`
-	NilReason    string  `xml:"nilReason,attr,omitempty"`
+	NilReason    *string `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string  `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -851,7 +851,7 @@ type BoundingShapeType struct {
 	Envelope               *EnvelopeType               `xml:"http://www.opengis.net/gml/3.2 Envelope,omitempty"`
 	EnvelopeWithTimePeriod *EnvelopeWithTimePeriodType `xml:"http://www.opengis.net/gml/3.2 EnvelopeWithTimePeriod,omitempty"`
 	Null                   *string                     `xml:"http://www.opengis.net/gml/3.2 Null,omitempty"`
-	NilReason              string                      `xml:"nilReason,attr,omitempty"`
+	NilReason              *string                     `xml:"nilReason,attr,omitempty"`
 }
 
 type CRSPropertyType struct {
@@ -859,14 +859,14 @@ type CRSPropertyType struct {
 	AbstractCRS       *AbstractCRSType `xml:"http://www.opengis.net/gml/3.2 AbstractCRS,omitempty"`
 	AbstractSingleCRS *AbstractCRSType `xml:"http://www.opengis.net/gml/3.2 AbstractSingleCRS,omitempty"`
 	CompoundCRS       *CompoundCRSType `xml:"http://www.opengis.net/gml/3.2 CompoundCRS,omitempty"`
-	NilReason         string           `xml:"nilReason,attr,omitempty"`
+	NilReason         *string          `xml:"nilReason,attr,omitempty"`
 	RemoteSchema      string           `xml:"remoteSchema,attr,omitempty"`
 }
 
 type CartesianCSPropertyType struct {
 	// gml:CartesianCS is a 1-, 2-, or 3-dimensional coordinate system. In the 1-dimensional case, it contains a single straight coordinate axis. In the 2- and 3-dimensional cases gives the position of points relative to orthogonal straight axes. In the multi-dimensional case, all axes shall have the same length unit of measure. A CartesianCS shall have one, two, or three gml:axis property elements.
 	CartesianCS  *CartesianCSType `xml:"http://www.opengis.net/gml/3.2 CartesianCS,omitempty"`
-	NilReason    string           `xml:"nilReason,attr,omitempty"`
+	NilReason    *string          `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string           `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -885,7 +885,7 @@ type CartesianCSType struct {
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
 	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
-	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string                            `xml:"aggregationType,attr,omitempty"`
 }
 
 type CategoryExtentType struct {
@@ -895,14 +895,14 @@ type CategoryExtentType struct {
 type CategoryPropertyType struct {
 	// A gml:Category has an optional XML attribute codeSpace, whose value is a URI which identifies a dictionary, codelist or authority for the term.
 	Category     *string `xml:"http://www.opengis.net/gml/3.2 Category,omitempty"`
-	NilReason    string  `xml:"nilReason,attr,omitempty"`
+	NilReason    *string `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string  `xml:"remoteSchema,attr,omitempty"`
 }
 
 type CircleByCenterPointType struct {
-	NumDerivativesAtStart int                     `xml:"numDerivativesAtStart,attr,omitempty"`
-	NumDerivativesAtEnd   int                     `xml:"numDerivativesAtEnd,attr,omitempty"`
-	NumDerivativeInterior int                     `xml:"numDerivativeInterior,attr,omitempty"`
+	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
+	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
+	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
 	Radius                *LengthType             `xml:"http://www.opengis.net/gml/3.2 radius,omitempty"`
 	StartAngle            *AngleType              `xml:"http://www.opengis.net/gml/3.2 startAngle,omitempty"`
 	EndAngle              *AngleType              `xml:"http://www.opengis.net/gml/3.2 endAngle,omitempty"`
@@ -912,48 +912,48 @@ type CircleByCenterPointType struct {
 	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
 	PointProperty *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
 	PointRep      *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
-	Interpolation string             `xml:"interpolation,attr,omitempty"`
+	Interpolation *string            `xml:"interpolation,attr,omitempty"`
 	NumArc        int                `xml:"numArc,attr"`
 }
 
 type CircleType struct {
-	NumDerivativesAtStart int                     `xml:"numDerivativesAtStart,attr,omitempty"`
-	NumDerivativesAtEnd   int                     `xml:"numDerivativesAtEnd,attr,omitempty"`
-	NumDerivativeInterior int                     `xml:"numDerivativeInterior,attr,omitempty"`
+	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
+	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
+	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
 	Pos                   []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
 	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
 	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
 	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
-	Interpolation string              `xml:"interpolation,attr,omitempty"`
-	NumArc        int                 `xml:"numArc,attr,omitempty"`
+	Interpolation *string             `xml:"interpolation,attr,omitempty"`
+	NumArc        *int                `xml:"numArc,attr,omitempty"`
 }
 
 type ClothoidType struct {
-	NumDerivativesAtStart int     `xml:"numDerivativesAtStart,attr,omitempty"`
-	NumDerivativesAtEnd   int     `xml:"numDerivativesAtEnd,attr,omitempty"`
-	NumDerivativeInterior int     `xml:"numDerivativeInterior,attr,omitempty"`
+	NumDerivativesAtStart *int    `xml:"numDerivativesAtStart,attr,omitempty"`
+	NumDerivativesAtEnd   *int    `xml:"numDerivativesAtEnd,attr,omitempty"`
+	NumDerivativeInterior *int    `xml:"numDerivativeInterior,attr,omitempty"`
 	RefLocation           string  `xml:"http://www.opengis.net/gml/3.2 refLocation,omitempty"`
 	ScaleFactor           float64 `xml:"http://www.opengis.net/gml/3.2 scaleFactor,omitempty"`
 	StartParameter        float64 `xml:"http://www.opengis.net/gml/3.2 startParameter,omitempty"`
 	EndParameter          float64 `xml:"http://www.opengis.net/gml/3.2 endParameter,omitempty"`
-	Interpolation         string  `xml:"interpolation,attr,omitempty"`
+	Interpolation         *string `xml:"interpolation,attr,omitempty"`
 }
 
 type CodeListType struct {
-	Value     string `xml:",chardata"`
-	CodeSpace string `xml:"codeSpace,attr,omitempty"`
+	Value     string  `xml:",chardata"`
+	CodeSpace *string `xml:"codeSpace,attr,omitempty"`
 }
 
 type CodeOrNilReasonListType struct {
-	Value     string `xml:",chardata"`
-	CodeSpace string `xml:"codeSpace,attr,omitempty"`
+	Value     string  `xml:",chardata"`
+	CodeSpace *string `xml:"codeSpace,attr,omitempty"`
 }
 
 type CodeType struct {
-	Value     string `xml:",chardata"`
-	CodeSpace string `xml:"codeSpace,attr,omitempty"`
+	Value     string  `xml:",chardata"`
+	CodeSpace *string `xml:"codeSpace,attr,omitempty"`
 }
 
 type CodeWithAuthorityType struct {
@@ -972,12 +972,12 @@ type CompositeCurveType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name            []CodeType          `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id              string              `xml:"id,attr,omitempty"`
-	SrsName         string              `xml:"srsName,attr,omitempty"`
-	SrsDimension    int                 `xml:"srsDimension,attr,omitempty"`
-	AxisLabels      string              `xml:"axisLabels,attr,omitempty"`
-	UomLabels       string              `xml:"uomLabels,attr,omitempty"`
+	SrsName         *string             `xml:"srsName,attr,omitempty"`
+	SrsDimension    *int                `xml:"srsDimension,attr,omitempty"`
+	AxisLabels      *string             `xml:"axisLabels,attr,omitempty"`
+	UomLabels       *string             `xml:"uomLabels,attr,omitempty"`
 	CurveMember     []CurvePropertyType `xml:"http://www.opengis.net/gml/3.2 curveMember"`
-	AggregationType string              `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string             `xml:"aggregationType,attr,omitempty"`
 }
 
 type CompositeSolidType struct {
@@ -991,13 +991,13 @@ type CompositeSolidType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"id,attr,omitempty"`
-	SrsName      string     `xml:"srsName,attr,omitempty"`
-	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string    `xml:"srsName,attr,omitempty"`
+	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 	// This property element either references a solid via the XLink-attributes or contains the solid element. A solid element is any element, which is substitutable for gml:AbstractSolid.
 	SolidMember     []SolidPropertyType `xml:"http://www.opengis.net/gml/3.2 solidMember"`
-	AggregationType string              `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string             `xml:"aggregationType,attr,omitempty"`
 }
 
 type CompositeSurfaceType struct {
@@ -1011,13 +1011,13 @@ type CompositeSurfaceType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"id,attr,omitempty"`
-	SrsName      string     `xml:"srsName,attr,omitempty"`
-	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string    `xml:"srsName,attr,omitempty"`
+	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 	// This property element either references a surface via the XLink-attributes or contains the surface element. A surface element is any element, which is substitutable for gml:AbstractSurface.
 	SurfaceMember   []SurfacePropertyType `xml:"http://www.opengis.net/gml/3.2 surfaceMember"`
-	AggregationType string                `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string               `xml:"aggregationType,attr,omitempty"`
 }
 
 type CompositeValueType struct {
@@ -1035,13 +1035,13 @@ type CompositeValueType struct {
 	ValueComponent []ValuePropertyType `xml:"http://www.opengis.net/gml/3.2 valueComponent"`
 	// Property that contains Values.
 	ValueComponents *ValueArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 valueComponents,omitempty"`
-	AggregationType string                  `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string                 `xml:"aggregationType,attr,omitempty"`
 }
 
 type CompoundCRSPropertyType struct {
 	// gml:CompundCRS is a coordinate reference system describing the position of points through two or more independent coordinate reference systems. It is associated with a non-repeating sequence of two or more instances of SingleCRS.
 	CompoundCRS  *CompoundCRSType `xml:"http://www.opengis.net/gml/3.2 CompoundCRS,omitempty"`
-	NilReason    string           `xml:"nilReason,attr,omitempty"`
+	NilReason    *string          `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string           `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -1064,12 +1064,12 @@ type CompoundCRSType struct {
 	// The gml:componentReferenceSystem elements are an ordered sequence of associations to all the component coordinate reference systems included in this compound coordinate reference system. The gml:AggregationAttributeGroup should be used to specify that the gml:componentReferenceSystem properties are ordered.
 	ComponentReferenceSystem []SingleCRSPropertyType `xml:"http://www.opengis.net/gml/3.2 componentReferenceSystem"`
 	IncludesSingleCRS        []SingleCRSPropertyType `xml:"http://www.opengis.net/gml/3.2 includesSingleCRS"`
-	AggregationType          string                  `xml:"aggregationType,attr,omitempty"`
+	AggregationType          *string                 `xml:"aggregationType,attr,omitempty"`
 }
 
 type ConcatenatedOperationPropertyType struct {
 	ConcatenatedOperation *ConcatenatedOperationType `xml:"http://www.opengis.net/gml/3.2 ConcatenatedOperation,omitempty"`
-	NilReason             string                     `xml:"nilReason,attr,omitempty"`
+	NilReason             *string                    `xml:"nilReason,attr,omitempty"`
 	RemoteSchema          string                     `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -1101,15 +1101,15 @@ type ConcatenatedOperationType struct {
 	CoordOperation      []CoordinateOperationPropertyType `xml:"http://www.opengis.net/gml/3.2 coordOperation"`
 	UsesOperation       []CoordinateOperationPropertyType `xml:"http://www.opengis.net/gml/3.2 usesOperation"`
 	UsesSingleOperation []CoordinateOperationPropertyType `xml:"http://www.opengis.net/gml/3.2 usesSingleOperation"`
-	AggregationType     string                            `xml:"aggregationType,attr,omitempty"`
+	AggregationType     *string                           `xml:"aggregationType,attr,omitempty"`
 }
 
 type ConeType struct {
-	AggregationType     string `xml:"aggregationType,attr,omitempty"`
-	Rows                string `xml:"http://www.opengis.net/gml/3.2 rows,omitempty"`
-	Columns             int    `xml:"columns,attr,omitempty"`
-	HorizontalCurveType string `xml:"horizontalCurveType,attr,omitempty"`
-	VerticalCurveType   string `xml:"verticalCurveType,attr,omitempty"`
+	AggregationType     *string `xml:"aggregationType,attr,omitempty"`
+	Rows                string  `xml:"http://www.opengis.net/gml/3.2 rows,omitempty"`
+	Columns             *int    `xml:"columns,attr,omitempty"`
+	HorizontalCurveType *string `xml:"horizontalCurveType,attr,omitempty"`
+	VerticalCurveType   *string `xml:"verticalCurveType,attr,omitempty"`
 }
 
 type ConventionalUnitType struct {
@@ -1146,7 +1146,7 @@ type ConversionPropertyType struct {
 	// This concrete complex type can be used without using a GML Application Schema that defines operation-method-specialized element names and contents, especially for methods with only one Conversion instance.
 	// The usesValue property elements are an unordered list of composition associations to the set of parameter values used by this conversion operation.
 	Conversion   *ConversionType `xml:"http://www.opengis.net/gml/3.2 Conversion,omitempty"`
-	NilReason    string          `xml:"nilReason,attr,omitempty"`
+	NilReason    *string         `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string          `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -1195,14 +1195,14 @@ type CoordinateOperationPropertyType struct {
 	AbstractCoordinateOperation *AbstractCoordinateOperationType `xml:"http://www.opengis.net/gml/3.2 AbstractCoordinateOperation,omitempty"`
 	AbstractSingleOperation     *AbstractCoordinateOperationType `xml:"http://www.opengis.net/gml/3.2 AbstractSingleOperation,omitempty"`
 	ConcatenatedOperation       *ConcatenatedOperationType       `xml:"http://www.opengis.net/gml/3.2 ConcatenatedOperation,omitempty"`
-	NilReason                   string                           `xml:"nilReason,attr,omitempty"`
+	NilReason                   *string                          `xml:"nilReason,attr,omitempty"`
 	RemoteSchema                string                           `xml:"remoteSchema,attr,omitempty"`
 }
 
 type CoordinateSystemAxisPropertyType struct {
 	// gml:CoordinateSystemAxis is a definition of a coordinate system axis.
 	CoordinateSystemAxis *CoordinateSystemAxisType `xml:"http://www.opengis.net/gml/3.2 CoordinateSystemAxis,omitempty"`
-	NilReason            string                    `xml:"nilReason,attr,omitempty"`
+	NilReason            *string                   `xml:"nilReason,attr,omitempty"`
 	RemoteSchema         string                    `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -1249,20 +1249,20 @@ type CoordinateSystemPropertyType struct {
 	TimeCS                   *TimeCSType                   `xml:"http://www.opengis.net/gml/3.2 TimeCS,omitempty"`
 	UserDefinedCS            *UserDefinedCSType            `xml:"http://www.opengis.net/gml/3.2 UserDefinedCS,omitempty"`
 	VerticalCS               *VerticalCSType               `xml:"http://www.opengis.net/gml/3.2 VerticalCS,omitempty"`
-	NilReason                string                        `xml:"nilReason,attr,omitempty"`
+	NilReason                *string                       `xml:"nilReason,attr,omitempty"`
 	RemoteSchema             string                        `xml:"remoteSchema,attr,omitempty"`
 }
 
 type CoordinatesType struct {
-	Value   string `xml:",chardata"`
-	Decimal string `xml:"decimal,attr,omitempty"`
-	Cs      string `xml:"cs,attr,omitempty"`
-	Ts      string `xml:"ts,attr,omitempty"`
+	Value   string  `xml:",chardata"`
+	Decimal *string `xml:"decimal,attr,omitempty"`
+	Cs      *string `xml:"cs,attr,omitempty"`
+	Ts      *string `xml:"ts,attr,omitempty"`
 }
 
 type CountPropertyType struct {
 	Count        *string `xml:"http://www.opengis.net/gml/3.2 Count,omitempty"`
-	NilReason    string  `xml:"nilReason,attr,omitempty"`
+	NilReason    *string `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string  `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -1278,9 +1278,9 @@ type CoverageFunctionType struct {
 }
 
 type CubicSplineType struct {
-	NumDerivativesAtStart int                     `xml:"numDerivativesAtStart,attr,omitempty"`
-	NumDerivativesAtEnd   int                     `xml:"numDerivativesAtEnd,attr,omitempty"`
-	NumDerivativeInterior int                     `xml:"numDerivativeInterior,attr,omitempty"`
+	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
+	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
+	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
 	VectorAtStart         *VectorType             `xml:"http://www.opengis.net/gml/3.2 vectorAtStart,omitempty"`
 	VectorAtEnd           *VectorType             `xml:"http://www.opengis.net/gml/3.2 vectorAtEnd,omitempty"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
@@ -1289,8 +1289,8 @@ type CubicSplineType struct {
 	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
 	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
 	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
-	Interpolation string              `xml:"interpolation,attr,omitempty"`
-	Degree        int                 `xml:"degree,attr,omitempty"`
+	Interpolation *string             `xml:"interpolation,attr,omitempty"`
+	Degree        *int                `xml:"degree,attr,omitempty"`
 }
 
 type CurveArrayPropertyType struct {
@@ -1301,7 +1301,7 @@ type CurveArrayPropertyType struct {
 	Curve           []CurveType           `xml:"http://www.opengis.net/gml/3.2 Curve"`
 	LineString      []LineStringType      `xml:"http://www.opengis.net/gml/3.2 LineString"`
 	OrientableCurve []OrientableCurveType `xml:"http://www.opengis.net/gml/3.2 OrientableCurve"`
-	Owns            bool                  `xml:"owns,attr,omitempty"`
+	Owns            *bool                 `xml:"owns,attr,omitempty"`
 }
 
 type CurvePropertyType struct {
@@ -1312,9 +1312,9 @@ type CurvePropertyType struct {
 	Curve           *CurveType           `xml:"http://www.opengis.net/gml/3.2 Curve,omitempty"`
 	LineString      *LineStringType      `xml:"http://www.opengis.net/gml/3.2 LineString,omitempty"`
 	OrientableCurve *OrientableCurveType `xml:"http://www.opengis.net/gml/3.2 OrientableCurve,omitempty"`
-	NilReason       string               `xml:"nilReason,attr,omitempty"`
+	NilReason       *string              `xml:"nilReason,attr,omitempty"`
 	RemoteSchema    string               `xml:"remoteSchema,attr,omitempty"`
-	Owns            bool                 `xml:"owns,attr,omitempty"`
+	Owns            *bool                `xml:"owns,attr,omitempty"`
 }
 
 type CurveSegmentArrayPropertyType struct {
@@ -1345,26 +1345,26 @@ type CurveType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"id,attr,omitempty"`
-	SrsName      string     `xml:"srsName,attr,omitempty"`
-	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string    `xml:"srsName,attr,omitempty"`
+	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 	// This property element contains a list of curve segments. The order of the elements is significant and shall be preserved when processing the array.
 	Segments *CurveSegmentArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 segments,omitempty"`
 }
 
 type CylinderType struct {
-	AggregationType     string `xml:"aggregationType,attr,omitempty"`
-	Rows                string `xml:"http://www.opengis.net/gml/3.2 rows,omitempty"`
-	Columns             int    `xml:"columns,attr,omitempty"`
-	HorizontalCurveType string `xml:"horizontalCurveType,attr,omitempty"`
-	VerticalCurveType   string `xml:"verticalCurveType,attr,omitempty"`
+	AggregationType     *string `xml:"aggregationType,attr,omitempty"`
+	Rows                string  `xml:"http://www.opengis.net/gml/3.2 rows,omitempty"`
+	Columns             *int    `xml:"columns,attr,omitempty"`
+	HorizontalCurveType *string `xml:"horizontalCurveType,attr,omitempty"`
+	VerticalCurveType   *string `xml:"verticalCurveType,attr,omitempty"`
 }
 
 type CylindricalCSPropertyType struct {
 	// gml:CylindricalCS is a three-dimensional coordinate system consisting of a polar coordinate system extended by a straight coordinate axis perpendicular to the plane spanned by the polar coordinate system. A CylindricalCS shall have three gml:axis property elements.
 	CylindricalCS *CylindricalCSType `xml:"http://www.opengis.net/gml/3.2 CylindricalCS,omitempty"`
-	NilReason     string             `xml:"nilReason,attr,omitempty"`
+	NilReason     *string            `xml:"nilReason,attr,omitempty"`
 	RemoteSchema  string             `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -1383,7 +1383,7 @@ type CylindricalCSType struct {
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
 	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
-	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string                            `xml:"aggregationType,attr,omitempty"`
 }
 
 type DMSAngleType struct {
@@ -1410,7 +1410,7 @@ type DatumPropertyType struct {
 	ImageDatum       *ImageDatumType       `xml:"http://www.opengis.net/gml/3.2 ImageDatum,omitempty"`
 	TemporalDatum    *TemporalDatumType    `xml:"http://www.opengis.net/gml/3.2 TemporalDatum,omitempty"`
 	VerticalDatum    *VerticalDatumType    `xml:"http://www.opengis.net/gml/3.2 VerticalDatum,omitempty"`
-	NilReason        string                `xml:"nilReason,attr,omitempty"`
+	NilReason        *string               `xml:"nilReason,attr,omitempty"`
 	RemoteSchema     string                `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -1457,19 +1457,19 @@ type DefinitionType struct {
 }
 
 type DegreesType struct {
-	Value     int    `xml:",chardata"`
-	Direction string `xml:"direction,attr,omitempty"`
+	Value     int     `xml:",chardata"`
+	Direction *string `xml:"direction,attr,omitempty"`
 }
 
 type DerivationUnitTermType struct {
 	Uom      string `xml:"uom,attr"`
-	Exponent int    `xml:"exponent,attr,omitempty"`
+	Exponent *int   `xml:"exponent,attr,omitempty"`
 }
 
 type DerivedCRSPropertyType struct {
 	// gml:DerivedCRS is a single coordinate reference system that is defined by its coordinate conversion from another single coordinate reference system known as the base CRS. The base CRS can be a projected coordinate reference system, if this DerivedCRS is used for a georectified grid coverage as described in ISO 19123, Clause 8.
 	DerivedCRS   *DerivedCRSType `xml:"http://www.opengis.net/gml/3.2 DerivedCRS,omitempty"`
-	NilReason    string          `xml:"nilReason,attr,omitempty"`
+	NilReason    *string         `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string          `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -1527,7 +1527,7 @@ type DerivedUnitType struct {
 }
 
 type DictionaryEntryType struct {
-	Owns bool `xml:"owns,attr,omitempty"`
+	Owns *bool `xml:"owns,attr,omitempty"`
 	// The basic gml:Definition element specifies a definition, which can be included in or referenced by a dictionary.
 	// The content model for a generic definition is a derivation from gml:AbstractGMLType.
 	// The gml:description property element shall hold the definition if this can be captured in a simple text string, or the gml:descriptionReference property element may carry a link to a description elsewhere.
@@ -1549,7 +1549,7 @@ type DictionaryEntryType struct {
 	PrimeMeridian                     *PrimeMeridianType                     `xml:"http://www.opengis.net/gml/3.2 PrimeMeridian,omitempty"`
 	TimeReferenceSystem               *TimeReferenceSystemType               `xml:"http://www.opengis.net/gml/3.2 TimeReferenceSystem,omitempty"`
 	UnitDefinition                    *UnitDefinitionType                    `xml:"http://www.opengis.net/gml/3.2 UnitDefinition,omitempty"`
-	NilReason                         string                                 `xml:"nilReason,attr,omitempty"`
+	NilReason                         *string                                `xml:"nilReason,attr,omitempty"`
 	RemoteSchema                      string                                 `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -1571,24 +1571,24 @@ type DictionaryType struct {
 	DictionaryEntry  []DictionaryEntryType `xml:"http://www.opengis.net/gml/3.2 dictionaryEntry"`
 	DefinitionMember []DictionaryEntryType `xml:"http://www.opengis.net/gml/3.2 definitionMember"`
 	IndirectEntry    []IndirectEntryType   `xml:"http://www.opengis.net/gml/3.2 indirectEntry"`
-	AggregationType  string                `xml:"aggregationType,attr,omitempty"`
+	AggregationType  *string               `xml:"aggregationType,attr,omitempty"`
 }
 
 type DirectPositionListType struct {
-	Value        string `xml:",chardata"`
-	Count        int    `xml:"count,attr,omitempty"`
-	SrsName      string `xml:"srsName,attr,omitempty"`
-	SrsDimension int    `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string `xml:"uomLabels,attr,omitempty"`
+	Value        string  `xml:",chardata"`
+	Count        *int    `xml:"count,attr,omitempty"`
+	SrsName      *string `xml:"srsName,attr,omitempty"`
+	SrsDimension *int    `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string `xml:"uomLabels,attr,omitempty"`
 }
 
 type DirectPositionType struct {
-	Value        string `xml:",chardata"`
-	SrsName      string `xml:"srsName,attr,omitempty"`
-	SrsDimension int    `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string `xml:"uomLabels,attr,omitempty"`
+	Value        string  `xml:",chardata"`
+	SrsName      *string `xml:"srsName,attr,omitempty"`
+	SrsDimension *int    `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string `xml:"uomLabels,attr,omitempty"`
 }
 
 type DirectedEdgePropertyType struct {
@@ -1598,10 +1598,10 @@ type DirectedEdgePropertyType struct {
 	// If provided, the aggregationType attribute shall have the value "sequence".
 	// An edge may optionally be realised by a 1-dimensional geometric primitive (gml:curveProperty).
 	Edge         *EdgeType `xml:"http://www.opengis.net/gml/3.2 Edge,omitempty"`
-	Orientation  string    `xml:"orientation,attr,omitempty"`
-	NilReason    string    `xml:"nilReason,attr,omitempty"`
+	Orientation  *string   `xml:"orientation,attr,omitempty"`
+	NilReason    *string   `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string    `xml:"remoteSchema,attr,omitempty"`
-	Owns         bool      `xml:"owns,attr,omitempty"`
+	Owns         *bool     `xml:"owns,attr,omitempty"`
 }
 
 type DirectedFacePropertyType struct {
@@ -1610,10 +1610,10 @@ type DirectedFacePropertyType struct {
 	// The optional coboundary of a face (gml:directedTopoSolid) is a pair of directed solids which are bounded by this face. A positively directed solid corresponds to a solid which lies in the direction of the negatively directed normal to the face in any geometric realisation.
 	// A face may optionally be realised by a 2-dimensional geometric primitive (gml:surfaceProperty).
 	Face         *FaceType `xml:"http://www.opengis.net/gml/3.2 Face,omitempty"`
-	Orientation  string    `xml:"orientation,attr,omitempty"`
-	NilReason    string    `xml:"nilReason,attr,omitempty"`
+	Orientation  *string   `xml:"orientation,attr,omitempty"`
+	NilReason    *string   `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string    `xml:"remoteSchema,attr,omitempty"`
-	Owns         bool      `xml:"owns,attr,omitempty"`
+	Owns         *bool     `xml:"owns,attr,omitempty"`
 }
 
 type DirectedNodePropertyType struct {
@@ -1622,10 +1622,10 @@ type DirectedNodePropertyType struct {
 	// If provided, the aggregationType attribute shall have the value "sequence".
 	// A node may optionally be realised by a 0-dimensional geometric primitive (gml:pointProperty).
 	Node         *NodeType `xml:"http://www.opengis.net/gml/3.2 Node,omitempty"`
-	Orientation  string    `xml:"orientation,attr,omitempty"`
-	NilReason    string    `xml:"nilReason,attr,omitempty"`
+	Orientation  *string   `xml:"orientation,attr,omitempty"`
+	NilReason    *string   `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string    `xml:"remoteSchema,attr,omitempty"`
-	Owns         bool      `xml:"owns,attr,omitempty"`
+	Owns         *bool     `xml:"owns,attr,omitempty"`
 }
 
 type DirectedObservationAtDistanceType struct {
@@ -1684,10 +1684,10 @@ type DirectedTopoSolidPropertyType struct {
 	// The topological boundary of a solid (gml:directedFace) consists of a set of directed faces.
 	// A solid may optionally be realised by a 3-dimensional geometric primitive (gml:solidProperty).
 	TopoSolid    *TopoSolidType `xml:"http://www.opengis.net/gml/3.2 TopoSolid,omitempty"`
-	Orientation  string         `xml:"orientation,attr,omitempty"`
-	NilReason    string         `xml:"nilReason,attr,omitempty"`
+	Orientation  *string        `xml:"orientation,attr,omitempty"`
+	NilReason    *string        `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string         `xml:"remoteSchema,attr,omitempty"`
-	Owns         bool           `xml:"owns,attr,omitempty"`
+	Owns         *bool          `xml:"owns,attr,omitempty"`
 }
 
 type DirectionDescriptionType struct {
@@ -1703,8 +1703,8 @@ type DirectionPropertyType struct {
 	CompassPoint         string                    `xml:"http://www.opengis.net/gml/3.2 CompassPoint,omitempty"`
 	DirectionKeyword     *CodeType                 `xml:"http://www.opengis.net/gml/3.2 DirectionKeyword,omitempty"`
 	DirectionString      *StringOrRefType          `xml:"http://www.opengis.net/gml/3.2 DirectionString,omitempty"`
-	Owns                 bool                      `xml:"owns,attr,omitempty"`
-	NilReason            string                    `xml:"nilReason,attr,omitempty"`
+	Owns                 *bool                     `xml:"owns,attr,omitempty"`
+	NilReason            *string                   `xml:"nilReason,attr,omitempty"`
 	RemoteSchema         string                    `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -1760,8 +1760,8 @@ type DomainSetType struct {
 	AbstractTimeObject    *AbstractTimeObjectType    `xml:"http://www.opengis.net/gml/3.2 AbstractTimeObject,omitempty"`
 	AbstractTimeComplex   *AbstractTimeComplexType   `xml:"http://www.opengis.net/gml/3.2 AbstractTimeComplex,omitempty"`
 	AbstractTimePrimitive *AbstractTimePrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractTimePrimitive,omitempty"`
-	Owns                  bool                       `xml:"owns,attr,omitempty"`
-	NilReason             string                     `xml:"nilReason,attr,omitempty"`
+	Owns                  *bool                      `xml:"owns,attr,omitempty"`
+	NilReason             *string                    `xml:"nilReason,attr,omitempty"`
 	RemoteSchema          string                     `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -1784,12 +1784,12 @@ type DynamicFeatureCollectionType struct {
 }
 
 type DynamicFeatureMemberType struct {
-	Owns bool `xml:"owns,attr,omitempty"`
+	Owns *bool `xml:"owns,attr,omitempty"`
 	// States are captured by time-stamped instances of a feature. The content model extends the standard gml:AbstractFeatureType with the gml:dynamicProperties model group.
 	// Each time-stamped instance represents a 'snapshot' of a feature. The dynamic feature classes will normally be extended to suit particular applications.  A dynamic feature bears either a time stamp or a history.
 	DynamicFeature           []DynamicFeatureType           `xml:"http://www.opengis.net/gml/3.2 DynamicFeature"`
 	DynamicFeatureCollection []DynamicFeatureCollectionType `xml:"http://www.opengis.net/gml/3.2 DynamicFeatureCollection"`
-	NilReason                string                         `xml:"nilReason,attr,omitempty"`
+	NilReason                *string                        `xml:"nilReason,attr,omitempty"`
 	RemoteSchema             string                         `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -1828,13 +1828,13 @@ type EdgeType struct {
 	DirectedFace []DirectedFacePropertyType `xml:"http://www.opengis.net/gml/3.2 directedFace"`
 	// This property element either references a curve via the XLink-attributes or contains the curve element. curveProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for AbstractCurve.
 	CurveProperty   *CurvePropertyType `xml:"http://www.opengis.net/gml/3.2 curveProperty,omitempty"`
-	AggregationType string             `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string            `xml:"aggregationType,attr,omitempty"`
 }
 
 type EllipsoidPropertyType struct {
 	// A gml:Ellipsoid is a geometric figure that may be used to describe the approximate shape of the earth. In mathematical terms, it is a surface formed by the rotation of an ellipse about its minor axis.
 	Ellipsoid    *EllipsoidType `xml:"http://www.opengis.net/gml/3.2 Ellipsoid,omitempty"`
-	NilReason    string         `xml:"nilReason,attr,omitempty"`
+	NilReason    *string        `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string         `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -1861,7 +1861,7 @@ type EllipsoidType struct {
 type EllipsoidalCSPropertyType struct {
 	// gml:EllipsoidalCS is a two- or three-dimensional coordinate system in which position is specified by geodetic latitude, geodetic longitude, and (in the three-dimensional case) ellipsoidal height. An EllipsoidalCS shall have two or three gml:axis property elements; the number of associations shall equal the dimension of the CS.
 	EllipsoidalCS *EllipsoidalCSType `xml:"http://www.opengis.net/gml/3.2 EllipsoidalCS,omitempty"`
-	NilReason     string             `xml:"nilReason,attr,omitempty"`
+	NilReason     *string            `xml:"nilReason,attr,omitempty"`
 	RemoteSchema  string             `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -1880,7 +1880,7 @@ type EllipsoidalCSType struct {
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
 	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
-	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string                            `xml:"aggregationType,attr,omitempty"`
 }
 
 type EngineeringCRSPropertyType struct {
@@ -1888,7 +1888,7 @@ type EngineeringCRSPropertyType struct {
 	// -	earth-fixed systems applied to engineering activities on or near the surface of the earth;
 	// -	CRSs on moving platforms such as road vehicles, vessels, aircraft, or spacecraft, see ISO 19111 8.3.
 	EngineeringCRS *EngineeringCRSType `xml:"http://www.opengis.net/gml/3.2 EngineeringCRS,omitempty"`
-	NilReason      string              `xml:"nilReason,attr,omitempty"`
+	NilReason      *string             `xml:"nilReason,attr,omitempty"`
 	RemoteSchema   string              `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -1936,7 +1936,7 @@ type EngineeringCRSType struct {
 type EngineeringDatumPropertyType struct {
 	// gml:EngineeringDatum defines the origin of an engineering coordinate reference system, and is used in a region around that origin. This origin may be fixed with respect to the earth (such as a defined point at a construction site), or be a defined point on a moving vehicle (such as on a ship or satellite).
 	EngineeringDatum *EngineeringDatumType `xml:"http://www.opengis.net/gml/3.2 EngineeringDatum,omitempty"`
-	NilReason        string                `xml:"nilReason,attr,omitempty"`
+	NilReason        *string               `xml:"nilReason,attr,omitempty"`
 	RemoteSchema     string                `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -1972,10 +1972,10 @@ type EnvelopeType struct {
 	Coordinates  *CoordinatesType     `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
 	LowerCorner  *DirectPositionType  `xml:"http://www.opengis.net/gml/3.2 lowerCorner,omitempty"`
 	UpperCorner  *DirectPositionType  `xml:"http://www.opengis.net/gml/3.2 upperCorner,omitempty"`
-	SrsName      string               `xml:"srsName,attr,omitempty"`
-	SrsDimension int                  `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string               `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string               `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string              `xml:"srsName,attr,omitempty"`
+	SrsDimension *int                 `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string              `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string              `xml:"uomLabels,attr,omitempty"`
 }
 
 type EnvelopeWithTimePeriodType struct {
@@ -1983,13 +1983,13 @@ type EnvelopeWithTimePeriodType struct {
 	Coordinates   *CoordinatesType     `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
 	LowerCorner   *DirectPositionType  `xml:"http://www.opengis.net/gml/3.2 lowerCorner,omitempty"`
 	UpperCorner   *DirectPositionType  `xml:"http://www.opengis.net/gml/3.2 upperCorner,omitempty"`
-	SrsName       string               `xml:"srsName,attr,omitempty"`
-	SrsDimension  int                  `xml:"srsDimension,attr,omitempty"`
-	AxisLabels    string               `xml:"axisLabels,attr,omitempty"`
-	UomLabels     string               `xml:"uomLabels,attr,omitempty"`
+	SrsName       *string              `xml:"srsName,attr,omitempty"`
+	SrsDimension  *int                 `xml:"srsDimension,attr,omitempty"`
+	AxisLabels    *string              `xml:"axisLabels,attr,omitempty"`
+	UomLabels     *string              `xml:"uomLabels,attr,omitempty"`
 	BeginPosition *TimePositionType    `xml:"http://www.opengis.net/gml/3.2 beginPosition,omitempty"`
 	EndPosition   *TimePositionType    `xml:"http://www.opengis.net/gml/3.2 endPosition,omitempty"`
-	Frame         string               `xml:"frame,attr,omitempty"`
+	Frame         *string              `xml:"frame,attr,omitempty"`
 }
 
 type FaceOrTopoSolidPropertyType struct {
@@ -2002,9 +2002,9 @@ type FaceOrTopoSolidPropertyType struct {
 	// The topological boundary of a solid (gml:directedFace) consists of a set of directed faces.
 	// A solid may optionally be realised by a 3-dimensional geometric primitive (gml:solidProperty).
 	TopoSolid    *TopoSolidType `xml:"http://www.opengis.net/gml/3.2 TopoSolid,omitempty"`
-	NilReason    string         `xml:"nilReason,attr,omitempty"`
+	NilReason    *string        `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string         `xml:"remoteSchema,attr,omitempty"`
-	Owns         bool           `xml:"owns,attr,omitempty"`
+	Owns         *bool          `xml:"owns,attr,omitempty"`
 }
 
 type FaceType struct {
@@ -2026,8 +2026,8 @@ type FaceType struct {
 	// This property element either references a surface via the XLink-attributes or contains the surface element. surfaceProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for AbstractSurface.
 	SurfaceProperty *SurfacePropertyType `xml:"http://www.opengis.net/gml/3.2 surfaceProperty,omitempty"`
 	// If the topological representation exists an unbounded manifold (e.g. Euclidean plane), a gml:Face must indicate whether it is a universal face or not, to ensure a lossless topology representation as defined by Kuijpers, et. al. (see OGC 05-102 Topology IPR). The optional universal attribute of type boolean is used to indicate this. NOTE The universal face is normally not part of any feature, and is used to represent the unbounded portion of the data set. Its interior boundary (it has no exterior boundary) would normally be considered the exterior boundary of the map represented by the data set.
-	Universal       bool   `xml:"universal,attr,omitempty"`
-	AggregationType string `xml:"aggregationType,attr,omitempty"`
+	Universal       *bool   `xml:"universal,attr,omitempty"`
+	AggregationType *string `xml:"aggregationType,attr,omitempty"`
 }
 
 type FeatureArrayPropertyType struct {
@@ -2071,8 +2071,8 @@ type FeaturePropertyType struct {
 	DynamicFeature             *DynamicFeatureType             `xml:"http://www.opengis.net/gml/3.2 DynamicFeature,omitempty"`
 	FeatureCollection          *FeatureCollectionType          `xml:"http://www.opengis.net/gml/3.2 FeatureCollection,omitempty"`
 	Observation                *ObservationType                `xml:"http://www.opengis.net/gml/3.2 Observation,omitempty"`
-	Owns                       bool                            `xml:"owns,attr,omitempty"`
-	NilReason                  string                          `xml:"nilReason,attr,omitempty"`
+	Owns                       *bool                           `xml:"owns,attr,omitempty"`
+	NilReason                  *string                         `xml:"nilReason,attr,omitempty"`
 	RemoteSchema               string                          `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -2097,7 +2097,7 @@ type GeneralConversionPropertyType struct {
 	// This abstract complex type is expected to be extended for well-known operation methods with many Conversion instances, in GML Application Schemas that define operation-method-specialized element names and contents. This conversion uses an operation method, usually with associated parameter values. However, operation methods and parameter values are directly associated with concrete subtypes, not with this abstract type. All concrete types derived from this type shall extend this type to include a "usesMethod" element that references the "OperationMethod" element. Similarly, all concrete types derived from this type shall extend this type to include zero or more elements each named "uses...Value" that each use the type of an element substitutable for the "AbstractGeneralParameterValue" element.
 	AbstractGeneralConversion *AbstractGeneralConversionType `xml:"http://www.opengis.net/gml/3.2 AbstractGeneralConversion,omitempty"`
 	Conversion                *ConversionType                `xml:"http://www.opengis.net/gml/3.2 Conversion,omitempty"`
-	NilReason                 string                         `xml:"nilReason,attr,omitempty"`
+	NilReason                 *string                        `xml:"nilReason,attr,omitempty"`
 	RemoteSchema              string                         `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -2106,7 +2106,7 @@ type GeneralTransformationPropertyType struct {
 	// This abstract complex type is expected to be extended for well-known operation methods with many Transformation instances, in Application Schemas that define operation-method-specialized value element names and contents. This transformation uses an operation method with associated parameter values. However, operation methods and parameter values are directly associated with concrete subtypes, not with this abstract type. All concrete types derived from this type shall extend this type to include a "usesMethod" element that references one "OperationMethod" element. Similarly, all concrete types derived from this type shall extend this type to include one or more elements each named "uses...Value" that each use the type of an element substitutable for the "AbstractGeneralParameterValue" element.
 	AbstractGeneralTransformation *AbstractGeneralTransformationType `xml:"http://www.opengis.net/gml/3.2 AbstractGeneralTransformation,omitempty"`
 	Transformation                *TransformationType                `xml:"http://www.opengis.net/gml/3.2 Transformation,omitempty"`
-	NilReason                     string                             `xml:"nilReason,attr,omitempty"`
+	NilReason                     *string                            `xml:"nilReason,attr,omitempty"`
 	RemoteSchema                  string                             `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -2116,7 +2116,7 @@ type GenericMetaDataType struct {
 
 type GeocentricCRSPropertyType struct {
 	GeocentricCRS *GeocentricCRSType `xml:"http://www.opengis.net/gml/3.2 GeocentricCRS,omitempty"`
-	NilReason     string             `xml:"nilReason,attr,omitempty"`
+	NilReason     *string            `xml:"nilReason,attr,omitempty"`
 	RemoteSchema  string             `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -2142,30 +2142,30 @@ type GeocentricCRSType struct {
 }
 
 type GeodesicStringType struct {
-	NumDerivativesAtStart int                     `xml:"numDerivativesAtStart,attr,omitempty"`
-	NumDerivativesAtEnd   int                     `xml:"numDerivativesAtEnd,attr,omitempty"`
-	NumDerivativeInterior int                     `xml:"numDerivativeInterior,attr,omitempty"`
+	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
+	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
+	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Pos                   *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
 	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
 	PointProperty *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
-	Interpolation string             `xml:"interpolation,attr,omitempty"`
+	Interpolation *string            `xml:"interpolation,attr,omitempty"`
 }
 
 type GeodesicType struct {
-	NumDerivativesAtStart int                     `xml:"numDerivativesAtStart,attr,omitempty"`
-	NumDerivativesAtEnd   int                     `xml:"numDerivativesAtEnd,attr,omitempty"`
-	NumDerivativeInterior int                     `xml:"numDerivativeInterior,attr,omitempty"`
+	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
+	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
+	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Pos                   *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
 	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
 	PointProperty *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
-	Interpolation string             `xml:"interpolation,attr,omitempty"`
+	Interpolation *string            `xml:"interpolation,attr,omitempty"`
 }
 
 type GeodeticCRSPropertyType struct {
 	GeodeticCRS  *GeodeticCRSType `xml:"http://www.opengis.net/gml/3.2 GeodeticCRS,omitempty"`
-	NilReason    string           `xml:"nilReason,attr,omitempty"`
+	NilReason    *string          `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string           `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -2202,7 +2202,7 @@ type GeodeticCRSType struct {
 type GeodeticDatumPropertyType struct {
 	// gml:GeodeticDatum is a geodetic datum defines the precise location and orientation in 3-dimensional space of a defined ellipsoid (or sphere), or of a Cartesian coordinate system centered in this ellipsoid (or sphere).
 	GeodeticDatum *GeodeticDatumType `xml:"http://www.opengis.net/gml/3.2 GeodeticDatum,omitempty"`
-	NilReason     string             `xml:"nilReason,attr,omitempty"`
+	NilReason     *string            `xml:"nilReason,attr,omitempty"`
 	RemoteSchema  string             `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -2241,7 +2241,7 @@ type GeodeticDatumType struct {
 
 type GeographicCRSPropertyType struct {
 	GeographicCRS *GeographicCRSType `xml:"http://www.opengis.net/gml/3.2 GeographicCRS,omitempty"`
-	NilReason     string             `xml:"nilReason,attr,omitempty"`
+	NilReason     *string            `xml:"nilReason,attr,omitempty"`
 	RemoteSchema  string             `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -2279,8 +2279,8 @@ type GeometricComplexPropertyType struct {
 	// A gml:CompositeSolid is represented by a set of orientable surfaces. It is a geometry type with all the geometric properties of a (primitive) solid. Essentially, a composite solid is a collection of solids that join in pairs on common boundary surfaces and which, when considered as a whole, form a single solid.
 	// solidMember references or contains one solid in the composite solid. The solids are contiguous.
 	CompositeSolid *CompositeSolidType `xml:"http://www.opengis.net/gml/3.2 CompositeSolid,omitempty"`
-	Owns           bool                `xml:"owns,attr,omitempty"`
-	NilReason      string              `xml:"nilReason,attr,omitempty"`
+	Owns           *bool               `xml:"owns,attr,omitempty"`
+	NilReason      *string             `xml:"nilReason,attr,omitempty"`
 	RemoteSchema   string              `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -2295,12 +2295,12 @@ type GeometricComplexType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name            []CodeType                       `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id              string                           `xml:"id,attr,omitempty"`
-	SrsName         string                           `xml:"srsName,attr,omitempty"`
-	SrsDimension    int                              `xml:"srsDimension,attr,omitempty"`
-	AxisLabels      string                           `xml:"axisLabels,attr,omitempty"`
-	UomLabels       string                           `xml:"uomLabels,attr,omitempty"`
+	SrsName         *string                          `xml:"srsName,attr,omitempty"`
+	SrsDimension    *int                             `xml:"srsDimension,attr,omitempty"`
+	AxisLabels      *string                          `xml:"axisLabels,attr,omitempty"`
+	UomLabels       *string                          `xml:"uomLabels,attr,omitempty"`
 	Element         []GeometricPrimitivePropertyType `xml:"http://www.opengis.net/gml/3.2 element"`
-	AggregationType string                           `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string                          `xml:"aggregationType,attr,omitempty"`
 }
 
 type GeometricPrimitivePropertyType struct {
@@ -2310,8 +2310,8 @@ type GeometricPrimitivePropertyType struct {
 	AbstractSolid              *AbstractSolidType              `xml:"http://www.opengis.net/gml/3.2 AbstractSolid,omitempty"`
 	AbstractSurface            *AbstractSurfaceType            `xml:"http://www.opengis.net/gml/3.2 AbstractSurface,omitempty"`
 	Point                      *PointType                      `xml:"http://www.opengis.net/gml/3.2 Point,omitempty"`
-	Owns                       bool                            `xml:"owns,attr,omitempty"`
-	NilReason                  string                          `xml:"nilReason,attr,omitempty"`
+	Owns                       *bool                           `xml:"owns,attr,omitempty"`
+	NilReason                  *string                         `xml:"nilReason,attr,omitempty"`
 	RemoteSchema               string                          `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -2322,7 +2322,7 @@ type GeometryArrayPropertyType struct {
 	AbstractGeometricPrimitive []AbstractGeometricPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricPrimitive"`
 	AbstractImplicitGeometry   []AbstractGeometryType           `xml:"http://www.opengis.net/gml/3.2 AbstractImplicitGeometry"`
 	GeometricComplex           []GeometricComplexType           `xml:"http://www.opengis.net/gml/3.2 GeometricComplex"`
-	Owns                       bool                             `xml:"owns,attr,omitempty"`
+	Owns                       *bool                            `xml:"owns,attr,omitempty"`
 }
 
 type GeometryPropertyType struct {
@@ -2332,9 +2332,9 @@ type GeometryPropertyType struct {
 	AbstractGeometricPrimitive *AbstractGeometricPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricPrimitive,omitempty"`
 	AbstractImplicitGeometry   *AbstractGeometryType           `xml:"http://www.opengis.net/gml/3.2 AbstractImplicitGeometry,omitempty"`
 	GeometricComplex           *GeometricComplexType           `xml:"http://www.opengis.net/gml/3.2 GeometricComplex,omitempty"`
-	NilReason                  string                          `xml:"nilReason,attr,omitempty"`
+	NilReason                  *string                         `xml:"nilReason,attr,omitempty"`
 	RemoteSchema               string                          `xml:"remoteSchema,attr,omitempty"`
-	Owns                       bool                            `xml:"owns,attr,omitempty"`
+	Owns                       *bool                           `xml:"owns,attr,omitempty"`
 }
 
 type GridEnvelopeType struct {
@@ -2366,10 +2366,10 @@ type GridType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType      `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string          `xml:"id,attr,omitempty"`
-	SrsName      string          `xml:"srsName,attr,omitempty"`
-	SrsDimension int             `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string          `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string          `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string         `xml:"srsName,attr,omitempty"`
+	SrsDimension *int            `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string         `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string         `xml:"uomLabels,attr,omitempty"`
 	Limits       *GridLimitsType `xml:"http://www.opengis.net/gml/3.2 limits,omitempty"`
 	AxisName     []string        `xml:"http://www.opengis.net/gml/3.2 axisName"`
 	Dimension    int             `xml:"dimension,attr"`
@@ -2382,7 +2382,7 @@ type HistoryPropertyType struct {
 	// The time slice can thus be viewed as event or process-oriented, whereas a snapshot is more state or structure-oriented. A timeslice has richer causality, whereas a snapshot merely portrays the status of the whole.
 	AbstractTimeSlice  []AbstractTimeSliceType  `xml:"http://www.opengis.net/gml/3.2 AbstractTimeSlice"`
 	MovingObjectStatus []MovingObjectStatusType `xml:"http://www.opengis.net/gml/3.2 MovingObjectStatus"`
-	Owns               bool                     `xml:"owns,attr,omitempty"`
+	Owns               *bool                    `xml:"owns,attr,omitempty"`
 }
 
 type IdentifiedObjectType struct {
@@ -2402,7 +2402,7 @@ type IdentifiedObjectType struct {
 type ImageCRSPropertyType struct {
 	// gml:ImageCRS is an engineering coordinate reference system applied to locations in images. Image coordinate reference systems are treated as a separate sub-type because the definition of the associated image datum contains two attributes not relevant to other engineering datums.
 	ImageCRS     *ImageCRSType `xml:"http://www.opengis.net/gml/3.2 ImageCRS,omitempty"`
-	NilReason    string        `xml:"nilReason,attr,omitempty"`
+	NilReason    *string       `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string        `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -2437,7 +2437,7 @@ type ImageCRSType struct {
 type ImageDatumPropertyType struct {
 	// gml:ImageDatum defines the origin of an image coordinate reference system, and is used in a local context only. For an image datum, the anchor definition is usually either the centre of the image or the corner of the image. For more information, see ISO 19111 B.3.5.
 	ImageDatum   *ImageDatumType `xml:"http://www.opengis.net/gml/3.2 ImageDatum,omitempty"`
-	NilReason    string          `xml:"nilReason,attr,omitempty"`
+	NilReason    *string         `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string          `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -2475,7 +2475,7 @@ type IndirectEntryType struct {
 }
 
 type InlinePropertyType struct {
-	Owns bool `xml:"owns,attr,omitempty"`
+	Owns *bool `xml:"owns,attr,omitempty"`
 }
 
 type KnotPropertyType struct {
@@ -2503,16 +2503,16 @@ type LineStringSegmentArrayPropertyType struct {
 }
 
 type LineStringSegmentType struct {
-	NumDerivativesAtStart int                     `xml:"numDerivativesAtStart,attr,omitempty"`
-	NumDerivativesAtEnd   int                     `xml:"numDerivativesAtEnd,attr,omitempty"`
-	NumDerivativeInterior int                     `xml:"numDerivativeInterior,attr,omitempty"`
+	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
+	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
+	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
 	Pos                   []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
 	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
 	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
 	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
-	Interpolation string              `xml:"interpolation,attr,omitempty"`
+	Interpolation *string             `xml:"interpolation,attr,omitempty"`
 }
 
 type LineStringType struct {
@@ -2526,10 +2526,10 @@ type LineStringType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string                  `xml:"id,attr,omitempty"`
-	SrsName      string                  `xml:"srsName,attr,omitempty"`
-	SrsDimension int                     `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string                  `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string                  `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string                 `xml:"srsName,attr,omitempty"`
+	SrsDimension *int                    `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string                 `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string                 `xml:"uomLabels,attr,omitempty"`
 	PosList      *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates  *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
 	Pos          []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
@@ -2541,7 +2541,7 @@ type LineStringType struct {
 type LinearCSPropertyType struct {
 	// gml:LinearCS is a one-dimensional coordinate system that consists of the points that lie on the single axis described. The associated coordinate is the distance – with or without offset – from the specified datum to the point along the axis. A LinearCS shall have one gml:axis property element.
 	LinearCS     *LinearCSType `xml:"http://www.opengis.net/gml/3.2 LinearCS,omitempty"`
-	NilReason    string        `xml:"nilReason,attr,omitempty"`
+	NilReason    *string       `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string        `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -2560,7 +2560,7 @@ type LinearCSType struct {
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
 	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
-	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string                            `xml:"aggregationType,attr,omitempty"`
 }
 
 type LinearRingPropertyType struct {
@@ -2579,10 +2579,10 @@ type LinearRingType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string                  `xml:"id,attr,omitempty"`
-	SrsName      string                  `xml:"srsName,attr,omitempty"`
-	SrsDimension int                     `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string                  `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string                  `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string                 `xml:"srsName,attr,omitempty"`
+	SrsDimension *int                    `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string                 `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string                 `xml:"uomLabels,attr,omitempty"`
 	PosList      *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates  *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
 	Pos          []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
@@ -2601,7 +2601,7 @@ type LocationPropertyType struct {
 	LocationKeyWord            *CodeType                       `xml:"http://www.opengis.net/gml/3.2 LocationKeyWord,omitempty"`
 	LocationString             *StringOrRefType                `xml:"http://www.opengis.net/gml/3.2 LocationString,omitempty"`
 	Null                       *string                         `xml:"http://www.opengis.net/gml/3.2 Null,omitempty"`
-	NilReason                  string                          `xml:"nilReason,attr,omitempty"`
+	NilReason                  *string                         `xml:"nilReason,attr,omitempty"`
 	RemoteSchema               string                          `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -2628,8 +2628,8 @@ type MeasureType struct {
 type MetaDataPropertyType struct {
 	AbstractMetaData *AbstractMetaDataType `xml:"http://www.opengis.net/gml/3.2 AbstractMetaData,omitempty"`
 	GenericMetaData  *GenericMetaDataType  `xml:"http://www.opengis.net/gml/3.2 GenericMetaData,omitempty"`
-	About            string                `xml:"about,attr,omitempty"`
-	NilReason        string                `xml:"nilReason,attr,omitempty"`
+	About            *string               `xml:"about,attr,omitempty"`
+	NilReason        *string               `xml:"nilReason,attr,omitempty"`
 	RemoteSchema     string                `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -2668,9 +2668,9 @@ type MultiCurvePropertyType struct {
 	// A gml:MultiCurve is defined by one or more gml:AbstractCurves.
 	// The members of the geometric aggregate may be specified either using the "standard" property (gml:curveMember) or the array property (gml:curveMembers). It is also valid to use both the "standard" and the array properties in the same collection.
 	MultiCurve   *MultiCurveType `xml:"http://www.opengis.net/gml/3.2 MultiCurve,omitempty"`
-	NilReason    string          `xml:"nilReason,attr,omitempty"`
+	NilReason    *string         `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string          `xml:"remoteSchema,attr,omitempty"`
-	Owns         bool            `xml:"owns,attr,omitempty"`
+	Owns         *bool           `xml:"owns,attr,omitempty"`
 }
 
 type MultiCurveType struct {
@@ -2684,11 +2684,11 @@ type MultiCurveType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name            []CodeType          `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id              string              `xml:"id,attr,omitempty"`
-	SrsName         string              `xml:"srsName,attr,omitempty"`
-	SrsDimension    int                 `xml:"srsDimension,attr,omitempty"`
-	AxisLabels      string              `xml:"axisLabels,attr,omitempty"`
-	UomLabels       string              `xml:"uomLabels,attr,omitempty"`
-	AggregationType string              `xml:"aggregationType,attr,omitempty"`
+	SrsName         *string             `xml:"srsName,attr,omitempty"`
+	SrsDimension    *int                `xml:"srsDimension,attr,omitempty"`
+	AxisLabels      *string             `xml:"axisLabels,attr,omitempty"`
+	UomLabels       *string             `xml:"uomLabels,attr,omitempty"`
+	AggregationType *string             `xml:"aggregationType,attr,omitempty"`
 	CurveMember     []CurvePropertyType `xml:"http://www.opengis.net/gml/3.2 curveMember"`
 	// This property element contains a list of curves. The order of the elements is significant and shall be preserved when processing the array.
 	CurveMembers *CurveArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 curveMembers,omitempty"`
@@ -2702,9 +2702,9 @@ type MultiGeometryPropertyType struct {
 	MultiPoint                 *MultiPointType                 `xml:"http://www.opengis.net/gml/3.2 MultiPoint,omitempty"`
 	MultiSolid                 *MultiSolidType                 `xml:"http://www.opengis.net/gml/3.2 MultiSolid,omitempty"`
 	MultiSurface               *MultiSurfaceType               `xml:"http://www.opengis.net/gml/3.2 MultiSurface,omitempty"`
-	NilReason                  string                          `xml:"nilReason,attr,omitempty"`
+	NilReason                  *string                         `xml:"nilReason,attr,omitempty"`
 	RemoteSchema               string                          `xml:"remoteSchema,attr,omitempty"`
-	Owns                       bool                            `xml:"owns,attr,omitempty"`
+	Owns                       *bool                           `xml:"owns,attr,omitempty"`
 }
 
 type MultiGeometryType struct {
@@ -2718,11 +2718,11 @@ type MultiGeometryType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name            []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id              string     `xml:"id,attr,omitempty"`
-	SrsName         string     `xml:"srsName,attr,omitempty"`
-	SrsDimension    int        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels      string     `xml:"axisLabels,attr,omitempty"`
-	UomLabels       string     `xml:"uomLabels,attr,omitempty"`
-	AggregationType string     `xml:"aggregationType,attr,omitempty"`
+	SrsName         *string    `xml:"srsName,attr,omitempty"`
+	SrsDimension    *int       `xml:"srsDimension,attr,omitempty"`
+	AxisLabels      *string    `xml:"axisLabels,attr,omitempty"`
+	UomLabels       *string    `xml:"uomLabels,attr,omitempty"`
+	AggregationType *string    `xml:"aggregationType,attr,omitempty"`
 	// This property element either references a geometry element via the XLink-attributes or contains the geometry element.
 	GeometryMember []GeometryPropertyType `xml:"http://www.opengis.net/gml/3.2 geometryMember"`
 	// This property element contains a list of geometry elements. The order of the elements is significant and shall be preserved when processing the array.
@@ -2733,9 +2733,9 @@ type MultiPointPropertyType struct {
 	// A gml:MultiPoint consists of one or more gml:Points.
 	// The members of the geometric aggregate may be specified either using the "standard" property (gml:pointMember) or the array property (gml:pointMembers). It is also valid to use both the "standard" and the array properties in the same collection.
 	MultiPoint   *MultiPointType `xml:"http://www.opengis.net/gml/3.2 MultiPoint,omitempty"`
-	NilReason    string          `xml:"nilReason,attr,omitempty"`
+	NilReason    *string         `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string          `xml:"remoteSchema,attr,omitempty"`
-	Owns         bool            `xml:"owns,attr,omitempty"`
+	Owns         *bool           `xml:"owns,attr,omitempty"`
 }
 
 type MultiPointType struct {
@@ -2749,11 +2749,11 @@ type MultiPointType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name            []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id              string     `xml:"id,attr,omitempty"`
-	SrsName         string     `xml:"srsName,attr,omitempty"`
-	SrsDimension    int        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels      string     `xml:"axisLabels,attr,omitempty"`
-	UomLabels       string     `xml:"uomLabels,attr,omitempty"`
-	AggregationType string     `xml:"aggregationType,attr,omitempty"`
+	SrsName         *string    `xml:"srsName,attr,omitempty"`
+	SrsDimension    *int       `xml:"srsDimension,attr,omitempty"`
+	AxisLabels      *string    `xml:"axisLabels,attr,omitempty"`
+	UomLabels       *string    `xml:"uomLabels,attr,omitempty"`
+	AggregationType *string    `xml:"aggregationType,attr,omitempty"`
 	// This property element either references a Point via the XLink-attributes or contains the Point element.
 	PointMember []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointMember"`
 	// This property element contains a list of points. The order of the elements is significant and shall be preserved when processing the array.
@@ -2764,9 +2764,9 @@ type MultiSolidPropertyType struct {
 	// A gml:MultiSolid is defined by one or more gml:AbstractSolids.
 	// The members of the geometric aggregate may be specified either using the "standard" property (gml:solidMember) or the array property (gml:solidMembers). It is also valid to use both the "standard" and the array properties in the same collection.
 	MultiSolid   *MultiSolidType `xml:"http://www.opengis.net/gml/3.2 MultiSolid,omitempty"`
-	NilReason    string          `xml:"nilReason,attr,omitempty"`
+	NilReason    *string         `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string          `xml:"remoteSchema,attr,omitempty"`
-	Owns         bool            `xml:"owns,attr,omitempty"`
+	Owns         *bool           `xml:"owns,attr,omitempty"`
 }
 
 type MultiSolidType struct {
@@ -2780,11 +2780,11 @@ type MultiSolidType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name            []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id              string     `xml:"id,attr,omitempty"`
-	SrsName         string     `xml:"srsName,attr,omitempty"`
-	SrsDimension    int        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels      string     `xml:"axisLabels,attr,omitempty"`
-	UomLabels       string     `xml:"uomLabels,attr,omitempty"`
-	AggregationType string     `xml:"aggregationType,attr,omitempty"`
+	SrsName         *string    `xml:"srsName,attr,omitempty"`
+	SrsDimension    *int       `xml:"srsDimension,attr,omitempty"`
+	AxisLabels      *string    `xml:"axisLabels,attr,omitempty"`
+	UomLabels       *string    `xml:"uomLabels,attr,omitempty"`
+	AggregationType *string    `xml:"aggregationType,attr,omitempty"`
 	// This property element either references a solid via the XLink-attributes or contains the solid element. A solid element is any element, which is substitutable for gml:AbstractSolid.
 	SolidMember []SolidPropertyType `xml:"http://www.opengis.net/gml/3.2 solidMember"`
 	// This property element contains a list of solids. The order of the elements is significant and shall be preserved when processing the array.
@@ -2795,9 +2795,9 @@ type MultiSurfacePropertyType struct {
 	// A gml:MultiSurface is defined by one or more gml:AbstractSurfaces.
 	// The members of the geometric aggregate may be specified either using the "standard" property (gml:surfaceMember) or the array property (gml:surfaceMembers). It is also valid to use both the "standard" and the array properties in the same collection.
 	MultiSurface *MultiSurfaceType `xml:"http://www.opengis.net/gml/3.2 MultiSurface,omitempty"`
-	NilReason    string            `xml:"nilReason,attr,omitempty"`
+	NilReason    *string           `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string            `xml:"remoteSchema,attr,omitempty"`
-	Owns         bool              `xml:"owns,attr,omitempty"`
+	Owns         *bool             `xml:"owns,attr,omitempty"`
 }
 
 type MultiSurfaceType struct {
@@ -2811,11 +2811,11 @@ type MultiSurfaceType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name            []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id              string     `xml:"id,attr,omitempty"`
-	SrsName         string     `xml:"srsName,attr,omitempty"`
-	SrsDimension    int        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels      string     `xml:"axisLabels,attr,omitempty"`
-	UomLabels       string     `xml:"uomLabels,attr,omitempty"`
-	AggregationType string     `xml:"aggregationType,attr,omitempty"`
+	SrsName         *string    `xml:"srsName,attr,omitempty"`
+	SrsDimension    *int       `xml:"srsDimension,attr,omitempty"`
+	AxisLabels      *string    `xml:"axisLabels,attr,omitempty"`
+	UomLabels       *string    `xml:"uomLabels,attr,omitempty"`
+	AggregationType *string    `xml:"aggregationType,attr,omitempty"`
 	// This property element either references a surface via the XLink-attributes or contains the surface element. A surface element is any element, which is substitutable for gml:AbstractSurface.
 	SurfaceMember []SurfacePropertyType `xml:"http://www.opengis.net/gml/3.2 surfaceMember"`
 	// This property element contains a list of surfaces. The order of the elements is significant and shall be preserved when processing the array.
@@ -2834,9 +2834,9 @@ type NodeOrEdgePropertyType struct {
 	// If provided, the aggregationType attribute shall have the value "sequence".
 	// An edge may optionally be realised by a 1-dimensional geometric primitive (gml:curveProperty).
 	Edge         *EdgeType `xml:"http://www.opengis.net/gml/3.2 Edge,omitempty"`
-	NilReason    string    `xml:"nilReason,attr,omitempty"`
+	NilReason    *string   `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string    `xml:"remoteSchema,attr,omitempty"`
-	Owns         bool      `xml:"owns,attr,omitempty"`
+	Owns         *bool     `xml:"owns,attr,omitempty"`
 }
 
 type NodePropertyType struct {
@@ -2845,9 +2845,9 @@ type NodePropertyType struct {
 	// If provided, the aggregationType attribute shall have the value "sequence".
 	// A node may optionally be realised by a 0-dimensional geometric primitive (gml:pointProperty).
 	Node         *NodeType `xml:"http://www.opengis.net/gml/3.2 Node,omitempty"`
-	NilReason    string    `xml:"nilReason,attr,omitempty"`
+	NilReason    *string   `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string    `xml:"remoteSchema,attr,omitempty"`
-	Owns         bool      `xml:"owns,attr,omitempty"`
+	Owns         *bool     `xml:"owns,attr,omitempty"`
 }
 
 type NodeType struct {
@@ -2866,12 +2866,12 @@ type NodeType struct {
 	DirectedEdge []DirectedEdgePropertyType `xml:"http://www.opengis.net/gml/3.2 directedEdge"`
 	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
 	PointProperty   *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
-	AggregationType string             `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string            `xml:"aggregationType,attr,omitempty"`
 }
 
 type ObliqueCartesianCSPropertyType struct {
 	ObliqueCartesianCS *ObliqueCartesianCSType `xml:"http://www.opengis.net/gml/3.2 ObliqueCartesianCS,omitempty"`
-	NilReason          string                  `xml:"nilReason,attr,omitempty"`
+	NilReason          *string                 `xml:"nilReason,attr,omitempty"`
 	RemoteSchema       string                  `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -2890,7 +2890,7 @@ type ObliqueCartesianCSType struct {
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
 	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
-	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string                            `xml:"aggregationType,attr,omitempty"`
 }
 
 type ObservationType struct {
@@ -2917,9 +2917,9 @@ type ObservationType struct {
 }
 
 type OffsetCurveType struct {
-	NumDerivativesAtStart int                `xml:"numDerivativesAtStart,attr,omitempty"`
-	NumDerivativesAtEnd   int                `xml:"numDerivativesAtEnd,attr,omitempty"`
-	NumDerivativeInterior int                `xml:"numDerivativeInterior,attr,omitempty"`
+	NumDerivativesAtStart *int               `xml:"numDerivativesAtStart,attr,omitempty"`
+	NumDerivativesAtEnd   *int               `xml:"numDerivativesAtEnd,attr,omitempty"`
+	NumDerivativeInterior *int               `xml:"numDerivativeInterior,attr,omitempty"`
 	OffsetBase            *CurvePropertyType `xml:"http://www.opengis.net/gml/3.2 offsetBase,omitempty"`
 	Distance              *LengthType        `xml:"http://www.opengis.net/gml/3.2 distance,omitempty"`
 	RefDirection          *VectorType        `xml:"http://www.opengis.net/gml/3.2 refDirection,omitempty"`
@@ -2929,7 +2929,7 @@ type OperationMethodPropertyType struct {
 	// gml:OperationMethod is a method (algorithm or procedure) used to perform a coordinate operation. Most operation methods use a number of operation parameters, although some coordinate conversions use none. Each coordinate operation using the method assigns values to these parameters.
 	// The parameter elements are an unordered list of associations to the set of operation parameters and parameter groups used by this operation method.
 	OperationMethod *OperationMethodType `xml:"http://www.opengis.net/gml/3.2 OperationMethod,omitempty"`
-	NilReason       string               `xml:"nilReason,attr,omitempty"`
+	NilReason       *string              `xml:"nilReason,attr,omitempty"`
 	RemoteSchema    string               `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -2964,7 +2964,7 @@ type OperationParameterGroupPropertyType struct {
 	// gml:OperationParameterGroup is the definition of a group of parameters used by an operation method. This complex type is expected to be used or extended for all applicable operation methods, without defining operation-method-specialized element names.
 	// The generalOperationParameter elements are an unordered list of associations to the set of operation parameters that are members of this group.
 	OperationParameterGroup *OperationParameterGroupType `xml:"http://www.opengis.net/gml/3.2 OperationParameterGroup,omitempty"`
-	NilReason               string                       `xml:"nilReason,attr,omitempty"`
+	NilReason               *string                      `xml:"nilReason,attr,omitempty"`
 	RemoteSchema            string                       `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -2993,7 +2993,7 @@ type OperationParameterGroupType struct {
 type OperationParameterPropertyType struct {
 	// gml:OperationParameter is the definition of a parameter used by an operation method. Most parameter values are numeric, but other types of parameter values are possible. This complex type is expected to be used or extended for all operation methods, without defining operation-method-specialized element names.
 	OperationParameter *OperationParameterType `xml:"http://www.opengis.net/gml/3.2 OperationParameter,omitempty"`
-	NilReason          string                  `xml:"nilReason,attr,omitempty"`
+	NilReason          *string                 `xml:"nilReason,attr,omitempty"`
 	RemoteSchema       string                  `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -3017,7 +3017,7 @@ type OperationPropertyType struct {
 	AbstractOperation             *AbstractCoordinateOperationType   `xml:"http://www.opengis.net/gml/3.2 AbstractOperation,omitempty"`
 	AbstractGeneralConversion     *AbstractGeneralConversionType     `xml:"http://www.opengis.net/gml/3.2 AbstractGeneralConversion,omitempty"`
 	AbstractGeneralTransformation *AbstractGeneralTransformationType `xml:"http://www.opengis.net/gml/3.2 AbstractGeneralTransformation,omitempty"`
-	NilReason                     string                             `xml:"nilReason,attr,omitempty"`
+	NilReason                     *string                            `xml:"nilReason,attr,omitempty"`
 	RemoteSchema                  string                             `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -3032,13 +3032,13 @@ type OrientableCurveType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"id,attr,omitempty"`
-	SrsName      string     `xml:"srsName,attr,omitempty"`
-	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string    `xml:"srsName,attr,omitempty"`
+	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 	// The property baseCurve references or contains the base curve, i.e. it either references the base curve via the XLink-attributes or contains the curve element. A curve element is any element which is substitutable for AbstractCurve. The base curve has positive orientation.
 	BaseCurve   *CurvePropertyType `xml:"http://www.opengis.net/gml/3.2 baseCurve,omitempty"`
-	Orientation string             `xml:"orientation,attr,omitempty"`
+	Orientation *string            `xml:"orientation,attr,omitempty"`
 }
 
 type OrientableSurfaceType struct {
@@ -3052,13 +3052,13 @@ type OrientableSurfaceType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"id,attr,omitempty"`
-	SrsName      string     `xml:"srsName,attr,omitempty"`
-	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string    `xml:"srsName,attr,omitempty"`
+	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 	// The property baseSurface references or contains the base surface. The property baseSurface either references the base surface via the XLink-attributes or contains the surface element. A surface element is any element which is substitutable for gml:AbstractSurface. The base surface has positive orientation.
 	BaseSurface *SurfacePropertyType `xml:"http://www.opengis.net/gml/3.2 baseSurface,omitempty"`
-	Orientation string               `xml:"orientation,attr,omitempty"`
+	Orientation *string              `xml:"orientation,attr,omitempty"`
 }
 
 type ParameterValueGroupType struct {
@@ -3096,7 +3096,7 @@ type PassThroughOperationPropertyType struct {
 	// gml:PassThroughOperation is a pass-through operation specifies that a subset of a coordinate tuple is subject to a specific coordinate operation.
 	// The modifiedCoordinate property elements are an ordered sequence of positive integers defining the positions in a coordinate tuple of the coordinates affected by this pass-through operation. The AggregationAttributeGroup should be used to specify that the modifiedCoordinate elements are ordered.
 	PassThroughOperation *PassThroughOperationType `xml:"http://www.opengis.net/gml/3.2 PassThroughOperation,omitempty"`
-	NilReason            string                    `xml:"nilReason,attr,omitempty"`
+	NilReason            *string                   `xml:"nilReason,attr,omitempty"`
 	RemoteSchema         string                    `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -3130,21 +3130,21 @@ type PassThroughOperationType struct {
 	CoordOperation      *CoordinateOperationPropertyType `xml:"http://www.opengis.net/gml/3.2 coordOperation,omitempty"`
 	UsesOperation       *CoordinateOperationPropertyType `xml:"http://www.opengis.net/gml/3.2 usesOperation,omitempty"`
 	UsesSingleOperation *CoordinateOperationPropertyType `xml:"http://www.opengis.net/gml/3.2 usesSingleOperation,omitempty"`
-	AggregationType     string                           `xml:"aggregationType,attr,omitempty"`
+	AggregationType     *string                          `xml:"aggregationType,attr,omitempty"`
 }
 
 type PointArrayPropertyType struct {
 	// A Point is defined by a single coordinate tuple. The direct position of a point is specified by the pos element which is of type DirectPositionType.
 	Point []PointType `xml:"http://www.opengis.net/gml/3.2 Point"`
-	Owns  bool        `xml:"owns,attr,omitempty"`
+	Owns  *bool       `xml:"owns,attr,omitempty"`
 }
 
 type PointPropertyType struct {
 	// A Point is defined by a single coordinate tuple. The direct position of a point is specified by the pos element which is of type DirectPositionType.
 	Point        *PointType `xml:"http://www.opengis.net/gml/3.2 Point,omitempty"`
-	NilReason    string     `xml:"nilReason,attr,omitempty"`
+	NilReason    *string    `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string     `xml:"remoteSchema,attr,omitempty"`
-	Owns         bool       `xml:"owns,attr,omitempty"`
+	Owns         *bool      `xml:"owns,attr,omitempty"`
 }
 
 type PointType struct {
@@ -3158,10 +3158,10 @@ type PointType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType          `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string              `xml:"id,attr,omitempty"`
-	SrsName      string              `xml:"srsName,attr,omitempty"`
-	SrsDimension int                 `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string              `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string              `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string             `xml:"srsName,attr,omitempty"`
+	SrsDimension *int                `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string             `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string             `xml:"uomLabels,attr,omitempty"`
 	Pos          *DirectPositionType `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
 	Coordinates  *CoordinatesType    `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
 }
@@ -3169,7 +3169,7 @@ type PointType struct {
 type PolarCSPropertyType struct {
 	// gml:PolarCS ia s two-dimensional coordinate system in which position is specified by the distance from the origin and the angle between the line from the origin to a point and a reference direction. A PolarCS shall have two gml:axis property elements.
 	PolarCS      *PolarCSType `xml:"http://www.opengis.net/gml/3.2 PolarCS,omitempty"`
-	NilReason    string       `xml:"nilReason,attr,omitempty"`
+	NilReason    *string      `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string       `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -3188,7 +3188,7 @@ type PolarCSType struct {
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
 	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
-	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string                            `xml:"aggregationType,attr,omitempty"`
 }
 
 type PolygonPatchType struct {
@@ -3196,7 +3196,7 @@ type PolygonPatchType struct {
 	Exterior *AbstractRingPropertyType `xml:"http://www.opengis.net/gml/3.2 exterior,omitempty"`
 	// A boundary of a surface consists of a number of rings. The "interior" rings separate the surface / surface patch from the area enclosed by the rings.
 	Interior      []AbstractRingPropertyType `xml:"http://www.opengis.net/gml/3.2 interior"`
-	Interpolation string                     `xml:"interpolation,attr,omitempty"`
+	Interpolation *string                    `xml:"interpolation,attr,omitempty"`
 }
 
 type PolygonType struct {
@@ -3210,10 +3210,10 @@ type PolygonType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"id,attr,omitempty"`
-	SrsName      string     `xml:"srsName,attr,omitempty"`
-	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string    `xml:"srsName,attr,omitempty"`
+	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 	// A boundary of a surface consists of a number of rings. In the normal 2D case, one of these rings is distinguished as being the exterior boundary. In a general manifold this is not always possible, in which case all boundaries shall be listed as interior boundaries, and the exterior will be empty.
 	Exterior *AbstractRingPropertyType `xml:"http://www.opengis.net/gml/3.2 exterior,omitempty"`
 	// A boundary of a surface consists of a number of rings. The "interior" rings separate the surface / surface patch from the area enclosed by the rings.
@@ -3223,7 +3223,7 @@ type PolygonType struct {
 type PrimeMeridianPropertyType struct {
 	// A gml:PrimeMeridian defines the origin from which longitude values are determined. The default value for the prime meridian gml:identifier value is "Greenwich".
 	PrimeMeridian *PrimeMeridianType `xml:"http://www.opengis.net/gml/3.2 PrimeMeridian,omitempty"`
-	NilReason     string             `xml:"nilReason,attr,omitempty"`
+	NilReason     *string            `xml:"nilReason,attr,omitempty"`
 	RemoteSchema  string             `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -3253,9 +3253,9 @@ type PriorityLocationPropertyType struct {
 	LocationKeyWord            *CodeType                       `xml:"http://www.opengis.net/gml/3.2 LocationKeyWord,omitempty"`
 	LocationString             *StringOrRefType                `xml:"http://www.opengis.net/gml/3.2 LocationString,omitempty"`
 	Null                       *string                         `xml:"http://www.opengis.net/gml/3.2 Null,omitempty"`
-	NilReason                  string                          `xml:"nilReason,attr,omitempty"`
+	NilReason                  *string                         `xml:"nilReason,attr,omitempty"`
 	RemoteSchema               string                          `xml:"remoteSchema,attr,omitempty"`
-	Priority                   string                          `xml:"priority,attr,omitempty"`
+	Priority                   *string                         `xml:"priority,attr,omitempty"`
 }
 
 type ProcedurePropertyType struct {
@@ -3268,15 +3268,15 @@ type ProcedurePropertyType struct {
 	DynamicFeature             *DynamicFeatureType             `xml:"http://www.opengis.net/gml/3.2 DynamicFeature,omitempty"`
 	FeatureCollection          *FeatureCollectionType          `xml:"http://www.opengis.net/gml/3.2 FeatureCollection,omitempty"`
 	Observation                *ObservationType                `xml:"http://www.opengis.net/gml/3.2 Observation,omitempty"`
-	Owns                       bool                            `xml:"owns,attr,omitempty"`
-	NilReason                  string                          `xml:"nilReason,attr,omitempty"`
+	Owns                       *bool                           `xml:"owns,attr,omitempty"`
+	NilReason                  *string                         `xml:"nilReason,attr,omitempty"`
 	RemoteSchema               string                          `xml:"remoteSchema,attr,omitempty"`
 }
 
 type ProjectedCRSPropertyType struct {
 	// gml:ProjectedCRS is a 2D coordinate reference system used to approximate the shape of the earth on a planar surface, but in such a way that the distortion that is inherent to the approximation is carefully controlled and known. Distortion correction is commonly applied to calculated bearings and distances to produce values that are a close match to actual field values.
 	ProjectedCRS *ProjectedCRSType `xml:"http://www.opengis.net/gml/3.2 ProjectedCRS,omitempty"`
-	NilReason    string            `xml:"nilReason,attr,omitempty"`
+	NilReason    *string           `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string            `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -3314,7 +3314,7 @@ type QuantityExtentType struct {
 type QuantityPropertyType struct {
 	// An XML attribute uom ("unit of measure") is required, whose value is a URI which identifies the definition of a ratio scale or units by which the numeric value shall be multiplied, or an interval or position scale on which the value occurs.
 	Quantity     *string `xml:"http://www.opengis.net/gml/3.2 Quantity,omitempty"`
-	NilReason    string  `xml:"nilReason,attr,omitempty"`
+	NilReason    *string `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string  `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -3346,7 +3346,7 @@ type RangeSetType struct {
 type RectangleType struct {
 	// A boundary of a surface consists of a number of rings. In the normal 2D case, one of these rings is distinguished as being the exterior boundary. In a general manifold this is not always possible, in which case all boundaries shall be listed as interior boundaries, and the exterior will be empty.
 	Exterior      *AbstractRingPropertyType `xml:"http://www.opengis.net/gml/3.2 exterior,omitempty"`
-	Interpolation string                    `xml:"interpolation,attr,omitempty"`
+	Interpolation *string                   `xml:"interpolation,attr,omitempty"`
 }
 
 type RectifiedGridType struct {
@@ -3360,10 +3360,10 @@ type RectifiedGridType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType         `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string             `xml:"id,attr,omitempty"`
-	SrsName      string             `xml:"srsName,attr,omitempty"`
-	SrsDimension int                `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string             `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string             `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string            `xml:"srsName,attr,omitempty"`
+	SrsDimension *int               `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string            `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string            `xml:"uomLabels,attr,omitempty"`
 	Limits       *GridLimitsType    `xml:"http://www.opengis.net/gml/3.2 limits,omitempty"`
 	AxisName     []string           `xml:"http://www.opengis.net/gml/3.2 axisName"`
 	Dimension    int                `xml:"dimension,attr"`
@@ -3372,9 +3372,9 @@ type RectifiedGridType struct {
 }
 
 type ReferenceType struct {
-	Owns         bool   `xml:"owns,attr,omitempty"`
-	NilReason    string `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string `xml:"remoteSchema,attr,omitempty"`
+	Owns         *bool   `xml:"owns,attr,omitempty"`
+	NilReason    *string `xml:"nilReason,attr,omitempty"`
+	RemoteSchema string  `xml:"remoteSchema,attr,omitempty"`
 }
 
 type RelatedTimeType struct {
@@ -3382,16 +3382,16 @@ type RelatedTimeType struct {
 	AbstractTimePrimitive          *AbstractTimePrimitiveType          `xml:"http://www.opengis.net/gml/3.2 AbstractTimePrimitive,omitempty"`
 	AbstractTimeGeometricPrimitive *AbstractTimeGeometricPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractTimeGeometricPrimitive,omitempty"`
 	AbstractTimeTopologyPrimitive  *AbstractTimeTopologyPrimitiveType  `xml:"http://www.opengis.net/gml/3.2 AbstractTimeTopologyPrimitive,omitempty"`
-	NilReason                      string                              `xml:"nilReason,attr,omitempty"`
+	NilReason                      *string                             `xml:"nilReason,attr,omitempty"`
 	RemoteSchema                   string                              `xml:"remoteSchema,attr,omitempty"`
-	Owns                           bool                                `xml:"owns,attr,omitempty"`
-	RelativePosition               string                              `xml:"relativePosition,attr,omitempty"`
+	Owns                           *bool                               `xml:"owns,attr,omitempty"`
+	RelativePosition               *string                             `xml:"relativePosition,attr,omitempty"`
 }
 
 type ResultType struct {
-	Owns         bool   `xml:"owns,attr,omitempty"`
-	NilReason    string `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string `xml:"remoteSchema,attr,omitempty"`
+	Owns         *bool   `xml:"owns,attr,omitempty"`
+	NilReason    *string `xml:"nilReason,attr,omitempty"`
+	RemoteSchema string  `xml:"remoteSchema,attr,omitempty"`
 }
 
 type RingPropertyType struct {
@@ -3412,12 +3412,12 @@ type RingType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name            []CodeType          `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id              string              `xml:"id,attr,omitempty"`
-	SrsName         string              `xml:"srsName,attr,omitempty"`
-	SrsDimension    int                 `xml:"srsDimension,attr,omitempty"`
-	AxisLabels      string              `xml:"axisLabels,attr,omitempty"`
-	UomLabels       string              `xml:"uomLabels,attr,omitempty"`
+	SrsName         *string             `xml:"srsName,attr,omitempty"`
+	SrsDimension    *int                `xml:"srsDimension,attr,omitempty"`
+	AxisLabels      *string             `xml:"axisLabels,attr,omitempty"`
+	UomLabels       *string             `xml:"uomLabels,attr,omitempty"`
 	CurveMember     []CurvePropertyType `xml:"http://www.opengis.net/gml/3.2 curveMember"`
-	AggregationType string              `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string             `xml:"aggregationType,attr,omitempty"`
 }
 
 type ScaleType struct {
@@ -3425,9 +3425,9 @@ type ScaleType struct {
 }
 
 type SequenceRuleType struct {
-	Value     string `xml:",chardata"`
-	Order     string `xml:"order,attr,omitempty"`
-	AxisOrder string `xml:"axisOrder,attr,omitempty"`
+	Value     string  `xml:",chardata"`
+	Order     *string `xml:"order,attr,omitempty"`
+	AxisOrder *string `xml:"axisOrder,attr,omitempty"`
 }
 
 type ShellPropertyType struct {
@@ -3448,13 +3448,13 @@ type ShellType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"id,attr,omitempty"`
-	SrsName      string     `xml:"srsName,attr,omitempty"`
-	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string    `xml:"srsName,attr,omitempty"`
+	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 	// This property element either references a surface via the XLink-attributes or contains the surface element. A surface element is any element, which is substitutable for gml:AbstractSurface.
 	SurfaceMember   []SurfacePropertyType `xml:"http://www.opengis.net/gml/3.2 surfaceMember"`
-	AggregationType string                `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string               `xml:"aggregationType,attr,omitempty"`
 }
 
 type SingleCRSPropertyType struct {
@@ -3468,7 +3468,7 @@ type SingleCRSPropertyType struct {
 	ImageCRS                  *ImageCRSType                  `xml:"http://www.opengis.net/gml/3.2 ImageCRS,omitempty"`
 	TemporalCRS               *TemporalCRSType               `xml:"http://www.opengis.net/gml/3.2 TemporalCRS,omitempty"`
 	VerticalCRS               *VerticalCRSType               `xml:"http://www.opengis.net/gml/3.2 VerticalCRS,omitempty"`
-	NilReason                 string                         `xml:"nilReason,attr,omitempty"`
+	NilReason                 *string                        `xml:"nilReason,attr,omitempty"`
 	RemoteSchema              string                         `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -3477,7 +3477,7 @@ type SingleOperationPropertyType struct {
 	AbstractSingleOperation *AbstractCoordinateOperationType `xml:"http://www.opengis.net/gml/3.2 AbstractSingleOperation,omitempty"`
 	AbstractOperation       *AbstractCoordinateOperationType `xml:"http://www.opengis.net/gml/3.2 AbstractOperation,omitempty"`
 	PassThroughOperation    *PassThroughOperationType        `xml:"http://www.opengis.net/gml/3.2 PassThroughOperation,omitempty"`
-	NilReason               string                           `xml:"nilReason,attr,omitempty"`
+	NilReason               *string                          `xml:"nilReason,attr,omitempty"`
 	RemoteSchema            string                           `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -3486,7 +3486,7 @@ type SolidArrayPropertyType struct {
 	AbstractSolid  []AbstractSolidType  `xml:"http://www.opengis.net/gml/3.2 AbstractSolid"`
 	CompositeSolid []CompositeSolidType `xml:"http://www.opengis.net/gml/3.2 CompositeSolid"`
 	Solid          []SolidType          `xml:"http://www.opengis.net/gml/3.2 Solid"`
-	Owns           bool                 `xml:"owns,attr,omitempty"`
+	Owns           *bool                `xml:"owns,attr,omitempty"`
 }
 
 type SolidPropertyType struct {
@@ -3494,9 +3494,9 @@ type SolidPropertyType struct {
 	AbstractSolid  *AbstractSolidType  `xml:"http://www.opengis.net/gml/3.2 AbstractSolid,omitempty"`
 	CompositeSolid *CompositeSolidType `xml:"http://www.opengis.net/gml/3.2 CompositeSolid,omitempty"`
 	Solid          *SolidType          `xml:"http://www.opengis.net/gml/3.2 Solid,omitempty"`
-	NilReason      string              `xml:"nilReason,attr,omitempty"`
+	NilReason      *string             `xml:"nilReason,attr,omitempty"`
 	RemoteSchema   string              `xml:"remoteSchema,attr,omitempty"`
-	Owns           bool                `xml:"owns,attr,omitempty"`
+	Owns           *bool               `xml:"owns,attr,omitempty"`
 }
 
 type SolidType struct {
@@ -3510,10 +3510,10 @@ type SolidType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType          `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string              `xml:"id,attr,omitempty"`
-	SrsName      string              `xml:"srsName,attr,omitempty"`
-	SrsDimension int                 `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string              `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string              `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string             `xml:"srsName,attr,omitempty"`
+	SrsDimension *int                `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string             `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string             `xml:"uomLabels,attr,omitempty"`
 	Exterior     *ShellPropertyType  `xml:"http://www.opengis.net/gml/3.2 exterior,omitempty"`
 	Interior     []ShellPropertyType `xml:"http://www.opengis.net/gml/3.2 interior"`
 }
@@ -3523,17 +3523,17 @@ type SpeedType struct {
 }
 
 type SphereType struct {
-	AggregationType     string `xml:"aggregationType,attr,omitempty"`
-	Rows                string `xml:"http://www.opengis.net/gml/3.2 rows,omitempty"`
-	Columns             int    `xml:"columns,attr,omitempty"`
-	HorizontalCurveType string `xml:"horizontalCurveType,attr,omitempty"`
-	VerticalCurveType   string `xml:"verticalCurveType,attr,omitempty"`
+	AggregationType     *string `xml:"aggregationType,attr,omitempty"`
+	Rows                string  `xml:"http://www.opengis.net/gml/3.2 rows,omitempty"`
+	Columns             *int    `xml:"columns,attr,omitempty"`
+	HorizontalCurveType *string `xml:"horizontalCurveType,attr,omitempty"`
+	VerticalCurveType   *string `xml:"verticalCurveType,attr,omitempty"`
 }
 
 type SphericalCSPropertyType struct {
 	// gml:SphericalCS is a three-dimensional coordinate system with one distance measured from the origin and two angular coordinates. A SphericalCS shall have three gml:axis property elements.
 	SphericalCS  *SphericalCSType `xml:"http://www.opengis.net/gml/3.2 SphericalCS,omitempty"`
-	NilReason    string           `xml:"nilReason,attr,omitempty"`
+	NilReason    *string          `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string           `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -3552,13 +3552,13 @@ type SphericalCSType struct {
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
 	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
-	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string                            `xml:"aggregationType,attr,omitempty"`
 }
 
 type StringOrRefType struct {
-	Value        string `xml:",chardata"`
-	NilReason    string `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string `xml:"remoteSchema,attr,omitempty"`
+	Value        string  `xml:",chardata"`
+	NilReason    *string `xml:"nilReason,attr,omitempty"`
+	RemoteSchema string  `xml:"remoteSchema,attr,omitempty"`
 }
 
 type SurfaceArrayPropertyType struct {
@@ -3569,7 +3569,7 @@ type SurfaceArrayPropertyType struct {
 	Polygon           []PolygonType           `xml:"http://www.opengis.net/gml/3.2 Polygon"`
 	Shell             []ShellType             `xml:"http://www.opengis.net/gml/3.2 Shell"`
 	Surface           []SurfaceType           `xml:"http://www.opengis.net/gml/3.2 Surface"`
-	Owns              bool                    `xml:"owns,attr,omitempty"`
+	Owns              *bool                   `xml:"owns,attr,omitempty"`
 }
 
 type SurfacePatchArrayPropertyType struct {
@@ -3591,9 +3591,9 @@ type SurfacePropertyType struct {
 	Polygon           *PolygonType           `xml:"http://www.opengis.net/gml/3.2 Polygon,omitempty"`
 	Shell             *ShellType             `xml:"http://www.opengis.net/gml/3.2 Shell,omitempty"`
 	Surface           *SurfaceType           `xml:"http://www.opengis.net/gml/3.2 Surface,omitempty"`
-	NilReason         string                 `xml:"nilReason,attr,omitempty"`
+	NilReason         *string                `xml:"nilReason,attr,omitempty"`
 	RemoteSchema      string                 `xml:"remoteSchema,attr,omitempty"`
-	Owns              bool                   `xml:"owns,attr,omitempty"`
+	Owns              *bool                  `xml:"owns,attr,omitempty"`
 }
 
 type SurfaceType struct {
@@ -3607,10 +3607,10 @@ type SurfaceType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"id,attr,omitempty"`
-	SrsName      string     `xml:"srsName,attr,omitempty"`
-	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string    `xml:"srsName,attr,omitempty"`
+	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 	// The patches property element contains the sequence of surface patches. The order of the elements is significant and shall be preserved when processing the array.
 	Patches         *SurfacePatchArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 patches,omitempty"`
 	PolygonPatches  *SurfacePatchArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 polygonPatches,omitempty"`
@@ -3633,15 +3633,15 @@ type TargetPropertyType struct {
 	AbstractGeometricPrimitive *AbstractGeometricPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractGeometricPrimitive,omitempty"`
 	AbstractImplicitGeometry   *AbstractGeometryType           `xml:"http://www.opengis.net/gml/3.2 AbstractImplicitGeometry,omitempty"`
 	GeometricComplex           *GeometricComplexType           `xml:"http://www.opengis.net/gml/3.2 GeometricComplex,omitempty"`
-	Owns                       bool                            `xml:"owns,attr,omitempty"`
-	NilReason                  string                          `xml:"nilReason,attr,omitempty"`
+	Owns                       *bool                           `xml:"owns,attr,omitempty"`
+	NilReason                  *string                         `xml:"nilReason,attr,omitempty"`
 	RemoteSchema               string                          `xml:"remoteSchema,attr,omitempty"`
 }
 
 type TemporalCRSPropertyType struct {
 	// gml:TemporalCRS is a 1D coordinate reference system used for the recording of time.
 	TemporalCRS  *TemporalCRSType `xml:"http://www.opengis.net/gml/3.2 TemporalCRS,omitempty"`
-	NilReason    string           `xml:"nilReason,attr,omitempty"`
+	NilReason    *string          `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string           `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -3672,7 +3672,7 @@ type TemporalCRSType struct {
 
 type TemporalCSPropertyType struct {
 	TemporalCS   *TemporalCSType `xml:"http://www.opengis.net/gml/3.2 TemporalCS,omitempty"`
-	NilReason    string          `xml:"nilReason,attr,omitempty"`
+	NilReason    *string         `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string          `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -3691,7 +3691,7 @@ type TemporalCSType struct {
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
 	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
-	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string                            `xml:"aggregationType,attr,omitempty"`
 }
 
 type TemporalDatumBaseType struct {
@@ -3724,7 +3724,7 @@ type TemporalDatumBaseType struct {
 type TemporalDatumPropertyType struct {
 	// A gml:TemporalDatum defines the origin of a Temporal Reference System. This type omits the "anchorDefinition" and "realizationEpoch" elements and adds the "origin" element with the dateTime type.
 	TemporalDatum *TemporalDatumType `xml:"http://www.opengis.net/gml/3.2 TemporalDatum,omitempty"`
-	NilReason     string             `xml:"nilReason,attr,omitempty"`
+	NilReason     *string            `xml:"nilReason,attr,omitempty"`
 	RemoteSchema  string             `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -3760,7 +3760,7 @@ type TemporalDatumType struct {
 type TimeCSPropertyType struct {
 	// gml:TimeCS is a one-dimensional coordinate system containing a time axis, used to describe the temporal position of a point in the specified time units from a specified time origin. A TimeCS shall have one gml:axis property element.
 	TimeCS       *TimeCSType `xml:"http://www.opengis.net/gml/3.2 TimeCS,omitempty"`
-	NilReason    string      `xml:"nilReason,attr,omitempty"`
+	NilReason    *string     `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string      `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -3779,7 +3779,7 @@ type TimeCSType struct {
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
 	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
-	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string                            `xml:"aggregationType,attr,omitempty"`
 }
 
 type TimeCalendarEraPropertyType struct {
@@ -3789,8 +3789,8 @@ type TimeCalendarEraPropertyType struct {
 	// -	gml:julianReference specifies the Julian date that corresponds to the reference date.  The Julian day number is an integer value; the Julian date is a decimal value that allows greater resolution.  Transforming calendar dates to and from Julian dates provides a relatively simple basis for transforming dates from one calendar to another.
 	// -	gml:epochOfUse is the period for which the calendar era was used as a basis for dating.
 	TimeCalendarEra *TimeCalendarEraType `xml:"http://www.opengis.net/gml/3.2 TimeCalendarEra,omitempty"`
-	Owns            bool                 `xml:"owns,attr,omitempty"`
-	NilReason       string               `xml:"nilReason,attr,omitempty"`
+	Owns            *bool                `xml:"owns,attr,omitempty"`
+	NilReason       *string              `xml:"nilReason,attr,omitempty"`
 	RemoteSchema    string               `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -3817,8 +3817,8 @@ type TimeCalendarPropertyType struct {
 	// gml:TimeCalendar adds one property to those inherited from gml:TimeReferenceSystem. A gml:referenceFrame provides a link to a gml:TimeCalendarEra that it uses. A  gml:TimeCalendar may reference more than one calendar era.
 	// The referenceFrame element follows the standard GML property model, allowing the association to be instantiated either using an inline description using the gml:TimeCalendarEra element, or a link to a gml:TimeCalendarEra which is explicit elsewhere.
 	TimeCalendar *TimeCalendarType `xml:"http://www.opengis.net/gml/3.2 TimeCalendar,omitempty"`
-	Owns         bool              `xml:"owns,attr,omitempty"`
-	NilReason    string            `xml:"nilReason,attr,omitempty"`
+	Owns         *bool             `xml:"owns,attr,omitempty"`
+	NilReason    *string           `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string            `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -3846,8 +3846,8 @@ type TimeClockPropertyType struct {
 	// -	gml:utcReference specifies the 24 hour local or UTC time that corresponds to the reference time.
 	// -	gml:dateBasis contains or references the calendars that use this clock.
 	TimeClock    *TimeClockType `xml:"http://www.opengis.net/gml/3.2 TimeClock,omitempty"`
-	Owns         bool           `xml:"owns,attr,omitempty"`
-	NilReason    string         `xml:"nilReason,attr,omitempty"`
+	Owns         *bool          `xml:"owns,attr,omitempty"`
+	NilReason    *string        `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string         `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -3891,9 +3891,9 @@ type TimeCoordinateSystemType struct {
 type TimeEdgePropertyType struct {
 	// A time edge is a one-dimensional topological primitive. It is an open interval that starts and ends at a node. The edge may be realised as a geometry whose value is a time period.
 	TimeEdge     *TimeEdgeType `xml:"http://www.opengis.net/gml/3.2 TimeEdge,omitempty"`
-	NilReason    string        `xml:"nilReason,attr,omitempty"`
+	NilReason    *string       `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string        `xml:"remoteSchema,attr,omitempty"`
-	Owns         bool          `xml:"owns,attr,omitempty"`
+	Owns         *bool         `xml:"owns,attr,omitempty"`
 }
 
 type TimeEdgeType struct {
@@ -3917,9 +3917,9 @@ type TimeEdgeType struct {
 type TimeInstantPropertyType struct {
 	// gml:TimeInstant acts as a zero-dimensional geometric primitive that represents an identifiable position in time.
 	TimeInstant  *TimeInstantType `xml:"http://www.opengis.net/gml/3.2 TimeInstant,omitempty"`
-	NilReason    string           `xml:"nilReason,attr,omitempty"`
+	NilReason    *string          `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string           `xml:"remoteSchema,attr,omitempty"`
-	Owns         bool             `xml:"owns,attr,omitempty"`
+	Owns         *bool            `xml:"owns,attr,omitempty"`
 }
 
 type TimeInstantType struct {
@@ -3934,7 +3934,7 @@ type TimeInstantType struct {
 	Name        []CodeType        `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id          string            `xml:"id,attr,omitempty"`
 	RelatedTime []RelatedTimeType `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
-	Frame       string            `xml:"frame,attr,omitempty"`
+	Frame       *string           `xml:"frame,attr,omitempty"`
 	// This element is used directly as a property of gml:TimeInstant (see 15.2.2.3), and may also be used in application schemas.
 	TimePosition *TimePositionType `xml:"http://www.opengis.net/gml/3.2 timePosition,omitempty"`
 }
@@ -3942,16 +3942,16 @@ type TimeInstantType struct {
 type TimeIntervalLengthType struct {
 	Value  float64 `xml:",chardata"`
 	Unit   string  `xml:"unit,attr"`
-	Radix  int     `xml:"radix,attr,omitempty"`
-	Factor int     `xml:"factor,attr,omitempty"`
+	Radix  *int    `xml:"radix,attr,omitempty"`
+	Factor *int    `xml:"factor,attr,omitempty"`
 }
 
 type TimeNodePropertyType struct {
 	// A time node is a zero-dimensional topological primitive that represents an identifiable node in time (it is equivalent to a point in space). A node may act as the termination or initiation of any number of time edges. A time node may be realised as a geometry, its position, whose value is a time instant.
 	TimeNode     *TimeNodeType `xml:"http://www.opengis.net/gml/3.2 TimeNode,omitempty"`
-	NilReason    string        `xml:"nilReason,attr,omitempty"`
+	NilReason    *string       `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string        `xml:"remoteSchema,attr,omitempty"`
-	Owns         bool          `xml:"owns,attr,omitempty"`
+	Owns         *bool         `xml:"owns,attr,omitempty"`
 }
 
 type TimeNodeType struct {
@@ -3976,8 +3976,8 @@ type TimeOrdinalEraPropertyType struct {
 	// Its content model follows the pattern of gml:TimeEdge, inheriting standard properties from gml:DefinitionType, and adding gml:start, gml:end and gml:extent properties, a set of gml:member properties which indicate ordered gml:TimeOrdinalEra elements, and a gml:group property which points to the parent era.
 	// The recursive inclusion of gml:TimeOrdinalEra elements allow the construction of an arbitrary depth hierarchical ordinal reference schema, such that an ordinal era at a given level of the hierarchy includes a sequence of shorter, coterminous ordinal eras.
 	TimeOrdinalEra *TimeOrdinalEraType `xml:"http://www.opengis.net/gml/3.2 TimeOrdinalEra,omitempty"`
-	Owns           bool                `xml:"owns,attr,omitempty"`
-	NilReason      string              `xml:"nilReason,attr,omitempty"`
+	Owns           *bool               `xml:"owns,attr,omitempty"`
+	NilReason      *string             `xml:"nilReason,attr,omitempty"`
 	RemoteSchema   string              `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -4023,9 +4023,9 @@ type TimePeriodPropertyType struct {
 	// Both beginning and end may be described in terms of their direct position using gml:TimePositionType which is an XML Schema simple content type, or by reference to an indentifiable time instant using gml:TimeInstantPropertyType.
 	// Alternatively a limit of a gml:TimePeriod may use the conventional GML property model to make a reference to a time instant described elsewhere, or a limit may be indicated as a direct position.
 	TimePeriod   *TimePeriodType `xml:"http://www.opengis.net/gml/3.2 TimePeriod,omitempty"`
-	NilReason    string          `xml:"nilReason,attr,omitempty"`
+	NilReason    *string         `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string          `xml:"remoteSchema,attr,omitempty"`
-	Owns         bool            `xml:"owns,attr,omitempty"`
+	Owns         *bool           `xml:"owns,attr,omitempty"`
 }
 
 type TimePeriodType struct {
@@ -4040,7 +4040,7 @@ type TimePeriodType struct {
 	Name          []CodeType               `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id            string                   `xml:"id,attr,omitempty"`
 	RelatedTime   []RelatedTimeType        `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
-	Frame         string                   `xml:"frame,attr,omitempty"`
+	Frame         *string                  `xml:"frame,attr,omitempty"`
 	BeginPosition *TimePositionType        `xml:"http://www.opengis.net/gml/3.2 beginPosition,omitempty"`
 	Begin         *TimeInstantPropertyType `xml:"http://www.opengis.net/gml/3.2 begin,omitempty"`
 	EndPosition   *TimePositionType        `xml:"http://www.opengis.net/gml/3.2 endPosition,omitempty"`
@@ -4054,10 +4054,10 @@ type TimePeriodType struct {
 }
 
 type TimePositionType struct {
-	Value                 string `xml:",chardata"`
-	Frame                 string `xml:"frame,attr,omitempty"`
-	CalendarEraName       string `xml:"calendarEraName,attr,omitempty"`
-	IndeterminatePosition string `xml:"indeterminatePosition,attr,omitempty"`
+	Value                 string  `xml:",chardata"`
+	Frame                 *string `xml:"frame,attr,omitempty"`
+	CalendarEraName       *string `xml:"calendarEraName,attr,omitempty"`
+	IndeterminatePosition *string `xml:"indeterminatePosition,attr,omitempty"`
 }
 
 type TimePrimitivePropertyType struct {
@@ -4065,9 +4065,9 @@ type TimePrimitivePropertyType struct {
 	AbstractTimePrimitive          *AbstractTimePrimitiveType          `xml:"http://www.opengis.net/gml/3.2 AbstractTimePrimitive,omitempty"`
 	AbstractTimeGeometricPrimitive *AbstractTimeGeometricPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractTimeGeometricPrimitive,omitempty"`
 	AbstractTimeTopologyPrimitive  *AbstractTimeTopologyPrimitiveType  `xml:"http://www.opengis.net/gml/3.2 AbstractTimeTopologyPrimitive,omitempty"`
-	NilReason                      string                              `xml:"nilReason,attr,omitempty"`
+	NilReason                      *string                             `xml:"nilReason,attr,omitempty"`
 	RemoteSchema                   string                              `xml:"remoteSchema,attr,omitempty"`
-	Owns                           bool                                `xml:"owns,attr,omitempty"`
+	Owns                           *bool                               `xml:"owns,attr,omitempty"`
 }
 
 type TimeReferenceSystemType struct {
@@ -4090,9 +4090,9 @@ type TimeTopologyComplexPropertyType struct {
 	// A temporal topology complex expresses a linear or a non-linear graph. A temporal linear graph, composed of a sequence of time edges, provides a lineage described only by "substitution" of feature instances or feature element values. A time node as the start or the end of the graph connects with at least one time edge. A time node other than the start and the end shall connect to at least two time edges: one of starting from the node, and another ending at the node.
 	// A temporal topological complex is a set of connected temporal topological primitives. The member primtives are indicated, either by reference or by value, using the primitive property.
 	TimeTopologyComplex *TimeTopologyComplexType `xml:"http://www.opengis.net/gml/3.2 TimeTopologyComplex,omitempty"`
-	NilReason           string                   `xml:"nilReason,attr,omitempty"`
+	NilReason           *string                  `xml:"nilReason,attr,omitempty"`
 	RemoteSchema        string                   `xml:"remoteSchema,attr,omitempty"`
-	Owns                bool                     `xml:"owns,attr,omitempty"`
+	Owns                *bool                    `xml:"owns,attr,omitempty"`
 }
 
 type TimeTopologyComplexType struct {
@@ -4116,9 +4116,9 @@ type TimeTopologyPrimitivePropertyType struct {
 	AbstractTimeTopologyPrimitive *AbstractTimeTopologyPrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractTimeTopologyPrimitive,omitempty"`
 	TimeEdge                      *TimeEdgeType                      `xml:"http://www.opengis.net/gml/3.2 TimeEdge,omitempty"`
 	TimeNode                      *TimeNodeType                      `xml:"http://www.opengis.net/gml/3.2 TimeNode,omitempty"`
-	NilReason                     string                             `xml:"nilReason,attr,omitempty"`
+	NilReason                     *string                            `xml:"nilReason,attr,omitempty"`
 	RemoteSchema                  string                             `xml:"remoteSchema,attr,omitempty"`
-	Owns                          bool                               `xml:"owns,attr,omitempty"`
+	Owns                          *bool                              `xml:"owns,attr,omitempty"`
 }
 
 type TimeType struct {
@@ -4136,10 +4136,10 @@ type TinType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"id,attr,omitempty"`
-	SrsName      string     `xml:"srsName,attr,omitempty"`
-	SrsDimension int        `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string     `xml:"axisLabels,attr,omitempty"`
-	UomLabels    string     `xml:"uomLabels,attr,omitempty"`
+	SrsName      *string    `xml:"srsName,attr,omitempty"`
+	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
+	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 	// The patches property element contains the sequence of surface patches. The order of the elements is significant and shall be preserved when processing the array.
 	Patches         *SurfacePatchArrayPropertyType       `xml:"http://www.opengis.net/gml/3.2 patches,omitempty"`
 	PolygonPatches  *SurfacePatchArrayPropertyType       `xml:"http://www.opengis.net/gml/3.2 polygonPatches,omitempty"`
@@ -4155,7 +4155,7 @@ type TopoComplexPropertyType struct {
 	// Each complex holds a reference to its maximal complex (gml:maximalComplex) and optionally to sub- or super-complexes (gml:subComplex, gml:superComplex).
 	// A topology complex contains its primitive and sub-complex members.
 	TopoComplex  *TopoComplexType `xml:"http://www.opengis.net/gml/3.2 TopoComplex,omitempty"`
-	NilReason    string           `xml:"nilReason,attr,omitempty"`
+	NilReason    *string          `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string           `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -4180,15 +4180,15 @@ type TopoComplexType struct {
 	TopoPrimitiveMember []TopoPrimitiveMemberType `xml:"http://www.opengis.net/gml/3.2 topoPrimitiveMember"`
 	// The gml:topoPrimitiveMembers property element encodes the relationship between a topology complex and an arbitrary number of topology primitives.
 	TopoPrimitiveMembers *TopoPrimitiveArrayAssociationType `xml:"http://www.opengis.net/gml/3.2 topoPrimitiveMembers,omitempty"`
-	IsMaximal            bool                               `xml:"isMaximal,attr,omitempty"`
-	AggregationType      string                             `xml:"aggregationType,attr,omitempty"`
+	IsMaximal            *bool                              `xml:"isMaximal,attr,omitempty"`
+	AggregationType      *string                            `xml:"aggregationType,attr,omitempty"`
 }
 
 type TopoCurvePropertyType struct {
 	// gml:TopoCurve represents a homogeneous topological expression, a sequence of directed edges, which if realised are isomorphic to a geometric curve primitive. The intended use of gml:TopoCurve is to appear within a line feature to express the structural and geometric relationships of this feature to other features via the shared edge definitions.
 	// If provided, the aggregationType attribute shall have the value "sequence".
 	TopoCurve *TopoCurveType `xml:"http://www.opengis.net/gml/3.2 TopoCurve,omitempty"`
-	Owns      bool           `xml:"owns,attr,omitempty"`
+	Owns      *bool          `xml:"owns,attr,omitempty"`
 }
 
 type TopoCurveType struct {
@@ -4204,13 +4204,13 @@ type TopoCurveType struct {
 	Id   string     `xml:"id,attr,omitempty"`
 	// A gml:directedEdge property element describes the boundary of topology faces, the coBoundary of topology nodes and is used in the support of topological line features via the gml:TopoCurve expression, see below. The orientation attribute of type gml:SignType expresses the sense in which the included edge is used, i.e. forward or reverse.
 	DirectedEdge    []DirectedEdgePropertyType `xml:"http://www.opengis.net/gml/3.2 directedEdge"`
-	AggregationType string                     `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string                    `xml:"aggregationType,attr,omitempty"`
 }
 
 type TopoPointPropertyType struct {
 	// The intended use of gml:TopoPoint is to appear within a point feature to express the structural and possibly geometric relationships of this feature to other features via shared node definitions.
 	TopoPoint *TopoPointType `xml:"http://www.opengis.net/gml/3.2 TopoPoint,omitempty"`
-	Owns      bool           `xml:"owns,attr,omitempty"`
+	Owns      *bool          `xml:"owns,attr,omitempty"`
 }
 
 type TopoPointType struct {
@@ -4236,7 +4236,7 @@ type TopoPrimitiveArrayAssociationType struct {
 	Face                  []FaceType                  `xml:"http://www.opengis.net/gml/3.2 Face"`
 	Node                  []NodeType                  `xml:"http://www.opengis.net/gml/3.2 Node"`
 	TopoSolid             []TopoSolidType             `xml:"http://www.opengis.net/gml/3.2 TopoSolid"`
-	Owns                  bool                        `xml:"owns,attr,omitempty"`
+	Owns                  *bool                       `xml:"owns,attr,omitempty"`
 }
 
 type TopoPrimitiveMemberType struct {
@@ -4247,9 +4247,9 @@ type TopoPrimitiveMemberType struct {
 	Face                  *FaceType                  `xml:"http://www.opengis.net/gml/3.2 Face,omitempty"`
 	Node                  *NodeType                  `xml:"http://www.opengis.net/gml/3.2 Node,omitempty"`
 	TopoSolid             *TopoSolidType             `xml:"http://www.opengis.net/gml/3.2 TopoSolid,omitempty"`
-	NilReason             string                     `xml:"nilReason,attr,omitempty"`
+	NilReason             *string                    `xml:"nilReason,attr,omitempty"`
 	RemoteSchema          string                     `xml:"remoteSchema,attr,omitempty"`
-	Owns                  bool                       `xml:"owns,attr,omitempty"`
+	Owns                  *bool                      `xml:"owns,attr,omitempty"`
 }
 
 type TopoSolidPropertyType struct {
@@ -4257,9 +4257,9 @@ type TopoSolidPropertyType struct {
 	// The topological boundary of a solid (gml:directedFace) consists of a set of directed faces.
 	// A solid may optionally be realised by a 3-dimensional geometric primitive (gml:solidProperty).
 	TopoSolid    *TopoSolidType `xml:"http://www.opengis.net/gml/3.2 TopoSolid,omitempty"`
-	NilReason    string         `xml:"nilReason,attr,omitempty"`
+	NilReason    *string        `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string         `xml:"remoteSchema,attr,omitempty"`
-	Owns         bool           `xml:"owns,attr,omitempty"`
+	Owns         *bool          `xml:"owns,attr,omitempty"`
 }
 
 type TopoSolidType struct {
@@ -4279,14 +4279,14 @@ type TopoSolidType struct {
 	// This property element either references a solid via the XLink-attributes or contains the solid element. solidProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for AbstractSolid.
 	SolidProperty *SolidPropertyType `xml:"http://www.opengis.net/gml/3.2 solidProperty,omitempty"`
 	// A gml:TopoSolid must indicate whether it is a universal topo-solid or not, to ensure a lossless topology representation as defined by Kuijpers, et. al. (see OGC 05-102 Topology IPR). The optional universal attribute of type boolean is used to indicate this and the default is fault. NOTE The universal topo-solid is normally not part of any feature, and is used to represent the unbounded portion of the data set. Its interior boundary (it has no exterior boundary) would normally be considered the exterior boundary of the data set.
-	Universal       bool   `xml:"universal,attr,omitempty"`
-	AggregationType string `xml:"aggregationType,attr,omitempty"`
+	Universal       *bool   `xml:"universal,attr,omitempty"`
+	AggregationType *string `xml:"aggregationType,attr,omitempty"`
 }
 
 type TopoSurfacePropertyType struct {
 	// gml:TopoSurface represents a homogeneous topological expression, a set of directed faces, which if realised are isomorphic to a geometric surface primitive. The intended use of gml:TopoSurface is to appear within a surface feature to express the structural and possibly geometric relationships of this surface feature to other features via the shared face definitions.
 	TopoSurface *TopoSurfaceType `xml:"http://www.opengis.net/gml/3.2 TopoSurface,omitempty"`
-	Owns        bool             `xml:"owns,attr,omitempty"`
+	Owns        *bool            `xml:"owns,attr,omitempty"`
 }
 
 type TopoSurfaceType struct {
@@ -4302,13 +4302,13 @@ type TopoSurfaceType struct {
 	Id   string     `xml:"id,attr,omitempty"`
 	// The gml:directedFace property element describes the boundary of topology solids, in the coBoundary of topology edges and is used in the support of surface features via the gml:TopoSurface expression, see below. The orientation attribute of type gml:SignType expresses the sense in which the included face is used i.e. inward or outward with respect to the surface normal in any geometric realisation.
 	DirectedFace    []DirectedFacePropertyType `xml:"http://www.opengis.net/gml/3.2 directedFace"`
-	AggregationType string                     `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string                    `xml:"aggregationType,attr,omitempty"`
 }
 
 type TopoVolumePropertyType struct {
 	// gml:TopoVolume represents a homogeneous topological expression, a set of directed topologic solids, which if realised are isomorphic to a geometric solid primitive. The intended use of gml:TopoVolume is to appear within a solid feature to express the structural and geometric relationships of this solid feature to other features via the shared solid definitions.
 	TopoVolume *TopoVolumeType `xml:"http://www.opengis.net/gml/3.2 TopoVolume,omitempty"`
-	Owns       bool            `xml:"owns,attr,omitempty"`
+	Owns       *bool           `xml:"owns,attr,omitempty"`
 }
 
 type TopoVolumeType struct {
@@ -4324,7 +4324,7 @@ type TopoVolumeType struct {
 	Id   string     `xml:"id,attr,omitempty"`
 	// The gml:directedSolid property element describes the coBoundary of topology faces and is used in the support of volume features via the gml:TopoVolume expression, see below. The orientation attribute of type gml:SignType expresses the sense in which the included solid appears in the face coboundary. In the context of a gml:TopoVolume the orientation attribute has no meaning.
 	DirectedTopoSolid []DirectedTopoSolidPropertyType `xml:"http://www.opengis.net/gml/3.2 directedTopoSolid"`
-	AggregationType   string                          `xml:"aggregationType,attr,omitempty"`
+	AggregationType   *string                         `xml:"aggregationType,attr,omitempty"`
 }
 
 type TransformationPropertyType struct {
@@ -4332,7 +4332,7 @@ type TransformationPropertyType struct {
 	// This concrete object can be used for all operation methods, without using a GML Application Schema that defines operation-method-specialized element names and contents, especially for methods with only one Transformation instance.
 	// The parameterValue elements are an unordered list of composition associations to the set of parameter values used by this conversion operation.
 	Transformation *TransformationType `xml:"http://www.opengis.net/gml/3.2 Transformation,omitempty"`
-	NilReason      string              `xml:"nilReason,attr,omitempty"`
+	NilReason      *string             `xml:"nilReason,attr,omitempty"`
 	RemoteSchema   string              `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -4372,7 +4372,7 @@ type TransformationType struct {
 type TriangleType struct {
 	// A boundary of a surface consists of a number of rings. In the normal 2D case, one of these rings is distinguished as being the exterior boundary. In a general manifold this is not always possible, in which case all boundaries shall be listed as interior boundaries, and the exterior will be empty.
 	Exterior      *AbstractRingPropertyType `xml:"http://www.opengis.net/gml/3.2 exterior,omitempty"`
-	Interpolation string                    `xml:"interpolation,attr,omitempty"`
+	Interpolation *string                   `xml:"interpolation,attr,omitempty"`
 }
 
 type UnitDefinitionType struct {
@@ -4404,7 +4404,7 @@ type UnitOfMeasureType struct {
 type UserDefinedCSPropertyType struct {
 	// gml:UserDefinedCS is a two- or three-dimensional coordinate system that consists of any combination of coordinate axes not covered by any other coordinate system type. A UserDefinedCS shall have two or three gml:axis property elements; the number of property elements shall equal the dimension of the CS.
 	UserDefinedCS *UserDefinedCSType `xml:"http://www.opengis.net/gml/3.2 UserDefinedCS,omitempty"`
-	NilReason     string             `xml:"nilReason,attr,omitempty"`
+	NilReason     *string            `xml:"nilReason,attr,omitempty"`
 	RemoteSchema  string             `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -4423,7 +4423,7 @@ type UserDefinedCSType struct {
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
 	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
-	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string                            `xml:"aggregationType,attr,omitempty"`
 }
 
 type ValueArrayPropertyType struct {
@@ -4447,7 +4447,7 @@ type ValueArrayPropertyType struct {
 	AbstractTimeComplex   *AbstractTimeComplexType   `xml:"http://www.opengis.net/gml/3.2 AbstractTimeComplex,omitempty"`
 	AbstractTimePrimitive *AbstractTimePrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractTimePrimitive,omitempty"`
 	Null                  *string                    `xml:"http://www.opengis.net/gml/3.2 Null,omitempty"`
-	Owns                  bool                       `xml:"owns,attr,omitempty"`
+	Owns                  *bool                      `xml:"owns,attr,omitempty"`
 }
 
 type ValueArrayType struct {
@@ -4465,9 +4465,9 @@ type ValueArrayType struct {
 	ValueComponent []ValuePropertyType `xml:"http://www.opengis.net/gml/3.2 valueComponent"`
 	// Property that contains Values.
 	ValueComponents *ValueArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 valueComponents,omitempty"`
-	AggregationType string                  `xml:"aggregationType,attr,omitempty"`
-	CodeSpace       string                  `xml:"codeSpace,attr,omitempty"`
-	Uom             string                  `xml:"uom,attr,omitempty"`
+	AggregationType *string                 `xml:"aggregationType,attr,omitempty"`
+	CodeSpace       *string                 `xml:"codeSpace,attr,omitempty"`
+	Uom             *string                 `xml:"uom,attr,omitempty"`
 }
 
 type ValuePropertyType struct {
@@ -4491,9 +4491,9 @@ type ValuePropertyType struct {
 	AbstractTimeComplex   *AbstractTimeComplexType   `xml:"http://www.opengis.net/gml/3.2 AbstractTimeComplex,omitempty"`
 	AbstractTimePrimitive *AbstractTimePrimitiveType `xml:"http://www.opengis.net/gml/3.2 AbstractTimePrimitive,omitempty"`
 	Null                  *string                    `xml:"http://www.opengis.net/gml/3.2 Null,omitempty"`
-	NilReason             string                     `xml:"nilReason,attr,omitempty"`
+	NilReason             *string                    `xml:"nilReason,attr,omitempty"`
 	RemoteSchema          string                     `xml:"remoteSchema,attr,omitempty"`
-	Owns                  bool                       `xml:"owns,attr,omitempty"`
+	Owns                  *bool                      `xml:"owns,attr,omitempty"`
 }
 
 type VectorType struct {
@@ -4503,7 +4503,7 @@ type VectorType struct {
 type VerticalCRSPropertyType struct {
 	// gml:VerticalCRS is a 1D coordinate reference system used for recording heights or depths. Vertical CRSs make use of the direction of gravity to define the concept of height or depth, but the relationship with gravity may not be straightforward. By implication, ellipsoidal heights (h) cannot be captured in a vertical coordinate reference system. Ellipsoidal heights cannot exist independently, but only as an inseparable part of a 3D coordinate tuple defined in a geographic 3D coordinate reference system.
 	VerticalCRS  *VerticalCRSType `xml:"http://www.opengis.net/gml/3.2 VerticalCRS,omitempty"`
-	NilReason    string           `xml:"nilReason,attr,omitempty"`
+	NilReason    *string          `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string           `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -4534,7 +4534,7 @@ type VerticalCRSType struct {
 type VerticalCSPropertyType struct {
 	// gml:VerticalCS is a one-dimensional coordinate system used to record the heights or depths of points. Such a coordinate system is usually dependent on the Earth's gravity field, perhaps loosely as when atmospheric pressure is the basis for the vertical coordinate system axis. A VerticalCS shall have one gml:axis property element.
 	VerticalCS   *VerticalCSType `xml:"http://www.opengis.net/gml/3.2 VerticalCS,omitempty"`
-	NilReason    string          `xml:"nilReason,attr,omitempty"`
+	NilReason    *string         `xml:"nilReason,attr,omitempty"`
 	RemoteSchema string          `xml:"remoteSchema,attr,omitempty"`
 }
 
@@ -4553,13 +4553,13 @@ type VerticalCSType struct {
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
 	UsesAxis        []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 usesAxis"`
-	AggregationType string                             `xml:"aggregationType,attr,omitempty"`
+	AggregationType *string                            `xml:"aggregationType,attr,omitempty"`
 }
 
 type VerticalDatumPropertyType struct {
 	// gml:VerticalDatum is a textual description and/or a set of parameters identifying a particular reference level surface used as a zero-height surface, including its position with respect to the Earth for any of the height types recognized by this International Standard.
 	VerticalDatum *VerticalDatumType `xml:"http://www.opengis.net/gml/3.2 VerticalDatum,omitempty"`
-	NilReason     string             `xml:"nilReason,attr,omitempty"`
+	NilReason     *string            `xml:"nilReason,attr,omitempty"`
 	RemoteSchema  string             `xml:"remoteSchema,attr,omitempty"`
 }
 

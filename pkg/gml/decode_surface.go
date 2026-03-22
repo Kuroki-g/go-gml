@@ -26,7 +26,7 @@ func polygonFromSurface(x *v3.SurfaceType) (Polygon, error) {
 	if x.Patches == nil || len(x.Patches.PolygonPatch) == 0 {
 		return Polygon{}, nil
 	}
-	return polygonFromPatch(&x.Patches.PolygonPatch[0], x.SrsDimension)
+	return polygonFromPatch(&x.Patches.PolygonPatch[0], derefDim(x.SrsDimension))
 }
 
 func polygonFromPatch(patch *v3.PolygonPatchType, inheritDim int) (Polygon, error) {
@@ -57,11 +57,11 @@ func polygonFromPatch(patch *v3.PolygonPatchType, inheritDim int) (Polygon, erro
 func ringFromAbstractRingProp(prop *v3.AbstractRingPropertyType, inheritDim int, label string) (Ring, error) {
 	if prop.LinearRing != nil {
 		lr := prop.LinearRing
-		dim := preferDim(inheritDim, lr.SrsDimension)
+		dim := preferDim(inheritDim, derefDim(lr.SrsDimension))
 		if lr.PosList == nil {
 			return nil, nil
 		}
-		r, err := RingFromPosListString(lr.PosList.Value, preferDim(dim, lr.PosList.SrsDimension))
+		r, err := RingFromPosListString(lr.PosList.Value, preferDim(dim, derefDim(lr.PosList.SrsDimension)))
 		if err != nil {
 			return nil, fmt.Errorf("gml: PolygonPatch %s LinearRing: %w", label, err)
 		}
@@ -80,7 +80,7 @@ func ringFromAbstractRingProp(prop *v3.AbstractRingPropertyType, inheritDim int,
 // ringFromRingType builds a Ring by concatenating all inline curveMember Curves.
 func ringFromRingType(ring *v3.RingType, inheritDim int) (Ring, error) {
 	var pts Ring
-	dim := preferDim(inheritDim, ring.SrsDimension)
+	dim := preferDim(inheritDim, derefDim(ring.SrsDimension))
 	for i, cm := range ring.CurveMember {
 		if cm.Curve == nil {
 			continue

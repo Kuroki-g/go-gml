@@ -24,9 +24,9 @@ func decodeLineStringElement(dec *xml.Decoder, se xml.StartElement) (Geometry, e
 }
 
 func lineStringFromXML(x *v3.LineStringType) (LineString, error) {
-	dim := x.SrsDimension
+	dim := derefDim(x.SrsDimension)
 	if x.PosList != nil {
-		return LineStringFromPosListString(x.PosList.Value, preferDim(dim, x.PosList.SrsDimension))
+		return LineStringFromPosListString(x.PosList.Value, preferDim(dim, derefDim(x.PosList.SrsDimension)))
 	}
 	if len(x.Pos) > 0 {
 		var flat []float64
@@ -37,7 +37,7 @@ func lineStringFromXML(x *v3.LineStringType) (LineString, error) {
 			}
 			flat = append(flat, vals...)
 		}
-		d := preferDim(dim, x.Pos[0].SrsDimension)
+		d := preferDim(dim, derefDim(x.Pos[0].SrsDimension))
 		if d == 0 {
 			d = len(strings.Fields(x.Pos[0].Value))
 			if d < 2 {
@@ -47,7 +47,7 @@ func lineStringFromXML(x *v3.LineStringType) (LineString, error) {
 		return LineStringFromFlat(flat, d)
 	}
 	if x.Coordinates != nil {
-		coords, err := ParseCoordinates(x.Coordinates.Value, x.Coordinates.Cs, x.Coordinates.Ts)
+		coords, err := ParseCoordinates(x.Coordinates.Value, derefStrOr(x.Coordinates.Cs, ","), derefStrOr(x.Coordinates.Ts, " "))
 		if err != nil {
 			return nil, err
 		}

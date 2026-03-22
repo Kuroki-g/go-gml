@@ -20,13 +20,12 @@ func isGMLNS(ns string) bool { return ns == gmlNS32 || ns == gmlNS2 }
 // Value is one of: Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon, Bound.
 type Geometry struct {
 	Value   interface{}
-	SRSName string // raw srsName attribute value from the GML element; empty if absent
+	SRSName *string // nil = srsName attribute absent; non-nil = explicitly set in XML
 }
 
 // Reader scans a GML document for geometry elements.
 type Reader struct {
-	dec        *xml.Decoder
-	defaultSRS string // last srsName seen on any element in the stream
+	dec *xml.Decoder
 }
 
 // NewReader creates a Reader that streams geometry elements from r.
@@ -88,14 +87,6 @@ func (r *Reader) Next() (Geometry, error) {
 		if !ok {
 			continue
 		}
-		// Track srsName from any element encountered in the stream.
-		// GML commonly declares srsName once on a bounding box or feature collection
-		// element; individual geometry elements then inherit it implicitly.
-		for _, attr := range se.Attr {
-			if attr.Name.Local == "srsName" && attr.Name.Space == "" && attr.Value != "" {
-				r.defaultSRS = attr.Value
-			}
-		}
 		if !isGMLNS(se.Name.Space) {
 			continue
 		}
@@ -104,10 +95,6 @@ func (r *Reader) Next() (Geometry, error) {
 			continue
 		}
 		g, err := h(r.dec, se)
-		// Inherit document-level srsName when the geometry element has none.
-		if g.SRSName == "" && r.defaultSRS != "" {
-			g.SRSName = r.defaultSRS
-		}
 		return g, err
 	}
 }
