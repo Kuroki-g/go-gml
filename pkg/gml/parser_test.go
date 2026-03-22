@@ -677,3 +677,108 @@ func TestParseSurface_ringCurveMember(t *testing.T) {
 		t.Fatalf("exterior points=%d want 9", len(poly[0]))
 	}
 }
+
+// ---- curveMembers / surfaceMembers (array property) ----
+
+func TestParseMultiCurve_curveMembers_LineString(t *testing.T) {
+	xmlStr := `<gml:MultiCurve ` + gml3NS + ` srsDimension="2">
+		<gml:curveMembers>
+			<gml:LineString><gml:posList>0 0 1 1 2 0</gml:posList></gml:LineString>
+			<gml:LineString><gml:posList>5 5 6 6</gml:posList></gml:LineString>
+		</gml:curveMembers>
+	</gml:MultiCurve>`
+	gs := readAll(t, xmlStr)
+	if len(gs) != 1 {
+		t.Fatalf("expected 1 geometry, got %d", len(gs))
+	}
+	ml, ok := gs[0].Value.(MultiLineString)
+	if !ok {
+		t.Fatalf("expected MultiLineString, got %T", gs[0].Value)
+	}
+	if len(ml) != 2 {
+		t.Fatalf("lines=%d want 2", len(ml))
+	}
+}
+
+func TestParseMultiCurve_curveMembers_Curve(t *testing.T) {
+	xmlStr := `<gml:MultiCurve ` + gml3NS + ` srsDimension="2">
+		<gml:curveMembers>
+			<gml:Curve>
+				<gml:segments>
+					<gml:LineStringSegment><gml:posList>0 0 1 1 2 0</gml:posList></gml:LineStringSegment>
+				</gml:segments>
+			</gml:Curve>
+		</gml:curveMembers>
+	</gml:MultiCurve>`
+	gs := readAll(t, xmlStr)
+	ml := gs[0].Value.(MultiLineString)
+	if len(ml) != 1 {
+		t.Fatalf("lines=%d want 1", len(ml))
+	}
+	if len(ml[0]) != 3 {
+		t.Fatalf("pts=%d want 3", len(ml[0]))
+	}
+}
+
+func TestParseMultiCurve_mixed_member_and_members(t *testing.T) {
+	xmlStr := `<gml:MultiCurve ` + gml3NS + ` srsDimension="2">
+		<gml:curveMember>
+			<gml:LineString><gml:posList>0 0 1 1</gml:posList></gml:LineString>
+		</gml:curveMember>
+		<gml:curveMembers>
+			<gml:LineString><gml:posList>2 2 3 3</gml:posList></gml:LineString>
+			<gml:LineString><gml:posList>4 4 5 5</gml:posList></gml:LineString>
+		</gml:curveMembers>
+	</gml:MultiCurve>`
+	gs := readAll(t, xmlStr)
+	ml := gs[0].Value.(MultiLineString)
+	if len(ml) != 3 {
+		t.Fatalf("lines=%d want 3", len(ml))
+	}
+}
+
+func TestParseMultiSurface_surfaceMembers_Polygon(t *testing.T) {
+	ring := `<gml:posList>0 0 10 0 10 10 0 10 0 0</gml:posList>`
+	xmlStr := `<gml:MultiSurface ` + gml3NS + ` srsDimension="2">
+		<gml:surfaceMembers>
+			<gml:Polygon>
+				<gml:exterior><gml:LinearRing>` + ring + `</gml:LinearRing></gml:exterior>
+			</gml:Polygon>
+			<gml:Polygon>
+				<gml:exterior><gml:LinearRing>` + ring + `</gml:LinearRing></gml:exterior>
+			</gml:Polygon>
+		</gml:surfaceMembers>
+	</gml:MultiSurface>`
+	gs := readAll(t, xmlStr)
+	if len(gs) != 1 {
+		t.Fatalf("expected 1 geometry, got %d", len(gs))
+	}
+	mp, ok := gs[0].Value.(MultiPolygon)
+	if !ok {
+		t.Fatalf("expected MultiPolygon, got %T", gs[0].Value)
+	}
+	if len(mp) != 2 {
+		t.Fatalf("polys=%d want 2", len(mp))
+	}
+}
+
+func TestParseMultiSurface_mixed_member_and_members(t *testing.T) {
+	ring := `<gml:posList>0 0 10 0 10 10 0 10 0 0</gml:posList>`
+	xmlStr := `<gml:MultiSurface ` + gml3NS + ` srsDimension="2">
+		<gml:surfaceMember>
+			<gml:Polygon>
+				<gml:exterior><gml:LinearRing>` + ring + `</gml:LinearRing></gml:exterior>
+			</gml:Polygon>
+		</gml:surfaceMember>
+		<gml:surfaceMembers>
+			<gml:Polygon>
+				<gml:exterior><gml:LinearRing>` + ring + `</gml:LinearRing></gml:exterior>
+			</gml:Polygon>
+		</gml:surfaceMembers>
+	</gml:MultiSurface>`
+	gs := readAll(t, xmlStr)
+	mp := gs[0].Value.(MultiPolygon)
+	if len(mp) != 2 {
+		t.Fatalf("polys=%d want 2", len(mp))
+	}
+}

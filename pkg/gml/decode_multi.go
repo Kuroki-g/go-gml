@@ -52,6 +52,13 @@ func (r *Reader) handleMultiCurve(dec *xml.Decoder, se xml.StartElement) (Geomet
 			lines = append(lines, ls)
 		}
 	}
+	if x.CurveMembers != nil {
+		extra, err := lineStringsFromCurveArrayProperty(x.CurveMembers, dim, r.resolver)
+		if err != nil {
+			return Geometry{}, fmt.Errorf("gml: %s curveMembers: %w", se.Name.Local, err)
+		}
+		lines = append(lines, extra...)
+	}
 	return Geometry{Value: lines, SRSName: x.SrsName}, nil
 }
 
@@ -76,6 +83,13 @@ func (r *Reader) handleMultiSurface(dec *xml.Decoder, se xml.StartElement) (Geom
 			polys = append(polys, poly)
 		}
 	}
+	if x.SurfaceMembers != nil {
+		extra, err := polygonsFromSurfaceArrayProperty(x.SurfaceMembers, dim, r.resolver)
+		if err != nil {
+			return Geometry{}, fmt.Errorf("gml: %s surfaceMembers: %w", se.Name.Local, err)
+		}
+		polys = append(polys, extra...)
+	}
 	return Geometry{Value: polys, SRSName: x.SrsName}, nil
 }
 
@@ -91,6 +105,102 @@ func decodeEnvelopeElement(dec *xml.Decoder, se xml.StartElement) (Geometry, err
 		return Geometry{}, err
 	}
 	return Geometry{Value: b, SRSName: x.SrsName}, nil
+}
+
+// lineStringsFromCurveArrayProperty converts a CurveArrayPropertyType (curveMembers)
+// to a slice of LineStrings by wrapping each element in a CurvePropertyType and
+// calling lineStringFromCurveProperty.
+func lineStringsFromCurveArrayProperty(a *v3_2_1.CurveArrayPropertyType, inheritDim int, resolver *curveResolver) (MultiLineString, error) {
+	var lines MultiLineString
+	for i := range a.Curve {
+		cm := v3_2_1.CurvePropertyType{Curve: &a.Curve[i]}
+		ls, err := lineStringFromCurveProperty(&cm, inheritDim, resolver)
+		if err != nil {
+			return nil, fmt.Errorf("Curve[%d]: %w", i, err)
+		}
+		if ls != nil {
+			lines = append(lines, ls)
+		}
+	}
+	for i := range a.LineString {
+		cm := v3_2_1.CurvePropertyType{LineString: &a.LineString[i]}
+		ls, err := lineStringFromCurveProperty(&cm, inheritDim, resolver)
+		if err != nil {
+			return nil, fmt.Errorf("LineString[%d]: %w", i, err)
+		}
+		if ls != nil {
+			lines = append(lines, ls)
+		}
+	}
+	for i := range a.CompositeCurve {
+		cm := v3_2_1.CurvePropertyType{CompositeCurve: &a.CompositeCurve[i]}
+		ls, err := lineStringFromCurveProperty(&cm, inheritDim, resolver)
+		if err != nil {
+			return nil, fmt.Errorf("CompositeCurve[%d]: %w", i, err)
+		}
+		if ls != nil {
+			lines = append(lines, ls)
+		}
+	}
+	for i := range a.OrientableCurve {
+		cm := v3_2_1.CurvePropertyType{OrientableCurve: &a.OrientableCurve[i]}
+		ls, err := lineStringFromCurveProperty(&cm, inheritDim, resolver)
+		if err != nil {
+			return nil, fmt.Errorf("OrientableCurve[%d]: %w", i, err)
+		}
+		if ls != nil {
+			lines = append(lines, ls)
+		}
+	}
+	return lines, nil
+}
+
+// polygonsFromSurfaceArrayProperty converts a SurfaceArrayPropertyType (surfaceMembers)
+// to a slice of Polygons by wrapping each element in a SurfacePropertyType and
+// calling polygonFromSurfaceProperty.
+func polygonsFromSurfaceArrayProperty(a *v3_2_1.SurfaceArrayPropertyType, inheritDim int, resolver *curveResolver) (MultiPolygon, error) {
+	var polys MultiPolygon
+	for i := range a.Polygon {
+		sm := v3_2_1.SurfacePropertyType{Polygon: &a.Polygon[i]}
+		poly, err := polygonFromSurfaceProperty(&sm, inheritDim, resolver)
+		if err != nil {
+			return nil, fmt.Errorf("Polygon[%d]: %w", i, err)
+		}
+		if len(poly) > 0 {
+			polys = append(polys, poly)
+		}
+	}
+	for i := range a.Surface {
+		sm := v3_2_1.SurfacePropertyType{Surface: &a.Surface[i]}
+		poly, err := polygonFromSurfaceProperty(&sm, inheritDim, resolver)
+		if err != nil {
+			return nil, fmt.Errorf("Surface[%d]: %w", i, err)
+		}
+		if len(poly) > 0 {
+			polys = append(polys, poly)
+		}
+	}
+	for i := range a.CompositeSurface {
+		sm := v3_2_1.SurfacePropertyType{CompositeSurface: &a.CompositeSurface[i]}
+		poly, err := polygonFromSurfaceProperty(&sm, inheritDim, resolver)
+		if err != nil {
+			return nil, fmt.Errorf("CompositeSurface[%d]: %w", i, err)
+		}
+		if len(poly) > 0 {
+			polys = append(polys, poly)
+		}
+	}
+	for i := range a.OrientableSurface {
+		sm := v3_2_1.SurfacePropertyType{OrientableSurface: &a.OrientableSurface[i]}
+		poly, err := polygonFromSurfaceProperty(&sm, inheritDim, resolver)
+		if err != nil {
+			return nil, fmt.Errorf("OrientableSurface[%d]: %w", i, err)
+		}
+		if len(poly) > 0 {
+			polys = append(polys, poly)
+		}
+	}
+	return polys, nil
 }
 
 func boundFromXML(x *v3_2_1.EnvelopeType) (Bound, error) {
