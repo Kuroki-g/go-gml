@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"bytes"
 	"fmt"
 	"io"
 	"os"
@@ -115,9 +116,15 @@ func polyCoords(poly gml.Polygon, swap bool) [][][]float64 {
 
 // ---------- IO ----------
 
-func openInput(path string) (io.Reader, func(), error) {
+// openInput returns an io.ReadSeeker for the given file path.
+// If path is empty, stdin is read entirely into memory (stdin is not seekable).
+func openInput(path string) (io.ReadSeeker, func(), error) {
 	if path == "" {
-		return os.Stdin, func() {}, nil
+		b, err := io.ReadAll(os.Stdin)
+		if err != nil {
+			return nil, nil, err
+		}
+		return bytes.NewReader(b), func() {}, nil
 	}
 	f, err := os.Open(path)
 	if err != nil {

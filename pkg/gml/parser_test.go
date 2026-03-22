@@ -503,6 +503,40 @@ func TestParseOrientableSurface_inlineSurface(t *testing.T) {
 	}
 }
 
+// ---- xlink:href forward reference ----
+
+func TestParseCompositeSurface_forwardRef(t *testing.T) {
+	const xlinkNS = `xmlns:xlink="http://www.w3.org/1999/xlink"`
+	// CompositeSurface references Polygon that appears AFTER it in the document.
+	xmlStr := `<root ` + gml3NS + ` ` + xlinkNS + `>
+		<gml:CompositeSurface gml:id="CS1" srsDimension="2">
+			<gml:surfaceMember xlink:href="#P1"/>
+		</gml:CompositeSurface>
+		<gml:Polygon gml:id="P1">
+			<gml:exterior>
+				<gml:LinearRing>
+					<gml:posList>0 0 10 0 10 10 0 10 0 0</gml:posList>
+				</gml:LinearRing>
+			</gml:exterior>
+		</gml:Polygon>
+	</root>`
+	gs := readAll(t, xmlStr)
+	// Expect: CS1 (Polygon) + P1 (Polygon)
+	if len(gs) != 2 {
+		t.Fatalf("expected 2 geometries, got %d", len(gs))
+	}
+	cs1, ok := gs[0].Value.(Polygon)
+	if !ok {
+		t.Fatalf("gs[0]: expected Polygon, got %T", gs[0].Value)
+	}
+	if len(cs1) == 0 || len(cs1[0]) == 0 {
+		t.Fatal("CS1: forward reference to P1 was not resolved (empty polygon)")
+	}
+	if len(cs1[0]) != 5 {
+		t.Errorf("CS1: exterior points=%d want 5", len(cs1[0]))
+	}
+}
+
 // ---- EOF on empty document ----
 
 func TestParseStream_empty(t *testing.T) {

@@ -64,8 +64,12 @@ func lineStringFromCurveProperty(cm *v3_2_1.CurvePropertyType, inheritDim int, r
 		}
 	}
 	if cm.Href != "" {
-		if c := resolver.resolve(strings.TrimPrefix(cm.Href, "#")); c != nil {
+		id := strings.TrimPrefix(cm.Href, "#")
+		if c := resolver.resolve(id); c != nil {
 			return lineStringFromCurve(c, inheritDim)
+		}
+		if ls, ok := resolver.lineStringByID[id]; ok {
+			return ls, nil
 		}
 	}
 	return nil, nil

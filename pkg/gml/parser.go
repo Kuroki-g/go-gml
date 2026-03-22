@@ -25,18 +25,40 @@ type Geometry struct {
 
 // Reader scans a GML document for geometry elements.
 type Reader struct {
-	dec      *xml.Decoder
-	resolver *curveResolver // gml:id → Curve/OrientableCurve, for xlink:href resolution
+	src        io.ReadSeeker
+	dec        *xml.Decoder
+	resolver   *curveResolver // gml:id → Curve/OrientableCurve, for xlink:href resolution
+	prescanned bool
 }
 
 // NewReader creates a Reader that streams geometry elements from r.
 // For non-UTF-8 encoded files (e.g. Shift-JIS), call SetCharsetReader after creation.
-func NewReader(r io.Reader) *Reader {
+// On the first call to Next, the document is pre-scanned to populate the xlink:href
+// resolver cache, enabling forward references to be resolved correctly.
+func NewReader(r io.ReadSeeker) *Reader {
 	dec := xml.NewDecoder(newNSNormReader(r))
 	dec.CharsetReader = func(charset string, input io.Reader) (io.Reader, error) {
 		return nil, fmt.Errorf("unsupported charset %q: call SetCharsetReader to handle non-UTF-8 files", charset)
 	}
-	return &Reader{dec: dec, resolver: newCurveResolver()}
+	return &Reader{src: r, dec: dec, resolver: newCurveResolver()}
+}
+
+// runPreScan runs a full document scan to populate the resolver cache before main parsing.
+// This enables forward xlink:href references to be resolved in the main pass.
+func (r *Reader) runPreScan() error {
+	charsetFn := r.dec.CharsetReader
+	preDec := xml.NewDecoder(newNSNormReader(r.src))
+	preDec.CharsetReader = charsetFn
+	if err := preScanGeometries(preDec, r.resolver); err != nil {
+		return fmt.Errorf("gml: prescan: %w", err)
+	}
+	if _, err := r.src.Seek(0, io.SeekStart); err != nil {
+		return fmt.Errorf("gml: seek after prescan: %w", err)
+	}
+	r.dec = xml.NewDecoder(newNSNormReader(r.src))
+	r.dec.CharsetReader = charsetFn
+	r.prescanned = true
+	return nil
 }
 
 // SetCharsetReader installs a charset conversion function on the underlying decoder.
@@ -70,19 +92,25 @@ type handlerFunc func(*xml.Decoder, xml.StartElement) (Geometry, error)
 
 var handlers = map[string]handlerFunc{
 	// SF-0 elements
-	"Point":      decodePointElement,
-	"LineString": decodeLineStringElement,
+	gmlPoint:      decodePointElement,
+	gmlLineString: decodeLineStringElement,
 	// Polygon is handled via Reader.handlePolygon in Next() for caching support.
 	// Curve and Surface are handled via Reader methods in Next() for xlink:href support.
 	// Multi-geometry (MultiPoint only; Multi{Curve,Surface} need resolver → handled in Next)
-	"MultiPoint": decodeMultiPointElement,
+	gmlMultiPoint: decodeMultiPointElement,
 	// Bounding box
-	"Envelope": decodeEnvelopeElement,
+	gmlEnvelope: decodeEnvelopeElement,
 }
 
 // Next returns the next geometry found in the stream.
 // Returns io.EOF when the document is exhausted.
+// On the first call, the document is pre-scanned to resolve forward xlink:href references.
 func (r *Reader) Next() (Geometry, error) {
+	if !r.prescanned {
+		if err := r.runPreScan(); err != nil {
+			return Geometry{}, err
+		}
+	}
 	for {
 		tok, err := r.dec.Token()
 		if err != nil {
@@ -97,26 +125,26 @@ func (r *Reader) Next() (Geometry, error) {
 		}
 		// Elements that need Reader state for xlink:href resolution or caching.
 		switch se.Name.Local {
-		case "Curve":
+		case gmlCurve:
 			return r.handleCurve(r.dec, se)
-		case "OrientableCurve":
+		case gmlOrientableCurve:
 			if err := r.cacheOrientableCurve(r.dec, se); err != nil {
 				return Geometry{}, err
 			}
 			continue
-		case "Polygon":
+		case gmlPolygon:
 			return r.handlePolygon(r.dec, se)
-		case "Surface":
+		case gmlSurface:
 			return r.handleSurface(r.dec, se)
-		case "CompositeCurve":
+		case gmlCompositeCurve:
 			return r.handleCompositeCurve(r.dec, se)
-		case "CompositeSurface":
+		case gmlCompositeSurface:
 			return r.handleCompositeSurface(r.dec, se)
-		case "OrientableSurface":
+		case gmlOrientableSurface:
 			return r.handleOrientableSurface(r.dec, se)
-		case "MultiCurve", "MultiLineString":
+		case gmlMultiCurve, gmlMultiLineString:
 			return r.handleMultiCurve(r.dec, se)
-		case "MultiSurface", "MultiPolygon":
+		case gmlMultiSurface, gmlMultiPolygon:
 			return r.handleMultiSurface(r.dec, se)
 		}
 		h, ok := handlers[se.Name.Local]

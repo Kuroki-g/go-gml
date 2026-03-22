@@ -12,7 +12,7 @@ import (
 
 // newGMLReader creates a gml.Reader with Shift-JIS charset support.
 // Older 国土数値情報 files declare encoding="shift_jis" in their XML header.
-func newGMLReader(r io.Reader) *gml.Reader {
+func newGMLReader(r io.ReadSeeker) *gml.Reader {
 	reader := gml.NewReader(r)
 	reader.SetCharsetReader(func(charset string, input io.Reader) (io.Reader, error) {
 		switch strings.ToLower(strings.ReplaceAll(charset, "-", "_")) {

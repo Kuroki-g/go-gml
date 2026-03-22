@@ -12,16 +12,18 @@ import (
 // Handles Curve/OrientableCurve for curve xlink:href resolution, and
 // Polygon for surface xlink:href resolution in CompositeSurface/OrientableSurface.
 type curveResolver struct {
-	curves      map[string]*v3_2_1.CurveType
-	orientable  map[string]*v3_2_1.OrientableCurveType
-	polygonByID map[string]Polygon
+	curves         map[string]*v3_2_1.CurveType
+	orientable     map[string]*v3_2_1.OrientableCurveType
+	polygonByID    map[string]Polygon
+	lineStringByID map[string]LineString
 }
 
 func newCurveResolver() *curveResolver {
 	return &curveResolver{
-		curves:      make(map[string]*v3_2_1.CurveType),
-		orientable:  make(map[string]*v3_2_1.OrientableCurveType),
-		polygonByID: make(map[string]Polygon),
+		curves:         make(map[string]*v3_2_1.CurveType),
+		orientable:     make(map[string]*v3_2_1.OrientableCurveType),
+		polygonByID:    make(map[string]Polygon),
+		lineStringByID: make(map[string]LineString),
 	}
 }
 
