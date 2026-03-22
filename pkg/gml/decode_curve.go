@@ -5,22 +5,22 @@ import (
 	"fmt"
 	"strings"
 
-	v3 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
+	v3_2_1 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
 )
 
 // curveResolver resolves gml:id references to geometry elements.
 // Handles Curve/OrientableCurve for curve xlink:href resolution, and
 // Polygon for surface xlink:href resolution in CompositeSurface/OrientableSurface.
 type curveResolver struct {
-	curves      map[string]*v3.CurveType
-	orientable  map[string]*v3.OrientableCurveType
+	curves      map[string]*v3_2_1.CurveType
+	orientable  map[string]*v3_2_1.OrientableCurveType
 	polygonByID map[string]Polygon
 }
 
 func newCurveResolver() *curveResolver {
 	return &curveResolver{
-		curves:      make(map[string]*v3.CurveType),
-		orientable:  make(map[string]*v3.OrientableCurveType),
+		curves:      make(map[string]*v3_2_1.CurveType),
+		orientable:  make(map[string]*v3_2_1.OrientableCurveType),
 		polygonByID: make(map[string]Polygon),
 	}
 }
@@ -33,7 +33,7 @@ func newCurveResolver() *curveResolver {
 // Unresolvable references return nil; the caller emits an empty ring.
 // Per GML 3.2.1 XSD, xlink:href="#foo" must match an existing gml:id="foo"
 // exactly (gml:id is xs:ID; xlink:href is anyURI with fragment semantics).
-func (cr *curveResolver) resolve(id string) *v3.CurveType {
+func (cr *curveResolver) resolve(id string) *v3_2_1.CurveType {
 	if c, ok := cr.curves[id]; ok {
 		return c
 	}
@@ -48,8 +48,8 @@ func (cr *curveResolver) resolve(id string) *v3.CurveType {
 	return nil
 }
 
-func decodeCurveType(dec *xml.Decoder, se xml.StartElement) (*v3.CurveType, error) {
-	var x v3.CurveType
+func decodeCurveType(dec *xml.Decoder, se xml.StartElement) (*v3_2_1.CurveType, error) {
+	var x v3_2_1.CurveType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return nil, fmt.Errorf("gml: Curve: %w", err)
 	}
@@ -76,7 +76,7 @@ func (r *Reader) handleCurve(dec *xml.Decoder, se xml.StartElement) (Geometry, e
 // These elements are not emitted as geometry; they serve as xlink:href targets
 // that redirect to the underlying Curve via baseCurve.
 func (r *Reader) cacheOrientableCurve(dec *xml.Decoder, se xml.StartElement) error {
-	var x v3.OrientableCurveType
+	var x v3_2_1.OrientableCurveType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return fmt.Errorf("gml: OrientableCurve: %w", err)
 	}
@@ -88,7 +88,7 @@ func (r *Reader) cacheOrientableCurve(dec *xml.Decoder, se xml.StartElement) err
 
 // lineStringFromCurve converts a gml:Curve to a LineString.
 // inheritDim is used when the Curve element itself has no srsDimension attribute.
-func lineStringFromCurve(x *v3.CurveType, inheritDim int) (LineString, error) {
+func lineStringFromCurve(x *v3_2_1.CurveType, inheritDim int) (LineString, error) {
 	if x.Segments == nil || len(x.Segments.LineStringSegment) == 0 {
 		return nil, fmt.Errorf("gml: Curve has no LineStringSegment")
 	}

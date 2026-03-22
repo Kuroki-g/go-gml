@@ -4,7 +4,7 @@ import (
 	"encoding/xml"
 	"fmt"
 
-	v3 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
+	v3_2_1 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
 )
 
 // handlePolygon decodes a gml:Polygon, caches it by gml:id for xlink:href resolution, and returns it.
@@ -23,7 +23,7 @@ func (r *Reader) handlePolygon(dec *xml.Decoder, se xml.StartElement) (Geometry,
 }
 
 func decodePolygonElement(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
-	var x v3.PolygonType
+	var x v3_2_1.PolygonType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return Geometry{}, fmt.Errorf("gml: Polygon: %w", err)
 	}
@@ -34,7 +34,7 @@ func decodePolygonElement(dec *xml.Decoder, se xml.StartElement) (Geometry, erro
 	return Geometry{Value: poly, SRSName: x.SrsName}, nil
 }
 
-func ringFromLinearRing(lr *v3.LinearRingType, inheritDim int) (Ring, error) {
+func ringFromLinearRing(lr *v3_2_1.LinearRingType, inheritDim int) (Ring, error) {
 	if lr == nil {
 		return nil, fmt.Errorf("gml: nil LinearRing")
 	}
@@ -48,7 +48,7 @@ func ringFromLinearRing(lr *v3.LinearRingType, inheritDim int) (Ring, error) {
 	return nil, fmt.Errorf("gml: LinearRing has no coordinate data")
 }
 
-func polygonFromXML(x *v3.PolygonType) (Polygon, error) {
+func polygonFromXML(x *v3_2_1.PolygonType) (Polygon, error) {
 	dim := derefDim(x.SrsDimension)
 	var rings []Ring
 	if x.Exterior != nil && x.Exterior.LinearRing != nil {

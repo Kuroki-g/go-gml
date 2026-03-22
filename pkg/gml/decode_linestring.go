@@ -5,14 +5,14 @@ import (
 	"fmt"
 	"strings"
 
-	v3 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
+	v3_2_1 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
 )
 
 func decodeLineStringElement(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
 	if se.Name.Space == gmlNS2 {
 		return decodeLineStringV2(dec, se)
 	}
-	var x v3.LineStringType
+	var x v3_2_1.LineStringType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return Geometry{}, fmt.Errorf("gml: LineString: %w", err)
 	}
@@ -23,7 +23,7 @@ func decodeLineStringElement(dec *xml.Decoder, se xml.StartElement) (Geometry, e
 	return Geometry{Value: ls, SRSName: x.SrsName}, nil
 }
 
-func lineStringFromXML(x *v3.LineStringType) (LineString, error) {
+func lineStringFromXML(x *v3_2_1.LineStringType) (LineString, error) {
 	dim := derefDim(x.SrsDimension)
 	if x.PosList != nil {
 		return LineStringFromPosListString(x.PosList.Value, preferDim(dim, derefDim(x.PosList.SrsDimension)))

@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"strings"
 
-	v3 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
+	v3_2_1 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
 )
 
 // handleCompositeCurve decodes a gml:CompositeCurve and returns a LineString.
 func (r *Reader) handleCompositeCurve(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
-	var x v3.CompositeCurveType
+	var x v3_2_1.CompositeCurveType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return Geometry{}, fmt.Errorf("gml: CompositeCurve: %w", err)
 	}
@@ -21,7 +21,7 @@ func (r *Reader) handleCompositeCurve(dec *xml.Decoder, se xml.StartElement) (Ge
 	return Geometry{Value: ls, SRSName: x.SrsName}, nil
 }
 
-func lineStringFromCompositeCurveType(x *v3.CompositeCurveType, inheritDim int, resolver *curveResolver) (LineString, error) {
+func lineStringFromCompositeCurveType(x *v3_2_1.CompositeCurveType, inheritDim int, resolver *curveResolver) (LineString, error) {
 	var result LineString
 	dim := preferDim(inheritDim, derefDim(x.SrsDimension))
 	for i, cm := range x.CurveMember {
@@ -40,7 +40,7 @@ func lineStringFromCompositeCurveType(x *v3.CompositeCurveType, inheritDim int, 
 
 // lineStringFromCurveProperty converts a single CurvePropertyType to a LineString.
 // Handles Curve, LineString, OrientableCurve, CompositeCurve, and xlink:href references.
-func lineStringFromCurveProperty(cm *v3.CurvePropertyType, inheritDim int, resolver *curveResolver) (LineString, error) {
+func lineStringFromCurveProperty(cm *v3_2_1.CurvePropertyType, inheritDim int, resolver *curveResolver) (LineString, error) {
 	if cm.Curve != nil {
 		return lineStringFromCurve(cm.Curve, inheritDim)
 	}

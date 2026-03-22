@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	v3 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
+	v3_2_1 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
 )
 
 // handleSurface decodes a gml:Surface, caches the resulting Polygon by gml:id, and returns it.
@@ -26,7 +26,7 @@ func (r *Reader) handleSurface(dec *xml.Decoder, se xml.StartElement) (Geometry,
 // decodeSurfaceElement handles gml:Surface > gml:patches > gml:PolygonPatch.
 // resolver is used to resolve xlink:href references in gml:Ring/curveMember.
 func decodeSurfaceElement(dec *xml.Decoder, se xml.StartElement, resolver *curveResolver) (Geometry, error) {
-	var x v3.SurfaceType
+	var x v3_2_1.SurfaceType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return Geometry{}, fmt.Errorf("gml: Surface: %w", err)
 	}
@@ -37,14 +37,14 @@ func decodeSurfaceElement(dec *xml.Decoder, se xml.StartElement, resolver *curve
 	return Geometry{Value: poly, SRSName: x.SrsName}, nil
 }
 
-func polygonFromSurface(x *v3.SurfaceType, resolver *curveResolver) (Polygon, error) {
+func polygonFromSurface(x *v3_2_1.SurfaceType, resolver *curveResolver) (Polygon, error) {
 	if x.Patches == nil || len(x.Patches.PolygonPatch) == 0 {
 		return Polygon{}, nil
 	}
 	return polygonFromPatch(&x.Patches.PolygonPatch[0], derefDim(x.SrsDimension), resolver)
 }
 
-func polygonFromPatch(patch *v3.PolygonPatchType, inheritDim int, resolver *curveResolver) (Polygon, error) {
+func polygonFromPatch(patch *v3_2_1.PolygonPatchType, inheritDim int, resolver *curveResolver) (Polygon, error) {
 	var rings []Ring
 	if patch.Exterior != nil {
 		r, err := ringFromAbstractRingProp(patch.Exterior, inheritDim, "exterior", resolver)
@@ -69,7 +69,7 @@ func polygonFromPatch(patch *v3.PolygonPatchType, inheritDim int, resolver *curv
 
 // ringFromAbstractRingProp extracts a Ring from an AbstractRingPropertyType,
 // supporting both gml:LinearRing (posList) and gml:Ring (curveMember > Curve).
-func ringFromAbstractRingProp(prop *v3.AbstractRingPropertyType, inheritDim int, label string, resolver *curveResolver) (Ring, error) {
+func ringFromAbstractRingProp(prop *v3_2_1.AbstractRingPropertyType, inheritDim int, label string, resolver *curveResolver) (Ring, error) {
 	if prop.LinearRing != nil {
 		lr := prop.LinearRing
 		dim := preferDim(inheritDim, derefDim(lr.SrsDimension))
@@ -95,7 +95,7 @@ func ringFromAbstractRingProp(prop *v3.AbstractRingPropertyType, inheritDim int,
 // ringFromRingType builds a Ring by concatenating curveMember Curves.
 // Inline Curves are used directly; xlink:href references are resolved via resolver
 // (supports OrientableCurve → Curve indirection used in old-format N03 files).
-func ringFromRingType(ring *v3.RingType, inheritDim int, resolver *curveResolver) (Ring, error) {
+func ringFromRingType(ring *v3_2_1.RingType, inheritDim int, resolver *curveResolver) (Ring, error) {
 	var pts Ring
 	dim := preferDim(inheritDim, derefDim(ring.SrsDimension))
 	for i, cm := range ring.CurveMember {

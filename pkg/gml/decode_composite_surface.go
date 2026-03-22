@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	v3 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
+	v3_2_1 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
 )
 
 // handleCompositeSurface decodes a gml:CompositeSurface, caches the result by gml:id, and returns a Polygon.
@@ -13,7 +13,7 @@ import (
 // the first member's exterior ring becomes rings[0]; subsequent rings follow.
 func (r *Reader) handleCompositeSurface(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
 	id := extractGMLID(se)
-	var x v3.CompositeSurfaceType
+	var x v3_2_1.CompositeSurfaceType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return Geometry{}, fmt.Errorf("gml: CompositeSurface: %w", err)
 	}
@@ -31,7 +31,7 @@ func (r *Reader) handleCompositeSurface(dec *xml.Decoder, se xml.StartElement) (
 // and returns a Polygon by following its baseSurface property.
 func (r *Reader) handleOrientableSurface(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
 	id := extractGMLID(se)
-	var x v3.OrientableSurfaceType
+	var x v3_2_1.OrientableSurfaceType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return Geometry{}, fmt.Errorf("gml: OrientableSurface: %w", err)
 	}
@@ -48,7 +48,7 @@ func (r *Reader) handleOrientableSurface(dec *xml.Decoder, se xml.StartElement) 
 	return Geometry{Value: poly, SRSName: x.SrsName}, nil
 }
 
-func polygonFromCompositeSurface(x *v3.CompositeSurfaceType, resolver *curveResolver) (Polygon, error) {
+func polygonFromCompositeSurface(x *v3_2_1.CompositeSurfaceType, resolver *curveResolver) (Polygon, error) {
 	var allRings []Ring
 	dim := derefDim(x.SrsDimension)
 	for i, m := range x.SurfaceMember {
@@ -64,7 +64,7 @@ func polygonFromCompositeSurface(x *v3.CompositeSurfaceType, resolver *curveReso
 // polygonFromSurfaceProperty converts a SurfacePropertyType to a Polygon.
 // Supports inline Polygon, Surface, OrientableSurface, CompositeSurface,
 // and xlink:href references resolved via the resolver's polygonByID cache.
-func polygonFromSurfaceProperty(m *v3.SurfacePropertyType, inheritDim int, resolver *curveResolver) (Polygon, error) {
+func polygonFromSurfaceProperty(m *v3_2_1.SurfacePropertyType, inheritDim int, resolver *curveResolver) (Polygon, error) {
 	if m.Polygon != nil {
 		return polygonFromXML(m.Polygon)
 	}

@@ -4,14 +4,14 @@ import (
 	"encoding/xml"
 	"fmt"
 
-	v3 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
+	v3_2_1 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
 )
 
 func decodePointElement(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
 	if se.Name.Space == gmlNS2 {
 		return decodePointV2(dec, se)
 	}
-	var x v3.PointType
+	var x v3_2_1.PointType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return Geometry{}, fmt.Errorf("gml: Point: %w", err)
 	}
@@ -22,7 +22,7 @@ func decodePointElement(dec *xml.Decoder, se xml.StartElement) (Geometry, error)
 	return Geometry{Value: pt, SRSName: x.SrsName}, nil
 }
 
-func pointFromXML(x *v3.PointType) (Point, error) {
+func pointFromXML(x *v3_2_1.PointType) (Point, error) {
 	if x.Pos != nil {
 		return PointFromPosString(x.Pos.Value, preferDim(derefDim(x.SrsDimension), derefDim(x.Pos.SrsDimension)))
 	}

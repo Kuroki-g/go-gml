@@ -4,13 +4,13 @@ import (
 	"encoding/xml"
 	"fmt"
 
-	v3 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
+	v3_2_1 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
 )
 
 // ---- multi-point ----
 
 func decodeMultiPointElement(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
-	var x v3.MultiPointType
+	var x v3_2_1.MultiPointType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return Geometry{}, fmt.Errorf("gml: MultiPoint: %w", err)
 	}
@@ -37,7 +37,7 @@ func decodeMultiCurveElement(dec *xml.Decoder, se xml.StartElement) (Geometry, e
 	if se.Name.Space == gmlNS2 {
 		return decodeMultiLineStringV2(dec, se)
 	}
-	var x v3.MultiCurveType
+	var x v3_2_1.MultiCurveType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return Geometry{}, fmt.Errorf("gml: %s: %w", se.Name.Local, err)
 	}
@@ -64,7 +64,7 @@ func decodeMultiSurfaceElement(dec *xml.Decoder, se xml.StartElement) (Geometry,
 	if se.Name.Space == gmlNS2 {
 		return decodeMultiPolygonV2(dec, se)
 	}
-	var x v3.MultiSurfaceType
+	var x v3_2_1.MultiSurfaceType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return Geometry{}, fmt.Errorf("gml: %s: %w", se.Name.Local, err)
 	}
@@ -88,7 +88,7 @@ func decodeMultiSurfaceElement(dec *xml.Decoder, se xml.StartElement) (Geometry,
 // ---- envelope ----
 
 func decodeEnvelopeElement(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
-	var x v3.EnvelopeType
+	var x v3_2_1.EnvelopeType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return Geometry{}, fmt.Errorf("gml: Envelope: %w", err)
 	}
@@ -99,7 +99,7 @@ func decodeEnvelopeElement(dec *xml.Decoder, se xml.StartElement) (Geometry, err
 	return Geometry{Value: b, SRSName: x.SrsName}, nil
 }
 
-func boundFromXML(x *v3.EnvelopeType) (Bound, error) {
+func boundFromXML(x *v3_2_1.EnvelopeType) (Bound, error) {
 	dim := derefDim(x.SrsDimension)
 	if x.LowerCorner != nil && x.UpperCorner != nil {
 		d := preferDim(dim, derefDim(x.LowerCorner.SrsDimension))
