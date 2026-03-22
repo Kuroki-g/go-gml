@@ -4,7 +4,7 @@ import (
 	"encoding/xml"
 	"fmt"
 
-	v2 "github.com/Kuroki-g/go-gml/pkg/gml/v2"
+	v2 "github.com/Kuroki-g/go-gml/pkg/gml/v2_1_2"
 )
 
 // GML 2.x decode functions.

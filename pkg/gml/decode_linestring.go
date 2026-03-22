@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	v3 "github.com/Kuroki-g/go-gml/pkg/gml/v3"
+	v3 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
 )
 
 func decodeLineStringElement(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {

@@ -36,8 +36,8 @@
 | `gml:MultiCurve` / `gml:MultiLineString` | `MultiLineString` | ✓ (curveMember が LineString の場合のみ) |
 | `gml:MultiSurface` / `gml:MultiPolygon` | `MultiPolygon` | ✓ (surfaceMember が Polygon の場合のみ) |
 | `gml:Envelope` | `Bound` | ✓ |
-| `gml:Surface` + `PolygonPatch` | `Polygon` | 未実装 (N03 新形式) |
-| `gml:Curve` + `LineStringSegment` | `LineString` | 未実装 (N03 旧形式) |
+| `gml:Surface` + `PolygonPatch` | `Polygon` | ✓ (N03 新形式: 2024年〜 KsjAppSchema-N03-v4_0 以降) |
+| `gml:Curve` + `LineStringSegment` | `LineString` | ✓ (N03 旧形式: 〜2023年 KsjAppSchema-N03-v3_x 以前) |
 | `gml:CompositeCurve` | `LineString` | 未実装 (W09 湖沼) |
 | Arc/Circle 等の曲線補間 | — | 未実装 |
 | Topology / Coverage | — | 未実装 |
@@ -55,7 +55,8 @@ go-gml/                          # module: github.com/Kuroki-g/go-gml
 │   │   ├── coords.go            # 座標文字列パース
 │   │   ├── crs.go               # EPSG 抽出
 │   │   └── decode/              # decode 関数群 (package gml のまま)
-│   └── gml/v3/geometry.go       # xsd2go-lite 生成 struct
+│   ├── gml/v3_2_1/geometry.go   # xsd2go-lite 生成 struct (GML 3.2.1)
+│   └── gml/v2_1_2/geometry.go   # xsd2go-lite 生成 struct (GML 2.1.2)
 ├── docs/go/
 │   ├── xsd2go-lite/             # XSD → Go struct ジェネレータ
 │   │   └── schemas/gml/3.2.1/   # GML XSD (仕様参照先)
@@ -66,6 +67,12 @@ go-gml/                          # module: github.com/Kuroki-g/go-gml
 `go.work` でローカル管理。現在の use: `. / docs/go/gml-parser`。
 
 CityGML は同一リポジトリ内の別モジュール (`extensions/citygml/`) として管理する。モジュール名は `github.com/Kuroki-g/go-citygml`、go-gml に依存する。
+
+**CityGML ターゲットバージョン: 2.0**
+- 対象スキーマ: `http://www.opengis.net/citygml/2.0`
+- 参照 XSD: `schemas.opengis.net/citygml/2.0/` 以下 (cityGMLBase.xsd + 各モジュール)
+- 主なデータソース: 国土交通省 PLATEAU (G空間情報センター)、都市構造可視化計画
+- CityGML 3.0 は後から対応できる設計にしておく (コア抽象化を壊さない)
 
 ---
 
@@ -82,7 +89,7 @@ make cover          # カバレッジレポート
 
 make xsd2go-build   # xsd2go-lite バイナリビルド
 make xsd2go-test    # xsd2go-lite テスト
-make xsd2go-gen     # GML XSD → pkg/gml/v3/geometry.go 生成
+make xsd2go-gen     # GML XSD → pkg/gml/v3_2_1/geometry.go 生成
 
 make gml-parser-build
 make gml-parser-run
@@ -110,7 +117,7 @@ make gml-parser-run
 1. `docs/go/xsd2go-lite/schemas/gml/3.2.1/` の XSD で要素定義を確認する
 2. `xsd2go-lite` が該当 struct を生成できるか確認する (`make xsd2go-gen`)
 3. 生成できない場合は `xsd2go-lite` を修正してから再生成する
-4. 生成 struct を `pkg/gml/v3/` から import して `decode/` で使う
+4. 生成 struct を `pkg/gml/v3_2_1/` (GML 3.2.1) または `pkg/gml/v2_1_2/` (GML 2.1.2) から import して `decode/` で使う
 
 ### ファイルサイズと構造
 

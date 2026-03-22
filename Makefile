@@ -11,7 +11,7 @@ help:
 	@echo "  xsd2go-build     バイナリビルド"
 	@echo "  xsd2go-test      ユニットテスト実行"
 	@echo "  xsd2go-cover     カバレッジレポート生成"
-	@echo "  xsd2go-gen       GML XSD → pkg/gml/v3/geometry.go 生成"
+	@echo "  xsd2go-gen       GML XSD → pkg/gml/v3_2_1/geometry.go 生成"
 	@echo ""
 	@echo "gml-parser (CLI example)"
 	@echo "  gml-parser-build バイナリビルド"
@@ -65,7 +65,7 @@ xsd2go-gen: xsd2go-build
 		-p gml \
 		--with-doc \
 		--catalog "$(XLINK_NS)=$(XLINK_XSD)" \
-		-o pkg/gml/v3/geometry.go \
+		-o pkg/gml/v3_2_1/geometry.go \
 		$(XSD2GO_DIR)/schemas/gml/3.2.1/geometryAggregates.xsd
 
 xsd2go-gen-v2: xsd2go-build
@@ -74,7 +74,7 @@ xsd2go-gen-v2: xsd2go-build
 		-p gml \
 		--with-doc \
 		--catalog "$(XLINK_NS)=$(XLINK_XSD)" \
-		-o pkg/gml/v2/geometry.go \
+		-o pkg/gml/v2_1_2/geometry.go \
 		$(XSD2GO_DIR)/schemas/gml/2.1.2/geometry.xsd
 
 $(XSD2GO_TMP):

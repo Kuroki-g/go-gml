@@ -4,7 +4,7 @@ import (
 	"encoding/xml"
 	"fmt"
 
-	v3 "github.com/Kuroki-g/go-gml/pkg/gml/v3"
+	v3 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
 )
 
 // ---- multi-point ----
