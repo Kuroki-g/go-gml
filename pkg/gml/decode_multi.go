@@ -33,7 +33,7 @@ func decodeMultiPointElement(dec *xml.Decoder, se xml.StartElement) (Geometry, e
 
 // ---- multi-curve / multi-linestring ----
 
-func decodeMultiCurveElement(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
+func (r *Reader) handleMultiCurve(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
 	if se.Name.Space == gmlNS2 {
 		return decodeMultiLineStringV2(dec, se)
 	}
@@ -41,26 +41,23 @@ func decodeMultiCurveElement(dec *xml.Decoder, se xml.StartElement) (Geometry, e
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return Geometry{}, fmt.Errorf("gml: %s: %w", se.Name.Local, err)
 	}
+	dim := derefDim(x.SrsDimension)
 	var lines MultiLineString
-	for _, m := range x.CurveMember {
-		if m.LineString == nil {
-			continue
-		}
-		if m.LineString.SrsDimension == nil {
-			m.LineString.SrsDimension = x.SrsDimension
-		}
-		ls, err := lineStringFromXML(m.LineString)
+	for i := range x.CurveMember {
+		ls, err := lineStringFromCurveProperty(&x.CurveMember[i], dim, r.resolver)
 		if err != nil {
-			return Geometry{}, err
+			return Geometry{}, fmt.Errorf("gml: %s curveMember[%d]: %w", se.Name.Local, i, err)
 		}
-		lines = append(lines, ls)
+		if ls != nil {
+			lines = append(lines, ls)
+		}
 	}
 	return Geometry{Value: lines, SRSName: x.SrsName}, nil
 }
 
 // ---- multi-surface / multi-polygon ----
 
-func decodeMultiSurfaceElement(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
+func (r *Reader) handleMultiSurface(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
 	if se.Name.Space == gmlNS2 {
 		return decodeMultiPolygonV2(dec, se)
 	}
@@ -68,19 +65,16 @@ func decodeMultiSurfaceElement(dec *xml.Decoder, se xml.StartElement) (Geometry,
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return Geometry{}, fmt.Errorf("gml: %s: %w", se.Name.Local, err)
 	}
+	dim := derefDim(x.SrsDimension)
 	var polys MultiPolygon
-	for _, m := range x.SurfaceMember {
-		if m.Polygon == nil {
-			continue
-		}
-		if m.Polygon.SrsDimension == nil {
-			m.Polygon.SrsDimension = x.SrsDimension
-		}
-		p, err := polygonFromXML(m.Polygon)
+	for i := range x.SurfaceMember {
+		poly, err := polygonFromSurfaceProperty(&x.SurfaceMember[i], dim, r.resolver)
 		if err != nil {
-			return Geometry{}, err
+			return Geometry{}, fmt.Errorf("gml: %s surfaceMember[%d]: %w", se.Name.Local, i, err)
 		}
-		polys = append(polys, p)
+		if len(poly) > 0 {
+			polys = append(polys, poly)
+		}
 	}
 	return Geometry{Value: polys, SRSName: x.SrsName}, nil
 }

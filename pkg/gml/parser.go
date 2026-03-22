@@ -74,12 +74,8 @@ var handlers = map[string]handlerFunc{
 	"LineString": decodeLineStringElement,
 	// Polygon is handled via Reader.handlePolygon in Next() for caching support.
 	// Curve and Surface are handled via Reader methods in Next() for xlink:href support.
-	// Multi-geometry
-	"MultiPoint":      decodeMultiPointElement,
-	"MultiCurve":      decodeMultiCurveElement,
-	"MultiLineString": decodeMultiCurveElement,
-	"MultiSurface":    decodeMultiSurfaceElement,
-	"MultiPolygon":    decodeMultiSurfaceElement,
+	// Multi-geometry (MultiPoint only; Multi{Curve,Surface} need resolver → handled in Next)
+	"MultiPoint": decodeMultiPointElement,
 	// Bounding box
 	"Envelope": decodeEnvelopeElement,
 }
@@ -118,6 +114,10 @@ func (r *Reader) Next() (Geometry, error) {
 			return r.handleCompositeSurface(r.dec, se)
 		case "OrientableSurface":
 			return r.handleOrientableSurface(r.dec, se)
+		case "MultiCurve", "MultiLineString":
+			return r.handleMultiCurve(r.dec, se)
+		case "MultiSurface", "MultiPolygon":
+			return r.handleMultiSurface(r.dec, se)
 		}
 		h, ok := handlers[se.Name.Local]
 		if !ok {
