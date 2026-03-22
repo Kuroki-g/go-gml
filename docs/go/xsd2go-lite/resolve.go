@@ -422,6 +422,10 @@ func (r *Resolver) resolveRawField(rf rawField, schemaNS string, visiting map[st
 		f.GoType = "[]" + strings.TrimPrefix(goType, "[]")
 	} else if !isSlice && !rf.IsAttr && !isBuiltinGoType(goType) {
 		f.GoType = "*" + strings.TrimPrefix(goType, "*")
+	} else if rf.IsAttr && isOmit {
+		// XSD optional attribute (use="optional" or use omitted) → pointer type
+		// so encoding/xml can distinguish absent (nil) from present-but-empty ("").
+		f.GoType = "*" + strings.TrimPrefix(f.GoType, "*")
 	}
 
 	return []Field{f}

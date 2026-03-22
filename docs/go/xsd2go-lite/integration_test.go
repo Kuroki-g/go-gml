@@ -383,12 +383,15 @@ func TestEndToEnd_basicPipeline(t *testing.T) {
 	if !strings.Contains(src, "type PointType struct") {
 		t.Error("PointType missing")
 	}
-	// DirectPositionType must have chardata + srsName attr.
+	// DirectPositionType must have chardata + srsName attr as *string (optional).
 	if !strings.Contains(src, `xml:",chardata"`) {
 		t.Error("chardata field missing")
 	}
 	if !strings.Contains(src, "srsName") {
 		t.Error("srsName attribute missing")
+	}
+	if !strings.Contains(src, "*string") {
+		t.Errorf("optional string attribute should be *string, got:\n%s", src)
 	}
 }
 
