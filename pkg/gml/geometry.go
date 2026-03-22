@@ -67,30 +67,45 @@ func RingFromFlat(coords []float64, dim int) (Ring, error) {
 
 // PointFromPosString parses a gml:pos chardata string and returns a Point.
 // e.g. "139.7 35.6" or "139.7 35.6 10.5"
+// When dim <= 0 and srsDimension is absent, the number of parsed values is used
+// directly as the dimension (valid for a single point).
 func PointFromPosString(s string, dim int) (Point, error) {
 	coords, err := ParsePosList(s)
 	if err != nil {
 		return Point{}, err
 	}
-	return PointFromFlat(coords, effectiveDim(dim, len(coords)))
+	if dim <= 0 {
+		dim = len(coords)
+	}
+	return PointFromFlat(coords, dim)
 }
 
 // LineStringFromPosListString parses a gml:posList chardata string.
+// dim should be the srsDimension attribute value of the enclosing GML element.
+// If srsDimension is absent, pass dim=0; the dimension defaults to 2.
+// NOTE: per GML XSD, the correct dimension is derived from the CRS definition
+// referenced by srsName. CRS-based resolution is not yet implemented; the
+// default-2 fallback is a provisional measure for real-world 2D datasets.
 func LineStringFromPosListString(s string, dim int) (LineString, error) {
 	coords, err := ParsePosList(s)
 	if err != nil {
 		return nil, err
 	}
-	return LineStringFromFlat(coords, effectiveDim(dim, len(coords)))
+	return LineStringFromFlat(coords, effectiveDim(dim))
 }
 
 // RingFromPosListString parses a gml:posList chardata string into a Ring.
+// dim should be the srsDimension attribute value of the enclosing GML element.
+// If srsDimension is absent, pass dim=0; the dimension defaults to 2.
+// NOTE: per GML XSD, the correct dimension is derived from the CRS definition
+// referenced by srsName. CRS-based resolution is not yet implemented; the
+// default-2 fallback is a provisional measure for real-world 2D datasets.
 func RingFromPosListString(s string, dim int) (Ring, error) {
 	coords, err := ParsePosList(s)
 	if err != nil {
 		return nil, err
 	}
-	return RingFromFlat(coords, effectiveDim(dim, len(coords)))
+	return RingFromFlat(coords, effectiveDim(dim))
 }
 
 // RingFromCoordinatesString parses a deprecated gml:coordinates string into a Ring.
@@ -102,14 +117,14 @@ func RingFromCoordinatesString(s, cs, ts string) (Ring, error) {
 	return RingFromFlat(coords, 2)
 }
 
-// effectiveDim returns dim if > 0, otherwise infers from total coord count.
-// Falls back to 2 if inference is ambiguous.
-func effectiveDim(dim, total int) int {
+// effectiveDim returns dim if > 0, otherwise defaults to 2.
+// The GML XSD specifies that dimension is derived from the CRS definition
+// (srsName), but CRS-based resolution is not yet implemented. Defaulting to 2
+// is a provisional fallback based on the assumption that srsDimension-less
+// real-world data is predominantly 2D.
+func effectiveDim(dim int) int {
 	if dim > 0 {
 		return dim
-	}
-	if total%3 == 0 && total > 0 {
-		return 3
 	}
 	return 2
 }

@@ -88,7 +88,7 @@ func TestPointFromPosString(t *testing.T) {
 	}{
 		{"139.691667 35.689722", 2, Point{139.691667, 35.689722}},
 		{"139.7 35.6 10.5", 3, Point{139.7, 35.6, 10.5}},
-		{"139.7 35.6 10.5", 0, Point{139.7, 35.6, 10.5}}, // infer 3D from value count
+		{"139.7 35.6 10.5", 0, Point{139.7, 35.6, 10.5}}, // srsDimension absent: use value count (3) for single pos
 	}
 	for _, tt := range tests {
 		t.Run(tt.input, func(t *testing.T) {
@@ -141,16 +141,16 @@ func TestRingFromCoordinatesString(t *testing.T) {
 }
 
 func TestEffectiveDim(t *testing.T) {
-	if effectiveDim(2, 6) != 2 {
+	if effectiveDim(2) != 2 {
 		t.Error("explicit dim should be returned as-is")
 	}
-	if effectiveDim(0, 6) != 3 {
-		t.Error("total=6 should infer dim=3")
+	if effectiveDim(3) != 3 {
+		t.Error("explicit dim=3 should be returned as-is")
 	}
-	if effectiveDim(0, 4) != 2 {
-		t.Error("total=4 should infer dim=2")
+	if effectiveDim(0) != 2 {
+		t.Error("dim=0 should default to 2")
 	}
-	if effectiveDim(0, 0) != 2 {
-		t.Error("total=0 should default to dim=2")
+	if effectiveDim(-1) != 2 {
+		t.Error("negative dim should default to 2")
 	}
 }
