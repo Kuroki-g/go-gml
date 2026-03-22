@@ -36,6 +36,9 @@ type Resolver struct {
 	// xmlns declarations. Used by resolveQName to deterministically resolve prefixes
 	// against the schema that defined the type being resolved.
 	nsMaps map[string]map[string]string
+	// catalog maps namespace URI → local XSD file path. Used to resolve
+	// external imports (HTTP schemaLocation) without modifying the original XSD.
+	catalog map[string]string
 }
 
 // NewResolver creates a new Resolver.
@@ -50,7 +53,15 @@ func NewResolver() *Resolver {
 		allGroups:       make(map[string][]rawField),
 		substHeads:      make(map[string][]substMember),
 		nsMaps:          make(map[string]map[string]string),
+		catalog:         make(map[string]string),
 	}
+}
+
+// AddCatalogEntry registers a namespace URI → local file path mapping.
+// When an XSD import has an external (HTTP) schemaLocation for this namespace,
+// the local path is used instead.
+func (r *Resolver) AddCatalogEntry(namespaceURI, localPath string) {
+	r.catalog[namespaceURI] = localPath
 }
 
 // Load recursively parses a schema and all its includes/imports.
@@ -88,13 +99,20 @@ func (r *Resolver) Load(filename string) (*Schema, error) {
 		}
 	}
 	for _, imp := range xsdRaw.imports {
-		if imp.loc == "" || isHTTP(imp.loc) {
+		var path string
+		if imp.loc != "" && !isHTTP(imp.loc) {
+			path = filepath.Join(baseDir, imp.loc)
+		} else if imp.ns != "" {
+			if mapped, ok := r.catalog[imp.ns]; ok {
+				path = mapped
+			}
+		}
+		if path == "" {
 			if imp.ns != "" {
 				fmt.Fprintf(os.Stderr, "warn: skipping external import ns=%s\n", imp.ns)
 			}
 			continue
 		}
-		path := filepath.Join(baseDir, imp.loc)
 		if _, err := r.Load(path); err != nil {
 			fmt.Fprintf(os.Stderr, "warn: failed to load import %s: %v\n", path, err)
 		}
@@ -349,7 +367,7 @@ func (r *Resolver) resolveRawField(rf rawField, schemaNS string, visiting map[st
 		}
 		return []Field{{
 			GoName: goName(refName),
-			XMLTag: buildXMLTag("", refName, true),
+			XMLTag: buildXMLTag(refNS, refName, true),
 			GoType: goType,
 			IsAttr: true,
 			Omit:   true,

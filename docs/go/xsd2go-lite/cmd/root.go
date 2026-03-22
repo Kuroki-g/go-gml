@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strings"
 
 	"github.com/spf13/cobra"
 	"xsd2go-lite/internal/xsdlite"
@@ -15,6 +16,7 @@ var (
 	outputFile   string
 	skipAbstract bool
 	withDoc      bool
+	catalogPairs []string
 )
 
 var rootCmd = &cobra.Command{
@@ -39,11 +41,19 @@ func init() {
 	rootCmd.Flags().StringVarP(&outputFile, "output", "o", "", "Output file path (default: stdout)")
 	rootCmd.Flags().BoolVar(&skipAbstract, "skip-abstract", false, "Skip abstract types")
 	rootCmd.Flags().BoolVar(&withDoc, "with-doc", false, "Include XSD documentation as field comments")
+	rootCmd.Flags().StringArrayVar(&catalogPairs, "catalog", nil, "Namespace-to-local-path mapping: ns=path (repeatable)")
 	_ = rootCmd.MarkFlagRequired("namespace")
 }
 
 func run(inputXSD string) error {
 	resolver := xsdlite.NewResolver()
+	for _, pair := range catalogPairs {
+		ns, path, ok := strings.Cut(pair, "=")
+		if !ok {
+			return fmt.Errorf("--catalog: invalid format %q, expected ns=path", pair)
+		}
+		resolver.AddCatalogEntry(ns, path)
+	}
 	if _, err := resolver.Load(inputXSD); err != nil {
 		return fmt.Errorf("load schema: %w", err)
 	}

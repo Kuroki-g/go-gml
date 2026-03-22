@@ -56,11 +56,15 @@ xsd2go-cover: $(XSD2GO_TMP)
 
 GML2_NS := http://www.opengis.net/gml
 
+XLINK_NS  := http://www.w3.org/1999/xlink
+XLINK_XSD := $(XSD2GO_DIR)/schemas/xlink/xlink.xsd
+
 xsd2go-gen: xsd2go-build
 	$(XSD2GO_BIN) \
 		-n "$(GML_NS)" \
 		-p gml \
 		--with-doc \
+		--catalog "$(XLINK_NS)=$(XLINK_XSD)" \
 		-o pkg/gml/v3/geometry.go \
 		$(XSD2GO_DIR)/schemas/gml/3.2.1/geometryAggregates.xsd
 
@@ -69,6 +73,7 @@ xsd2go-gen-v2: xsd2go-build
 		-n "$(GML2_NS)" \
 		-p gml \
 		--with-doc \
+		--catalog "$(XLINK_NS)=$(XLINK_XSD)" \
 		-o pkg/gml/v2/geometry.go \
 		$(XSD2GO_DIR)/schemas/gml/2.1.2/geometry.xsd
 
