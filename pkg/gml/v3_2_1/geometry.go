@@ -401,7 +401,7 @@ type AbstractGeometryType struct {
 
 type AbstractGriddedSurfaceType struct {
 	AggregationType *string `xml:"aggregationType,attr,omitempty"`
-	Rows            string  `xml:"http://www.opengis.net/gml/3.2 rows,omitempty"`
+	Rows            *int    `xml:"rows,attr,omitempty"`
 	Columns         *int    `xml:"columns,attr,omitempty"`
 }
 
@@ -1169,7 +1169,7 @@ type ConcatenatedOperationType struct {
 
 type ConeType struct {
 	AggregationType     *string `xml:"aggregationType,attr,omitempty"`
-	Rows                string  `xml:"http://www.opengis.net/gml/3.2 rows,omitempty"`
+	Rows                *int    `xml:"rows,attr,omitempty"`
 	Columns             *int    `xml:"columns,attr,omitempty"`
 	HorizontalCurveType *string `xml:"horizontalCurveType,attr,omitempty"`
 	VerticalCurveType   *string `xml:"verticalCurveType,attr,omitempty"`
@@ -1460,7 +1460,7 @@ type CurveType struct {
 
 type CylinderType struct {
 	AggregationType     *string `xml:"aggregationType,attr,omitempty"`
-	Rows                string  `xml:"http://www.opengis.net/gml/3.2 rows,omitempty"`
+	Rows                *int    `xml:"rows,attr,omitempty"`
 	Columns             *int    `xml:"columns,attr,omitempty"`
 	HorizontalCurveType *string `xml:"horizontalCurveType,attr,omitempty"`
 	VerticalCurveType   *string `xml:"verticalCurveType,attr,omitempty"`
@@ -4028,7 +4028,7 @@ type SpeedType struct {
 
 type SphereType struct {
 	AggregationType     *string `xml:"aggregationType,attr,omitempty"`
-	Rows                string  `xml:"http://www.opengis.net/gml/3.2 rows,omitempty"`
+	Rows                *int    `xml:"rows,attr,omitempty"`
 	Columns             *int    `xml:"columns,attr,omitempty"`
 	HorizontalCurveType *string `xml:"horizontalCurveType,attr,omitempty"`
 	VerticalCurveType   *string `xml:"verticalCurveType,attr,omitempty"`

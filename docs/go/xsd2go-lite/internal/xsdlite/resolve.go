@@ -563,14 +563,28 @@ func buildXMLTag(ns, localName string, isAttr bool) string {
 	return sb.String()
 }
 
-// deduplicateFields removes fields with duplicate GoNames, keeping the first.
+// deduplicateFields removes fields with duplicate GoNames.
+// When an attribute and an element share the same GoName, the attribute wins
+// (e.g. srsName attr vs srsName element in GML 3.1.1).
 func deduplicateFields(fields []Field) []Field {
-	seen := make(map[string]bool)
-	var result []Field
+	type entry struct {
+		idx    int
+		isAttr bool
+	}
+	if len(fields) == 0 {
+		return fields
+	}
+	seen := make(map[string]entry)
+	result := make([]Field, 0, len(fields))
 	for _, f := range fields {
-		if !seen[f.GoName] {
-			seen[f.GoName] = true
+		e, exists := seen[f.GoName]
+		if !exists {
+			seen[f.GoName] = entry{len(result), f.IsAttr}
 			result = append(result, f)
+		} else if f.IsAttr && !e.isAttr {
+			// Attribute takes priority over a same-named element.
+			result[e.idx] = f
+			seen[f.GoName] = entry{e.idx, true}
 		}
 	}
 	return result
