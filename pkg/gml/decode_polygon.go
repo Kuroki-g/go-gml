@@ -7,6 +7,21 @@ import (
 	v3 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
 )
 
+// handlePolygon decodes a gml:Polygon, caches it by gml:id for xlink:href resolution, and returns it.
+func (r *Reader) handlePolygon(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
+	id := extractGMLID(se)
+	g, err := decodePolygonElement(dec, se)
+	if err != nil {
+		return Geometry{}, err
+	}
+	if id != "" {
+		if poly, ok := g.Value.(Polygon); ok {
+			r.resolver.polygonByID[id] = poly
+		}
+	}
+	return g, err
+}
+
 func decodePolygonElement(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
 	var x v3.PolygonType
 	if err := dec.DecodeElement(&x, &se); err != nil {

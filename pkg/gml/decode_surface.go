@@ -8,9 +8,19 @@ import (
 	v3 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
 )
 
-// handleSurface wraps decodeSurfaceElement with the Reader's curveResolver.
+// handleSurface decodes a gml:Surface, caches the resulting Polygon by gml:id, and returns it.
 func (r *Reader) handleSurface(dec *xml.Decoder, se xml.StartElement) (Geometry, error) {
-	return decodeSurfaceElement(dec, se, r.resolver)
+	id := extractGMLID(se)
+	g, err := decodeSurfaceElement(dec, se, r.resolver)
+	if err != nil {
+		return Geometry{}, err
+	}
+	if id != "" {
+		if poly, ok := g.Value.(Polygon); ok {
+			r.resolver.polygonByID[id] = poly
+		}
+	}
+	return g, err
 }
 
 // decodeSurfaceElement handles gml:Surface > gml:patches > gml:PolygonPatch.

@@ -56,13 +56,23 @@ func (r *Reader) SetCharsetReader(fn func(charset string, input io.Reader) (io.R
 
 // ---- handlers map: this is the index of all supported GML geometry elements ----
 
+// extractGMLID returns the value of the gml:id attribute from a StartElement, or "".
+func extractGMLID(se xml.StartElement) string {
+	for _, a := range se.Attr {
+		if a.Name.Local == "id" && isGMLNS(a.Name.Space) {
+			return a.Value
+		}
+	}
+	return ""
+}
+
 type handlerFunc func(*xml.Decoder, xml.StartElement) (Geometry, error)
 
 var handlers = map[string]handlerFunc{
 	// SF-0 elements
 	"Point":      decodePointElement,
 	"LineString": decodeLineStringElement,
-	"Polygon":    decodePolygonElement,
+	// Polygon is handled via Reader.handlePolygon in Next() for caching support.
 	// Curve and Surface are handled via Reader methods in Next() for xlink:href support.
 	// Multi-geometry
 	"MultiPoint":      decodeMultiPointElement,
@@ -89,7 +99,7 @@ func (r *Reader) Next() (Geometry, error) {
 		if !isGMLNS(se.Name.Space) {
 			continue
 		}
-		// Curve, OrientableCurve, Surface need Reader state for xlink:href resolution.
+		// Elements that need Reader state for xlink:href resolution or caching.
 		switch se.Name.Local {
 		case "Curve":
 			return r.handleCurve(r.dec, se)
@@ -98,8 +108,16 @@ func (r *Reader) Next() (Geometry, error) {
 				return Geometry{}, err
 			}
 			continue
+		case "Polygon":
+			return r.handlePolygon(r.dec, se)
 		case "Surface":
 			return r.handleSurface(r.dec, se)
+		case "CompositeCurve":
+			return r.handleCompositeCurve(r.dec, se)
+		case "CompositeSurface":
+			return r.handleCompositeSurface(r.dec, se)
+		case "OrientableSurface":
+			return r.handleOrientableSurface(r.dec, se)
 		}
 		h, ok := handlers[se.Name.Local]
 		if !ok {

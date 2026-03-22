@@ -8,18 +8,20 @@ import (
 	v3 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
 )
 
-// curveResolver resolves gml:id references to CurveType.
-// Handles both direct Curve lookup and OrientableCurve → Curve indirection
-// (used in old-format N03 files where curveMember xlink:href points to OrientableCurve).
+// curveResolver resolves gml:id references to geometry elements.
+// Handles Curve/OrientableCurve for curve xlink:href resolution, and
+// Polygon for surface xlink:href resolution in CompositeSurface/OrientableSurface.
 type curveResolver struct {
-	curves     map[string]*v3.CurveType
-	orientable map[string]*v3.OrientableCurveType
+	curves      map[string]*v3.CurveType
+	orientable  map[string]*v3.OrientableCurveType
+	polygonByID map[string]Polygon
 }
 
 func newCurveResolver() *curveResolver {
 	return &curveResolver{
-		curves:     make(map[string]*v3.CurveType),
-		orientable: make(map[string]*v3.OrientableCurveType),
+		curves:      make(map[string]*v3.CurveType),
+		orientable:  make(map[string]*v3.OrientableCurveType),
+		polygonByID: make(map[string]Polygon),
 	}
 }
 

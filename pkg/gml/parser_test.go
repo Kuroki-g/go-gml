@@ -304,6 +304,205 @@ func TestParseStream_multipleGeometries(t *testing.T) {
 	}
 }
 
+// ---- CompositeCurve ----
+
+func TestParseCompositeCurve_inlineCurves(t *testing.T) {
+	xmlStr := `<gml:CompositeCurve ` + gml3NS + ` srsDimension="2">
+		<gml:curveMember>
+			<gml:Curve>
+				<gml:segments>
+					<gml:LineStringSegment>
+						<gml:posList>0 0 5 0 10 0</gml:posList>
+					</gml:LineStringSegment>
+				</gml:segments>
+			</gml:Curve>
+		</gml:curveMember>
+		<gml:curveMember>
+			<gml:Curve>
+				<gml:segments>
+					<gml:LineStringSegment>
+						<gml:posList>10 0 10 5 10 10</gml:posList>
+					</gml:LineStringSegment>
+				</gml:segments>
+			</gml:Curve>
+		</gml:curveMember>
+	</gml:CompositeCurve>`
+	gs := readAll(t, xmlStr)
+	if len(gs) != 1 {
+		t.Fatalf("expected 1 geometry, got %d", len(gs))
+	}
+	ls, ok := gs[0].Value.(LineString)
+	if !ok {
+		t.Fatalf("expected LineString, got %T", gs[0].Value)
+	}
+	// 2 segments × 3 pts, shared endpoint elided: 3 + 2 = 5
+	if len(ls) != 5 {
+		t.Fatalf("points=%d want 5", len(ls))
+	}
+	if !pointEq(ls[0], Point{0, 0}) {
+		t.Errorf("ls[0]=%v", ls[0])
+	}
+	if !pointEq(ls[4], Point{10, 10}) {
+		t.Errorf("ls[4]=%v", ls[4])
+	}
+}
+
+func TestParseCompositeCurve_inlineLineString(t *testing.T) {
+	xmlStr := `<gml:CompositeCurve ` + gml3NS + ` srsDimension="2">
+		<gml:curveMember>
+			<gml:LineString><gml:posList>0 0 5 5 10 10</gml:posList></gml:LineString>
+		</gml:curveMember>
+	</gml:CompositeCurve>`
+	gs := readAll(t, xmlStr)
+	ls := gs[0].Value.(LineString)
+	if len(ls) != 3 {
+		t.Fatalf("points=%d want 3", len(ls))
+	}
+}
+
+func TestParseCompositeCurve_nested(t *testing.T) {
+	xmlStr := `<gml:CompositeCurve ` + gml3NS + ` srsDimension="2">
+		<gml:curveMember>
+			<gml:CompositeCurve>
+				<gml:curveMember>
+					<gml:Curve>
+						<gml:segments>
+							<gml:LineStringSegment>
+								<gml:posList>0 0 5 0</gml:posList>
+							</gml:LineStringSegment>
+						</gml:segments>
+					</gml:Curve>
+				</gml:curveMember>
+			</gml:CompositeCurve>
+		</gml:curveMember>
+		<gml:curveMember>
+			<gml:Curve>
+				<gml:segments>
+					<gml:LineStringSegment>
+						<gml:posList>5 0 10 0</gml:posList>
+					</gml:LineStringSegment>
+				</gml:segments>
+			</gml:Curve>
+		</gml:curveMember>
+	</gml:CompositeCurve>`
+	gs := readAll(t, xmlStr)
+	ls := gs[0].Value.(LineString)
+	// inner: [0,0 5,0], outer adds [10,0] → 3 pts
+	if len(ls) != 3 {
+		t.Fatalf("points=%d want 3", len(ls))
+	}
+}
+
+// ---- CompositeSurface ----
+
+func TestParseCompositeSurface_twoPolygons(t *testing.T) {
+	ring1 := `<gml:posList>0 0 5 0 5 5 0 5 0 0</gml:posList>`
+	ring2 := `<gml:posList>5 0 10 0 10 5 5 5 5 0</gml:posList>`
+	xmlStr := `<gml:CompositeSurface ` + gml3NS + ` srsDimension="2">
+		<gml:surfaceMember>
+			<gml:Polygon>
+				<gml:exterior><gml:LinearRing>` + ring1 + `</gml:LinearRing></gml:exterior>
+			</gml:Polygon>
+		</gml:surfaceMember>
+		<gml:surfaceMember>
+			<gml:Polygon>
+				<gml:exterior><gml:LinearRing>` + ring2 + `</gml:LinearRing></gml:exterior>
+			</gml:Polygon>
+		</gml:surfaceMember>
+	</gml:CompositeSurface>`
+	gs := readAll(t, xmlStr)
+	if len(gs) != 1 {
+		t.Fatalf("expected 1 geometry, got %d", len(gs))
+	}
+	poly, ok := gs[0].Value.(Polygon)
+	if !ok {
+		t.Fatalf("expected Polygon, got %T", gs[0].Value)
+	}
+	// Two member polygons → two rings collected
+	if len(poly) != 2 {
+		t.Fatalf("rings=%d want 2", len(poly))
+	}
+	if len(poly[0]) != 5 {
+		t.Errorf("ring[0] points=%d want 5", len(poly[0]))
+	}
+}
+
+func TestParseCompositeSurface_surfaceMembers(t *testing.T) {
+	xmlStr := `<gml:CompositeSurface ` + gml3NS + ` srsDimension="2">
+		<gml:surfaceMember>
+			<gml:Surface>
+				<gml:patches>
+					<gml:PolygonPatch>
+						<gml:exterior>
+							<gml:LinearRing>
+								<gml:posList>0 0 10 0 10 10 0 10 0 0</gml:posList>
+							</gml:LinearRing>
+						</gml:exterior>
+					</gml:PolygonPatch>
+				</gml:patches>
+			</gml:Surface>
+		</gml:surfaceMember>
+	</gml:CompositeSurface>`
+	gs := readAll(t, xmlStr)
+	poly := gs[0].Value.(Polygon)
+	if len(poly) != 1 {
+		t.Fatalf("rings=%d want 1", len(poly))
+	}
+	if len(poly[0]) != 5 {
+		t.Errorf("exterior points=%d want 5", len(poly[0]))
+	}
+}
+
+// ---- OrientableSurface ----
+
+func TestParseOrientableSurface_inlinePolygon(t *testing.T) {
+	xmlStr := `<gml:OrientableSurface ` + gml3NS + ` orientation="+" srsDimension="2">
+		<gml:baseSurface>
+			<gml:Polygon>
+				<gml:exterior>
+					<gml:LinearRing>
+						<gml:posList>0 0 10 0 10 10 0 10 0 0</gml:posList>
+					</gml:LinearRing>
+				</gml:exterior>
+			</gml:Polygon>
+		</gml:baseSurface>
+	</gml:OrientableSurface>`
+	gs := readAll(t, xmlStr)
+	if len(gs) != 1 {
+		t.Fatalf("expected 1 geometry, got %d", len(gs))
+	}
+	poly, ok := gs[0].Value.(Polygon)
+	if !ok {
+		t.Fatalf("expected Polygon, got %T", gs[0].Value)
+	}
+	if len(poly) != 1 || len(poly[0]) != 5 {
+		t.Fatalf("rings=%d, exterior points=%d, want 1 and 5", len(poly), len(poly[0]))
+	}
+}
+
+func TestParseOrientableSurface_inlineSurface(t *testing.T) {
+	xmlStr := `<gml:OrientableSurface ` + gml3NS + ` orientation="+" srsDimension="2">
+		<gml:baseSurface>
+			<gml:Surface>
+				<gml:patches>
+					<gml:PolygonPatch>
+						<gml:exterior>
+							<gml:LinearRing>
+								<gml:posList>0 0 10 0 10 10 0 10 0 0</gml:posList>
+							</gml:LinearRing>
+						</gml:exterior>
+					</gml:PolygonPatch>
+				</gml:patches>
+			</gml:Surface>
+		</gml:baseSurface>
+	</gml:OrientableSurface>`
+	gs := readAll(t, xmlStr)
+	poly := gs[0].Value.(Polygon)
+	if len(poly) != 1 || len(poly[0]) != 5 {
+		t.Fatalf("rings=%d, exterior points=%d", len(poly), len(poly[0]))
+	}
+}
+
 // ---- EOF on empty document ----
 
 func TestParseStream_empty(t *testing.T) {

@@ -49,9 +49,9 @@
 | `gml:Curve` + `LineStringSegment` | `LineString` | SF-1 | ✓ (N03 旧形式: 〜2023年 KsjAppSchema-N03-v3_x 以前) |
 | `gml:Surface` + `PolygonPatch` | `Polygon` | SF-1 | ✓ (N03 新形式: 2024年〜 KsjAppSchema-N03-v4_0 以降) |
 | `gml:OrientableCurve` | `LineString` | SF-1 | ✓ (xlink:href 解決) |
-| `gml:CompositeCurve` | `LineString` | SF-1 | 未実装 (W09 湖沼) |
-| `gml:CompositeSurface` | `Polygon` | SF-1 | 未実装 |
-| `gml:OrientableSurface` | `Polygon` | SF-1 | 未実装 |
+| `gml:CompositeCurve` | `LineString` | SF-1 | ✓ (inline Curve/LineString/OrientableCurve/CompositeCurve + xlink:href) |
+| `gml:CompositeSurface` | `Polygon` | SF-1 | ✓ (rings from all surfaceMembers collected; xlink:href 未対応) |
+| `gml:OrientableSurface` | `Polygon` | SF-1 | ✓ (baseSurface inline Polygon/Surface/CompositeSurface) |
 | Arc/Circle 等の曲線補間 | — | SF-2 | 未実装 |
 | Topology / Coverage | — | — | 未実装 |
 
