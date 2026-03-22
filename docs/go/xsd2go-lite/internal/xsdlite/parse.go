@@ -1,8 +1,9 @@
-package main
+package xsdlite
 
 import (
 	"encoding/xml"
 	"fmt"
+	"io"
 	"os"
 	"strings"
 )
@@ -185,6 +186,7 @@ type rawField struct {
 	Doc       string // xs:annotation/xs:documentation text
 }
 
+// ComplexType is the resolved complex type definition.
 type ComplexType struct {
 	Name       string
 	Abstract   bool
@@ -197,6 +199,7 @@ type ComplexType struct {
 	Fields []Field
 }
 
+// Field is a single resolved struct field.
 type Field struct {
 	GoName string
 	XMLTag string
@@ -208,17 +211,20 @@ type Field struct {
 	Doc    string // xs:annotation/xs:documentation text
 }
 
+// SimpleType is the resolved simple type definition.
 type SimpleType struct {
 	Name   string
 	Kind   string // "list" | "restriction" | "union" | "alias"
 	GoType string
 }
 
+// AttrGroup is an attribute group definition.
 type AttrGroup struct {
 	Name      string
 	RawFields []rawField
 }
 
+// Attribute is a global attribute definition.
 type Attribute struct {
 	Name    string
 	Type    string
@@ -592,4 +598,9 @@ func xsBuiltinGoType(xsType string) string {
 	default:
 		return "" // unknown → caller decides
 	}
+}
+
+// decodeXML decodes an XSD file into v.
+func decodeXML(r io.Reader, v any) error {
+	return xml.NewDecoder(r).Decode(v)
 }

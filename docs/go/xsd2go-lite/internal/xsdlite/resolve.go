@@ -1,4 +1,4 @@
-package main
+package xsdlite
 
 import (
 	"fmt"
@@ -38,7 +38,8 @@ type Resolver struct {
 	nsMaps map[string]map[string]string
 }
 
-func newResolver() *Resolver {
+// NewResolver creates a new Resolver.
+func NewResolver() *Resolver {
 	return &Resolver{
 		schemas:         make(map[string]*Schema),
 		allComplexTypes: make(map[string]*ComplexType),

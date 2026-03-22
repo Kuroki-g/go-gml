@@ -1,4 +1,4 @@
-package main
+package xsdlite
 
 import (
 	"os"
@@ -159,7 +159,7 @@ func buildTwoFileSchema(t *testing.T) (string, string) {
 func TestResolver_Load_includeAndInheritance(t *testing.T) {
 	_, derivedPath := buildTwoFileSchema(t)
 
-	r := newResolver()
+	r := NewResolver()
 	if _, err := r.Load(derivedPath); err != nil {
 		t.Fatalf("Load: %v", err)
 	}
@@ -221,7 +221,7 @@ func TestResolver_Load_cycleProtection(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	r := newResolver()
+	r := NewResolver()
 	// Should not hang or panic.
 	if _, err := r.Load(filepath.Join(dir, "a.xsd")); err != nil {
 		t.Fatalf("Load with cycle: %v", err)
@@ -231,7 +231,7 @@ func TestResolver_Load_cycleProtection(t *testing.T) {
 func TestResolver_Load_alreadyLoadedReturnsCached(t *testing.T) {
 	_, derivedPath := buildTwoFileSchema(t)
 
-	r := newResolver()
+	r := NewResolver()
 	s1, err := r.Load(derivedPath)
 	if err != nil {
 		t.Fatal(err)
@@ -247,7 +247,7 @@ func TestResolver_Load_alreadyLoadedReturnsCached(t *testing.T) {
 }
 
 func TestResolver_resolveQName_noPrefix(t *testing.T) {
-	r := newResolver()
+	r := NewResolver()
 	ns, name := r.resolveQName("MyType", "http://example.com")
 	if ns != "http://example.com" {
 		t.Errorf("ns = %q, want %q", ns, "http://example.com")
@@ -258,7 +258,7 @@ func TestResolver_resolveQName_noPrefix(t *testing.T) {
 }
 
 func TestResolver_resolveQName_withPrefix(t *testing.T) {
-	r := newResolver()
+	r := NewResolver()
 	// Inject namespace map for a schema with targetNS "http://example.com".
 	r.nsMaps["http://example.com"] = map[string]string{
 		"gml": "http://www.opengis.net/gml/3.2",
@@ -275,7 +275,7 @@ func TestResolver_resolveQName_withPrefix(t *testing.T) {
 }
 
 func TestResolver_resolveQName_prefixDeterminism(t *testing.T) {
-	r := newResolver()
+	r := NewResolver()
 	// Two different schemas define the same prefix "ns" with different URIs.
 	// The schema matching schemaNS should win (deterministic, not map-order dependent).
 	r.nsMaps["http://schema-a.com"] = map[string]string{"ns": "http://ns-a.com"}
@@ -295,7 +295,7 @@ func TestResolver_resolveQName_prefixDeterminism(t *testing.T) {
 }
 
 func TestResolver_resolveQName_unknownPrefix(t *testing.T) {
-	r := newResolver()
+	r := NewResolver()
 	// Unknown prefix falls back to schemaNS.
 	ns, name := r.resolveQName("xyz:Foo", "http://fallback")
 	if ns != "http://fallback" {
@@ -327,7 +327,7 @@ func TestResolver_ResolveAll_simpleContent(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	r := newResolver()
+	r := NewResolver()
 	if _, err := r.Load(path); err != nil {
 		t.Fatal(err)
 	}
@@ -387,7 +387,7 @@ func TestResolver_ResolveAll_attributeGroup(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	r := newResolver()
+	r := NewResolver()
 	if _, err := r.Load(path); err != nil {
 		t.Fatal(err)
 	}
@@ -438,7 +438,7 @@ func TestResolver_ResolveAll_elementRef(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	r := newResolver()
+	r := NewResolver()
 	if _, err := r.Load(path); err != nil {
 		t.Fatal(err)
 	}
@@ -503,7 +503,7 @@ func TestResolver_ResolveAll_substitutionGroup(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	r := newResolver()
+	r := NewResolver()
 	if _, err := r.Load(path); err != nil {
 		t.Fatalf("Load: %v", err)
 	}
@@ -585,7 +585,7 @@ func TestResolver_ResolveAll_substitutionGroup_noMembers(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	r := newResolver()
+	r := NewResolver()
 	if _, err := r.Load(path); err != nil {
 		t.Fatalf("Load: %v", err)
 	}

@@ -1,4 +1,4 @@
-package main
+package xsdlite
 
 import (
 	"os"
@@ -185,7 +185,7 @@ func TestResolver_groupRef(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	r := newResolver()
+	r := NewResolver()
 	if _, err := r.Load(path); err != nil {
 		t.Fatal(err)
 	}
@@ -237,7 +237,7 @@ func TestResolver_baseSimpleType(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	r := newResolver()
+	r := NewResolver()
 	if _, err := r.Load(path); err != nil {
 		t.Fatal(err)
 	}
@@ -286,7 +286,7 @@ func TestResolver_baseXSBuiltin(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	r := newResolver()
+	r := NewResolver()
 	if _, err := r.Load(path); err != nil {
 		t.Fatal(err)
 	}
@@ -312,7 +312,7 @@ func TestResolver_baseXSBuiltin(t *testing.T) {
 // ---- resolveTypeName: unknown type fallback ----
 
 func TestResolver_resolveTypeName_unknown(t *testing.T) {
-	r := newResolver()
+	r := NewResolver()
 	// Unknown type with no schemas loaded → fallback to string.
 	got := r.resolveTypeName("ns:UnknownType", "http://example.com")
 	if got != "string" {
@@ -321,7 +321,7 @@ func TestResolver_resolveTypeName_unknown(t *testing.T) {
 }
 
 func TestResolver_resolveTypeName_inline(t *testing.T) {
-	r := newResolver()
+	r := NewResolver()
 	got := r.resolveTypeName("__inline__", "http://example.com")
 	if got != "string" {
 		t.Errorf("__inline__ should map to string, got %q", got)
@@ -362,7 +362,7 @@ func TestEndToEnd_basicPipeline(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	r := newResolver()
+	r := NewResolver()
 	if _, err := r.Load(path); err != nil {
 		t.Fatal(err)
 	}
@@ -398,7 +398,7 @@ func TestEndToEnd_basicPipeline(t *testing.T) {
 // ---- Load: nonexistent file ----
 
 func TestResolver_Load_notFound(t *testing.T) {
-	r := newResolver()
+	r := NewResolver()
 	_, err := r.Load("/nonexistent/schema.xsd")
 	if err == nil {
 		t.Error("expected error for nonexistent file")
@@ -437,7 +437,7 @@ func TestBug1_simpleTypeRestrictionNonBuiltinBase(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	r := newResolver()
+	r := NewResolver()
 	if _, err := r.Load(path); err != nil {
 		t.Fatal(err)
 	}
@@ -481,7 +481,7 @@ func TestBug2_elementRefWithEmptyGoType(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	r := newResolver()
+	r := NewResolver()
 	if _, err := r.Load(path); err != nil {
 		t.Fatal(err)
 	}
@@ -497,7 +497,7 @@ func TestBug2_elementRefWithEmptyGoType(t *testing.T) {
 }
 
 // Bug3: __base__:simpleType path passed baseST.GoType="" directly into Field.GoType.
-// This produced `Value  \`xml:",chardata"\“ which is invalid Go.
+// This produced `Value  \`xml:",chardata"\" which is invalid Go.
 func TestBug3_baseSimpleTypeWithEmptyGoType(t *testing.T) {
 	xsd := `<?xml version="1.0" encoding="UTF-8"?>
 <schema targetNamespace="http://example.com/test"
@@ -521,7 +521,7 @@ func TestBug3_baseSimpleTypeWithEmptyGoType(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	r := newResolver()
+	r := NewResolver()
 	if _, err := r.Load(path); err != nil {
 		t.Fatal(err)
 	}
