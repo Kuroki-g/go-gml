@@ -298,6 +298,16 @@ func boundFromXML(x *v3_2_1.EnvelopeType) (Bound, error) {
 		}
 		return Bound{Min: lo, Max: hi}, nil
 	}
+	if x.Coordinates != nil {
+		coords, err := ParseCoordinates(x.Coordinates.Value, derefStrOr(x.Coordinates.Cs, ","), derefStrOr(x.Coordinates.Ts, " "))
+		if err != nil {
+			return Bound{}, fmt.Errorf("gml: Envelope coordinates: %w", err)
+		}
+		if len(coords) < 4 {
+			return Bound{}, fmt.Errorf("gml: Envelope coordinates: need at least 2 points")
+		}
+		return Bound{Min: Point{coords[0], coords[1]}, Max: Point{coords[2], coords[3]}}, nil
+	}
 	return Bound{}, fmt.Errorf("gml: Envelope has no coordinate data")
 }
 
