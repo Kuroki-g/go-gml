@@ -59,33 +59,73 @@
 
 ## コード構造
 
+**マルチモジュールモノレポ (Google Cloud Go パターン)**
+
 ```
-go-gml/                          # module: github.com/Kuroki-g/go-gml
-├── pkg/
-│   ├── gml/                     # メイン GML パーサ
-│   │   ├── parser.go            # Reader, Next(), handlers マップ (対応済み要素の索引)
-│   │   ├── geometry.go          # ジオメトリ型定義
-│   │   ├── coords.go            # 座標文字列パース
-│   │   ├── crs.go               # EPSG 抽出
-│   │   └── decode/              # decode 関数群 (package gml のまま)
-│   ├── gml/v3_2_1/geometry.go   # xsd2go-lite 生成 struct (GML 3.2.1)
-│   └── gml/v2_1_2/geometry.go   # xsd2go-lite 生成 struct (GML 2.1.2)
-├── docs/go/
-│   ├── xsd2go-lite/             # XSD → Go struct ジェネレータ
-│   │   └── schemas/gml/3.2.1/   # GML XSD (仕様参照先)
-│   └── gml-parser/              # CLI (cobra、convert/inspect)
-└── testdata/                    # 実 GML サンプル (CC BY 4.0)
+go-gml/                              # module root
+├── core/
+│   ├── go.mod                       # github.com/Kuroki-g/go-gml/core
+│   ├── geometry.go                  # 公開型: Point, LineString, Polygon, Multi*, Bound, GridCoverage
+│   └── reader.go                    # Geometry struct, Reader interface
+├── gml2_1_2/
+│   ├── go.mod                       # github.com/Kuroki-g/go-gml/gml2_1_2
+│   ├── reader.go                    # NewReader(), DecodeGeometry()
+│   ├── generated/
+│   │   └── geometry.go              # xsd2go-lite 生成 (このモジュール専用)
+│   └── internal/
+│       └── decode_*.go
+├── gml3_1_1/
+│   ├── go.mod                       # github.com/Kuroki-g/go-gml/gml3_1_1
+│   ├── reader.go                    # NewReader(), DecodeGeometry()
+│   ├── generated/
+│   │   └── geometry.go              # xsd2go-lite 生成 (このモジュール専用)
+│   └── internal/
+│       └── decode_*.go
+├── gml3_2_1/
+│   ├── go.mod                       # github.com/Kuroki-g/go-gml/gml3_2_1
+│   ├── reader.go                    # NewReader(), DecodeGeometry()
+│   ├── generated/
+│   │   └── geometry.go              # xsd2go-lite 生成 (このモジュール専用)
+│   └── internal/
+│       ├── decode_*.go
+│       └── ns_norm.go               # KSJ データバグ対応 (3.2.1 固有)
+├── gml/
+│   └── go.mod                       # github.com/Kuroki-g/go-gml/gml  ← GML ユーザーの入口 (re-export)
+├── citygml/
+│   └── go.mod                       # github.com/Kuroki-g/go-gml/citygml (将来)
+├── waterml/
+│   └── go.mod                       # github.com/Kuroki-g/go-gml/waterml (将来)
+├── docs/                            # 内部用ツール (xsd2go-lite, gml-parser)
+└── testdata/                        # 実 GML サンプル (CC BY 4.0)
 ```
 
-`go.work` でローカル管理。現在の use: `. / docs/go/gml-parser`。
+### モジュール依存関係
+```
+go-gml/core
+  ↑
+  ├── go-gml/gml3_1_1  ─→  go-citygml (gml3_2_1 は入らない)
+  └── go-gml/gml3_2_1  ─→  WaterML 等
+        ↑
+        └── go-gml (root, all-in-one)
+```
 
-CityGML は同一リポジトリ内の別モジュール (`extensions/citygml/`) として管理する。モジュール名は `github.com/Kuroki-g/go-citygml`、go-gml に依存する。
+`go.work` でローカル管理。
+
+### 拡張モジュール
+
+| モジュール | 場所 | GML バージョン |
+|---|---|---|
+| `github.com/Kuroki-g/go-gml/citygml` | `citygml/` | GML 3.1.1 (CityGML 2.0) |
+| `github.com/Kuroki-g/go-gml/waterml` | `waterml/` | GML 3.2.1 |
 
 **CityGML ターゲットバージョン: 2.0**
 - 対象スキーマ: `http://www.opengis.net/citygml/2.0`
-- 参照 XSD: `schemas.opengis.net/citygml/2.0/` 以下 (cityGMLBase.xsd + 各モジュール)
-- 主なデータソース: 国土交通省 PLATEAU (G空間情報センター)、都市構造可視化計画
+- 依存: `go-gml/core` + `go-gml/gml3_1_1` のみ (`gml3_2_1` は不要)
 - CityGML 3.0 は後から対応できる設計にしておく (コア抽象化を壊さない)
+
+### 命名規則
+- 生成パッケージ (`v3_2_1`, `v3_1_1`, `v2_1_2`): アンダースコアOK (Google style guide generated code 例外)
+- 手書きパーサパッケージ (`gml3_1_1`, `gml3_2_1`): アンダースコアなし
 
 ---
 
@@ -118,23 +158,22 @@ make gml-parser-run
 
 ### 禁止: XML unmarshal 用 struct の手書き
 
-`decode/` 内で `type xmlXxx struct { ... }` を手書きしてはならない。
+`internal/` 内で `type xmlXxx struct { ... }` を手書きしてはならない。
 
 **新しい GML 要素に対応する手順:**
-1. `docs/go/xsd2go-lite/schemas/gml/3.2.1/` の XSD で要素定義を確認する
+1. `docs/go/xsd2go-lite/schemas/gml/<version>/` の XSD で要素定義を確認する
 2. `xsd2go-lite` が該当 struct を生成できるか確認する (`make xsd2go-gen`)
 3. 生成できない場合は `xsd2go-lite` を修正してから再生成する
-4. 生成 struct を `pkg/gml/v3_2_1/` (GML 3.2.1) または `pkg/gml/v2_1_2/` (GML 2.1.2) から import して `decode/` で使う
+4. 生成 struct を各パーサモジュールの `generated/` から import して decode に使う
 
 ### ファイルサイズと構造
 
 - **1ファイル ~150行以下** を厳守 (AI コンテキスト効率のため)
-- `decode/` は `package gml` のまま (サブパッケージにしない)
-- `parser.go` の `handlers` マップが対応済み要素の索引 → 新要素は `decode/` にファイル追加 + `handlers` に1行追加
+- `reader.go` の `handlers` マップが対応済み要素の索引 → 新要素は `internal/decode_*.go` 追加 + `handlers` に1行追加
 
 ### 依存関係
 
-- `pkg/gml/` コアは `encoding/xml` (stdlib) のみ。外部ライブラリを追加しない
+- 各パーサモジュールは `encoding/xml` (stdlib) のみ。外部ライブラリを追加しない
 - CLI (`docs/go/gml-parser/`) は独立モジュールなので外部ライブラリを使ってよい
 
 ---
