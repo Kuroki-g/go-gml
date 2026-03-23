@@ -3,6 +3,7 @@ package gml
 import (
 	"encoding/xml"
 	"fmt"
+	"strings"
 
 	v3_1_1 "github.com/Kuroki-g/go-gml/pkg/gml/v3_1_1"
 	v3_2_1 "github.com/Kuroki-g/go-gml/pkg/gml/v3_2_1"
@@ -53,6 +54,24 @@ func ringFromLinearRing(lr *v3_2_1.LinearRingType, inheritDim int) (Ring, error)
 	dim := preferDim(inheritDim, derefDim(lr.SrsDimension))
 	if lr.PosList != nil {
 		return RingFromPosListString(lr.PosList.Value, preferDim(dim, derefDim(lr.PosList.SrsDimension)))
+	}
+	if len(lr.Pos) > 0 {
+		var flat []float64
+		for _, p := range lr.Pos {
+			vals, err := ParsePosList(p.Value)
+			if err != nil {
+				return nil, err
+			}
+			flat = append(flat, vals...)
+		}
+		d := preferDim(dim, derefDim(lr.Pos[0].SrsDimension))
+		if d == 0 {
+			d = len(strings.Fields(lr.Pos[0].Value))
+			if d < 2 {
+				d = 2
+			}
+		}
+		return RingFromFlat(flat, d)
 	}
 	if lr.Coordinates != nil {
 		return RingFromCoordinatesString(lr.Coordinates.Value, derefStrOr(lr.Coordinates.Cs, ","), derefStrOr(lr.Coordinates.Ts, " "))

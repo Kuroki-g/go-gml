@@ -816,3 +816,33 @@ func TestParseMultiSurface_mixed_member_and_members(t *testing.T) {
 		t.Fatalf("polys=%d want 2", len(mp))
 	}
 }
+
+// ---- LinearRing with gml:pos (GML 3.2.1) ----
+
+func TestParsePolygon_linearRing_pos(t *testing.T) {
+	xmlStr := `<gml:Polygon ` + gml3NS + ` srsName="EPSG:6668" srsDimension="2">
+		<gml:exterior>
+			<gml:LinearRing>
+				<gml:pos>0 0</gml:pos>
+				<gml:pos>10 0</gml:pos>
+				<gml:pos>10 10</gml:pos>
+				<gml:pos>0 10</gml:pos>
+				<gml:pos>0 0</gml:pos>
+			</gml:LinearRing>
+		</gml:exterior>
+	</gml:Polygon>`
+	gs := readAll(t, xmlStr)
+	if len(gs) != 1 {
+		t.Fatalf("expected 1 geometry, got %d", len(gs))
+	}
+	poly, ok := gs[0].Value.(Polygon)
+	if !ok {
+		t.Fatalf("expected Polygon, got %T", gs[0].Value)
+	}
+	if len(poly) != 1 {
+		t.Fatalf("rings=%d want 1", len(poly))
+	}
+	if len(poly[0]) != 5 {
+		t.Fatalf("exterior points=%d want 5", len(poly[0]))
+	}
+}
