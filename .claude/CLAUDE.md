@@ -53,7 +53,8 @@
 | `gml:CompositeSurface` | `Polygon` | SF-1 | ✓ (rings from all surfaceMembers collected; xlink:href 未対応) |
 | `gml:OrientableSurface` | `Polygon` | SF-1 | ✓ (baseSurface inline Polygon/Surface/CompositeSurface) |
 | Arc/Circle 等の曲線補間 | — | SF-2 | 未実装 |
-| Topology / Coverage | — | — | 未実装 |
+| `gml:Grid` / `gml:RectifiedGrid` | `GridCoverage` | — | ✓ (domainSet/rangeSet; inline + xlink:href) |
+| Topology | — | — | 未実装 |
 
 ---
 
@@ -90,7 +91,9 @@ go-gml/                              # module root
 │       ├── decode_*.go
 │       └── ns_norm.go               # KSJ データバグ対応 (3.2.1 固有)
 ├── gml/
-│   └── go.mod                       # github.com/Kuroki-g/go-gml/gml  ← GML ユーザーの入口 (re-export)
+│   ├── go.mod                       # github.com/Kuroki-g/go-gml/gml  ← GML ユーザーの入口 (re-export)
+│   ├── gml.go                       # core 型を type alias re-export + gml3_2_1.NewReader ラップ
+│   └── crs.go                       # EPSGFromSRSName 公開
 ├── citygml/
 │   └── go.mod                       # github.com/Kuroki-g/go-gml/citygml (将来)
 ├── waterml/
@@ -106,7 +109,7 @@ go-gml/core
   ├── go-gml/gml3_1_1  ─→  go-citygml (gml3_2_1 は入らない)
   └── go-gml/gml3_2_1  ─→  WaterML 等
         ↑
-        └── go-gml (root, all-in-one)
+        └── go-gml/gml  ← ユーザー入口 (re-export)
 ```
 
 `go.work` でローカル管理。
@@ -140,7 +143,7 @@ make cover          # カバレッジレポート
 
 make xsd2go-build   # xsd2go-lite バイナリビルド
 make xsd2go-test    # xsd2go-lite テスト
-make xsd2go-gen     # GML XSD → pkg/gml/v3_2_1/geometry.go 生成
+make xsd2go-gen     # GML XSD → gml3_2_1/generated/geometry.go 生成 (GML_VERSION=3.2.1 デフォルト)
 
 make gml-parser-build
 make gml-parser-run
