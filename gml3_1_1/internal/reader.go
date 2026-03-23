@@ -1,0 +1,137 @@
+package internal
+
+import (
+	"encoding/xml"
+	"fmt"
+	"io"
+
+	core "github.com/Kuroki-g/go-gml/core"
+)
+
+// GML 3.1.1 namespace URI.
+const gmlNS31 = "http://www.opengis.net/gml"
+
+func isGMLNS(ns string) bool { return ns == gmlNS31 }
+
+// Reader scans a GML 3.1.1 document for geometry elements.
+type Reader struct {
+	src         io.ReadSeeker
+	dec         *xml.Decoder
+	resolver    *curveResolver
+	prescanned  bool
+	pendingGrid *gridBounds
+}
+
+// NewReader creates a Reader that streams geometry elements from r.
+func NewReader(r io.ReadSeeker) *Reader {
+	dec := xml.NewDecoder(r)
+	dec.CharsetReader = func(charset string, input io.Reader) (io.Reader, error) {
+		return nil, fmt.Errorf("unsupported charset %q: call SetCharsetReader to handle non-UTF-8 files", charset)
+	}
+	return &Reader{src: r, dec: dec, resolver: newCurveResolver()}
+}
+
+func (r *Reader) runPreScan() error {
+	charsetFn := r.dec.CharsetReader
+	preDec := xml.NewDecoder(r.src)
+	preDec.CharsetReader = charsetFn
+	if err := preScanGeometries(preDec, r.resolver); err != nil {
+		return fmt.Errorf("gml: prescan: %w", err)
+	}
+	if _, err := r.src.Seek(0, io.SeekStart); err != nil {
+		return fmt.Errorf("gml: seek after prescan: %w", err)
+	}
+	r.dec = xml.NewDecoder(r.src)
+	r.dec.CharsetReader = charsetFn
+	r.prescanned = true
+	return nil
+}
+
+// SetCharsetReader installs a charset conversion function on the underlying decoder.
+func (r *Reader) SetCharsetReader(fn func(charset string, input io.Reader) (io.Reader, error)) {
+	r.dec.CharsetReader = fn
+}
+
+// extractGMLID returns the value of the gml:id attribute from a StartElement, or "".
+func extractGMLID(se xml.StartElement) string {
+	for _, a := range se.Attr {
+		if a.Name.Local == "id" && isGMLNS(a.Name.Space) {
+			return a.Value
+		}
+	}
+	return ""
+}
+
+type handlerFunc func(*xml.Decoder, xml.StartElement) (core.Geometry, error)
+
+var handlers = map[string]handlerFunc{
+	gmlPoint:      decodePointElement,
+	gmlLineString: decodeLineStringElement,
+	gmlMultiPoint: decodeMultiPointElement,
+	gmlEnvelope:   decodeEnvelopeElement,
+}
+
+// Next returns the next geometry found in the stream.
+// Returns io.EOF when the document is exhausted.
+func (r *Reader) Next() (core.Geometry, error) {
+	if !r.prescanned {
+		if err := r.runPreScan(); err != nil {
+			return core.Geometry{}, err
+		}
+	}
+	for {
+		tok, err := r.dec.Token()
+		if err != nil {
+			return core.Geometry{}, err
+		}
+		se, ok := tok.(xml.StartElement)
+		if !ok {
+			continue
+		}
+		if !isGMLNS(se.Name.Space) {
+			continue
+		}
+		switch se.Name.Local {
+		case gmlCurve:
+			return r.handleCurve(r.dec, se)
+		case gmlOrientableCurve:
+			if err := r.cacheOrientableCurve(r.dec, se); err != nil {
+				return core.Geometry{}, err
+			}
+			continue
+		case gmlPolygon:
+			return r.handlePolygon(r.dec, se)
+		case gmlSurface:
+			return r.handleSurface(r.dec, se)
+		case gmlCompositeCurve:
+			return r.handleCompositeCurve(r.dec, se)
+		case gmlCompositeSurface:
+			return r.handleCompositeSurface(r.dec, se)
+		case gmlOrientableSurface:
+			return r.handleOrientableSurface(r.dec, se)
+		case gmlMultiCurve, gmlMultiLineString:
+			return r.handleMultiCurve(r.dec, se)
+		case gmlMultiSurface, gmlMultiPolygon:
+			return r.handleMultiSurface(r.dec, se)
+		case gmlDomainSet:
+			if err := r.handleDomainSet(r.dec, se); err != nil {
+				return core.Geometry{}, err
+			}
+			continue
+		case gmlRangeSet:
+			if r.pendingGrid == nil {
+				if err := r.dec.Skip(); err != nil {
+					return core.Geometry{}, err
+				}
+				continue
+			}
+			return r.handleRangeSet(r.dec, se)
+		}
+		h, ok := handlers[se.Name.Local]
+		if !ok {
+			continue
+		}
+		g, err := h(r.dec, se)
+		return g, err
+	}
+}

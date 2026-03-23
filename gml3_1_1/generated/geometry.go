@@ -1,4 +1,4 @@
-package gml
+package generated
 
 type AbsoluteExternalPositionalAccuracyType struct {
 	// A description of the position accuracy parameter(s) provided.
