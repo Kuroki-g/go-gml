@@ -1,10 +1,11 @@
-go 1.25.0
+go 1.26.0
 
 use (
 	.
 	./core
-	./gml2_1_2
-	./gml3_2_1
-	./gml3_1_1
 	./docs/go/gml-parser
+	./gml
+	./gml2_1_2
+	./gml3_1_1
+	./gml3_2_1
 )
