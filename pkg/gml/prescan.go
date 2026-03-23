@@ -100,6 +100,22 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 				return fmt.Errorf("OrientableCurve %q: %w", id, err)
 			}
 			resolver.orientable[id] = &x
+		case gmlGrid:
+			var x v3_2_1.GridType
+			if err := dec.DecodeElement(&x, &se); err != nil {
+				return fmt.Errorf("Grid %q: %w", id, err)
+			}
+			if gb, err := gridBoundsFromGridLimits(x.Limits); err == nil {
+				resolver.gridByID[id] = gb
+			}
+		case gmlRectifiedGrid:
+			var x v3_2_1.RectifiedGridType
+			if err := dec.DecodeElement(&x, &se); err != nil {
+				return fmt.Errorf("RectifiedGrid %q: %w", id, err)
+			}
+			if gb, err := gridBoundsFromGridLimits(x.Limits); err == nil {
+				resolver.gridByID[id] = gb
+			}
 		}
 		// Elements with gml:id not matched above: descend into children naturally.
 	}

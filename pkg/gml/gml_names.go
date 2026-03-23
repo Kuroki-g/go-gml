@@ -17,4 +17,8 @@ const (
 	gmlMultiSurface      = "MultiSurface"
 	gmlMultiPolygon      = "MultiPolygon"
 	gmlEnvelope          = "Envelope"
+	gmlGrid              = "Grid"
+	gmlRectifiedGrid     = "RectifiedGrid"
+	gmlDomainSet         = "domainSet"
+	gmlRangeSet          = "rangeSet"
 )

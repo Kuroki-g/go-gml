@@ -146,8 +146,9 @@ func TestW09(t *testing.T) {
 	t.Logf("W09: %d LineStrings, %d Polygons", curves, polygons)
 }
 
-// TestG04 parses a G04 (標高・傾斜度メッシュ) file that contains only Grid/Coverage data.
-// The parser should complete without error; no geometry elements are expected.
+// TestG04 parses a G04 (標高・傾斜度メッシュ) file.
+// Old format: gml:Grid at document root, domainSet uses xlink:href="#grid".
+// Expects GridCoverage with Low=[0,0], High=[9,9] and non-empty tuples.
 func TestG04(t *testing.T) {
 	f, err := os.Open("../../testdata/G04/G04-a-11_5339-jgd_GML/G04-a-11_5339-jgd.xml")
 	if err != nil {
@@ -156,23 +157,39 @@ func TestG04(t *testing.T) {
 	defer f.Close()
 
 	r := NewReader(f)
-	var count int
+	var coverages []GridCoverage
 	for {
-		_, err := r.Next()
+		g, err := r.Next()
 		if err == io.EOF {
 			break
 		}
 		if err != nil {
 			t.Fatalf("parse error: %v", err)
 		}
-		count++
+		if cov, ok := g.Value.(GridCoverage); ok {
+			coverages = append(coverages, cov)
+		}
 	}
-	t.Logf("G04: %d geometries (Grid/Coverage data — 0 expected)", count)
+	if len(coverages) == 0 {
+		t.Fatal("expected GridCoverage results, got 0")
+	}
+	first := coverages[0]
+	if len(first.Low) != 2 || first.Low[0] != 0 || first.Low[1] != 0 {
+		t.Errorf("Low = %v, want [0 0]", first.Low)
+	}
+	if len(first.High) != 2 || first.High[0] != 9 || first.High[1] != 9 {
+		t.Errorf("High = %v, want [9 9]", first.High)
+	}
+	if first.Tuples == "" {
+		t.Error("Tuples is empty")
+	}
+	t.Logf("G04: %d GridCoverages, first Low=%v High=%v", len(coverages), first.Low, first.High)
 }
 
-// TestL03 parses a L03 (土地利用3次メッシュ) file that contains only Grid/Coverage data.
-// The parser should complete without error; no geometry elements are expected.
-func TestL03(t *testing.T) {
+// TestL03Old parses a L03 旧形式 (〜2006) file.
+// Old format: gml:Grid at document root, domainSet uses xlink:href="#grid".
+// Expects GridCoverage with Low=[0,0], High=[9,9] and non-empty tuples.
+func TestL03Old(t *testing.T) {
 	f, err := os.Open("../../testdata/L03/L03-a-06_5339-jgd_GML/L03-a-06_5339-jgd.xml")
 	if err != nil {
 		t.Skip("testdata not available:", err)
@@ -180,18 +197,73 @@ func TestL03(t *testing.T) {
 	defer f.Close()
 
 	r := NewReader(f)
-	var count int
+	var coverages []GridCoverage
 	for {
-		_, err := r.Next()
+		g, err := r.Next()
 		if err == io.EOF {
 			break
 		}
 		if err != nil {
 			t.Fatalf("parse error: %v", err)
 		}
-		count++
+		if cov, ok := g.Value.(GridCoverage); ok {
+			coverages = append(coverages, cov)
+		}
 	}
-	t.Logf("L03: %d geometries (Grid/Coverage data — 0 expected)", count)
+	if len(coverages) == 0 {
+		t.Fatal("expected GridCoverage results, got 0")
+	}
+	first := coverages[0]
+	if len(first.Low) != 2 || first.Low[0] != 0 || first.Low[1] != 0 {
+		t.Errorf("Low = %v, want [0 0]", first.Low)
+	}
+	if len(first.High) != 2 || first.High[0] != 9 || first.High[1] != 9 {
+		t.Errorf("High = %v, want [9 9]", first.High)
+	}
+	if first.Tuples == "" {
+		t.Error("Tuples is empty")
+	}
+	t.Logf("L03 old: %d GridCoverages, first Low=%v High=%v", len(coverages), first.Low, first.High)
+}
+
+// TestL03New parses a L03 新形式 (2009〜) file.
+// New format: gml:Grid is inline inside gml:domainSet.
+// Expects GridCoverage with Low=[0,0], High=[79,79] and non-empty tuples.
+func TestL03New(t *testing.T) {
+	f, err := os.Open("../../testdata/L03/L03-a-09_5339-jgd_GML/L03-a-09_5339.xml")
+	if err != nil {
+		t.Skip("testdata not available:", err)
+	}
+	defer f.Close()
+
+	r := NewReader(f)
+	var coverages []GridCoverage
+	for {
+		g, err := r.Next()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			t.Fatalf("parse error: %v", err)
+		}
+		if cov, ok := g.Value.(GridCoverage); ok {
+			coverages = append(coverages, cov)
+		}
+	}
+	if len(coverages) == 0 {
+		t.Fatal("expected GridCoverage results, got 0")
+	}
+	first := coverages[0]
+	if len(first.Low) != 2 || first.Low[0] != 0 || first.Low[1] != 0 {
+		t.Errorf("Low = %v, want [0 0]", first.Low)
+	}
+	if len(first.High) != 2 || first.High[0] != 79 || first.High[1] != 79 {
+		t.Errorf("High = %v, want [79 79]", first.High)
+	}
+	if first.Tuples == "" {
+		t.Error("Tuples is empty")
+	}
+	t.Logf("L03 new: %d GridCoverages, first Low=%v High=%v", len(coverages), first.Low, first.High)
 }
 
 // TestN03_newFormat parses a 2025 N03 file that uses gml:Surface/PolygonPatch/Ring/curveMember.

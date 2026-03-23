@@ -564,8 +564,10 @@ func buildXMLTag(ns, localName string, isAttr bool) string {
 }
 
 // deduplicateFields removes fields with duplicate GoNames.
-// When an attribute and an element share the same GoName, the attribute wins
-// (e.g. srsName attr vs srsName element in GML 3.1.1).
+// When an attribute and an element conflict, the later-defined (own) field wins
+// over the earlier (inherited) field regardless of which is attr or element:
+//   - inherited element + own attribute → attribute wins (e.g. GML 3.1.1 srsName)
+//   - inherited attribute + own element → element wins (e.g. GML 3.2.1 GridType axisLabels)
 func deduplicateFields(fields []Field) []Field {
 	type entry struct {
 		idx    int
@@ -581,31 +583,46 @@ func deduplicateFields(fields []Field) []Field {
 		if !exists {
 			seen[f.GoName] = entry{len(result), f.IsAttr}
 			result = append(result, f)
-		} else if f.IsAttr && !e.isAttr {
-			// Attribute takes priority over a same-named element.
+		} else if f.IsAttr != e.isAttr {
+			// One is attr, the other is element: later-defined (own) wins.
 			result[e.idx] = f
-			seen[f.GoName] = entry{e.idx, true}
+			seen[f.GoName] = entry{e.idx, f.IsAttr}
 		}
+		// else: same kind (both attr or both element) — first wins.
 	}
 	return result
 }
 
-// sortedSubstMembers returns the substitution group members for a head element key,
-// sorted deterministically by (NS, Name).
+// sortedSubstMembers returns all transitive substitution group members for a
+// head element key, sorted deterministically by (NS, Name).
+// Multi-level chains (e.g. AbstractGeometry → AbstractImplicitGeometry → Grid)
+// are fully expanded via collectSubstMembers.
 func (r *Resolver) sortedSubstMembers(headKey string) []substMember {
-	members := r.substHeads[headKey]
-	if len(members) == 0 {
+	var result []substMember
+	r.collectSubstMembers(headKey, make(map[string]bool), &result)
+	if len(result) == 0 {
 		return nil
 	}
-	sorted := make([]substMember, len(members))
-	copy(sorted, members)
-	sort.Slice(sorted, func(i, j int) bool {
-		if sorted[i].NS != sorted[j].NS {
-			return sorted[i].NS < sorted[j].NS
+	sort.Slice(result, func(i, j int) bool {
+		if result[i].NS != result[j].NS {
+			return result[i].NS < result[j].NS
 		}
-		return sorted[i].Name < sorted[j].Name
+		return result[i].Name < result[j].Name
 	})
-	return sorted
+	return result
+}
+
+// collectSubstMembers recursively collects all transitive members of a
+// substitution group head into out, using visited to prevent cycles.
+func (r *Resolver) collectSubstMembers(headKey string, visited map[string]bool, out *[]substMember) {
+	if visited[headKey] {
+		return
+	}
+	visited[headKey] = true
+	for _, m := range r.substHeads[headKey] {
+		*out = append(*out, m)
+		r.collectSubstMembers(m.NS+" "+m.Name, visited, out)
+	}
 }
 
 func isHTTP(loc string) bool {

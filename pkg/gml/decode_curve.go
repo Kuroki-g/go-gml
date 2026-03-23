@@ -16,6 +16,7 @@ type curveResolver struct {
 	orientable     map[string]*v3_2_1.OrientableCurveType
 	polygonByID    map[string]Polygon
 	lineStringByID map[string]LineString
+	gridByID       map[string]*gridBounds
 }
 
 func newCurveResolver() *curveResolver {
@@ -24,6 +25,7 @@ func newCurveResolver() *curveResolver {
 		orientable:     make(map[string]*v3_2_1.OrientableCurveType),
 		polygonByID:    make(map[string]Polygon),
 		lineStringByID: make(map[string]LineString),
+		gridByID:       make(map[string]*gridBounds),
 	}
 }
 

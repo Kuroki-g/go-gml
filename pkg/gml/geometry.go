@@ -31,6 +31,15 @@ type Bound struct {
 	Min, Max Point
 }
 
+// GridCoverage holds the decoded content of a gml:Grid/gml:RectifiedGrid coverage.
+// Low and High are the integer grid index bounds (one value per axis).
+// Tuples is the raw CSV content of gml:DataBlock/gml:tupleList.
+type GridCoverage struct {
+	Low    []int
+	High   []int
+	Tuples string
+}
+
 // -- helpers: flat []float64 → geometry types --
 
 // PointFromFlat builds a Point from a flat coord slice.

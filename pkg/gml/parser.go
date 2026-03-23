@@ -25,10 +25,11 @@ type Geometry struct {
 
 // Reader scans a GML document for geometry elements.
 type Reader struct {
-	src        io.ReadSeeker
-	dec        *xml.Decoder
-	resolver   *curveResolver // gml:id → Curve/OrientableCurve, for xlink:href resolution
-	prescanned bool
+	src         io.ReadSeeker
+	dec         *xml.Decoder
+	resolver    *curveResolver // gml:id → Curve/OrientableCurve, for xlink:href resolution
+	prescanned  bool
+	pendingGrid *gridBounds // set by domainSet handler; consumed by rangeSet handler
 }
 
 // NewReader creates a Reader that streams geometry elements from r.
@@ -146,6 +147,19 @@ func (r *Reader) Next() (Geometry, error) {
 			return r.handleMultiCurve(r.dec, se)
 		case gmlMultiSurface, gmlMultiPolygon:
 			return r.handleMultiSurface(r.dec, se)
+		case gmlDomainSet:
+			if err := r.handleDomainSet(r.dec, se); err != nil {
+				return Geometry{}, err
+			}
+			continue
+		case gmlRangeSet:
+			if r.pendingGrid == nil {
+				if err := r.dec.Skip(); err != nil {
+					return Geometry{}, err
+				}
+				continue
+			}
+			return r.handleRangeSet(r.dec, se)
 		}
 		h, ok := handlers[se.Name.Local]
 		if !ok {

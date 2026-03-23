@@ -608,6 +608,127 @@ func TestResolver_ResolveAll_substitutionGroup_noMembers(t *testing.T) {
 	}
 }
 
+// ---- deduplicateFields: attr vs element priority ----
+
+// Bug 1: inherited attribute + own element → element should win.
+// (e.g. GridType.axisLabels: SRSInformationGroup gives attr, GridType sequence gives element)
+func TestDeduplicateFields_inheritedAttrOwnElement_elementWins(t *testing.T) {
+	fields := []Field{
+		{GoName: "AxisLabels", GoType: "string", IsAttr: true},  // inherited attr (comes first)
+		{GoName: "AxisLabels", GoType: "string", IsAttr: false}, // own element (comes after)
+	}
+	got := deduplicateFields(fields)
+	if len(got) != 1 {
+		t.Fatalf("expected 1 field, got %d: %+v", len(got), got)
+	}
+	if got[0].IsAttr {
+		t.Error("own element should win over inherited attribute, but got attr")
+	}
+}
+
+// Regression: inherited element + own attribute → attribute should still win.
+// (e.g. GML 3.1.1 srsName: some base gives element, attributeGroup gives attr)
+func TestDeduplicateFields_inheritedElementOwnAttr_attrWins(t *testing.T) {
+	fields := []Field{
+		{GoName: "SrsName", GoType: "string", IsAttr: false}, // inherited element (comes first)
+		{GoName: "SrsName", GoType: "string", IsAttr: true},  // own attribute (comes after)
+	}
+	got := deduplicateFields(fields)
+	if len(got) != 1 {
+		t.Fatalf("expected 1 field, got %d: %+v", len(got), got)
+	}
+	if !got[0].IsAttr {
+		t.Error("own attribute should win over inherited element, but got element")
+	}
+}
+
+// ---- substitutionGroup: transitive (multi-level) expansion ----
+
+// Bug 2: sortedSubstMembers must expand transitively.
+// Chain: AbstractGeom → AbstractImplicitGeom (1-level) → Grid (2-level) → RectifiedGrid (3-level).
+// A container that refs AbstractGeom should get fields for ALL transitive members.
+func TestResolver_ResolveAll_substitutionGroup_transitive(t *testing.T) {
+	xsd := `<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://example.com/test"
+        xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://example.com/test">
+  <element name="AbstractGeom" type="tns:AbstractGeomType" abstract="true"/>
+  <element name="AbstractImplicitGeom" type="tns:AbstractGeomType" abstract="true" substitutionGroup="tns:AbstractGeom"/>
+  <element name="Grid" type="tns:GridType" substitutionGroup="tns:AbstractImplicitGeom"/>
+  <element name="RectifiedGrid" type="tns:RectifiedGridType" substitutionGroup="tns:Grid"/>
+  <complexType name="AbstractGeomType" abstract="true">
+    <sequence/>
+  </complexType>
+  <complexType name="GridType">
+    <sequence>
+      <element name="limits" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="RectifiedGridType">
+    <complexContent>
+      <extension base="tns:GridType">
+        <sequence>
+          <element name="origin" type="string"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="DomainSetType">
+    <sequence>
+      <element ref="tns:AbstractGeom" minOccurs="0"/>
+    </sequence>
+  </complexType>
+</schema>`
+
+	dir := t.TempDir()
+	path := filepath.Join(dir, "test.xsd")
+	if err := os.WriteFile(path, []byte(xsd), 0644); err != nil {
+		t.Fatal(err)
+	}
+
+	r := NewResolver()
+	if _, err := r.Load(path); err != nil {
+		t.Fatalf("Load: %v", err)
+	}
+
+	types := r.ResolveAll("http://example.com/test")
+	byName := make(map[string]*ComplexType)
+	for _, ct := range types {
+		byName[ct.Name] = ct
+	}
+
+	ds, ok := byName["DomainSetType"]
+	if !ok {
+		t.Fatal("DomainSetType not found")
+	}
+
+	fieldMap := make(map[string]Field)
+	for _, f := range ds.Fields {
+		fieldMap[f.GoName] = f
+	}
+
+	// Direct ref field must be present.
+	if _, ok := fieldMap["AbstractGeom"]; !ok {
+		t.Error("AbstractGeom field missing")
+	}
+	// 1-level transitive member must be present.
+	if _, ok := fieldMap["AbstractImplicitGeom"]; !ok {
+		t.Error("AbstractImplicitGeom (1-level transitive) field missing")
+	}
+	// 2-level transitive member must be present.
+	if gf, ok := fieldMap["Grid"]; !ok {
+		t.Error("Grid (2-level transitive) field missing")
+	} else if gf.GoType != "*GridType" {
+		t.Errorf("Grid GoType = %q, want *GridType", gf.GoType)
+	}
+	// 3-level transitive member must be present.
+	if rf, ok := fieldMap["RectifiedGrid"]; !ok {
+		t.Error("RectifiedGrid (3-level transitive) field missing")
+	} else if rf.GoType != "*RectifiedGridType" {
+		t.Errorf("RectifiedGrid GoType = %q, want *RectifiedGridType", rf.GoType)
+	}
+}
+
 // ---- rawIncludesImports ----
 
 func TestRawIncludesImportsFromFile(t *testing.T) {
