@@ -1,6 +1,7 @@
 .up.lock
 .claude/settings.local.json
 **/.tmp/
+go.work.sum
 
 **/__pycache__/**
 *.crt
