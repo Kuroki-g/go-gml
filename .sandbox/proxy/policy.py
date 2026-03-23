@@ -81,6 +81,7 @@ POLICIES: dict[str, DomainPolicy] = {
     "proxy.golang.org":         DomainPolicy(),
     "sum.golang.org":           DomainPolicy(),
     # --- Docs / community ---
+    "google.github.io":         DomainPolicy(),
     "learn.microsoft.com":      DomainPolicy(),
     "modelcontextprotocol.io":  DomainPolicy(),
     "speakerdeck.com":          DomainPolicy(),

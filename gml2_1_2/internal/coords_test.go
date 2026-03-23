@@ -1,0 +1,96 @@
+package internal
+
+import (
+	"testing"
+
+	core "github.com/Kuroki-g/go-gml/core"
+)
+
+func TestParseCoordinates(t *testing.T) {
+	tests := []struct {
+		name    string
+		input   string
+		cs, ts  string
+		want    []float64
+		wantErr bool
+	}{
+		{"default separators", "139.7,35.6 139.8,35.7", "", "", []float64{139.7, 35.6, 139.8, 35.7}, false},
+		{"3D default separators", "139.7,35.6,10.5 139.8,35.7,11.0", "", "", []float64{139.7, 35.6, 10.5, 139.8, 35.7, 11.0}, false},
+		{"custom separators", "139.7;35.6|139.8;35.7", ";", "|", []float64{139.7, 35.6, 139.8, 35.7}, false},
+		{"leading trailing whitespace", "\n  139.7,35.6 139.8,35.7  \n", "", "", []float64{139.7, 35.6, 139.8, 35.7}, false},
+		{"empty string", "", "", "", nil, false},
+		{"invalid coordinate", "139.7,bad 139.8,35.7", "", "", nil, true},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := ParseCoordinates(tt.input, tt.cs, tt.ts)
+			if tt.wantErr {
+				if err == nil {
+					t.Fatal("expected error, got nil")
+				}
+				return
+			}
+			if err != nil {
+				t.Fatalf("unexpected error: %v", err)
+			}
+			if len(got) != len(tt.want) {
+				t.Fatalf("len=%d, want %d: %v", len(got), len(tt.want), got)
+			}
+			for i := range got {
+				if got[i] != tt.want[i] {
+					t.Errorf("[%d] got %v, want %v", i, got[i], tt.want[i])
+				}
+			}
+		})
+	}
+}
+
+func TestToPoints(t *testing.T) {
+	pointEq := func(a, b core.Point) bool {
+		if len(a) != len(b) {
+			return false
+		}
+		for i := range a {
+			if a[i] != b[i] {
+				return false
+			}
+		}
+		return true
+	}
+	tests := []struct {
+		name    string
+		coords  []float64
+		dim     int
+		want    []core.Point
+		wantErr bool
+	}{
+		{"2D two points", []float64{139.7, 35.6, 139.8, 35.7}, 2, []core.Point{{139.7, 35.6}, {139.8, 35.7}}, false},
+		{"3D keeps Z", []float64{139.7, 35.6, 10.5, 139.8, 35.7, 11.0}, 3, []core.Point{{139.7, 35.6, 10.5}, {139.8, 35.7, 11.0}}, false},
+		{"dim 0 defaults to 2", []float64{139.7, 35.6}, 0, []core.Point{{139.7, 35.6}}, false},
+		{"empty coords", []float64{}, 2, nil, false},
+		{"nil coords", nil, 2, nil, false},
+		{"odd count for 2D", []float64{139.7, 35.6, 139.8}, 2, nil, true},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := ToPoints(tt.coords, tt.dim)
+			if tt.wantErr {
+				if err == nil {
+					t.Fatal("expected error, got nil")
+				}
+				return
+			}
+			if err != nil {
+				t.Fatalf("unexpected error: %v", err)
+			}
+			if len(got) != len(tt.want) {
+				t.Fatalf("len=%d, want %d", len(got), len(tt.want))
+			}
+			for i := range got {
+				if !pointEq(got[i], tt.want[i]) {
+					t.Errorf("[%d] got %v, want %v", i, got[i], tt.want[i])
+				}
+			}
+		})
+	}
+}

@@ -1,10 +1,12 @@
-package gml
+package internal
 
-import "testing"
+import (
+	"testing"
 
-// pointEq compares two Points element-by-element.
-// Required because Point is []float64 and cannot be compared with ==.
-func pointEq(a, b Point) bool {
+	core "github.com/Kuroki-g/go-gml/core"
+)
+
+func pointEq(a, b core.Point) bool {
 	if len(a) != len(b) {
 		return false
 	}
@@ -21,13 +23,13 @@ func TestPointFromFlat(t *testing.T) {
 		name    string
 		coords  []float64
 		dim     int
-		want    Point
+		want    core.Point
 		wantErr bool
 	}{
-		{"2D", []float64{139.7, 35.6}, 2, Point{139.7, 35.6}, false},
-		{"3D keeps Z", []float64{139.7, 35.6, 10.5}, 3, Point{139.7, 35.6, 10.5}, false},
-		{"dim 0 infer", []float64{139.7, 35.6}, 0, Point{139.7, 35.6}, false},
-		{"too short", []float64{139.7}, 2, Point{}, true},
+		{"2D", []float64{139.7, 35.6}, 2, core.Point{139.7, 35.6}, false},
+		{"3D keeps Z", []float64{139.7, 35.6, 10.5}, 3, core.Point{139.7, 35.6, 10.5}, false},
+		{"dim 0 infer", []float64{139.7, 35.6}, 0, core.Point{139.7, 35.6}, false},
+		{"too short", []float64{139.7}, 2, core.Point{}, true},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -54,7 +56,7 @@ func TestLineStringFromFlat(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	want := LineString{{139.7, 35.6}, {139.8, 35.7}, {139.9, 35.8}}
+	want := core.LineString{{139.7, 35.6}, {139.8, 35.7}, {139.9, 35.8}}
 	if len(got) != len(want) {
 		t.Fatalf("len=%d want %d", len(got), len(want))
 	}
@@ -66,7 +68,6 @@ func TestLineStringFromFlat(t *testing.T) {
 }
 
 func TestRingFromFlat(t *testing.T) {
-	// closed ring: 4 points (first == last)
 	coords := []float64{139.7, 35.6, 139.8, 35.6, 139.8, 35.7, 139.7, 35.6}
 	got, err := RingFromFlat(coords, 2)
 	if err != nil {
@@ -84,11 +85,11 @@ func TestPointFromPosString(t *testing.T) {
 	tests := []struct {
 		input string
 		dim   int
-		want  Point
+		want  core.Point
 	}{
-		{"139.691667 35.689722", 2, Point{139.691667, 35.689722}},
-		{"139.7 35.6 10.5", 3, Point{139.7, 35.6, 10.5}},
-		{"139.7 35.6 10.5", 0, Point{139.7, 35.6, 10.5}}, // srsDimension absent: use value count (3) for single pos
+		{"139.691667 35.689722", 2, core.Point{139.691667, 35.689722}},
+		{"139.7 35.6 10.5", 3, core.Point{139.7, 35.6, 10.5}},
+		{"139.7 35.6 10.5", 0, core.Point{139.7, 35.6, 10.5}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.input, func(t *testing.T) {
@@ -108,7 +109,7 @@ func TestLineStringFromPosListString(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	want := LineString{{139.7, 35.6}, {139.8, 35.7}}
+	want := core.LineString{{139.7, 35.6}, {139.8, 35.7}}
 	if len(got) != len(want) {
 		t.Fatalf("len=%d want %d", len(got), len(want))
 	}
@@ -130,7 +131,6 @@ func TestRingFromPosListString(t *testing.T) {
 }
 
 func TestRingFromCoordinatesString(t *testing.T) {
-	// deprecated gml:coordinates format
 	got, err := RingFromCoordinatesString("139.7,35.6 139.8,35.6 139.8,35.7 139.7,35.6", "", "")
 	if err != nil {
 		t.Fatal(err)
