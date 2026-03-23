@@ -3,6 +3,7 @@ package cmd
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"os"
 
@@ -32,6 +33,7 @@ Coordinate axis order:
 
 		reader := newGMLReader(r)
 		fc := &featureCollection{Type: "FeatureCollection", Features: []feature{}}
+		skipped := map[string]int{}
 
 		for {
 			g, err := reader.Next()
@@ -44,7 +46,8 @@ Coordinate axis order:
 
 			geom, err := toGeoJSON(g, swap)
 			if err != nil {
-				return err
+				skipped[geomTypeName(g.Value)]++
+				continue
 			}
 
 			fc.Features = append(fc.Features, feature{
@@ -52,6 +55,10 @@ Coordinate axis order:
 				Geometry:   geom,
 				Properties: map[string]any{},
 			})
+		}
+
+		for typeName, count := range skipped {
+			fmt.Fprintf(os.Stderr, "warning: %d %s element(s) skipped (not representable in GeoJSON)\n", count, typeName)
 		}
 
 		enc := json.NewEncoder(os.Stdout)

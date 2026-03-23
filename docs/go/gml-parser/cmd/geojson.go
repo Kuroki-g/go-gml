@@ -81,6 +81,8 @@ func geomTypeName(v interface{}) string {
 		return "MultiPolygon"
 	case gml.Bound:
 		return "Bound"
+	case gml.GridCoverage:
+		return "GridCoverage"
 	default:
 		return fmt.Sprintf("unknown(%T)", v)
 	}
