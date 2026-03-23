@@ -5,7 +5,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/Kuroki-g/go-gml/pkg/gml"
+	"github.com/Kuroki-g/go-gml/gml"
 	"golang.org/x/text/encoding/japanese"
 	"golang.org/x/text/transform"
 )

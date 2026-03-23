@@ -6,7 +6,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/Kuroki-g/go-gml/pkg/gml"
+	"github.com/Kuroki-g/go-gml/gml"
 )
 
 // ---------- GeoJSON types ----------
