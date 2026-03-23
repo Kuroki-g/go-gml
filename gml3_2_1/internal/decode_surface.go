@@ -1,0 +1,114 @@
+package internal
+
+import (
+	"encoding/xml"
+	"fmt"
+	"strings"
+
+	core "github.com/Kuroki-g/go-gml/core"
+	gen "github.com/Kuroki-g/go-gml/gml3_2_1/generated"
+)
+
+// handleSurface decodes a gml:Surface, caches the resulting Polygon by gml:id, and returns it.
+func (r *Reader) handleSurface(dec *xml.Decoder, se xml.StartElement) (core.Geometry, error) {
+	id := extractGMLID(se)
+	g, err := decodeSurfaceElement(dec, se, r.resolver)
+	if err != nil {
+		return core.Geometry{}, err
+	}
+	if id != "" {
+		if poly, ok := g.Value.(core.Polygon); ok {
+			r.resolver.polygonByID[id] = poly
+		}
+	}
+	return g, err
+}
+
+func decodeSurfaceElement(dec *xml.Decoder, se xml.StartElement, resolver *curveResolver) (core.Geometry, error) {
+	var x gen.SurfaceType
+	if err := dec.DecodeElement(&x, &se); err != nil {
+		return core.Geometry{}, fmt.Errorf("gml: Surface: %w", err)
+	}
+	poly, err := polygonFromSurface(&x, resolver)
+	if err != nil {
+		return core.Geometry{}, err
+	}
+	return core.Geometry{Value: poly, SRSName: x.SrsName}, nil
+}
+
+func polygonFromSurface(x *gen.SurfaceType, resolver *curveResolver) (core.Polygon, error) {
+	if x.Patches == nil || len(x.Patches.PolygonPatch) == 0 {
+		return core.Polygon{}, nil
+	}
+	return polygonFromPatch(&x.Patches.PolygonPatch[0], derefDim(x.SrsDimension), resolver)
+}
+
+func polygonFromPatch(patch *gen.PolygonPatchType, inheritDim int, resolver *curveResolver) (core.Polygon, error) {
+	var rings []core.Ring
+	if patch.Exterior != nil {
+		r, err := ringFromAbstractRingProp(patch.Exterior, inheritDim, "exterior", resolver)
+		if err != nil {
+			return nil, err
+		}
+		if r != nil {
+			rings = append(rings, r)
+		}
+	}
+	for i, ir := range patch.Interior {
+		r, err := ringFromAbstractRingProp(&ir, inheritDim, fmt.Sprintf("interior[%d]", i), resolver)
+		if err != nil {
+			return nil, err
+		}
+		if r != nil {
+			rings = append(rings, r)
+		}
+	}
+	return core.Polygon(rings), nil
+}
+
+func ringFromAbstractRingProp(prop *gen.AbstractRingPropertyType, inheritDim int, label string, resolver *curveResolver) (core.Ring, error) {
+	if prop.LinearRing != nil {
+		lr := prop.LinearRing
+		dim := preferDim(inheritDim, derefDim(lr.SrsDimension))
+		if lr.PosList == nil {
+			return nil, nil
+		}
+		r, err := RingFromPosListString(lr.PosList.Value, preferDim(dim, derefDim(lr.PosList.SrsDimension)))
+		if err != nil {
+			return nil, fmt.Errorf("gml: PolygonPatch %s LinearRing: %w", label, err)
+		}
+		return r, nil
+	}
+	if prop.Ring != nil {
+		r, err := ringFromRingType(prop.Ring, inheritDim, resolver)
+		if err != nil {
+			return nil, fmt.Errorf("gml: PolygonPatch %s Ring: %w", label, err)
+		}
+		return r, nil
+	}
+	return nil, nil
+}
+
+func ringFromRingType(ring *gen.RingType, inheritDim int, resolver *curveResolver) (core.Ring, error) {
+	var pts core.Ring
+	dim := preferDim(inheritDim, derefDim(ring.SrsDimension))
+	for i, cm := range ring.CurveMember {
+		curve := cm.Curve
+		if curve == nil && cm.Href != "" {
+			curve = resolver.resolve(strings.TrimPrefix(cm.Href, "#"))
+		}
+		if curve == nil {
+			continue
+		}
+		ls, err := lineStringFromCurve(curve, dim)
+		if err != nil {
+			return nil, fmt.Errorf("curveMember[%d]: %w", i, err)
+		}
+		if len(pts) > 0 && len(ls) > 0 {
+			pts = append(pts, ls[1:]...)
+		} else {
+			pts = append(pts, ls...)
+		}
+	}
+	return pts, nil
+}

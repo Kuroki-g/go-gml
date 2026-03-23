@@ -1,4 +1,4 @@
-package gml
+package generated
 
 type AbstractCRSType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`

@@ -2,5 +2,7 @@ go 1.25.0
 
 use (
 	.
+	./core
+	./gml3_2_1
 	./docs/go/gml-parser
 )
