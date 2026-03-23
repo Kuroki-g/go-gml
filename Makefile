@@ -55,12 +55,20 @@ build:
 $(GML_TMP):
 	mkdir -p $(GML_TMP)
 
+MODULES := core gml2_1_2 gml3_1_1 gml3_2_1 gml
+
 test: $(GML_TMP)
-	GOTMPDIR=$(GML_TMP) go test -count=1 ./...
+	@for m in $(MODULES); do \
+		echo "=== $$m ==="; \
+		GOTMPDIR=$(abspath $(GML_TMP)) go -C $$m test -count=1 ./...; \
+	done
 
 cover: $(GML_TMP)
-	GOTMPDIR=$(GML_TMP) go test -count=1 -coverprofile=$(GML_TMP)/cover.out ./...
-	go tool cover -func=$(GML_TMP)/cover.out
+	@for m in $(MODULES); do \
+		echo "=== $$m ==="; \
+		GOTMPDIR=$(abspath $(GML_TMP)) go -C $$m test -count=1 -coverprofile=$(abspath $(GML_TMP))/cover_$$m.out ./...; \
+		go tool cover -func=$(abspath $(GML_TMP))/cover_$$m.out; \
+	done
 
 # ---- xsd2go-lite (code generator) ----
 
