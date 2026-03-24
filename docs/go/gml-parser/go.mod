@@ -12,11 +12,15 @@ require (
 
 require (
 	github.com/Kuroki-g/go-gml/core v0.0.0 // indirect
+	github.com/Kuroki-g/go-gml/gml2_1_2 v0.0.0 // indirect
+	github.com/Kuroki-g/go-gml/gml3_1_1 v0.0.0 // indirect
 	github.com/Kuroki-g/go-gml/gml3_2_1 v0.0.0 // indirect
 )
 
 replace (
 	github.com/Kuroki-g/go-gml/gml => ../../../gml
 	github.com/Kuroki-g/go-gml/core => ../../../core
+	github.com/Kuroki-g/go-gml/gml2_1_2 => ../../../gml2_1_2
+	github.com/Kuroki-g/go-gml/gml3_1_1 => ../../../gml3_1_1
 	github.com/Kuroki-g/go-gml/gml3_2_1 => ../../../gml3_2_1
 )

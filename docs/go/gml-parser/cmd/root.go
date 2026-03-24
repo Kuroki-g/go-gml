@@ -6,8 +6,9 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// inFile is a persistent flag shared by all subcommands.
+// Persistent flags shared by all subcommands.
 var inFile string
+var gmlVersion string
 
 var rootCmd = &cobra.Command{
 	Use:   "gml-parser",
@@ -24,4 +25,5 @@ func Execute() {
 
 func init() {
 	rootCmd.PersistentFlags().StringVarP(&inFile, "in", "i", "", "input GML file (default: stdin)")
+	rootCmd.PersistentFlags().StringVar(&gmlVersion, "gml-version", "3.2.1", "GML version to parse (3.2.1, 3.1.1, 2.1.2)")
 }

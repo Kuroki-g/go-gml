@@ -31,7 +31,10 @@ Coordinate axis order:
 		}
 		defer closer()
 
-		reader := newGMLReader(r)
+		reader, err := newGMLReader(r, gmlVersion)
+		if err != nil {
+			return err
+		}
 		fc := &featureCollection{Type: "FeatureCollection", Features: []feature{}}
 		skipped := map[string]int{}
 

@@ -39,7 +39,10 @@ var inspectCmd = &cobra.Command{
 			SRSNames:      map[string]int{},
 		}
 
-		reader := newGMLReader(r)
+		reader, err := newGMLReader(r, gmlVersion)
+		if err != nil {
+			return err
+		}
 		for {
 			g, err := reader.Next()
 			if errors.Is(err, io.EOF) {
