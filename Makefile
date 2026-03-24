@@ -12,7 +12,7 @@ help:
 	@echo "  xsd2go-test      ユニットテスト実行"
 	@echo "  xsd2go-cover     カバレッジレポート生成"
 	@echo "  xsd2go-gen [GML_VERSION=3.2.1|3.1.1|2.1.2]"
-	@echo "               GML XSD → pkg/gml/v<version>/geometry.go 生成"
+	@echo "               GML XSD → gml<version>/generated/geometry.go 生成"
 	@echo "               デフォルト: GML_VERSION=3.2.1"
 	@echo ""
 	@echo "gml-parser (CLI example)"
@@ -29,15 +29,15 @@ GML_VERSION ?= 3.2.1
 
 ifeq ($(GML_VERSION),3.2.1)
   _GEN_NS  := http://www.opengis.net/gml/3.2
-  _GEN_OUT := pkg/gml/v3_2_1/geometry.go
+  _GEN_OUT := gml3_2_1/generated/geometry.go
   _GEN_XSD := $(XSD2GO_DIR)/schemas/gml/3.2.1/geometryAggregates.xsd
 else ifeq ($(GML_VERSION),3.1.1)
   _GEN_NS  := http://www.opengis.net/gml
-  _GEN_OUT := pkg/gml/v3_1_1/geometry.go
+  _GEN_OUT := gml3_1_1/generated/geometry.go
   _GEN_XSD := $(XSD2GO_DIR)/schemas/gml/3.1.1/base/geometryAggregates.xsd
 else ifeq ($(GML_VERSION),2.1.2)
   _GEN_NS  := http://www.opengis.net/gml
-  _GEN_OUT := pkg/gml/v2_1_2/geometry.go
+  _GEN_OUT := gml2_1_2/generated/geometry.go
   _GEN_XSD := $(XSD2GO_DIR)/schemas/gml/2.1.2/geometry.xsd
 else
   _GEN_NS  :=

@@ -97,6 +97,11 @@ func goName(name string) string {
 		return "_"
 	}
 
+	// GML 3.1.1 uses "_Xxx" for abstract substitution group heads (e.g. "_Curve", "_Surface").
+	// Prefix the result with "Abstract" so the concrete member field (e.g. "Curve *CurveType")
+	// can coexist without being deduped away.
+	leadingUnderscore := strings.HasPrefix(name, "_")
+
 	// Replace hyphens and dots with underscores for processing.
 	name = strings.ReplaceAll(name, "-", "_")
 	name = strings.ReplaceAll(name, ".", "_")
@@ -125,6 +130,11 @@ func goName(name string) string {
 
 	// Avoid Go reserved words.
 	result = avoidReserved(result)
+
+	// Apply "Abstract" prefix for "_Xxx" abstract element names.
+	if leadingUnderscore {
+		result = "Abstract" + result
+	}
 
 	return result
 }

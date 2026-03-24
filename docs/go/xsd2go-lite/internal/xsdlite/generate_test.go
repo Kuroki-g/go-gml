@@ -33,6 +33,12 @@ func TestGoName(t *testing.T) {
 		{"x", "X"},
 		// all underscores → empty parts → "_"
 		{"_", "_"},
+		// GML 3.1.1 abstract element names: "_Xxx" → "AbstractXxx"
+		{"_Curve", "AbstractCurve"},
+		{"_Surface", "AbstractSurface"},
+		{"_Ring", "AbstractRing"},
+		{"_CurveSegment", "AbstractCurveSegment"},
+		{"_Geometry", "AbstractGeometry"},
 	}
 
 	for _, tt := range tests {
