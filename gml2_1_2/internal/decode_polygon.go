@@ -25,10 +25,10 @@ func ringFromLinearRing(lr *gen.LinearRingType) (core.Ring, error) {
 		return nil, fmt.Errorf("gml: nil LinearRing")
 	}
 	if lr.Coordinates != nil {
-		return RingFromCoordinatesString(lr.Coordinates.Value, derefStrOr(lr.Coordinates.Cs, ","), derefStrOr(lr.Coordinates.Ts, " "))
+		return core.RingFromCoordinatesString(lr.Coordinates.Value, derefStrOr(lr.Coordinates.Cs, ","), derefStrOr(lr.Coordinates.Ts, " "))
 	}
 	if len(lr.Coord) > 0 {
-		return RingFromFlat(coordSliceToFlat(lr.Coord), 2)
+		return core.RingFromFlat(coordSliceToFlat(lr.Coord), 2)
 	}
 	return nil, fmt.Errorf("gml: LinearRing has no coordinate data")
 }

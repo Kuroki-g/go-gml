@@ -1,12 +1,8 @@
-package internal
+package core
 
-import (
-	"testing"
+import "testing"
 
-	core "github.com/Kuroki-g/go-gml/core"
-)
-
-func pointEq(a, b core.Point) bool {
+func pointEq(a, b Point) bool {
 	if len(a) != len(b) {
 		return false
 	}
@@ -23,13 +19,13 @@ func TestPointFromFlat(t *testing.T) {
 		name    string
 		coords  []float64
 		dim     int
-		want    core.Point
+		want    Point
 		wantErr bool
 	}{
-		{"2D", []float64{139.7, 35.6}, 2, core.Point{139.7, 35.6}, false},
-		{"3D keeps Z", []float64{139.7, 35.6, 10.5}, 3, core.Point{139.7, 35.6, 10.5}, false},
-		{"dim 0 infer", []float64{139.7, 35.6}, 0, core.Point{139.7, 35.6}, false},
-		{"too short", []float64{139.7}, 2, core.Point{}, true},
+		{"2D", []float64{139.7, 35.6}, 2, Point{139.7, 35.6}, false},
+		{"3D keeps Z", []float64{139.7, 35.6, 10.5}, 3, Point{139.7, 35.6, 10.5}, false},
+		{"dim 0 infer", []float64{139.7, 35.6}, 0, Point{139.7, 35.6}, false},
+		{"too short", []float64{139.7}, 2, Point{}, true},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -56,7 +52,7 @@ func TestLineStringFromFlat(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	want := core.LineString{{139.7, 35.6}, {139.8, 35.7}, {139.9, 35.8}}
+	want := LineString{{139.7, 35.6}, {139.8, 35.7}, {139.9, 35.8}}
 	if len(got) != len(want) {
 		t.Fatalf("len=%d want %d", len(got), len(want))
 	}
@@ -85,11 +81,11 @@ func TestPointFromPosString(t *testing.T) {
 	tests := []struct {
 		input string
 		dim   int
-		want  core.Point
+		want  Point
 	}{
-		{"139.691667 35.689722", 2, core.Point{139.691667, 35.689722}},
-		{"139.7 35.6 10.5", 3, core.Point{139.7, 35.6, 10.5}},
-		{"139.7 35.6 10.5", 0, core.Point{139.7, 35.6, 10.5}},
+		{"139.691667 35.689722", 2, Point{139.691667, 35.689722}},
+		{"139.7 35.6 10.5", 3, Point{139.7, 35.6, 10.5}},
+		{"139.7 35.6 10.5", 0, Point{139.7, 35.6, 10.5}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.input, func(t *testing.T) {
@@ -109,7 +105,7 @@ func TestLineStringFromPosListString(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	want := core.LineString{{139.7, 35.6}, {139.8, 35.7}}
+	want := LineString{{139.7, 35.6}, {139.8, 35.7}}
 	if len(got) != len(want) {
 		t.Fatalf("len=%d want %d", len(got), len(want))
 	}

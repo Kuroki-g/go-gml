@@ -196,11 +196,11 @@ func boundFromXML(x *gen.EnvelopeType) (core.Bound, error) {
 	dim := derefDim(x.SrsDimension)
 	if x.LowerCorner != nil && x.UpperCorner != nil {
 		d := preferDim(dim, derefDim(x.LowerCorner.SrsDimension))
-		lo, err := PointFromPosString(x.LowerCorner.Value, d)
+		lo, err := core.PointFromPosString(x.LowerCorner.Value, d)
 		if err != nil {
 			return core.Bound{}, fmt.Errorf("gml: Envelope lowerCorner: %w", err)
 		}
-		hi, err := PointFromPosString(x.UpperCorner.Value, d)
+		hi, err := core.PointFromPosString(x.UpperCorner.Value, d)
 		if err != nil {
 			return core.Bound{}, fmt.Errorf("gml: Envelope upperCorner: %w", err)
 		}
@@ -208,11 +208,11 @@ func boundFromXML(x *gen.EnvelopeType) (core.Bound, error) {
 	}
 	if len(x.Pos) >= 2 {
 		d := preferDim(dim, derefDim(x.Pos[0].SrsDimension))
-		lo, err := PointFromPosString(x.Pos[0].Value, d)
+		lo, err := core.PointFromPosString(x.Pos[0].Value, d)
 		if err != nil {
 			return core.Bound{}, fmt.Errorf("gml: Envelope pos[0]: %w", err)
 		}
-		hi, err := PointFromPosString(x.Pos[1].Value, d)
+		hi, err := core.PointFromPosString(x.Pos[1].Value, d)
 		if err != nil {
 			return core.Bound{}, fmt.Errorf("gml: Envelope pos[1]: %w", err)
 		}

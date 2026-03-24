@@ -73,7 +73,7 @@ func ringFromAbstractRingProp(prop *gen.AbstractRingPropertyType, inheritDim int
 		if lr.PosList == nil {
 			return nil, nil
 		}
-		r, err := RingFromPosListString(lr.PosList.Value, preferDim(dim, derefDim(lr.PosList.SrsDimension)))
+		r, err := core.RingFromPosListString(lr.PosList.Value, preferDim(dim, derefDim(lr.PosList.SrsDimension)))
 		if err != nil {
 			return nil, fmt.Errorf("gml: PolygonPatch %s LinearRing: %w", label, err)
 		}

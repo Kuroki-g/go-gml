@@ -26,7 +26,7 @@ func pointFromXML(x *gen.PointType) (core.Point, error) {
 		if err != nil {
 			return core.Point{}, err
 		}
-		return PointFromFlat(coords, 2)
+		return core.PointFromFlat(coords, 2)
 	}
 	if x.Coord != nil {
 		return core.Point{x.Coord.X, x.Coord.Y}, nil

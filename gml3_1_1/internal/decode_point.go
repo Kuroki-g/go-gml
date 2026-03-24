@@ -22,14 +22,14 @@ func decodePointElement(dec *xml.Decoder, se xml.StartElement) (core.Geometry, e
 
 func pointFromXML(x *gen.PointType) (core.Point, error) {
 	if x.Pos != nil {
-		return PointFromPosString(x.Pos.Value, preferDim(derefDim(x.SrsDimension), derefDim(x.Pos.SrsDimension)))
+		return core.PointFromPosString(x.Pos.Value, preferDim(derefDim(x.SrsDimension), derefDim(x.Pos.SrsDimension)))
 	}
 	if x.Coordinates != nil {
 		coords, err := core.ParseCoordinates(x.Coordinates.Value, derefStrOr(x.Coordinates.Cs, ","), derefStrOr(x.Coordinates.Ts, " "))
 		if err != nil {
 			return core.Point{}, err
 		}
-		return PointFromFlat(coords, 2)
+		return core.PointFromFlat(coords, 2)
 	}
 	return core.Point{}, fmt.Errorf("gml: Point has no coordinate data")
 }

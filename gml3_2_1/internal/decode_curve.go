@@ -91,12 +91,12 @@ func lineStringFromCurve(x *gen.CurveType, inheritDim int) (core.LineString, err
 		var err error
 		if seg.PosList != nil {
 			dim := preferDim(preferDim(inheritDim, derefDim(x.SrsDimension)), derefDim(seg.PosList.SrsDimension))
-			ls, err = LineStringFromPosListString(seg.PosList.Value, dim)
+			ls, err = core.LineStringFromPosListString(seg.PosList.Value, dim)
 		} else if seg.Coordinates != nil {
 			var coords []float64
 			coords, err = core.ParseCoordinates(seg.Coordinates.Value, derefStrOr(seg.Coordinates.Cs, ","), derefStrOr(seg.Coordinates.Ts, " "))
 			if err == nil {
-				ls, err = LineStringFromFlat(coords, 2)
+				ls, err = core.LineStringFromFlat(coords, 2)
 			}
 		} else {
 			return nil, fmt.Errorf("gml: LineStringSegment[%d] has no coordinate data", i)

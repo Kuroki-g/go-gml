@@ -42,7 +42,7 @@ func ringFromLinearRing(lr *gen.LinearRingType, inheritDim int) (core.Ring, erro
 	}
 	dim := preferDim(inheritDim, derefDim(lr.SrsDimension))
 	if lr.PosList != nil {
-		return RingFromPosListString(lr.PosList.Value, preferDim(dim, derefDim(lr.PosList.SrsDimension)))
+		return core.RingFromPosListString(lr.PosList.Value, preferDim(dim, derefDim(lr.PosList.SrsDimension)))
 	}
 	if len(lr.Pos) > 0 {
 		var flat []float64
@@ -60,10 +60,10 @@ func ringFromLinearRing(lr *gen.LinearRingType, inheritDim int) (core.Ring, erro
 				d = 2
 			}
 		}
-		return RingFromFlat(flat, d)
+		return core.RingFromFlat(flat, d)
 	}
 	if lr.Coordinates != nil {
-		return RingFromCoordinatesString(lr.Coordinates.Value, derefStrOr(lr.Coordinates.Cs, ","), derefStrOr(lr.Coordinates.Ts, " "))
+		return core.RingFromCoordinatesString(lr.Coordinates.Value, derefStrOr(lr.Coordinates.Cs, ","), derefStrOr(lr.Coordinates.Ts, " "))
 	}
 	return nil, fmt.Errorf("gml: LinearRing has no coordinate data")
 }

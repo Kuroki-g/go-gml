@@ -26,10 +26,10 @@ func lineStringFromXML(x *gen.LineStringType) (core.LineString, error) {
 		if err != nil {
 			return nil, err
 		}
-		return LineStringFromFlat(coords, 2)
+		return core.LineStringFromFlat(coords, 2)
 	}
 	if len(x.Coord) > 0 {
-		return LineStringFromFlat(coordSliceToFlat(x.Coord), 2)
+		return core.LineStringFromFlat(coordSliceToFlat(x.Coord), 2)
 	}
 	return nil, fmt.Errorf("gml: LineString has no coordinate data")
 }
