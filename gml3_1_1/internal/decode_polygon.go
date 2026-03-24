@@ -47,7 +47,7 @@ func ringFromLinearRing(lr *gen.LinearRingType, inheritDim int) (core.Ring, erro
 	if len(lr.Pos) > 0 {
 		var flat []float64
 		for _, p := range lr.Pos {
-			vals, err := ParsePosList(p.Value)
+			vals, err := core.ParsePosList(p.Value)
 			if err != nil {
 				return nil, err
 			}

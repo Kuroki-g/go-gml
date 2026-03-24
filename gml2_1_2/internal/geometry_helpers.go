@@ -20,7 +20,7 @@ func PointFromFlat(coords []float64, dim int) (core.Point, error) {
 
 // LineStringFromFlat builds a LineString from a flat coord slice.
 func LineStringFromFlat(coords []float64, dim int) (core.LineString, error) {
-	pts, err := ToPoints(coords, dim)
+	pts, err := core.ToPoints(coords, dim)
 	if err != nil {
 		return nil, err
 	}
@@ -29,7 +29,7 @@ func LineStringFromFlat(coords []float64, dim int) (core.LineString, error) {
 
 // RingFromFlat builds a Ring from a flat coord slice.
 func RingFromFlat(coords []float64, dim int) (core.Ring, error) {
-	pts, err := ToPoints(coords, dim)
+	pts, err := core.ToPoints(coords, dim)
 	if err != nil {
 		return nil, err
 	}
@@ -38,7 +38,7 @@ func RingFromFlat(coords []float64, dim int) (core.Ring, error) {
 
 // RingFromCoordinatesString parses a deprecated gml:coordinates string into a Ring.
 func RingFromCoordinatesString(s, cs, ts string) (core.Ring, error) {
-	coords, err := ParseCoordinates(s, cs, ts)
+	coords, err := core.ParseCoordinates(s, cs, ts)
 	if err != nil {
 		return nil, err
 	}

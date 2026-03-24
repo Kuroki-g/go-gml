@@ -1,12 +1,25 @@
-package internal
+package core
 
 import (
 	"fmt"
 	"strconv"
 	"strings"
-
-	core "github.com/Kuroki-g/go-gml/core"
 )
+
+// ParsePosList parses a GML posList or pos value.
+// Both use the same format: whitespace-separated flat sequence of numbers.
+func ParsePosList(s string) ([]float64, error) {
+	fields := strings.Fields(s)
+	result := make([]float64, 0, len(fields))
+	for _, f := range fields {
+		v, err := strconv.ParseFloat(f, 64)
+		if err != nil {
+			return nil, fmt.Errorf("gml: invalid coordinate %q: %w", f, err)
+		}
+		result = append(result, v)
+	}
+	return result, nil
+}
 
 // ParseCoordinates parses the deprecated gml:coordinates format.
 // cs is the coordinate separator (default ","), ts is the tuple separator (default " ").
@@ -41,9 +54,12 @@ func ParseCoordinates(s, cs, ts string) ([]float64, error) {
 
 // ToPoints converts a flat coordinate slice into a slice of Points.
 // dim specifies the coordinate dimension (2 or 3). If dim <= 0 it defaults to 2.
-func ToPoints(coords []float64, dim int) ([]core.Point, error) {
+func ToPoints(coords []float64, dim int) ([]Point, error) {
 	if dim <= 0 {
 		dim = 2
+	}
+	if dim < 2 {
+		return nil, fmt.Errorf("gml: dimension must be >= 2, got %d", dim)
 	}
 	if len(coords) == 0 {
 		return nil, nil
@@ -51,9 +67,9 @@ func ToPoints(coords []float64, dim int) ([]core.Point, error) {
 	if len(coords)%dim != 0 {
 		return nil, fmt.Errorf("gml: coordinate count %d is not a multiple of dimension %d", len(coords), dim)
 	}
-	pts := make([]core.Point, len(coords)/dim)
+	pts := make([]Point, len(coords)/dim)
 	for i := range pts {
-		pts[i] = append(core.Point(nil), coords[i*dim:(i+1)*dim]...)
+		pts[i] = append(Point(nil), coords[i*dim:(i+1)*dim]...)
 	}
 	return pts, nil
 }

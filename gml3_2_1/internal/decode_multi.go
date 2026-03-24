@@ -219,7 +219,7 @@ func boundFromXML(x *gen.EnvelopeType) (core.Bound, error) {
 		return core.Bound{Min: lo, Max: hi}, nil
 	}
 	if x.Coordinates != nil {
-		coords, err := ParseCoordinates(x.Coordinates.Value, derefStrOr(x.Coordinates.Cs, ","), derefStrOr(x.Coordinates.Ts, " "))
+		coords, err := core.ParseCoordinates(x.Coordinates.Value, derefStrOr(x.Coordinates.Cs, ","), derefStrOr(x.Coordinates.Ts, " "))
 		if err != nil {
 			return core.Bound{}, fmt.Errorf("gml: Envelope coordinates: %w", err)
 		}

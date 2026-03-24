@@ -19,7 +19,7 @@ func PointFromFlat(coords []float64, dim int) (core.Point, error) {
 
 // LineStringFromFlat builds a LineString from a flat coord slice.
 func LineStringFromFlat(coords []float64, dim int) (core.LineString, error) {
-	pts, err := ToPoints(coords, dim)
+	pts, err := core.ToPoints(coords, dim)
 	if err != nil {
 		return nil, err
 	}
@@ -28,7 +28,7 @@ func LineStringFromFlat(coords []float64, dim int) (core.LineString, error) {
 
 // RingFromFlat builds a Ring from a flat coord slice.
 func RingFromFlat(coords []float64, dim int) (core.Ring, error) {
-	pts, err := ToPoints(coords, dim)
+	pts, err := core.ToPoints(coords, dim)
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func RingFromFlat(coords []float64, dim int) (core.Ring, error) {
 
 // PointFromPosString parses a gml:pos chardata string and returns a Point.
 func PointFromPosString(s string, dim int) (core.Point, error) {
-	coords, err := ParsePosList(s)
+	coords, err := core.ParsePosList(s)
 	if err != nil {
 		return core.Point{}, err
 	}
@@ -49,7 +49,7 @@ func PointFromPosString(s string, dim int) (core.Point, error) {
 
 // LineStringFromPosListString parses a gml:posList chardata string.
 func LineStringFromPosListString(s string, dim int) (core.LineString, error) {
-	coords, err := ParsePosList(s)
+	coords, err := core.ParsePosList(s)
 	if err != nil {
 		return nil, err
 	}
@@ -58,7 +58,7 @@ func LineStringFromPosListString(s string, dim int) (core.LineString, error) {
 
 // RingFromPosListString parses a gml:posList chardata string into a Ring.
 func RingFromPosListString(s string, dim int) (core.Ring, error) {
-	coords, err := ParsePosList(s)
+	coords, err := core.ParsePosList(s)
 	if err != nil {
 		return nil, err
 	}
@@ -67,7 +67,7 @@ func RingFromPosListString(s string, dim int) (core.Ring, error) {
 
 // RingFromCoordinatesString parses a deprecated gml:coordinates string into a Ring.
 func RingFromCoordinatesString(s, cs, ts string) (core.Ring, error) {
-	coords, err := ParseCoordinates(s, cs, ts)
+	coords, err := core.ParseCoordinates(s, cs, ts)
 	if err != nil {
 		return nil, err
 	}

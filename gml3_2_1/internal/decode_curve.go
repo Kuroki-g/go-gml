@@ -94,7 +94,7 @@ func lineStringFromCurve(x *gen.CurveType, inheritDim int) (core.LineString, err
 			ls, err = LineStringFromPosListString(seg.PosList.Value, dim)
 		} else if seg.Coordinates != nil {
 			var coords []float64
-			coords, err = ParseCoordinates(seg.Coordinates.Value, derefStrOr(seg.Coordinates.Cs, ","), derefStrOr(seg.Coordinates.Ts, " "))
+			coords, err = core.ParseCoordinates(seg.Coordinates.Value, derefStrOr(seg.Coordinates.Cs, ","), derefStrOr(seg.Coordinates.Ts, " "))
 			if err == nil {
 				ls, err = LineStringFromFlat(coords, 2)
 			}

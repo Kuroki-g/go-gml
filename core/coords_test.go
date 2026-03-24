@@ -1,9 +1,7 @@
-package internal
+package core
 
 import (
 	"testing"
-
-	core "github.com/Kuroki-g/go-gml/core"
 )
 
 func TestParsePosList(t *testing.T) {
@@ -85,7 +83,7 @@ func TestParseCoordinates(t *testing.T) {
 }
 
 func TestToPoints(t *testing.T) {
-	pointEq := func(a, b core.Point) bool {
+	pointEq := func(a, b Point) bool {
 		if len(a) != len(b) {
 			return false
 		}
@@ -100,12 +98,12 @@ func TestToPoints(t *testing.T) {
 		name    string
 		coords  []float64
 		dim     int
-		want    []core.Point
+		want    []Point
 		wantErr bool
 	}{
-		{"2D two points", []float64{139.7, 35.6, 139.8, 35.7}, 2, []core.Point{{139.7, 35.6}, {139.8, 35.7}}, false},
-		{"3D keeps Z", []float64{139.7, 35.6, 10.5, 139.8, 35.7, 11.0}, 3, []core.Point{{139.7, 35.6, 10.5}, {139.8, 35.7, 11.0}}, false},
-		{"dim 0 defaults to 2", []float64{139.7, 35.6}, 0, []core.Point{{139.7, 35.6}}, false},
+		{"2D two points", []float64{139.7, 35.6, 139.8, 35.7}, 2, []Point{{139.7, 35.6}, {139.8, 35.7}}, false},
+		{"3D keeps Z", []float64{139.7, 35.6, 10.5, 139.8, 35.7, 11.0}, 3, []Point{{139.7, 35.6, 10.5}, {139.8, 35.7, 11.0}}, false},
+		{"dim 0 defaults to 2", []float64{139.7, 35.6}, 0, []Point{{139.7, 35.6}}, false},
 		{"empty coords", []float64{}, 2, nil, false},
 		{"nil coords", nil, 2, nil, false},
 		{"odd count for 2D", []float64{139.7, 35.6, 139.8}, 2, nil, true},

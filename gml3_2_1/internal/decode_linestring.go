@@ -29,7 +29,7 @@ func lineStringFromXML(x *gen.LineStringType) (core.LineString, error) {
 	if len(x.Pos) > 0 {
 		var flat []float64
 		for _, p := range x.Pos {
-			vals, err := ParsePosList(p.Value)
+			vals, err := core.ParsePosList(p.Value)
 			if err != nil {
 				return nil, err
 			}
@@ -45,7 +45,7 @@ func lineStringFromXML(x *gen.LineStringType) (core.LineString, error) {
 		return LineStringFromFlat(flat, d)
 	}
 	if x.Coordinates != nil {
-		coords, err := ParseCoordinates(x.Coordinates.Value, derefStrOr(x.Coordinates.Cs, ","), derefStrOr(x.Coordinates.Ts, " "))
+		coords, err := core.ParseCoordinates(x.Coordinates.Value, derefStrOr(x.Coordinates.Cs, ","), derefStrOr(x.Coordinates.Ts, " "))
 		if err != nil {
 			return nil, err
 		}
