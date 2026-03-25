@@ -58,7 +58,11 @@ func LineStringFromPosListString(s string, dim int) (LineString, error) {
 	if err != nil {
 		return nil, err
 	}
-	return LineStringFromFlat(coords, effectiveDim(dim))
+	d, err := effectiveDim(dim, len(coords))
+	if err != nil {
+		return nil, err
+	}
+	return LineStringFromFlat(coords, d)
 }
 
 // RingFromPosListString parses a gml:posList chardata string into a Ring.
@@ -67,13 +71,28 @@ func RingFromPosListString(s string, dim int) (Ring, error) {
 	if err != nil {
 		return nil, err
 	}
-	return RingFromFlat(coords, effectiveDim(dim))
+	d, err := effectiveDim(dim, len(coords))
+	if err != nil {
+		return nil, err
+	}
+	return RingFromFlat(coords, d)
 }
 
-// effectiveDim returns dim if > 0, otherwise defaults to 2.
-func effectiveDim(dim int) int {
-	if dim > 0 {
-		return dim
+// effectiveDim resolves the coordinate dimension.
+// If dim is explicitly provided (2 or 3), it is returned as-is.
+// If dim is 0 (srsDimension omitted), the dimension is inferred from nValues:
+// an odd value count cannot be 2D, so dim=3 is assumed.
+// Dimensions other than 0, 2, or 3 are not supported and return an error.
+func effectiveDim(dim, nValues int) (int, error) {
+	switch dim {
+	case 0:
+		if nValues%2 != 0 {
+			return 3, nil
+		}
+		return 2, nil
+	case 2, 3:
+		return dim, nil
+	default:
+		return 0, fmt.Errorf("gml: unsupported srsDimension %d", dim)
 	}
-	return 2
 }

@@ -137,16 +137,29 @@ func TestRingFromCoordinatesString(t *testing.T) {
 }
 
 func TestEffectiveDim(t *testing.T) {
-	if effectiveDim(2) != 2 {
-		t.Error("explicit dim should be returned as-is")
+	check := func(dim, nValues, want int) {
+		t.Helper()
+		got, err := effectiveDim(dim, nValues)
+		if err != nil {
+			t.Fatalf("effectiveDim(%d, %d) unexpected error: %v", dim, nValues, err)
+		}
+		if got != want {
+			t.Errorf("effectiveDim(%d, %d) = %d, want %d", dim, nValues, got, want)
+		}
 	}
-	if effectiveDim(3) != 3 {
-		t.Error("explicit dim=3 should be returned as-is")
+	checkErr := func(dim, nValues int) {
+		t.Helper()
+		if _, err := effectiveDim(dim, nValues); err == nil {
+			t.Errorf("effectiveDim(%d, %d) expected error, got nil", dim, nValues)
+		}
 	}
-	if effectiveDim(0) != 2 {
-		t.Error("dim=0 should default to 2")
-	}
-	if effectiveDim(-1) != 2 {
-		t.Error("negative dim should default to 2")
-	}
+
+	check(2, 4, 2)  // explicit 2D
+	check(3, 9, 3)  // explicit 3D
+	check(0, 4, 2)  // omitted, even → 2D
+	check(0, 9, 3)  // omitted, odd → 3D (PLATEAU pattern)
+	check(0, 27, 3) // omitted, odd → 3D
+	check(0, 12, 2) // omitted, even (ambiguous) → 2D fallback
+	checkErr(1, 0)  // 1D: unsupported
+	checkErr(4, 0)  // 4D: unsupported
 }
