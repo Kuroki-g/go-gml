@@ -4,18 +4,29 @@ import (
 	"encoding/xml"
 	"fmt"
 	"io"
+	"strings"
 
 	gen "github.com/Kuroki-g/go-gml/gml3_1_1/generated"
 )
 
+// pendingCS holds a decoded CompositeSurfaceType awaiting deferred resolution.
+type pendingCS struct {
+	id string
+	x  *gen.CompositeSurfaceType
+}
+
 // preScanGeometries scans the GML document for geometry elements with gml:id,
 // decoding and caching them in the resolver. This populates the resolver cache
 // before the main parse pass, enabling forward xlink:href references to be resolved.
+//
+// CompositeSurface elements are collected and resolved after all leaf geometries
+// are cached, so forward xlink:href references within CompositeSurface are handled.
 func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
+	var deferred []pendingCS
 	for {
 		tok, err := dec.Token()
 		if err == io.EOF {
-			return nil
+			break
 		}
 		if err != nil {
 			return err
@@ -69,9 +80,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("CompositeSurface %q: %w", id, err)
 			}
-			if poly, err := polygonFromCompositeSurface(&x, resolver); err == nil {
-				resolver.polygonByID[id] = poly
-			}
+			deferred = append(deferred, pendingCS{id: id, x: &x})
 		case gmlOrientableSurface:
 			var x gen.OrientableSurfaceType
 			if err := dec.DecodeElement(&x, &se); err != nil {
@@ -112,4 +121,57 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			}
 		}
 	}
+	resolveDeferred(deferred, resolver)
+	return nil
+}
+
+// resolveDeferred iteratively resolves CompositeSurface elements whose
+// surfaceMember href targets may not have been cached yet when first encountered.
+// Each round resolves any element whose dependencies are now fully available.
+func resolveDeferred(pending []pendingCS, resolver *curveResolver) {
+	for len(pending) > 0 {
+		var remaining []pendingCS
+		for _, p := range pending {
+			if !allSurfaceMembersResolvable(p.x.SurfaceMember, resolver) {
+				remaining = append(remaining, p)
+				continue
+			}
+			if poly, err := polygonFromCompositeSurface(p.x, resolver); err == nil {
+				resolver.polygonByID[p.id] = poly
+			}
+		}
+		if len(remaining) == len(pending) {
+			// No progress: remaining refs are unresolvable (e.g. external hrefs).
+			break
+		}
+		pending = remaining
+	}
+}
+
+// allSurfaceMembersResolvable reports whether every href in the surface member list
+// is already cached in the resolver. Inline members are always considered resolvable.
+func allSurfaceMembersResolvable(members []gen.SurfacePropertyType, resolver *curveResolver) bool {
+	for _, m := range members {
+		if m.Href != "" {
+			id := strings.TrimPrefix(m.Href, "#")
+			if _, ok := resolver.polygonByID[id]; !ok {
+				return false
+			}
+		}
+		if m.OrientableSurface != nil && m.OrientableSurface.BaseSurface != nil {
+			bs := m.OrientableSurface.BaseSurface
+			if bs.Href != "" {
+				id := strings.TrimPrefix(bs.Href, "#")
+				if _, ok := resolver.polygonByID[id]; !ok {
+					return false
+				}
+			}
+		}
+		if m.CompositeSurface != nil {
+			if !allSurfaceMembersResolvable(m.CompositeSurface.SurfaceMember, resolver) {
+				return false
+			}
+		}
+	}
+	return true
 }

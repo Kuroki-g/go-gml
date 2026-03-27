@@ -672,6 +672,39 @@ func TestParseCompositeSurface_forwardRef(t *testing.T) {
 	}
 }
 
+func TestParseCompositeSurface_chainForwardRef(t *testing.T) {
+	// CS1 -> CS2 (forward ref), CS2 -> P1 (forward ref)
+	xml := `<root ` + gml3NS + ` ` + xlinkNS + `>
+		<gml:CompositeSurface gml:id="CS1" srsDimension="2">
+			<gml:surfaceMember xlink:href="#CS2"/>
+		</gml:CompositeSurface>
+		<gml:CompositeSurface gml:id="CS2" srsDimension="2">
+			<gml:surfaceMember xlink:href="#P1"/>
+		</gml:CompositeSurface>
+		<gml:Polygon gml:id="P1">
+			<gml:exterior>
+				<gml:LinearRing>
+					<gml:posList>0 0 10 0 10 10 0 10 0 0</gml:posList>
+				</gml:LinearRing>
+			</gml:exterior>
+		</gml:Polygon>
+	</root>`
+	gs := readAll(t, xml)
+	if len(gs) != 3 {
+		t.Fatalf("expected 3 geometries, got %d", len(gs))
+	}
+	cs1, ok := gs[0].Value.(core.Polygon)
+	if !ok {
+		t.Fatalf("gs[0]: expected Polygon, got %T", gs[0].Value)
+	}
+	if len(cs1) == 0 || len(cs1[0]) == 0 {
+		t.Fatal("CS1: chain forward reference to CS2->P1 was not resolved")
+	}
+	if len(cs1[0]) != 5 {
+		t.Errorf("CS1: exterior points=%d want 5", len(cs1[0]))
+	}
+}
+
 // ---- streaming ----
 
 func TestParseStream_multipleGeometries(t *testing.T) {
