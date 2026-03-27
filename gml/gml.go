@@ -26,6 +26,9 @@ type (
 	Geometry        = core.Geometry
 )
 
+// Reader is the common interface for all GML streaming geometry readers.
+type Reader = core.Reader
+
 // Reader321 is a GML 3.2.1 streaming geometry reader.
 type Reader321 = gml3_2_1.Reader
 
