@@ -3,7 +3,7 @@ go 1.26.0
 use (
 	.
 	./core
-	./docs/go/gml-parser
+	./cmd/gml-parser
 	./gml
 	./gml2_1_2
 	./gml3_1_1

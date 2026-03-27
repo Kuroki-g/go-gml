@@ -102,7 +102,7 @@ $(XSD2GO_TMP):
 
 # ---- gml-parser (CLI example) ----
 
-GML_PARSER_DIR := docs/go/gml-parser
+GML_PARSER_DIR := cmd/gml-parser
 GML_PARSER_BIN := $(GML_PARSER_DIR)/gml-parser
 
 .PHONY: gml-parser-build gml-parser-run
