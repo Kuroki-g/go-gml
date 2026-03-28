@@ -25,36 +25,21 @@
 
 **go-gml** — GML (ISO 19136) パーサの Pure Go 実装。国土数値情報・基盤地図情報・PLATEAU など実際の日本政府 GML データが読める SDK。
 
-**基本方針:** 実データで使われる GML 要素を順次対応する。OGC GML Simple Features Profile (OGC 10-100r3) の SF-1 完了を当面のマイルストーンとする。
+**基本方針:** 実データで使われる GML 要素を順次対応する。対応済み要素の一覧は README を参照。
 
 ### マイルストーン
 
 | レベル | 状態 | 説明 |
 |---|---|---|
-| **SF-0** | ✓ 完了 | Point / LineString / Polygon / Multi* / Envelope (線形補間のみ) |
-| **SF-1** | △ 実装中 | Curve / Surface / OrientableCurve + CompositeCurve / CompositeSurface / OrientableSurface |
+| **SF-0** | ✓ 完了 | Point / LineString / Polygon / Multi* / Envelope |
+| **SF-1** | ✓ 完了 | Curve / Surface / OrientableCurve + CompositeCurve / CompositeSurface / OrientableSurface |
 | **SF-2** | 未実装 | Arc / Circle 等の曲線補間 (日本政府データでは不要なため低優先) |
 
-### 要素別実装状況
+### 未実装・残課題
 
-| ジオメトリ要素 | 変換先 | SF レベル | 状態 |
-|---|---|---|---|
-| `gml:Point` | `Point` | SF-0 | ✓ |
-| `gml:LineString` | `LineString` | SF-0 | ✓ |
-| `gml:Polygon` | `Polygon` | SF-0 | ✓ |
-| `gml:MultiPoint` | `MultiPoint` | SF-0 | ✓ |
-| `gml:MultiCurve` / `gml:MultiLineString` | `MultiLineString` | SF-0 | ✓ (curveMember が LineString の場合のみ) |
-| `gml:MultiSurface` / `gml:MultiPolygon` | `MultiPolygon` | SF-0 | ✓ (surfaceMember が Polygon の場合のみ) |
-| `gml:Envelope` | `Bound` | SF-0 | ✓ |
-| `gml:Curve` + `LineStringSegment` | `LineString` | SF-1 | ✓ (N03 旧形式: 〜2023年 KsjAppSchema-N03-v3_x 以前) |
-| `gml:Surface` + `PolygonPatch` | `Polygon` | SF-1 | ✓ (N03 新形式: 2024年〜 KsjAppSchema-N03-v4_0 以降) |
-| `gml:OrientableCurve` | `LineString` | SF-1 | ✓ (xlink:href 解決) |
-| `gml:CompositeCurve` | `LineString` | SF-1 | ✓ (inline Curve/LineString/OrientableCurve/CompositeCurve + xlink:href) |
-| `gml:CompositeSurface` | `Polygon` | SF-1 | ✓ (rings from all surfaceMembers collected; xlink:href 未対応) |
-| `gml:OrientableSurface` | `Polygon` | SF-1 | ✓ (baseSurface inline Polygon/Surface/CompositeSurface) |
-| Arc/Circle 等の曲線補間 | — | SF-2 | 未実装 |
-| `gml:Grid` / `gml:RectifiedGrid` | `GridCoverage` | — | ✓ (domainSet/rangeSet; inline + xlink:href) |
-| Topology | — | — | 未実装 |
+- **SF-2**: Arc / Circle 等の曲線補間 — 低優先
+- **gml3_1_1 srsDimension 継承** (`internal/decode_polygon.go:48`): ルート `gml:Envelope` の srsDimension が個々の Polygon に伝播しない。アーキテクチャ変更が必要
+- **gml3_1_1 テストなし**: N03 旧形式・W09 統合テストの移植が必要
 
 ---
 
@@ -94,8 +79,8 @@ go-gml/                              # module root
 │   ├── go.mod                       # github.com/Kuroki-g/go-gml/gml  ← GML ユーザーの入口 (re-export)
 │   ├── gml.go                       # core 型を type alias re-export + gml3_2_1.NewReader ラップ
 │   └── crs.go                       # EPSGFromSRSName 公開
-├── citygml/
-│   └── go.mod                       # github.com/Kuroki-g/go-gml/citygml (将来)
+├── citygml2_0/
+│   └── go.mod                       # github.com/Kuroki-g/go-gml/citygml2_0 (将来)
 ├── waterml/
 │   └── go.mod                       # github.com/Kuroki-g/go-gml/waterml (将来)
 ├── docs/                            # 内部用ツール (xsd2go-lite, gml-parser)
@@ -106,7 +91,7 @@ go-gml/                              # module root
 ```
 go-gml/core
   ↑
-  ├── go-gml/gml3_1_1  ─→  go-citygml (gml3_2_1 は入らない)
+  ├── go-gml/gml3_1_1  ─→  citygml2_0 等 (gml3_2_1 は入らない)
   └── go-gml/gml3_2_1  ─→  WaterML 等
         ↑
         └── go-gml/gml  ← ユーザー入口 (re-export)
@@ -118,13 +103,11 @@ go-gml/core
 
 | モジュール | 場所 | GML バージョン |
 |---|---|---|
-| `github.com/Kuroki-g/go-gml/citygml` | `citygml/` | GML 3.1.1 (CityGML 2.0) |
+| `github.com/Kuroki-g/go-gml/citygml2_0` | `citygml2_0/` | GML 3.1.1 (CityGML 2.0) |
 | `github.com/Kuroki-g/go-gml/waterml` | `waterml/` | GML 3.2.1 |
 
-**CityGML ターゲットバージョン: 2.0**
-- 対象スキーマ: `http://www.opengis.net/citygml/2.0`
-- 依存: `go-gml/core` + `go-gml/gml3_1_1` のみ (`gml3_2_1` は不要)
-- CityGML 3.0 は後から対応できる設計にしておく (コア抽象化を壊さない)
+**CityGML モジュール命名方針:** `gml3_2_1` / `gml3_1_1` と同パターンでバージョン別に別モジュール (`citygml2_0`, `citygml3_0` 等)。バージョン間の互換性は気にしない。
+- CityGML 2.0: 対象スキーマ `http://www.opengis.net/citygml/2.0`、依存: `go-gml/core` + `go-gml/gml3_1_1` のみ
 
 ### 命名規則
 - 生成パッケージ (`v3_2_1`, `v3_1_1`, `v2_1_2`): アンダースコアOK (Google style guide generated code 例外)
