@@ -1,4 +1,6 @@
 .up.lock
+.vscode/
+mise.toml
 .claude/settings.local.json
 **/.tmp/
 go.work.sum
