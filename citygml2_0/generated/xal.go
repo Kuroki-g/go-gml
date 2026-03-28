@@ -1,0 +1,199 @@
+package generated
+
+type AddressDetails struct {
+	// Postal authorities use specific postal service data to expedient delivery of mail
+	PostalServiceElements string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 PostalServiceElements,omitempty"`
+	// Address as one line of free text
+	Address string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 Address,omitempty"`
+	// Container for Address lines
+	AddressLines *AddressLinesType `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 AddressLines,omitempty"`
+	// Specification of a country
+	Country string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 Country,omitempty"`
+	// Examples of administrative areas are provinces counties, special regions (such as "Rijnmond"), etc.
+	AdministrativeArea *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 AdministrativeArea,omitempty"`
+	// Locality is one level lower than adminisstrative area. Eg.: cities, reservations and any other built-up areas.
+	Locality *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 Locality,omitempty"`
+	// Specification of a thoroughfare. A thoroughfare could be a rd, street, canal, river, etc.  Note dependentlocality in a street. For example, in some countries, a large street will
+	// have many subdivisions with numbers. Normally the subdivision name is the same as the road name, but with a number to identifiy it. Eg. SOI SUKUMVIT 3, SUKUMVIT RD, BANGKOK
+	Thoroughfare *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 Thoroughfare,omitempty"`
+	// Type of address. Example: Postal, residential,business, primary, secondary, etc
+	AddressType *string `xml:"AddressType,attr,omitempty"`
+	// Moved, Living, Investment, Deceased, etc..
+	CurrentStatus *string `xml:"CurrentStatus,attr,omitempty"`
+	// Start Date of the validity of address
+	ValidFromDate *string `xml:"ValidFromDate,attr,omitempty"`
+	// End date of the validity of address
+	ValidToDate *string `xml:"ValidToDate,attr,omitempty"`
+	// Communication, Contact, etc.
+	Usage *string `xml:"Usage,attr,omitempty"`
+	// Key identifier for the element for not reinforced references from other elements. Not required to be unique for the document to be valid, but application may get confused if not unique. Extend this schema adding unique contraint if needed.
+	AddressDetailsKey *string `xml:"AddressDetailsKey,attr,omitempty"`
+	// Used by postal services to encode the name of the element.
+	Code *string `xml:"Code,attr,omitempty"`
+}
+
+type AddressLinesType struct {
+	// Free format address representation. An address can have more than one line. The order of the AddressLine elements must be preserved.
+	AddressLine []string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 AddressLine"`
+}
+
+type BuildingNameType struct {
+	TypeField *string `xml:"Type,attr,omitempty"`
+	// Occurrence of the building name before/after the type. eg. EGIS BUILDING where name appears before type
+	TypeOccurrence *string `xml:"TypeOccurrence,attr,omitempty"`
+	// Used by postal services to encode the name of the element.
+	Code *string `xml:"Code,attr,omitempty"`
+}
+
+type DependentLocalityType struct {
+	// Free format address representation. An address can have more than one line. The order of the AddressLine elements must be preserved.
+	AddressLine []string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 AddressLine"`
+	// Name of the dependent locality
+	DependentLocalityName []string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 DependentLocalityName"`
+	// Number of the dependent locality. Some areas are numbered. Eg. SECTOR 5 in a Suburb as in India or SOI SUKUMVIT 10 as in Thailand
+	DependentLocalityNumber string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 DependentLocalityNumber,omitempty"`
+	// Specification of a thoroughfare. A thoroughfare could be a rd, street, canal, river, etc.  Note dependentlocality in a street. For example, in some countries, a large street will
+	// have many subdivisions with numbers. Normally the subdivision name is the same as the road name, but with a number to identifiy it. Eg. SOI SUKUMVIT 3, SUKUMVIT RD, BANGKOK
+	Thoroughfare *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 Thoroughfare,omitempty"`
+	// Specification of a single premise, for example a house or a building. The premise as a whole has a unique premise (house) number or a premise name.  There could be more than
+	// one premise in a street referenced in an address. For example a building address near a major shopping centre or raiwlay station
+	Premise *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 Premise,omitempty"`
+	// Dependent localities are Districts within cities/towns, locality divisions, postal
+	// divisions of cities, suburbs, etc. DependentLocality is a recursive element, but no nesting deeper than two exists (Locality-DependentLocality-DependentLocality).
+	DependentLocality *DependentLocalityType `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 DependentLocality,omitempty"`
+	// PostalCode is the container element for either simple or complex (extended) postal codes. Type: Area Code, Postcode, etc.
+	PostalCode *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 PostalCode,omitempty"`
+	// Specification of a postbox like mail delivery point. Only a single postbox number can be specified. Examples of postboxes are POBox, free mail numbers, etc.
+	PostBox *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 PostBox,omitempty"`
+	// Specification of a large mail user address. Examples of large mail users are postal companies, companies in France with a cedex number, hospitals and airports with their own post code. Large mail user addresses do not have a street name with premise name or premise number in countries like Netherlands. But they have a POBox and street also in countries like France
+	LargeMailUser *LargeMailUserType `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 LargeMailUser,omitempty"`
+	// Specification of a post office. Examples are a rural post office where post is delivered and a post office containing post office boxes.
+	PostOffice *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 PostOffice,omitempty"`
+	// A Postal van is specific for a route as in Is`rael, Rural route
+	PostalRoute *PostalRouteType `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 PostalRoute,omitempty"`
+	// City or IndustrialEstate, etc
+	TypeField *string `xml:"Type,attr,omitempty"`
+	// Postal or Political - Sometimes locations must be distinguished between postal system, and physical locations as defined by a political system
+	UsageType *string `xml:"UsageType,attr,omitempty"`
+	// "VIA" as in Hill Top VIA Parish where Parish is a locality and Hill Top is a dependent locality
+	Connector *string `xml:"Connector,attr,omitempty"`
+	// Eg. Erode (Dist) where (Dist) is the Indicator
+	Indicator *string `xml:"Indicator,attr,omitempty"`
+}
+
+type FirmType struct {
+	// Free format address representation. An address can have more than one line. The order of the AddressLine elements must be preserved.
+	AddressLine []string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 AddressLine"`
+	// Name of the firm
+	FirmName []string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 FirmName"`
+	// Subdivision in the firm: School of Physics at Victoria University (School of Physics is the department)
+	Department []string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 Department"`
+	// A MailStop is where the the mail is delivered to within a premise/subpremise/firm or a facility.
+	MailStop *MailStopType `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 MailStop,omitempty"`
+	// PostalCode is the container element for either simple or complex (extended) postal codes. Type: Area Code, Postcode, etc.
+	PostalCode *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 PostalCode,omitempty"`
+	TypeField  *string `xml:"Type,attr,omitempty"`
+}
+
+type LargeMailUserType struct {
+	// Free format address representation. An address can have more than one line. The order of the AddressLine elements must be preserved.
+	AddressLine []string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 AddressLine"`
+	// Name of the large mail user. eg. Smith Ford International airport
+	LargeMailUserName []string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 LargeMailUserName"`
+	// Specification of the identification number of a large mail user. An example are the Cedex codes in France.
+	LargeMailUserIdentifier string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 LargeMailUserIdentifier,omitempty"`
+	// Name of the building
+	BuildingName []BuildingNameType `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 BuildingName"`
+	// Subdivision in the firm: School of Physics at Victoria University (School of Physics is the department)
+	Department *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 Department,omitempty"`
+	// Specification of a postbox like mail delivery point. Only a single postbox number can be specified. Examples of postboxes are POBox, free mail numbers, etc.
+	PostBox *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 PostBox,omitempty"`
+	// Specification of a thoroughfare. A thoroughfare could be a rd, street, canal, river, etc.  Note dependentlocality in a street. For example, in some countries, a large street will
+	// have many subdivisions with numbers. Normally the subdivision name is the same as the road name, but with a number to identifiy it. Eg. SOI SUKUMVIT 3, SUKUMVIT RD, BANGKOK
+	Thoroughfare *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 Thoroughfare,omitempty"`
+	// PostalCode is the container element for either simple or complex (extended) postal codes. Type: Area Code, Postcode, etc.
+	PostalCode *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 PostalCode,omitempty"`
+	TypeField  *string `xml:"Type,attr,omitempty"`
+}
+
+type MailStopType struct {
+	// Free format address representation. An address can have more than one line. The order of the AddressLine elements must be preserved.
+	AddressLine []string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 AddressLine"`
+	// Name of the the Mail Stop. eg. MSP, MS, etc
+	MailStopName string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 MailStopName,omitempty"`
+	// Number of the Mail stop. eg. 123 in MS 123
+	MailStopNumber string  `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 MailStopNumber,omitempty"`
+	TypeField      *string `xml:"Type,attr,omitempty"`
+}
+
+type PostalRouteType struct {
+	// Free format address representation. An address can have more than one line. The order of the AddressLine elements must be preserved.
+	AddressLine []string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 AddressLine"`
+	// Specification of a postbox like mail delivery point. Only a single postbox number can be specified. Examples of postboxes are POBox, free mail numbers, etc.
+	PostBox *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 PostBox,omitempty"`
+	// Name of the Postal Route
+	PostalRouteName []string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 PostalRouteName"`
+	// Number of the Postal Route
+	PostalRouteNumber string  `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 PostalRouteNumber,omitempty"`
+	TypeField         *string `xml:"Type,attr,omitempty"`
+}
+
+type SubPremiseType struct {
+	// Free format address representation. An address can have more than one line. The order of the AddressLine elements must be preserved.
+	AddressLine []string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 AddressLine"`
+	// Name of the SubPremise
+	SubPremiseName []string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 SubPremiseName"`
+	// Prefix of the sub premise number. eg. A in A-12
+	SubPremiseNumberPrefix []string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 SubPremiseNumberPrefix"`
+	// Suffix of the sub premise number. eg. A in 12A
+	SubPremiseNumberSuffix []string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 SubPremiseNumberSuffix"`
+	// Name of the building
+	BuildingName []BuildingNameType `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 BuildingName"`
+	// Specification of a firm, company, organization, etc. It can be specified as part of an address that contains a street or a postbox. It is therefore different from a large mail user address, which contains no street.
+	Firm *FirmType `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 Firm,omitempty"`
+	// A MailStop is where the the mail is delivered to within a premise/subpremise/firm or a facility.
+	MailStop *MailStopType `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 MailStop,omitempty"`
+	// PostalCode is the container element for either simple or complex (extended) postal codes. Type: Area Code, Postcode, etc.
+	PostalCode *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 PostalCode,omitempty"`
+	// Specification of a single sub-premise. Examples of sub-premises are apartments and suites.
+	// Each sub-premise should be uniquely identifiable. SubPremiseType: Specification of the name of a sub-premise type. Possible values not limited to: Suite, Appartment, Floor, Unknown
+	// Multiple levels within a premise by recursively calling SubPremise Eg. Level 4, Suite 2, Block C
+	SubPremise *SubPremiseType `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 SubPremise,omitempty"`
+	// Name of the SubPremise Location. eg. LOBBY, BASEMENT, GROUND FLOOR, etc...
+	SubPremiseLocation string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 SubPremiseLocation,omitempty"`
+	// Specification of the identifier of a sub-premise. Examples of sub-premises are apartments and suites. sub-premises in a building are often uniquely identified by means of consecutive
+	// identifiers. The identifier can be a number, a letter or any combination of the two. In the latter case, the identifier includes exactly one variable (range) part, which is either a
+	// number or a single letter that is surrounded by fixed parts at the left (prefix) or the right (postfix).
+	SubPremiseNumber []string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 SubPremiseNumber"`
+	TypeField        *string  `xml:"Type,attr,omitempty"`
+}
+
+type ThoroughfareLeadingTypeType struct {
+	TypeField *string `xml:"Type,attr,omitempty"`
+	// Used by postal services to encode the name of the element.
+	Code *string `xml:"Code,attr,omitempty"`
+}
+
+type ThoroughfareNameType struct {
+	TypeField *string `xml:"Type,attr,omitempty"`
+	// Used by postal services to encode the name of the element.
+	Code *string `xml:"Code,attr,omitempty"`
+}
+
+type ThoroughfarePostDirectionType struct {
+	TypeField *string `xml:"Type,attr,omitempty"`
+	// Used by postal services to encode the name of the element.
+	Code *string `xml:"Code,attr,omitempty"`
+}
+
+type ThoroughfarePreDirectionType struct {
+	TypeField *string `xml:"Type,attr,omitempty"`
+	// Used by postal services to encode the name of the element.
+	Code *string `xml:"Code,attr,omitempty"`
+}
+
+type ThoroughfareTrailingTypeType struct {
+	TypeField *string `xml:"Type,attr,omitempty"`
+	// Used by postal services to encode the name of the element.
+	Code *string `xml:"Code,attr,omitempty"`
+}
