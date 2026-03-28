@@ -15,6 +15,9 @@ help:
 	@echo "               GML XSD → gml<version>/generated/geometry.go 生成"
 	@echo "               デフォルト: GML_VERSION=3.2.1"
 	@echo ""
+	@echo "fuzz"
+	@echo "  fuzz-gen         fuzz seed corpus 生成 (gml*/testdata/fuzz/FuzzReader/)"
+	@echo ""
 	@echo "gml-parser (CLI example)"
 	@echo "  gml-parser-build バイナリビルド"
 	@echo "  gml-parser-run   inspect サブコマンド実行 (testdata/N03)"
@@ -131,6 +134,13 @@ citygml2_0-gen: xsd2go-build
 		--omit-namespace "$(GML311_NS)" \
 		-o citygml2_0/generated/building.go \
 		$(CITYGML20_BLDG_XSD)
+
+# ---- fuzz seed corpus ----
+
+.PHONY: fuzz-gen
+
+fuzz-gen:
+	uv run python3 scripts/gen_fuzz_seeds.py
 
 # ---- gml-parser (CLI example) ----
 

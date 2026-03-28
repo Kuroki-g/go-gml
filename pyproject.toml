@@ -1,0 +1,7 @@
+[project]
+name = "go-gml-scripts"
+version = "0.1.0"
+description = "Development scripts for go-gml (fuzz seed generation, etc.)"
+requires-python = ">=3.11"
+dependencies = []
+

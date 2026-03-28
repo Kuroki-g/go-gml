@@ -5,6 +5,7 @@ mise.toml
 **/.tmp/
 go.work.sum
 
+**/testdata/fuzz/
 **/__pycache__/**
 *.crt
 *.pem
