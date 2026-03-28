@@ -12,7 +12,7 @@ import (
 // handlePolygon decodes a gml:Polygon, caches it by gml:id for xlink:href resolution, and returns it.
 func (r *Reader) handlePolygon(dec *xml.Decoder, se xml.StartElement) (core.Geometry, error) {
 	id := extractGMLID(se)
-	g, err := decodePolygonElement(dec, se)
+	g, err := decodePolygonElement(dec, se, r.globalDim)
 	if err != nil {
 		return core.Geometry{}, err
 	}
@@ -24,12 +24,12 @@ func (r *Reader) handlePolygon(dec *xml.Decoder, se xml.StartElement) (core.Geom
 	return g, err
 }
 
-func decodePolygonElement(dec *xml.Decoder, se xml.StartElement) (core.Geometry, error) {
+func decodePolygonElement(dec *xml.Decoder, se xml.StartElement, fallbackDim int) (core.Geometry, error) {
 	var x gen.PolygonType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: Polygon: %w", err)
 	}
-	poly, err := polygonFromXML(&x)
+	poly, err := polygonFromXML(&x, fallbackDim)
 	if err != nil {
 		return core.Geometry{}, err
 	}
@@ -68,8 +68,8 @@ func ringFromLinearRing(lr *gen.LinearRingType, inheritDim int) (core.Ring, erro
 	return nil, fmt.Errorf("gml: LinearRing has no coordinate data")
 }
 
-func polygonFromXML(x *gen.PolygonType) (core.Polygon, error) {
-	dim := derefDim(x.SrsDimension)
+func polygonFromXML(x *gen.PolygonType, fallbackDim int) (core.Polygon, error) {
+	dim := preferDim(derefDim(x.SrsDimension), fallbackDim)
 	var rings []core.Ring
 	if x.Exterior != nil && x.Exterior.LinearRing != nil {
 		r, err := ringFromLinearRing(x.Exterior.LinearRing, dim)

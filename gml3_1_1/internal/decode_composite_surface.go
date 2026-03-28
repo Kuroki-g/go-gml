@@ -16,7 +16,7 @@ func (r *Reader) handleCompositeSurface(dec *xml.Decoder, se xml.StartElement) (
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: CompositeSurface: %w", err)
 	}
-	mp, err := multiPolygonFromCompositeSurface(&x, r.resolver)
+	mp, err := multiPolygonFromCompositeSurface(&x, r.resolver, r.globalDim)
 	if err != nil {
 		return core.Geometry{}, err
 	}
@@ -36,7 +36,7 @@ func (r *Reader) handleOrientableSurface(dec *xml.Decoder, se xml.StartElement) 
 	if x.BaseSurface == nil {
 		return core.Geometry{Value: core.Polygon(nil), SRSName: x.SrsName}, nil
 	}
-	poly, err := polygonFromSurfaceProperty(x.BaseSurface, derefDim(x.SrsDimension), r.resolver)
+	poly, err := polygonFromSurfaceProperty(x.BaseSurface, preferDim(derefDim(x.SrsDimension), r.globalDim), r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
 	}
@@ -48,12 +48,12 @@ func (r *Reader) handleOrientableSurface(dec *xml.Decoder, se xml.StartElement) 
 
 // multiPolygonFromCompositeSurface returns one Polygon per surfaceMember.
 // Nested CompositeSurface members are flattened into the result.
-func multiPolygonFromCompositeSurface(x *gen.CompositeSurfaceType, resolver *curveResolver) (core.MultiPolygon, error) {
-	dim := derefDim(x.SrsDimension)
+func multiPolygonFromCompositeSurface(x *gen.CompositeSurfaceType, resolver *curveResolver, fallbackDim int) (core.MultiPolygon, error) {
+	dim := preferDim(derefDim(x.SrsDimension), fallbackDim)
 	var result core.MultiPolygon
 	for i, m := range x.SurfaceMember {
 		if m.CompositeSurface != nil {
-			nested, err := multiPolygonFromCompositeSurface(m.CompositeSurface, resolver)
+			nested, err := multiPolygonFromCompositeSurface(m.CompositeSurface, resolver, fallbackDim)
 			if err != nil {
 				return nil, fmt.Errorf("gml: CompositeSurface surfaceMember[%d]: %w", i, err)
 			}
@@ -82,7 +82,7 @@ func multiPolygonFromCompositeSurface(x *gen.CompositeSurfaceType, resolver *cur
 // Used for gml:Solid exterior/interior where the surface may be a CompositeSurface.
 func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim int, resolver *curveResolver) (core.MultiPolygon, error) {
 	if m.CompositeSurface != nil {
-		return multiPolygonFromCompositeSurface(m.CompositeSurface, resolver)
+		return multiPolygonFromCompositeSurface(m.CompositeSurface, resolver, inheritDim)
 	}
 	if m.Href != "" {
 		id := strings.TrimPrefix(m.Href, "#")
@@ -104,10 +104,10 @@ func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim int,
 // For CompositeSurface members, use multiPolygonFromSurfaceProperty instead.
 func polygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim int, resolver *curveResolver) (core.Polygon, error) {
 	if m.Polygon != nil {
-		return polygonFromXML(m.Polygon)
+		return polygonFromXML(m.Polygon, inheritDim)
 	}
 	if m.Surface != nil {
-		return polygonFromSurface(m.Surface, resolver)
+		return polygonFromSurface(m.Surface, resolver, inheritDim)
 	}
 	if m.OrientableSurface != nil {
 		os := m.OrientableSurface

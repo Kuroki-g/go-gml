@@ -4,6 +4,7 @@ import (
 	"encoding/xml"
 	"fmt"
 	"io"
+	"strconv"
 
 	core "github.com/Kuroki-g/go-gml/core"
 )
@@ -20,6 +21,7 @@ type Reader struct {
 	resolver    *curveResolver
 	prescanned  bool
 	pendingGrid *gridBounds
+	globalDim   int // srsDimension captured from root gml:Envelope; 0 if not yet seen
 }
 
 // NewReader creates a Reader that streams geometry elements from r.
@@ -68,7 +70,6 @@ var handlers = map[string]handlerFunc{
 	gmlPoint:      decodePointElement,
 	gmlLineString: decodeLineStringElement,
 	gmlMultiPoint: decodeMultiPointElement,
-	gmlEnvelope:   decodeEnvelopeElement,
 }
 
 // Next returns the next geometry found in the stream.
@@ -99,6 +100,15 @@ func (r *Reader) Next() (core.Geometry, error) {
 				return core.Geometry{}, err
 			}
 			continue
+		case gmlEnvelope:
+			for _, a := range se.Attr {
+				if a.Name.Local == "srsDimension" {
+					if d, err2 := strconv.Atoi(a.Value); err2 == nil && d > 0 {
+						r.globalDim = d
+					}
+				}
+			}
+			return decodeEnvelopeElement(r.dec, se)
 		case gmlPolygon:
 			return r.handlePolygon(r.dec, se)
 		case gmlSurface:

@@ -14,7 +14,7 @@ func (r *Reader) handleSolid(dec *xml.Decoder, se xml.StartElement) (core.Geomet
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: Solid: %w", err)
 	}
-	dim := derefDim(x.SrsDimension)
+	dim := preferDim(derefDim(x.SrsDimension), r.globalDim)
 	solid, err := solidFromXML(&x, dim, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err

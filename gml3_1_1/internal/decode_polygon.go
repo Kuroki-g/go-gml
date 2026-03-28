@@ -12,7 +12,7 @@ import (
 // handlePolygon decodes a gml:Polygon, caches it by gml:id for xlink:href resolution, and returns it.
 func (r *Reader) handlePolygon(dec *xml.Decoder, se xml.StartElement) (core.Geometry, error) {
 	id := extractGMLID(se)
-	g, err := decodePolygonElement(dec, se)
+	g, err := decodePolygonElement(dec, se, r.globalDim)
 	if err != nil {
 		return core.Geometry{}, err
 	}
@@ -24,12 +24,12 @@ func (r *Reader) handlePolygon(dec *xml.Decoder, se xml.StartElement) (core.Geom
 	return g, err
 }
 
-func decodePolygonElement(dec *xml.Decoder, se xml.StartElement) (core.Geometry, error) {
+func decodePolygonElement(dec *xml.Decoder, se xml.StartElement, fallbackDim int) (core.Geometry, error) {
 	var x gen.PolygonType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: Polygon: %w", err)
 	}
-	poly, err := polygonFromXML(&x)
+	poly, err := polygonFromXML(&x, fallbackDim)
 	if err != nil {
 		return core.Geometry{}, err
 	}
@@ -37,15 +37,8 @@ func decodePolygonElement(dec *xml.Decoder, se xml.StartElement) (core.Geometry,
 }
 
 // ringFromLinearRing builds a Ring from a decoded LinearRingType.
-// inheritDim is the srsDimension from the enclosing Polygon element.
-// NOTE: PLATEAU CityGML 2.0 files set srsDimension="3" only on the root
-// gml:Envelope; individual Polygon/LinearRing/posList elements carry no
-// srsDimension. Since this reader receives inheritDim from the Polygon only,
-// that top-level value is never propagated here, causing dim=0 to fall back
-// to effectiveDim heuristics (odd count → 3D; even count divisible by 6 → 2D
-// and potentially wrong). True fix requires threading srsDimension across the
-// full element stack, which is an architecture change.
-// TODO: inherit srsDimension from document root / parent CRS context.
+// inheritDim carries srsDimension from the enclosing Polygon (which in turn
+// inherits from the document-root gml:Envelope via Reader.globalDim).
 func ringFromLinearRing(lr *gen.LinearRingType, inheritDim int) (core.Ring, error) {
 	if lr == nil {
 		return nil, fmt.Errorf("gml: nil LinearRing")
@@ -78,8 +71,8 @@ func ringFromLinearRing(lr *gen.LinearRingType, inheritDim int) (core.Ring, erro
 	return nil, fmt.Errorf("gml: LinearRing has no coordinate data")
 }
 
-func polygonFromXML(x *gen.PolygonType) (core.Polygon, error) {
-	dim := derefDim(x.SrsDimension)
+func polygonFromXML(x *gen.PolygonType, fallbackDim int) (core.Polygon, error) {
+	dim := preferDim(derefDim(x.SrsDimension), fallbackDim)
 	var rings []core.Ring
 	if x.Exterior != nil && x.Exterior.LinearRing != nil {
 		r, err := ringFromLinearRing(x.Exterior.LinearRing, dim)

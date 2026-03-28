@@ -39,7 +39,7 @@ func (r *Reader) handleMultiCurve(dec *xml.Decoder, se xml.StartElement) (core.G
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: %s: %w", se.Name.Local, err)
 	}
-	dim := derefDim(x.SrsDimension)
+	dim := preferDim(derefDim(x.SrsDimension), r.globalDim)
 	var lines core.MultiLineString
 	for i := range x.CurveMember {
 		ls, err := lineStringFromCurveProperty(&x.CurveMember[i], dim, r.resolver)
@@ -67,7 +67,7 @@ func (r *Reader) handleMultiSurface(dec *xml.Decoder, se xml.StartElement) (core
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: %s: %w", se.Name.Local, err)
 	}
-	dim := derefDim(x.SrsDimension)
+	dim := preferDim(derefDim(x.SrsDimension), r.globalDim)
 	var polys core.MultiPolygon
 	for i := range x.SurfaceMember {
 		mp, err := multiPolygonFromSurfaceProperty(&x.SurfaceMember[i], dim, r.resolver)
@@ -168,7 +168,7 @@ func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDi
 		}
 	}
 	for i := range a.CompositeSurface {
-		mp, err := multiPolygonFromCompositeSurface(&a.CompositeSurface[i], resolver)
+		mp, err := multiPolygonFromCompositeSurface(&a.CompositeSurface[i], resolver, inheritDim)
 		if err != nil {
 			return nil, fmt.Errorf("CompositeSurface[%d]: %w", i, err)
 		}

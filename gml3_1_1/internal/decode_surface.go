@@ -12,7 +12,7 @@ import (
 // handleSurface decodes a gml:Surface, caches the resulting Polygon by gml:id, and returns it.
 func (r *Reader) handleSurface(dec *xml.Decoder, se xml.StartElement) (core.Geometry, error) {
 	id := extractGMLID(se)
-	g, err := decodeSurfaceElement(dec, se, r.resolver)
+	g, err := decodeSurfaceElement(dec, se, r.resolver, r.globalDim)
 	if err != nil {
 		return core.Geometry{}, err
 	}
@@ -24,23 +24,23 @@ func (r *Reader) handleSurface(dec *xml.Decoder, se xml.StartElement) (core.Geom
 	return g, err
 }
 
-func decodeSurfaceElement(dec *xml.Decoder, se xml.StartElement, resolver *curveResolver) (core.Geometry, error) {
+func decodeSurfaceElement(dec *xml.Decoder, se xml.StartElement, resolver *curveResolver, fallbackDim int) (core.Geometry, error) {
 	var x gen.SurfaceType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: Surface: %w", err)
 	}
-	poly, err := polygonFromSurface(&x, resolver)
+	poly, err := polygonFromSurface(&x, resolver, fallbackDim)
 	if err != nil {
 		return core.Geometry{}, err
 	}
 	return core.Geometry{Value: poly, SRSName: x.SrsName}, nil
 }
 
-func polygonFromSurface(x *gen.SurfaceType, resolver *curveResolver) (core.Polygon, error) {
+func polygonFromSurface(x *gen.SurfaceType, resolver *curveResolver, fallbackDim int) (core.Polygon, error) {
 	if x.Patches == nil || len(x.Patches.PolygonPatch) == 0 {
 		return core.Polygon{}, nil
 	}
-	return polygonFromPatch(&x.Patches.PolygonPatch[0], derefDim(x.SrsDimension), resolver)
+	return polygonFromPatch(&x.Patches.PolygonPatch[0], preferDim(derefDim(x.SrsDimension), fallbackDim), resolver)
 }
 
 func polygonFromPatch(patch *gen.PolygonPatchType, inheritDim int, resolver *curveResolver) (core.Polygon, error) {
