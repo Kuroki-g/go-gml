@@ -36,6 +36,16 @@ func decodePolygonElement(dec *xml.Decoder, se xml.StartElement) (core.Geometry,
 	return core.Geometry{Value: poly, SRSName: x.SrsName}, nil
 }
 
+// ringFromLinearRing builds a Ring from a decoded LinearRingType.
+// inheritDim is the srsDimension from the enclosing Polygon element.
+// NOTE: PLATEAU CityGML 2.0 files set srsDimension="3" only on the root
+// gml:Envelope; individual Polygon/LinearRing/posList elements carry no
+// srsDimension. Since this reader receives inheritDim from the Polygon only,
+// that top-level value is never propagated here, causing dim=0 to fall back
+// to effectiveDim heuristics (odd count → 3D; even count divisible by 6 → 2D
+// and potentially wrong). True fix requires threading srsDimension across the
+// full element stack, which is an architecture change.
+// TODO: inherit srsDimension from document root / parent CRS context.
 func ringFromLinearRing(lr *gen.LinearRingType, inheritDim int) (core.Ring, error) {
 	if lr == nil {
 		return nil, fmt.Errorf("gml: nil LinearRing")
