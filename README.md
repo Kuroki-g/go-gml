@@ -1,5 +1,72 @@
 # go-gml
 
+Pure Go implementation of a GML (ISO 19136) parser. Reads real Japanese government GML data — 国土数値情報 (KSJ), 基盤地図情報, and PLATEAU CityGML.
+
+## Install CLI
+
+```bash
+go install github.com/Kuroki-g/go-gml/cmd/gml-parser@latest
+```
+
+```bash
+# Convert GML to GeoJSON
+gml-parser convert -i data.gml --swap > out.geojson
+
+# Show geometry statistics
+gml-parser inspect -i data.gml
+```
+
+`--swap` is typically needed for 国土数値情報 files, which store coordinates as lat/lon (GeoJSON requires lon/lat).
+
+## Use as a library
+
+```bash
+go get github.com/Kuroki-g/go-gml/gml
+```
+
+```go
+import "github.com/Kuroki-g/go-gml/gml"
+
+f, _ := os.Open("data.gml")
+r := gml.NewReader321(f)
+for {
+    g, err := r.Next()
+    if errors.Is(err, io.EOF) {
+        break
+    }
+    fmt.Println(g.Value) // Point, LineString, Polygon, ...
+}
+```
+
+## Supported geometry (GML 3.2.1)
+
+| Element | Output type | Status |
+|---|---|---|
+| `gml:Point` | `Point` | ✓ |
+| `gml:LineString` | `LineString` | ✓ |
+| `gml:Polygon` | `Polygon` | ✓ |
+| `gml:MultiPoint` | `MultiPoint` | ✓ |
+| `gml:MultiCurve` / `gml:MultiLineString` | `MultiLineString` | ✓ |
+| `gml:MultiSurface` / `gml:MultiPolygon` | `MultiPolygon` | ✓ |
+| `gml:Curve` + `LineStringSegment` | `LineString` | ✓ |
+| `gml:Surface` + `PolygonPatch` | `Polygon` | ✓ |
+| `gml:CompositeCurve` / `gml:OrientableCurve` | `LineString` | ✓ |
+| `gml:CompositeSurface` / `gml:OrientableSurface` | `Polygon` | ✓ |
+| `gml:Grid` / `gml:RectifiedGrid` | `GridCoverage` | ✓ |
+
+GML 3.1.1 and GML 2.1.2 are also supported via `gml.NewReader311` / `gml.NewReader212`.
+
+## Modules
+
+| Module | Purpose |
+|---|---|
+| `github.com/Kuroki-g/go-gml/gml` | Main entry point (re-exports all versions) |
+| `github.com/Kuroki-g/go-gml/core` | Shared geometry types |
+| `github.com/Kuroki-g/go-gml/gml3_2_1` | GML 3.2.1 parser |
+| `github.com/Kuroki-g/go-gml/gml3_1_1` | GML 3.1.1 parser |
+| `github.com/Kuroki-g/go-gml/gml2_1_2` | GML 2.1.2 parser |
+| `github.com/Kuroki-g/go-gml/cmd/gml-parser` | CLI tool |
+
 ## LICENSES
 
 Apache License Version 2.0. See LICENSE file.
