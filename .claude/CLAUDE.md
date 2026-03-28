@@ -132,6 +132,17 @@ go-gml/core
 
 ---
 
+## リリース手順
+
+詳細は [`docs/release.md`](../docs/release.md) を参照。
+
+- ローカル開発中はバージョン bump・タグ不要 (`go.work` で解決)
+- bump が必要なのはコードが変わったモジュールだけ (下流は MVS が自動選択)
+- 依存順: `core → gml3_2_1/gml3_1_1/gml2_1_2 → gml → cmd/gml-parser`
+- tidy は `GONOSUMDB='*'` を付けて実行する
+
+---
+
 ## 開発コマンド
 
 **必ず Makefile 経由で実行すること。** 直接 `go test` / `go run` は WSL `/tmp noexec` 制約で失敗する。Bash コマンドは必ず1つずつ実行すること (`&&` / `||` 禁止)。
@@ -177,7 +188,7 @@ make gml-parser-run
 ### 依存関係
 
 - 各パーサモジュールは `encoding/xml` (stdlib) のみ。外部ライブラリを追加しない
-- CLI (`docs/go/gml-parser/`) は独立モジュールなので外部ライブラリを使ってよい
+- CLI (`cmd/gml-parser/`) は独立モジュールなので外部ライブラリを使ってよい
 
 ---
 
