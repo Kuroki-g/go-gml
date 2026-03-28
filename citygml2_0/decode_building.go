@@ -57,6 +57,42 @@ func decodeBuilding(dec *xml.Decoder, se xml.StartElement, gmlDec core.Decoder) 
 					return nil, err
 				}
 				b.Lod1Solid = g
+			case "lod1MultiSurface":
+				g, err := decodeGeometryProp(dec, gmlDec)
+				if err != nil {
+					return nil, err
+				}
+				b.Lod1MultiSurface = g
+			case "lod1TerrainIntersection":
+				g, err := decodeGeometryProp(dec, gmlDec)
+				if err != nil {
+					return nil, err
+				}
+				b.Lod1TerrainIntersection = g
+			case "lod2Solid":
+				g, err := decodeGeometryProp(dec, gmlDec)
+				if err != nil {
+					return nil, err
+				}
+				b.Lod2Solid = g
+			case "lod2MultiSurface":
+				g, err := decodeGeometryProp(dec, gmlDec)
+				if err != nil {
+					return nil, err
+				}
+				b.Lod2MultiSurface = g
+			case "lod2MultiCurve":
+				g, err := decodeGeometryProp(dec, gmlDec)
+				if err != nil {
+					return nil, err
+				}
+				b.Lod2MultiCurve = g
+			case "lod2TerrainIntersection":
+				g, err := decodeGeometryProp(dec, gmlDec)
+				if err != nil {
+					return nil, err
+				}
+				b.Lod2TerrainIntersection = g
 			default:
 				if err := dec.Skip(); err != nil {
 					return nil, err

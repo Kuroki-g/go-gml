@@ -275,6 +275,79 @@ GML32_SEEDS = [
 ]
 
 # ---------------------------------------------------------------------------
+# CityGML 2.0  (bldg namespace, GML 3.1.1 geometry)
+# ---------------------------------------------------------------------------
+
+NS_BLDG = 'xmlns:bldg="http://www.opengis.net/citygml/building/2.0"'
+NS_GML311_BLDG = f'{NS_BLDG} xmlns:gml="http://www.opengis.net/gml"'
+
+_SOLID3D = (
+    '<gml:Solid srsDimension="3">'
+    '<gml:exterior><gml:CompositeSurface>'
+    '<gml:surfaceMember><gml:Polygon><gml:exterior><gml:LinearRing>'
+    '<gml:posList>0 0 0 1 0 0 1 1 0 0 0 0</gml:posList>'
+    '</gml:LinearRing></gml:exterior></gml:Polygon></gml:surfaceMember>'
+    '</gml:CompositeSurface></gml:exterior>'
+    '</gml:Solid>'
+)
+
+_MULTISURFACE3D = (
+    '<gml:MultiSurface srsDimension="3">'
+    '<gml:surfaceMember><gml:Polygon><gml:exterior><gml:LinearRing>'
+    '<gml:posList>0 0 0 1 0 0 1 1 0 0 0 0</gml:posList>'
+    '</gml:LinearRing></gml:exterior></gml:Polygon></gml:surfaceMember>'
+    '</gml:MultiSurface>'
+)
+
+CITYGML20_SEEDS = [
+    # lod0RoofEdge (MultiSurface)
+    f'<bldg:Building {NS_GML311_BLDG} gml:id="b1">'
+    f'<bldg:lod0RoofEdge>{_MULTISURFACE3D}</bldg:lod0RoofEdge>'
+    f'</bldg:Building>',
+    # lod0FootPrint (MultiSurface)
+    f'<bldg:Building {NS_GML311_BLDG} gml:id="b2">'
+    f'<bldg:lod0FootPrint>{_MULTISURFACE3D}</bldg:lod0FootPrint>'
+    f'</bldg:Building>',
+    # lod1Solid
+    f'<bldg:Building {NS_GML311_BLDG} gml:id="b3">'
+    f'<bldg:lod1Solid>{_SOLID3D}</bldg:lod1Solid>'
+    f'</bldg:Building>',
+    # lod1MultiSurface
+    f'<bldg:Building {NS_GML311_BLDG} gml:id="b3b">'
+    f'<bldg:lod1MultiSurface>{_MULTISURFACE3D}</bldg:lod1MultiSurface>'
+    f'</bldg:Building>',
+    # lod2Solid
+    f'<bldg:Building {NS_GML311_BLDG} gml:id="b4">'
+    f'<bldg:lod2Solid>{_SOLID3D}</bldg:lod2Solid>'
+    f'</bldg:Building>',
+    # lod2MultiSurface
+    f'<bldg:Building {NS_GML311_BLDG} gml:id="b5">'
+    f'<bldg:lod2MultiSurface>{_MULTISURFACE3D}</bldg:lod2MultiSurface>'
+    f'</bldg:Building>',
+    # lod2MultiCurve
+    f'<bldg:Building {NS_GML311_BLDG} gml:id="b5b">'
+    f'<bldg:lod2MultiCurve>{_MULTISURFACE3D}</bldg:lod2MultiCurve>'
+    f'</bldg:Building>',
+    # lod2Solid + lod2MultiSurface (両方)
+    f'<bldg:Building {NS_GML311_BLDG} gml:id="b6">'
+    f'<bldg:lod2Solid>{_SOLID3D}</bldg:lod2Solid>'
+    f'<bldg:lod2MultiSurface>{_MULTISURFACE3D}</bldg:lod2MultiSurface>'
+    f'</bldg:Building>',
+    # Building without geometry
+    f'<bldg:Building {NS_GML311_BLDG} gml:id="b7"></bldg:Building>',
+    # CityModel wrapper
+    f'<core:CityModel xmlns:core="http://www.opengis.net/citygml/2.0" {NS_GML311_BLDG}>'
+    f'<core:cityObjectMember>'
+    f'<bldg:Building gml:id="b8"><bldg:lod2Solid>{_SOLID3D}</bldg:lod2Solid></bldg:Building>'
+    f'</core:cityObjectMember>'
+    f'</core:CityModel>',
+    # Empty root
+    '<root/>',
+    # Empty input
+    '',
+]
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
@@ -283,6 +356,7 @@ def main() -> None:
     write_corpus("gml2_1_2", "FuzzReader", GML2_SEEDS)
     write_corpus("gml3_1_1", "FuzzReader", GML311_SEEDS)
     write_corpus("gml3_2_1", "FuzzReader", GML32_SEEDS)
+    write_corpus("citygml2_0", "FuzzReader", CITYGML20_SEEDS)
     print("Done.")
 
 
