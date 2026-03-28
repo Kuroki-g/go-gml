@@ -84,6 +84,19 @@ Copyright (c) 2012, 2018 Open Geospatial Consortium
 
 -----------------------------------------------------------------------
 
+`docs/go/xsd2go-lite/schemas/citygml` files follows:
+
+-----------------------------------------------------------------------
+
+Policies, Procedures, Terms, and Conditions of OGC(r) are available
+  https://www.ogc.org/legal/ .
+
+OGC and OpenGIS are registered trademarks of Open Geospatial Consortium.
+
+Copyright (c) 2012, 2023 Open Geospatial Consortium
+
+-----------------------------------------------------------------------
+
 `docs/go/xsd2go-lite/schemas/xlink/xlink.xsd` follows:
 
 -----------------------------------------------------------------------
