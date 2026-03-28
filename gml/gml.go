@@ -29,6 +29,9 @@ type (
 // Reader is the common interface for all GML streaming geometry readers.
 type Reader = core.Reader
 
+// Decoder decodes a single GML geometry subtree. Implemented by all GML Reader types.
+type Decoder = core.Decoder
+
 // Reader321 is a GML 3.2.1 streaming geometry reader.
 type Reader321 = gml3_2_1.Reader
 
