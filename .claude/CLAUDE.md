@@ -7,6 +7,7 @@
 **実装・修正・判断を行う前に必ず XSD を確認すること。**
 
 - GML 要素の挙動 → `docs/go/xsd2go-lite/schemas/gml/3.2.1/` の XSD
+- CityGML 要素の挙動 → `docs/go/xsd2go-lite/schemas/citygml/` の XSD (1.0 / 2.0 / 3.0)
 - CRS/srsName → GML XSD の `SRSReferenceGroup` 定義
 
 **禁止 (Stop フックでブロック):** 「スコープ外」「仕様外」「対応しない」
@@ -27,7 +28,13 @@
 
 **基本方針:** 実データで使われる GML 要素を順次対応する。対応済み要素の一覧は README を参照。
 
-### マイルストーン
+**参照仕様書:**
+- CityGML 2.0: OGC 12-019 (`testdata/12-019_OGC_City_Geography_Markup_Language_CityGML_Encoding_Standard.pdf`)
+  - LoD 定義: Section 6.2 (p.11–12), Tab. 3 (p.12)
+  - Building モデル: Section 10.3 (p.63–)
+- CityGML XSD: `docs/go/xsd2go-lite/schemas/citygml/` (v1.0 / v2.0 / v3.0)
+
+### マイルストーン (GML パーサ)
 
 | レベル | 状態 | 説明 |
 |---|---|---|
@@ -35,11 +42,21 @@
 | **SF-1** | ✓ 完了 | Curve / Surface / OrientableCurve + CompositeCurve / CompositeSurface / OrientableSurface |
 | **SF-2** | 未実装 | Arc / Circle 等の曲線補間 (日本政府データでは不要なため低優先) |
 
+### マイルストーン (CityGML 2.0)
+
+| LoD | 状態 | 説明 |
+|---|---|---|
+| **LoD0** | 未実装 | `citygml2_0` モジュール骨格 + `gml:Solid` パース + フットプリント (MultiSurface) |
+| **LoD1** | 未実装 | ブロックモデル (`bldg:lod1Solid`) |
+| **LoD2** | 未実装 | 屋根形状あり (`bldg:lod2Solid`) |
+| **LoD3** | 未実装 | 建築詳細モデル (`bldg:lod3Solid`) |
+
 ### 未実装・残課題
 
-- **SF-2**: Arc / Circle 等の曲線補間 — 低優先
+- **CityGML 2.0 LoD0〜3**: 着手予定
 - **gml3_1_1 srsDimension 継承** (`internal/decode_polygon.go:48`): ルート `gml:Envelope` の srsDimension が個々の Polygon に伝播しない。アーキテクチャ変更が必要
-- **gml3_1_1 テストなし**: N03 旧形式・W09 統合テストの移植が必要
+- **gml3_1_1 テストなし**: N03 旧形式データ取得困難。CityGML 実装で代替する方針
+- **SF-2**: Arc / Circle 等の曲線補間 — 低優先
 
 ---
 
@@ -79,8 +96,19 @@ go-gml/                              # module root
 │   ├── go.mod                       # github.com/Kuroki-g/go-gml/gml  ← GML ユーザーの入口 (re-export)
 │   ├── gml.go                       # core 型を type alias re-export + gml3_2_1.NewReader ラップ
 │   └── crs.go                       # EPSGFromSRSName 公開
+├── citygml-core/
+│   ├── go.mod                       # github.com/Kuroki-g/go-gml/citygml-core
+│   ├── city_object.go               # CityObject, CityModel (全バージョン共通型)
+│   ├── building.go                  # Building (lod1-4 共通フィールド)
+│   └── external_ref.go             # ExternalReference
 ├── citygml2_0/
-│   └── go.mod                       # github.com/Kuroki-g/go-gml/citygml2_0 (将来)
+│   ├── go.mod                       # github.com/Kuroki-g/go-gml/citygml2_0
+│   ├── reader.go                    # NewReader(), Decode()
+│   ├── building.go                  # Building (citygml-core.Building embed + lod0FootPrint/RoofEdge)
+│   ├── generated/
+│   │   └── geometry.go              # xsd2go-lite 生成
+│   └── internal/
+│       └── decode_*.go
 ├── waterml/
 │   └── go.mod                       # github.com/Kuroki-g/go-gml/waterml (将来)
 ├── docs/                            # 内部用ツール (xsd2go-lite, gml-parser)
@@ -91,7 +119,12 @@ go-gml/                              # module root
 ```
 go-gml/core
   ↑
-  ├── go-gml/gml3_1_1  ─→  citygml2_0 等 (gml3_2_1 は入らない)
+  ├── go-gml/citygml-core             # CityObject/Building 等の共通型
+  │     ↑
+  │     └── go-gml/citygml2_0         # v2.0 パーサ (gml3_1_1 + citygml-core に依存)
+  │           ↑
+  │           └── go-gml/citygml3_0   # (将来) v3.0 パーサ (gml3_2_1 + citygml-core に依存)
+  ├── go-gml/gml3_1_1  ─→  citygml2_0
   └── go-gml/gml3_2_1  ─→  WaterML 等
         ↑
         └── go-gml/gml  ← ユーザー入口 (re-export)
@@ -101,13 +134,17 @@ go-gml/core
 
 ### 拡張モジュール
 
-| モジュール | 場所 | GML バージョン |
+| モジュール | 場所 | 依存 |
 |---|---|---|
-| `github.com/Kuroki-g/go-gml/citygml2_0` | `citygml2_0/` | GML 3.1.1 (CityGML 2.0) |
-| `github.com/Kuroki-g/go-gml/waterml` | `waterml/` | GML 3.2.1 |
+| `github.com/Kuroki-g/go-gml/citygml-core` | `citygml-core/` | core のみ |
+| `github.com/Kuroki-g/go-gml/citygml2_0` | `citygml2_0/` | core + gml3_1_1 + citygml-core |
+| `github.com/Kuroki-g/go-gml/waterml` | `waterml/` | core + gml3_2_1 |
 
-**CityGML モジュール命名方針:** `gml3_2_1` / `gml3_1_1` と同パターンでバージョン別に別モジュール (`citygml2_0`, `citygml3_0` 等)。バージョン間の互換性は気にしない。
-- CityGML 2.0: 対象スキーマ `http://www.opengis.net/citygml/2.0`、依存: `go-gml/core` + `go-gml/gml3_1_1` のみ
+**CityGML モジュール設計方針:**
+- `citygml-core`: 全バージョン共通の Go 型 (`CityObject`, `CityModel`, `Building` lod1-4, `ExternalReference`) + 共通要素名 const
+- `citygml2_0`: `citygml-core.Building` を embed して v2.0 固有フィールド (`Lod0FootPrint`, `Lod0RoofEdge`) を追加。NS const を定義して公開
+- `citygml3_0` (将来): 同様に v3.0 固有フィールドを追加。GML 3.2.1 ベース
+- バージョン固有の namespace URI・要素名 const は各バージョンモジュールで定義し re-export
 
 ### 命名規則
 - 生成パッケージ (`v3_2_1`, `v3_1_1`, `v2_1_2`): アンダースコアOK (Google style guide generated code 例外)
@@ -130,6 +167,14 @@ go-gml/core
 
 **必ず Makefile 経由で実行すること。** 直接 `go test` / `go run` は WSL `/tmp noexec` 制約で失敗する。Bash コマンドは必ず1つずつ実行すること (`&&` / `||` 禁止)。
 
+**PDF 解析が必要な場合:** `uv` 経由で `pypdf` を使う。事前にユーザーの許可を取ること。
+
+```bash
+uv venv /tmp/pdf-env
+uv pip install --system-certs --python /tmp/pdf-env/bin/python pypdf
+/tmp/pdf-env/bin/python3 -c "import pypdf; ..."
+```
+
 ```bash
 make build          # go build ./...
 make test           # 全テスト実行
@@ -142,6 +187,16 @@ make xsd2go-gen     # GML XSD → gml3_2_1/generated/geometry.go 生成 (GML_VER
 make gml-parser-build
 make gml-parser-run
 ```
+
+---
+
+## ファイル探索ルール
+
+**Glob の結果は truncated される場合がある。** truncated された結果から「ファイルが存在しない」と結論づけてはならない。
+
+- ディレクトリ構造を確認するときは **まず `ls` でトップレベルを確認**してから掘り下げる
+- `**/*.xsd` のような深いパターンを使う前に `ls <dir>/` で上位構造を把握する
+- 「見つからなかった」と言う前に `ls` で確認すること
 
 ---
 
