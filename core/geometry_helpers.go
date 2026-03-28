@@ -82,6 +82,8 @@ func RingFromPosListString(s string, dim int) (Ring, error) {
 // If dim is explicitly provided (2 or 3), it is returned as-is.
 // If dim is 0 (srsDimension omitted), the dimension is inferred from nValues:
 // an odd value count cannot be 2D, so dim=3 is assumed.
+// When nValues is divisible by both 2 and 3 (e.g. 6, 12, 18), 2D is assumed
+// because the true dimension cannot be determined without the parent CRS.
 // Dimensions other than 0, 2, or 3 are not supported and return an error.
 func effectiveDim(dim, nValues int) (int, error) {
 	switch dim {
