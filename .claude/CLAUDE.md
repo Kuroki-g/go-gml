@@ -46,16 +46,16 @@
 
 | LoD | 状態 | 説明 |
 |---|---|---|
-| **LoD0** | 未実装 | `citygml2_0` モジュール骨格 + `gml:Solid` パース + フットプリント (MultiSurface) |
+| **LoD0** | ✓ 完了 | `reader.go` / `building.go` / `internal/subtree.go` 実装済み。`lod0FootPrint` / `lod0RoofEdge` (MultiSurface) をストリーム読み取り |
 | **LoD1** | 未実装 | ブロックモデル (`bldg:lod1Solid`) |
 | **LoD2** | 未実装 | 屋根形状あり (`bldg:lod2Solid`) |
 | **LoD3** | 未実装 | 建築詳細モデル (`bldg:lod3Solid`) |
 
 ### 未実装・残課題
 
-- **CityGML 2.0 LoD0〜3**: 着手予定
+- **CityGML 2.0 LoD1**: 次の実装対象 (`bldg:lod1Solid` → `gml:Solid`)
 - **gml3_1_1 srsDimension 継承** (`internal/decode_polygon.go:48`): ルート `gml:Envelope` の srsDimension が個々の Polygon に伝播しない。アーキテクチャ変更が必要
-- **gml3_1_1 テストなし**: N03 旧形式データ取得困難。CityGML 実装で代替する方針
+- **gml3_1_1 ストリームテストなし**: N03 旧形式データ取得困難。`Decode` メソッドテストは追加済み。CityGML 実装で代替する方針
 - **SF-2**: Arc / Circle 等の曲線補間 — 低優先
 
 ---
@@ -69,24 +69,25 @@ go-gml/                              # module root
 ├── core/
 │   ├── go.mod                       # github.com/Kuroki-g/go-gml/core
 │   ├── geometry.go                  # 公開型: Point, LineString, Polygon, Multi*, Bound, GridCoverage
-│   └── reader.go                    # Geometry struct, Reader interface
+│   ├── reader.go                    # Geometry struct, Reader interface
+│   └── decoder.go                   # Decoder interface (Decode メソッド)
 ├── gml2_1_2/
 │   ├── go.mod                       # github.com/Kuroki-g/go-gml/gml2_1_2
-│   ├── reader.go                    # NewReader(), DecodeGeometry()
+│   ├── reader.go                    # NewReader(); Decode() — core.Decoder 実装
 │   ├── generated/
 │   │   └── geometry.go              # xsd2go-lite 生成 (このモジュール専用)
 │   └── internal/
 │       └── decode_*.go
 ├── gml3_1_1/
 │   ├── go.mod                       # github.com/Kuroki-g/go-gml/gml3_1_1
-│   ├── reader.go                    # NewReader(), DecodeGeometry()
+│   ├── reader.go                    # NewReader(); Decode() — core.Decoder 実装
 │   ├── generated/
 │   │   └── geometry.go              # xsd2go-lite 生成 (このモジュール専用)
 │   └── internal/
 │       └── decode_*.go
 ├── gml3_2_1/
 │   ├── go.mod                       # github.com/Kuroki-g/go-gml/gml3_2_1
-│   ├── reader.go                    # NewReader(), DecodeGeometry()
+│   ├── reader.go                    # NewReader(); Decode() — core.Decoder 実装
 │   ├── generated/
 │   │   └── geometry.go              # xsd2go-lite 生成 (このモジュール専用)
 │   └── internal/
@@ -96,19 +97,16 @@ go-gml/                              # module root
 │   ├── go.mod                       # github.com/Kuroki-g/go-gml/gml  ← GML ユーザーの入口 (re-export)
 │   ├── gml.go                       # core 型を type alias re-export + gml3_2_1.NewReader ラップ
 │   └── crs.go                       # EPSGFromSRSName 公開
-├── citygml-core/
-│   ├── go.mod                       # github.com/Kuroki-g/go-gml/citygml-core
-│   ├── city_object.go               # CityObject, CityModel (全バージョン共通型)
-│   ├── building.go                  # Building (lod1-4 共通フィールド)
-│   └── external_ref.go             # ExternalReference
 ├── citygml2_0/
-│   ├── go.mod                       # github.com/Kuroki-g/go-gml/citygml2_0
-│   ├── reader.go                    # NewReader(), Decode()
-│   ├── building.go                  # Building (citygml-core.Building embed + lod0FootPrint/RoofEdge)
+│   ├── go.mod                       # github.com/Kuroki-g/go-gml/citygml2_0 (require core, gml3_1_1)
+│   ├── reader.go                    # (未実装) NewReader(r io.ReadSeeker, dec core.Decoder) *Reader; Next() (*Building, error)
+│   ├── building.go                  # (未実装) Building (lod0FootPrint/RoofEdge を直接定義)
 │   ├── generated/
-│   │   └── geometry.go              # xsd2go-lite 生成
+│   │   ├── building.go              # xsd2go-lite 生成 (citygml/building/2.0)
+│   │   ├── core.go                  # xsd2go-lite 生成 (citygml/2.0)
+│   │   └── xal.go                   # xsd2go-lite 生成 (xAL 2.0)
 │   └── internal/
-│       └── decode_*.go
+│       └── decode_*.go              # (未実装)
 ├── waterml/
 │   └── go.mod                       # github.com/Kuroki-g/go-gml/waterml (将来)
 ├── docs/                            # 内部用ツール (xsd2go-lite, gml-parser)
@@ -117,18 +115,18 @@ go-gml/                              # module root
 
 ### モジュール依存関係
 ```
-go-gml/core
+go-gml/core  (core.Decoder interface を定義)
   ↑
-  ├── go-gml/citygml-core             # CityObject/Building 等の共通型
+  ├── go-gml/citygml2_0               # v2.0 パーサ; gml3_1_1 に直接依存
   │     ↑
-  │     └── go-gml/citygml2_0         # v2.0 パーサ (gml3_1_1 + citygml-core に依存)
-  │           ↑
-  │           └── go-gml/citygml3_0   # (将来) v3.0 パーサ (gml3_2_1 + citygml-core に依存)
-  ├── go-gml/gml3_1_1  ─→  citygml2_0
-  └── go-gml/gml3_2_1  ─→  WaterML 等
-        ↑
-        └── go-gml/gml  ← ユーザー入口 (re-export)
+  │     └── go-gml/citygml3_0         # (将来) v3.0 パーサ (同様に core.Decoder DI)
+  ├── go-gml/gml3_1_1                 # core.Decoder を実装 (Decode メソッド追加)
+  ├── go-gml/gml3_2_1                 # core.Decoder を実装 (Decode メソッド追加)
+  │     ↑
+  │     └── go-gml/gml  ← ユーザー入口 (re-export)
+  └── go-gml/gml2_1_2                 # core.Decoder を実装 (Decode メソッド追加)
 ```
+※ `citygml-core` (将来): `citygml3_0` 実装時に `citygml2_0` から共通型を切り出して追加予定
 
 `go.work` でローカル管理。
 
@@ -136,14 +134,14 @@ go-gml/core
 
 | モジュール | 場所 | 依存 |
 |---|---|---|
-| `github.com/Kuroki-g/go-gml/citygml-core` | `citygml-core/` | core のみ |
-| `github.com/Kuroki-g/go-gml/citygml2_0` | `citygml2_0/` | core + gml3_1_1 + citygml-core |
+| `github.com/Kuroki-g/go-gml/citygml2_0` | `citygml2_0/` | core + gml3_1_1 |
 | `github.com/Kuroki-g/go-gml/waterml` | `waterml/` | core + gml3_2_1 |
+| `github.com/Kuroki-g/go-gml/citygml-core` | `citygml-core/` (将来) | core のみ |
 
 **CityGML モジュール設計方針:**
-- `citygml-core`: 全バージョン共通の Go 型 (`CityObject`, `CityModel`, `Building` lod1-4, `ExternalReference`) + 共通要素名 const
-- `citygml2_0`: `citygml-core.Building` を embed して v2.0 固有フィールド (`Lod0FootPrint`, `Lod0RoofEdge`) を追加。NS const を定義して公開
-- `citygml3_0` (将来): 同様に v3.0 固有フィールドを追加。GML 3.2.1 ベース
+- `citygml2_0`: `gml3_1_1` に直接依存。`NewReader` は `core.Decoder` を受け取る形 (将来の GML バージョン差し替え口)。`Building` 型を直接定義 (`lod0FootPrint`/`lod0RoofEdge`)
+- `citygml-core` (将来): `citygml3_0` 実装時に共通型 (`CityObject`, `CityModel`, `Building`) を切り出す予定
+- `citygml3_0` (将来): 同様に `core.Decoder` DI。GML 3.2.1 ベース
 - バージョン固有の namespace URI・要素名 const は各バージョンモジュールで定義し re-export
 
 ### 命名規則
@@ -159,6 +157,7 @@ go-gml/core
 - ローカル開発中はバージョン bump・タグ不要 (`go.work` で解決)
 - bump が必要なのはコードが変わったモジュールだけ (下流は MVS が自動選択)
 - 依存順: `core → gml3_2_1/gml3_1_1/gml2_1_2 → gml → cmd/gml-parser`
+- `citygml2_0` リリース時: `core` を先に bump (v0.1.2 以降) してからタグを打つ
 - tidy は `GONOSUMDB='*'` を付けて実行する
 
 ---
@@ -183,6 +182,7 @@ make cover          # カバレッジレポート
 make xsd2go-build   # xsd2go-lite バイナリビルド
 make xsd2go-test    # xsd2go-lite テスト
 make xsd2go-gen     # GML XSD → gml3_2_1/generated/geometry.go 生成 (GML_VERSION=3.2.1 デフォルト)
+make citygml2_0-gen # CityGML 2.0 XSD → citygml2_0/generated/{building,core,xal}.go 生成
 
 make gml-parser-build
 make gml-parser-run

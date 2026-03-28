@@ -50,7 +50,7 @@ endif
 build:
 	go build ./...
 
-MODULES := core gml2_1_2 gml3_1_1 gml3_2_1 gml
+MODULES := core gml2_1_2 gml3_1_1 gml3_2_1 gml citygml2_0
 
 test:
 	@for m in $(MODULES); do \
