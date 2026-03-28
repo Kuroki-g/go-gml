@@ -117,6 +117,10 @@ go-gml/                              # module root
 │           └── version.go           # version サブコマンド (vcs.revision から自動取得)
 ├── waterml/
 │   └── go.mod                       # github.com/Kuroki-g/go-gml/waterml (将来)
+├── scripts/
+│   ├── e2e_random.sh                # E2E スモークテスト (gml-parser でランダム順に inspect/convert)
+│   └── gen_fuzz_seeds.py            # fuzz seed corpus 生成 (gml*/testdata/fuzz/FuzzReader/)
+├── pyproject.toml                   # uv プロジェクト定義 (scripts/ 用; 現在は stdlib のみ)
 ├── docs/                            # 内部用ツール (xsd2go-lite, gml-parser)
 └── testdata/                        # 実 GML サンプル (CC BY 4.0)
 ```
@@ -192,6 +196,8 @@ make xsd2go-test    # xsd2go-lite テスト
 make xsd2go-gen     # GML XSD → gml3_2_1/generated/geometry.go 生成 (GML_VERSION=3.2.1 デフォルト)
 make citygml2_0-gen # CityGML 2.0 XSD → citygml2_0/generated/{building,core,xal}.go 生成
 
+make fuzz-gen       # fuzz seed corpus 生成 (gml*/testdata/fuzz/FuzzReader/) ← 毎回再生成
+
 make gml-parser-build
 make gml-parser-run
 
@@ -214,6 +220,10 @@ make citygml-parser-run
 ## テスト方針
 
 `make test` で全テストを実行する。build tag による分離は現状未使用。
+
+**fuzz テスト:** `gml2_1_2/`, `gml3_1_1/`, `gml3_2_1/` に `fuzz_test.go` (`FuzzReader`) 追加済み。
+seed corpus は `make fuzz-gen` (→ `scripts/gen_fuzz_seeds.py`) で都度生成する。corpus ファイルは gitignore 済み (`**/testdata/fuzz/`)。
+実行: `go -C gml3_2_1 test -fuzz=FuzzReader -fuzztime=60s`
 
 ---
 

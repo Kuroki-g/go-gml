@@ -51,7 +51,8 @@ for {
 | `gml:Curve` + `LineStringSegment` | `LineString` | ✓ |
 | `gml:Surface` + `PolygonPatch` | `Polygon` | ✓ |
 | `gml:CompositeCurve` / `gml:OrientableCurve` | `LineString` | ✓ |
-| `gml:CompositeSurface` / `gml:OrientableSurface` | `Polygon` | ✓ |
+| `gml:CompositeSurface` | `MultiPolygon` | ✓ |
+| `gml:OrientableSurface` | `Polygon` | ✓ |
 | `gml:Grid` / `gml:RectifiedGrid` | `GridCoverage` | ✓ |
 | `gml:Solid` | `Solid` | ✓ (GML 3.1.1) |
 
