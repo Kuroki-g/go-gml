@@ -6,7 +6,7 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-BIN="$REPO_ROOT/docs/go/gml-parser/gml-parser"
+BIN="$REPO_ROOT/cmd/gml-parser/gml-parser"
 TESTDATA="$REPO_ROOT/testdata"
 
 # Build
