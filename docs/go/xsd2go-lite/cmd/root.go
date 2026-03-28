@@ -17,6 +17,7 @@ var (
 	skipAbstract bool
 	withDoc      bool
 	catalogPairs []string
+	omitNS       []string
 )
 
 var rootCmd = &cobra.Command{
@@ -42,6 +43,7 @@ func init() {
 	rootCmd.Flags().BoolVar(&skipAbstract, "skip-abstract", false, "Skip abstract types")
 	rootCmd.Flags().BoolVar(&withDoc, "with-doc", false, "Include XSD documentation as field comments")
 	rootCmd.Flags().StringArrayVar(&catalogPairs, "catalog", nil, "Namespace-to-local-path mapping: ns=path (repeatable)")
+	rootCmd.Flags().StringArrayVar(&omitNS, "omit-namespace", nil, "Namespace URI to omit from output (repeatable)")
 	_ = rootCmd.MarkFlagRequired("namespace")
 }
 
@@ -63,7 +65,7 @@ func run(inputXSD string) error {
 		fmt.Fprintf(os.Stderr, "warn: no types found for namespace %q\n", namespace)
 	}
 
-	src, err := xsdlite.Generate(types, pkgName, skipAbstract, withDoc)
+	src, err := xsdlite.Generate(types, pkgName, skipAbstract, withDoc, omitNS)
 	if err != nil {
 		// Print unformatted source for debugging, but still report error.
 		fmt.Fprint(os.Stderr, src)

@@ -119,7 +119,7 @@ func TestBuildTagSuffix(t *testing.T) {
 // ---- Generate ----
 
 func TestGenerate_empty(t *testing.T) {
-	src, err := Generate(nil, "mypkg", false, false)
+	src, err := Generate(nil, "mypkg", false, false, nil)
 	if err != nil {
 		t.Fatalf("Generate(nil): %v", err)
 	}
@@ -138,7 +138,7 @@ func TestGenerate_singleStruct(t *testing.T) {
 			},
 		},
 	}
-	src, err := Generate(types, "gml", false, false)
+	src, err := Generate(types, "gml", false, false, nil)
 	if err != nil {
 		t.Fatalf("Generate: %v", err)
 	}
@@ -161,7 +161,7 @@ func TestGenerate_skipAbstract(t *testing.T) {
 			{GoName: "Id", GoType: "string", XMLTag: "id,attr", IsAttr: true},
 		}},
 	}
-	src, err := Generate(types, "gml", true, false)
+	src, err := Generate(types, "gml", true, false, nil)
 	if err != nil {
 		t.Fatalf("Generate: %v", err)
 	}
@@ -179,7 +179,7 @@ func TestGenerate_emptyName(t *testing.T) {
 		{Name: "", Fields: []Field{{GoName: "X", GoType: "string", XMLTag: "x"}}},
 		{Name: "Valid", Fields: []Field{{GoName: "Y", GoType: "int", XMLTag: "y"}}},
 	}
-	src, err := Generate(types, "pkg", false, false)
+	src, err := Generate(types, "pkg", false, false, nil)
 	if err != nil {
 		t.Fatalf("Generate: %v", err)
 	}
@@ -197,7 +197,7 @@ func TestGenerate_sliceField(t *testing.T) {
 			},
 		},
 	}
-	src, err := Generate(types, "gml", false, false)
+	src, err := Generate(types, "gml", false, false, nil)
 	if err != nil {
 		t.Fatalf("Generate: %v", err)
 	}
@@ -214,7 +214,7 @@ func TestGenerate_sortedOutput(t *testing.T) {
 		{Name: "Alpha", Fields: []Field{{GoName: "V", GoType: "string", XMLTag: "v"}}},
 		{Name: "Mango", Fields: []Field{{GoName: "V", GoType: "string", XMLTag: "v"}}},
 	}
-	src, err := Generate(types, "pkg", false, false)
+	src, err := Generate(types, "pkg", false, false, nil)
 	if err != nil {
 		t.Fatalf("Generate: %v", err)
 	}
@@ -235,7 +235,7 @@ func TestGenerate_pointerField(t *testing.T) {
 			},
 		},
 	}
-	src, err := Generate(types, "gml", false, false)
+	src, err := Generate(types, "gml", false, false, nil)
 	if err != nil {
 		t.Fatalf("Generate: %v", err)
 	}
@@ -256,7 +256,7 @@ func TestGenerate_namespaceInTag(t *testing.T) {
 			},
 		},
 	}
-	src, err := Generate(types, "gml", false, false)
+	src, err := Generate(types, "gml", false, false, nil)
 	if err != nil {
 		t.Fatalf("Generate: %v", err)
 	}
@@ -277,7 +277,7 @@ func TestGenerate_withDoc(t *testing.T) {
 	}
 
 	// withDoc=true: field comment should appear
-	src, err := Generate(types, "gml", false, true)
+	src, err := Generate(types, "gml", false, true, nil)
 	if err != nil {
 		t.Fatalf("Generate(withDoc=true): %v", err)
 	}
@@ -286,7 +286,7 @@ func TestGenerate_withDoc(t *testing.T) {
 	}
 
 	// withDoc=false: no comment
-	src2, err := Generate(types, "gml", false, false)
+	src2, err := Generate(types, "gml", false, false, nil)
 	if err != nil {
 		t.Fatalf("Generate(withDoc=false): %v", err)
 	}
@@ -304,7 +304,7 @@ func TestGenerate_withDoc_multiline(t *testing.T) {
 			},
 		},
 	}
-	src, err := Generate(types, "pkg", false, true)
+	src, err := Generate(types, "pkg", false, true, nil)
 	if err != nil {
 		t.Fatalf("Generate: %v", err)
 	}

@@ -10,7 +10,13 @@ import (
 
 // Generate produces a Go source file string for the given types.
 // withDoc controls whether XSD documentation is emitted as field comments.
-func Generate(types []*ComplexType, pkgName string, skipAbstract bool, withDoc bool) (string, error) {
+// omitNS is a list of namespace URIs whose types/fields are excluded from output.
+func Generate(types []*ComplexType, pkgName string, skipAbstract bool, withDoc bool, omitNS []string) (string, error) {
+	omitSet := make(map[string]bool, len(omitNS))
+	for _, ns := range omitNS {
+		omitSet[ns] = true
+	}
+
 	// Sort for deterministic output.
 	sort.Slice(types, func(i, j int) bool {
 		return types[i].Name < types[j].Name
@@ -29,7 +35,7 @@ func Generate(types []*ComplexType, pkgName string, skipAbstract bool, withDoc b
 		if ct.Name == "" {
 			continue
 		}
-		writeStruct(&sb, ct, withDoc)
+		writeStruct(&sb, ct, withDoc, omitSet)
 	}
 
 	src := sb.String()
@@ -41,12 +47,15 @@ func Generate(types []*ComplexType, pkgName string, skipAbstract bool, withDoc b
 	return string(formatted), nil
 }
 
-func writeStruct(sb *strings.Builder, ct *ComplexType, withDoc bool) {
+func writeStruct(sb *strings.Builder, ct *ComplexType, withDoc bool, omitSet map[string]bool) {
 	sb.WriteString("type ")
 	sb.WriteString(goTypeName(ct.Name))
 	sb.WriteString(" struct {\n")
 
 	for _, f := range ct.Fields {
+		if len(omitSet) > 0 && (omitSet[xmlTagNS(f.XMLTag)] || omitSet[f.TypeNS]) {
+			continue
+		}
 		if withDoc && f.Doc != "" {
 			writeComment(sb, f.Doc)
 		}
@@ -62,6 +71,15 @@ func writeStruct(sb *strings.Builder, ct *ComplexType, withDoc bool) {
 	}
 
 	sb.WriteString("}\n\n")
+}
+
+// xmlTagNS extracts the namespace URI from an xml struct tag value.
+// Tag format: "namespace localName" or "localName,attr" etc.
+func xmlTagNS(tag string) string {
+	if idx := strings.Index(tag, " "); idx >= 0 {
+		return tag[:idx]
+	}
+	return ""
 }
 
 // writeComment emits a doc string as Go line comments inside a struct body.

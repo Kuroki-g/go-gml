@@ -97,6 +97,46 @@ xsd2go-gen: xsd2go-build
 		-o $(_GEN_OUT) \
 		$(_GEN_XSD)
 
+XAL_NS   := urn:oasis:names:tc:ciq:xsdschema:xAL:2.0
+XAL_XSD  := $(XSD2GO_DIR)/schemas/citygml/xAL/xAL.xsd
+GML311_NS  := http://www.opengis.net/gml
+GML311_XSD := $(XSD2GO_DIR)/schemas/gml/3.1.1/base/gml.xsd
+CITYGML20_NS  := http://www.opengis.net/citygml/2.0
+CITYGML20_XSD := $(XSD2GO_DIR)/schemas/citygml/2.0/cityGMLBase.xsd
+CITYGML20_BLDG_XSD := $(XSD2GO_DIR)/schemas/citygml/building/2.0/building.xsd
+
+XAL2_NS  := urn:oasis:names:tc:ciq:xsdschema:xAL:2.0
+
+.PHONY: citygml2_0-gen
+citygml2_0-gen: xsd2go-build
+	$(XSD2GO_BIN) \
+		-n "$(XAL2_NS)" \
+		-p generated \
+		--with-doc \
+		-o citygml2_0/generated/xal.go \
+		$(XAL_XSD)
+	$(XSD2GO_BIN) \
+		-n "$(CITYGML20_NS)" \
+		-p generated \
+		--with-doc \
+		--catalog "$(XLINK_NS)=$(XLINK_XSD)" \
+		--catalog "$(XAL_NS)=$(XAL_XSD)" \
+		--catalog "$(GML311_NS)=$(GML311_XSD)" \
+		--omit-namespace "$(GML311_NS)" \
+		-o citygml2_0/generated/core.go \
+		$(CITYGML20_XSD)
+	$(XSD2GO_BIN) \
+		-n "http://www.opengis.net/citygml/building/2.0" \
+		-p generated \
+		--with-doc \
+		--catalog "$(XLINK_NS)=$(XLINK_XSD)" \
+		--catalog "$(XAL_NS)=$(XAL_XSD)" \
+		--catalog "$(GML311_NS)=$(GML311_XSD)" \
+		--catalog "$(CITYGML20_NS)=$(CITYGML20_XSD)" \
+		--omit-namespace "$(GML311_NS)" \
+		-o citygml2_0/generated/building.go \
+		$(CITYGML20_BLDG_XSD)
+
 $(XSD2GO_TMP):
 	mkdir -p $(XSD2GO_TMP)
 

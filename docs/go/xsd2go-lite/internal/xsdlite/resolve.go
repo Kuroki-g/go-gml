@@ -319,6 +319,7 @@ func (r *Resolver) resolveRawField(rf rawField, schemaNS string, visiting map[st
 			GoName: goName(refName),
 			XMLTag: buildXMLTag(refNS, refName, false),
 			GoType: resolvedType,
+			TypeNS: refNS,
 			Omit:   rf.MinOccurs == "0" || rf.MinOccurs == "",
 			Slice:  rf.MaxOccurs == "unbounded" || (rf.MaxOccurs != "" && rf.MaxOccurs != "1"),
 			Doc:    doc,
@@ -336,6 +337,10 @@ func (r *Resolver) resolveRawField(rf rawField, schemaNS string, visiting map[st
 			if memberGoType == "" {
 				memberGoType = "string"
 			}
+			var memberTypeNS string
+			if !isBuiltinGoType(memberGoType) && memberElemType != "" {
+				memberTypeNS, _ = r.resolveQName(memberElemType, member.NS)
+			}
 			if f.Slice {
 				memberGoType = "[]" + strings.TrimPrefix(memberGoType, "[]")
 			} else {
@@ -345,6 +350,7 @@ func (r *Resolver) resolveRawField(rf rawField, schemaNS string, visiting map[st
 				GoName: goName(member.Name),
 				XMLTag: buildXMLTag(member.NS, member.Name, false),
 				GoType: memberGoType,
+				TypeNS: memberTypeNS,
 				Omit:   !f.Slice,
 				Slice:  f.Slice,
 			})
@@ -415,6 +421,11 @@ func (r *Resolver) resolveRawField(rf rawField, schemaNS string, visiting map[st
 		goType = "string"
 	}
 
+	var typeNS string
+	if !isBuiltinGoType(goType) && rf.TypeRef != "" {
+		typeNS, _ = r.resolveQName(rf.TypeRef, schemaNS)
+	}
+
 	isSlice := rf.MaxOccurs == "unbounded" || (rf.MaxOccurs != "" && rf.MaxOccurs != "1" && rf.MaxOccurs != "0")
 	isOmit := rf.IsAttr && rf.MinOccurs != "required"
 	if !rf.IsAttr {
@@ -431,6 +442,7 @@ func (r *Resolver) resolveRawField(rf rawField, schemaNS string, visiting map[st
 		GoName: goName(rf.LocalName),
 		XMLTag: xmlTag,
 		GoType: goType,
+		TypeNS: typeNS,
 		IsAttr: rf.IsAttr,
 		Omit:   isOmit,
 		Slice:  isSlice,

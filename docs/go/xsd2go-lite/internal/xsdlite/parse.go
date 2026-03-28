@@ -204,6 +204,7 @@ type Field struct {
 	GoName string
 	XMLTag string
 	GoType string
+	TypeNS string // namespace URI of the referenced Go type (for omit filtering)
 	IsAttr bool
 	IsChar bool
 	Omit   bool
