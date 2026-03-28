@@ -2,6 +2,7 @@
 .vscode/
 mise.toml
 .claude/settings.local.json
+/CLAUDE.md
 **/.tmp/
 go.work.sum
 
