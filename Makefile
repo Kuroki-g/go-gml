@@ -144,3 +144,16 @@ gml-parser-build:
 
 gml-parser-run: gml-parser-build
 	$(GML_PARSER_BIN) inspect -i testdata/N03/N03-20250101_13.xml --swap
+
+# ---- citygml-parser (CLI) ----
+
+CITYGML_PARSER_DIR := cmd/citygml-parser
+CITYGML_PARSER_BIN := $(CITYGML_PARSER_DIR)/.tmp/citygml-parser
+
+.PHONY: citygml-parser-build citygml-parser-run
+
+citygml-parser-build:
+	go -C $(CITYGML_PARSER_DIR) build -o .tmp/citygml-parser .
+
+citygml-parser-run: citygml-parser-build
+	$(CITYGML_PARSER_BIN) inspect -i testdata/13105_bunkyo-ku_pref_2023_citygml_2_op/udx/bldg/53394548_bldg_6697_op.gml

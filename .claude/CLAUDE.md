@@ -99,14 +99,22 @@ go-gml/                              # module root
 │   └── crs.go                       # EPSGFromSRSName 公開
 ├── citygml2_0/
 │   ├── go.mod                       # github.com/Kuroki-g/go-gml/citygml2_0 (require core, gml3_1_1)
-│   ├── reader.go                    # (未実装) NewReader(r io.ReadSeeker, dec core.Decoder) *Reader; Next() (*Building, error)
-│   ├── building.go                  # (未実装) Building (lod0FootPrint/RoofEdge を直接定義)
+│   ├── reader.go                    # NewReader(r io.ReadSeeker, dec core.Decoder) *Reader; Next() (*Building, error)
+│   ├── building.go                  # Building (lod0FootPrint/RoofEdge を直接定義)
+│   ├── decode_building.go           # bldg:Building デコード (LoD0)
 │   ├── generated/
 │   │   ├── building.go              # xsd2go-lite 生成 (citygml/building/2.0)
 │   │   ├── core.go                  # xsd2go-lite 生成 (citygml/2.0)
 │   │   └── xal.go                   # xsd2go-lite 生成 (xAL 2.0)
 │   └── internal/
-│       └── decode_*.go              # (未実装)
+│       └── subtree.go               # GML サブツリー読み取りユーティリティ
+├── cmd/
+│   ├── gml-parser/                  # GML CLI (github.com/Kuroki-g/go-gml/cmd/gml-parser)
+│   └── citygml-parser/              # CityGML CLI (github.com/Kuroki-g/go-gml/cmd/citygml-parser)
+│       └── cmd/
+│           ├── root.go              # rootCmd + openInput
+│           ├── inspect.go           # inspect サブコマンド (Building 数・LoD カウント)
+│           └── version.go           # version サブコマンド (vcs.revision から自動取得)
 ├── waterml/
 │   └── go.mod                       # github.com/Kuroki-g/go-gml/waterml (将来)
 ├── docs/                            # 内部用ツール (xsd2go-lite, gml-parser)
@@ -157,7 +165,7 @@ go-gml/core  (core.Decoder interface を定義)
 - ローカル開発中はバージョン bump・タグ不要 (`go.work` で解決)
 - bump が必要なのはコードが変わったモジュールだけ (下流は MVS が自動選択)
 - 依存順: `core → gml3_2_1/gml3_1_1/gml2_1_2 → gml → cmd/gml-parser`
-- `citygml2_0` リリース時: `core` を先に bump (v0.1.2 以降) してからタグを打つ
+- `citygml2_0` リリース時: `core` を先に bump (v0.1.2 以降) → `citygml2_0` タグ → `cmd/citygml-parser` タグ
 - tidy は `GONOSUMDB='*'` を付けて実行する
 
 ---
@@ -186,6 +194,9 @@ make citygml2_0-gen # CityGML 2.0 XSD → citygml2_0/generated/{building,core,xa
 
 make gml-parser-build
 make gml-parser-run
+
+make citygml-parser-build
+make citygml-parser-run
 ```
 
 ---
@@ -226,7 +237,7 @@ make gml-parser-run
 ### 依存関係
 
 - 各パーサモジュールは `encoding/xml` (stdlib) のみ。外部ライブラリを追加しない
-- CLI (`cmd/gml-parser/`) は独立モジュールなので外部ライブラリを使ってよい
+- CLI (`cmd/gml-parser/`, `cmd/citygml-parser/`) は独立モジュールなので外部ライブラリを使ってよい
 
 ---
 

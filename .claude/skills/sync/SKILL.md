@@ -16,7 +16,7 @@ Run all of the following (each as a separate Bash call — no `&&`):
 1. `git log --oneline -15` — recent commits
 2. `git status` — uncommitted changes
 3. `git tag --list | sort -V` — all published tags and their versions
-4. `make build` — verify build passes (use `GOTMPDIR=/workspace/go-gml/.tmp`)
+4. `make build` — verify build passes
 5. Read `go.work` — confirm which modules are in the workspace
 6. Read each module's `go.mod` to confirm current require versions:
    - `core/go.mod`, `gml3_2_1/go.mod`, `gml3_1_1/go.mod`, `gml2_1_2/go.mod`, `gml/go.mod`, `cmd/gml-parser/go.mod`
