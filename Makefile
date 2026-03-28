@@ -21,8 +21,6 @@ help:
 
 XSD2GO_DIR := docs/go/xsd2go-lite
 XSD2GO_BIN := $(XSD2GO_DIR)/xsd2go-lite
-XSD2GO_TMP := $(XSD2GO_DIR)/.tmp
-GML_TMP    := .tmp
 
 # ---- xsd2go-gen version configuration ----
 GML_VERSION ?= 3.2.1
@@ -52,22 +50,19 @@ endif
 build:
 	go build ./...
 
-$(GML_TMP):
-	mkdir -p $(GML_TMP)
-
 MODULES := core gml2_1_2 gml3_1_1 gml3_2_1 gml
 
-test: $(GML_TMP)
+test:
 	@for m in $(MODULES); do \
 		echo "=== $$m ==="; \
-		GOTMPDIR=$(abspath $(GML_TMP)) go -C $$m test -count=1 ./...; \
+		go -C $$m test -count=1 ./...; \
 	done
 
-cover: $(GML_TMP)
+cover:
 	@for m in $(MODULES); do \
 		echo "=== $$m ==="; \
-		GOTMPDIR=$(abspath $(GML_TMP)) go -C $$m test -count=1 -coverprofile=$(abspath $(GML_TMP))/cover_$$m.out ./...; \
-		go tool cover -func=$(abspath $(GML_TMP))/cover_$$m.out; \
+		go -C $$m test -count=1 -coverprofile=$(GOTMPDIR)/cover_$$m.out ./...; \
+		go tool cover -func=$(GOTMPDIR)/cover_$$m.out; \
 	done
 
 # ---- xsd2go-lite (code generator) ----
@@ -77,12 +72,12 @@ cover: $(GML_TMP)
 xsd2go-build:
 	cd $(XSD2GO_DIR) && GOWORK=off go build -o xsd2go-lite .
 
-xsd2go-test: $(XSD2GO_TMP)
-	cd $(XSD2GO_DIR) && GOWORK=off GOTMPDIR=$(abspath $(XSD2GO_TMP)) go test -count=1 ./...
+xsd2go-test:
+	cd $(XSD2GO_DIR) && GOWORK=off go test -count=1 ./...
 
-xsd2go-cover: $(XSD2GO_TMP)
-	cd $(XSD2GO_DIR) && GOWORK=off GOTMPDIR=$(abspath $(XSD2GO_TMP)) go test -count=1 -coverprofile=.tmp/cover.out ./...
-	cd $(XSD2GO_DIR) && go tool cover -func=.tmp/cover.out
+xsd2go-cover:
+	cd $(XSD2GO_DIR) && GOWORK=off go test -count=1 -coverprofile=$(GOTMPDIR)/cover_xsd2go.out ./...
+	go tool cover -func=$(GOTMPDIR)/cover_xsd2go.out
 
 XLINK_NS  := http://www.w3.org/1999/xlink
 XLINK_XSD := $(XSD2GO_DIR)/schemas/xlink/xlink.xsd
@@ -136,9 +131,6 @@ citygml2_0-gen: xsd2go-build
 		--omit-namespace "$(GML311_NS)" \
 		-o citygml2_0/generated/building.go \
 		$(CITYGML20_BLDG_XSD)
-
-$(XSD2GO_TMP):
-	mkdir -p $(XSD2GO_TMP)
 
 # ---- gml-parser (CLI example) ----
 

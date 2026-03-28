@@ -82,8 +82,10 @@ RUN curl -OL https://golang.org/dl/go1.26.0.linux-amd64.tar.gz \
     && rm go1.26.0.linux-amd64.tar.gz
 
 ENV GOPATH=/home/${USER}/go \
+    GOTMPDIR=/home/${USER}/.go-tmp \
     PATH="/usr/local/go/bin:/home/${USER}/go/bin:${PATH}"
 
-RUN mkdir -p /home/${USER}/go/pkg && chown -R ${USER}:${USER} /home/${USER}/go
+RUN mkdir -p /home/${USER}/go/pkg /home/${USER}/.go-tmp \
+    && chown -R ${USER}:${USER} /home/${USER}/go /home/${USER}/.go-tmp
 
 USER ${USER}
