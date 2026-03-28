@@ -7,4 +7,5 @@ type Building struct {
 	ID            string
 	Lod0FootPrint *core.Geometry
 	Lod0RoofEdge  *core.Geometry
+	Lod1Solid     *core.Geometry
 }

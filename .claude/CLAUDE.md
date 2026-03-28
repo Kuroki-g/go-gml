@@ -47,13 +47,13 @@
 | LoD | 状態 | 説明 |
 |---|---|---|
 | **LoD0** | ✓ 完了 | `reader.go` / `building.go` / `internal/subtree.go` 実装済み。`lod0FootPrint` / `lod0RoofEdge` (MultiSurface) をストリーム読み取り |
-| **LoD1** | 未実装 | ブロックモデル (`bldg:lod1Solid`) |
+| **LoD1** | ✓ 完了 | ブロックモデル (`bldg:lod1Solid` → `gml:Solid`) |
 | **LoD2** | 未実装 | 屋根形状あり (`bldg:lod2Solid`) |
 | **LoD3** | 未実装 | 建築詳細モデル (`bldg:lod3Solid`) |
 
 ### 未実装・残課題
 
-- **CityGML 2.0 LoD1**: 次の実装対象 (`bldg:lod1Solid` → `gml:Solid`)
+- **CityGML 2.0 LoD2**: 次の実装対象 (`bldg:lod2Solid` → `gml:Solid`)
 - **gml3_1_1 srsDimension 継承** (`internal/decode_polygon.go:48`): ルート `gml:Envelope` の srsDimension が個々の Polygon に伝播しない。アーキテクチャ変更が必要
 - **gml3_1_1 ストリームテストなし**: N03 旧形式データ取得困難。`Decode` メソッドテストは追加済み。CityGML 実装で代替する方針
 - **SF-2**: Arc / Circle 等の曲線補間 — 低優先
@@ -68,7 +68,7 @@
 go-gml/                              # module root
 ├── core/
 │   ├── go.mod                       # github.com/Kuroki-g/go-gml/core
-│   ├── geometry.go                  # 公開型: Point, LineString, Polygon, Multi*, Bound, GridCoverage
+│   ├── geometry.go                  # 公開型: Point, LineString, Polygon, Multi*, Solid, Bound, GridCoverage
 │   ├── reader.go                    # Geometry struct, Reader interface
 │   └── decoder.go                   # Decoder interface (Decode メソッド)
 ├── gml2_1_2/
@@ -100,8 +100,8 @@ go-gml/                              # module root
 ├── citygml2_0/
 │   ├── go.mod                       # github.com/Kuroki-g/go-gml/citygml2_0 (require core, gml3_1_1)
 │   ├── reader.go                    # NewReader(r io.ReadSeeker, dec core.Decoder) *Reader; Next() (*Building, error)
-│   ├── building.go                  # Building (lod0FootPrint/RoofEdge を直接定義)
-│   ├── decode_building.go           # bldg:Building デコード (LoD0)
+│   ├── building.go                  # Building (lod0FootPrint/RoofEdge/lod1Solid を直接定義)
+│   ├── decode_building.go           # bldg:Building デコード (LoD0/LoD1)
 │   ├── generated/
 │   │   ├── building.go              # xsd2go-lite 生成 (citygml/building/2.0)
 │   │   ├── core.go                  # xsd2go-lite 生成 (citygml/2.0)

@@ -29,6 +29,13 @@ type Bound struct {
 	Min, Max Point
 }
 
+// Solid is a 3D volumetric geometry bounded by surfaces.
+// Exterior is the outer shell; Interior holds inner shells (voids).
+type Solid struct {
+	Exterior Polygon
+	Interior []Polygon
+}
+
 // GridCoverage holds the decoded content of a gml:Grid/gml:RectifiedGrid coverage.
 // Low and High are the integer grid index bounds (one value per axis).
 // Tuples is the raw CSV content of gml:DataBlock/gml:tupleList.

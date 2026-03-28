@@ -19,6 +19,7 @@ const (
 	gmlEnvelope          = "Envelope"
 	gmlGrid              = "Grid"
 	gmlRectifiedGrid     = "RectifiedGrid"
+	gmlSolid             = "Solid"
 	gmlDomainSet         = "domainSet"
 	gmlRangeSet          = "rangeSet"
 )

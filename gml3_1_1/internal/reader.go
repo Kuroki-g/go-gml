@@ -113,6 +113,8 @@ func (r *Reader) Next() (core.Geometry, error) {
 			return r.handleMultiCurve(r.dec, se)
 		case gmlMultiSurface, gmlMultiPolygon:
 			return r.handleMultiSurface(r.dec, se)
+		case gmlSolid:
+			return r.handleSolid(r.dec, se)
 		case gmlDomainSet:
 			if err := r.handleDomainSet(r.dec, se); err != nil {
 				return core.Geometry{}, err

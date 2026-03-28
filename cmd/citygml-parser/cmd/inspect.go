@@ -54,6 +54,9 @@ var inspectCmd = &cobra.Command{
 			if b.Lod0RoofEdge != nil {
 				stats.LodCounts["lod0RoofEdge"]++
 			}
+			if b.Lod1Solid != nil {
+				stats.LodCounts["lod1Solid"]++
+			}
 		}
 
 		enc := json.NewEncoder(os.Stdout)

@@ -53,6 +53,7 @@ for {
 | `gml:CompositeCurve` / `gml:OrientableCurve` | `LineString` | ✓ |
 | `gml:CompositeSurface` / `gml:OrientableSurface` | `Polygon` | ✓ |
 | `gml:Grid` / `gml:RectifiedGrid` | `GridCoverage` | ✓ |
+| `gml:Solid` | `Solid` | ✓ (GML 3.1.1) |
 
 GML 3.1.1 and GML 2.1.2 are also supported via `gml.NewReader311` / `gml.NewReader212`.
 
@@ -65,7 +66,7 @@ GML 3.1.1 and GML 2.1.2 are also supported via `gml.NewReader311` / `gml.NewRead
 | `github.com/Kuroki-g/go-gml/gml3_2_1` | GML 3.2.1 parser |
 | `github.com/Kuroki-g/go-gml/gml3_1_1` | GML 3.1.1 parser |
 | `github.com/Kuroki-g/go-gml/gml2_1_2` | GML 2.1.2 parser |
-| `github.com/Kuroki-g/go-gml/citygml2_0` | CityGML 2.0 parser (Building / LoD0) |
+| `github.com/Kuroki-g/go-gml/citygml2_0` | CityGML 2.0 parser (Building / LoD0–1) |
 | `github.com/Kuroki-g/go-gml/cmd/gml-parser` | GML CLI tool |
 | `github.com/Kuroki-g/go-gml/cmd/citygml-parser` | CityGML CLI tool |
 

@@ -51,6 +51,12 @@ func decodeBuilding(dec *xml.Decoder, se xml.StartElement, gmlDec core.Decoder) 
 					return nil, err
 				}
 				b.Lod0RoofEdge = g
+			case "lod1Solid":
+				g, err := decodeGeometryProp(dec, gmlDec)
+				if err != nil {
+					return nil, err
+				}
+				b.Lod1Solid = g
 			default:
 				if err := dec.Skip(); err != nil {
 					return nil, err
