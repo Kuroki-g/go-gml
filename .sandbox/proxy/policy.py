@@ -96,6 +96,7 @@ POLICIES: dict[str, DomainPolicy] = {
     "www.mlit.go.jp":           DomainPolicy(),
     "www.geopackage.org":       DomainPolicy(),
     "gdal.org":                 DomainPolicy(),
+    "www.ogc.org":              DomainPolicy(),
     # --- 学術論文 ---
     "jstage.jst.go.jp":         DomainPolicy(),
     "ci.nii.ac.jp":             DomainPolicy(),
