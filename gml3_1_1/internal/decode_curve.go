@@ -11,20 +11,22 @@ import (
 
 // curveResolver resolves gml:id references to geometry elements.
 type curveResolver struct {
-	curves         map[string]*gen.CurveType
-	orientable     map[string]*gen.OrientableCurveType
-	polygonByID    map[string]core.Polygon
-	lineStringByID map[string]core.LineString
-	gridByID       map[string]*gridBounds
+	curves           map[string]*gen.CurveType
+	orientable       map[string]*gen.OrientableCurveType
+	polygonByID      map[string]core.Polygon
+	multiPolygonByID map[string]core.MultiPolygon
+	lineStringByID   map[string]core.LineString
+	gridByID         map[string]*gridBounds
 }
 
 func newCurveResolver() *curveResolver {
 	return &curveResolver{
-		curves:         make(map[string]*gen.CurveType),
-		orientable:     make(map[string]*gen.OrientableCurveType),
-		polygonByID:    make(map[string]core.Polygon),
-		lineStringByID: make(map[string]core.LineString),
-		gridByID:       make(map[string]*gridBounds),
+		curves:           make(map[string]*gen.CurveType),
+		orientable:       make(map[string]*gen.OrientableCurveType),
+		polygonByID:      make(map[string]core.Polygon),
+		multiPolygonByID: make(map[string]core.MultiPolygon),
+		lineStringByID:   make(map[string]core.LineString),
+		gridByID:         make(map[string]*gridBounds),
 	}
 }
 

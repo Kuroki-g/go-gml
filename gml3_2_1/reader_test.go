@@ -563,10 +563,13 @@ func TestParseCompositeSurface_twoPolygons(t *testing.T) {
 		</gml:surfaceMember>
 	</gml:CompositeSurface>`
 	gs := readAll(t, xml)
-	poly := gs[0].Value.(core.Polygon)
-	// Two member polygons → two rings collected
-	if len(poly) != 2 {
-		t.Fatalf("rings=%d want 2", len(poly))
+	mp, ok := gs[0].Value.(core.MultiPolygon)
+	if !ok {
+		t.Fatalf("expected MultiPolygon, got %T", gs[0].Value)
+	}
+	// Two member polygons → two polygons in the MultiPolygon
+	if len(mp) != 2 {
+		t.Fatalf("polygons=%d want 2", len(mp))
 	}
 }
 
@@ -587,9 +590,12 @@ func TestParseCompositeSurface_surfaceMembers(t *testing.T) {
 		</gml:surfaceMember>
 	</gml:CompositeSurface>`
 	gs := readAll(t, xml)
-	poly := gs[0].Value.(core.Polygon)
-	if len(poly) != 1 || len(poly[0]) != 5 {
-		t.Fatalf("rings=%d, exterior points=%d", len(poly), len(poly[0]))
+	mp, ok := gs[0].Value.(core.MultiPolygon)
+	if !ok {
+		t.Fatalf("expected MultiPolygon, got %T", gs[0].Value)
+	}
+	if len(mp) != 1 || len(mp[0]) != 1 || len(mp[0][0]) != 5 {
+		t.Fatalf("polygons=%d, rings=%d, exterior points=%d", len(mp), len(mp[0]), len(mp[0][0]))
 	}
 }
 
@@ -656,19 +662,19 @@ func TestParseCompositeSurface_forwardRef(t *testing.T) {
 		</gml:Polygon>
 	</root>`
 	gs := readAll(t, xml)
-	// Expect: CS1 (Polygon) + P1 (Polygon)
+	// Expect: CS1 (MultiPolygon) + P1 (Polygon)
 	if len(gs) != 2 {
 		t.Fatalf("expected 2 geometries, got %d", len(gs))
 	}
-	cs1, ok := gs[0].Value.(core.Polygon)
+	cs1, ok := gs[0].Value.(core.MultiPolygon)
 	if !ok {
-		t.Fatalf("gs[0]: expected Polygon, got %T", gs[0].Value)
+		t.Fatalf("gs[0]: expected MultiPolygon, got %T", gs[0].Value)
 	}
 	if len(cs1) == 0 || len(cs1[0]) == 0 {
-		t.Fatal("CS1: forward reference to P1 was not resolved (empty polygon)")
+		t.Fatal("CS1: forward reference to P1 was not resolved (empty MultiPolygon)")
 	}
-	if len(cs1[0]) != 5 {
-		t.Errorf("CS1: exterior points=%d want 5", len(cs1[0]))
+	if len(cs1[0][0]) != 5 {
+		t.Errorf("CS1: exterior points=%d want 5", len(cs1[0][0]))
 	}
 }
 
@@ -693,15 +699,15 @@ func TestParseCompositeSurface_chainForwardRef(t *testing.T) {
 	if len(gs) != 3 {
 		t.Fatalf("expected 3 geometries, got %d", len(gs))
 	}
-	cs1, ok := gs[0].Value.(core.Polygon)
+	cs1, ok := gs[0].Value.(core.MultiPolygon)
 	if !ok {
-		t.Fatalf("gs[0]: expected Polygon, got %T", gs[0].Value)
+		t.Fatalf("gs[0]: expected MultiPolygon, got %T", gs[0].Value)
 	}
 	if len(cs1) == 0 || len(cs1[0]) == 0 {
 		t.Fatal("CS1: chain forward reference to CS2->P1 was not resolved")
 	}
-	if len(cs1[0]) != 5 {
-		t.Errorf("CS1: exterior points=%d want 5", len(cs1[0]))
+	if len(cs1[0][0]) != 5 {
+		t.Errorf("CS1: exterior points=%d want 5", len(cs1[0][0]))
 	}
 }
 

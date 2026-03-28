@@ -70,13 +70,11 @@ func (r *Reader) handleMultiSurface(dec *xml.Decoder, se xml.StartElement) (core
 	dim := derefDim(x.SrsDimension)
 	var polys core.MultiPolygon
 	for i := range x.SurfaceMember {
-		poly, err := polygonFromSurfaceProperty(&x.SurfaceMember[i], dim, r.resolver)
+		mp, err := multiPolygonFromSurfaceProperty(&x.SurfaceMember[i], dim, r.resolver)
 		if err != nil {
 			return core.Geometry{}, fmt.Errorf("gml: %s surfaceMember[%d]: %w", se.Name.Local, i, err)
 		}
-		if len(poly) > 0 {
-			polys = append(polys, poly)
-		}
+		polys = append(polys, mp...)
 	}
 	if x.SurfaceMembers != nil {
 		extra, err := polygonsFromSurfaceArrayProperty(x.SurfaceMembers, dim, r.resolver)
@@ -170,14 +168,11 @@ func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDi
 		}
 	}
 	for i := range a.CompositeSurface {
-		sm := gen.SurfacePropertyType{CompositeSurface: &a.CompositeSurface[i]}
-		poly, err := polygonFromSurfaceProperty(&sm, inheritDim, resolver)
+		mp, err := multiPolygonFromCompositeSurface(&a.CompositeSurface[i], resolver)
 		if err != nil {
 			return nil, fmt.Errorf("CompositeSurface[%d]: %w", i, err)
 		}
-		if len(poly) > 0 {
-			polys = append(polys, poly)
-		}
+		polys = append(polys, mp...)
 	}
 	for i := range a.OrientableSurface {
 		sm := gen.SurfacePropertyType{OrientableSurface: &a.OrientableSurface[i]}

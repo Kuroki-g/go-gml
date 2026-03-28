@@ -9,21 +9,21 @@ import (
 	gen "github.com/Kuroki-g/go-gml/gml3_2_1/generated"
 )
 
-// handleCompositeSurface decodes a gml:CompositeSurface, caches the result by gml:id, and returns a Polygon.
+// handleCompositeSurface decodes a gml:CompositeSurface, caches the result by gml:id, and returns a MultiPolygon.
 func (r *Reader) handleCompositeSurface(dec *xml.Decoder, se xml.StartElement) (core.Geometry, error) {
 	id := extractGMLID(se)
 	var x gen.CompositeSurfaceType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: CompositeSurface: %w", err)
 	}
-	poly, err := polygonFromCompositeSurface(&x, r.resolver)
+	mp, err := multiPolygonFromCompositeSurface(&x, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
 	}
 	if id != "" {
-		r.resolver.polygonByID[id] = poly
+		r.resolver.multiPolygonByID[id] = mp
 	}
-	return core.Geometry{Value: poly, SRSName: x.SrsName}, nil
+	return core.Geometry{Value: mp, SRSName: x.SrsName}, nil
 }
 
 // handleOrientableSurface decodes a gml:OrientableSurface and returns a Polygon.
@@ -46,20 +46,62 @@ func (r *Reader) handleOrientableSurface(dec *xml.Decoder, se xml.StartElement) 
 	return core.Geometry{Value: poly, SRSName: x.SrsName}, nil
 }
 
-func polygonFromCompositeSurface(x *gen.CompositeSurfaceType, resolver *curveResolver) (core.Polygon, error) {
-	var allRings []core.Ring
+// multiPolygonFromCompositeSurface returns one Polygon per surfaceMember.
+// Nested CompositeSurface members are flattened into the result.
+func multiPolygonFromCompositeSurface(x *gen.CompositeSurfaceType, resolver *curveResolver) (core.MultiPolygon, error) {
 	dim := derefDim(x.SrsDimension)
+	var result core.MultiPolygon
 	for i, m := range x.SurfaceMember {
+		if m.CompositeSurface != nil {
+			nested, err := multiPolygonFromCompositeSurface(m.CompositeSurface, resolver)
+			if err != nil {
+				return nil, fmt.Errorf("gml: CompositeSurface surfaceMember[%d]: %w", i, err)
+			}
+			result = append(result, nested...)
+			continue
+		}
+		if m.Href != "" {
+			id := strings.TrimPrefix(m.Href, "#")
+			if mp, ok := resolver.multiPolygonByID[id]; ok {
+				result = append(result, mp...)
+				continue
+			}
+		}
 		poly, err := polygonFromSurfaceProperty(&m, dim, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("gml: CompositeSurface surfaceMember[%d]: %w", i, err)
 		}
-		allRings = append(allRings, poly...)
+		if poly != nil {
+			result = append(result, poly)
+		}
 	}
-	return core.Polygon(allRings), nil
+	return result, nil
+}
+
+// multiPolygonFromSurfaceProperty converts a SurfacePropertyType to a MultiPolygon.
+// CompositeSurface members produce multiple Polygons; all other surface types produce one.
+func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim int, resolver *curveResolver) (core.MultiPolygon, error) {
+	if m.CompositeSurface != nil {
+		return multiPolygonFromCompositeSurface(m.CompositeSurface, resolver)
+	}
+	if m.Href != "" {
+		id := strings.TrimPrefix(m.Href, "#")
+		if mp, ok := resolver.multiPolygonByID[id]; ok {
+			return mp, nil
+		}
+	}
+	poly, err := polygonFromSurfaceProperty(m, inheritDim, resolver)
+	if err != nil {
+		return nil, err
+	}
+	if poly == nil {
+		return nil, nil
+	}
+	return core.MultiPolygon{poly}, nil
 }
 
 // polygonFromSurfaceProperty converts a SurfacePropertyType to a Polygon.
+// For CompositeSurface members, use multiPolygonFromSurfaceProperty instead.
 func polygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim int, resolver *curveResolver) (core.Polygon, error) {
 	if m.Polygon != nil {
 		return polygonFromXML(m.Polygon)
@@ -72,9 +114,6 @@ func polygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim int, reso
 		if os.BaseSurface != nil {
 			return polygonFromSurfaceProperty(os.BaseSurface, preferDim(inheritDim, derefDim(os.SrsDimension)), resolver)
 		}
-	}
-	if m.CompositeSurface != nil {
-		return polygonFromCompositeSurface(m.CompositeSurface, resolver)
 	}
 	if m.Href != "" {
 		id := strings.TrimPrefix(m.Href, "#")

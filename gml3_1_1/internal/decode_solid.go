@@ -25,18 +25,18 @@ func (r *Reader) handleSolid(dec *xml.Decoder, se xml.StartElement) (core.Geomet
 func solidFromXML(x *gen.SolidType, dim int, resolver *curveResolver) (core.Solid, error) {
 	var s core.Solid
 	if x.Exterior != nil {
-		poly, err := polygonFromSurfaceProperty(x.Exterior, dim, resolver)
+		mp, err := multiPolygonFromSurfaceProperty(x.Exterior, dim, resolver)
 		if err != nil {
 			return core.Solid{}, fmt.Errorf("gml: Solid exterior: %w", err)
 		}
-		s.Exterior = poly
+		s.Exterior = mp
 	}
 	for i := range x.Interior {
-		poly, err := polygonFromSurfaceProperty(&x.Interior[i], dim, resolver)
+		mp, err := multiPolygonFromSurfaceProperty(&x.Interior[i], dim, resolver)
 		if err != nil {
 			return core.Solid{}, fmt.Errorf("gml: Solid interior[%d]: %w", i, err)
 		}
-		s.Interior = append(s.Interior, poly)
+		s.Interior = append(s.Interior, mp)
 	}
 	return s, nil
 }

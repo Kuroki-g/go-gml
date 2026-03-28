@@ -54,6 +54,37 @@ func TestNext_Lod0RoofEdge(t *testing.T) {
 	t.Logf("Building ID=%s, Lod0RoofEdge polygons=%d", b.ID, len(mp))
 }
 
+func TestNext_Lod1Solid(t *testing.T) {
+	f := openGML(t, plateauGML)
+	r := citygml2_0.NewReader(f, newGMLDecoder())
+
+	var b *citygml2_0.Building
+	for {
+		building, err := r.Next()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			t.Fatalf("Next: %v", err)
+		}
+		if building.Lod1Solid != nil {
+			b = building
+			break
+		}
+	}
+	if b == nil {
+		t.Fatal("no building with Lod1Solid found")
+	}
+	solid, ok := b.Lod1Solid.Value.(core.Solid)
+	if !ok {
+		t.Fatalf("Lod1Solid.Value type = %T, want core.Solid", b.Lod1Solid.Value)
+	}
+	if len(solid.Exterior) == 0 {
+		t.Error("Solid.Exterior is empty")
+	}
+	t.Logf("Building ID=%s, Lod1Solid Exterior polygons=%d", b.ID, len(solid.Exterior))
+}
+
 func TestNext_AllBuildings(t *testing.T) {
 	f := openGML(t, plateauGML)
 	r := citygml2_0.NewReader(f, newGMLDecoder())

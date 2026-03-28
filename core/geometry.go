@@ -31,9 +31,11 @@ type Bound struct {
 
 // Solid is a 3D volumetric geometry bounded by surfaces.
 // Exterior is the outer shell; Interior holds inner shells (voids).
+// Each shell is a MultiPolygon because a shell may consist of multiple
+// surface members (e.g. walls, roof, floor of a LoD1 building).
 type Solid struct {
-	Exterior Polygon
-	Interior []Polygon
+	Exterior MultiPolygon
+	Interior []MultiPolygon
 }
 
 // GridCoverage holds the decoded content of a gml:Grid/gml:RectifiedGrid coverage.

@@ -136,8 +136,8 @@ func resolveDeferred(pending []pendingCS, resolver *curveResolver) {
 				remaining = append(remaining, p)
 				continue
 			}
-			if poly, err := polygonFromCompositeSurface(p.x, resolver); err == nil {
-				resolver.polygonByID[p.id] = poly
+			if mp, err := multiPolygonFromCompositeSurface(p.x, resolver); err == nil {
+				resolver.multiPolygonByID[p.id] = mp
 			}
 		}
 		if len(remaining) == len(pending) {
@@ -154,7 +154,9 @@ func allSurfaceMembersResolvable(members []gen.SurfacePropertyType, resolver *cu
 	for _, m := range members {
 		if m.Href != "" {
 			id := strings.TrimPrefix(m.Href, "#")
-			if _, ok := resolver.polygonByID[id]; !ok {
+			_, inPoly := resolver.polygonByID[id]
+			_, inMulti := resolver.multiPolygonByID[id]
+			if !inPoly && !inMulti {
 				return false
 			}
 		}
@@ -162,7 +164,9 @@ func allSurfaceMembersResolvable(members []gen.SurfacePropertyType, resolver *cu
 			bs := m.OrientableSurface.BaseSurface
 			if bs.Href != "" {
 				id := strings.TrimPrefix(bs.Href, "#")
-				if _, ok := resolver.polygonByID[id]; !ok {
+				_, inPoly := resolver.polygonByID[id]
+				_, inMulti := resolver.multiPolygonByID[id]
+				if !inPoly && !inMulti {
 					return false
 				}
 			}
