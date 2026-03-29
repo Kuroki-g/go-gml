@@ -8,25 +8,28 @@ import (
 	"strings"
 )
 
-// FieldInfo holds a pointer field's Go name and XML element name.
+// FieldInfo describes one XML-tagged field of a PropertyType struct.
 type FieldInfo struct {
-	Name    string
-	XMLElem string
+	Name    string // Go field name (e.g., "Href", "Solid")
+	XMLName string // XML local name or attribute name
+	IsAttr  bool   // true if xml:",attr" tag
 }
 
-// parseGeneratedStructs parses all .go files in dir and returns:
-//   - propFields: map of *PropertyType struct name → its pointer fields
-//   - referenced: set of all struct names used as *Name pointer field types
-func parseGeneratedStructs(dir string) (propFields map[string][]FieldInfo, referenced map[string]bool, err error) {
+// parsePropertyTypes parses all .go files in dir and returns a map of
+// PropertyType struct name → all XML-tagged, non-abstract fields.
+//
+// "PropertyType" structs are identified by the "PropertyType" suffix.
+// All XML-tagged fields are collected: inline element pointers, string
+// attributes (Href, SrsName, etc.), and slice fields. Abstract substitution
+// group head fields (Abstract* prefix) are excluded because they cannot be
+// instantiated by a concrete document.
+func parsePropertyTypes(dir string) (map[string][]FieldInfo, error) {
 	fset := token.NewFileSet()
 	pkgs, err := parser.ParseDir(fset, dir, nil, 0)
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
-
-	propFields = make(map[string][]FieldInfo)
-	referenced = make(map[string]bool)
-
+	result := make(map[string][]FieldInfo)
 	for _, pkg := range pkgs {
 		for _, file := range pkg.Files {
 			for _, decl := range file.Decls {
@@ -39,72 +42,66 @@ func parseGeneratedStructs(dir string) (propFields map[string][]FieldInfo, refer
 					if !ok {
 						continue
 					}
+					if !strings.HasSuffix(ts.Name.Name, "PropertyType") {
+						continue
+					}
 					st, ok := ts.Type.(*ast.StructType)
 					if !ok {
 						continue
 					}
-					visitStruct(ts.Name.Name, st, propFields, referenced)
+					fields := collectXMLFields(st)
+					if len(fields) > 0 {
+						result[ts.Name.Name] = fields
+					}
 				}
 			}
 		}
 	}
-	return propFields, referenced, nil
+	return result, nil
 }
 
-func visitStruct(
-	name string,
-	st *ast.StructType,
-	propFields map[string][]FieldInfo,
-	referenced map[string]bool,
-) {
-	isProp := strings.HasSuffix(name, "PropertyType")
-
-	for _, field := range st.Fields.List {
-		star, ok := field.Type.(*ast.StarExpr)
-		if !ok {
+// collectXMLFields returns all XML-tagged, non-abstract fields of a struct.
+// This includes pointer fields (inline elements), string attributes, and
+// slice fields — anything the XML decoder may populate.
+func collectXMLFields(st *ast.StructType) []FieldInfo {
+	var fields []FieldInfo
+	for _, f := range st.Fields.List {
+		if len(f.Names) == 0 || f.Tag == nil {
 			continue
 		}
-		ident, ok := star.X.(*ast.Ident)
-		if !ok {
+		name := f.Names[0].Name
+		if strings.HasPrefix(name, "Abstract") {
+			// Abstract substitution group heads: no concrete XML element maps to these.
 			continue
 		}
-		// Every type used as a *Pointer field is considered "referenced".
-		referenced[ident.Name] = true
-
-		if !isProp || len(field.Names) == 0 {
+		xmlName, isAttr := extractXMLInfo(f.Tag.Value)
+		if xmlName == "" {
 			continue
 		}
-		tag := ""
-		if field.Tag != nil {
-			tag = field.Tag.Value
-		}
-		elem := extractXMLElem(tag)
-		if elem == "" {
-			continue
-		}
-		propFields[name] = append(propFields[name], FieldInfo{
-			Name:    field.Names[0].Name,
-			XMLElem: elem,
+		fields = append(fields, FieldInfo{
+			Name:    name,
+			XMLName: xmlName,
+			IsAttr:  isAttr,
 		})
 	}
+	return fields
 }
 
 var xmlTagRe = regexp.MustCompile(`xml:"([^"]*)"`)
 
-// extractXMLElem extracts the XML local element name from a struct field tag.
-// Returns "" for attribute tags or tags with no element name.
-func extractXMLElem(tag string) string {
+// extractXMLInfo returns the XML local name and whether the field is an
+// attribute from a struct tag string.
+func extractXMLInfo(tag string) (name string, isAttr bool) {
 	m := xmlTagRe.FindStringSubmatch(tag)
 	if m == nil {
-		return ""
+		return "", false
 	}
-	if strings.Contains(m[1], ",attr") {
-		return ""
-	}
-	v := strings.SplitN(m[1], ",", 2)[0]
-	parts := strings.Fields(v)
+	v := m[1]
+	isAttr = strings.Contains(v, ",attr")
+	base := strings.SplitN(v, ",", 2)[0]
+	parts := strings.Fields(base)
 	if len(parts) == 0 {
-		return ""
+		return "", false
 	}
-	return parts[len(parts)-1]
+	return parts[len(parts)-1], isAttr
 }

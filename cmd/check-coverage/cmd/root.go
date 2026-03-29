@@ -62,7 +62,12 @@ func run(dirs []string) error {
 	}
 
 	for _, f := range all {
-		fmt.Printf("[UNHANDLED] %s / %s.%s (xml:%q)\n", f.Module, f.Struct, f.Field, f.XMLElem)
+		kind := "elem"
+		if f.IsAttr {
+			kind = "attr"
+		}
+		fmt.Printf("[UNHANDLED] %s / %s / %s.%s (%s:%s)\n",
+			f.Module, f.Func, f.Struct, f.Field, kind, f.XMLName)
 	}
 	return fmt.Errorf("%d unhandled field(s) found", len(all))
 }

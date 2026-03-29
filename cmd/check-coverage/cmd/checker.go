@@ -3,18 +3,28 @@ package cmd
 import (
 	"os"
 	"path/filepath"
-	"strings"
 )
 
-// Finding represents one unhandled PropertyType pointer field.
+// Finding represents one unhandled field in a specific function.
 type Finding struct {
 	Module  string
 	Struct  string
+	Func    string
 	Field   string
-	XMLElem string
+	XMLName string
+	IsAttr  bool
 }
 
-// checkModule analyzes one parser module directory for unhandled dispatch fields.
+// checkModule analyzes one parser module directory for functions that handle
+// a PropertyType struct but do not access all of its XML-tagged fields.
+//
+// Every field of a PropertyType must be either directly accessed or explicitly
+// acknowledged in the function body via a blank assignment:
+//
+//	_ = m.FieldName // reason or TODO
+//
+// There is no hardcoded skip list in this tool: intentional non-handling must
+// be expressed in the implementation code, not here.
 func checkModule(dir string) ([]Finding, error) {
 	genDir := filepath.Join(dir, "generated")
 	intDir := filepath.Join(dir, "internal")
@@ -26,51 +36,36 @@ func checkModule(dir string) ([]Finding, error) {
 		return nil, nil
 	}
 
-	propFields, referenced, err := parseGeneratedStructs(genDir)
+	propTypes, err := parsePropertyTypes(genDir)
 	if err != nil {
 		return nil, err
 	}
 
-	refs, err := collectFieldRefs(intDir)
+	funcAccesses, err := analyzeFunctions(intDir, propTypes)
 	if err != nil {
 		return nil, err
 	}
 
 	var findings []Finding
-	for name, fields := range propFields {
-		if !referenced[name] {
-			continue // dead struct: never used as a field type
+	for typeName, fields := range propTypes {
+		accesses, ok := funcAccesses[typeName]
+		if !ok {
+			continue // type not used as a parameter in internal/ — out of scope
 		}
-		if !refs.Types[name] {
-			continue // struct type never mentioned in internal/: out of scope
-		}
-		for _, f := range fields {
-			if isSkippedField(f.Name) {
-				continue
-			}
-			if !refs.Fields[f.Name] {
-				findings = append(findings, Finding{
-					Module:  dir,
-					Struct:  name,
-					Field:   f.Name,
-					XMLElem: f.XMLElem,
-				})
+		for _, fa := range accesses {
+			for _, f := range fields {
+				if !fa.Fields[f.Name] {
+					findings = append(findings, Finding{
+						Module:  dir,
+						Struct:  typeName,
+						Func:    fa.FuncName,
+						Field:   f.Name,
+						XMLName: f.XMLName,
+						IsAttr:  f.IsAttr,
+					})
+				}
 			}
 		}
 	}
 	return findings, nil
-}
-
-// isSkippedField returns true for abstract elements and xlink/gml attribute
-// fields that don't require a dispatch branch in decode functions.
-func isSkippedField(name string) bool {
-	if strings.HasPrefix(name, "Abstract") {
-		return true
-	}
-	switch name {
-	case "Href", "RemoteSchema", "TypeField", "Role", "Arcrole",
-		"Title", "Show", "Actuate", "NilReason", "Owns":
-		return true
-	}
-	return false
 }
