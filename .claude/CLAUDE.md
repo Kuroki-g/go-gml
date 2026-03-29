@@ -7,10 +7,10 @@
 **実装・修正・判断を行う前に必ず XSD を確認すること。**
 ！！！v3.1.1のみ確認し、他のバージョンの確認漏れが頻発している！！特定のバージョンの実装漏れが判明した場合、すべてのバージョンの実装を確認せよ！！
 - GML 要素の挙動: バージョン毎に必ず要確認
-  - v2.1.2 → `docs/go/xsd2go-lite/schemas/gml/2.1.2/` の XSD
-  - v3.1.1 → `docs/go/xsd2go-lite/schemas/gml/3.1.1/` の XSD
-  - v3.2.1 → `docs/go/xsd2go-lite/schemas/gml/3.2.1/` の XSD
-- CityGML 要素の挙動 → `docs/go/xsd2go-lite/schemas/citygml/` の XSD (1.0 / 2.0 / 3.0)
+  - v2.1.2 → `docs/schemas/gml/2.1.2/` の XSD
+  - v3.1.1 → `docs/schemas/gml/3.1.1/` の XSD
+  - v3.2.1 → `docs/schemas/gml/3.2.1/` の XSD
+- CityGML 要素の挙動 → `docs/schemas/citygml/` の XSD (1.0 / 2.0 / 3.0)
 - CRS/srsName → GML XSD の `SRSReferenceGroup` 定義
 
 **NG パターン:**
@@ -34,7 +34,7 @@
 - CityGML 2.0: OGC 12-019 (`testdata/12-019_OGC_City_Geography_Markup_Language_CityGML_Encoding_Standard.pdf`)
   - LoD 定義: Section 6.2 (p.11–12), Tab. 3 (p.12)
   - Building モデル: Section 10.3 (p.63–)
-- CityGML XSD: `docs/go/xsd2go-lite/schemas/citygml/` (v1.0 / v2.0 / v3.0)
+- CityGML XSD: `docs/schemas/citygml/` (v1.0 / v2.0 / v3.0)
 
 ### マイルストーン (GML パーサ)
 

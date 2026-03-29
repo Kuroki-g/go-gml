@@ -22,8 +22,9 @@ help:
 	@echo "  gml-parser-build バイナリビルド"
 	@echo "  gml-parser-run   inspect サブコマンド実行 (testdata/N03)"
 
-XSD2GO_DIR := docs/go/xsd2go-lite
+XSD2GO_DIR := cmd/xsd2go-lite
 XSD2GO_BIN := $(XSD2GO_DIR)/xsd2go-lite
+SCHEMA_DIR := docs/schemas
 
 # ---- xsd2go-gen version configuration ----
 GML_VERSION ?= 3.2.1
@@ -31,15 +32,15 @@ GML_VERSION ?= 3.2.1
 ifeq ($(GML_VERSION),3.2.1)
   _GEN_NS  := http://www.opengis.net/gml/3.2
   _GEN_OUT := gml3_2_1/generated/geometry.go
-  _GEN_XSD := $(XSD2GO_DIR)/schemas/gml/3.2.1/geometryAggregates.xsd
+  _GEN_XSD := $(SCHEMA_DIR)/gml/3.2.1/geometryAggregates.xsd
 else ifeq ($(GML_VERSION),3.1.1)
   _GEN_NS  := http://www.opengis.net/gml
   _GEN_OUT := gml3_1_1/generated/geometry.go
-  _GEN_XSD := $(XSD2GO_DIR)/schemas/gml/3.1.1/base/geometryAggregates.xsd
+  _GEN_XSD := $(XSD2GO_DIR)/gml/3.1.1/base/geometryAggregates.xsd
 else ifeq ($(GML_VERSION),2.1.2)
   _GEN_NS  := http://www.opengis.net/gml
   _GEN_OUT := gml2_1_2/generated/geometry.go
-  _GEN_XSD := $(XSD2GO_DIR)/schemas/gml/2.1.2/geometry.xsd
+  _GEN_XSD := $(XSD2GO_DIR)/gml/2.1.2/geometry.xsd
 else
   _GEN_NS  :=
   _GEN_OUT :=
@@ -83,7 +84,7 @@ xsd2go-cover:
 	go tool cover -func=$(GOTMPDIR)/cover_xsd2go.out
 
 XLINK_NS  := http://www.w3.org/1999/xlink
-XLINK_XSD := $(XSD2GO_DIR)/schemas/xlink/xlink.xsd
+XLINK_XSD := $(SCHEMA_DIR)/xlink/xlink.xsd
 
 xsd2go-gen: xsd2go-build
 	@test -n "$(_GEN_OUT)" || (echo "Unknown GML_VERSION=$(GML_VERSION). Valid values: 3.2.1, 3.1.1, 2.1.2" >&2 && exit 1)
@@ -96,12 +97,12 @@ xsd2go-gen: xsd2go-build
 		$(_GEN_XSD)
 
 XAL_NS   := urn:oasis:names:tc:ciq:xsdschema:xAL:2.0
-XAL_XSD  := $(XSD2GO_DIR)/schemas/citygml/xAL/xAL.xsd
+XAL_XSD  := $(SCHEMA_DIR)/citygml/xAL/xAL.xsd
 GML311_NS  := http://www.opengis.net/gml
-GML311_XSD := $(XSD2GO_DIR)/schemas/gml/3.1.1/base/gml.xsd
+GML311_XSD := $(SCHEMA_DIR)/gml/3.1.1/base/gml.xsd
 CITYGML20_NS  := http://www.opengis.net/citygml/2.0
-CITYGML20_XSD := $(XSD2GO_DIR)/schemas/citygml/2.0/cityGMLBase.xsd
-CITYGML20_BLDG_XSD := $(XSD2GO_DIR)/schemas/citygml/building/2.0/building.xsd
+CITYGML20_XSD := $(SCHEMA_DIR)/citygml/2.0/cityGMLBase.xsd
+CITYGML20_BLDG_XSD := $(SCHEMA_DIR)/citygml/building/2.0/building.xsd
 
 XAL2_NS  := urn:oasis:names:tc:ciq:xsdschema:xAL:2.0
 
