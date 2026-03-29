@@ -73,7 +73,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 /workspace/go-gml/.claude/hooks/format_on_edit.py"
+            "command": "python3 /workspace/go-gml/.claude/hooks/format_lint_on_edit.py"
           }
         ]
       }

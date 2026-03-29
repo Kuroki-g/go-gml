@@ -75,7 +75,7 @@ GML 3.1.1 and GML 2.1.2 are also supported via `gml.NewReader311` / `gml.NewRead
 
 Apache License Version 2.0. See LICENSE file.
 
-`docs/go/xsd2go-lite/schemas/gml` files follows:
+`docs/schemas/gml` files follows:
 
 -----------------------------------------------------------------------
 
@@ -88,7 +88,7 @@ Copyright (c) 2012, 2018 Open Geospatial Consortium
 
 -----------------------------------------------------------------------
 
-`docs/go/xsd2go-lite/schemas/citygml` files follows:
+`docs/schemas/citygml` files follows:
 
 -----------------------------------------------------------------------
 
@@ -101,7 +101,7 @@ Copyright (c) 2012, 2023 Open Geospatial Consortium
 
 -----------------------------------------------------------------------
 
-`docs/go/xsd2go-lite/schemas/xlink/xlink.xsd` follows:
+`docs/schemas/xlink/xlink.xsd` follows:
 
 -----------------------------------------------------------------------
 

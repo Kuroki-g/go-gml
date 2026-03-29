@@ -113,7 +113,7 @@ Look at existing files in `docs/issues/` for the actual style. The structure is 
 
 2. **Check for existing files first.** Before creating a new file, use Glob to list `docs/issues/` and check if a relevant file already exists. If it does, update it with Edit instead of creating a duplicate.
 
-3. **Always reference the XSD** when discussing GML elements. Point to `docs/go/xsd2go-lite/schemas/gml/3.2.1/` paths where relevant.
+3. **Always reference the XSD** when discussing GML elements. Point to `docs/schemas/gml/3.2.1/` paths where relevant.
 
 4. **Reference real testdata files** when the issue is dataset-specific (e.g., `testdata/N03/N03-20250101_13.xml`).
 

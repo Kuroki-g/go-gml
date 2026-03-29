@@ -4,6 +4,7 @@ use (
 	.
 	./core
 	./citygml2_0
+	./cmd/xsd2go-lite
 	./cmd/citygml-parser
 	./cmd/gml-parser
 	./gml
