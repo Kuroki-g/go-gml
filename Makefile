@@ -36,11 +36,11 @@ ifeq ($(GML_VERSION),3.2.1)
 else ifeq ($(GML_VERSION),3.1.1)
   _GEN_NS  := http://www.opengis.net/gml
   _GEN_OUT := gml3_1_1/generated/geometry.go
-  _GEN_XSD := $(XSD2GO_DIR)/gml/3.1.1/base/geometryAggregates.xsd
+  _GEN_XSD := $(SCHEMA_DIR)/gml/3.1.1/base/geometryAggregates.xsd
 else ifeq ($(GML_VERSION),2.1.2)
   _GEN_NS  := http://www.opengis.net/gml
   _GEN_OUT := gml2_1_2/generated/geometry.go
-  _GEN_XSD := $(XSD2GO_DIR)/gml/2.1.2/geometry.xsd
+  _GEN_XSD := $(SCHEMA_DIR)/gml/2.1.2/geometry.xsd
 else
   _GEN_NS  :=
   _GEN_OUT :=
