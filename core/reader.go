@@ -1,7 +1,7 @@
 package core
 
 // Geometry wraps a parsed GML geometry element with CRS metadata.
-// Value is one of: Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon, Bound, GridCoverage.
+// Value is one of: Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon, Bound, Solid, MultiSolid, GridCoverage.
 type Geometry struct {
 	Value   interface{}
 	SRSName *string

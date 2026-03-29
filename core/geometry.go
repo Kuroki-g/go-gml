@@ -38,6 +38,10 @@ type Solid struct {
 	Interior []MultiPolygon
 }
 
+// MultiSolid is a collection of Solids (gml:MultiSolid).
+// XSD: substitutionGroup="_GeometricAggregate", distinct from CompositeSolid.
+type MultiSolid []Solid
+
 // GridCoverage holds the decoded content of a gml:Grid/gml:RectifiedGrid coverage.
 // Low and High are the integer grid index bounds (one value per axis).
 // Tuples is the raw CSV content of gml:DataBlock/gml:tupleList.
