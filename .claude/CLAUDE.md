@@ -5,7 +5,7 @@
 ## 【最重要原則】XSD仕様を読んでから実装する
 
 **実装・修正・判断を行う前に必ず XSD を確認すること。**
-
+！！！v3.1.1のみ確認し、他のバージョンの確認漏れが頻発している！！特定のバージョンの実装漏れが判明した場合、すべてのバージョンの実装を確認せよ！！
 - GML 要素の挙動: バージョン毎に必ず要確認
   - v2.1.2 → `docs/go/xsd2go-lite/schemas/gml/2.1.2/` の XSD
   - v3.1.1 → `docs/go/xsd2go-lite/schemas/gml/3.1.1/` の XSD
@@ -50,14 +50,14 @@
 |---|---|---|
 | **LoD0** | ✓ 完了 | `reader.go` / `building.go` / `internal/subtree.go` 実装済み。`lod0FootPrint` / `lod0RoofEdge` (MultiSurface) をストリーム読み取り |
 | **LoD1** | ✓ 完了 | ブロックモデル (`bldg:lod1Solid` → `gml:Solid`) |
-| **LoD2** | 未実装 | 屋根形状あり (`bldg:lod2Solid`) |
+| **LoD2** | ✓ 完了 | `bldg:lod2Solid` / `lod2MultiSurface` / `lod2MultiCurve` / `lod2TerrainIntersection` |
 | **LoD3** | 未実装 | 建築詳細モデル (`bldg:lod3Solid`) |
 
 ### 未実装・残課題
 
-- **CityGML 2.0 LoD2**: 次の実装対象 (`bldg:lod2Solid` → `gml:Solid`)
-- **gml3_1_1 srsDimension 継承** (`internal/decode_polygon.go:48`): ルート `gml:Envelope` の srsDimension が個々の Polygon に伝播しない。アーキテクチャ変更が必要
-- **gml3_1_1 ストリームテストなし**: N03 旧形式データ取得困難。`Decode` メソッドテストは追加済み。CityGML 実装で代替する方針
+- **CityGML 2.0 LoD3**: 次の実装対象 (`bldg:lod3Solid` → `gml:Solid`)
+- **gml3_1_1 Solid の既知バグ群**: `docs/issues/lod1-bug-*.md` 参照 (CompositeSolid/PolyhedralSurface/Tin/TriangulatedSurface/xlink:href 等)
+- **gml3_1_1 / gml3_2_1 ストリームテストなし**: N03 旧形式データ取得困難。`Decode` メソッドテストは追加済み。CityGML 実装で代替する方針
 - **SF-2**: Arc / Circle 等の曲線補間 — 低優先
 
 ---
