@@ -210,3 +210,8 @@ corpus ファイルは gitignore 済み (`**/testdata/fuzz/`)。
 
 - GML 2.x: `http://www.opengis.net/gml`
 - GML 3.x: `http://www.opengis.net/gml/3.2` (または 3.1.1)
+
+### cobra-cli
+
+呼び出しの際にはgo.workと干渉するので注意:
+`GOWORK=off cobra-cli init`
