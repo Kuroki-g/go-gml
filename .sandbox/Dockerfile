@@ -89,3 +89,6 @@ RUN mkdir -p /home/${USER}/go/pkg /home/${USER}/.go-tmp \
     && chown -R ${USER}:${USER} /home/${USER}/go /home/${USER}/.go-tmp
 
 USER ${USER}
+
+RUN go install go.uber.org/nilaway/cmd/nilaway@latest \
+    && go install github.com/spf13/cobra-cli@latest
