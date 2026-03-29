@@ -43,39 +43,41 @@ type AbstractContinuousCoverageType struct {
 type AbstractCoordinateOperationBaseType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this coordinate operation is identified.
+	CoordinateOperationName *CodeType `xml:"http://www.opengis.net/gml coordinateOperationName,omitempty"`
+	Id                      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
+	Name          []CodeType `xml:"http://www.opengis.net/gml name"`
+	CsName        []CodeType `xml:"http://www.opengis.net/gml csName"`
+	DatumName     []CodeType `xml:"http://www.opengis.net/gml datumName"`
+	EllipsoidName []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
+	GroupName     []CodeType `xml:"http://www.opengis.net/gml groupName"`
+	MeridianName  []CodeType `xml:"http://www.opengis.net/gml meridianName"`
+	MethodName    []CodeType `xml:"http://www.opengis.net/gml methodName"`
+	ParameterName []CodeType `xml:"http://www.opengis.net/gml parameterName"`
+	SrsName       []CodeType `xml:"http://www.opengis.net/gml srsName"`
 }
 
 type AbstractCoordinateOperationType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this coordinate operation is identified.
+	CoordinateOperationName *CodeType `xml:"http://www.opengis.net/gml coordinateOperationName,omitempty"`
+	Id                      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
+	Name          []CodeType `xml:"http://www.opengis.net/gml name"`
+	CsName        []CodeType `xml:"http://www.opengis.net/gml csName"`
+	DatumName     []CodeType `xml:"http://www.opengis.net/gml datumName"`
+	EllipsoidName []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
+	GroupName     []CodeType `xml:"http://www.opengis.net/gml groupName"`
+	MeridianName  []CodeType `xml:"http://www.opengis.net/gml meridianName"`
+	MethodName    []CodeType `xml:"http://www.opengis.net/gml methodName"`
+	ParameterName []CodeType `xml:"http://www.opengis.net/gml parameterName"`
+	SrsName       []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this coordinate operation. The first coordinateOperationID, if any, is normally the primary identification code, and any others are aliases.
 	CoordinateOperationID []IdentifierType `xml:"http://www.opengis.net/gml coordinateOperationID"`
 	// Comments on or information about this coordinate operation, including source information.
@@ -100,12 +102,14 @@ type AbstractCoordinateOperationType struct {
 type AbstractCoordinateSystemBaseType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this coordinate system is identified.
+	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
 	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
@@ -113,18 +117,19 @@ type AbstractCoordinateSystemBaseType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 }
 
 type AbstractCoordinateSystemType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this coordinate system is identified.
+	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
 	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
@@ -132,7 +137,6 @@ type AbstractCoordinateSystemType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -228,39 +232,41 @@ type AbstractCurveType struct {
 type AbstractDatumBaseType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this datum is identified.
+	DatumName *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
+	Id        string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 }
 
 type AbstractDatumType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this datum is identified.
+	DatumName *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
+	Id        string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this datum. The first datumID, if any, is normally the primary identification code, and any others are aliases.
 	DatumID []IdentifierType `xml:"http://www.opengis.net/gml datumID"`
 	// Comments on this reference system, including source information.
@@ -382,35 +388,35 @@ type AbstractGMLType struct {
 type AbstractGeneralConversionType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Set of alternative identifications of this coordinate operation. The first coordinateOperationID, if any, is normally the primary identification code, and any others are aliases.
+	// The name by which this coordinate operation is identified.
+	CoordinateOperationName *CodeType `xml:"http://www.opengis.net/gml coordinateOperationName,omitempty"`
+	// An identification of a coordinate operation.
 	CoordinateOperationID []IdentifierType `xml:"http://www.opengis.net/gml coordinateOperationID"`
-	// Comments on or information about this coordinate operation, including source information.
+	// Information about this object or code. Contains text or refers to external text.
 	Remarks *StringOrRefType `xml:"http://www.opengis.net/gml remarks,omitempty"`
-	// Version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters). Mandatory when describing a transformation, and should not be supplied for a conversion.
-	OperationVersion *string `xml:"http://www.opengis.net/gml operationVersion,omitempty"`
 	// Area or region in which this CRS object is valid.
 	ValidArea *ExtentType `xml:"http://www.opengis.net/gml validArea,omitempty"`
 	// Description of domain of usage, or limitations of usage, for which this CRS object is valid.
-	Scope *string `xml:"http://www.opengis.net/gml scope,omitempty"`
-	// Unordered set of estimates of the impact of this coordinate operation on point position accuracy. Gives position error estimates for target coordinates of this coordinate operation, assuming no errors in source coordinates.
+	Scope                              *string                                  `xml:"http://www.opengis.net/gml scope,omitempty"`
 	AbstractPositionalAccuracy         []AbstractPositionalAccuracyType         `xml:"http://www.opengis.net/gml _positionalAccuracy"`
 	AbsoluteExternalPositionalAccuracy []AbsoluteExternalPositionalAccuracyType `xml:"http://www.opengis.net/gml absoluteExternalPositionalAccuracy"`
 	CovarianceMatrix                   []CovarianceMatrixType                   `xml:"http://www.opengis.net/gml covarianceMatrix"`
 	RelativeInternalPositionalAccuracy []RelativeInternalPositionalAccuracyType `xml:"http://www.opengis.net/gml relativeInternalPositionalAccuracy"`
+	Id                                 string                                   `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	// Contains a simple text description of the object, or refers to an external description.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
+	Name          []CodeType `xml:"http://www.opengis.net/gml name"`
+	CsName        []CodeType `xml:"http://www.opengis.net/gml csName"`
+	DatumName     []CodeType `xml:"http://www.opengis.net/gml datumName"`
+	EllipsoidName []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
+	GroupName     []CodeType `xml:"http://www.opengis.net/gml groupName"`
+	MeridianName  []CodeType `xml:"http://www.opengis.net/gml meridianName"`
+	MethodName    []CodeType `xml:"http://www.opengis.net/gml methodName"`
+	ParameterName []CodeType `xml:"http://www.opengis.net/gml parameterName"`
+	SrsName       []CodeType `xml:"http://www.opengis.net/gml srsName"`
+	// Version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters). Mandatory when describing a transformation, and should not be supplied for a conversion.
+	OperationVersion *string `xml:"http://www.opengis.net/gml operationVersion,omitempty"`
 	// Association to the source CRS (coordinate reference system) of this coordinate operation.
 	SourceCRS *CRSRefType `xml:"http://www.opengis.net/gml sourceCRS,omitempty"`
 	// Association to the target CRS (coordinate reference system) of this coordinate operation. For constraints on multiplicity of "sourceCRS" and "targetCRS", see UML model of Coordinate Operation package in OGC Abstract Specification topic 2.
@@ -420,9 +426,12 @@ type AbstractGeneralConversionType struct {
 type AbstractGeneralDerivedCRSType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this reference system is identified.
+	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -432,8 +441,6 @@ type AbstractGeneralDerivedCRSType struct {
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -467,7 +474,7 @@ type AbstractGeneralOperationParameterType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -489,31 +496,18 @@ type AbstractGeneralParameterValueType struct {
 type AbstractGeneralTransformationType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Set of alternative identifications of this coordinate operation. The first coordinateOperationID, if any, is normally the primary identification code, and any others are aliases.
+	// The name by which this coordinate operation is identified.
+	CoordinateOperationName *CodeType `xml:"http://www.opengis.net/gml coordinateOperationName,omitempty"`
+	// An identification of a coordinate operation.
 	CoordinateOperationID []IdentifierType `xml:"http://www.opengis.net/gml coordinateOperationID"`
-	// Comments on or information about this coordinate operation, including source information.
+	// Information about this object or code. Contains text or refers to external text.
 	Remarks *StringOrRefType `xml:"http://www.opengis.net/gml remarks,omitempty"`
 	// Version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters). Mandatory when describing a transformation, and should not be supplied for a conversion.
 	OperationVersion *string `xml:"http://www.opengis.net/gml operationVersion,omitempty"`
 	// Area or region in which this CRS object is valid.
 	ValidArea *ExtentType `xml:"http://www.opengis.net/gml validArea,omitempty"`
 	// Description of domain of usage, or limitations of usage, for which this CRS object is valid.
-	Scope *string `xml:"http://www.opengis.net/gml scope,omitempty"`
-	// Unordered set of estimates of the impact of this coordinate operation on point position accuracy. Gives position error estimates for target coordinates of this coordinate operation, assuming no errors in source coordinates.
+	Scope                              *string                                  `xml:"http://www.opengis.net/gml scope,omitempty"`
 	AbstractPositionalAccuracy         []AbstractPositionalAccuracyType         `xml:"http://www.opengis.net/gml _positionalAccuracy"`
 	AbsoluteExternalPositionalAccuracy []AbsoluteExternalPositionalAccuracyType `xml:"http://www.opengis.net/gml absoluteExternalPositionalAccuracy"`
 	CovarianceMatrix                   []CovarianceMatrixType                   `xml:"http://www.opengis.net/gml covarianceMatrix"`
@@ -522,6 +516,19 @@ type AbstractGeneralTransformationType struct {
 	SourceCRS *CRSRefType `xml:"http://www.opengis.net/gml sourceCRS,omitempty"`
 	// Association to the target CRS (coordinate reference system) of this coordinate operation. For constraints on multiplicity of "sourceCRS" and "targetCRS", see UML model of Coordinate Operation package in OGC Abstract Specification topic 2.
 	TargetCRS *CRSRefType `xml:"http://www.opengis.net/gml targetCRS,omitempty"`
+	Id        string      `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	// Contains a simple text description of the object, or refers to an external description.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
+	Name          []CodeType `xml:"http://www.opengis.net/gml name"`
+	CsName        []CodeType `xml:"http://www.opengis.net/gml csName"`
+	DatumName     []CodeType `xml:"http://www.opengis.net/gml datumName"`
+	EllipsoidName []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
+	GroupName     []CodeType `xml:"http://www.opengis.net/gml groupName"`
+	MeridianName  []CodeType `xml:"http://www.opengis.net/gml meridianName"`
+	MethodName    []CodeType `xml:"http://www.opengis.net/gml methodName"`
+	ParameterName []CodeType `xml:"http://www.opengis.net/gml parameterName"`
+	SrsName       []CodeType `xml:"http://www.opengis.net/gml srsName"`
 }
 
 type AbstractGeometricAggregateType struct {
@@ -669,9 +676,12 @@ type AbstractPositionalAccuracyType struct {
 type AbstractReferenceSystemBaseType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this reference system is identified.
+	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -681,16 +691,17 @@ type AbstractReferenceSystemBaseType struct {
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 }
 
 type AbstractReferenceSystemType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this reference system is identified.
+	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -700,8 +711,6 @@ type AbstractReferenceSystemType struct {
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -945,7 +954,7 @@ type AbstractTimeReferenceSystemType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -1071,6 +1080,25 @@ type AngleType struct {
 }
 
 type ArcByBulgeType struct {
+	// The bulge controls the offset of each arc's midpoint. The "bulge" is the real number multiplier for the normal that determines the offset direction of the midpoint of each arc. The length of the bulge sequence is exactly 1 less than the length of the control point array, since a bulge is needed for each pair of adjacent points in the control point array. The bulge is not given by a distance, since it is simply a multiplier for the normal.
+	// The midpoint of the resulting arc is given by: midPoint = ((startPoint + endPoint)/2.0) + bulge*normal
+	Bulge float64 `xml:"http://www.opengis.net/gml bulge,omitempty"`
+	// The attribute "normal" is a vector normal (perpendicular) to the chord of the arc, the line joining the first and last
+	// point of the arc. In a 2D coordinate system, there are only two possible directions for the normal, and it is often given as a signed real, indicating its length, with a positive sign indicating a left turn angle from the chord line, and a negative sign indicating a right turn from the chord. In 3D, the normal determines the plane of the arc, along with the start and endPoint of the arc.
+	// The normal is usually a unit vector, but this is not absolutely necessary. If the normal is a zero vector, the geometric object becomes equivalent to the straight line between the two end points. The length of the normal sequence is exactly the same as for the bulge sequence, 1 less than the control point sequence length.
+	Normal  *VectorType             `xml:"http://www.opengis.net/gml normal,omitempty"`
+	PosList *DirectPositionListType `xml:"http://www.opengis.net/gml posList,omitempty"`
+	// Deprecated with GML version 3.1.0. Use "posList" instead.
+	Coordinates *CoordinatesType    `xml:"http://www.opengis.net/gml coordinates,omitempty"`
+	Pos         *DirectPositionType `xml:"http://www.opengis.net/gml pos,omitempty"`
+	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty
+	// is the predefined property which can be used by GML Application Schemas whenever a GML Feature has a property with a value that
+	// is substitutable for Point.
+	PointProperty *PointPropertyType `xml:"http://www.opengis.net/gml pointProperty,omitempty"`
+	// Deprecated with GML version 3.1.0. Use "pointProperty" instead. Included for backwards compatibility with GML 3.0.0.
+	PointRep *PointPropertyType `xml:"http://www.opengis.net/gml pointRep,omitempty"`
+	// An arc is an arc string consiting of a single arc, the attribute is fixed to "1".
+	NumArc *int `xml:"numArc,attr,omitempty"`
 	// The attribute "numDerivativesAtStart" specifies the type of continuity between this curve segment and its predecessor. If this is the first curve segment in the curve, one of these values, as appropriate, is ignored. The default value of "0" means simple continuity, which is a mandatory minimum level of continuity. This level is referred to as "C 0 " in mathematical texts. A value of 1 means that the function and its first derivative are continuous at the appropriate end point: "C 1 " continuity. A value of "n" for any integer means the function and its first n derivatives are continuous: "C n " continuity.
 	// NOTE: Use of these values is only appropriate when the basic curve definition is an underdetermined system. For example, line string segments cannot support continuity above C 0 , since there is no spare control parameter to adjust the incoming angle at the end points of the segment. Spline functions on the other hand often have extra degrees of freedom on end segments that allow them to adjust the values of the derivatives to support C 1 or higher continuity.
 	NumDerivativesAtStart *int `xml:"numDerivativesAtStart,attr,omitempty"`
@@ -1080,28 +1108,9 @@ type ArcByBulgeType struct {
 	// The attribute "numDerivativesInterior" specifies the type of continuity that is guaranteed interior to the curve. The default value of "0" means simple continuity, which is a mandatory minimum level of continuity. This level is referred to as "C 0 " in mathematical texts. A value of 1 means that the function and its first derivative are continuous at the appropriate end point: "C 1 " continuity. A value of "n" for any integer means the function and its first n derivatives are continuous: "C n " continuity.
 	// NOTE: Use of these values is only appropriate when the basic curve definition is an underdetermined system. For example, line string segments cannot support continuity above C 0 , since there is no spare control parameter to adjust the incoming angle at the end points of the segment. Spline functions on the other hand often have extra degrees of freedom on end segments that allow them to adjust the values of the derivatives to support C 1 or higher continuity.
 	NumDerivativeInterior *int `xml:"numDerivativeInterior,attr,omitempty"`
-	// The bulge controls the offset of each arc's midpoint. The "bulge" is the real number multiplier for the normal that determines the offset direction of the midpoint of each arc. The length of the bulge sequence is exactly 1 less than the length of the control point array, since a bulge is needed for each pair of adjacent points in the control point array. The bulge is not given by a distance, since it is simply a multiplier for the normal.
-	// The midpoint of the resulting arc is given by: midPoint = ((startPoint + endPoint)/2.0) + bulge*normal
-	Bulge []float64 `xml:"http://www.opengis.net/gml bulge"`
-	// The attribute "normal" is a vector normal (perpendicular) to the chord of the arc, the line joining the first and last
-	// point of the arc. In a 2D coordinate system, there are only two possible directions for the normal, and it is often given as a signed real, indicating its length, with a positive sign indicating a left turn angle from the chord line, and a negative sign indicating a right turn from the chord. In 3D, the normal determines the plane of the arc, along with the start and endPoint of the arc.
-	// The normal is usually a unit vector, but this is not absolutely necessary. If the normal is a zero vector, the geometric object becomes equivalent to the straight line between the two end points. The length of the normal sequence is exactly the same as for the bulge sequence, 1 less than the control point sequence length.
-	Normal  []VectorType            `xml:"http://www.opengis.net/gml normal"`
-	PosList *DirectPositionListType `xml:"http://www.opengis.net/gml posList,omitempty"`
-	// Deprecated with GML version 3.1.0. Use "posList" instead.
-	Coordinates *CoordinatesType     `xml:"http://www.opengis.net/gml coordinates,omitempty"`
-	Pos         []DirectPositionType `xml:"http://www.opengis.net/gml pos"`
-	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty
-	// is the predefined property which can be used by GML Application Schemas whenever a GML Feature has a property with a value that
-	// is substitutable for Point.
-	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml pointProperty"`
-	// Deprecated with GML version 3.1.0. Use "pointProperty" instead. Included for backwards compatibility with GML 3.0.0.
-	PointRep []PointPropertyType `xml:"http://www.opengis.net/gml pointRep"`
 	// The attribute "interpolation" specifies the curve interpolation mechanism used for this segment. This mechanism
 	// uses the control points and control parameters to determine the position of this curve segment. For an ArcStringByBulge the interpolation is fixed as "circularArc2PointWithBulge".
 	Interpolation *string `xml:"interpolation,attr,omitempty"`
-	// The number of arcs in the arc string can be explicitly stated in this attribute. The number of control points in the arc string must be numArc + 1.
-	NumArc *int `xml:"numArc,attr,omitempty"`
 }
 
 type ArcByCenterPointType struct {
@@ -1199,6 +1208,18 @@ type ArcStringType struct {
 }
 
 type ArcType struct {
+	PosList *DirectPositionListType `xml:"http://www.opengis.net/gml posList,omitempty"`
+	// Deprecated with GML version 3.1.0. Use "posList" instead.
+	Coordinates *CoordinatesType    `xml:"http://www.opengis.net/gml coordinates,omitempty"`
+	Pos         *DirectPositionType `xml:"http://www.opengis.net/gml pos,omitempty"`
+	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty
+	// is the predefined property which can be used by GML Application Schemas whenever a GML Feature has a property with a value that
+	// is substitutable for Point.
+	PointProperty *PointPropertyType `xml:"http://www.opengis.net/gml pointProperty,omitempty"`
+	// Deprecated with GML version 3.1.0. Use "pointProperty" instead. Included for backwards compatibility with GML 3.0.0.
+	PointRep *PointPropertyType `xml:"http://www.opengis.net/gml pointRep,omitempty"`
+	// An arc is an arc string consiting of a single arc, the attribute is fixed to "1".
+	NumArc *int `xml:"numArc,attr,omitempty"`
 	// The attribute "numDerivativesAtStart" specifies the type of continuity between this curve segment and its predecessor. If this is the first curve segment in the curve, one of these values, as appropriate, is ignored. The default value of "0" means simple continuity, which is a mandatory minimum level of continuity. This level is referred to as "C 0 " in mathematical texts. A value of 1 means that the function and its first derivative are continuous at the appropriate end point: "C 1 " continuity. A value of "n" for any integer means the function and its first n derivatives are continuous: "C n " continuity.
 	// NOTE: Use of these values is only appropriate when the basic curve definition is an underdetermined system. For example, line string segments cannot support continuity above C 0 , since there is no spare control parameter to adjust the incoming angle at the end points of the segment. Spline functions on the other hand often have extra degrees of freedom on end segments that allow them to adjust the values of the derivatives to support C 1 or higher continuity.
 	NumDerivativesAtStart *int `xml:"numDerivativesAtStart,attr,omitempty"`
@@ -1207,22 +1228,10 @@ type ArcType struct {
 	NumDerivativesAtEnd *int `xml:"numDerivativesAtEnd,attr,omitempty"`
 	// The attribute "numDerivativesInterior" specifies the type of continuity that is guaranteed interior to the curve. The default value of "0" means simple continuity, which is a mandatory minimum level of continuity. This level is referred to as "C 0 " in mathematical texts. A value of 1 means that the function and its first derivative are continuous at the appropriate end point: "C 1 " continuity. A value of "n" for any integer means the function and its first n derivatives are continuous: "C n " continuity.
 	// NOTE: Use of these values is only appropriate when the basic curve definition is an underdetermined system. For example, line string segments cannot support continuity above C 0 , since there is no spare control parameter to adjust the incoming angle at the end points of the segment. Spline functions on the other hand often have extra degrees of freedom on end segments that allow them to adjust the values of the derivatives to support C 1 or higher continuity.
-	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
-	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml posList,omitempty"`
-	// Deprecated with GML version 3.1.0. Use "posList" instead.
-	Coordinates *CoordinatesType     `xml:"http://www.opengis.net/gml coordinates,omitempty"`
-	Pos         []DirectPositionType `xml:"http://www.opengis.net/gml pos"`
-	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty
-	// is the predefined property which can be used by GML Application Schemas whenever a GML Feature has a property with a value that
-	// is substitutable for Point.
-	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml pointProperty"`
-	// Deprecated with GML version 3.1.0. Use "pointProperty" instead. Included for backwards compatibility with GML 3.0.0.
-	PointRep []PointPropertyType `xml:"http://www.opengis.net/gml pointRep"`
+	NumDerivativeInterior *int `xml:"numDerivativeInterior,attr,omitempty"`
 	// The attribute "interpolation" specifies the curve interpolation mechanism used for this segment. This mechanism
 	// uses the control points and control parameters to determine the position of this curve segment. For an ArcString the interpolation is fixed as "circularArc3Points".
 	Interpolation *string `xml:"interpolation,attr,omitempty"`
-	// The number of arcs in the arc string can be explicitly stated in this attribute. The number of control points in the arc string must be 2 * numArc + 1.
-	NumArc *int `xml:"numArc,attr,omitempty"`
 }
 
 type AreaType struct {
@@ -1632,7 +1641,7 @@ type BaseUnitType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -1652,15 +1661,6 @@ type BaseUnitType struct {
 }
 
 type BezierType struct {
-	// The attribute "numDerivativesAtStart" specifies the type of continuity between this curve segment and its predecessor. If this is the first curve segment in the curve, one of these values, as appropriate, is ignored. The default value of "0" means simple continuity, which is a mandatory minimum level of continuity. This level is referred to as "C 0 " in mathematical texts. A value of 1 means that the function and its first derivative are continuous at the appropriate end point: "C 1 " continuity. A value of "n" for any integer means the function and its first n derivatives are continuous: "C n " continuity.
-	// NOTE: Use of these values is only appropriate when the basic curve definition is an underdetermined system. For example, line string segments cannot support continuity above C 0 , since there is no spare control parameter to adjust the incoming angle at the end points of the segment. Spline functions on the other hand often have extra degrees of freedom on end segments that allow them to adjust the values of the derivatives to support C 1 or higher continuity.
-	NumDerivativesAtStart *int `xml:"numDerivativesAtStart,attr,omitempty"`
-	// The attribute "numDerivativesAtEnd" specifies the type of continuity between this curve segment and its successor. If this is the last curve segment in the curve, one of these values, as appropriate, is ignored. The default value of "0" means simple continuity, which is a mandatory minimum level of continuity. This level is referred to as "C 0 " in mathematical texts. A value of 1 means that the function and its first derivative are continuous at the appropriate end point: "C 1 " continuity. A value of "n" for any integer means the function and its first n derivatives are continuous: "C n " continuity.
-	// NOTE: Use of these values is only appropriate when the basic curve definition is an underdetermined system. For example, line string segments cannot support continuity above C 0 , since there is no spare control parameter to adjust the incoming angle at the end points of the segment. Spline functions on the other hand often have extra degrees of freedom on end segments that allow them to adjust the values of the derivatives to support C 1 or higher continuity.
-	NumDerivativesAtEnd *int `xml:"numDerivativesAtEnd,attr,omitempty"`
-	// The attribute "numDerivativesInterior" specifies the type of continuity that is guaranteed interior to the curve. The default value of "0" means simple continuity, which is a mandatory minimum level of continuity. This level is referred to as "C 0 " in mathematical texts. A value of 1 means that the function and its first derivative are continuous at the appropriate end point: "C 1 " continuity. A value of "n" for any integer means the function and its first n derivatives are continuous: "C n " continuity.
-	// NOTE: Use of these values is only appropriate when the basic curve definition is an underdetermined system. For example, line string segments cannot support continuity above C 0 , since there is no spare control parameter to adjust the incoming angle at the end points of the segment. Spline functions on the other hand often have extra degrees of freedom on end segments that allow them to adjust the values of the derivatives to support C 1 or higher continuity.
-	NumDerivativeInterior *int `xml:"numDerivativeInterior,attr,omitempty"`
 	// The attribute "degree" shall be the degree of the polynomial used for interpolation in this spline.
 	Degree int `xml:"http://www.opengis.net/gml degree,omitempty"`
 	// The property "knot" shall be the sequence of distinct knots used to define the spline basis functions.
@@ -1676,16 +1676,26 @@ type BezierType struct {
 	// Deprecated with GML version 3.1.0. Use "pointProperty" instead. Included for backwards compatibility with GML 3.0.0.
 	PointRep []PointPropertyType `xml:"http://www.opengis.net/gml pointRep"`
 	// The attribute "interpolation" specifies the curve interpolation mechanism used for this segment. This mechanism
-	// uses the control points and control parameters to determine the position of this curve segment. For a BSpline the interpolation can be either "polynomialSpline" or "rationalSpline", default is "polynomialSpline".
+	// uses the control points and control parameters to determine the position of this curve segment. For a Bezier the interpolation is fixed as "polynomialSpline".
 	Interpolation *string `xml:"interpolation,attr,omitempty"`
-	// The attribute isPolynomial is set to true if this is a polynomial spline.
+	// The attribute isPolynomial is set to true as this is a polynomial spline.
 	IsPolynomial *bool `xml:"isPolynomial,attr,omitempty"`
-	// The attribute "knotType" gives the type of knot distribution used in defining this spline. This is for information only
-	// and is set according to the different construction-functions.
+	// The property "knotType" is not relevant for Bezier curve segments.
 	KnotType *string `xml:"knotType,attr,omitempty"`
+	// The attribute "numDerivativesAtStart" specifies the type of continuity between this curve segment and its predecessor. If this is the first curve segment in the curve, one of these values, as appropriate, is ignored. The default value of "0" means simple continuity, which is a mandatory minimum level of continuity. This level is referred to as "C 0 " in mathematical texts. A value of 1 means that the function and its first derivative are continuous at the appropriate end point: "C 1 " continuity. A value of "n" for any integer means the function and its first n derivatives are continuous: "C n " continuity.
+	// NOTE: Use of these values is only appropriate when the basic curve definition is an underdetermined system. For example, line string segments cannot support continuity above C 0 , since there is no spare control parameter to adjust the incoming angle at the end points of the segment. Spline functions on the other hand often have extra degrees of freedom on end segments that allow them to adjust the values of the derivatives to support C 1 or higher continuity.
+	NumDerivativesAtStart *int `xml:"numDerivativesAtStart,attr,omitempty"`
+	// The attribute "numDerivativesAtEnd" specifies the type of continuity between this curve segment and its successor. If this is the last curve segment in the curve, one of these values, as appropriate, is ignored. The default value of "0" means simple continuity, which is a mandatory minimum level of continuity. This level is referred to as "C 0 " in mathematical texts. A value of 1 means that the function and its first derivative are continuous at the appropriate end point: "C 1 " continuity. A value of "n" for any integer means the function and its first n derivatives are continuous: "C n " continuity.
+	// NOTE: Use of these values is only appropriate when the basic curve definition is an underdetermined system. For example, line string segments cannot support continuity above C 0 , since there is no spare control parameter to adjust the incoming angle at the end points of the segment. Spline functions on the other hand often have extra degrees of freedom on end segments that allow them to adjust the values of the derivatives to support C 1 or higher continuity.
+	NumDerivativesAtEnd *int `xml:"numDerivativesAtEnd,attr,omitempty"`
+	// The attribute "numDerivativesInterior" specifies the type of continuity that is guaranteed interior to the curve. The default value of "0" means simple continuity, which is a mandatory minimum level of continuity. This level is referred to as "C 0 " in mathematical texts. A value of 1 means that the function and its first derivative are continuous at the appropriate end point: "C 1 " continuity. A value of "n" for any integer means the function and its first n derivatives are continuous: "C n " continuity.
+	// NOTE: Use of these values is only appropriate when the basic curve definition is an underdetermined system. For example, line string segments cannot support continuity above C 0 , since there is no spare control parameter to adjust the incoming angle at the end points of the segment. Spline functions on the other hand often have extra degrees of freedom on end segments that allow them to adjust the values of the derivatives to support C 1 or higher continuity.
+	NumDerivativeInterior *int `xml:"numDerivativeInterior,attr,omitempty"`
 }
 
 type BooleanPropertyType struct {
+	// A value from two-valued logic, using the XML Schema boolean type.  An instance may take the values {true, false, 1, 0}.
+	Boolean *bool `xml:"http://www.opengis.net/gml Boolean,omitempty"`
 	// This abstract element is the head of a substitutionGroup hierararchy which may contain either simpleContent or complexContent elements.  It is used to assert the model position of "class" elements declared in other GML schemas.
 	AbstractObject                    *string                                `xml:"http://www.opengis.net/gml _Object,omitempty"`
 	Array                             *ArrayType                             `xml:"http://www.opengis.net/gml Array,omitempty"`
@@ -1832,8 +1842,6 @@ type BooleanPropertyType struct {
 	// Aggregate value built using the Composite pattern.
 	CompositeValue *CompositeValueType `xml:"http://www.opengis.net/gml CompositeValue,omitempty"`
 	ValueArray     *ValueArrayType     `xml:"http://www.opengis.net/gml ValueArray,omitempty"`
-	// A value from two-valued logic, using the XML Schema boolean type.  An instance may take the values {true, false, 1, 0}.
-	Boolean *bool `xml:"http://www.opengis.net/gml Boolean,omitempty"`
 	// A term representing a classification.  It has an optional XML attribute codeSpace, whose value is a URI which identifies a dictionary, codelist or authority for the term.
 	Category *CodeType `xml:"http://www.opengis.net/gml Category,omitempty"`
 	// A numeric value with a scale.  The content of the element is an amount using the XML Schema type double which permits decimal or scientific notation.  An XML attribute uom (unit of measure) is required, whose value is a URI which identifies the definition of the scale or units by which the numeric value must be multiplied.
@@ -1865,26 +1873,26 @@ type BooleanPropertyType struct {
 }
 
 type BoundedFeatureType struct {
+	BoundedBy *BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
+	// deprecated in GML version 3.1
+	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
+	PriorityLocation *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
 	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
-	Name                    []CodeType         `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType         `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType         `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType         `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType         `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType         `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType         `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType         `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType         `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string             `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	BoundedBy               *BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
-	// deprecated in GML version 3.1
-	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
-	PriorityLocation *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
+	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
+	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
+	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
+	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
+	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
+	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
+	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
+	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
+	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
+	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
+	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 }
 
 type BoundingShapeType struct {
@@ -1932,12 +1940,14 @@ type CartesianCSRefType struct {
 type CartesianCSType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this coordinate system is identified.
+	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
 	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
@@ -1945,7 +1955,6 @@ type CartesianCSType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -1959,6 +1968,8 @@ type CategoryExtentType struct {
 }
 
 type CategoryPropertyType struct {
+	// A term representing a classification.  It has an optional XML attribute codeSpace, whose value is a URI which identifies a dictionary, codelist or authority for the term.
+	Category *CodeType `xml:"http://www.opengis.net/gml Category,omitempty"`
 	// This abstract element is the head of a substitutionGroup hierararchy which may contain either simpleContent or complexContent elements.  It is used to assert the model position of "class" elements declared in other GML schemas.
 	AbstractObject                    *string                                `xml:"http://www.opengis.net/gml _Object,omitempty"`
 	Array                             *ArrayType                             `xml:"http://www.opengis.net/gml Array,omitempty"`
@@ -2107,8 +2118,6 @@ type CategoryPropertyType struct {
 	ValueArray     *ValueArrayType     `xml:"http://www.opengis.net/gml ValueArray,omitempty"`
 	// A value from two-valued logic, using the XML Schema boolean type.  An instance may take the values {true, false, 1, 0}.
 	Boolean *bool `xml:"http://www.opengis.net/gml Boolean,omitempty"`
-	// A term representing a classification.  It has an optional XML attribute codeSpace, whose value is a URI which identifies a dictionary, codelist or authority for the term.
-	Category *CodeType `xml:"http://www.opengis.net/gml Category,omitempty"`
 	// A numeric value with a scale.  The content of the element is an amount using the XML Schema type double which permits decimal or scientific notation.  An XML attribute uom (unit of measure) is required, whose value is a URI which identifies the definition of the scale or units by which the numeric value must be multiplied.
 	Quantity *MeasureType `xml:"http://www.opengis.net/gml Quantity,omitempty"`
 	// An integer representing a frequency of occurrence.
@@ -2171,6 +2180,18 @@ type CircleByCenterPointType struct {
 }
 
 type CircleType struct {
+	PosList *DirectPositionListType `xml:"http://www.opengis.net/gml posList,omitempty"`
+	// Deprecated with GML version 3.1.0. Use "posList" instead.
+	Coordinates *CoordinatesType    `xml:"http://www.opengis.net/gml coordinates,omitempty"`
+	Pos         *DirectPositionType `xml:"http://www.opengis.net/gml pos,omitempty"`
+	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty
+	// is the predefined property which can be used by GML Application Schemas whenever a GML Feature has a property with a value that
+	// is substitutable for Point.
+	PointProperty *PointPropertyType `xml:"http://www.opengis.net/gml pointProperty,omitempty"`
+	// Deprecated with GML version 3.1.0. Use "pointProperty" instead. Included for backwards compatibility with GML 3.0.0.
+	PointRep *PointPropertyType `xml:"http://www.opengis.net/gml pointRep,omitempty"`
+	// An arc is an arc string consiting of a single arc, the attribute is fixed to "1".
+	NumArc *int `xml:"numArc,attr,omitempty"`
 	// The attribute "numDerivativesAtStart" specifies the type of continuity between this curve segment and its predecessor. If this is the first curve segment in the curve, one of these values, as appropriate, is ignored. The default value of "0" means simple continuity, which is a mandatory minimum level of continuity. This level is referred to as "C 0 " in mathematical texts. A value of 1 means that the function and its first derivative are continuous at the appropriate end point: "C 1 " continuity. A value of "n" for any integer means the function and its first n derivatives are continuous: "C n " continuity.
 	// NOTE: Use of these values is only appropriate when the basic curve definition is an underdetermined system. For example, line string segments cannot support continuity above C 0 , since there is no spare control parameter to adjust the incoming angle at the end points of the segment. Spline functions on the other hand often have extra degrees of freedom on end segments that allow them to adjust the values of the derivatives to support C 1 or higher continuity.
 	NumDerivativesAtStart *int `xml:"numDerivativesAtStart,attr,omitempty"`
@@ -2179,22 +2200,10 @@ type CircleType struct {
 	NumDerivativesAtEnd *int `xml:"numDerivativesAtEnd,attr,omitempty"`
 	// The attribute "numDerivativesInterior" specifies the type of continuity that is guaranteed interior to the curve. The default value of "0" means simple continuity, which is a mandatory minimum level of continuity. This level is referred to as "C 0 " in mathematical texts. A value of 1 means that the function and its first derivative are continuous at the appropriate end point: "C 1 " continuity. A value of "n" for any integer means the function and its first n derivatives are continuous: "C n " continuity.
 	// NOTE: Use of these values is only appropriate when the basic curve definition is an underdetermined system. For example, line string segments cannot support continuity above C 0 , since there is no spare control parameter to adjust the incoming angle at the end points of the segment. Spline functions on the other hand often have extra degrees of freedom on end segments that allow them to adjust the values of the derivatives to support C 1 or higher continuity.
-	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
-	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml posList,omitempty"`
-	// Deprecated with GML version 3.1.0. Use "posList" instead.
-	Coordinates *CoordinatesType     `xml:"http://www.opengis.net/gml coordinates,omitempty"`
-	Pos         []DirectPositionType `xml:"http://www.opengis.net/gml pos"`
-	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty
-	// is the predefined property which can be used by GML Application Schemas whenever a GML Feature has a property with a value that
-	// is substitutable for Point.
-	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml pointProperty"`
-	// Deprecated with GML version 3.1.0. Use "pointProperty" instead. Included for backwards compatibility with GML 3.0.0.
-	PointRep []PointPropertyType `xml:"http://www.opengis.net/gml pointRep"`
+	NumDerivativeInterior *int `xml:"numDerivativeInterior,attr,omitempty"`
 	// The attribute "interpolation" specifies the curve interpolation mechanism used for this segment. This mechanism
 	// uses the control points and control parameters to determine the position of this curve segment. For an ArcString the interpolation is fixed as "circularArc3Points".
 	Interpolation *string `xml:"interpolation,attr,omitempty"`
-	// The number of arcs in the arc string can be explicitly stated in this attribute. The number of control points in the arc string must be 2 * numArc + 1.
-	NumArc *int `xml:"numArc,attr,omitempty"`
 }
 
 type ClothoidType struct {
@@ -2453,9 +2462,12 @@ type CompoundCRSRefType struct {
 type CompoundCRSType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this reference system is identified.
+	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -2465,8 +2477,6 @@ type CompoundCRSType struct {
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -2494,20 +2504,21 @@ type ConcatenatedOperationRefType struct {
 type ConcatenatedOperationType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this coordinate operation is identified.
+	CoordinateOperationName *CodeType `xml:"http://www.opengis.net/gml coordinateOperationName,omitempty"`
+	Id                      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
+	Name          []CodeType `xml:"http://www.opengis.net/gml name"`
+	CsName        []CodeType `xml:"http://www.opengis.net/gml csName"`
+	DatumName     []CodeType `xml:"http://www.opengis.net/gml datumName"`
+	EllipsoidName []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
+	GroupName     []CodeType `xml:"http://www.opengis.net/gml groupName"`
+	MeridianName  []CodeType `xml:"http://www.opengis.net/gml meridianName"`
+	MethodName    []CodeType `xml:"http://www.opengis.net/gml methodName"`
+	ParameterName []CodeType `xml:"http://www.opengis.net/gml parameterName"`
+	SrsName       []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this coordinate operation. The first coordinateOperationID, if any, is normally the primary identification code, and any others are aliases.
 	CoordinateOperationID []IdentifierType `xml:"http://www.opengis.net/gml coordinateOperationID"`
 	// Comments on or information about this coordinate operation, including source information.
@@ -2561,7 +2572,7 @@ type ConventionalUnitType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -2608,35 +2619,35 @@ type ConversionToPreferredUnitType struct {
 type ConversionType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Set of alternative identifications of this coordinate operation. The first coordinateOperationID, if any, is normally the primary identification code, and any others are aliases.
+	// The name by which this coordinate operation is identified.
+	CoordinateOperationName *CodeType `xml:"http://www.opengis.net/gml coordinateOperationName,omitempty"`
+	// An identification of a coordinate operation.
 	CoordinateOperationID []IdentifierType `xml:"http://www.opengis.net/gml coordinateOperationID"`
-	// Comments on or information about this coordinate operation, including source information.
+	// Information about this object or code. Contains text or refers to external text.
 	Remarks *StringOrRefType `xml:"http://www.opengis.net/gml remarks,omitempty"`
-	// Version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters). Mandatory when describing a transformation, and should not be supplied for a conversion.
-	OperationVersion *string `xml:"http://www.opengis.net/gml operationVersion,omitempty"`
 	// Area or region in which this CRS object is valid.
 	ValidArea *ExtentType `xml:"http://www.opengis.net/gml validArea,omitempty"`
 	// Description of domain of usage, or limitations of usage, for which this CRS object is valid.
-	Scope *string `xml:"http://www.opengis.net/gml scope,omitempty"`
-	// Unordered set of estimates of the impact of this coordinate operation on point position accuracy. Gives position error estimates for target coordinates of this coordinate operation, assuming no errors in source coordinates.
+	Scope                              *string                                  `xml:"http://www.opengis.net/gml scope,omitempty"`
 	AbstractPositionalAccuracy         []AbstractPositionalAccuracyType         `xml:"http://www.opengis.net/gml _positionalAccuracy"`
 	AbsoluteExternalPositionalAccuracy []AbsoluteExternalPositionalAccuracyType `xml:"http://www.opengis.net/gml absoluteExternalPositionalAccuracy"`
 	CovarianceMatrix                   []CovarianceMatrixType                   `xml:"http://www.opengis.net/gml covarianceMatrix"`
 	RelativeInternalPositionalAccuracy []RelativeInternalPositionalAccuracyType `xml:"http://www.opengis.net/gml relativeInternalPositionalAccuracy"`
+	Id                                 string                                   `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	// Contains a simple text description of the object, or refers to an external description.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
+	Name          []CodeType `xml:"http://www.opengis.net/gml name"`
+	CsName        []CodeType `xml:"http://www.opengis.net/gml csName"`
+	DatumName     []CodeType `xml:"http://www.opengis.net/gml datumName"`
+	EllipsoidName []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
+	GroupName     []CodeType `xml:"http://www.opengis.net/gml groupName"`
+	MeridianName  []CodeType `xml:"http://www.opengis.net/gml meridianName"`
+	MethodName    []CodeType `xml:"http://www.opengis.net/gml methodName"`
+	ParameterName []CodeType `xml:"http://www.opengis.net/gml parameterName"`
+	SrsName       []CodeType `xml:"http://www.opengis.net/gml srsName"`
+	// Version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters). Mandatory when describing a transformation, and should not be supplied for a conversion.
+	OperationVersion *string `xml:"http://www.opengis.net/gml operationVersion,omitempty"`
 	// Association to the source CRS (coordinate reference system) of this coordinate operation.
 	SourceCRS *CRSRefType `xml:"http://www.opengis.net/gml sourceCRS,omitempty"`
 	// Association to the target CRS (coordinate reference system) of this coordinate operation. For constraints on multiplicity of "sourceCRS" and "targetCRS", see UML model of Coordinate Operation package in OGC Abstract Specification topic 2.
@@ -2700,20 +2711,20 @@ type CoordinateReferenceSystemRefType struct {
 type CoordinateSystemAxisBaseType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this coordinate system axis is identified.
+	Name                    *CodeType `xml:"http://www.opengis.net/gml name,omitempty"`
+	CoordinateOperationName *CodeType `xml:"http://www.opengis.net/gml coordinateOperationName,omitempty"`
+	CsName                  *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
+	DatumName               *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
+	EllipsoidName           *CodeType `xml:"http://www.opengis.net/gml ellipsoidName,omitempty"`
+	GroupName               *CodeType `xml:"http://www.opengis.net/gml groupName,omitempty"`
+	MeridianName            *CodeType `xml:"http://www.opengis.net/gml meridianName,omitempty"`
+	MethodName              *CodeType `xml:"http://www.opengis.net/gml methodName,omitempty"`
+	ParameterName           *CodeType `xml:"http://www.opengis.net/gml parameterName,omitempty"`
+	SrsName                 *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
+	Id                      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 }
 
 type CoordinateSystemAxisRefType struct {
@@ -2731,20 +2742,20 @@ type CoordinateSystemAxisRefType struct {
 type CoordinateSystemAxisType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this coordinate system axis is identified.
+	Name                    *CodeType `xml:"http://www.opengis.net/gml name,omitempty"`
+	CoordinateOperationName *CodeType `xml:"http://www.opengis.net/gml coordinateOperationName,omitempty"`
+	CsName                  *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
+	DatumName               *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
+	EllipsoidName           *CodeType `xml:"http://www.opengis.net/gml ellipsoidName,omitempty"`
+	GroupName               *CodeType `xml:"http://www.opengis.net/gml groupName,omitempty"`
+	MeridianName            *CodeType `xml:"http://www.opengis.net/gml meridianName,omitempty"`
+	MethodName              *CodeType `xml:"http://www.opengis.net/gml methodName,omitempty"`
+	ParameterName           *CodeType `xml:"http://www.opengis.net/gml parameterName,omitempty"`
+	SrsName                 *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
+	Id                      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this coordinate system axis. The first axisID, if any, is normally the primary identification code, and any others are aliases.
 	AxisID []IdentifierType `xml:"http://www.opengis.net/gml axisID"`
 	// Comments on or information about this coordinate system axis, including data source information.
@@ -2786,6 +2797,8 @@ type CoordinatesType struct {
 }
 
 type CountPropertyType struct {
+	// An integer representing a frequency of occurrence.
+	Count *int `xml:"http://www.opengis.net/gml Count,omitempty"`
 	// This abstract element is the head of a substitutionGroup hierararchy which may contain either simpleContent or complexContent elements.  It is used to assert the model position of "class" elements declared in other GML schemas.
 	AbstractObject                    *string                                `xml:"http://www.opengis.net/gml _Object,omitempty"`
 	Array                             *ArrayType                             `xml:"http://www.opengis.net/gml Array,omitempty"`
@@ -2938,8 +2951,6 @@ type CountPropertyType struct {
 	Category *CodeType `xml:"http://www.opengis.net/gml Category,omitempty"`
 	// A numeric value with a scale.  The content of the element is an amount using the XML Schema type double which permits decimal or scientific notation.  An XML attribute uom (unit of measure) is required, whose value is a URI which identifies the definition of the scale or units by which the numeric value must be multiplied.
 	Quantity *MeasureType `xml:"http://www.opengis.net/gml Quantity,omitempty"`
-	// An integer representing a frequency of occurrence.
-	Count *int `xml:"http://www.opengis.net/gml Count,omitempty"`
 	// XML List based on XML Schema boolean type.  An element of this type contains a space-separated list of boolean values {0,1,true,false}
 	BooleanList *string `xml:"http://www.opengis.net/gml BooleanList,omitempty"`
 	// A space-separated list of terms or nulls.  A single XML attribute codeSpace may be provided, which authorises all the terms in the list.
@@ -3135,12 +3146,14 @@ type CylindricalCSRefType struct {
 type CylindricalCSType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this coordinate system is identified.
+	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
 	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
@@ -3148,7 +3161,6 @@ type CylindricalCSType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -3207,7 +3219,7 @@ type DefinitionProxyType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -3228,7 +3240,7 @@ type DefinitionType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -3268,9 +3280,12 @@ type DerivedCRSRefType struct {
 type DerivedCRSType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this reference system is identified.
+	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -3280,8 +3295,6 @@ type DerivedCRSType struct {
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -3310,7 +3323,7 @@ type DerivedUnitType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -3406,7 +3419,7 @@ type DictionaryType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -3747,20 +3760,21 @@ type EdgeType struct {
 type EllipsoidBaseType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this ellipsoid is identified.
+	EllipsoidName *CodeType `xml:"http://www.opengis.net/gml ellipsoidName,omitempty"`
+	Id            string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
 	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 }
 
 type EllipsoidRefType struct {
@@ -3778,20 +3792,21 @@ type EllipsoidRefType struct {
 type EllipsoidType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this ellipsoid is identified.
+	EllipsoidName *CodeType `xml:"http://www.opengis.net/gml ellipsoidName,omitempty"`
+	Id            string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
 	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this ellipsoid. The first ellipsoidID, if any, is normally the primary identification code, and any others are aliases.
 	EllipsoidID []IdentifierType `xml:"http://www.opengis.net/gml ellipsoidID"`
 	// Comments on or information about this ellipsoid, including source information.
@@ -3816,12 +3831,14 @@ type EllipsoidalCSRefType struct {
 type EllipsoidalCSType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this coordinate system is identified.
+	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
 	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
@@ -3829,7 +3846,6 @@ type EllipsoidalCSType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -3853,9 +3869,12 @@ type EngineeringCRSRefType struct {
 type EngineeringCRSType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this reference system is identified.
+	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -3865,8 +3884,6 @@ type EngineeringCRSType struct {
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -3896,20 +3913,21 @@ type EngineeringDatumRefType struct {
 type EngineeringDatumType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this datum is identified.
+	DatumName *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
+	Id        string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this datum. The first datumID, if any, is normally the primary identification code, and any others are aliases.
 	DatumID []IdentifierType `xml:"http://www.opengis.net/gml datumID"`
 	// Comments on this reference system, including source information.
@@ -4196,9 +4214,12 @@ type GeocentricCRSRefType struct {
 type GeocentricCRSType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this reference system is identified.
+	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -4208,8 +4229,6 @@ type GeocentricCRSType struct {
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -4289,20 +4308,21 @@ type GeodeticDatumRefType struct {
 type GeodeticDatumType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this datum is identified.
+	DatumName *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
+	Id        string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this datum. The first datumID, if any, is normally the primary identification code, and any others are aliases.
 	DatumID []IdentifierType `xml:"http://www.opengis.net/gml datumID"`
 	// Comments on this reference system, including source information.
@@ -4340,9 +4360,12 @@ type GeographicCRSRefType struct {
 type GeographicCRSType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this reference system is identified.
+	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -4352,8 +4375,6 @@ type GeographicCRSType struct {
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -4638,39 +4659,40 @@ type GraphStyleType struct {
 }
 
 type GridCoverageType struct {
+	BoundedBy        *BoundingShapeType    `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
+	GridDomain       *GridDomainType       `xml:"http://www.opengis.net/gml gridDomain,omitempty"`
+	RangeSet         *RangeSetType         `xml:"http://www.opengis.net/gml rangeSet,omitempty"`
+	CoverageFunction *CoverageFunctionType `xml:"http://www.opengis.net/gml coverageFunction,omitempty"`
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
 	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
-	Name                    []CodeType         `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType         `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType         `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType         `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType         `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType         `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType         `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType         `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType         `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string             `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	BoundedBy               *BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
+	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
+	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
+	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
+	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
+	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
+	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
+	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
+	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
+	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
+	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
+	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// deprecated in GML version 3.1
 	Location            *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation    *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
 	DomainSet           *DomainSetType                `xml:"http://www.opengis.net/gml domainSet,omitempty"`
-	GridDomain          *GridDomainType               `xml:"http://www.opengis.net/gml gridDomain,omitempty"`
 	MultiCurveDomain    *MultiCurveDomainType         `xml:"http://www.opengis.net/gml multiCurveDomain,omitempty"`
 	MultiPointDomain    *MultiPointDomainType         `xml:"http://www.opengis.net/gml multiPointDomain,omitempty"`
 	MultiSolidDomain    *MultiSolidDomainType         `xml:"http://www.opengis.net/gml multiSolidDomain,omitempty"`
 	MultiSurfaceDomain  *MultiSurfaceDomainType       `xml:"http://www.opengis.net/gml multiSurfaceDomain,omitempty"`
 	RectifiedGridDomain *RectifiedGridDomainType      `xml:"http://www.opengis.net/gml rectifiedGridDomain,omitempty"`
-	RangeSet            *RangeSetType                 `xml:"http://www.opengis.net/gml rangeSet,omitempty"`
 	Dimension           *int                          `xml:"dimension,attr,omitempty"`
-	CoverageFunction    *CoverageFunctionType         `xml:"http://www.opengis.net/gml coverageFunction,omitempty"`
 }
 
 type GridDomainType struct {
+	Grid *GridType `xml:"http://www.opengis.net/gml Grid,omitempty"`
 	// The "_Geometry" element is the abstract head of the substituition group for all geometry elements of GML 3. This
 	// includes pre-defined and user-defined geometry elements. Any geometry element must be a direct or indirect extension/restriction
 	// of AbstractGeometryType and must be directly or indirectly in the substitution group of "_Geometry".
@@ -4680,7 +4702,6 @@ type GridDomainType struct {
 	CompositeSurface           *CompositeSurfaceType           `xml:"http://www.opengis.net/gml CompositeSurface,omitempty"`
 	Curve                      *CurveType                      `xml:"http://www.opengis.net/gml Curve,omitempty"`
 	GeometricComplex           *GeometricComplexType           `xml:"http://www.opengis.net/gml GeometricComplex,omitempty"`
-	Grid                       *GridType                       `xml:"http://www.opengis.net/gml Grid,omitempty"`
 	LineString                 *LineStringType                 `xml:"http://www.opengis.net/gml LineString,omitempty"`
 	LinearRing                 *LinearRingType                 `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
 	MultiCurve                 *MultiCurveType                 `xml:"http://www.opengis.net/gml MultiCurve,omitempty"`
@@ -4830,9 +4851,12 @@ type ImageCRSRefType struct {
 type ImageCRSType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this reference system is identified.
+	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -4842,8 +4866,6 @@ type ImageCRSType struct {
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -4875,20 +4897,21 @@ type ImageDatumRefType struct {
 type ImageDatumType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this datum is identified.
+	DatumName *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
+	Id        string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this datum. The first datumID, if any, is normally the primary identification code, and any others are aliases.
 	DatumID []IdentifierType `xml:"http://www.opengis.net/gml datumID"`
 	// Comments on this reference system, including source information.
@@ -5106,12 +5129,14 @@ type LinearCSRefType struct {
 type LinearCSType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this coordinate system is identified.
+	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
 	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
@@ -5119,7 +5144,6 @@ type LinearCSType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -5292,39 +5316,40 @@ type MovingObjectStatusType struct {
 }
 
 type MultiCurveCoverageType struct {
+	BoundedBy        *BoundingShapeType    `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
+	MultiCurveDomain *MultiCurveDomainType `xml:"http://www.opengis.net/gml multiCurveDomain,omitempty"`
+	RangeSet         *RangeSetType         `xml:"http://www.opengis.net/gml rangeSet,omitempty"`
+	CoverageFunction *CoverageFunctionType `xml:"http://www.opengis.net/gml coverageFunction,omitempty"`
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
 	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
-	Name                    []CodeType         `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType         `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType         `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType         `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType         `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType         `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType         `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType         `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType         `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string             `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	BoundedBy               *BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
+	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
+	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
+	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
+	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
+	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
+	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
+	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
+	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
+	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
+	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
+	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// deprecated in GML version 3.1
 	Location            *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation    *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
 	DomainSet           *DomainSetType                `xml:"http://www.opengis.net/gml domainSet,omitempty"`
 	GridDomain          *GridDomainType               `xml:"http://www.opengis.net/gml gridDomain,omitempty"`
-	MultiCurveDomain    *MultiCurveDomainType         `xml:"http://www.opengis.net/gml multiCurveDomain,omitempty"`
 	MultiPointDomain    *MultiPointDomainType         `xml:"http://www.opengis.net/gml multiPointDomain,omitempty"`
 	MultiSolidDomain    *MultiSolidDomainType         `xml:"http://www.opengis.net/gml multiSolidDomain,omitempty"`
 	MultiSurfaceDomain  *MultiSurfaceDomainType       `xml:"http://www.opengis.net/gml multiSurfaceDomain,omitempty"`
 	RectifiedGridDomain *RectifiedGridDomainType      `xml:"http://www.opengis.net/gml rectifiedGridDomain,omitempty"`
-	RangeSet            *RangeSetType                 `xml:"http://www.opengis.net/gml rangeSet,omitempty"`
 	Dimension           *int                          `xml:"dimension,attr,omitempty"`
-	CoverageFunction    *CoverageFunctionType         `xml:"http://www.opengis.net/gml coverageFunction,omitempty"`
 }
 
 type MultiCurveDomainType struct {
+	MultiCurve *MultiCurveType `xml:"http://www.opengis.net/gml MultiCurve,omitempty"`
 	// The "_Geometry" element is the abstract head of the substituition group for all geometry elements of GML 3. This
 	// includes pre-defined and user-defined geometry elements. Any geometry element must be a direct or indirect extension/restriction
 	// of AbstractGeometryType and must be directly or indirectly in the substitution group of "_Geometry".
@@ -5337,7 +5362,6 @@ type MultiCurveDomainType struct {
 	Grid                       *GridType                       `xml:"http://www.opengis.net/gml Grid,omitempty"`
 	LineString                 *LineStringType                 `xml:"http://www.opengis.net/gml LineString,omitempty"`
 	LinearRing                 *LinearRingType                 `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
-	MultiCurve                 *MultiCurveType                 `xml:"http://www.opengis.net/gml MultiCurve,omitempty"`
 	MultiGeometry              *MultiGeometryType              `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
 	MultiLineString            *MultiLineStringType            `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
 	MultiPoint                 *MultiPointType                 `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
@@ -5560,39 +5584,40 @@ type MultiLineStringType struct {
 }
 
 type MultiPointCoverageType struct {
+	BoundedBy        *BoundingShapeType    `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
+	MultiPointDomain *MultiPointDomainType `xml:"http://www.opengis.net/gml multiPointDomain,omitempty"`
+	RangeSet         *RangeSetType         `xml:"http://www.opengis.net/gml rangeSet,omitempty"`
+	CoverageFunction *CoverageFunctionType `xml:"http://www.opengis.net/gml coverageFunction,omitempty"`
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
 	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
-	Name                    []CodeType         `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType         `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType         `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType         `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType         `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType         `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType         `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType         `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType         `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string             `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	BoundedBy               *BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
+	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
+	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
+	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
+	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
+	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
+	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
+	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
+	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
+	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
+	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
+	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// deprecated in GML version 3.1
 	Location            *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation    *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
 	DomainSet           *DomainSetType                `xml:"http://www.opengis.net/gml domainSet,omitempty"`
 	GridDomain          *GridDomainType               `xml:"http://www.opengis.net/gml gridDomain,omitempty"`
 	MultiCurveDomain    *MultiCurveDomainType         `xml:"http://www.opengis.net/gml multiCurveDomain,omitempty"`
-	MultiPointDomain    *MultiPointDomainType         `xml:"http://www.opengis.net/gml multiPointDomain,omitempty"`
 	MultiSolidDomain    *MultiSolidDomainType         `xml:"http://www.opengis.net/gml multiSolidDomain,omitempty"`
 	MultiSurfaceDomain  *MultiSurfaceDomainType       `xml:"http://www.opengis.net/gml multiSurfaceDomain,omitempty"`
 	RectifiedGridDomain *RectifiedGridDomainType      `xml:"http://www.opengis.net/gml rectifiedGridDomain,omitempty"`
-	RangeSet            *RangeSetType                 `xml:"http://www.opengis.net/gml rangeSet,omitempty"`
 	Dimension           *int                          `xml:"dimension,attr,omitempty"`
-	CoverageFunction    *CoverageFunctionType         `xml:"http://www.opengis.net/gml coverageFunction,omitempty"`
 }
 
 type MultiPointDomainType struct {
+	MultiPoint *MultiPointType `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
 	// The "_Geometry" element is the abstract head of the substituition group for all geometry elements of GML 3. This
 	// includes pre-defined and user-defined geometry elements. Any geometry element must be a direct or indirect extension/restriction
 	// of AbstractGeometryType and must be directly or indirectly in the substitution group of "_Geometry".
@@ -5608,7 +5633,6 @@ type MultiPointDomainType struct {
 	MultiCurve                 *MultiCurveType                 `xml:"http://www.opengis.net/gml MultiCurve,omitempty"`
 	MultiGeometry              *MultiGeometryType              `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
 	MultiLineString            *MultiLineStringType            `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
-	MultiPoint                 *MultiPointType                 `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
 	MultiPolygon               *MultiPolygonType               `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
 	MultiSolid                 *MultiSolidType                 `xml:"http://www.opengis.net/gml MultiSolid,omitempty"`
 	MultiSurface               *MultiSurfaceType               `xml:"http://www.opengis.net/gml MultiSurface,omitempty"`
@@ -5764,23 +5788,26 @@ type MultiPolygonType struct {
 }
 
 type MultiSolidCoverageType struct {
+	BoundedBy        *BoundingShapeType    `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
+	MultiSolidDomain *MultiSolidDomainType `xml:"http://www.opengis.net/gml multiSolidDomain,omitempty"`
+	RangeSet         *RangeSetType         `xml:"http://www.opengis.net/gml rangeSet,omitempty"`
+	CoverageFunction *CoverageFunctionType `xml:"http://www.opengis.net/gml coverageFunction,omitempty"`
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
 	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
-	Name                    []CodeType         `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType         `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType         `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType         `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType         `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType         `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType         `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType         `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType         `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string             `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	BoundedBy               *BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
+	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
+	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
+	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
+	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
+	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
+	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
+	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
+	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
+	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
+	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
+	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// deprecated in GML version 3.1
 	Location            *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation    *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
@@ -5788,15 +5815,13 @@ type MultiSolidCoverageType struct {
 	GridDomain          *GridDomainType               `xml:"http://www.opengis.net/gml gridDomain,omitempty"`
 	MultiCurveDomain    *MultiCurveDomainType         `xml:"http://www.opengis.net/gml multiCurveDomain,omitempty"`
 	MultiPointDomain    *MultiPointDomainType         `xml:"http://www.opengis.net/gml multiPointDomain,omitempty"`
-	MultiSolidDomain    *MultiSolidDomainType         `xml:"http://www.opengis.net/gml multiSolidDomain,omitempty"`
 	MultiSurfaceDomain  *MultiSurfaceDomainType       `xml:"http://www.opengis.net/gml multiSurfaceDomain,omitempty"`
 	RectifiedGridDomain *RectifiedGridDomainType      `xml:"http://www.opengis.net/gml rectifiedGridDomain,omitempty"`
-	RangeSet            *RangeSetType                 `xml:"http://www.opengis.net/gml rangeSet,omitempty"`
 	Dimension           *int                          `xml:"dimension,attr,omitempty"`
-	CoverageFunction    *CoverageFunctionType         `xml:"http://www.opengis.net/gml coverageFunction,omitempty"`
 }
 
 type MultiSolidDomainType struct {
+	MultiSolid *MultiSolidType `xml:"http://www.opengis.net/gml MultiSolid,omitempty"`
 	// The "_Geometry" element is the abstract head of the substituition group for all geometry elements of GML 3. This
 	// includes pre-defined and user-defined geometry elements. Any geometry element must be a direct or indirect extension/restriction
 	// of AbstractGeometryType and must be directly or indirectly in the substitution group of "_Geometry".
@@ -5814,7 +5839,6 @@ type MultiSolidDomainType struct {
 	MultiLineString            *MultiLineStringType            `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
 	MultiPoint                 *MultiPointType                 `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
 	MultiPolygon               *MultiPolygonType               `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
-	MultiSolid                 *MultiSolidType                 `xml:"http://www.opengis.net/gml MultiSolid,omitempty"`
 	MultiSurface               *MultiSurfaceType               `xml:"http://www.opengis.net/gml MultiSurface,omitempty"`
 	OrientableCurve            *OrientableCurveType            `xml:"http://www.opengis.net/gml OrientableCurve,omitempty"`
 	OrientableSurface          *OrientableSurfaceType          `xml:"http://www.opengis.net/gml OrientableSurface,omitempty"`
@@ -5912,23 +5936,26 @@ type MultiSolidType struct {
 }
 
 type MultiSurfaceCoverageType struct {
+	BoundedBy          *BoundingShapeType      `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
+	MultiSurfaceDomain *MultiSurfaceDomainType `xml:"http://www.opengis.net/gml multiSurfaceDomain,omitempty"`
+	RangeSet           *RangeSetType           `xml:"http://www.opengis.net/gml rangeSet,omitempty"`
+	CoverageFunction   *CoverageFunctionType   `xml:"http://www.opengis.net/gml coverageFunction,omitempty"`
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
 	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
-	Name                    []CodeType         `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType         `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType         `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType         `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType         `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType         `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType         `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType         `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType         `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string             `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	BoundedBy               *BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
+	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
+	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
+	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
+	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
+	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
+	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
+	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
+	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
+	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
+	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
+	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// deprecated in GML version 3.1
 	Location            *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation    *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
@@ -5937,14 +5964,12 @@ type MultiSurfaceCoverageType struct {
 	MultiCurveDomain    *MultiCurveDomainType         `xml:"http://www.opengis.net/gml multiCurveDomain,omitempty"`
 	MultiPointDomain    *MultiPointDomainType         `xml:"http://www.opengis.net/gml multiPointDomain,omitempty"`
 	MultiSolidDomain    *MultiSolidDomainType         `xml:"http://www.opengis.net/gml multiSolidDomain,omitempty"`
-	MultiSurfaceDomain  *MultiSurfaceDomainType       `xml:"http://www.opengis.net/gml multiSurfaceDomain,omitempty"`
 	RectifiedGridDomain *RectifiedGridDomainType      `xml:"http://www.opengis.net/gml rectifiedGridDomain,omitempty"`
-	RangeSet            *RangeSetType                 `xml:"http://www.opengis.net/gml rangeSet,omitempty"`
 	Dimension           *int                          `xml:"dimension,attr,omitempty"`
-	CoverageFunction    *CoverageFunctionType         `xml:"http://www.opengis.net/gml coverageFunction,omitempty"`
 }
 
 type MultiSurfaceDomainType struct {
+	MultiSurface *MultiSurfaceType `xml:"http://www.opengis.net/gml MultiSurface,omitempty"`
 	// The "_Geometry" element is the abstract head of the substituition group for all geometry elements of GML 3. This
 	// includes pre-defined and user-defined geometry elements. Any geometry element must be a direct or indirect extension/restriction
 	// of AbstractGeometryType and must be directly or indirectly in the substitution group of "_Geometry".
@@ -5963,7 +5988,6 @@ type MultiSurfaceDomainType struct {
 	MultiPoint                 *MultiPointType                 `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
 	MultiPolygon               *MultiPolygonType               `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
 	MultiSolid                 *MultiSolidType                 `xml:"http://www.opengis.net/gml MultiSolid,omitempty"`
-	MultiSurface               *MultiSurfaceType               `xml:"http://www.opengis.net/gml MultiSurface,omitempty"`
 	OrientableCurve            *OrientableCurveType            `xml:"http://www.opengis.net/gml OrientableCurve,omitempty"`
 	OrientableSurface          *OrientableSurfaceType          `xml:"http://www.opengis.net/gml OrientableSurface,omitempty"`
 	Point                      *PointType                      `xml:"http://www.opengis.net/gml Point,omitempty"`
@@ -6100,12 +6124,14 @@ type ObliqueCartesianCSRefType struct {
 type ObliqueCartesianCSType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this coordinate system is identified.
+	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
 	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
@@ -6113,7 +6139,6 @@ type ObliqueCartesianCSType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -6209,9 +6234,12 @@ type OffsetCurveType struct {
 type OperationMethodBaseType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this operation method is identified.
+	MethodName *CodeType `xml:"http://www.opengis.net/gml methodName,omitempty"`
+	Id         string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -6219,10 +6247,8 @@ type OperationMethodBaseType struct {
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 }
 
 type OperationMethodRefType struct {
@@ -6240,9 +6266,12 @@ type OperationMethodRefType struct {
 type OperationMethodType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this operation method is identified.
+	MethodName *CodeType `xml:"http://www.opengis.net/gml methodName,omitempty"`
+	Id         string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -6250,10 +6279,8 @@ type OperationMethodType struct {
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this operation method. The first methodID, if any, is normally the primary identification code, and any others are aliases.
 	MethodID []IdentifierType `xml:"http://www.opengis.net/gml methodID"`
 	// Comments on or information about this operation method, including source information.
@@ -6271,9 +6298,14 @@ type OperationMethodType struct {
 type OperationParameterBaseType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this operation parameter is identified.
+	ParameterName *CodeType `xml:"http://www.opengis.net/gml parameterName,omitempty"`
+	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
+	MinimumOccurs *int   `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
+	Id            string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -6282,32 +6314,29 @@ type OperationParameterBaseType struct {
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
-	MinimumOccurs *int `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
 }
 
 type OperationParameterGroupBaseType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this operation parameter group is identified.
+	GroupName *CodeType `xml:"http://www.opengis.net/gml groupName,omitempty"`
+	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
+	MinimumOccurs *int   `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
+	Id            string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
 	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
-	MinimumOccurs *int `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
 }
 
 type OperationParameterGroupRefType struct {
@@ -6325,22 +6354,23 @@ type OperationParameterGroupRefType struct {
 type OperationParameterGroupType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this operation parameter group is identified.
+	GroupName *CodeType `xml:"http://www.opengis.net/gml groupName,omitempty"`
+	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
+	MinimumOccurs *int   `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
+	Id            string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
 	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
-	MinimumOccurs *int `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
 	// Set of alternative identifications of this operation parameter group. The first groupID, if any, is normally the primary identification code, and any others are aliases.
 	GroupID []IdentifierType `xml:"http://www.opengis.net/gml groupID"`
 	// Comments on or information about this operation parameter group, including source information.
@@ -6366,9 +6396,14 @@ type OperationParameterRefType struct {
 type OperationParameterType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this operation parameter is identified.
+	ParameterName *CodeType `xml:"http://www.opengis.net/gml parameterName,omitempty"`
+	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
+	MinimumOccurs *int   `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
+	Id            string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -6377,11 +6412,7 @@ type OperationParameterType struct {
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
-	MinimumOccurs *int `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
 	// Set of alternative identifications of this operation parameter. The first parameterID, if any, is normally the primary identification code, and any others are aliases.
 	ParameterID []IdentifierType `xml:"http://www.opengis.net/gml parameterID"`
 	// Comments on or information about this operation parameter, including source information.
@@ -6539,20 +6570,21 @@ type PassThroughOperationRefType struct {
 type PassThroughOperationType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this coordinate operation is identified.
+	CoordinateOperationName *CodeType `xml:"http://www.opengis.net/gml coordinateOperationName,omitempty"`
+	Id                      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
+	Name          []CodeType `xml:"http://www.opengis.net/gml name"`
+	CsName        []CodeType `xml:"http://www.opengis.net/gml csName"`
+	DatumName     []CodeType `xml:"http://www.opengis.net/gml datumName"`
+	EllipsoidName []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
+	GroupName     []CodeType `xml:"http://www.opengis.net/gml groupName"`
+	MeridianName  []CodeType `xml:"http://www.opengis.net/gml meridianName"`
+	MethodName    []CodeType `xml:"http://www.opengis.net/gml methodName"`
+	ParameterName []CodeType `xml:"http://www.opengis.net/gml parameterName"`
+	SrsName       []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this coordinate operation. The first coordinateOperationID, if any, is normally the primary identification code, and any others are aliases.
 	CoordinateOperationID []IdentifierType `xml:"http://www.opengis.net/gml coordinateOperationID"`
 	// Comments on or information about this coordinate operation, including source information.
@@ -6663,12 +6695,14 @@ type PolarCSRefType struct {
 type PolarCSType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this coordinate system is identified.
+	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
 	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
@@ -6676,7 +6710,6 @@ type PolarCSType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -6686,11 +6719,11 @@ type PolarCSType struct {
 }
 
 type PolygonPatchArrayPropertyType struct {
+	PolygonPatch []PolygonPatchType `xml:"http://www.opengis.net/gml PolygonPatch"`
 	// The "_SurfacePatch" element is the abstract head of the substituition group for all surface pach elements describing a continuous portion of a surface.
 	AbstractSurfacePatch           []AbstractSurfacePatchType           `xml:"http://www.opengis.net/gml _SurfacePatch"`
 	Cone                           []ConeType                           `xml:"http://www.opengis.net/gml Cone"`
 	Cylinder                       []CylinderType                       `xml:"http://www.opengis.net/gml Cylinder"`
-	PolygonPatch                   []PolygonPatchType                   `xml:"http://www.opengis.net/gml PolygonPatch"`
 	Rectangle                      []RectangleType                      `xml:"http://www.opengis.net/gml Rectangle"`
 	Sphere                         []SphereType                         `xml:"http://www.opengis.net/gml Sphere"`
 	Triangle                       []TriangleType                       `xml:"http://www.opengis.net/gml Triangle"`
@@ -6768,6 +6801,9 @@ type PolygonType struct {
 }
 
 type PolyhedralSurfaceType struct {
+	// This property encapsulates the patches of
+	// the polyhedral surface.
+	PolygonPatches *PolygonPatchArrayPropertyType `xml:"http://www.opengis.net/gml polygonPatches,omitempty"`
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
@@ -6782,8 +6818,13 @@ type PolyhedralSurfaceType struct {
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	// In general this reference points to a CRS instance of gml:CoordinateReferenceSystemType
+	// (see coordinateReferenceSystems.xsd). For well known references it is not required that the CRS description exists at the
+	// location the URI points to. If no srsName attribute is given, the CRS must be specified as part of the larger context this
+	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
+	// at the direct position level only in rare cases.
+	SrsName *string `xml:"srsName,attr,omitempty"`
+	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -6802,27 +6843,27 @@ type PolyhedralSurfaceType struct {
 	UomLabels *string `xml:"uomLabels,attr,omitempty"`
 	// This element encapsulates the patches of the surface.
 	Patches         *SurfacePatchArrayPropertyType  `xml:"http://www.opengis.net/gml patches,omitempty"`
-	PolygonPatches  *PolygonPatchArrayPropertyType  `xml:"http://www.opengis.net/gml polygonPatches,omitempty"`
 	TrianglePatches *TrianglePatchArrayPropertyType `xml:"http://www.opengis.net/gml trianglePatches,omitempty"`
 }
 
 type PrimeMeridianBaseType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this prime meridian is identified. The meridianName most common value is Greenwich, and that value shall be used when the greenwichLongitude value is zero.
+	MeridianName *CodeType `xml:"http://www.opengis.net/gml meridianName,omitempty"`
+	Id           string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
 	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 }
 
 type PrimeMeridianRefType struct {
@@ -6840,20 +6881,21 @@ type PrimeMeridianRefType struct {
 type PrimeMeridianType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this prime meridian is identified. The meridianName most common value is Greenwich, and that value shall be used when the greenwichLongitude value is zero.
+	MeridianName *CodeType `xml:"http://www.opengis.net/gml meridianName,omitempty"`
+	Id           string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
 	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this prime meridian. The first meridianID, if any, is normally the primary identification code, and any others are aliases.
 	MeridianID []IdentifierType `xml:"http://www.opengis.net/gml meridianID"`
 	// Comments on or information about this prime meridian, including source information.
@@ -6929,9 +6971,12 @@ type ProjectedCRSRefType struct {
 type ProjectedCRSType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this reference system is identified.
+	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -6941,8 +6986,6 @@ type ProjectedCRSType struct {
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -6964,6 +7007,8 @@ type QuantityExtentType struct {
 }
 
 type QuantityPropertyType struct {
+	// A numeric value with a scale.  The content of the element is an amount using the XML Schema type double which permits decimal or scientific notation.  An XML attribute uom (unit of measure) is required, whose value is a URI which identifies the definition of the scale or units by which the numeric value must be multiplied.
+	Quantity *MeasureType `xml:"http://www.opengis.net/gml Quantity,omitempty"`
 	// This abstract element is the head of a substitutionGroup hierararchy which may contain either simpleContent or complexContent elements.  It is used to assert the model position of "class" elements declared in other GML schemas.
 	AbstractObject                    *string                                `xml:"http://www.opengis.net/gml _Object,omitempty"`
 	Array                             *ArrayType                             `xml:"http://www.opengis.net/gml Array,omitempty"`
@@ -7114,8 +7159,6 @@ type QuantityPropertyType struct {
 	Boolean *bool `xml:"http://www.opengis.net/gml Boolean,omitempty"`
 	// A term representing a classification.  It has an optional XML attribute codeSpace, whose value is a URI which identifies a dictionary, codelist or authority for the term.
 	Category *CodeType `xml:"http://www.opengis.net/gml Category,omitempty"`
-	// A numeric value with a scale.  The content of the element is an amount using the XML Schema type double which permits decimal or scientific notation.  An XML attribute uom (unit of measure) is required, whose value is a URI which identifies the definition of the scale or units by which the numeric value must be multiplied.
-	Quantity *MeasureType `xml:"http://www.opengis.net/gml Quantity,omitempty"`
 	// An integer representing a frequency of occurrence.
 	Count *int `xml:"http://www.opengis.net/gml Count,omitempty"`
 	// XML List based on XML Schema boolean type.  An element of this type contains a space-separated list of boolean values {0,1,true,false}
@@ -7204,39 +7247,41 @@ type RectangleType struct {
 }
 
 type RectifiedGridCoverageType struct {
+	BoundedBy           *BoundingShapeType       `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
+	RectifiedGridDomain *RectifiedGridDomainType `xml:"http://www.opengis.net/gml rectifiedGridDomain,omitempty"`
+	RangeSet            *RangeSetType            `xml:"http://www.opengis.net/gml rangeSet,omitempty"`
+	CoverageFunction    *CoverageFunctionType    `xml:"http://www.opengis.net/gml coverageFunction,omitempty"`
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
 	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
-	Name                    []CodeType         `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType         `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType         `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType         `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType         `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType         `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType         `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType         `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType         `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string             `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	BoundedBy               *BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
+	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
+	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
+	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
+	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
+	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
+	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
+	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
+	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
+	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
+	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
+	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// deprecated in GML version 3.1
-	Location            *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
-	PriorityLocation    *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	DomainSet           *DomainSetType                `xml:"http://www.opengis.net/gml domainSet,omitempty"`
-	GridDomain          *GridDomainType               `xml:"http://www.opengis.net/gml gridDomain,omitempty"`
-	MultiCurveDomain    *MultiCurveDomainType         `xml:"http://www.opengis.net/gml multiCurveDomain,omitempty"`
-	MultiPointDomain    *MultiPointDomainType         `xml:"http://www.opengis.net/gml multiPointDomain,omitempty"`
-	MultiSolidDomain    *MultiSolidDomainType         `xml:"http://www.opengis.net/gml multiSolidDomain,omitempty"`
-	MultiSurfaceDomain  *MultiSurfaceDomainType       `xml:"http://www.opengis.net/gml multiSurfaceDomain,omitempty"`
-	RectifiedGridDomain *RectifiedGridDomainType      `xml:"http://www.opengis.net/gml rectifiedGridDomain,omitempty"`
-	RangeSet            *RangeSetType                 `xml:"http://www.opengis.net/gml rangeSet,omitempty"`
-	Dimension           *int                          `xml:"dimension,attr,omitempty"`
-	CoverageFunction    *CoverageFunctionType         `xml:"http://www.opengis.net/gml coverageFunction,omitempty"`
+	Location           *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
+	PriorityLocation   *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
+	DomainSet          *DomainSetType                `xml:"http://www.opengis.net/gml domainSet,omitempty"`
+	GridDomain         *GridDomainType               `xml:"http://www.opengis.net/gml gridDomain,omitempty"`
+	MultiCurveDomain   *MultiCurveDomainType         `xml:"http://www.opengis.net/gml multiCurveDomain,omitempty"`
+	MultiPointDomain   *MultiPointDomainType         `xml:"http://www.opengis.net/gml multiPointDomain,omitempty"`
+	MultiSolidDomain   *MultiSolidDomainType         `xml:"http://www.opengis.net/gml multiSolidDomain,omitempty"`
+	MultiSurfaceDomain *MultiSurfaceDomainType       `xml:"http://www.opengis.net/gml multiSurfaceDomain,omitempty"`
+	Dimension          *int                          `xml:"dimension,attr,omitempty"`
 }
 
 type RectifiedGridDomainType struct {
+	// Should be substitutionGroup="gml:Grid" but changed in order to accomplish Xerces-J schema validation
+	RectifiedGrid *RectifiedGridType `xml:"http://www.opengis.net/gml RectifiedGrid,omitempty"`
 	// The "_Geometry" element is the abstract head of the substituition group for all geometry elements of GML 3. This
 	// includes pre-defined and user-defined geometry elements. Any geometry element must be a direct or indirect extension/restriction
 	// of AbstractGeometryType and must be directly or indirectly in the substitution group of "_Geometry".
@@ -7261,7 +7306,6 @@ type RectifiedGridDomainType struct {
 	Point                      *PointType                      `xml:"http://www.opengis.net/gml Point,omitempty"`
 	Polygon                    *PolygonType                    `xml:"http://www.opengis.net/gml Polygon,omitempty"`
 	PolyhedralSurface          *PolyhedralSurfaceType          `xml:"http://www.opengis.net/gml PolyhedralSurface,omitempty"`
-	RectifiedGrid              *RectifiedGridType              `xml:"http://www.opengis.net/gml RectifiedGrid,omitempty"`
 	Ring                       *RingType                       `xml:"http://www.opengis.net/gml Ring,omitempty"`
 	Solid                      *SolidType                      `xml:"http://www.opengis.net/gml Solid,omitempty"`
 	Surface                    *SurfaceType                    `xml:"http://www.opengis.net/gml Surface,omitempty"`
@@ -7450,6 +7494,14 @@ type RingType struct {
 }
 
 type ScalarValuePropertyType struct {
+	// A value from two-valued logic, using the XML Schema boolean type.  An instance may take the values {true, false, 1, 0}.
+	Boolean *bool `xml:"http://www.opengis.net/gml Boolean,omitempty"`
+	// A term representing a classification.  It has an optional XML attribute codeSpace, whose value is a URI which identifies a dictionary, codelist or authority for the term.
+	Category *CodeType `xml:"http://www.opengis.net/gml Category,omitempty"`
+	// A numeric value with a scale.  The content of the element is an amount using the XML Schema type double which permits decimal or scientific notation.  An XML attribute uom (unit of measure) is required, whose value is a URI which identifies the definition of the scale or units by which the numeric value must be multiplied.
+	Quantity *MeasureType `xml:"http://www.opengis.net/gml Quantity,omitempty"`
+	// An integer representing a frequency of occurrence.
+	Count *int `xml:"http://www.opengis.net/gml Count,omitempty"`
 	// This abstract element is the head of a substitutionGroup hierararchy which may contain either simpleContent or complexContent elements.  It is used to assert the model position of "class" elements declared in other GML schemas.
 	AbstractObject                    *string                                `xml:"http://www.opengis.net/gml _Object,omitempty"`
 	Array                             *ArrayType                             `xml:"http://www.opengis.net/gml Array,omitempty"`
@@ -7596,14 +7648,6 @@ type ScalarValuePropertyType struct {
 	// Aggregate value built using the Composite pattern.
 	CompositeValue *CompositeValueType `xml:"http://www.opengis.net/gml CompositeValue,omitempty"`
 	ValueArray     *ValueArrayType     `xml:"http://www.opengis.net/gml ValueArray,omitempty"`
-	// A value from two-valued logic, using the XML Schema boolean type.  An instance may take the values {true, false, 1, 0}.
-	Boolean *bool `xml:"http://www.opengis.net/gml Boolean,omitempty"`
-	// A term representing a classification.  It has an optional XML attribute codeSpace, whose value is a URI which identifies a dictionary, codelist or authority for the term.
-	Category *CodeType `xml:"http://www.opengis.net/gml Category,omitempty"`
-	// A numeric value with a scale.  The content of the element is an amount using the XML Schema type double which permits decimal or scientific notation.  An XML attribute uom (unit of measure) is required, whose value is a URI which identifies the definition of the scale or units by which the numeric value must be multiplied.
-	Quantity *MeasureType `xml:"http://www.opengis.net/gml Quantity,omitempty"`
-	// An integer representing a frequency of occurrence.
-	Count *int `xml:"http://www.opengis.net/gml Count,omitempty"`
 	// XML List based on XML Schema boolean type.  An element of this type contains a space-separated list of boolean values {0,1,true,false}
 	BooleanList *string `xml:"http://www.opengis.net/gml BooleanList,omitempty"`
 	// A space-separated list of terms or nulls.  A single XML attribute codeSpace may be provided, which authorises all the terms in the list.
@@ -7762,12 +7806,14 @@ type SphericalCSRefType struct {
 type SphericalCSType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this coordinate system is identified.
+	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
 	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
@@ -7775,7 +7821,6 @@ type SphericalCSType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -8004,9 +8049,12 @@ type TemporalCRSRefType struct {
 type TemporalCRSType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this reference system is identified.
+	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -8016,8 +8064,6 @@ type TemporalCRSType struct {
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -8047,12 +8093,14 @@ type TemporalCSRefType struct {
 type TemporalCSType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this coordinate system is identified.
+	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
 	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
@@ -8060,7 +8108,6 @@ type TemporalCSType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -8072,22 +8119,27 @@ type TemporalCSType struct {
 type TemporalDatumBaseType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this datum is identified.
+	DatumName *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
+	// An identification of a datum.
+	DatumID []IdentifierType `xml:"http://www.opengis.net/gml datumID"`
+	// Area or region in which this CRS object is valid.
+	ValidArea *ExtentType `xml:"http://www.opengis.net/gml validArea,omitempty"`
+	// Description of domain of usage, or limitations of usage, for which this CRS object is valid.
+	Scope *string `xml:"http://www.opengis.net/gml scope,omitempty"`
+	Id    string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Set of alternative identifications of this datum. The first datumID, if any, is normally the primary identification code, and any others are aliases.
-	DatumID []IdentifierType `xml:"http://www.opengis.net/gml datumID"`
 	// Comments on this reference system, including source information.
 	Remarks *StringOrRefType `xml:"http://www.opengis.net/gml remarks,omitempty"`
 	// Description, possibly including coordinates, of the point or points used to anchor the datum to the Earth. Also known as the "origin", especially for engineering and image datums. The codeSpace attribute can be used to reference a source of more detailed on this point or surface, or on a set of such descriptions.
@@ -8098,10 +8150,6 @@ type TemporalDatumBaseType struct {
 	AnchorPoint *CodeType `xml:"http://www.opengis.net/gml anchorPoint,omitempty"`
 	// The time after which this datum definition is valid. This time may be precise (e.g. 1997.0 for IRTF97) or merely a year (e.g. 1983 for NAD83). In the latter case, the epoch usually refers to the year in which a major recalculation of the geodetic control network, underlying the datum, was executed or initiated. An old datum can remain valid after a new datum is defined. Alternatively, a datum may be superseded by a later datum, in which case the realization epoch for the new datum defines the upper limit for the validity of the superseded datum.
 	RealizationEpoch *string `xml:"http://www.opengis.net/gml realizationEpoch,omitempty"`
-	// Area or region in which this CRS object is valid.
-	ValidArea *ExtentType `xml:"http://www.opengis.net/gml validArea,omitempty"`
-	// Description of domain of usage, or limitations of usage, for which this CRS object is valid.
-	Scope *string `xml:"http://www.opengis.net/gml scope,omitempty"`
 }
 
 type TemporalDatumRefType struct {
@@ -8119,22 +8167,27 @@ type TemporalDatumRefType struct {
 type TemporalDatumType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this datum is identified.
+	DatumName *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
+	// An identification of a datum.
+	DatumID []IdentifierType `xml:"http://www.opengis.net/gml datumID"`
+	// Area or region in which this CRS object is valid.
+	ValidArea *ExtentType `xml:"http://www.opengis.net/gml validArea,omitempty"`
+	// Description of domain of usage, or limitations of usage, for which this CRS object is valid.
+	Scope *string `xml:"http://www.opengis.net/gml scope,omitempty"`
+	Id    string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Set of alternative identifications of this datum. The first datumID, if any, is normally the primary identification code, and any others are aliases.
-	DatumID []IdentifierType `xml:"http://www.opengis.net/gml datumID"`
 	// Comments on this reference system, including source information.
 	Remarks *StringOrRefType `xml:"http://www.opengis.net/gml remarks,omitempty"`
 	// Description, possibly including coordinates, of the point or points used to anchor the datum to the Earth. Also known as the "origin", especially for engineering and image datums. The codeSpace attribute can be used to reference a source of more detailed on this point or surface, or on a set of such descriptions.
@@ -8145,10 +8198,6 @@ type TemporalDatumType struct {
 	AnchorPoint *CodeType `xml:"http://www.opengis.net/gml anchorPoint,omitempty"`
 	// The time after which this datum definition is valid. This time may be precise (e.g. 1997.0 for IRTF97) or merely a year (e.g. 1983 for NAD83). In the latter case, the epoch usually refers to the year in which a major recalculation of the geodetic control network, underlying the datum, was executed or initiated. An old datum can remain valid after a new datum is defined. Alternatively, a datum may be superseded by a later datum, in which case the realization epoch for the new datum defines the upper limit for the validity of the superseded datum.
 	RealizationEpoch *string `xml:"http://www.opengis.net/gml realizationEpoch,omitempty"`
-	// Area or region in which this CRS object is valid.
-	ValidArea *ExtentType `xml:"http://www.opengis.net/gml validArea,omitempty"`
-	// Description of domain of usage, or limitations of usage, for which this CRS object is valid.
-	Scope *string `xml:"http://www.opengis.net/gml scope,omitempty"`
 	// The date and time origin of this temporal datum.
 	Origin *string `xml:"http://www.opengis.net/gml origin,omitempty"`
 }
@@ -8170,7 +8219,7 @@ type TimeCalendarEraType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -8217,7 +8266,7 @@ type TimeCalendarType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -8251,7 +8300,7 @@ type TimeClockType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -8280,7 +8329,7 @@ type TimeCoordinateSystemType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType               `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType               `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType               `xml:"http://www.opengis.net/gml csName"`
@@ -8451,7 +8500,7 @@ type TimeOrdinalEraType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType              `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType              `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType              `xml:"http://www.opengis.net/gml csName"`
@@ -8482,7 +8531,7 @@ type TimeOrdinalReferenceSystemType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType                   `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType                   `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType                   `xml:"http://www.opengis.net/gml csName"`
@@ -8622,6 +8671,9 @@ type TimeType struct {
 }
 
 type TinType struct {
+	// This property encapsulates the patches of
+	// the triangulated surface.
+	TrianglePatches *TrianglePatchArrayPropertyType `xml:"http://www.opengis.net/gml trianglePatches,omitempty"`
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
@@ -8636,8 +8688,13 @@ type TinType struct {
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	// In general this reference points to a CRS instance of gml:CoordinateReferenceSystemType
+	// (see coordinateReferenceSystems.xsd). For well known references it is not required that the CRS description exists at the
+	// location the URI points to. If no srsName attribute is given, the CRS must be specified as part of the larger context this
+	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
+	// at the direct position level only in rare cases.
+	SrsName *string `xml:"srsName,attr,omitempty"`
+	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -8655,9 +8712,8 @@ type TinType struct {
 	// shall also be omitted.
 	UomLabels *string `xml:"uomLabels,attr,omitempty"`
 	// This element encapsulates the patches of the surface.
-	Patches         *SurfacePatchArrayPropertyType  `xml:"http://www.opengis.net/gml patches,omitempty"`
-	PolygonPatches  *PolygonPatchArrayPropertyType  `xml:"http://www.opengis.net/gml polygonPatches,omitempty"`
-	TrianglePatches *TrianglePatchArrayPropertyType `xml:"http://www.opengis.net/gml trianglePatches,omitempty"`
+	Patches        *SurfacePatchArrayPropertyType `xml:"http://www.opengis.net/gml patches,omitempty"`
+	PolygonPatches *PolygonPatchArrayPropertyType `xml:"http://www.opengis.net/gml polygonPatches,omitempty"`
 	// Stoplines are lines where the local
 	// continuity or regularity of the surface is questionable.
 	// In the area of these pathologies, triangles intersecting
@@ -8922,8 +8978,8 @@ type TopologyStyleType struct {
 }
 
 type TrackType struct {
-	AbstractTimeSlice  []AbstractTimeSliceType  `xml:"http://www.opengis.net/gml _TimeSlice"`
 	MovingObjectStatus []MovingObjectStatusType `xml:"http://www.opengis.net/gml MovingObjectStatus"`
+	AbstractTimeSlice  []AbstractTimeSliceType  `xml:"http://www.opengis.net/gml _TimeSlice"`
 }
 
 type TransformationRefType struct {
@@ -8941,31 +8997,18 @@ type TransformationRefType struct {
 type TransformationType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Set of alternative identifications of this coordinate operation. The first coordinateOperationID, if any, is normally the primary identification code, and any others are aliases.
+	// The name by which this coordinate operation is identified.
+	CoordinateOperationName *CodeType `xml:"http://www.opengis.net/gml coordinateOperationName,omitempty"`
+	// An identification of a coordinate operation.
 	CoordinateOperationID []IdentifierType `xml:"http://www.opengis.net/gml coordinateOperationID"`
-	// Comments on or information about this coordinate operation, including source information.
+	// Information about this object or code. Contains text or refers to external text.
 	Remarks *StringOrRefType `xml:"http://www.opengis.net/gml remarks,omitempty"`
 	// Version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters). Mandatory when describing a transformation, and should not be supplied for a conversion.
 	OperationVersion *string `xml:"http://www.opengis.net/gml operationVersion,omitempty"`
 	// Area or region in which this CRS object is valid.
 	ValidArea *ExtentType `xml:"http://www.opengis.net/gml validArea,omitempty"`
 	// Description of domain of usage, or limitations of usage, for which this CRS object is valid.
-	Scope *string `xml:"http://www.opengis.net/gml scope,omitempty"`
-	// Unordered set of estimates of the impact of this coordinate operation on point position accuracy. Gives position error estimates for target coordinates of this coordinate operation, assuming no errors in source coordinates.
+	Scope                              *string                                  `xml:"http://www.opengis.net/gml scope,omitempty"`
 	AbstractPositionalAccuracy         []AbstractPositionalAccuracyType         `xml:"http://www.opengis.net/gml _positionalAccuracy"`
 	AbsoluteExternalPositionalAccuracy []AbsoluteExternalPositionalAccuracyType `xml:"http://www.opengis.net/gml absoluteExternalPositionalAccuracy"`
 	CovarianceMatrix                   []CovarianceMatrixType                   `xml:"http://www.opengis.net/gml covarianceMatrix"`
@@ -8974,6 +9017,19 @@ type TransformationType struct {
 	SourceCRS *CRSRefType `xml:"http://www.opengis.net/gml sourceCRS,omitempty"`
 	// Association to the target CRS (coordinate reference system) of this coordinate operation. For constraints on multiplicity of "sourceCRS" and "targetCRS", see UML model of Coordinate Operation package in OGC Abstract Specification topic 2.
 	TargetCRS *CRSRefType `xml:"http://www.opengis.net/gml targetCRS,omitempty"`
+	Id        string      `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	// Contains a simple text description of the object, or refers to an external description.
+	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
+	Name          []CodeType `xml:"http://www.opengis.net/gml name"`
+	CsName        []CodeType `xml:"http://www.opengis.net/gml csName"`
+	DatumName     []CodeType `xml:"http://www.opengis.net/gml datumName"`
+	EllipsoidName []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
+	GroupName     []CodeType `xml:"http://www.opengis.net/gml groupName"`
+	MeridianName  []CodeType `xml:"http://www.opengis.net/gml meridianName"`
+	MethodName    []CodeType `xml:"http://www.opengis.net/gml methodName"`
+	ParameterName []CodeType `xml:"http://www.opengis.net/gml parameterName"`
+	SrsName       []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Association to the operation method used by this coordinate operation.
 	UsesMethod *OperationMethodRefType `xml:"http://www.opengis.net/gml usesMethod,omitempty"`
 	// Unordered set of composition associations to the set of parameter values used by this transformation operation.
@@ -8981,6 +9037,7 @@ type TransformationType struct {
 }
 
 type TrianglePatchArrayPropertyType struct {
+	Triangle []TriangleType `xml:"http://www.opengis.net/gml Triangle"`
 	// The "_SurfacePatch" element is the abstract head of the substituition group for all surface pach elements describing a continuous portion of a surface.
 	AbstractSurfacePatch           []AbstractSurfacePatchType           `xml:"http://www.opengis.net/gml _SurfacePatch"`
 	Cone                           []ConeType                           `xml:"http://www.opengis.net/gml Cone"`
@@ -8988,7 +9045,6 @@ type TrianglePatchArrayPropertyType struct {
 	PolygonPatch                   []PolygonPatchType                   `xml:"http://www.opengis.net/gml PolygonPatch"`
 	Rectangle                      []RectangleType                      `xml:"http://www.opengis.net/gml Rectangle"`
 	Sphere                         []SphereType                         `xml:"http://www.opengis.net/gml Sphere"`
-	Triangle                       []TriangleType                       `xml:"http://www.opengis.net/gml Triangle"`
 	AbstractGriddedSurface         []AbstractGriddedSurfaceType         `xml:"http://www.opengis.net/gml _GriddedSurface"`
 	AbstractParametricCurveSurface []AbstractParametricCurveSurfaceType `xml:"http://www.opengis.net/gml _ParametricCurveSurface"`
 }
@@ -9002,6 +9058,9 @@ type TriangleType struct {
 }
 
 type TriangulatedSurfaceType struct {
+	// This property encapsulates the patches of
+	// the triangulated surface.
+	TrianglePatches *TrianglePatchArrayPropertyType `xml:"http://www.opengis.net/gml trianglePatches,omitempty"`
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
@@ -9016,8 +9075,13 @@ type TriangulatedSurfaceType struct {
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	// In general this reference points to a CRS instance of gml:CoordinateReferenceSystemType
+	// (see coordinateReferenceSystems.xsd). For well known references it is not required that the CRS description exists at the
+	// location the URI points to. If no srsName attribute is given, the CRS must be specified as part of the larger context this
+	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
+	// at the direct position level only in rare cases.
+	SrsName *string `xml:"srsName,attr,omitempty"`
+	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -9035,9 +9099,8 @@ type TriangulatedSurfaceType struct {
 	// shall also be omitted.
 	UomLabels *string `xml:"uomLabels,attr,omitempty"`
 	// This element encapsulates the patches of the surface.
-	Patches         *SurfacePatchArrayPropertyType  `xml:"http://www.opengis.net/gml patches,omitempty"`
-	PolygonPatches  *PolygonPatchArrayPropertyType  `xml:"http://www.opengis.net/gml polygonPatches,omitempty"`
-	TrianglePatches *TrianglePatchArrayPropertyType `xml:"http://www.opengis.net/gml trianglePatches,omitempty"`
+	Patches        *SurfacePatchArrayPropertyType `xml:"http://www.opengis.net/gml patches,omitempty"`
+	PolygonPatches *PolygonPatchArrayPropertyType `xml:"http://www.opengis.net/gml polygonPatches,omitempty"`
 }
 
 type UnitDefinitionType struct {
@@ -9045,7 +9108,7 @@ type UnitDefinitionType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -9083,12 +9146,14 @@ type UserDefinedCSRefType struct {
 type UserDefinedCSType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this coordinate system is identified.
+	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
 	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
@@ -9096,7 +9161,6 @@ type UserDefinedCSType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -9517,9 +9581,12 @@ type VerticalCRSRefType struct {
 type VerticalCRSType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this reference system is identified.
+	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
@@ -9529,8 +9596,6 @@ type VerticalCRSType struct {
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -9560,12 +9625,14 @@ type VerticalCSRefType struct {
 type VerticalCSType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this coordinate system is identified.
+	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
 	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
@@ -9573,7 +9640,6 @@ type VerticalCSType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -9597,20 +9663,21 @@ type VerticalDatumRefType struct {
 type VerticalDatumType struct {
 	// Contains or refers to a metadata package that contains metadata properties.
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
+	// The name by which this datum is identified.
+	DatumName *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
+	Id        string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Contains a simple text description of the object, or refers to an external description.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Multiple names may be provided.  These will often be distinguished by being assigned by different authorities, as indicated by the value of the codeSpace attribute.  In an instance document there will usually only be one name per authority.
+	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
 	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
 	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
 	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
 	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
 	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
 	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this datum. The first datumID, if any, is normally the primary identification code, and any others are aliases.
 	DatumID []IdentifierType `xml:"http://www.opengis.net/gml datumID"`
 	// Comments on this reference system, including source information.

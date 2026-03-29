@@ -241,16 +241,16 @@ type AbstractGeneralConversionType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
 	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
 	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
-	// gml:operationVersion is the version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters). Mandatory when describing a transformation, and should not be supplied for a conversion.
-	OperationVersion *string `xml:"http://www.opengis.net/gml/3.2 operationVersion,omitempty"`
 	// gml:coordinateOperationAccuracy is an association role to a DQ_PositionalAccuracy object as encoded in ISO/TS 19139, either referencing or containing the definition of that positional accuracy. That object contains an estimate of the impact of this coordinate operation on point accuracy. That is, it gives position error estimates for the target coordinates of this coordinate operation, assuming no errors in the source coordinates.
 	CoordinateOperationAccuracy []string `xml:"http://www.opengis.net/gml/3.2 coordinateOperationAccuracy"`
+	Id                          string   `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	// gml:operationVersion is the version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters). Mandatory when describing a transformation, and should not be supplied for a conversion.
+	OperationVersion *string `xml:"http://www.opengis.net/gml/3.2 operationVersion,omitempty"`
 	// gml:sourceCRS is an association role to the source CRS (coordinate reference system) of this coordinate operation.
 	SourceCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
 	// gml:targetCRS is an association role to the target CRS (coordinate reference system) of this coordinate operation.
@@ -331,7 +331,6 @@ type AbstractGeneralTransformationType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
@@ -345,6 +344,7 @@ type AbstractGeneralTransformationType struct {
 	SourceCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
 	// gml:targetCRS is an association role to the target CRS (coordinate reference system) of this coordinate operation.
 	TargetCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 targetCRS,omitempty"`
+	Id        string           `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 }
 
 type AbstractGeometricAggregateType struct {
@@ -646,19 +646,19 @@ type AngleType struct {
 }
 
 type ArcByBulgeType struct {
-	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
-	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
-	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
-	Bulge                 []float64               `xml:"http://www.opengis.net/gml/3.2 bulge"`
-	Normal                []VectorType            `xml:"http://www.opengis.net/gml/3.2 normal"`
-	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
-	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
-	Pos                   []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
+	Bulge       float64                 `xml:"http://www.opengis.net/gml/3.2 bulge,omitempty"`
+	Normal      *VectorType             `xml:"http://www.opengis.net/gml/3.2 normal,omitempty"`
+	PosList     *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
+	Coordinates *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
+	Pos         *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
 	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
-	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
-	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
-	Interpolation *string             `xml:"interpolation,attr,omitempty"`
-	NumArc        *int                `xml:"numArc,attr,omitempty"`
+	PointProperty         *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
+	PointRep              *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
+	NumArc                *int               `xml:"numArc,attr,omitempty"`
+	NumDerivativesAtStart *int               `xml:"numDerivativesAtStart,attr,omitempty"`
+	NumDerivativesAtEnd   *int               `xml:"numDerivativesAtEnd,attr,omitempty"`
+	NumDerivativeInterior *int               `xml:"numDerivativeInterior,attr,omitempty"`
+	Interpolation         *string            `xml:"interpolation,attr,omitempty"`
 }
 
 type ArcByCenterPointType struct {
@@ -709,17 +709,17 @@ type ArcStringType struct {
 }
 
 type ArcType struct {
-	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
-	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
-	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
-	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
-	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
-	Pos                   []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
+	PosList     *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
+	Coordinates *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
+	Pos         *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
 	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
-	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
-	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
-	Interpolation *string             `xml:"interpolation,attr,omitempty"`
-	NumArc        *int                `xml:"numArc,attr,omitempty"`
+	PointProperty         *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
+	PointRep              *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
+	NumArc                *int               `xml:"numArc,attr,omitempty"`
+	NumDerivativesAtStart *int               `xml:"numDerivativesAtStart,attr,omitempty"`
+	NumDerivativesAtEnd   *int               `xml:"numDerivativesAtEnd,attr,omitempty"`
+	NumDerivativeInterior *int               `xml:"numDerivativeInterior,attr,omitempty"`
+	Interpolation         *string            `xml:"interpolation,attr,omitempty"`
 }
 
 type AreaType struct {
@@ -993,20 +993,20 @@ type BaseUnitType struct {
 }
 
 type BezierType struct {
-	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
-	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
-	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
-	Degree                int                     `xml:"http://www.opengis.net/gml/3.2 degree,omitempty"`
-	Knot                  []KnotPropertyType      `xml:"http://www.opengis.net/gml/3.2 knot"`
-	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
-	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
-	Pos                   []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
+	Degree      int                     `xml:"http://www.opengis.net/gml/3.2 degree,omitempty"`
+	Knot        []KnotPropertyType      `xml:"http://www.opengis.net/gml/3.2 knot"`
+	PosList     *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
+	Coordinates *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
+	Pos         []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
 	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
-	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
-	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
-	Interpolation *string             `xml:"interpolation,attr,omitempty"`
-	IsPolynomial  *bool               `xml:"isPolynomial,attr,omitempty"`
-	KnotType      *string             `xml:"knotType,attr,omitempty"`
+	PointProperty         []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
+	PointRep              []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
+	Interpolation         *string             `xml:"interpolation,attr,omitempty"`
+	IsPolynomial          *bool               `xml:"isPolynomial,attr,omitempty"`
+	KnotType              *string             `xml:"knotType,attr,omitempty"`
+	NumDerivativesAtStart *int                `xml:"numDerivativesAtStart,attr,omitempty"`
+	NumDerivativesAtEnd   *int                `xml:"numDerivativesAtEnd,attr,omitempty"`
+	NumDerivativeInterior *int                `xml:"numDerivativeInterior,attr,omitempty"`
 }
 
 type BooleanPropertyType struct {
@@ -1023,7 +1023,11 @@ type BooleanPropertyType struct {
 }
 
 type BoundedFeatureType struct {
-	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
+	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
+	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
+	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
+	PriorityLocation *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
+	MetaDataProperty []MetaDataPropertyType        `xml:"http://www.opengis.net/gml/3.2 metaDataProperty"`
 	// The value of this property is a text description of the object. gml:description uses gml:StringOrRefType as its content model, so it may contain a simple text string content, or carry a reference to an external description. The use of gml:description to reference an external description has been deprecated and replaced by the gml:descriptionReference property.
 	Description *StringOrRefType `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
 	// The value of this property is a remote text description of the object. The xlink:href attribute of the gml:descriptionReference property references the external description.
@@ -1033,10 +1037,6 @@ type BoundedFeatureType struct {
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
-	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
-	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
-	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
-	PriorityLocation *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml/3.2 priorityLocation,omitempty"`
 }
 
 type BoundingShapeType struct {
@@ -1125,34 +1125,34 @@ type CategoryPropertyType struct {
 }
 
 type CircleByCenterPointType struct {
-	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
-	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
-	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
-	Radius                *LengthType             `xml:"http://www.opengis.net/gml/3.2 radius,omitempty"`
-	StartAngle            *AngleType              `xml:"http://www.opengis.net/gml/3.2 startAngle,omitempty"`
-	EndAngle              *AngleType              `xml:"http://www.opengis.net/gml/3.2 endAngle,omitempty"`
-	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
-	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
-	Pos                   *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
+	Radius      *LengthType             `xml:"http://www.opengis.net/gml/3.2 radius,omitempty"`
+	PosList     *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
+	Coordinates *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
+	Pos         *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
 	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
-	PointProperty *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
-	PointRep      *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
-	Interpolation *string            `xml:"interpolation,attr,omitempty"`
-	NumArc        int                `xml:"numArc,attr"`
+	PointProperty         *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
+	PointRep              *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
+	NumDerivativesAtStart *int               `xml:"numDerivativesAtStart,attr,omitempty"`
+	NumDerivativesAtEnd   *int               `xml:"numDerivativesAtEnd,attr,omitempty"`
+	NumDerivativeInterior *int               `xml:"numDerivativeInterior,attr,omitempty"`
+	StartAngle            *AngleType         `xml:"http://www.opengis.net/gml/3.2 startAngle,omitempty"`
+	EndAngle              *AngleType         `xml:"http://www.opengis.net/gml/3.2 endAngle,omitempty"`
+	Interpolation         *string            `xml:"interpolation,attr,omitempty"`
+	NumArc                int                `xml:"numArc,attr"`
 }
 
 type CircleType struct {
-	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
-	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
-	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
-	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
-	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
-	Pos                   []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
+	PosList     *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
+	Coordinates *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
+	Pos         *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
 	// This property element either references a point via the XLink-attributes or contains the point element. pointProperty is the predefined property which may be used by GML Application Schemas whenever a GML feature has a property with a value that is substitutable for Point.
-	PointProperty []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty"`
-	PointRep      []PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep"`
-	Interpolation *string             `xml:"interpolation,attr,omitempty"`
-	NumArc        *int                `xml:"numArc,attr,omitempty"`
+	PointProperty         *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointProperty,omitempty"`
+	PointRep              *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 pointRep,omitempty"`
+	NumArc                *int               `xml:"numArc,attr,omitempty"`
+	NumDerivativesAtStart *int               `xml:"numDerivativesAtStart,attr,omitempty"`
+	NumDerivativesAtEnd   *int               `xml:"numDerivativesAtEnd,attr,omitempty"`
+	NumDerivativeInterior *int               `xml:"numDerivativeInterior,attr,omitempty"`
+	Interpolation         *string            `xml:"interpolation,attr,omitempty"`
 }
 
 type ClothoidType struct {
@@ -1412,16 +1412,16 @@ type ConversionType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
 	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
 	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
-	// gml:operationVersion is the version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters). Mandatory when describing a transformation, and should not be supplied for a conversion.
-	OperationVersion *string `xml:"http://www.opengis.net/gml/3.2 operationVersion,omitempty"`
 	// gml:coordinateOperationAccuracy is an association role to a DQ_PositionalAccuracy object as encoded in ISO/TS 19139, either referencing or containing the definition of that positional accuracy. That object contains an estimate of the impact of this coordinate operation on point accuracy. That is, it gives position error estimates for the target coordinates of this coordinate operation, assuming no errors in the source coordinates.
 	CoordinateOperationAccuracy []string `xml:"http://www.opengis.net/gml/3.2 coordinateOperationAccuracy"`
+	Id                          string   `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	// gml:operationVersion is the version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters). Mandatory when describing a transformation, and should not be supplied for a conversion.
+	OperationVersion *string `xml:"http://www.opengis.net/gml/3.2 operationVersion,omitempty"`
 	// gml:sourceCRS is an association role to the source CRS (coordinate reference system) of this coordinate operation.
 	SourceCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
 	// gml:targetCRS is an association role to the target CRS (coordinate reference system) of this coordinate operation.
@@ -4744,12 +4744,12 @@ type TemporalDatumBaseType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
 	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
 	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	Id    string   `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// gml:anchorDefinition is a description, possibly including coordinates, of the definition used to anchor the datum to the Earth. Also known as the "origin", especially for engineering and image datums. The codeSpace attribute may be used to reference a source of more detailed on this point or surface, or on a set of such descriptions.
 	// -	For a geodetic datum, this point is also known as the fundamental point, which is traditionally the point where the relationship between geoid and ellipsoid is defined. In some cases, the "fundamental point" may consist of a number of points. In those cases, the parameters defining the geoid/ellipsoid relationship have been averaged for these points, and the averages adopted as the datum definition.
 	// -	For an engineering datum, the anchor definition may be a physical point, or it may be a point with defined coordinates in another CRS.may
@@ -4785,12 +4785,12 @@ type TemporalDatumType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
 	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
 	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
+	Id    string   `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// gml:anchorDefinition is a description, possibly including coordinates, of the definition used to anchor the datum to the Earth. Also known as the "origin", especially for engineering and image datums. The codeSpace attribute may be used to reference a source of more detailed on this point or surface, or on a set of such descriptions.
 	// -	For a geodetic datum, this point is also known as the fundamental point, which is traditionally the point where the relationship between geoid and ellipsoid is defined. In some cases, the "fundamental point" may consist of a number of points. In those cases, the parameters defining the geoid/ellipsoid relationship have been averaged for these points, and the averages adopted as the datum definition.
 	// -	For an engineering datum, the anchor definition may be a physical point, or it may be a point with defined coordinates in another CRS.may
@@ -5509,7 +5509,6 @@ type TransformationType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
@@ -5523,6 +5522,7 @@ type TransformationType struct {
 	SourceCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
 	// gml:targetCRS is an association role to the target CRS (coordinate reference system) of this coordinate operation.
 	TargetCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 targetCRS,omitempty"`
+	Id        string           `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// gml:method is an association role to the operation method used by a coordinate operation.
 	Method     *OperationMethodPropertyType `xml:"http://www.opengis.net/gml/3.2 method,omitempty"`
 	UsesMethod *OperationMethodPropertyType `xml:"http://www.opengis.net/gml/3.2 usesMethod,omitempty"`

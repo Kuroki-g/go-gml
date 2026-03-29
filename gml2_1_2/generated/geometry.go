@@ -23,15 +23,15 @@ type AbstractFeatureType struct {
 }
 
 type AbstractGeometryCollectionBaseType struct {
-	Value   string  `xml:",chardata"`
 	Gid     *string `xml:"gid,attr,omitempty"`
-	SrsName *string `xml:"srsName,attr,omitempty"`
+	SrsName string  `xml:"srsName,attr"`
+	Value   string  `xml:",chardata"`
 }
 
 type AbstractGeometryType struct {
-	Value   string  `xml:",chardata"`
 	Gid     *string `xml:"gid,attr,omitempty"`
 	SrsName *string `xml:"srsName,attr,omitempty"`
+	Value   string  `xml:",chardata"`
 }
 
 type BoundingShapeType struct {
@@ -40,9 +40,9 @@ type BoundingShapeType struct {
 }
 
 type BoxType struct {
-	Value       string           `xml:",chardata"`
 	Gid         *string          `xml:"gid,attr,omitempty"`
 	SrsName     *string          `xml:"srsName,attr,omitempty"`
+	Value       string           `xml:",chardata"`
 	Coord       []CoordType      `xml:"http://www.opengis.net/gml coord"`
 	Coordinates *CoordinatesType `xml:"http://www.opengis.net/gml coordinates,omitempty"`
 }
@@ -95,9 +95,9 @@ type GeometryAssociationType struct {
 }
 
 type GeometryCollectionType struct {
-	Value            string                    `xml:",chardata"`
 	Gid              *string                   `xml:"gid,attr,omitempty"`
-	SrsName          *string                   `xml:"srsName,attr,omitempty"`
+	SrsName          string                    `xml:"srsName,attr"`
+	Value            string                    `xml:",chardata"`
 	GeometryMember   []GeometryAssociationType `xml:"http://www.opengis.net/gml geometryMember"`
 	LineStringMember []LineStringMemberType    `xml:"http://www.opengis.net/gml lineStringMember"`
 	PointMember      []PointMemberType         `xml:"http://www.opengis.net/gml pointMember"`
@@ -126,8 +126,8 @@ type GeometryPropertyType struct {
 }
 
 type LineStringMemberType struct {
-	AbstractGeometry           *AbstractGeometryType   `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
 	LineString                 *LineStringType         `xml:"http://www.opengis.net/gml LineString,omitempty"`
+	AbstractGeometry           *AbstractGeometryType   `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
 	LinearRing                 *LinearRingType         `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
 	MultiGeometry              *GeometryCollectionType `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
 	MultiLineString            *MultiLineStringType    `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
@@ -147,8 +147,9 @@ type LineStringMemberType struct {
 }
 
 type LineStringPropertyType struct {
-	AbstractGeometry           *AbstractGeometryType   `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
 	LineString                 *LineStringType         `xml:"http://www.opengis.net/gml LineString,omitempty"`
+	RemoteSchema               string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	AbstractGeometry           *AbstractGeometryType   `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
 	LinearRing                 *LinearRingType         `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
 	MultiGeometry              *GeometryCollectionType `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
 	MultiLineString            *MultiLineStringType    `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
@@ -157,7 +158,6 @@ type LineStringPropertyType struct {
 	Point                      *PointType              `xml:"http://www.opengis.net/gml Point,omitempty"`
 	Polygon                    *PolygonType            `xml:"http://www.opengis.net/gml Polygon,omitempty"`
 	AbstractGeometryCollection *GeometryCollectionType `xml:"http://www.opengis.net/gml _GeometryCollection,omitempty"`
-	RemoteSchema               string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
 	TypeField                  string                  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
 	Href                       string                  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
 	Role                       string                  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
@@ -168,17 +168,17 @@ type LineStringPropertyType struct {
 }
 
 type LineStringType struct {
-	Value       string           `xml:",chardata"`
 	Gid         *string          `xml:"gid,attr,omitempty"`
 	SrsName     *string          `xml:"srsName,attr,omitempty"`
+	Value       string           `xml:",chardata"`
 	Coord       []CoordType      `xml:"http://www.opengis.net/gml coord"`
 	Coordinates *CoordinatesType `xml:"http://www.opengis.net/gml coordinates,omitempty"`
 }
 
 type LinearRingMemberType struct {
+	LinearRing                 *LinearRingType         `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
 	AbstractGeometry           *AbstractGeometryType   `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
 	LineString                 *LineStringType         `xml:"http://www.opengis.net/gml LineString,omitempty"`
-	LinearRing                 *LinearRingType         `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
 	MultiGeometry              *GeometryCollectionType `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
 	MultiLineString            *MultiLineStringType    `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
 	MultiPoint                 *MultiPointType         `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
@@ -197,25 +197,25 @@ type LinearRingMemberType struct {
 }
 
 type LinearRingType struct {
-	Value       string           `xml:",chardata"`
 	Gid         *string          `xml:"gid,attr,omitempty"`
 	SrsName     *string          `xml:"srsName,attr,omitempty"`
+	Value       string           `xml:",chardata"`
 	Coord       []CoordType      `xml:"http://www.opengis.net/gml coord"`
 	Coordinates *CoordinatesType `xml:"http://www.opengis.net/gml coordinates,omitempty"`
 }
 
 type MultiGeometryPropertyType struct {
+	MultiGeometry              *GeometryCollectionType `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
+	RemoteSchema               string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
 	AbstractGeometry           *AbstractGeometryType   `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
 	LineString                 *LineStringType         `xml:"http://www.opengis.net/gml LineString,omitempty"`
 	LinearRing                 *LinearRingType         `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
-	MultiGeometry              *GeometryCollectionType `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
 	MultiLineString            *MultiLineStringType    `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
 	MultiPoint                 *MultiPointType         `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
 	MultiPolygon               *MultiPolygonType       `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
 	Point                      *PointType              `xml:"http://www.opengis.net/gml Point,omitempty"`
 	Polygon                    *PolygonType            `xml:"http://www.opengis.net/gml Polygon,omitempty"`
 	AbstractGeometryCollection *GeometryCollectionType `xml:"http://www.opengis.net/gml _GeometryCollection,omitempty"`
-	RemoteSchema               string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
 	TypeField                  string                  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
 	Href                       string                  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
 	Role                       string                  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
@@ -226,17 +226,17 @@ type MultiGeometryPropertyType struct {
 }
 
 type MultiLineStringPropertyType struct {
+	MultiLineString            *MultiLineStringType    `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
+	RemoteSchema               string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
 	AbstractGeometry           *AbstractGeometryType   `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
 	LineString                 *LineStringType         `xml:"http://www.opengis.net/gml LineString,omitempty"`
 	LinearRing                 *LinearRingType         `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
 	MultiGeometry              *GeometryCollectionType `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
-	MultiLineString            *MultiLineStringType    `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
 	MultiPoint                 *MultiPointType         `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
 	MultiPolygon               *MultiPolygonType       `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
 	Point                      *PointType              `xml:"http://www.opengis.net/gml Point,omitempty"`
 	Polygon                    *PolygonType            `xml:"http://www.opengis.net/gml Polygon,omitempty"`
 	AbstractGeometryCollection *GeometryCollectionType `xml:"http://www.opengis.net/gml _GeometryCollection,omitempty"`
-	RemoteSchema               string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
 	TypeField                  string                  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
 	Href                       string                  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
 	Role                       string                  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
@@ -247,27 +247,27 @@ type MultiLineStringPropertyType struct {
 }
 
 type MultiLineStringType struct {
-	Value            string                    `xml:",chardata"`
-	Gid              *string                   `xml:"gid,attr,omitempty"`
-	SrsName          *string                   `xml:"srsName,attr,omitempty"`
-	GeometryMember   []GeometryAssociationType `xml:"http://www.opengis.net/gml geometryMember"`
 	LineStringMember []LineStringMemberType    `xml:"http://www.opengis.net/gml lineStringMember"`
+	Gid              *string                   `xml:"gid,attr,omitempty"`
+	SrsName          string                    `xml:"srsName,attr"`
+	Value            string                    `xml:",chardata"`
+	GeometryMember   []GeometryAssociationType `xml:"http://www.opengis.net/gml geometryMember"`
 	PointMember      []PointMemberType         `xml:"http://www.opengis.net/gml pointMember"`
 	PolygonMember    []PolygonMemberType       `xml:"http://www.opengis.net/gml polygonMember"`
 }
 
 type MultiPointPropertyType struct {
+	MultiPoint                 *MultiPointType         `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
+	RemoteSchema               string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
 	AbstractGeometry           *AbstractGeometryType   `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
 	LineString                 *LineStringType         `xml:"http://www.opengis.net/gml LineString,omitempty"`
 	LinearRing                 *LinearRingType         `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
 	MultiGeometry              *GeometryCollectionType `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
 	MultiLineString            *MultiLineStringType    `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
-	MultiPoint                 *MultiPointType         `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
 	MultiPolygon               *MultiPolygonType       `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
 	Point                      *PointType              `xml:"http://www.opengis.net/gml Point,omitempty"`
 	Polygon                    *PolygonType            `xml:"http://www.opengis.net/gml Polygon,omitempty"`
 	AbstractGeometryCollection *GeometryCollectionType `xml:"http://www.opengis.net/gml _GeometryCollection,omitempty"`
-	RemoteSchema               string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
 	TypeField                  string                  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
 	Href                       string                  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
 	Role                       string                  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
@@ -278,27 +278,27 @@ type MultiPointPropertyType struct {
 }
 
 type MultiPointType struct {
-	Value            string                    `xml:",chardata"`
+	PointMember      []PointMemberType         `xml:"http://www.opengis.net/gml pointMember"`
 	Gid              *string                   `xml:"gid,attr,omitempty"`
-	SrsName          *string                   `xml:"srsName,attr,omitempty"`
+	SrsName          string                    `xml:"srsName,attr"`
+	Value            string                    `xml:",chardata"`
 	GeometryMember   []GeometryAssociationType `xml:"http://www.opengis.net/gml geometryMember"`
 	LineStringMember []LineStringMemberType    `xml:"http://www.opengis.net/gml lineStringMember"`
-	PointMember      []PointMemberType         `xml:"http://www.opengis.net/gml pointMember"`
 	PolygonMember    []PolygonMemberType       `xml:"http://www.opengis.net/gml polygonMember"`
 }
 
 type MultiPolygonPropertyType struct {
+	MultiPolygon               *MultiPolygonType       `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
+	RemoteSchema               string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
 	AbstractGeometry           *AbstractGeometryType   `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
 	LineString                 *LineStringType         `xml:"http://www.opengis.net/gml LineString,omitempty"`
 	LinearRing                 *LinearRingType         `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
 	MultiGeometry              *GeometryCollectionType `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
 	MultiLineString            *MultiLineStringType    `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
 	MultiPoint                 *MultiPointType         `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
-	MultiPolygon               *MultiPolygonType       `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
 	Point                      *PointType              `xml:"http://www.opengis.net/gml Point,omitempty"`
 	Polygon                    *PolygonType            `xml:"http://www.opengis.net/gml Polygon,omitempty"`
 	AbstractGeometryCollection *GeometryCollectionType `xml:"http://www.opengis.net/gml _GeometryCollection,omitempty"`
-	RemoteSchema               string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
 	TypeField                  string                  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
 	Href                       string                  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
 	Role                       string                  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
@@ -309,16 +309,17 @@ type MultiPolygonPropertyType struct {
 }
 
 type MultiPolygonType struct {
-	Value            string                    `xml:",chardata"`
+	PolygonMember    []PolygonMemberType       `xml:"http://www.opengis.net/gml polygonMember"`
 	Gid              *string                   `xml:"gid,attr,omitempty"`
-	SrsName          *string                   `xml:"srsName,attr,omitempty"`
+	SrsName          string                    `xml:"srsName,attr"`
+	Value            string                    `xml:",chardata"`
 	GeometryMember   []GeometryAssociationType `xml:"http://www.opengis.net/gml geometryMember"`
 	LineStringMember []LineStringMemberType    `xml:"http://www.opengis.net/gml lineStringMember"`
 	PointMember      []PointMemberType         `xml:"http://www.opengis.net/gml pointMember"`
-	PolygonMember    []PolygonMemberType       `xml:"http://www.opengis.net/gml polygonMember"`
 }
 
 type PointMemberType struct {
+	Point                      *PointType              `xml:"http://www.opengis.net/gml Point,omitempty"`
 	AbstractGeometry           *AbstractGeometryType   `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
 	LineString                 *LineStringType         `xml:"http://www.opengis.net/gml LineString,omitempty"`
 	LinearRing                 *LinearRingType         `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
@@ -326,7 +327,6 @@ type PointMemberType struct {
 	MultiLineString            *MultiLineStringType    `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
 	MultiPoint                 *MultiPointType         `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
 	MultiPolygon               *MultiPolygonType       `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
-	Point                      *PointType              `xml:"http://www.opengis.net/gml Point,omitempty"`
 	Polygon                    *PolygonType            `xml:"http://www.opengis.net/gml Polygon,omitempty"`
 	AbstractGeometryCollection *GeometryCollectionType `xml:"http://www.opengis.net/gml _GeometryCollection,omitempty"`
 	RemoteSchema               string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
@@ -340,6 +340,8 @@ type PointMemberType struct {
 }
 
 type PointPropertyType struct {
+	Point                      *PointType              `xml:"http://www.opengis.net/gml Point,omitempty"`
+	RemoteSchema               string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
 	AbstractGeometry           *AbstractGeometryType   `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
 	LineString                 *LineStringType         `xml:"http://www.opengis.net/gml LineString,omitempty"`
 	LinearRing                 *LinearRingType         `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
@@ -347,10 +349,8 @@ type PointPropertyType struct {
 	MultiLineString            *MultiLineStringType    `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
 	MultiPoint                 *MultiPointType         `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
 	MultiPolygon               *MultiPolygonType       `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
-	Point                      *PointType              `xml:"http://www.opengis.net/gml Point,omitempty"`
 	Polygon                    *PolygonType            `xml:"http://www.opengis.net/gml Polygon,omitempty"`
 	AbstractGeometryCollection *GeometryCollectionType `xml:"http://www.opengis.net/gml _GeometryCollection,omitempty"`
-	RemoteSchema               string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
 	TypeField                  string                  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
 	Href                       string                  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
 	Role                       string                  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
@@ -361,14 +361,15 @@ type PointPropertyType struct {
 }
 
 type PointType struct {
-	Value       string           `xml:",chardata"`
 	Gid         *string          `xml:"gid,attr,omitempty"`
 	SrsName     *string          `xml:"srsName,attr,omitempty"`
+	Value       string           `xml:",chardata"`
 	Coord       *CoordType       `xml:"http://www.opengis.net/gml coord,omitempty"`
 	Coordinates *CoordinatesType `xml:"http://www.opengis.net/gml coordinates,omitempty"`
 }
 
 type PolygonMemberType struct {
+	Polygon                    *PolygonType            `xml:"http://www.opengis.net/gml Polygon,omitempty"`
 	AbstractGeometry           *AbstractGeometryType   `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
 	LineString                 *LineStringType         `xml:"http://www.opengis.net/gml LineString,omitempty"`
 	LinearRing                 *LinearRingType         `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
@@ -377,7 +378,6 @@ type PolygonMemberType struct {
 	MultiPoint                 *MultiPointType         `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
 	MultiPolygon               *MultiPolygonType       `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
 	Point                      *PointType              `xml:"http://www.opengis.net/gml Point,omitempty"`
-	Polygon                    *PolygonType            `xml:"http://www.opengis.net/gml Polygon,omitempty"`
 	AbstractGeometryCollection *GeometryCollectionType `xml:"http://www.opengis.net/gml _GeometryCollection,omitempty"`
 	RemoteSchema               string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
 	TypeField                  string                  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
@@ -390,6 +390,8 @@ type PolygonMemberType struct {
 }
 
 type PolygonPropertyType struct {
+	Polygon                    *PolygonType            `xml:"http://www.opengis.net/gml Polygon,omitempty"`
+	RemoteSchema               string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
 	AbstractGeometry           *AbstractGeometryType   `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
 	LineString                 *LineStringType         `xml:"http://www.opengis.net/gml LineString,omitempty"`
 	LinearRing                 *LinearRingType         `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
@@ -398,9 +400,7 @@ type PolygonPropertyType struct {
 	MultiPoint                 *MultiPointType         `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
 	MultiPolygon               *MultiPolygonType       `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
 	Point                      *PointType              `xml:"http://www.opengis.net/gml Point,omitempty"`
-	Polygon                    *PolygonType            `xml:"http://www.opengis.net/gml Polygon,omitempty"`
 	AbstractGeometryCollection *GeometryCollectionType `xml:"http://www.opengis.net/gml _GeometryCollection,omitempty"`
-	RemoteSchema               string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
 	TypeField                  string                  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
 	Href                       string                  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
 	Role                       string                  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
@@ -411,9 +411,9 @@ type PolygonPropertyType struct {
 }
 
 type PolygonType struct {
-	Value           string                 `xml:",chardata"`
 	Gid             *string                `xml:"gid,attr,omitempty"`
 	SrsName         *string                `xml:"srsName,attr,omitempty"`
+	Value           string                 `xml:",chardata"`
 	OuterBoundaryIs *LinearRingMemberType  `xml:"http://www.opengis.net/gml outerBoundaryIs,omitempty"`
 	InnerBoundaryIs []LinearRingMemberType `xml:"http://www.opengis.net/gml innerBoundaryIs"`
 }

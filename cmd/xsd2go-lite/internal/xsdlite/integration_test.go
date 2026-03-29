@@ -104,12 +104,13 @@ func TestConvertComplexType_complexContentRestriction(t *testing.T) {
 	}
 	result := convertComplexType(ct, "http://example.com")
 
-	// First raw field should be the base placeholder
+	// For restriction: own sequence fields come first, base placeholder last.
 	if len(result.RawFields) == 0 {
 		t.Fatal("no raw fields")
 	}
-	if !strings.HasPrefix(result.RawFields[0].Ref, "__base__:") {
-		t.Errorf("first field should be __base__ placeholder, got %+v", result.RawFields[0])
+	last := result.RawFields[len(result.RawFields)-1]
+	if !strings.HasPrefix(last.Ref, "__base__:") {
+		t.Errorf("last field should be __base__ placeholder, got %+v", last)
 	}
 }
 

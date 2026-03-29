@@ -99,6 +99,14 @@ func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim int,
 		}
 		return result, nil
 	}
+	if m.TriangulatedSurface != nil {
+		ts := m.TriangulatedSurface
+		return multiPolygonFromPatchArray(ts.Patches, preferDim(derefDim(ts.SrsDimension), inheritDim), resolver)
+	}
+	if m.Tin != nil {
+		t := m.Tin
+		return multiPolygonFromPatchArray(t.TrianglePatches, preferDim(derefDim(t.SrsDimension), inheritDim), resolver)
+	}
 	if m.Href != "" {
 		id := strings.TrimPrefix(m.Href, "#")
 		if mp, ok := resolver.multiPolygonByID[id]; ok {
@@ -132,6 +140,20 @@ func polygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim int, reso
 	}
 	if m.PolyhedralSurface != nil {
 		return polygonFromSurface(m.PolyhedralSurface, resolver, inheritDim)
+	}
+	if m.TriangulatedSurface != nil {
+		ts := m.TriangulatedSurface
+		if ts.Patches == nil || len(ts.Patches.Triangle) == 0 {
+			return polygonFromSurface(ts, resolver, inheritDim)
+		}
+		return polygonFromTriangle(&ts.Patches.Triangle[0], preferDim(derefDim(ts.SrsDimension), inheritDim), resolver)
+	}
+	if m.Tin != nil {
+		t := m.Tin
+		if t.TrianglePatches == nil || len(t.TrianglePatches.Triangle) == 0 {
+			return core.Polygon(nil), nil
+		}
+		return polygonFromTriangle(&t.TrianglePatches.Triangle[0], preferDim(derefDim(t.SrsDimension), inheritDim), resolver)
 	}
 	if m.Href != "" {
 		id := strings.TrimPrefix(m.Href, "#")

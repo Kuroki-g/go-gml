@@ -26,7 +26,7 @@ func decodeMultiPointElement(dec *xml.Decoder, se xml.StartElement) (core.Geomet
 		}
 		pts = append(pts, pt)
 	}
-	return core.Geometry{Value: pts, SRSName: x.SrsName}, nil
+	return core.Geometry{Value: pts, SRSName: &x.SrsName}, nil
 }
 
 // ---- multi-linestring ----
@@ -47,7 +47,7 @@ func decodeMultiLineStringElement(dec *xml.Decoder, se xml.StartElement) (core.G
 		}
 		lines = append(lines, ls)
 	}
-	return core.Geometry{Value: lines, SRSName: x.SrsName}, nil
+	return core.Geometry{Value: lines, SRSName: &x.SrsName}, nil
 }
 
 // ---- multi-polygon ----
@@ -68,7 +68,7 @@ func decodeMultiPolygonElement(dec *xml.Decoder, se xml.StartElement) (core.Geom
 		}
 		polys = append(polys, poly)
 	}
-	return core.Geometry{Value: polys, SRSName: x.SrsName}, nil
+	return core.Geometry{Value: polys, SRSName: &x.SrsName}, nil
 }
 
 // ---- box (GML 2.x bounding box) ----
