@@ -84,6 +84,21 @@ func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim int,
 	if m.CompositeSurface != nil {
 		return multiPolygonFromCompositeSurface(m.CompositeSurface, resolver, inheritDim)
 	}
+	if m.PolyhedralSurface != nil {
+		ps := m.PolyhedralSurface
+		dim := preferDim(derefDim(ps.SrsDimension), inheritDim)
+		var result core.MultiPolygon
+		if ps.PolygonPatches != nil {
+			for i := range ps.PolygonPatches.PolygonPatch {
+				poly, err := polygonFromPatch(&ps.PolygonPatches.PolygonPatch[i], dim, resolver)
+				if err != nil {
+					return nil, fmt.Errorf("gml: PolyhedralSurface polygonPatches[%d]: %w", i, err)
+				}
+				result = append(result, poly)
+			}
+		}
+		return result, nil
+	}
 	if m.Href != "" {
 		id := strings.TrimPrefix(m.Href, "#")
 		if mp, ok := resolver.multiPolygonByID[id]; ok {
@@ -114,6 +129,14 @@ func polygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim int, reso
 		if os.BaseSurface != nil {
 			return polygonFromSurfaceProperty(os.BaseSurface, preferDim(inheritDim, derefDim(os.SrsDimension)), resolver)
 		}
+	}
+	if m.PolyhedralSurface != nil {
+		ps := m.PolyhedralSurface
+		if ps.PolygonPatches == nil || len(ps.PolygonPatches.PolygonPatch) == 0 {
+			return core.Polygon(nil), nil
+		}
+		dim := preferDim(derefDim(ps.SrsDimension), inheritDim)
+		return polygonFromPatch(&ps.PolygonPatches.PolygonPatch[0], dim, resolver)
 	}
 	if m.Href != "" {
 		id := strings.TrimPrefix(m.Href, "#")
