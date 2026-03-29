@@ -125,6 +125,10 @@ func (r *Reader) Next() (core.Geometry, error) {
 			return r.handleMultiSurface(r.dec, se)
 		case gmlSolid:
 			return r.handleSolid(r.dec, se)
+		case gmlCompositeSolid:
+			return r.handleCompositeSolid(r.dec, se)
+		case gmlMultiSolid:
+			return r.handleMultiSolid(r.dec, se)
 		case gmlDomainSet:
 			if err := r.handleDomainSet(r.dec, se); err != nil {
 				return core.Geometry{}, err

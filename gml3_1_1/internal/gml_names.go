@@ -20,6 +20,8 @@ const (
 	gmlGrid              = "Grid"
 	gmlRectifiedGrid     = "RectifiedGrid"
 	gmlSolid             = "Solid"
+	gmlCompositeSolid    = "CompositeSolid"
+	gmlMultiSolid        = "MultiSolid"
 	gmlDomainSet         = "domainSet"
 	gmlRangeSet          = "rangeSet"
 )
