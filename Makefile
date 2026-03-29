@@ -18,6 +18,9 @@ help:
 	@echo "fuzz"
 	@echo "  fuzz-gen         fuzz seed corpus 生成 (gml*/testdata/fuzz/FuzzReader/)"
 	@echo ""
+	@echo "check-coverage"
+	@echo "  check-coverage   未処理 PropertyType フィールドを検出"
+	@echo ""
 	@echo "gml-parser (CLI example)"
 	@echo "  gml-parser-build バイナリビルド"
 	@echo "  gml-parser-run   inspect サブコマンド実行 (testdata/N03)"
@@ -68,6 +71,15 @@ cover:
 		go -C $$m test -count=1 -coverprofile=$(GOTMPDIR)/cover_$$m.out ./...; \
 		go tool cover -func=$(GOTMPDIR)/cover_$$m.out; \
 	done
+
+# ---- check-coverage ----
+
+CHECK_COVERAGE_DIR := cmd/check-coverage
+
+.PHONY: check-coverage
+
+check-coverage:
+	go run ./$(CHECK_COVERAGE_DIR)/
 
 # ---- xsd2go-lite (code generator) ----
 
