@@ -18,6 +18,7 @@ func isGMLNS(ns string) bool { return ns == gmlNS32 }
 type Reader struct {
 	src         io.ReadSeeker
 	dec         *xml.Decoder
+	charsetFn   func(string, io.Reader) (io.Reader, error)
 	resolver    *curveResolver
 	prescanned  bool
 	pendingGrid *gridBounds
@@ -26,17 +27,17 @@ type Reader struct {
 
 // NewReader creates a Reader that streams geometry elements from r.
 func NewReader(r io.ReadSeeker) *Reader {
-	dec := xml.NewDecoder(newNSNormReader(r))
-	dec.CharsetReader = func(charset string, input io.Reader) (io.Reader, error) {
+	charsetFn := func(charset string, input io.Reader) (io.Reader, error) {
 		return nil, fmt.Errorf("unsupported charset %q: call SetCharsetReader to handle non-UTF-8 files", charset)
 	}
-	return &Reader{src: r, dec: dec, resolver: newCurveResolver()}
+	dec := xml.NewDecoder(newNSNormReader(r))
+	dec.CharsetReader = charsetFn
+	return &Reader{src: r, dec: dec, charsetFn: charsetFn, resolver: newCurveResolver()}
 }
 
 func (r *Reader) runPreScan() error {
-	charsetFn := r.dec.CharsetReader
 	preDec := xml.NewDecoder(newNSNormReader(r.src))
-	preDec.CharsetReader = charsetFn
+	preDec.CharsetReader = r.charsetFn
 	if err := preScanGeometries(preDec, r.resolver); err != nil {
 		return fmt.Errorf("gml: prescan: %w", err)
 	}
@@ -44,13 +45,14 @@ func (r *Reader) runPreScan() error {
 		return fmt.Errorf("gml: seek after prescan: %w", err)
 	}
 	r.dec = xml.NewDecoder(newNSNormReader(r.src))
-	r.dec.CharsetReader = charsetFn
+	r.dec.CharsetReader = r.charsetFn
 	r.prescanned = true
 	return nil
 }
 
 // SetCharsetReader installs a charset conversion function on the underlying decoder.
 func (r *Reader) SetCharsetReader(fn func(charset string, input io.Reader) (io.Reader, error)) {
+	r.charsetFn = fn
 	r.dec.CharsetReader = fn
 }
 
