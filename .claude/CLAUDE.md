@@ -56,7 +56,8 @@
 ### 未実装・残課題
 
 - **CityGML 2.0 LoD3**: 次の実装対象 (`bldg:lod3Solid` → `gml:Solid`)
-- **gml3_1_1 Solid の既知バグ群**: `docs/issues/lod1-bug-*.md` 参照 (CompositeSolid/PolyhedralSurface/Tin/TriangulatedSurface/xlink:href 等)
+- **gml3_1_1 Solid xlink:href サイレント欠落**: `docs/issues/lod1-bug-06-solid-exterior-xlink.md` — polygonByID fallback は実装済み、エラー通知・外部href・prescan消費サブ要素 は未対応
+- **check-coverage 残課題**: `docs/issues/check-coverage-bug-c-xlink-meta-attrs.md` (xlink meta attrs)、`docs/issues/check-coverage-bug-e-curve-linearring-ring.md` (gml3_2_1 LinearRing/Ring in CurvePropertyType)
 - **gml3_1_1 / gml3_2_1 ストリームテストなし**: N03 旧形式データ取得困難。`Decode` メソッドテストは追加済み。CityGML 実装で代替する方針
 - **SF-2**: Arc / Circle 等の曲線補間 — 低優先
 
@@ -67,7 +68,7 @@
 マルチモジュールモノレポ。`go.work` でローカル管理。
 
 **各モジュールの構成パターン (gml*/citygml*共通):**
-- `reader.go` — `NewReader()` / `Decode()` エントリポイント。`handlers` マップが対応済み要素の索引
+- `reader.go` — `NewReader()` / `Next()` エントリポイント。`internal/reader.go` の switch が対応済み要素の索引
 - `generated/` — xsd2go-lite 生成 struct。手書き禁止
 - `internal/decode_*.go` — 要素別デコード実装
 - `internal/subtree.go` (citygml2_0のみ) — GML サブツリー読み取りユーティリティ
@@ -182,7 +183,7 @@ corpus ファイルは gitignore 済み (`**/testdata/fuzz/`)。
 ### ファイルサイズと構造
 
 - **1ファイル ~150行以下** を厳守 (AI コンテキスト効率のため)
-- `reader.go` の `handlers` マップが対応済み要素の索引 → 新要素は `internal/decode_*.go` 追加 + `handlers` に1行追加
+- `internal/reader.go` の switch 文が対応済み要素の索引 → 新要素は `internal/decode_*.go` 追加 + switch に1 case 追加
 
 ### 依存関係
 
