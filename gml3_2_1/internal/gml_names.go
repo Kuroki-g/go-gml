@@ -24,6 +24,8 @@ const (
 	gmlMultiSolid          = "MultiSolid"
 	gmlTin                 = "Tin"
 	gmlTriangulatedSurface = "TriangulatedSurface"
+	gmlPolyhedralSurface   = "PolyhedralSurface"
+	gmlShell               = "Shell"
 	gmlDomainSet           = "domainSet"
 	gmlRangeSet            = "rangeSet"
 )

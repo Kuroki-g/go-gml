@@ -17,6 +17,7 @@ type curveResolver struct {
 	multiPolygonByID map[string]core.MultiPolygon
 	lineStringByID   map[string]core.LineString
 	gridByID         map[string]*gridBounds
+	solidByID        map[string]core.Solid
 }
 
 func newCurveResolver() *curveResolver {
@@ -27,6 +28,7 @@ func newCurveResolver() *curveResolver {
 		multiPolygonByID: make(map[string]core.MultiPolygon),
 		lineStringByID:   make(map[string]core.LineString),
 		gridByID:         make(map[string]*gridBounds),
+		solidByID:        make(map[string]core.Solid),
 	}
 }
 

@@ -184,7 +184,45 @@ func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDi
 			polys = append(polys, poly)
 		}
 	}
+	for i := range a.Tin {
+		mp, err := multiPolygonFromTrianglePatches(a.Tin[i].TrianglePatches, inheritDim, resolver)
+		if err != nil {
+			return nil, fmt.Errorf("Tin[%d]: %w", i, err)
+		}
+		polys = append(polys, mp...)
+	}
+	for i := range a.TriangulatedSurface {
+		mp, err := multiPolygonFromTrianglePatches(a.TriangulatedSurface[i].TrianglePatches, inheritDim, resolver)
+		if err != nil {
+			return nil, fmt.Errorf("TriangulatedSurface[%d]: %w", i, err)
+		}
+		polys = append(polys, mp...)
+	}
+	for i := range a.PolyhedralSurface {
+		mp, err := multiPolygonFromPolyhedralSurface(&a.PolyhedralSurface[i], inheritDim, resolver)
+		if err != nil {
+			return nil, fmt.Errorf("PolyhedralSurface[%d]: %w", i, err)
+		}
+		polys = append(polys, mp...)
+	}
 	return polys, nil
+}
+
+func multiPolygonFromPolyhedralSurface(x *gen.PolyhedralSurfaceType, dim int, resolver *curveResolver) (core.MultiPolygon, error) {
+	if x.PolygonPatches == nil {
+		return nil, nil
+	}
+	var result core.MultiPolygon
+	for i := range x.PolygonPatches.PolygonPatch {
+		poly, err := polygonFromPatch(&x.PolygonPatches.PolygonPatch[i], dim, resolver)
+		if err != nil {
+			return nil, fmt.Errorf("PolyhedralSurface patch[%d]: %w", i, err)
+		}
+		if poly != nil {
+			result = append(result, poly)
+		}
+	}
+	return result, nil
 }
 
 func boundFromXML(x *gen.EnvelopeType) (core.Bound, error) {

@@ -3,6 +3,7 @@ package internal
 import (
 	"encoding/xml"
 	"fmt"
+	"strings"
 
 	core "github.com/Kuroki-g/go-gml/core"
 	gen "github.com/Kuroki-g/go-gml/gml3_1_1/generated"
@@ -83,6 +84,12 @@ func solidFromSolidMembers(members []gen.SolidPropertyType, dim int, resolver *c
 			s, err = solidFromXML(m.Solid, dim, resolver)
 		case m.CompositeSolid != nil:
 			s, err = solidFromCompositeSolid(m.CompositeSolid, dim, resolver)
+		case m.Href != "":
+			id := strings.TrimPrefix(m.Href, "#")
+			var ok bool
+			if s, ok = resolver.solidByID[id]; !ok {
+				continue
+			}
 		default:
 			continue
 		}
@@ -108,6 +115,12 @@ func solidsFromSolidMembers(members []gen.SolidPropertyType, dim int, resolver *
 			s, err = solidFromXML(m.Solid, dim, resolver)
 		case m.CompositeSolid != nil:
 			s, err = solidFromCompositeSolid(m.CompositeSolid, dim, resolver)
+		case m.Href != "":
+			id := strings.TrimPrefix(m.Href, "#")
+			var ok bool
+			if s, ok = resolver.solidByID[id]; !ok {
+				continue
+			}
 		default:
 			continue
 		}
