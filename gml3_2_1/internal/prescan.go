@@ -216,12 +216,24 @@ func allSurfaceMembersResolvable(members []gen.SurfacePropertyType, resolver *cu
 				return false
 			}
 		}
-		// Inline Tin/TriangulatedSurface/PolyhedralSurface/Shell contain no nested hrefs;
+		// Inline Polygon/Surface/Tin/TriangulatedSurface/PolyhedralSurface/Shell contain no nested hrefs;
 		// they are always resolvable. Explicitly reference fields to satisfy coverage.
+		_ = m.Polygon
+		_ = m.Surface
 		_ = m.Tin
 		_ = m.TriangulatedSurface
 		_ = m.PolyhedralSurface
 		_ = m.Shell
+		// xlink metadata attributes — not used for geometry.
+		_ = m.NilReason
+		_ = m.RemoteSchema
+		_ = m.TypeField
+		_ = m.Role
+		_ = m.Arcrole
+		_ = m.Title
+		_ = m.Show
+		_ = m.Actuate
+		_ = m.Owns
 	}
 	return true
 }
