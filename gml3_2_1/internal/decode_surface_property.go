@@ -69,6 +69,9 @@ func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim int,
 		if mp, ok := resolver.multiPolygonByID[id]; ok {
 			return mp, nil
 		}
+		if poly, ok := resolver.polygonByID[id]; ok {
+			return core.MultiPolygon{poly}, nil
+		}
 	}
 	// xlink metadata attributes — not used for geometry.
 	_ = m.NilReason
