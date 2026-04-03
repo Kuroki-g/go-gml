@@ -53,6 +53,20 @@ RUN mkdir -p /workspace && chown ${UID}:${GID} /workspace
 COPY proxy/certs/ca.crt /usr/local/share/ca-certificates/sandbox-ca.crt
 RUN update-ca-certificates
 
+ENV NODE_VERSION=24.14.1 \
+    npm_config_ignore_scripts=true \
+    npm_config_min_release_age=3
+
+RUN apt-get update && apt-get install -y ca-certificates curl gnupg \
+    && mkdir -p /etc/apt/keyrings \
+    && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
+    && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_24.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
+
+RUN apt-get update && apt-get install -y nodejs=${NODE_VERSION}-1nodesource1 \
+    && npm install -g npm@11.12
+ENV NPM_CONFIG_PREFIX=/home/${USER}/.npm-global \
+    PATH=$PATH:/home/${USER}/.npm-global/bin
+
 USER ${USER}
 
 ENV PATH="/home/${USER}/.local/bin:$PATH" \
@@ -64,7 +78,8 @@ ENV PATH="/home/${USER}/.local/bin:$PATH" \
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
   echo "alias clip='xclip -selection clipboard'" >> $HOME/.bashrc
 
-RUN curl -fsSL https://claude.ai/install.sh | bash
+RUN npm install -g @anthropic-ai/claude-code
+# RUN curl -fsSL https://claude.ai/install.sh | bash
 
 WORKDIR /workspace
 
