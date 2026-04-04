@@ -273,8 +273,10 @@ func allSurfaceMembersResolvable(members []gen.SurfacePropertyType, resolver *cu
 		_ = m.Tin
 		_ = m.TriangulatedSurface
 		_ = m.PolyhedralSurface
+		if m.NilReason != nil {
+			continue
+		}
 		// xlink metadata attributes — not used for geometry.
-		_ = m.NilReason
 		_ = m.RemoteSchema
 		_ = m.TypeField
 		_ = m.Role

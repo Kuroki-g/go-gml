@@ -41,6 +41,9 @@ func lineStringFromCompositeCurveType(x *gen.CompositeCurveType, inheritDim int,
 
 // lineStringFromCurveProperty converts a single CurvePropertyType to a LineString.
 func lineStringFromCurveProperty(cm *gen.CurvePropertyType, inheritDim int, resolver *curveResolver) (core.LineString, error) {
+	if cm.NilReason != nil {
+		return nil, nil
+	}
 	if cm.Curve != nil {
 		return lineStringFromCurve(cm.Curve, inheritDim)
 	}

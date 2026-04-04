@@ -11,6 +11,9 @@ import (
 // multiPolygonFromSurfaceProperty converts a SurfacePropertyType to a MultiPolygon.
 // CompositeSurface/Shell members produce multiple Polygons; all other surface types produce one.
 func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim int, resolver *curveResolver) (core.MultiPolygon, error) {
+	if m.NilReason != nil {
+		return nil, nil
+	}
 	if m.CompositeSurface != nil {
 		return multiPolygonFromCompositeSurface(m.CompositeSurface, resolver, inheritDim)
 	}
@@ -75,7 +78,6 @@ func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim int,
 		return nil, fmt.Errorf("gml: unresolved xlink:href %q", m.Href)
 	}
 	// xlink metadata attributes — not used for geometry.
-	_ = m.NilReason
 	_ = m.RemoteSchema
 	_ = m.TypeField
 	_ = m.Role
@@ -90,6 +92,9 @@ func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim int,
 // polygonFromSurfaceProperty converts a SurfacePropertyType to a Polygon.
 // For CompositeSurface/Shell members, use multiPolygonFromSurfaceProperty instead.
 func polygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim int, resolver *curveResolver) (core.Polygon, error) {
+	if m.NilReason != nil {
+		return core.Polygon(nil), nil
+	}
 	if m.Polygon != nil {
 		return polygonFromXML(m.Polygon, inheritDim)
 	}
@@ -147,7 +152,6 @@ func polygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim int, reso
 		return core.Polygon(nil), fmt.Errorf("gml: unresolved xlink:href %q", m.Href)
 	}
 	// xlink metadata attributes — not used for geometry.
-	_ = m.NilReason
 	_ = m.RemoteSchema
 	_ = m.TypeField
 	_ = m.Role

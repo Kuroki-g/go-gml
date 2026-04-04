@@ -111,8 +111,10 @@ func solidFromSolidMembers(members []gen.SolidPropertyType, dim int, resolver *c
 	var merged core.Solid
 	for i := range members {
 		m := &members[i]
+		if m.NilReason != nil {
+			continue
+		}
 		// xlink metadata attributes — not used for solid member resolution.
-		_ = m.NilReason
 		_ = m.RemoteSchema
 		_ = m.TypeField
 		_ = m.Role
@@ -152,8 +154,10 @@ func solidsFromSolidMembers(members []gen.SolidPropertyType, dim int, resolver *
 	var result core.MultiSolid
 	for i := range members {
 		m := &members[i]
+		if m.NilReason != nil {
+			continue
+		}
 		// xlink metadata attributes — not used for solid member resolution.
-		_ = m.NilReason
 		_ = m.RemoteSchema
 		_ = m.TypeField
 		_ = m.Role
