@@ -48,6 +48,11 @@ func multiPolygonFromPatchArray(sp *gen.SurfacePatchArrayPropertyType, dim int, 
 	if sp == nil {
 		return nil, nil
 	}
+	// SF-2 curved patch types — not yet implemented (see docs/issues/sf2-curves.md).
+	_ = sp.Cone
+	_ = sp.Cylinder
+	_ = sp.Sphere
+	_ = sp.Rectangle
 	var result core.MultiPolygon
 	for i := range sp.Triangle {
 		poly, err := polygonFromTriangle(&sp.Triangle[i], dim, resolver)

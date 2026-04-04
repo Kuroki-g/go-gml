@@ -56,8 +56,6 @@
 ### 未実装・残課題
 
 - **CityGML 2.0 LoD3**: 次の実装対象 (`bldg:lod3Solid` → `gml:Solid`)
-- **check-coverage 残課題**: `docs/issues/check-coverage-bug-c-xlink-meta-attrs.md` (xlink meta attrs)
-- **gml3_2_1 nilReason 未チェック**: `docs/issues/nil-reason-gml3_2_1.md` — AssociationAttributeGroup の nilReason 属性が未処理
 - **gml3_1_1 / gml3_2_1 ストリームテストなし**: N03 旧形式データ取得困難。`Decode` メソッドテストは追加済み。CityGML 実装で代替する方針
 - **SF-2**: `docs/issues/sf2-curves.md` — Arc/Circle 等の曲線補間・SurfacePatchArray 内の Cone/Cylinder/Sphere/Rectangle 未実装。低優先
 

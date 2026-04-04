@@ -101,6 +101,8 @@ func decodeEnvelopeElement(dec *xml.Decoder, se xml.StartElement) (core.Geometry
 }
 
 func lineStringsFromCurveArrayProperty(a *gen.CurveArrayPropertyType, inheritDim int, resolver *curveResolver) (core.MultiLineString, error) {
+	// xlink ownership attribute — not used for curve collection resolution.
+	_ = a.Owns
 	var lines core.MultiLineString
 	for i := range a.Curve {
 		cm := gen.CurvePropertyType{Curve: &a.Curve[i]}
@@ -166,6 +168,8 @@ func lineStringsFromCurveArrayProperty(a *gen.CurveArrayPropertyType, inheritDim
 }
 
 func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDim int, resolver *curveResolver) (core.MultiPolygon, error) {
+	// xlink ownership attribute — not used for surface collection resolution.
+	_ = a.Owns
 	var polys core.MultiPolygon
 	for i := range a.Polygon {
 		sm := gen.SurfacePropertyType{Polygon: &a.Polygon[i]}

@@ -72,5 +72,13 @@ func lineStringFromCurveProperty(cm *gen.CurvePropertyType, inheritDim int, reso
 			return ls, nil
 		}
 	}
+	// xlink metadata attributes — not used for curve resolution.
+	_ = cm.RemoteSchema
+	_ = cm.TypeField
+	_ = cm.Role
+	_ = cm.Arcrole
+	_ = cm.Title
+	_ = cm.Show
+	_ = cm.Actuate
 	return nil, nil
 }
