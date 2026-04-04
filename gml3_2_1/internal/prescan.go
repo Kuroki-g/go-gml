@@ -209,15 +209,16 @@ func cacheSurfaceMemberIDs(members []gen.SurfacePropertyType, resolver *curveRes
 		if m.CompositeSurface != nil {
 			cacheSurfaceMemberIDs(m.CompositeSurface.SurfaceMember, resolver)
 		}
-		// Only Polygon/Surface/CompositeSurface sub-elements are individually cached.
+		if m.Shell != nil && m.Shell.Id != "" {
+			if mp, err := multiPolygonFromShell(m.Shell, 0, resolver); err == nil {
+				resolver.multiPolygonByID[m.Shell.Id] = mp
+			}
+		}
+		// Only Polygon/Surface/CompositeSurface/Shell sub-elements are individually cached.
 		// Remaining fields are acknowledged to satisfy check-coverage.
 		_ = m.Href
 		_ = m.OrientableSurface
 		_ = m.PolyhedralSurface
-		// TODO(issue): Shell は AbstractSurface substitution group メンバー (XSD valid) だが
-		// ShellType → MultiPolygon 変換と shellByID キャッシュ戦略が未実装のため非キャッシュ。
-		// docs/issues/cache-shell-id-gml3_2_1.md 参照。
-		_ = m.Shell
 		_ = m.Tin
 		_ = m.TriangulatedSurface
 		_ = m.NilReason
@@ -260,15 +261,18 @@ func allSurfaceMembersResolvable(members []gen.SurfacePropertyType, resolver *cu
 				return false
 			}
 		}
-		// Inline Polygon/Surface/Tin/TriangulatedSurface/PolyhedralSurface/Shell contain no nested hrefs;
+		if m.Shell != nil {
+			if !allSurfaceMembersResolvable(m.Shell.SurfaceMember, resolver) {
+				return false
+			}
+		}
+		// Inline Polygon/Surface/Tin/TriangulatedSurface/PolyhedralSurface contain no nested hrefs;
 		// they are always resolvable. Explicitly reference fields to satisfy coverage.
 		_ = m.Polygon
 		_ = m.Surface
 		_ = m.Tin
 		_ = m.TriangulatedSurface
 		_ = m.PolyhedralSurface
-		// TODO(issue): Shell の xlink:href 参照は未サポート。docs/issues/cache-shell-id-gml3_2_1.md 参照。
-		_ = m.Shell
 		// xlink metadata attributes — not used for geometry.
 		_ = m.NilReason
 		_ = m.RemoteSchema

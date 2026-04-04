@@ -142,6 +142,26 @@ func lineStringsFromCurveArrayProperty(a *gen.CurveArrayPropertyType, inheritDim
 			lines = append(lines, ls)
 		}
 	}
+	for i := range a.LinearRing {
+		cm := gen.CurvePropertyType{LinearRing: &a.LinearRing[i]}
+		ls, err := lineStringFromCurveProperty(&cm, inheritDim, resolver)
+		if err != nil {
+			return nil, fmt.Errorf("LinearRing[%d]: %w", i, err)
+		}
+		if ls != nil {
+			lines = append(lines, ls)
+		}
+	}
+	for i := range a.Ring {
+		cm := gen.CurvePropertyType{Ring: &a.Ring[i]}
+		ls, err := lineStringFromCurveProperty(&cm, inheritDim, resolver)
+		if err != nil {
+			return nil, fmt.Errorf("Ring[%d]: %w", i, err)
+		}
+		if ls != nil {
+			lines = append(lines, ls)
+		}
+	}
 	return lines, nil
 }
 

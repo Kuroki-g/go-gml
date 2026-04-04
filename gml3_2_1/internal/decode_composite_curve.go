@@ -63,6 +63,12 @@ func lineStringFromCurveProperty(cm *gen.CurvePropertyType, inheritDim int, reso
 			}
 		}
 	}
+	if cm.LinearRing != nil {
+		return lineStringFromLinearRingType(cm.LinearRing, inheritDim)
+	}
+	if cm.Ring != nil {
+		return lineStringFromRingType(cm.Ring, inheritDim, resolver)
+	}
 	if cm.Href != "" {
 		id := strings.TrimPrefix(cm.Href, "#")
 		if c := resolver.resolve(id); c != nil {
@@ -73,4 +79,56 @@ func lineStringFromCurveProperty(cm *gen.CurvePropertyType, inheritDim int, reso
 		}
 	}
 	return nil, nil
+}
+
+// lineStringFromLinearRingType extracts coordinates from a LinearRingType as a LineString.
+func lineStringFromLinearRingType(x *gen.LinearRingType, inheritDim int) (core.LineString, error) {
+	dim := preferDim(inheritDim, derefDim(x.SrsDimension))
+	if x.PosList != nil {
+		return core.LineStringFromPosListString(x.PosList.Value, preferDim(dim, derefDim(x.PosList.SrsDimension)))
+	}
+	if len(x.Pos) > 0 {
+		var flat []float64
+		for _, p := range x.Pos {
+			vals, err := core.ParsePosList(p.Value)
+			if err != nil {
+				return nil, err
+			}
+			flat = append(flat, vals...)
+		}
+		d := preferDim(dim, derefDim(x.Pos[0].SrsDimension))
+		if d == 0 {
+			d = len(strings.Fields(x.Pos[0].Value))
+			if d < 2 {
+				d = 2
+			}
+		}
+		return core.LineStringFromFlat(flat, d)
+	}
+	if x.Coordinates != nil {
+		coords, err := core.ParseCoordinates(x.Coordinates.Value, derefStrOr(x.Coordinates.Cs, ","), derefStrOr(x.Coordinates.Ts, " "))
+		if err != nil {
+			return nil, err
+		}
+		return core.LineStringFromFlat(coords, 2)
+	}
+	return nil, fmt.Errorf("gml: LinearRing has no coordinate data")
+}
+
+// lineStringFromRingType concatenates curveMember segments of a RingType into a LineString.
+func lineStringFromRingType(x *gen.RingType, inheritDim int, resolver *curveResolver) (core.LineString, error) {
+	var result core.LineString
+	dim := preferDim(inheritDim, derefDim(x.SrsDimension))
+	for i := range x.CurveMember {
+		ls, err := lineStringFromCurveProperty(&x.CurveMember[i], dim, resolver)
+		if err != nil {
+			return nil, fmt.Errorf("curveMember[%d]: %w", i, err)
+		}
+		if len(result) > 0 && len(ls) > 0 {
+			result = append(result, ls[1:]...)
+		} else {
+			result = append(result, ls...)
+		}
+	}
+	return result, nil
 }
