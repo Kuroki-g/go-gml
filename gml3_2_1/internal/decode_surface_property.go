@@ -72,6 +72,7 @@ func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim int,
 		if poly, ok := resolver.polygonByID[id]; ok {
 			return core.MultiPolygon{poly}, nil
 		}
+		return nil, fmt.Errorf("gml: unresolved xlink:href %q", m.Href)
 	}
 	// xlink metadata attributes — not used for geometry.
 	_ = m.NilReason
@@ -143,6 +144,7 @@ func polygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim int, reso
 		if poly, ok := resolver.polygonByID[id]; ok {
 			return poly, nil
 		}
+		return core.Polygon(nil), fmt.Errorf("gml: unresolved xlink:href %q", m.Href)
 	}
 	// xlink metadata attributes — not used for geometry.
 	_ = m.NilReason

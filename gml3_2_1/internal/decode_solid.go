@@ -111,6 +111,16 @@ func solidFromSolidMembers(members []gen.SolidPropertyType, dim int, resolver *c
 	var merged core.Solid
 	for i := range members {
 		m := &members[i]
+		// xlink metadata attributes — not used for solid member resolution.
+		_ = m.NilReason
+		_ = m.RemoteSchema
+		_ = m.TypeField
+		_ = m.Role
+		_ = m.Arcrole
+		_ = m.Title
+		_ = m.Show
+		_ = m.Actuate
+		_ = m.Owns
 		var s core.Solid
 		var err error
 		switch {
@@ -122,7 +132,7 @@ func solidFromSolidMembers(members []gen.SolidPropertyType, dim int, resolver *c
 			id := strings.TrimPrefix(m.Href, "#")
 			var ok bool
 			if s, ok = resolver.solidByID[id]; !ok {
-				continue
+				return core.Solid{}, fmt.Errorf("gml: unresolved xlink:href %q", m.Href)
 			}
 		default:
 			continue
@@ -142,6 +152,16 @@ func solidsFromSolidMembers(members []gen.SolidPropertyType, dim int, resolver *
 	var result core.MultiSolid
 	for i := range members {
 		m := &members[i]
+		// xlink metadata attributes — not used for solid member resolution.
+		_ = m.NilReason
+		_ = m.RemoteSchema
+		_ = m.TypeField
+		_ = m.Role
+		_ = m.Arcrole
+		_ = m.Title
+		_ = m.Show
+		_ = m.Actuate
+		_ = m.Owns
 		var s core.Solid
 		var err error
 		switch {
@@ -153,7 +173,7 @@ func solidsFromSolidMembers(members []gen.SolidPropertyType, dim int, resolver *
 			id := strings.TrimPrefix(m.Href, "#")
 			var ok bool
 			if s, ok = resolver.solidByID[id]; !ok {
-				continue
+				return nil, fmt.Errorf("gml: unresolved xlink:href %q", m.Href)
 			}
 		default:
 			continue
