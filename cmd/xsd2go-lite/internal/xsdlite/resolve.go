@@ -273,6 +273,24 @@ func (r *Resolver) resolveComplexType(ct *ComplexType, visiting map[string]bool)
 
 // resolveRawField converts a single rawField to zero or more Fields.
 func (r *Resolver) resolveRawField(rf rawField, schemaNS string, visiting map[string]bool) []Field {
+	// Restriction: inherit only attribute fields from base type.
+	if rf.Ref != "" && strings.HasPrefix(rf.Ref, "__base_attrs__:") {
+		baseRef := strings.TrimPrefix(rf.Ref, "__base_attrs__:")
+		baseNS, baseName := r.resolveQName(baseRef, schemaNS)
+		baseKey := baseNS + " " + baseName
+		if baseCT, ok := r.allComplexTypes[baseKey]; ok {
+			r.resolveComplexType(baseCT, visiting)
+			var attrFields []Field
+			for _, f := range baseCT.Fields {
+				if f.IsAttr {
+					attrFields = append(attrFields, f)
+				}
+			}
+			return attrFields
+		}
+		return nil
+	}
+
 	// Base type inheritance placeholder
 	if rf.Ref != "" && strings.HasPrefix(rf.Ref, "__base__:") {
 		baseRef := strings.TrimPrefix(rf.Ref, "__base__:")

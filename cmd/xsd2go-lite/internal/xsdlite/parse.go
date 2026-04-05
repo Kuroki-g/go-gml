@@ -395,20 +395,17 @@ func convertComplexType(ct xsdComplexType, ns string) ComplexType {
 			result.RawFields = append(result.RawFields, collectExtensionFields(ext)...)
 			result.AttrGroups = append(result.AttrGroups, collectAttrGroupRefs(ext.AttrGroups)...)
 		} else if res := ct.ComplexContent.Restriction; res != nil {
-			// Own content first, then base. This ensures that base-inherited
-			// attributes (e.g. srsName from SRSReferenceGroup, carried in the
-			// already-resolved base Fields) win over re-declared elements from
-			// convenience groups like gml:StandardObjectProperties that the
-			// restriction sequence re-lists.  deduplicateFields applies
-			// "later wins" when attr and element have the same GoName, so placing
-			// the base last makes its attribute form survive.
+			// complexContent/restriction replaces the parent's element content model
+			// but inherits its attribute declarations. Only the restriction's own
+			// element fields are included; attribute fields are inherited from the base.
 			if res.Sequence != nil {
 				result.RawFields = append(result.RawFields, collectSequenceFields(res.Sequence)...)
 			}
 			result.RawFields = append(result.RawFields, convertAttributes(res.Attributes)...)
 			result.AttrGroups = append(result.AttrGroups, collectAttrGroupRefs(res.AttrGroups)...)
+			// Inherit only attribute fields from the base type.
 			result.RawFields = append(result.RawFields, rawField{
-				Ref: "__base__:" + res.Base,
+				Ref: "__base_attrs__:" + res.Base,
 			})
 		}
 

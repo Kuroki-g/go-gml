@@ -46,18 +46,6 @@ type AbstractCoordinateOperationBaseType struct {
 	// The name by which this coordinate operation is identified.
 	CoordinateOperationName *CodeType `xml:"http://www.opengis.net/gml coordinateOperationName,omitempty"`
 	Id                      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name          []CodeType `xml:"http://www.opengis.net/gml name"`
-	CsName        []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName     []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName     []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName  []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName    []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName       []CodeType `xml:"http://www.opengis.net/gml srsName"`
 }
 
 type AbstractCoordinateOperationType struct {
@@ -66,18 +54,6 @@ type AbstractCoordinateOperationType struct {
 	// The name by which this coordinate operation is identified.
 	CoordinateOperationName *CodeType `xml:"http://www.opengis.net/gml coordinateOperationName,omitempty"`
 	Id                      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name          []CodeType `xml:"http://www.opengis.net/gml name"`
-	CsName        []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName     []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName     []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName  []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName    []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName       []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this coordinate operation. The first coordinateOperationID, if any, is normally the primary identification code, and any others are aliases.
 	CoordinateOperationID []IdentifierType `xml:"http://www.opengis.net/gml coordinateOperationID"`
 	// Comments on or information about this coordinate operation, including source information.
@@ -105,18 +81,6 @@ type AbstractCoordinateSystemBaseType struct {
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
 	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 }
 
 type AbstractCoordinateSystemType struct {
@@ -125,18 +89,6 @@ type AbstractCoordinateSystemType struct {
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
 	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -235,18 +187,6 @@ type AbstractDatumBaseType struct {
 	// The name by which this datum is identified.
 	DatumName *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
 	Id        string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 }
 
 type AbstractDatumType struct {
@@ -255,18 +195,6 @@ type AbstractDatumType struct {
 	// The name by which this datum is identified.
 	DatumName *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
 	Id        string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this datum. The first datumID, if any, is normally the primary identification code, and any others are aliases.
 	DatumID []IdentifierType `xml:"http://www.opengis.net/gml datumID"`
 	// Comments on this reference system, including source information.
@@ -403,24 +331,6 @@ type AbstractGeneralConversionType struct {
 	CovarianceMatrix                   []CovarianceMatrixType                   `xml:"http://www.opengis.net/gml covarianceMatrix"`
 	RelativeInternalPositionalAccuracy []RelativeInternalPositionalAccuracyType `xml:"http://www.opengis.net/gml relativeInternalPositionalAccuracy"`
 	Id                                 string                                   `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name          []CodeType `xml:"http://www.opengis.net/gml name"`
-	CsName        []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName     []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName     []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName  []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName    []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName       []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	// Version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters). Mandatory when describing a transformation, and should not be supplied for a conversion.
-	OperationVersion *string `xml:"http://www.opengis.net/gml operationVersion,omitempty"`
-	// Association to the source CRS (coordinate reference system) of this coordinate operation.
-	SourceCRS *CRSRefType `xml:"http://www.opengis.net/gml sourceCRS,omitempty"`
-	// Association to the target CRS (coordinate reference system) of this coordinate operation. For constraints on multiplicity of "sourceCRS" and "targetCRS", see UML model of Coordinate Operation package in OGC Abstract Specification topic 2.
-	TargetCRS *CRSRefType `xml:"http://www.opengis.net/gml targetCRS,omitempty"`
 }
 
 type AbstractGeneralDerivedCRSType struct {
@@ -429,18 +339,6 @@ type AbstractGeneralDerivedCRSType struct {
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
 	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -517,18 +415,6 @@ type AbstractGeneralTransformationType struct {
 	// Association to the target CRS (coordinate reference system) of this coordinate operation. For constraints on multiplicity of "sourceCRS" and "targetCRS", see UML model of Coordinate Operation package in OGC Abstract Specification topic 2.
 	TargetCRS *CRSRefType `xml:"http://www.opengis.net/gml targetCRS,omitempty"`
 	Id        string      `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name          []CodeType `xml:"http://www.opengis.net/gml name"`
-	CsName        []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName     []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName     []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName  []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName    []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName       []CodeType `xml:"http://www.opengis.net/gml srsName"`
 }
 
 type AbstractGeometricAggregateType struct {
@@ -679,18 +565,6 @@ type AbstractReferenceSystemBaseType struct {
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
 	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 }
 
 type AbstractReferenceSystemType struct {
@@ -699,18 +573,6 @@ type AbstractReferenceSystemType struct {
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
 	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -1695,181 +1557,15 @@ type BezierType struct {
 
 type BooleanPropertyType struct {
 	// A value from two-valued logic, using the XML Schema boolean type.  An instance may take the values {true, false, 1, 0}.
-	Boolean *bool `xml:"http://www.opengis.net/gml Boolean,omitempty"`
-	// This abstract element is the head of a substitutionGroup hierararchy which may contain either simpleContent or complexContent elements.  It is used to assert the model position of "class" elements declared in other GML schemas.
-	AbstractObject                    *string                                `xml:"http://www.opengis.net/gml _Object,omitempty"`
-	Array                             *ArrayType                             `xml:"http://www.opengis.net/gml Array,omitempty"`
-	Bag                               *BagType                               `xml:"http://www.opengis.net/gml Bag,omitempty"`
-	BaseUnit                          *BaseUnitType                          `xml:"http://www.opengis.net/gml BaseUnit,omitempty"`
-	CartesianCS                       *CartesianCSType                       `xml:"http://www.opengis.net/gml CartesianCS,omitempty"`
-	CompositeCurve                    *CompositeCurveType                    `xml:"http://www.opengis.net/gml CompositeCurve,omitempty"`
-	CompositeSolid                    *CompositeSolidType                    `xml:"http://www.opengis.net/gml CompositeSolid,omitempty"`
-	CompositeSurface                  *CompositeSurfaceType                  `xml:"http://www.opengis.net/gml CompositeSurface,omitempty"`
-	CompoundCRS                       *CompoundCRSType                       `xml:"http://www.opengis.net/gml CompoundCRS,omitempty"`
-	ConcatenatedOperation             *ConcatenatedOperationType             `xml:"http://www.opengis.net/gml ConcatenatedOperation,omitempty"`
-	ConventionalUnit                  *ConventionalUnitType                  `xml:"http://www.opengis.net/gml ConventionalUnit,omitempty"`
-	Conversion                        *ConversionType                        `xml:"http://www.opengis.net/gml Conversion,omitempty"`
-	CoordinateSystemAxis              *CoordinateSystemAxisType              `xml:"http://www.opengis.net/gml CoordinateSystemAxis,omitempty"`
-	Curve                             *CurveType                             `xml:"http://www.opengis.net/gml Curve,omitempty"`
-	CylindricalCS                     *CylindricalCSType                     `xml:"http://www.opengis.net/gml CylindricalCS,omitempty"`
-	Definition                        *DefinitionType                        `xml:"http://www.opengis.net/gml Definition,omitempty"`
-	DefinitionCollection              *DictionaryType                        `xml:"http://www.opengis.net/gml DefinitionCollection,omitempty"`
-	DefinitionProxy                   *DefinitionProxyType                   `xml:"http://www.opengis.net/gml DefinitionProxy,omitempty"`
-	DerivedCRS                        *DerivedCRSType                        `xml:"http://www.opengis.net/gml DerivedCRS,omitempty"`
-	DerivedUnit                       *DerivedUnitType                       `xml:"http://www.opengis.net/gml DerivedUnit,omitempty"`
-	Dictionary                        *DictionaryType                        `xml:"http://www.opengis.net/gml Dictionary,omitempty"`
-	DirectedObservation               *DirectedObservationType               `xml:"http://www.opengis.net/gml DirectedObservation,omitempty"`
-	DirectedObservationAtDistance     *DirectedObservationAtDistanceType     `xml:"http://www.opengis.net/gml DirectedObservationAtDistance,omitempty"`
-	Edge                              *EdgeType                              `xml:"http://www.opengis.net/gml Edge,omitempty"`
-	Ellipsoid                         *EllipsoidType                         `xml:"http://www.opengis.net/gml Ellipsoid,omitempty"`
-	EllipsoidalCS                     *EllipsoidalCSType                     `xml:"http://www.opengis.net/gml EllipsoidalCS,omitempty"`
-	EngineeringCRS                    *EngineeringCRSType                    `xml:"http://www.opengis.net/gml EngineeringCRS,omitempty"`
-	EngineeringDatum                  *EngineeringDatumType                  `xml:"http://www.opengis.net/gml EngineeringDatum,omitempty"`
-	Face                              *FaceType                              `xml:"http://www.opengis.net/gml Face,omitempty"`
-	FeatureCollection                 *FeatureCollectionType                 `xml:"http://www.opengis.net/gml FeatureCollection,omitempty"`
-	FeatureStyle                      *FeatureStyleType                      `xml:"http://www.opengis.net/gml FeatureStyle,omitempty"`
-	GenericMetaData                   *GenericMetaDataType                   `xml:"http://www.opengis.net/gml GenericMetaData,omitempty"`
-	GeocentricCRS                     *GeocentricCRSType                     `xml:"http://www.opengis.net/gml GeocentricCRS,omitempty"`
-	GeodeticDatum                     *GeodeticDatumType                     `xml:"http://www.opengis.net/gml GeodeticDatum,omitempty"`
-	GeographicCRS                     *GeographicCRSType                     `xml:"http://www.opengis.net/gml GeographicCRS,omitempty"`
-	GeometricComplex                  *GeometricComplexType                  `xml:"http://www.opengis.net/gml GeometricComplex,omitempty"`
-	GeometryStyle                     *GeometryStyleType                     `xml:"http://www.opengis.net/gml GeometryStyle,omitempty"`
-	GraphStyle                        *GraphStyleType                        `xml:"http://www.opengis.net/gml GraphStyle,omitempty"`
-	Grid                              *GridType                              `xml:"http://www.opengis.net/gml Grid,omitempty"`
-	GridCoverage                      *GridCoverageType                      `xml:"http://www.opengis.net/gml GridCoverage,omitempty"`
-	ImageCRS                          *ImageCRSType                          `xml:"http://www.opengis.net/gml ImageCRS,omitempty"`
-	ImageDatum                        *ImageDatumType                        `xml:"http://www.opengis.net/gml ImageDatum,omitempty"`
-	LabelStyle                        *LabelStyleType                        `xml:"http://www.opengis.net/gml LabelStyle,omitempty"`
-	LineString                        *LineStringType                        `xml:"http://www.opengis.net/gml LineString,omitempty"`
-	LinearCS                          *LinearCSType                          `xml:"http://www.opengis.net/gml LinearCS,omitempty"`
-	LinearRing                        *LinearRingType                        `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
-	MovingObjectStatus                *MovingObjectStatusType                `xml:"http://www.opengis.net/gml MovingObjectStatus,omitempty"`
-	MultiCurve                        *MultiCurveType                        `xml:"http://www.opengis.net/gml MultiCurve,omitempty"`
-	MultiCurveCoverage                *MultiCurveCoverageType                `xml:"http://www.opengis.net/gml MultiCurveCoverage,omitempty"`
-	MultiGeometry                     *MultiGeometryType                     `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
-	MultiLineString                   *MultiLineStringType                   `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
-	MultiPoint                        *MultiPointType                        `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
-	MultiPointCoverage                *MultiPointCoverageType                `xml:"http://www.opengis.net/gml MultiPointCoverage,omitempty"`
-	MultiPolygon                      *MultiPolygonType                      `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
-	MultiSolid                        *MultiSolidType                        `xml:"http://www.opengis.net/gml MultiSolid,omitempty"`
-	MultiSolidCoverage                *MultiSolidCoverageType                `xml:"http://www.opengis.net/gml MultiSolidCoverage,omitempty"`
-	MultiSurface                      *MultiSurfaceType                      `xml:"http://www.opengis.net/gml MultiSurface,omitempty"`
-	MultiSurfaceCoverage              *MultiSurfaceCoverageType              `xml:"http://www.opengis.net/gml MultiSurfaceCoverage,omitempty"`
-	Node                              *NodeType                              `xml:"http://www.opengis.net/gml Node,omitempty"`
-	ObliqueCartesianCS                *ObliqueCartesianCSType                `xml:"http://www.opengis.net/gml ObliqueCartesianCS,omitempty"`
-	Observation                       *ObservationType                       `xml:"http://www.opengis.net/gml Observation,omitempty"`
-	OperationMethod                   *OperationMethodType                   `xml:"http://www.opengis.net/gml OperationMethod,omitempty"`
-	OperationParameter                *OperationParameterType                `xml:"http://www.opengis.net/gml OperationParameter,omitempty"`
-	OperationParameterGroup           *OperationParameterGroupType           `xml:"http://www.opengis.net/gml OperationParameterGroup,omitempty"`
-	OrientableCurve                   *OrientableCurveType                   `xml:"http://www.opengis.net/gml OrientableCurve,omitempty"`
-	OrientableSurface                 *OrientableSurfaceType                 `xml:"http://www.opengis.net/gml OrientableSurface,omitempty"`
-	PassThroughOperation              *PassThroughOperationType              `xml:"http://www.opengis.net/gml PassThroughOperation,omitempty"`
-	Point                             *PointType                             `xml:"http://www.opengis.net/gml Point,omitempty"`
-	PolarCS                           *PolarCSType                           `xml:"http://www.opengis.net/gml PolarCS,omitempty"`
-	Polygon                           *PolygonType                           `xml:"http://www.opengis.net/gml Polygon,omitempty"`
-	PolyhedralSurface                 *PolyhedralSurfaceType                 `xml:"http://www.opengis.net/gml PolyhedralSurface,omitempty"`
-	PrimeMeridian                     *PrimeMeridianType                     `xml:"http://www.opengis.net/gml PrimeMeridian,omitempty"`
-	ProjectedCRS                      *ProjectedCRSType                      `xml:"http://www.opengis.net/gml ProjectedCRS,omitempty"`
-	RectifiedGrid                     *RectifiedGridType                     `xml:"http://www.opengis.net/gml RectifiedGrid,omitempty"`
-	RectifiedGridCoverage             *RectifiedGridCoverageType             `xml:"http://www.opengis.net/gml RectifiedGridCoverage,omitempty"`
-	Ring                              *RingType                              `xml:"http://www.opengis.net/gml Ring,omitempty"`
-	Solid                             *SolidType                             `xml:"http://www.opengis.net/gml Solid,omitempty"`
-	SphericalCS                       *SphericalCSType                       `xml:"http://www.opengis.net/gml SphericalCS,omitempty"`
-	Style                             *StyleType                             `xml:"http://www.opengis.net/gml Style,omitempty"`
-	Surface                           *SurfaceType                           `xml:"http://www.opengis.net/gml Surface,omitempty"`
-	TemporalCRS                       *TemporalCRSType                       `xml:"http://www.opengis.net/gml TemporalCRS,omitempty"`
-	TemporalCS                        *TemporalCSType                        `xml:"http://www.opengis.net/gml TemporalCS,omitempty"`
-	TemporalDatum                     *TemporalDatumType                     `xml:"http://www.opengis.net/gml TemporalDatum,omitempty"`
-	TimeCalendar                      *TimeCalendarType                      `xml:"http://www.opengis.net/gml TimeCalendar,omitempty"`
-	TimeCalendarEra                   *TimeCalendarEraType                   `xml:"http://www.opengis.net/gml TimeCalendarEra,omitempty"`
-	TimeClock                         *TimeClockType                         `xml:"http://www.opengis.net/gml TimeClock,omitempty"`
-	TimeCoordinateSystem              *TimeCoordinateSystemType              `xml:"http://www.opengis.net/gml TimeCoordinateSystem,omitempty"`
-	TimeEdge                          *TimeEdgeType                          `xml:"http://www.opengis.net/gml TimeEdge,omitempty"`
-	TimeInstant                       *TimeInstantType                       `xml:"http://www.opengis.net/gml TimeInstant,omitempty"`
-	TimeNode                          *TimeNodeType                          `xml:"http://www.opengis.net/gml TimeNode,omitempty"`
-	TimeOrdinalReferenceSystem        *TimeOrdinalReferenceSystemType        `xml:"http://www.opengis.net/gml TimeOrdinalReferenceSystem,omitempty"`
-	TimePeriod                        *TimePeriodType                        `xml:"http://www.opengis.net/gml TimePeriod,omitempty"`
-	TimeTopologyComplex               *TimeTopologyComplexType               `xml:"http://www.opengis.net/gml TimeTopologyComplex,omitempty"`
-	Tin                               *TinType                               `xml:"http://www.opengis.net/gml Tin,omitempty"`
-	TopoComplex                       *TopoComplexType                       `xml:"http://www.opengis.net/gml TopoComplex,omitempty"`
-	TopoSolid                         *TopoSolidType                         `xml:"http://www.opengis.net/gml TopoSolid,omitempty"`
-	TopologyStyle                     *TopologyStyleType                     `xml:"http://www.opengis.net/gml TopologyStyle,omitempty"`
-	Transformation                    *TransformationType                    `xml:"http://www.opengis.net/gml Transformation,omitempty"`
-	TriangulatedSurface               *TriangulatedSurfaceType               `xml:"http://www.opengis.net/gml TriangulatedSurface,omitempty"`
-	UnitDefinition                    *UnitDefinitionType                    `xml:"http://www.opengis.net/gml UnitDefinition,omitempty"`
-	UserDefinedCS                     *UserDefinedCSType                     `xml:"http://www.opengis.net/gml UserDefinedCS,omitempty"`
-	VerticalCRS                       *VerticalCRSType                       `xml:"http://www.opengis.net/gml VerticalCRS,omitempty"`
-	VerticalCS                        *VerticalCSType                        `xml:"http://www.opengis.net/gml VerticalCS,omitempty"`
-	VerticalDatum                     *VerticalDatumType                     `xml:"http://www.opengis.net/gml VerticalDatum,omitempty"`
-	AbstractCRS                       *AbstractReferenceSystemType           `xml:"http://www.opengis.net/gml _CRS,omitempty"`
-	AbstractContinuousCoverage        *AbstractContinuousCoverageType        `xml:"http://www.opengis.net/gml _ContinuousCoverage,omitempty"`
-	AbstractCoordinateOperation       *AbstractCoordinateOperationType       `xml:"http://www.opengis.net/gml _CoordinateOperation,omitempty"`
-	AbstractCoordinateReferenceSystem *AbstractReferenceSystemType           `xml:"http://www.opengis.net/gml _CoordinateReferenceSystem,omitempty"`
-	AbstractCoordinateSystem          *AbstractCoordinateSystemType          `xml:"http://www.opengis.net/gml _CoordinateSystem,omitempty"`
-	AbstractCoverage                  *AbstractCoverageType                  `xml:"http://www.opengis.net/gml _Coverage,omitempty"`
-	AbstractCurve                     *AbstractCurveType                     `xml:"http://www.opengis.net/gml _Curve,omitempty"`
-	AbstractDatum                     *AbstractDatumType                     `xml:"http://www.opengis.net/gml _Datum,omitempty"`
-	AbstractDiscreteCoverage          *AbstractDiscreteCoverageType          `xml:"http://www.opengis.net/gml _DiscreteCoverage,omitempty"`
-	AbstractFeature                   *AbstractFeatureType                   `xml:"http://www.opengis.net/gml _Feature,omitempty"`
-	AbstractFeatureCollection         *AbstractFeatureCollectionType         `xml:"http://www.opengis.net/gml _FeatureCollection,omitempty"`
-	AbstractGML                       *AbstractGMLType                       `xml:"http://www.opengis.net/gml _GML,omitempty"`
-	AbstractGeneralConversion         *AbstractGeneralConversionType         `xml:"http://www.opengis.net/gml _GeneralConversion,omitempty"`
-	AbstractGeneralDerivedCRS         *AbstractGeneralDerivedCRSType         `xml:"http://www.opengis.net/gml _GeneralDerivedCRS,omitempty"`
-	AbstractGeneralOperationParameter *AbstractGeneralOperationParameterType `xml:"http://www.opengis.net/gml _GeneralOperationParameter,omitempty"`
-	AbstractGeneralTransformation     *AbstractGeneralTransformationType     `xml:"http://www.opengis.net/gml _GeneralTransformation,omitempty"`
-	AbstractGeometricAggregate        *AbstractGeometricAggregateType        `xml:"http://www.opengis.net/gml _GeometricAggregate,omitempty"`
-	AbstractGeometricPrimitive        *AbstractGeometricPrimitiveType        `xml:"http://www.opengis.net/gml _GeometricPrimitive,omitempty"`
-	AbstractGeometry                  *AbstractGeometryType                  `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
-	AbstractImplicitGeometry          *AbstractGeometryType                  `xml:"http://www.opengis.net/gml _ImplicitGeometry,omitempty"`
-	AbstractMetaData                  *AbstractMetaDataType                  `xml:"http://www.opengis.net/gml _MetaData,omitempty"`
-	AbstractOperation                 *AbstractCoordinateOperationType       `xml:"http://www.opengis.net/gml _Operation,omitempty"`
-	AbstractReferenceSystem           *AbstractReferenceSystemType           `xml:"http://www.opengis.net/gml _ReferenceSystem,omitempty"`
-	AbstractRing                      *AbstractRingType                      `xml:"http://www.opengis.net/gml _Ring,omitempty"`
-	AbstractSingleOperation           *AbstractCoordinateOperationType       `xml:"http://www.opengis.net/gml _SingleOperation,omitempty"`
-	AbstractSolid                     *AbstractSolidType                     `xml:"http://www.opengis.net/gml _Solid,omitempty"`
-	AbstractStyle                     *AbstractStyleType                     `xml:"http://www.opengis.net/gml _Style,omitempty"`
-	AbstractSurface                   *AbstractSurfaceType                   `xml:"http://www.opengis.net/gml _Surface,omitempty"`
-	AbstractTimeComplex               *AbstractTimeComplexType               `xml:"http://www.opengis.net/gml _TimeComplex,omitempty"`
-	AbstractTimeGeometricPrimitive    *AbstractTimeGeometricPrimitiveType    `xml:"http://www.opengis.net/gml _TimeGeometricPrimitive,omitempty"`
-	AbstractTimeObject                *AbstractTimeObjectType                `xml:"http://www.opengis.net/gml _TimeObject,omitempty"`
-	AbstractTimePrimitive             *AbstractTimePrimitiveType             `xml:"http://www.opengis.net/gml _TimePrimitive,omitempty"`
-	AbstractTimeReferenceSystem       *AbstractTimeReferenceSystemType       `xml:"http://www.opengis.net/gml _TimeReferenceSystem,omitempty"`
-	AbstractTimeSlice                 *AbstractTimeSliceType                 `xml:"http://www.opengis.net/gml _TimeSlice,omitempty"`
-	AbstractTimeTopologyPrimitive     *AbstractTimeTopologyPrimitiveType     `xml:"http://www.opengis.net/gml _TimeTopologyPrimitive,omitempty"`
-	AbstractTopoPrimitive             *AbstractTopoPrimitiveType             `xml:"http://www.opengis.net/gml _TopoPrimitive,omitempty"`
-	AbstractTopology                  *AbstractTopologyType                  `xml:"http://www.opengis.net/gml _Topology,omitempty"`
-	Null                              *string                                `xml:"http://www.opengis.net/gml Null,omitempty"`
-	// Aggregate value built using the Composite pattern.
-	CompositeValue *CompositeValueType `xml:"http://www.opengis.net/gml CompositeValue,omitempty"`
-	ValueArray     *ValueArrayType     `xml:"http://www.opengis.net/gml ValueArray,omitempty"`
-	// A term representing a classification.  It has an optional XML attribute codeSpace, whose value is a URI which identifies a dictionary, codelist or authority for the term.
-	Category *CodeType `xml:"http://www.opengis.net/gml Category,omitempty"`
-	// A numeric value with a scale.  The content of the element is an amount using the XML Schema type double which permits decimal or scientific notation.  An XML attribute uom (unit of measure) is required, whose value is a URI which identifies the definition of the scale or units by which the numeric value must be multiplied.
-	Quantity *MeasureType `xml:"http://www.opengis.net/gml Quantity,omitempty"`
-	// An integer representing a frequency of occurrence.
-	Count *int `xml:"http://www.opengis.net/gml Count,omitempty"`
-	// XML List based on XML Schema boolean type.  An element of this type contains a space-separated list of boolean values {0,1,true,false}
-	BooleanList *string `xml:"http://www.opengis.net/gml BooleanList,omitempty"`
-	// A space-separated list of terms or nulls.  A single XML attribute codeSpace may be provided, which authorises all the terms in the list.
-	CategoryList *CodeOrNullListType `xml:"http://www.opengis.net/gml CategoryList,omitempty"`
-	// A space separated list of amounts or nulls.  The amounts use the XML Schema type double.  A single XML attribute uom (unit of measure) is required, whose value is a URI which identifies the definition of the scale or units by which all the amounts in the list must be multiplied.
-	QuantityList *MeasureOrNullListType `xml:"http://www.opengis.net/gml QuantityList,omitempty"`
-	// A space-separated list of integers or nulls.
-	CountList *string `xml:"http://www.opengis.net/gml CountList,omitempty"`
-	// Utility element to store a 2-point range of ordinal values. If one member is a null, then this is a single ended interval.
-	CategoryExtent *CategoryExtentType `xml:"http://www.opengis.net/gml CategoryExtent,omitempty"`
-	// Utility element to store a 2-point range of numeric values. If one member is a null, then this is a single ended interval.
-	QuantityExtent *QuantityExtentType `xml:"http://www.opengis.net/gml QuantityExtent,omitempty"`
-	// Utility element to store a 2-point range of frequency values. If one member is a null, then this is a single ended interval.
-	CountExtent  *string `xml:"http://www.opengis.net/gml CountExtent,omitempty"`
-	RemoteSchema string  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	Boolean      *bool  `xml:"http://www.opengis.net/gml Boolean,omitempty"`
+	RemoteSchema string `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type BoundedFeatureType struct {
@@ -1943,18 +1639,6 @@ type CartesianCSType struct {
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
 	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -1969,181 +1653,15 @@ type CategoryExtentType struct {
 
 type CategoryPropertyType struct {
 	// A term representing a classification.  It has an optional XML attribute codeSpace, whose value is a URI which identifies a dictionary, codelist or authority for the term.
-	Category *CodeType `xml:"http://www.opengis.net/gml Category,omitempty"`
-	// This abstract element is the head of a substitutionGroup hierararchy which may contain either simpleContent or complexContent elements.  It is used to assert the model position of "class" elements declared in other GML schemas.
-	AbstractObject                    *string                                `xml:"http://www.opengis.net/gml _Object,omitempty"`
-	Array                             *ArrayType                             `xml:"http://www.opengis.net/gml Array,omitempty"`
-	Bag                               *BagType                               `xml:"http://www.opengis.net/gml Bag,omitempty"`
-	BaseUnit                          *BaseUnitType                          `xml:"http://www.opengis.net/gml BaseUnit,omitempty"`
-	CartesianCS                       *CartesianCSType                       `xml:"http://www.opengis.net/gml CartesianCS,omitempty"`
-	CompositeCurve                    *CompositeCurveType                    `xml:"http://www.opengis.net/gml CompositeCurve,omitempty"`
-	CompositeSolid                    *CompositeSolidType                    `xml:"http://www.opengis.net/gml CompositeSolid,omitempty"`
-	CompositeSurface                  *CompositeSurfaceType                  `xml:"http://www.opengis.net/gml CompositeSurface,omitempty"`
-	CompoundCRS                       *CompoundCRSType                       `xml:"http://www.opengis.net/gml CompoundCRS,omitempty"`
-	ConcatenatedOperation             *ConcatenatedOperationType             `xml:"http://www.opengis.net/gml ConcatenatedOperation,omitempty"`
-	ConventionalUnit                  *ConventionalUnitType                  `xml:"http://www.opengis.net/gml ConventionalUnit,omitempty"`
-	Conversion                        *ConversionType                        `xml:"http://www.opengis.net/gml Conversion,omitempty"`
-	CoordinateSystemAxis              *CoordinateSystemAxisType              `xml:"http://www.opengis.net/gml CoordinateSystemAxis,omitempty"`
-	Curve                             *CurveType                             `xml:"http://www.opengis.net/gml Curve,omitempty"`
-	CylindricalCS                     *CylindricalCSType                     `xml:"http://www.opengis.net/gml CylindricalCS,omitempty"`
-	Definition                        *DefinitionType                        `xml:"http://www.opengis.net/gml Definition,omitempty"`
-	DefinitionCollection              *DictionaryType                        `xml:"http://www.opengis.net/gml DefinitionCollection,omitempty"`
-	DefinitionProxy                   *DefinitionProxyType                   `xml:"http://www.opengis.net/gml DefinitionProxy,omitempty"`
-	DerivedCRS                        *DerivedCRSType                        `xml:"http://www.opengis.net/gml DerivedCRS,omitempty"`
-	DerivedUnit                       *DerivedUnitType                       `xml:"http://www.opengis.net/gml DerivedUnit,omitempty"`
-	Dictionary                        *DictionaryType                        `xml:"http://www.opengis.net/gml Dictionary,omitempty"`
-	DirectedObservation               *DirectedObservationType               `xml:"http://www.opengis.net/gml DirectedObservation,omitempty"`
-	DirectedObservationAtDistance     *DirectedObservationAtDistanceType     `xml:"http://www.opengis.net/gml DirectedObservationAtDistance,omitempty"`
-	Edge                              *EdgeType                              `xml:"http://www.opengis.net/gml Edge,omitempty"`
-	Ellipsoid                         *EllipsoidType                         `xml:"http://www.opengis.net/gml Ellipsoid,omitempty"`
-	EllipsoidalCS                     *EllipsoidalCSType                     `xml:"http://www.opengis.net/gml EllipsoidalCS,omitempty"`
-	EngineeringCRS                    *EngineeringCRSType                    `xml:"http://www.opengis.net/gml EngineeringCRS,omitempty"`
-	EngineeringDatum                  *EngineeringDatumType                  `xml:"http://www.opengis.net/gml EngineeringDatum,omitempty"`
-	Face                              *FaceType                              `xml:"http://www.opengis.net/gml Face,omitempty"`
-	FeatureCollection                 *FeatureCollectionType                 `xml:"http://www.opengis.net/gml FeatureCollection,omitempty"`
-	FeatureStyle                      *FeatureStyleType                      `xml:"http://www.opengis.net/gml FeatureStyle,omitempty"`
-	GenericMetaData                   *GenericMetaDataType                   `xml:"http://www.opengis.net/gml GenericMetaData,omitempty"`
-	GeocentricCRS                     *GeocentricCRSType                     `xml:"http://www.opengis.net/gml GeocentricCRS,omitempty"`
-	GeodeticDatum                     *GeodeticDatumType                     `xml:"http://www.opengis.net/gml GeodeticDatum,omitempty"`
-	GeographicCRS                     *GeographicCRSType                     `xml:"http://www.opengis.net/gml GeographicCRS,omitempty"`
-	GeometricComplex                  *GeometricComplexType                  `xml:"http://www.opengis.net/gml GeometricComplex,omitempty"`
-	GeometryStyle                     *GeometryStyleType                     `xml:"http://www.opengis.net/gml GeometryStyle,omitempty"`
-	GraphStyle                        *GraphStyleType                        `xml:"http://www.opengis.net/gml GraphStyle,omitempty"`
-	Grid                              *GridType                              `xml:"http://www.opengis.net/gml Grid,omitempty"`
-	GridCoverage                      *GridCoverageType                      `xml:"http://www.opengis.net/gml GridCoverage,omitempty"`
-	ImageCRS                          *ImageCRSType                          `xml:"http://www.opengis.net/gml ImageCRS,omitempty"`
-	ImageDatum                        *ImageDatumType                        `xml:"http://www.opengis.net/gml ImageDatum,omitempty"`
-	LabelStyle                        *LabelStyleType                        `xml:"http://www.opengis.net/gml LabelStyle,omitempty"`
-	LineString                        *LineStringType                        `xml:"http://www.opengis.net/gml LineString,omitempty"`
-	LinearCS                          *LinearCSType                          `xml:"http://www.opengis.net/gml LinearCS,omitempty"`
-	LinearRing                        *LinearRingType                        `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
-	MovingObjectStatus                *MovingObjectStatusType                `xml:"http://www.opengis.net/gml MovingObjectStatus,omitempty"`
-	MultiCurve                        *MultiCurveType                        `xml:"http://www.opengis.net/gml MultiCurve,omitempty"`
-	MultiCurveCoverage                *MultiCurveCoverageType                `xml:"http://www.opengis.net/gml MultiCurveCoverage,omitempty"`
-	MultiGeometry                     *MultiGeometryType                     `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
-	MultiLineString                   *MultiLineStringType                   `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
-	MultiPoint                        *MultiPointType                        `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
-	MultiPointCoverage                *MultiPointCoverageType                `xml:"http://www.opengis.net/gml MultiPointCoverage,omitempty"`
-	MultiPolygon                      *MultiPolygonType                      `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
-	MultiSolid                        *MultiSolidType                        `xml:"http://www.opengis.net/gml MultiSolid,omitempty"`
-	MultiSolidCoverage                *MultiSolidCoverageType                `xml:"http://www.opengis.net/gml MultiSolidCoverage,omitempty"`
-	MultiSurface                      *MultiSurfaceType                      `xml:"http://www.opengis.net/gml MultiSurface,omitempty"`
-	MultiSurfaceCoverage              *MultiSurfaceCoverageType              `xml:"http://www.opengis.net/gml MultiSurfaceCoverage,omitempty"`
-	Node                              *NodeType                              `xml:"http://www.opengis.net/gml Node,omitempty"`
-	ObliqueCartesianCS                *ObliqueCartesianCSType                `xml:"http://www.opengis.net/gml ObliqueCartesianCS,omitempty"`
-	Observation                       *ObservationType                       `xml:"http://www.opengis.net/gml Observation,omitempty"`
-	OperationMethod                   *OperationMethodType                   `xml:"http://www.opengis.net/gml OperationMethod,omitempty"`
-	OperationParameter                *OperationParameterType                `xml:"http://www.opengis.net/gml OperationParameter,omitempty"`
-	OperationParameterGroup           *OperationParameterGroupType           `xml:"http://www.opengis.net/gml OperationParameterGroup,omitempty"`
-	OrientableCurve                   *OrientableCurveType                   `xml:"http://www.opengis.net/gml OrientableCurve,omitempty"`
-	OrientableSurface                 *OrientableSurfaceType                 `xml:"http://www.opengis.net/gml OrientableSurface,omitempty"`
-	PassThroughOperation              *PassThroughOperationType              `xml:"http://www.opengis.net/gml PassThroughOperation,omitempty"`
-	Point                             *PointType                             `xml:"http://www.opengis.net/gml Point,omitempty"`
-	PolarCS                           *PolarCSType                           `xml:"http://www.opengis.net/gml PolarCS,omitempty"`
-	Polygon                           *PolygonType                           `xml:"http://www.opengis.net/gml Polygon,omitempty"`
-	PolyhedralSurface                 *PolyhedralSurfaceType                 `xml:"http://www.opengis.net/gml PolyhedralSurface,omitempty"`
-	PrimeMeridian                     *PrimeMeridianType                     `xml:"http://www.opengis.net/gml PrimeMeridian,omitempty"`
-	ProjectedCRS                      *ProjectedCRSType                      `xml:"http://www.opengis.net/gml ProjectedCRS,omitempty"`
-	RectifiedGrid                     *RectifiedGridType                     `xml:"http://www.opengis.net/gml RectifiedGrid,omitempty"`
-	RectifiedGridCoverage             *RectifiedGridCoverageType             `xml:"http://www.opengis.net/gml RectifiedGridCoverage,omitempty"`
-	Ring                              *RingType                              `xml:"http://www.opengis.net/gml Ring,omitempty"`
-	Solid                             *SolidType                             `xml:"http://www.opengis.net/gml Solid,omitempty"`
-	SphericalCS                       *SphericalCSType                       `xml:"http://www.opengis.net/gml SphericalCS,omitempty"`
-	Style                             *StyleType                             `xml:"http://www.opengis.net/gml Style,omitempty"`
-	Surface                           *SurfaceType                           `xml:"http://www.opengis.net/gml Surface,omitempty"`
-	TemporalCRS                       *TemporalCRSType                       `xml:"http://www.opengis.net/gml TemporalCRS,omitempty"`
-	TemporalCS                        *TemporalCSType                        `xml:"http://www.opengis.net/gml TemporalCS,omitempty"`
-	TemporalDatum                     *TemporalDatumType                     `xml:"http://www.opengis.net/gml TemporalDatum,omitempty"`
-	TimeCalendar                      *TimeCalendarType                      `xml:"http://www.opengis.net/gml TimeCalendar,omitempty"`
-	TimeCalendarEra                   *TimeCalendarEraType                   `xml:"http://www.opengis.net/gml TimeCalendarEra,omitempty"`
-	TimeClock                         *TimeClockType                         `xml:"http://www.opengis.net/gml TimeClock,omitempty"`
-	TimeCoordinateSystem              *TimeCoordinateSystemType              `xml:"http://www.opengis.net/gml TimeCoordinateSystem,omitempty"`
-	TimeEdge                          *TimeEdgeType                          `xml:"http://www.opengis.net/gml TimeEdge,omitempty"`
-	TimeInstant                       *TimeInstantType                       `xml:"http://www.opengis.net/gml TimeInstant,omitempty"`
-	TimeNode                          *TimeNodeType                          `xml:"http://www.opengis.net/gml TimeNode,omitempty"`
-	TimeOrdinalReferenceSystem        *TimeOrdinalReferenceSystemType        `xml:"http://www.opengis.net/gml TimeOrdinalReferenceSystem,omitempty"`
-	TimePeriod                        *TimePeriodType                        `xml:"http://www.opengis.net/gml TimePeriod,omitempty"`
-	TimeTopologyComplex               *TimeTopologyComplexType               `xml:"http://www.opengis.net/gml TimeTopologyComplex,omitempty"`
-	Tin                               *TinType                               `xml:"http://www.opengis.net/gml Tin,omitempty"`
-	TopoComplex                       *TopoComplexType                       `xml:"http://www.opengis.net/gml TopoComplex,omitempty"`
-	TopoSolid                         *TopoSolidType                         `xml:"http://www.opengis.net/gml TopoSolid,omitempty"`
-	TopologyStyle                     *TopologyStyleType                     `xml:"http://www.opengis.net/gml TopologyStyle,omitempty"`
-	Transformation                    *TransformationType                    `xml:"http://www.opengis.net/gml Transformation,omitempty"`
-	TriangulatedSurface               *TriangulatedSurfaceType               `xml:"http://www.opengis.net/gml TriangulatedSurface,omitempty"`
-	UnitDefinition                    *UnitDefinitionType                    `xml:"http://www.opengis.net/gml UnitDefinition,omitempty"`
-	UserDefinedCS                     *UserDefinedCSType                     `xml:"http://www.opengis.net/gml UserDefinedCS,omitempty"`
-	VerticalCRS                       *VerticalCRSType                       `xml:"http://www.opengis.net/gml VerticalCRS,omitempty"`
-	VerticalCS                        *VerticalCSType                        `xml:"http://www.opengis.net/gml VerticalCS,omitempty"`
-	VerticalDatum                     *VerticalDatumType                     `xml:"http://www.opengis.net/gml VerticalDatum,omitempty"`
-	AbstractCRS                       *AbstractReferenceSystemType           `xml:"http://www.opengis.net/gml _CRS,omitempty"`
-	AbstractContinuousCoverage        *AbstractContinuousCoverageType        `xml:"http://www.opengis.net/gml _ContinuousCoverage,omitempty"`
-	AbstractCoordinateOperation       *AbstractCoordinateOperationType       `xml:"http://www.opengis.net/gml _CoordinateOperation,omitempty"`
-	AbstractCoordinateReferenceSystem *AbstractReferenceSystemType           `xml:"http://www.opengis.net/gml _CoordinateReferenceSystem,omitempty"`
-	AbstractCoordinateSystem          *AbstractCoordinateSystemType          `xml:"http://www.opengis.net/gml _CoordinateSystem,omitempty"`
-	AbstractCoverage                  *AbstractCoverageType                  `xml:"http://www.opengis.net/gml _Coverage,omitempty"`
-	AbstractCurve                     *AbstractCurveType                     `xml:"http://www.opengis.net/gml _Curve,omitempty"`
-	AbstractDatum                     *AbstractDatumType                     `xml:"http://www.opengis.net/gml _Datum,omitempty"`
-	AbstractDiscreteCoverage          *AbstractDiscreteCoverageType          `xml:"http://www.opengis.net/gml _DiscreteCoverage,omitempty"`
-	AbstractFeature                   *AbstractFeatureType                   `xml:"http://www.opengis.net/gml _Feature,omitempty"`
-	AbstractFeatureCollection         *AbstractFeatureCollectionType         `xml:"http://www.opengis.net/gml _FeatureCollection,omitempty"`
-	AbstractGML                       *AbstractGMLType                       `xml:"http://www.opengis.net/gml _GML,omitempty"`
-	AbstractGeneralConversion         *AbstractGeneralConversionType         `xml:"http://www.opengis.net/gml _GeneralConversion,omitempty"`
-	AbstractGeneralDerivedCRS         *AbstractGeneralDerivedCRSType         `xml:"http://www.opengis.net/gml _GeneralDerivedCRS,omitempty"`
-	AbstractGeneralOperationParameter *AbstractGeneralOperationParameterType `xml:"http://www.opengis.net/gml _GeneralOperationParameter,omitempty"`
-	AbstractGeneralTransformation     *AbstractGeneralTransformationType     `xml:"http://www.opengis.net/gml _GeneralTransformation,omitempty"`
-	AbstractGeometricAggregate        *AbstractGeometricAggregateType        `xml:"http://www.opengis.net/gml _GeometricAggregate,omitempty"`
-	AbstractGeometricPrimitive        *AbstractGeometricPrimitiveType        `xml:"http://www.opengis.net/gml _GeometricPrimitive,omitempty"`
-	AbstractGeometry                  *AbstractGeometryType                  `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
-	AbstractImplicitGeometry          *AbstractGeometryType                  `xml:"http://www.opengis.net/gml _ImplicitGeometry,omitempty"`
-	AbstractMetaData                  *AbstractMetaDataType                  `xml:"http://www.opengis.net/gml _MetaData,omitempty"`
-	AbstractOperation                 *AbstractCoordinateOperationType       `xml:"http://www.opengis.net/gml _Operation,omitempty"`
-	AbstractReferenceSystem           *AbstractReferenceSystemType           `xml:"http://www.opengis.net/gml _ReferenceSystem,omitempty"`
-	AbstractRing                      *AbstractRingType                      `xml:"http://www.opengis.net/gml _Ring,omitempty"`
-	AbstractSingleOperation           *AbstractCoordinateOperationType       `xml:"http://www.opengis.net/gml _SingleOperation,omitempty"`
-	AbstractSolid                     *AbstractSolidType                     `xml:"http://www.opengis.net/gml _Solid,omitempty"`
-	AbstractStyle                     *AbstractStyleType                     `xml:"http://www.opengis.net/gml _Style,omitempty"`
-	AbstractSurface                   *AbstractSurfaceType                   `xml:"http://www.opengis.net/gml _Surface,omitempty"`
-	AbstractTimeComplex               *AbstractTimeComplexType               `xml:"http://www.opengis.net/gml _TimeComplex,omitempty"`
-	AbstractTimeGeometricPrimitive    *AbstractTimeGeometricPrimitiveType    `xml:"http://www.opengis.net/gml _TimeGeometricPrimitive,omitempty"`
-	AbstractTimeObject                *AbstractTimeObjectType                `xml:"http://www.opengis.net/gml _TimeObject,omitempty"`
-	AbstractTimePrimitive             *AbstractTimePrimitiveType             `xml:"http://www.opengis.net/gml _TimePrimitive,omitempty"`
-	AbstractTimeReferenceSystem       *AbstractTimeReferenceSystemType       `xml:"http://www.opengis.net/gml _TimeReferenceSystem,omitempty"`
-	AbstractTimeSlice                 *AbstractTimeSliceType                 `xml:"http://www.opengis.net/gml _TimeSlice,omitempty"`
-	AbstractTimeTopologyPrimitive     *AbstractTimeTopologyPrimitiveType     `xml:"http://www.opengis.net/gml _TimeTopologyPrimitive,omitempty"`
-	AbstractTopoPrimitive             *AbstractTopoPrimitiveType             `xml:"http://www.opengis.net/gml _TopoPrimitive,omitempty"`
-	AbstractTopology                  *AbstractTopologyType                  `xml:"http://www.opengis.net/gml _Topology,omitempty"`
-	Null                              *string                                `xml:"http://www.opengis.net/gml Null,omitempty"`
-	// Aggregate value built using the Composite pattern.
-	CompositeValue *CompositeValueType `xml:"http://www.opengis.net/gml CompositeValue,omitempty"`
-	ValueArray     *ValueArrayType     `xml:"http://www.opengis.net/gml ValueArray,omitempty"`
-	// A value from two-valued logic, using the XML Schema boolean type.  An instance may take the values {true, false, 1, 0}.
-	Boolean *bool `xml:"http://www.opengis.net/gml Boolean,omitempty"`
-	// A numeric value with a scale.  The content of the element is an amount using the XML Schema type double which permits decimal or scientific notation.  An XML attribute uom (unit of measure) is required, whose value is a URI which identifies the definition of the scale or units by which the numeric value must be multiplied.
-	Quantity *MeasureType `xml:"http://www.opengis.net/gml Quantity,omitempty"`
-	// An integer representing a frequency of occurrence.
-	Count *int `xml:"http://www.opengis.net/gml Count,omitempty"`
-	// XML List based on XML Schema boolean type.  An element of this type contains a space-separated list of boolean values {0,1,true,false}
-	BooleanList *string `xml:"http://www.opengis.net/gml BooleanList,omitempty"`
-	// A space-separated list of terms or nulls.  A single XML attribute codeSpace may be provided, which authorises all the terms in the list.
-	CategoryList *CodeOrNullListType `xml:"http://www.opengis.net/gml CategoryList,omitempty"`
-	// A space separated list of amounts or nulls.  The amounts use the XML Schema type double.  A single XML attribute uom (unit of measure) is required, whose value is a URI which identifies the definition of the scale or units by which all the amounts in the list must be multiplied.
-	QuantityList *MeasureOrNullListType `xml:"http://www.opengis.net/gml QuantityList,omitempty"`
-	// A space-separated list of integers or nulls.
-	CountList *string `xml:"http://www.opengis.net/gml CountList,omitempty"`
-	// Utility element to store a 2-point range of ordinal values. If one member is a null, then this is a single ended interval.
-	CategoryExtent *CategoryExtentType `xml:"http://www.opengis.net/gml CategoryExtent,omitempty"`
-	// Utility element to store a 2-point range of numeric values. If one member is a null, then this is a single ended interval.
-	QuantityExtent *QuantityExtentType `xml:"http://www.opengis.net/gml QuantityExtent,omitempty"`
-	// Utility element to store a 2-point range of frequency values. If one member is a null, then this is a single ended interval.
-	CountExtent  *string `xml:"http://www.opengis.net/gml CountExtent,omitempty"`
-	RemoteSchema string  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	Category     *CodeType `xml:"http://www.opengis.net/gml Category,omitempty"`
+	RemoteSchema string    `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    string    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         string    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         string    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      string    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        string    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         string    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      string    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CircleByCenterPointType struct {
@@ -2465,18 +1983,6 @@ type CompoundCRSType struct {
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
 	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -2507,18 +2013,6 @@ type ConcatenatedOperationType struct {
 	// The name by which this coordinate operation is identified.
 	CoordinateOperationName *CodeType `xml:"http://www.opengis.net/gml coordinateOperationName,omitempty"`
 	Id                      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name          []CodeType `xml:"http://www.opengis.net/gml name"`
-	CsName        []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName     []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName     []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName  []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName    []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName       []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this coordinate operation. The first coordinateOperationID, if any, is normally the primary identification code, and any others are aliases.
 	CoordinateOperationID []IdentifierType `xml:"http://www.opengis.net/gml coordinateOperationID"`
 	// Comments on or information about this coordinate operation, including source information.
@@ -2634,24 +2128,6 @@ type ConversionType struct {
 	CovarianceMatrix                   []CovarianceMatrixType                   `xml:"http://www.opengis.net/gml covarianceMatrix"`
 	RelativeInternalPositionalAccuracy []RelativeInternalPositionalAccuracyType `xml:"http://www.opengis.net/gml relativeInternalPositionalAccuracy"`
 	Id                                 string                                   `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name          []CodeType `xml:"http://www.opengis.net/gml name"`
-	CsName        []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName     []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName     []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName  []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName    []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName       []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	// Version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters). Mandatory when describing a transformation, and should not be supplied for a conversion.
-	OperationVersion *string `xml:"http://www.opengis.net/gml operationVersion,omitempty"`
-	// Association to the source CRS (coordinate reference system) of this coordinate operation.
-	SourceCRS *CRSRefType `xml:"http://www.opengis.net/gml sourceCRS,omitempty"`
-	// Association to the target CRS (coordinate reference system) of this coordinate operation. For constraints on multiplicity of "sourceCRS" and "targetCRS", see UML model of Coordinate Operation package in OGC Abstract Specification topic 2.
-	TargetCRS *CRSRefType `xml:"http://www.opengis.net/gml targetCRS,omitempty"`
 	// Association to the operation method used by this coordinate operation.
 	UsesMethod *OperationMethodRefType `xml:"http://www.opengis.net/gml usesMethod,omitempty"`
 	// Unordered list of composition associations to the set of parameter values used by this conversion operation.
@@ -2723,8 +2199,6 @@ type CoordinateSystemAxisBaseType struct {
 	ParameterName           *CodeType `xml:"http://www.opengis.net/gml parameterName,omitempty"`
 	SrsName                 *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
 	Id                      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
 }
 
 type CoordinateSystemAxisRefType struct {
@@ -2754,8 +2228,6 @@ type CoordinateSystemAxisType struct {
 	ParameterName           *CodeType `xml:"http://www.opengis.net/gml parameterName,omitempty"`
 	SrsName                 *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
 	Id                      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
 	// Set of alternative identifications of this coordinate system axis. The first axisID, if any, is normally the primary identification code, and any others are aliases.
 	AxisID []IdentifierType `xml:"http://www.opengis.net/gml axisID"`
 	// Comments on or information about this coordinate system axis, including data source information.
@@ -2798,181 +2270,15 @@ type CoordinatesType struct {
 
 type CountPropertyType struct {
 	// An integer representing a frequency of occurrence.
-	Count *int `xml:"http://www.opengis.net/gml Count,omitempty"`
-	// This abstract element is the head of a substitutionGroup hierararchy which may contain either simpleContent or complexContent elements.  It is used to assert the model position of "class" elements declared in other GML schemas.
-	AbstractObject                    *string                                `xml:"http://www.opengis.net/gml _Object,omitempty"`
-	Array                             *ArrayType                             `xml:"http://www.opengis.net/gml Array,omitempty"`
-	Bag                               *BagType                               `xml:"http://www.opengis.net/gml Bag,omitempty"`
-	BaseUnit                          *BaseUnitType                          `xml:"http://www.opengis.net/gml BaseUnit,omitempty"`
-	CartesianCS                       *CartesianCSType                       `xml:"http://www.opengis.net/gml CartesianCS,omitempty"`
-	CompositeCurve                    *CompositeCurveType                    `xml:"http://www.opengis.net/gml CompositeCurve,omitempty"`
-	CompositeSolid                    *CompositeSolidType                    `xml:"http://www.opengis.net/gml CompositeSolid,omitempty"`
-	CompositeSurface                  *CompositeSurfaceType                  `xml:"http://www.opengis.net/gml CompositeSurface,omitempty"`
-	CompoundCRS                       *CompoundCRSType                       `xml:"http://www.opengis.net/gml CompoundCRS,omitempty"`
-	ConcatenatedOperation             *ConcatenatedOperationType             `xml:"http://www.opengis.net/gml ConcatenatedOperation,omitempty"`
-	ConventionalUnit                  *ConventionalUnitType                  `xml:"http://www.opengis.net/gml ConventionalUnit,omitempty"`
-	Conversion                        *ConversionType                        `xml:"http://www.opengis.net/gml Conversion,omitempty"`
-	CoordinateSystemAxis              *CoordinateSystemAxisType              `xml:"http://www.opengis.net/gml CoordinateSystemAxis,omitempty"`
-	Curve                             *CurveType                             `xml:"http://www.opengis.net/gml Curve,omitempty"`
-	CylindricalCS                     *CylindricalCSType                     `xml:"http://www.opengis.net/gml CylindricalCS,omitempty"`
-	Definition                        *DefinitionType                        `xml:"http://www.opengis.net/gml Definition,omitempty"`
-	DefinitionCollection              *DictionaryType                        `xml:"http://www.opengis.net/gml DefinitionCollection,omitempty"`
-	DefinitionProxy                   *DefinitionProxyType                   `xml:"http://www.opengis.net/gml DefinitionProxy,omitempty"`
-	DerivedCRS                        *DerivedCRSType                        `xml:"http://www.opengis.net/gml DerivedCRS,omitempty"`
-	DerivedUnit                       *DerivedUnitType                       `xml:"http://www.opengis.net/gml DerivedUnit,omitempty"`
-	Dictionary                        *DictionaryType                        `xml:"http://www.opengis.net/gml Dictionary,omitempty"`
-	DirectedObservation               *DirectedObservationType               `xml:"http://www.opengis.net/gml DirectedObservation,omitempty"`
-	DirectedObservationAtDistance     *DirectedObservationAtDistanceType     `xml:"http://www.opengis.net/gml DirectedObservationAtDistance,omitempty"`
-	Edge                              *EdgeType                              `xml:"http://www.opengis.net/gml Edge,omitempty"`
-	Ellipsoid                         *EllipsoidType                         `xml:"http://www.opengis.net/gml Ellipsoid,omitempty"`
-	EllipsoidalCS                     *EllipsoidalCSType                     `xml:"http://www.opengis.net/gml EllipsoidalCS,omitempty"`
-	EngineeringCRS                    *EngineeringCRSType                    `xml:"http://www.opengis.net/gml EngineeringCRS,omitempty"`
-	EngineeringDatum                  *EngineeringDatumType                  `xml:"http://www.opengis.net/gml EngineeringDatum,omitempty"`
-	Face                              *FaceType                              `xml:"http://www.opengis.net/gml Face,omitempty"`
-	FeatureCollection                 *FeatureCollectionType                 `xml:"http://www.opengis.net/gml FeatureCollection,omitempty"`
-	FeatureStyle                      *FeatureStyleType                      `xml:"http://www.opengis.net/gml FeatureStyle,omitempty"`
-	GenericMetaData                   *GenericMetaDataType                   `xml:"http://www.opengis.net/gml GenericMetaData,omitempty"`
-	GeocentricCRS                     *GeocentricCRSType                     `xml:"http://www.opengis.net/gml GeocentricCRS,omitempty"`
-	GeodeticDatum                     *GeodeticDatumType                     `xml:"http://www.opengis.net/gml GeodeticDatum,omitempty"`
-	GeographicCRS                     *GeographicCRSType                     `xml:"http://www.opengis.net/gml GeographicCRS,omitempty"`
-	GeometricComplex                  *GeometricComplexType                  `xml:"http://www.opengis.net/gml GeometricComplex,omitempty"`
-	GeometryStyle                     *GeometryStyleType                     `xml:"http://www.opengis.net/gml GeometryStyle,omitempty"`
-	GraphStyle                        *GraphStyleType                        `xml:"http://www.opengis.net/gml GraphStyle,omitempty"`
-	Grid                              *GridType                              `xml:"http://www.opengis.net/gml Grid,omitempty"`
-	GridCoverage                      *GridCoverageType                      `xml:"http://www.opengis.net/gml GridCoverage,omitempty"`
-	ImageCRS                          *ImageCRSType                          `xml:"http://www.opengis.net/gml ImageCRS,omitempty"`
-	ImageDatum                        *ImageDatumType                        `xml:"http://www.opengis.net/gml ImageDatum,omitempty"`
-	LabelStyle                        *LabelStyleType                        `xml:"http://www.opengis.net/gml LabelStyle,omitempty"`
-	LineString                        *LineStringType                        `xml:"http://www.opengis.net/gml LineString,omitempty"`
-	LinearCS                          *LinearCSType                          `xml:"http://www.opengis.net/gml LinearCS,omitempty"`
-	LinearRing                        *LinearRingType                        `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
-	MovingObjectStatus                *MovingObjectStatusType                `xml:"http://www.opengis.net/gml MovingObjectStatus,omitempty"`
-	MultiCurve                        *MultiCurveType                        `xml:"http://www.opengis.net/gml MultiCurve,omitempty"`
-	MultiCurveCoverage                *MultiCurveCoverageType                `xml:"http://www.opengis.net/gml MultiCurveCoverage,omitempty"`
-	MultiGeometry                     *MultiGeometryType                     `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
-	MultiLineString                   *MultiLineStringType                   `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
-	MultiPoint                        *MultiPointType                        `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
-	MultiPointCoverage                *MultiPointCoverageType                `xml:"http://www.opengis.net/gml MultiPointCoverage,omitempty"`
-	MultiPolygon                      *MultiPolygonType                      `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
-	MultiSolid                        *MultiSolidType                        `xml:"http://www.opengis.net/gml MultiSolid,omitempty"`
-	MultiSolidCoverage                *MultiSolidCoverageType                `xml:"http://www.opengis.net/gml MultiSolidCoverage,omitempty"`
-	MultiSurface                      *MultiSurfaceType                      `xml:"http://www.opengis.net/gml MultiSurface,omitempty"`
-	MultiSurfaceCoverage              *MultiSurfaceCoverageType              `xml:"http://www.opengis.net/gml MultiSurfaceCoverage,omitempty"`
-	Node                              *NodeType                              `xml:"http://www.opengis.net/gml Node,omitempty"`
-	ObliqueCartesianCS                *ObliqueCartesianCSType                `xml:"http://www.opengis.net/gml ObliqueCartesianCS,omitempty"`
-	Observation                       *ObservationType                       `xml:"http://www.opengis.net/gml Observation,omitempty"`
-	OperationMethod                   *OperationMethodType                   `xml:"http://www.opengis.net/gml OperationMethod,omitempty"`
-	OperationParameter                *OperationParameterType                `xml:"http://www.opengis.net/gml OperationParameter,omitempty"`
-	OperationParameterGroup           *OperationParameterGroupType           `xml:"http://www.opengis.net/gml OperationParameterGroup,omitempty"`
-	OrientableCurve                   *OrientableCurveType                   `xml:"http://www.opengis.net/gml OrientableCurve,omitempty"`
-	OrientableSurface                 *OrientableSurfaceType                 `xml:"http://www.opengis.net/gml OrientableSurface,omitempty"`
-	PassThroughOperation              *PassThroughOperationType              `xml:"http://www.opengis.net/gml PassThroughOperation,omitempty"`
-	Point                             *PointType                             `xml:"http://www.opengis.net/gml Point,omitempty"`
-	PolarCS                           *PolarCSType                           `xml:"http://www.opengis.net/gml PolarCS,omitempty"`
-	Polygon                           *PolygonType                           `xml:"http://www.opengis.net/gml Polygon,omitempty"`
-	PolyhedralSurface                 *PolyhedralSurfaceType                 `xml:"http://www.opengis.net/gml PolyhedralSurface,omitempty"`
-	PrimeMeridian                     *PrimeMeridianType                     `xml:"http://www.opengis.net/gml PrimeMeridian,omitempty"`
-	ProjectedCRS                      *ProjectedCRSType                      `xml:"http://www.opengis.net/gml ProjectedCRS,omitempty"`
-	RectifiedGrid                     *RectifiedGridType                     `xml:"http://www.opengis.net/gml RectifiedGrid,omitempty"`
-	RectifiedGridCoverage             *RectifiedGridCoverageType             `xml:"http://www.opengis.net/gml RectifiedGridCoverage,omitempty"`
-	Ring                              *RingType                              `xml:"http://www.opengis.net/gml Ring,omitempty"`
-	Solid                             *SolidType                             `xml:"http://www.opengis.net/gml Solid,omitempty"`
-	SphericalCS                       *SphericalCSType                       `xml:"http://www.opengis.net/gml SphericalCS,omitempty"`
-	Style                             *StyleType                             `xml:"http://www.opengis.net/gml Style,omitempty"`
-	Surface                           *SurfaceType                           `xml:"http://www.opengis.net/gml Surface,omitempty"`
-	TemporalCRS                       *TemporalCRSType                       `xml:"http://www.opengis.net/gml TemporalCRS,omitempty"`
-	TemporalCS                        *TemporalCSType                        `xml:"http://www.opengis.net/gml TemporalCS,omitempty"`
-	TemporalDatum                     *TemporalDatumType                     `xml:"http://www.opengis.net/gml TemporalDatum,omitempty"`
-	TimeCalendar                      *TimeCalendarType                      `xml:"http://www.opengis.net/gml TimeCalendar,omitempty"`
-	TimeCalendarEra                   *TimeCalendarEraType                   `xml:"http://www.opengis.net/gml TimeCalendarEra,omitempty"`
-	TimeClock                         *TimeClockType                         `xml:"http://www.opengis.net/gml TimeClock,omitempty"`
-	TimeCoordinateSystem              *TimeCoordinateSystemType              `xml:"http://www.opengis.net/gml TimeCoordinateSystem,omitempty"`
-	TimeEdge                          *TimeEdgeType                          `xml:"http://www.opengis.net/gml TimeEdge,omitempty"`
-	TimeInstant                       *TimeInstantType                       `xml:"http://www.opengis.net/gml TimeInstant,omitempty"`
-	TimeNode                          *TimeNodeType                          `xml:"http://www.opengis.net/gml TimeNode,omitempty"`
-	TimeOrdinalReferenceSystem        *TimeOrdinalReferenceSystemType        `xml:"http://www.opengis.net/gml TimeOrdinalReferenceSystem,omitempty"`
-	TimePeriod                        *TimePeriodType                        `xml:"http://www.opengis.net/gml TimePeriod,omitempty"`
-	TimeTopologyComplex               *TimeTopologyComplexType               `xml:"http://www.opengis.net/gml TimeTopologyComplex,omitempty"`
-	Tin                               *TinType                               `xml:"http://www.opengis.net/gml Tin,omitempty"`
-	TopoComplex                       *TopoComplexType                       `xml:"http://www.opengis.net/gml TopoComplex,omitempty"`
-	TopoSolid                         *TopoSolidType                         `xml:"http://www.opengis.net/gml TopoSolid,omitempty"`
-	TopologyStyle                     *TopologyStyleType                     `xml:"http://www.opengis.net/gml TopologyStyle,omitempty"`
-	Transformation                    *TransformationType                    `xml:"http://www.opengis.net/gml Transformation,omitempty"`
-	TriangulatedSurface               *TriangulatedSurfaceType               `xml:"http://www.opengis.net/gml TriangulatedSurface,omitempty"`
-	UnitDefinition                    *UnitDefinitionType                    `xml:"http://www.opengis.net/gml UnitDefinition,omitempty"`
-	UserDefinedCS                     *UserDefinedCSType                     `xml:"http://www.opengis.net/gml UserDefinedCS,omitempty"`
-	VerticalCRS                       *VerticalCRSType                       `xml:"http://www.opengis.net/gml VerticalCRS,omitempty"`
-	VerticalCS                        *VerticalCSType                        `xml:"http://www.opengis.net/gml VerticalCS,omitempty"`
-	VerticalDatum                     *VerticalDatumType                     `xml:"http://www.opengis.net/gml VerticalDatum,omitempty"`
-	AbstractCRS                       *AbstractReferenceSystemType           `xml:"http://www.opengis.net/gml _CRS,omitempty"`
-	AbstractContinuousCoverage        *AbstractContinuousCoverageType        `xml:"http://www.opengis.net/gml _ContinuousCoverage,omitempty"`
-	AbstractCoordinateOperation       *AbstractCoordinateOperationType       `xml:"http://www.opengis.net/gml _CoordinateOperation,omitempty"`
-	AbstractCoordinateReferenceSystem *AbstractReferenceSystemType           `xml:"http://www.opengis.net/gml _CoordinateReferenceSystem,omitempty"`
-	AbstractCoordinateSystem          *AbstractCoordinateSystemType          `xml:"http://www.opengis.net/gml _CoordinateSystem,omitempty"`
-	AbstractCoverage                  *AbstractCoverageType                  `xml:"http://www.opengis.net/gml _Coverage,omitempty"`
-	AbstractCurve                     *AbstractCurveType                     `xml:"http://www.opengis.net/gml _Curve,omitempty"`
-	AbstractDatum                     *AbstractDatumType                     `xml:"http://www.opengis.net/gml _Datum,omitempty"`
-	AbstractDiscreteCoverage          *AbstractDiscreteCoverageType          `xml:"http://www.opengis.net/gml _DiscreteCoverage,omitempty"`
-	AbstractFeature                   *AbstractFeatureType                   `xml:"http://www.opengis.net/gml _Feature,omitempty"`
-	AbstractFeatureCollection         *AbstractFeatureCollectionType         `xml:"http://www.opengis.net/gml _FeatureCollection,omitempty"`
-	AbstractGML                       *AbstractGMLType                       `xml:"http://www.opengis.net/gml _GML,omitempty"`
-	AbstractGeneralConversion         *AbstractGeneralConversionType         `xml:"http://www.opengis.net/gml _GeneralConversion,omitempty"`
-	AbstractGeneralDerivedCRS         *AbstractGeneralDerivedCRSType         `xml:"http://www.opengis.net/gml _GeneralDerivedCRS,omitempty"`
-	AbstractGeneralOperationParameter *AbstractGeneralOperationParameterType `xml:"http://www.opengis.net/gml _GeneralOperationParameter,omitempty"`
-	AbstractGeneralTransformation     *AbstractGeneralTransformationType     `xml:"http://www.opengis.net/gml _GeneralTransformation,omitempty"`
-	AbstractGeometricAggregate        *AbstractGeometricAggregateType        `xml:"http://www.opengis.net/gml _GeometricAggregate,omitempty"`
-	AbstractGeometricPrimitive        *AbstractGeometricPrimitiveType        `xml:"http://www.opengis.net/gml _GeometricPrimitive,omitempty"`
-	AbstractGeometry                  *AbstractGeometryType                  `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
-	AbstractImplicitGeometry          *AbstractGeometryType                  `xml:"http://www.opengis.net/gml _ImplicitGeometry,omitempty"`
-	AbstractMetaData                  *AbstractMetaDataType                  `xml:"http://www.opengis.net/gml _MetaData,omitempty"`
-	AbstractOperation                 *AbstractCoordinateOperationType       `xml:"http://www.opengis.net/gml _Operation,omitempty"`
-	AbstractReferenceSystem           *AbstractReferenceSystemType           `xml:"http://www.opengis.net/gml _ReferenceSystem,omitempty"`
-	AbstractRing                      *AbstractRingType                      `xml:"http://www.opengis.net/gml _Ring,omitempty"`
-	AbstractSingleOperation           *AbstractCoordinateOperationType       `xml:"http://www.opengis.net/gml _SingleOperation,omitempty"`
-	AbstractSolid                     *AbstractSolidType                     `xml:"http://www.opengis.net/gml _Solid,omitempty"`
-	AbstractStyle                     *AbstractStyleType                     `xml:"http://www.opengis.net/gml _Style,omitempty"`
-	AbstractSurface                   *AbstractSurfaceType                   `xml:"http://www.opengis.net/gml _Surface,omitempty"`
-	AbstractTimeComplex               *AbstractTimeComplexType               `xml:"http://www.opengis.net/gml _TimeComplex,omitempty"`
-	AbstractTimeGeometricPrimitive    *AbstractTimeGeometricPrimitiveType    `xml:"http://www.opengis.net/gml _TimeGeometricPrimitive,omitempty"`
-	AbstractTimeObject                *AbstractTimeObjectType                `xml:"http://www.opengis.net/gml _TimeObject,omitempty"`
-	AbstractTimePrimitive             *AbstractTimePrimitiveType             `xml:"http://www.opengis.net/gml _TimePrimitive,omitempty"`
-	AbstractTimeReferenceSystem       *AbstractTimeReferenceSystemType       `xml:"http://www.opengis.net/gml _TimeReferenceSystem,omitempty"`
-	AbstractTimeSlice                 *AbstractTimeSliceType                 `xml:"http://www.opengis.net/gml _TimeSlice,omitempty"`
-	AbstractTimeTopologyPrimitive     *AbstractTimeTopologyPrimitiveType     `xml:"http://www.opengis.net/gml _TimeTopologyPrimitive,omitempty"`
-	AbstractTopoPrimitive             *AbstractTopoPrimitiveType             `xml:"http://www.opengis.net/gml _TopoPrimitive,omitempty"`
-	AbstractTopology                  *AbstractTopologyType                  `xml:"http://www.opengis.net/gml _Topology,omitempty"`
-	Null                              *string                                `xml:"http://www.opengis.net/gml Null,omitempty"`
-	// Aggregate value built using the Composite pattern.
-	CompositeValue *CompositeValueType `xml:"http://www.opengis.net/gml CompositeValue,omitempty"`
-	ValueArray     *ValueArrayType     `xml:"http://www.opengis.net/gml ValueArray,omitempty"`
-	// A value from two-valued logic, using the XML Schema boolean type.  An instance may take the values {true, false, 1, 0}.
-	Boolean *bool `xml:"http://www.opengis.net/gml Boolean,omitempty"`
-	// A term representing a classification.  It has an optional XML attribute codeSpace, whose value is a URI which identifies a dictionary, codelist or authority for the term.
-	Category *CodeType `xml:"http://www.opengis.net/gml Category,omitempty"`
-	// A numeric value with a scale.  The content of the element is an amount using the XML Schema type double which permits decimal or scientific notation.  An XML attribute uom (unit of measure) is required, whose value is a URI which identifies the definition of the scale or units by which the numeric value must be multiplied.
-	Quantity *MeasureType `xml:"http://www.opengis.net/gml Quantity,omitempty"`
-	// XML List based on XML Schema boolean type.  An element of this type contains a space-separated list of boolean values {0,1,true,false}
-	BooleanList *string `xml:"http://www.opengis.net/gml BooleanList,omitempty"`
-	// A space-separated list of terms or nulls.  A single XML attribute codeSpace may be provided, which authorises all the terms in the list.
-	CategoryList *CodeOrNullListType `xml:"http://www.opengis.net/gml CategoryList,omitempty"`
-	// A space separated list of amounts or nulls.  The amounts use the XML Schema type double.  A single XML attribute uom (unit of measure) is required, whose value is a URI which identifies the definition of the scale or units by which all the amounts in the list must be multiplied.
-	QuantityList *MeasureOrNullListType `xml:"http://www.opengis.net/gml QuantityList,omitempty"`
-	// A space-separated list of integers or nulls.
-	CountList *string `xml:"http://www.opengis.net/gml CountList,omitempty"`
-	// Utility element to store a 2-point range of ordinal values. If one member is a null, then this is a single ended interval.
-	CategoryExtent *CategoryExtentType `xml:"http://www.opengis.net/gml CategoryExtent,omitempty"`
-	// Utility element to store a 2-point range of numeric values. If one member is a null, then this is a single ended interval.
-	QuantityExtent *QuantityExtentType `xml:"http://www.opengis.net/gml QuantityExtent,omitempty"`
-	// Utility element to store a 2-point range of frequency values. If one member is a null, then this is a single ended interval.
-	CountExtent  *string `xml:"http://www.opengis.net/gml CountExtent,omitempty"`
-	RemoteSchema string  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	Count        *int   `xml:"http://www.opengis.net/gml Count,omitempty"`
+	RemoteSchema string `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CovarianceElementType struct {
@@ -3149,18 +2455,6 @@ type CylindricalCSType struct {
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
 	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -3283,18 +2577,6 @@ type DerivedCRSType struct {
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
 	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -3763,18 +3045,6 @@ type EllipsoidBaseType struct {
 	// The name by which this ellipsoid is identified.
 	EllipsoidName *CodeType `xml:"http://www.opengis.net/gml ellipsoidName,omitempty"`
 	Id            string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 }
 
 type EllipsoidRefType struct {
@@ -3795,18 +3065,6 @@ type EllipsoidType struct {
 	// The name by which this ellipsoid is identified.
 	EllipsoidName *CodeType `xml:"http://www.opengis.net/gml ellipsoidName,omitempty"`
 	Id            string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this ellipsoid. The first ellipsoidID, if any, is normally the primary identification code, and any others are aliases.
 	EllipsoidID []IdentifierType `xml:"http://www.opengis.net/gml ellipsoidID"`
 	// Comments on or information about this ellipsoid, including source information.
@@ -3834,18 +3092,6 @@ type EllipsoidalCSType struct {
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
 	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -3872,18 +3118,6 @@ type EngineeringCRSType struct {
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
 	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -3916,18 +3150,6 @@ type EngineeringDatumType struct {
 	// The name by which this datum is identified.
 	DatumName *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
 	Id        string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this datum. The first datumID, if any, is normally the primary identification code, and any others are aliases.
 	DatumID []IdentifierType `xml:"http://www.opengis.net/gml datumID"`
 	// Comments on this reference system, including source information.
@@ -4217,18 +3439,6 @@ type GeocentricCRSType struct {
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
 	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -4311,18 +3521,6 @@ type GeodeticDatumType struct {
 	// The name by which this datum is identified.
 	DatumName *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
 	Id        string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this datum. The first datumID, if any, is normally the primary identification code, and any others are aliases.
 	DatumID []IdentifierType `xml:"http://www.opengis.net/gml datumID"`
 	// Comments on this reference system, including source information.
@@ -4363,18 +3561,6 @@ type GeographicCRSType struct {
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
 	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -4679,75 +3865,19 @@ type GridCoverageType struct {
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// deprecated in GML version 3.1
-	Location            *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
-	PriorityLocation    *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	DomainSet           *DomainSetType                `xml:"http://www.opengis.net/gml domainSet,omitempty"`
-	MultiCurveDomain    *MultiCurveDomainType         `xml:"http://www.opengis.net/gml multiCurveDomain,omitempty"`
-	MultiPointDomain    *MultiPointDomainType         `xml:"http://www.opengis.net/gml multiPointDomain,omitempty"`
-	MultiSolidDomain    *MultiSolidDomainType         `xml:"http://www.opengis.net/gml multiSolidDomain,omitempty"`
-	MultiSurfaceDomain  *MultiSurfaceDomainType       `xml:"http://www.opengis.net/gml multiSurfaceDomain,omitempty"`
-	RectifiedGridDomain *RectifiedGridDomainType      `xml:"http://www.opengis.net/gml rectifiedGridDomain,omitempty"`
-	Dimension           *int                          `xml:"dimension,attr,omitempty"`
+	Dimension               *int       `xml:"dimension,attr,omitempty"`
 }
 
 type GridDomainType struct {
-	Grid *GridType `xml:"http://www.opengis.net/gml Grid,omitempty"`
-	// The "_Geometry" element is the abstract head of the substituition group for all geometry elements of GML 3. This
-	// includes pre-defined and user-defined geometry elements. Any geometry element must be a direct or indirect extension/restriction
-	// of AbstractGeometryType and must be directly or indirectly in the substitution group of "_Geometry".
-	AbstractGeometry           *AbstractGeometryType           `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
-	CompositeCurve             *CompositeCurveType             `xml:"http://www.opengis.net/gml CompositeCurve,omitempty"`
-	CompositeSolid             *CompositeSolidType             `xml:"http://www.opengis.net/gml CompositeSolid,omitempty"`
-	CompositeSurface           *CompositeSurfaceType           `xml:"http://www.opengis.net/gml CompositeSurface,omitempty"`
-	Curve                      *CurveType                      `xml:"http://www.opengis.net/gml Curve,omitempty"`
-	GeometricComplex           *GeometricComplexType           `xml:"http://www.opengis.net/gml GeometricComplex,omitempty"`
-	LineString                 *LineStringType                 `xml:"http://www.opengis.net/gml LineString,omitempty"`
-	LinearRing                 *LinearRingType                 `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
-	MultiCurve                 *MultiCurveType                 `xml:"http://www.opengis.net/gml MultiCurve,omitempty"`
-	MultiGeometry              *MultiGeometryType              `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
-	MultiLineString            *MultiLineStringType            `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
-	MultiPoint                 *MultiPointType                 `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
-	MultiPolygon               *MultiPolygonType               `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
-	MultiSolid                 *MultiSolidType                 `xml:"http://www.opengis.net/gml MultiSolid,omitempty"`
-	MultiSurface               *MultiSurfaceType               `xml:"http://www.opengis.net/gml MultiSurface,omitempty"`
-	OrientableCurve            *OrientableCurveType            `xml:"http://www.opengis.net/gml OrientableCurve,omitempty"`
-	OrientableSurface          *OrientableSurfaceType          `xml:"http://www.opengis.net/gml OrientableSurface,omitempty"`
-	Point                      *PointType                      `xml:"http://www.opengis.net/gml Point,omitempty"`
-	Polygon                    *PolygonType                    `xml:"http://www.opengis.net/gml Polygon,omitempty"`
-	PolyhedralSurface          *PolyhedralSurfaceType          `xml:"http://www.opengis.net/gml PolyhedralSurface,omitempty"`
-	RectifiedGrid              *RectifiedGridType              `xml:"http://www.opengis.net/gml RectifiedGrid,omitempty"`
-	Ring                       *RingType                       `xml:"http://www.opengis.net/gml Ring,omitempty"`
-	Solid                      *SolidType                      `xml:"http://www.opengis.net/gml Solid,omitempty"`
-	Surface                    *SurfaceType                    `xml:"http://www.opengis.net/gml Surface,omitempty"`
-	Tin                        *TinType                        `xml:"http://www.opengis.net/gml Tin,omitempty"`
-	TriangulatedSurface        *TriangulatedSurfaceType        `xml:"http://www.opengis.net/gml TriangulatedSurface,omitempty"`
-	AbstractCurve              *AbstractCurveType              `xml:"http://www.opengis.net/gml _Curve,omitempty"`
-	AbstractGeometricAggregate *AbstractGeometricAggregateType `xml:"http://www.opengis.net/gml _GeometricAggregate,omitempty"`
-	AbstractGeometricPrimitive *AbstractGeometricPrimitiveType `xml:"http://www.opengis.net/gml _GeometricPrimitive,omitempty"`
-	AbstractImplicitGeometry   *AbstractGeometryType           `xml:"http://www.opengis.net/gml _ImplicitGeometry,omitempty"`
-	AbstractRing               *AbstractRingType               `xml:"http://www.opengis.net/gml _Ring,omitempty"`
-	AbstractSolid              *AbstractSolidType              `xml:"http://www.opengis.net/gml _Solid,omitempty"`
-	AbstractSurface            *AbstractSurfaceType            `xml:"http://www.opengis.net/gml _Surface,omitempty"`
-	// This abstract element acts as the head of the substitution group for temporal primitives and complexes.
-	AbstractTimeObject             *AbstractTimeObjectType             `xml:"http://www.opengis.net/gml _TimeObject,omitempty"`
-	TimeEdge                       *TimeEdgeType                       `xml:"http://www.opengis.net/gml TimeEdge,omitempty"`
-	TimeInstant                    *TimeInstantType                    `xml:"http://www.opengis.net/gml TimeInstant,omitempty"`
-	TimeNode                       *TimeNodeType                       `xml:"http://www.opengis.net/gml TimeNode,omitempty"`
-	TimePeriod                     *TimePeriodType                     `xml:"http://www.opengis.net/gml TimePeriod,omitempty"`
-	TimeTopologyComplex            *TimeTopologyComplexType            `xml:"http://www.opengis.net/gml TimeTopologyComplex,omitempty"`
-	AbstractTimeComplex            *AbstractTimeComplexType            `xml:"http://www.opengis.net/gml _TimeComplex,omitempty"`
-	AbstractTimeGeometricPrimitive *AbstractTimeGeometricPrimitiveType `xml:"http://www.opengis.net/gml _TimeGeometricPrimitive,omitempty"`
-	AbstractTimePrimitive          *AbstractTimePrimitiveType          `xml:"http://www.opengis.net/gml _TimePrimitive,omitempty"`
-	AbstractTimeTopologyPrimitive  *AbstractTimeTopologyPrimitiveType  `xml:"http://www.opengis.net/gml _TimeTopologyPrimitive,omitempty"`
-	RemoteSchema                   string                              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                      string                              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                           string                              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                           string                              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                        string                              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                          string                              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                           string                              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                        string                              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	Grid         *GridType `xml:"http://www.opengis.net/gml Grid,omitempty"`
+	RemoteSchema string    `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    string    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         string    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         string    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      string    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        string    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         string    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      string    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GridEnvelopeType struct {
@@ -4854,18 +3984,6 @@ type ImageCRSType struct {
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
 	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -4900,18 +4018,6 @@ type ImageDatumType struct {
 	// The name by which this datum is identified.
 	DatumName *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
 	Id        string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this datum. The first datumID, if any, is normally the primary identification code, and any others are aliases.
 	DatumID []IdentifierType `xml:"http://www.opengis.net/gml datumID"`
 	// Comments on this reference system, including source information.
@@ -5132,18 +4238,6 @@ type LinearCSType struct {
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
 	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -5336,75 +4430,19 @@ type MultiCurveCoverageType struct {
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// deprecated in GML version 3.1
-	Location            *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
-	PriorityLocation    *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	DomainSet           *DomainSetType                `xml:"http://www.opengis.net/gml domainSet,omitempty"`
-	GridDomain          *GridDomainType               `xml:"http://www.opengis.net/gml gridDomain,omitempty"`
-	MultiPointDomain    *MultiPointDomainType         `xml:"http://www.opengis.net/gml multiPointDomain,omitempty"`
-	MultiSolidDomain    *MultiSolidDomainType         `xml:"http://www.opengis.net/gml multiSolidDomain,omitempty"`
-	MultiSurfaceDomain  *MultiSurfaceDomainType       `xml:"http://www.opengis.net/gml multiSurfaceDomain,omitempty"`
-	RectifiedGridDomain *RectifiedGridDomainType      `xml:"http://www.opengis.net/gml rectifiedGridDomain,omitempty"`
-	Dimension           *int                          `xml:"dimension,attr,omitempty"`
+	Dimension               *int       `xml:"dimension,attr,omitempty"`
 }
 
 type MultiCurveDomainType struct {
-	MultiCurve *MultiCurveType `xml:"http://www.opengis.net/gml MultiCurve,omitempty"`
-	// The "_Geometry" element is the abstract head of the substituition group for all geometry elements of GML 3. This
-	// includes pre-defined and user-defined geometry elements. Any geometry element must be a direct or indirect extension/restriction
-	// of AbstractGeometryType and must be directly or indirectly in the substitution group of "_Geometry".
-	AbstractGeometry           *AbstractGeometryType           `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
-	CompositeCurve             *CompositeCurveType             `xml:"http://www.opengis.net/gml CompositeCurve,omitempty"`
-	CompositeSolid             *CompositeSolidType             `xml:"http://www.opengis.net/gml CompositeSolid,omitempty"`
-	CompositeSurface           *CompositeSurfaceType           `xml:"http://www.opengis.net/gml CompositeSurface,omitempty"`
-	Curve                      *CurveType                      `xml:"http://www.opengis.net/gml Curve,omitempty"`
-	GeometricComplex           *GeometricComplexType           `xml:"http://www.opengis.net/gml GeometricComplex,omitempty"`
-	Grid                       *GridType                       `xml:"http://www.opengis.net/gml Grid,omitempty"`
-	LineString                 *LineStringType                 `xml:"http://www.opengis.net/gml LineString,omitempty"`
-	LinearRing                 *LinearRingType                 `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
-	MultiGeometry              *MultiGeometryType              `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
-	MultiLineString            *MultiLineStringType            `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
-	MultiPoint                 *MultiPointType                 `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
-	MultiPolygon               *MultiPolygonType               `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
-	MultiSolid                 *MultiSolidType                 `xml:"http://www.opengis.net/gml MultiSolid,omitempty"`
-	MultiSurface               *MultiSurfaceType               `xml:"http://www.opengis.net/gml MultiSurface,omitempty"`
-	OrientableCurve            *OrientableCurveType            `xml:"http://www.opengis.net/gml OrientableCurve,omitempty"`
-	OrientableSurface          *OrientableSurfaceType          `xml:"http://www.opengis.net/gml OrientableSurface,omitempty"`
-	Point                      *PointType                      `xml:"http://www.opengis.net/gml Point,omitempty"`
-	Polygon                    *PolygonType                    `xml:"http://www.opengis.net/gml Polygon,omitempty"`
-	PolyhedralSurface          *PolyhedralSurfaceType          `xml:"http://www.opengis.net/gml PolyhedralSurface,omitempty"`
-	RectifiedGrid              *RectifiedGridType              `xml:"http://www.opengis.net/gml RectifiedGrid,omitempty"`
-	Ring                       *RingType                       `xml:"http://www.opengis.net/gml Ring,omitempty"`
-	Solid                      *SolidType                      `xml:"http://www.opengis.net/gml Solid,omitempty"`
-	Surface                    *SurfaceType                    `xml:"http://www.opengis.net/gml Surface,omitempty"`
-	Tin                        *TinType                        `xml:"http://www.opengis.net/gml Tin,omitempty"`
-	TriangulatedSurface        *TriangulatedSurfaceType        `xml:"http://www.opengis.net/gml TriangulatedSurface,omitempty"`
-	AbstractCurve              *AbstractCurveType              `xml:"http://www.opengis.net/gml _Curve,omitempty"`
-	AbstractGeometricAggregate *AbstractGeometricAggregateType `xml:"http://www.opengis.net/gml _GeometricAggregate,omitempty"`
-	AbstractGeometricPrimitive *AbstractGeometricPrimitiveType `xml:"http://www.opengis.net/gml _GeometricPrimitive,omitempty"`
-	AbstractImplicitGeometry   *AbstractGeometryType           `xml:"http://www.opengis.net/gml _ImplicitGeometry,omitempty"`
-	AbstractRing               *AbstractRingType               `xml:"http://www.opengis.net/gml _Ring,omitempty"`
-	AbstractSolid              *AbstractSolidType              `xml:"http://www.opengis.net/gml _Solid,omitempty"`
-	AbstractSurface            *AbstractSurfaceType            `xml:"http://www.opengis.net/gml _Surface,omitempty"`
-	// This abstract element acts as the head of the substitution group for temporal primitives and complexes.
-	AbstractTimeObject             *AbstractTimeObjectType             `xml:"http://www.opengis.net/gml _TimeObject,omitempty"`
-	TimeEdge                       *TimeEdgeType                       `xml:"http://www.opengis.net/gml TimeEdge,omitempty"`
-	TimeInstant                    *TimeInstantType                    `xml:"http://www.opengis.net/gml TimeInstant,omitempty"`
-	TimeNode                       *TimeNodeType                       `xml:"http://www.opengis.net/gml TimeNode,omitempty"`
-	TimePeriod                     *TimePeriodType                     `xml:"http://www.opengis.net/gml TimePeriod,omitempty"`
-	TimeTopologyComplex            *TimeTopologyComplexType            `xml:"http://www.opengis.net/gml TimeTopologyComplex,omitempty"`
-	AbstractTimeComplex            *AbstractTimeComplexType            `xml:"http://www.opengis.net/gml _TimeComplex,omitempty"`
-	AbstractTimeGeometricPrimitive *AbstractTimeGeometricPrimitiveType `xml:"http://www.opengis.net/gml _TimeGeometricPrimitive,omitempty"`
-	AbstractTimePrimitive          *AbstractTimePrimitiveType          `xml:"http://www.opengis.net/gml _TimePrimitive,omitempty"`
-	AbstractTimeTopologyPrimitive  *AbstractTimeTopologyPrimitiveType  `xml:"http://www.opengis.net/gml _TimeTopologyPrimitive,omitempty"`
-	RemoteSchema                   string                              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                      string                              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                           string                              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                           string                              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                        string                              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                          string                              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                           string                              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                        string                              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	MultiCurve   *MultiCurveType `xml:"http://www.opengis.net/gml MultiCurve,omitempty"`
+	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MultiCurvePropertyType struct {
@@ -5604,75 +4642,19 @@ type MultiPointCoverageType struct {
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// deprecated in GML version 3.1
-	Location            *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
-	PriorityLocation    *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	DomainSet           *DomainSetType                `xml:"http://www.opengis.net/gml domainSet,omitempty"`
-	GridDomain          *GridDomainType               `xml:"http://www.opengis.net/gml gridDomain,omitempty"`
-	MultiCurveDomain    *MultiCurveDomainType         `xml:"http://www.opengis.net/gml multiCurveDomain,omitempty"`
-	MultiSolidDomain    *MultiSolidDomainType         `xml:"http://www.opengis.net/gml multiSolidDomain,omitempty"`
-	MultiSurfaceDomain  *MultiSurfaceDomainType       `xml:"http://www.opengis.net/gml multiSurfaceDomain,omitempty"`
-	RectifiedGridDomain *RectifiedGridDomainType      `xml:"http://www.opengis.net/gml rectifiedGridDomain,omitempty"`
-	Dimension           *int                          `xml:"dimension,attr,omitempty"`
+	Dimension               *int       `xml:"dimension,attr,omitempty"`
 }
 
 type MultiPointDomainType struct {
-	MultiPoint *MultiPointType `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
-	// The "_Geometry" element is the abstract head of the substituition group for all geometry elements of GML 3. This
-	// includes pre-defined and user-defined geometry elements. Any geometry element must be a direct or indirect extension/restriction
-	// of AbstractGeometryType and must be directly or indirectly in the substitution group of "_Geometry".
-	AbstractGeometry           *AbstractGeometryType           `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
-	CompositeCurve             *CompositeCurveType             `xml:"http://www.opengis.net/gml CompositeCurve,omitempty"`
-	CompositeSolid             *CompositeSolidType             `xml:"http://www.opengis.net/gml CompositeSolid,omitempty"`
-	CompositeSurface           *CompositeSurfaceType           `xml:"http://www.opengis.net/gml CompositeSurface,omitempty"`
-	Curve                      *CurveType                      `xml:"http://www.opengis.net/gml Curve,omitempty"`
-	GeometricComplex           *GeometricComplexType           `xml:"http://www.opengis.net/gml GeometricComplex,omitempty"`
-	Grid                       *GridType                       `xml:"http://www.opengis.net/gml Grid,omitempty"`
-	LineString                 *LineStringType                 `xml:"http://www.opengis.net/gml LineString,omitempty"`
-	LinearRing                 *LinearRingType                 `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
-	MultiCurve                 *MultiCurveType                 `xml:"http://www.opengis.net/gml MultiCurve,omitempty"`
-	MultiGeometry              *MultiGeometryType              `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
-	MultiLineString            *MultiLineStringType            `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
-	MultiPolygon               *MultiPolygonType               `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
-	MultiSolid                 *MultiSolidType                 `xml:"http://www.opengis.net/gml MultiSolid,omitempty"`
-	MultiSurface               *MultiSurfaceType               `xml:"http://www.opengis.net/gml MultiSurface,omitempty"`
-	OrientableCurve            *OrientableCurveType            `xml:"http://www.opengis.net/gml OrientableCurve,omitempty"`
-	OrientableSurface          *OrientableSurfaceType          `xml:"http://www.opengis.net/gml OrientableSurface,omitempty"`
-	Point                      *PointType                      `xml:"http://www.opengis.net/gml Point,omitempty"`
-	Polygon                    *PolygonType                    `xml:"http://www.opengis.net/gml Polygon,omitempty"`
-	PolyhedralSurface          *PolyhedralSurfaceType          `xml:"http://www.opengis.net/gml PolyhedralSurface,omitempty"`
-	RectifiedGrid              *RectifiedGridType              `xml:"http://www.opengis.net/gml RectifiedGrid,omitempty"`
-	Ring                       *RingType                       `xml:"http://www.opengis.net/gml Ring,omitempty"`
-	Solid                      *SolidType                      `xml:"http://www.opengis.net/gml Solid,omitempty"`
-	Surface                    *SurfaceType                    `xml:"http://www.opengis.net/gml Surface,omitempty"`
-	Tin                        *TinType                        `xml:"http://www.opengis.net/gml Tin,omitempty"`
-	TriangulatedSurface        *TriangulatedSurfaceType        `xml:"http://www.opengis.net/gml TriangulatedSurface,omitempty"`
-	AbstractCurve              *AbstractCurveType              `xml:"http://www.opengis.net/gml _Curve,omitempty"`
-	AbstractGeometricAggregate *AbstractGeometricAggregateType `xml:"http://www.opengis.net/gml _GeometricAggregate,omitempty"`
-	AbstractGeometricPrimitive *AbstractGeometricPrimitiveType `xml:"http://www.opengis.net/gml _GeometricPrimitive,omitempty"`
-	AbstractImplicitGeometry   *AbstractGeometryType           `xml:"http://www.opengis.net/gml _ImplicitGeometry,omitempty"`
-	AbstractRing               *AbstractRingType               `xml:"http://www.opengis.net/gml _Ring,omitempty"`
-	AbstractSolid              *AbstractSolidType              `xml:"http://www.opengis.net/gml _Solid,omitempty"`
-	AbstractSurface            *AbstractSurfaceType            `xml:"http://www.opengis.net/gml _Surface,omitempty"`
-	// This abstract element acts as the head of the substitution group for temporal primitives and complexes.
-	AbstractTimeObject             *AbstractTimeObjectType             `xml:"http://www.opengis.net/gml _TimeObject,omitempty"`
-	TimeEdge                       *TimeEdgeType                       `xml:"http://www.opengis.net/gml TimeEdge,omitempty"`
-	TimeInstant                    *TimeInstantType                    `xml:"http://www.opengis.net/gml TimeInstant,omitempty"`
-	TimeNode                       *TimeNodeType                       `xml:"http://www.opengis.net/gml TimeNode,omitempty"`
-	TimePeriod                     *TimePeriodType                     `xml:"http://www.opengis.net/gml TimePeriod,omitempty"`
-	TimeTopologyComplex            *TimeTopologyComplexType            `xml:"http://www.opengis.net/gml TimeTopologyComplex,omitempty"`
-	AbstractTimeComplex            *AbstractTimeComplexType            `xml:"http://www.opengis.net/gml _TimeComplex,omitempty"`
-	AbstractTimeGeometricPrimitive *AbstractTimeGeometricPrimitiveType `xml:"http://www.opengis.net/gml _TimeGeometricPrimitive,omitempty"`
-	AbstractTimePrimitive          *AbstractTimePrimitiveType          `xml:"http://www.opengis.net/gml _TimePrimitive,omitempty"`
-	AbstractTimeTopologyPrimitive  *AbstractTimeTopologyPrimitiveType  `xml:"http://www.opengis.net/gml _TimeTopologyPrimitive,omitempty"`
-	RemoteSchema                   string                              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                      string                              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                           string                              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                           string                              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                        string                              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                          string                              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                           string                              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                        string                              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	MultiPoint   *MultiPointType `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
+	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MultiPointPropertyType struct {
@@ -5808,75 +4790,19 @@ type MultiSolidCoverageType struct {
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// deprecated in GML version 3.1
-	Location            *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
-	PriorityLocation    *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	DomainSet           *DomainSetType                `xml:"http://www.opengis.net/gml domainSet,omitempty"`
-	GridDomain          *GridDomainType               `xml:"http://www.opengis.net/gml gridDomain,omitempty"`
-	MultiCurveDomain    *MultiCurveDomainType         `xml:"http://www.opengis.net/gml multiCurveDomain,omitempty"`
-	MultiPointDomain    *MultiPointDomainType         `xml:"http://www.opengis.net/gml multiPointDomain,omitempty"`
-	MultiSurfaceDomain  *MultiSurfaceDomainType       `xml:"http://www.opengis.net/gml multiSurfaceDomain,omitempty"`
-	RectifiedGridDomain *RectifiedGridDomainType      `xml:"http://www.opengis.net/gml rectifiedGridDomain,omitempty"`
-	Dimension           *int                          `xml:"dimension,attr,omitempty"`
+	Dimension               *int       `xml:"dimension,attr,omitempty"`
 }
 
 type MultiSolidDomainType struct {
-	MultiSolid *MultiSolidType `xml:"http://www.opengis.net/gml MultiSolid,omitempty"`
-	// The "_Geometry" element is the abstract head of the substituition group for all geometry elements of GML 3. This
-	// includes pre-defined and user-defined geometry elements. Any geometry element must be a direct or indirect extension/restriction
-	// of AbstractGeometryType and must be directly or indirectly in the substitution group of "_Geometry".
-	AbstractGeometry           *AbstractGeometryType           `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
-	CompositeCurve             *CompositeCurveType             `xml:"http://www.opengis.net/gml CompositeCurve,omitempty"`
-	CompositeSolid             *CompositeSolidType             `xml:"http://www.opengis.net/gml CompositeSolid,omitempty"`
-	CompositeSurface           *CompositeSurfaceType           `xml:"http://www.opengis.net/gml CompositeSurface,omitempty"`
-	Curve                      *CurveType                      `xml:"http://www.opengis.net/gml Curve,omitempty"`
-	GeometricComplex           *GeometricComplexType           `xml:"http://www.opengis.net/gml GeometricComplex,omitempty"`
-	Grid                       *GridType                       `xml:"http://www.opengis.net/gml Grid,omitempty"`
-	LineString                 *LineStringType                 `xml:"http://www.opengis.net/gml LineString,omitempty"`
-	LinearRing                 *LinearRingType                 `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
-	MultiCurve                 *MultiCurveType                 `xml:"http://www.opengis.net/gml MultiCurve,omitempty"`
-	MultiGeometry              *MultiGeometryType              `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
-	MultiLineString            *MultiLineStringType            `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
-	MultiPoint                 *MultiPointType                 `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
-	MultiPolygon               *MultiPolygonType               `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
-	MultiSurface               *MultiSurfaceType               `xml:"http://www.opengis.net/gml MultiSurface,omitempty"`
-	OrientableCurve            *OrientableCurveType            `xml:"http://www.opengis.net/gml OrientableCurve,omitempty"`
-	OrientableSurface          *OrientableSurfaceType          `xml:"http://www.opengis.net/gml OrientableSurface,omitempty"`
-	Point                      *PointType                      `xml:"http://www.opengis.net/gml Point,omitempty"`
-	Polygon                    *PolygonType                    `xml:"http://www.opengis.net/gml Polygon,omitempty"`
-	PolyhedralSurface          *PolyhedralSurfaceType          `xml:"http://www.opengis.net/gml PolyhedralSurface,omitempty"`
-	RectifiedGrid              *RectifiedGridType              `xml:"http://www.opengis.net/gml RectifiedGrid,omitempty"`
-	Ring                       *RingType                       `xml:"http://www.opengis.net/gml Ring,omitempty"`
-	Solid                      *SolidType                      `xml:"http://www.opengis.net/gml Solid,omitempty"`
-	Surface                    *SurfaceType                    `xml:"http://www.opengis.net/gml Surface,omitempty"`
-	Tin                        *TinType                        `xml:"http://www.opengis.net/gml Tin,omitempty"`
-	TriangulatedSurface        *TriangulatedSurfaceType        `xml:"http://www.opengis.net/gml TriangulatedSurface,omitempty"`
-	AbstractCurve              *AbstractCurveType              `xml:"http://www.opengis.net/gml _Curve,omitempty"`
-	AbstractGeometricAggregate *AbstractGeometricAggregateType `xml:"http://www.opengis.net/gml _GeometricAggregate,omitempty"`
-	AbstractGeometricPrimitive *AbstractGeometricPrimitiveType `xml:"http://www.opengis.net/gml _GeometricPrimitive,omitempty"`
-	AbstractImplicitGeometry   *AbstractGeometryType           `xml:"http://www.opengis.net/gml _ImplicitGeometry,omitempty"`
-	AbstractRing               *AbstractRingType               `xml:"http://www.opengis.net/gml _Ring,omitempty"`
-	AbstractSolid              *AbstractSolidType              `xml:"http://www.opengis.net/gml _Solid,omitempty"`
-	AbstractSurface            *AbstractSurfaceType            `xml:"http://www.opengis.net/gml _Surface,omitempty"`
-	// This abstract element acts as the head of the substitution group for temporal primitives and complexes.
-	AbstractTimeObject             *AbstractTimeObjectType             `xml:"http://www.opengis.net/gml _TimeObject,omitempty"`
-	TimeEdge                       *TimeEdgeType                       `xml:"http://www.opengis.net/gml TimeEdge,omitempty"`
-	TimeInstant                    *TimeInstantType                    `xml:"http://www.opengis.net/gml TimeInstant,omitempty"`
-	TimeNode                       *TimeNodeType                       `xml:"http://www.opengis.net/gml TimeNode,omitempty"`
-	TimePeriod                     *TimePeriodType                     `xml:"http://www.opengis.net/gml TimePeriod,omitempty"`
-	TimeTopologyComplex            *TimeTopologyComplexType            `xml:"http://www.opengis.net/gml TimeTopologyComplex,omitempty"`
-	AbstractTimeComplex            *AbstractTimeComplexType            `xml:"http://www.opengis.net/gml _TimeComplex,omitempty"`
-	AbstractTimeGeometricPrimitive *AbstractTimeGeometricPrimitiveType `xml:"http://www.opengis.net/gml _TimeGeometricPrimitive,omitempty"`
-	AbstractTimePrimitive          *AbstractTimePrimitiveType          `xml:"http://www.opengis.net/gml _TimePrimitive,omitempty"`
-	AbstractTimeTopologyPrimitive  *AbstractTimeTopologyPrimitiveType  `xml:"http://www.opengis.net/gml _TimeTopologyPrimitive,omitempty"`
-	RemoteSchema                   string                              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                      string                              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                           string                              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                           string                              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                        string                              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                          string                              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                           string                              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                        string                              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	MultiSolid   *MultiSolidType `xml:"http://www.opengis.net/gml MultiSolid,omitempty"`
+	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MultiSolidPropertyType struct {
@@ -5956,75 +4882,19 @@ type MultiSurfaceCoverageType struct {
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// deprecated in GML version 3.1
-	Location            *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
-	PriorityLocation    *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	DomainSet           *DomainSetType                `xml:"http://www.opengis.net/gml domainSet,omitempty"`
-	GridDomain          *GridDomainType               `xml:"http://www.opengis.net/gml gridDomain,omitempty"`
-	MultiCurveDomain    *MultiCurveDomainType         `xml:"http://www.opengis.net/gml multiCurveDomain,omitempty"`
-	MultiPointDomain    *MultiPointDomainType         `xml:"http://www.opengis.net/gml multiPointDomain,omitempty"`
-	MultiSolidDomain    *MultiSolidDomainType         `xml:"http://www.opengis.net/gml multiSolidDomain,omitempty"`
-	RectifiedGridDomain *RectifiedGridDomainType      `xml:"http://www.opengis.net/gml rectifiedGridDomain,omitempty"`
-	Dimension           *int                          `xml:"dimension,attr,omitempty"`
+	Dimension               *int       `xml:"dimension,attr,omitempty"`
 }
 
 type MultiSurfaceDomainType struct {
 	MultiSurface *MultiSurfaceType `xml:"http://www.opengis.net/gml MultiSurface,omitempty"`
-	// The "_Geometry" element is the abstract head of the substituition group for all geometry elements of GML 3. This
-	// includes pre-defined and user-defined geometry elements. Any geometry element must be a direct or indirect extension/restriction
-	// of AbstractGeometryType and must be directly or indirectly in the substitution group of "_Geometry".
-	AbstractGeometry           *AbstractGeometryType           `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
-	CompositeCurve             *CompositeCurveType             `xml:"http://www.opengis.net/gml CompositeCurve,omitempty"`
-	CompositeSolid             *CompositeSolidType             `xml:"http://www.opengis.net/gml CompositeSolid,omitempty"`
-	CompositeSurface           *CompositeSurfaceType           `xml:"http://www.opengis.net/gml CompositeSurface,omitempty"`
-	Curve                      *CurveType                      `xml:"http://www.opengis.net/gml Curve,omitempty"`
-	GeometricComplex           *GeometricComplexType           `xml:"http://www.opengis.net/gml GeometricComplex,omitempty"`
-	Grid                       *GridType                       `xml:"http://www.opengis.net/gml Grid,omitempty"`
-	LineString                 *LineStringType                 `xml:"http://www.opengis.net/gml LineString,omitempty"`
-	LinearRing                 *LinearRingType                 `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
-	MultiCurve                 *MultiCurveType                 `xml:"http://www.opengis.net/gml MultiCurve,omitempty"`
-	MultiGeometry              *MultiGeometryType              `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
-	MultiLineString            *MultiLineStringType            `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
-	MultiPoint                 *MultiPointType                 `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
-	MultiPolygon               *MultiPolygonType               `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
-	MultiSolid                 *MultiSolidType                 `xml:"http://www.opengis.net/gml MultiSolid,omitempty"`
-	OrientableCurve            *OrientableCurveType            `xml:"http://www.opengis.net/gml OrientableCurve,omitempty"`
-	OrientableSurface          *OrientableSurfaceType          `xml:"http://www.opengis.net/gml OrientableSurface,omitempty"`
-	Point                      *PointType                      `xml:"http://www.opengis.net/gml Point,omitempty"`
-	Polygon                    *PolygonType                    `xml:"http://www.opengis.net/gml Polygon,omitempty"`
-	PolyhedralSurface          *PolyhedralSurfaceType          `xml:"http://www.opengis.net/gml PolyhedralSurface,omitempty"`
-	RectifiedGrid              *RectifiedGridType              `xml:"http://www.opengis.net/gml RectifiedGrid,omitempty"`
-	Ring                       *RingType                       `xml:"http://www.opengis.net/gml Ring,omitempty"`
-	Solid                      *SolidType                      `xml:"http://www.opengis.net/gml Solid,omitempty"`
-	Surface                    *SurfaceType                    `xml:"http://www.opengis.net/gml Surface,omitempty"`
-	Tin                        *TinType                        `xml:"http://www.opengis.net/gml Tin,omitempty"`
-	TriangulatedSurface        *TriangulatedSurfaceType        `xml:"http://www.opengis.net/gml TriangulatedSurface,omitempty"`
-	AbstractCurve              *AbstractCurveType              `xml:"http://www.opengis.net/gml _Curve,omitempty"`
-	AbstractGeometricAggregate *AbstractGeometricAggregateType `xml:"http://www.opengis.net/gml _GeometricAggregate,omitempty"`
-	AbstractGeometricPrimitive *AbstractGeometricPrimitiveType `xml:"http://www.opengis.net/gml _GeometricPrimitive,omitempty"`
-	AbstractImplicitGeometry   *AbstractGeometryType           `xml:"http://www.opengis.net/gml _ImplicitGeometry,omitempty"`
-	AbstractRing               *AbstractRingType               `xml:"http://www.opengis.net/gml _Ring,omitempty"`
-	AbstractSolid              *AbstractSolidType              `xml:"http://www.opengis.net/gml _Solid,omitempty"`
-	AbstractSurface            *AbstractSurfaceType            `xml:"http://www.opengis.net/gml _Surface,omitempty"`
-	// This abstract element acts as the head of the substitution group for temporal primitives and complexes.
-	AbstractTimeObject             *AbstractTimeObjectType             `xml:"http://www.opengis.net/gml _TimeObject,omitempty"`
-	TimeEdge                       *TimeEdgeType                       `xml:"http://www.opengis.net/gml TimeEdge,omitempty"`
-	TimeInstant                    *TimeInstantType                    `xml:"http://www.opengis.net/gml TimeInstant,omitempty"`
-	TimeNode                       *TimeNodeType                       `xml:"http://www.opengis.net/gml TimeNode,omitempty"`
-	TimePeriod                     *TimePeriodType                     `xml:"http://www.opengis.net/gml TimePeriod,omitempty"`
-	TimeTopologyComplex            *TimeTopologyComplexType            `xml:"http://www.opengis.net/gml TimeTopologyComplex,omitempty"`
-	AbstractTimeComplex            *AbstractTimeComplexType            `xml:"http://www.opengis.net/gml _TimeComplex,omitempty"`
-	AbstractTimeGeometricPrimitive *AbstractTimeGeometricPrimitiveType `xml:"http://www.opengis.net/gml _TimeGeometricPrimitive,omitempty"`
-	AbstractTimePrimitive          *AbstractTimePrimitiveType          `xml:"http://www.opengis.net/gml _TimePrimitive,omitempty"`
-	AbstractTimeTopologyPrimitive  *AbstractTimeTopologyPrimitiveType  `xml:"http://www.opengis.net/gml _TimeTopologyPrimitive,omitempty"`
-	RemoteSchema                   string                              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                      string                              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                           string                              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                           string                              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                        string                              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                          string                              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                           string                              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                        string                              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MultiSurfacePropertyType struct {
@@ -6127,18 +4997,6 @@ type ObliqueCartesianCSType struct {
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
 	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -6237,18 +5095,6 @@ type OperationMethodBaseType struct {
 	// The name by which this operation method is identified.
 	MethodName *CodeType `xml:"http://www.opengis.net/gml methodName,omitempty"`
 	Id         string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 }
 
 type OperationMethodRefType struct {
@@ -6269,18 +5115,6 @@ type OperationMethodType struct {
 	// The name by which this operation method is identified.
 	MethodName *CodeType `xml:"http://www.opengis.net/gml methodName,omitempty"`
 	Id         string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this operation method. The first methodID, if any, is normally the primary identification code, and any others are aliases.
 	MethodID []IdentifierType `xml:"http://www.opengis.net/gml methodID"`
 	// Comments on or information about this operation method, including source information.
@@ -6303,18 +5137,6 @@ type OperationParameterBaseType struct {
 	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
 	MinimumOccurs *int   `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
 	Id            string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 }
 
 type OperationParameterGroupBaseType struct {
@@ -6325,18 +5147,6 @@ type OperationParameterGroupBaseType struct {
 	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
 	MinimumOccurs *int   `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
 	Id            string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 }
 
 type OperationParameterGroupRefType struct {
@@ -6359,18 +5169,6 @@ type OperationParameterGroupType struct {
 	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
 	MinimumOccurs *int   `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
 	Id            string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this operation parameter group. The first groupID, if any, is normally the primary identification code, and any others are aliases.
 	GroupID []IdentifierType `xml:"http://www.opengis.net/gml groupID"`
 	// Comments on or information about this operation parameter group, including source information.
@@ -6401,18 +5199,6 @@ type OperationParameterType struct {
 	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
 	MinimumOccurs *int   `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
 	Id            string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this operation parameter. The first parameterID, if any, is normally the primary identification code, and any others are aliases.
 	ParameterID []IdentifierType `xml:"http://www.opengis.net/gml parameterID"`
 	// Comments on or information about this operation parameter, including source information.
@@ -6573,18 +5359,6 @@ type PassThroughOperationType struct {
 	// The name by which this coordinate operation is identified.
 	CoordinateOperationName *CodeType `xml:"http://www.opengis.net/gml coordinateOperationName,omitempty"`
 	Id                      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name          []CodeType `xml:"http://www.opengis.net/gml name"`
-	CsName        []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName     []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName     []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName  []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName    []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName       []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this coordinate operation. The first coordinateOperationID, if any, is normally the primary identification code, and any others are aliases.
 	CoordinateOperationID []IdentifierType `xml:"http://www.opengis.net/gml coordinateOperationID"`
 	// Comments on or information about this coordinate operation, including source information.
@@ -6698,18 +5472,6 @@ type PolarCSType struct {
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
 	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -6720,15 +5482,6 @@ type PolarCSType struct {
 
 type PolygonPatchArrayPropertyType struct {
 	PolygonPatch []PolygonPatchType `xml:"http://www.opengis.net/gml PolygonPatch"`
-	// The "_SurfacePatch" element is the abstract head of the substituition group for all surface pach elements describing a continuous portion of a surface.
-	AbstractSurfacePatch           []AbstractSurfacePatchType           `xml:"http://www.opengis.net/gml _SurfacePatch"`
-	Cone                           []ConeType                           `xml:"http://www.opengis.net/gml Cone"`
-	Cylinder                       []CylinderType                       `xml:"http://www.opengis.net/gml Cylinder"`
-	Rectangle                      []RectangleType                      `xml:"http://www.opengis.net/gml Rectangle"`
-	Sphere                         []SphereType                         `xml:"http://www.opengis.net/gml Sphere"`
-	Triangle                       []TriangleType                       `xml:"http://www.opengis.net/gml Triangle"`
-	AbstractGriddedSurface         []AbstractGriddedSurfaceType         `xml:"http://www.opengis.net/gml _GriddedSurface"`
-	AbstractParametricCurveSurface []AbstractParametricCurveSurfaceType `xml:"http://www.opengis.net/gml _ParametricCurveSurface"`
 }
 
 type PolygonPatchType struct {
@@ -6841,9 +5594,6 @@ type PolyhedralSurfaceType struct {
 	// axisLabels attribute is included, this attribute shall also be included. When the axisLabels attribute is omitted, this attribute
 	// shall also be omitted.
 	UomLabels *string `xml:"uomLabels,attr,omitempty"`
-	// This element encapsulates the patches of the surface.
-	Patches         *SurfacePatchArrayPropertyType  `xml:"http://www.opengis.net/gml patches,omitempty"`
-	TrianglePatches *TrianglePatchArrayPropertyType `xml:"http://www.opengis.net/gml trianglePatches,omitempty"`
 }
 
 type PrimeMeridianBaseType struct {
@@ -6852,18 +5602,6 @@ type PrimeMeridianBaseType struct {
 	// The name by which this prime meridian is identified. The meridianName most common value is Greenwich, and that value shall be used when the greenwichLongitude value is zero.
 	MeridianName *CodeType `xml:"http://www.opengis.net/gml meridianName,omitempty"`
 	Id           string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 }
 
 type PrimeMeridianRefType struct {
@@ -6884,18 +5622,6 @@ type PrimeMeridianType struct {
 	// The name by which this prime meridian is identified. The meridianName most common value is Greenwich, and that value shall be used when the greenwichLongitude value is zero.
 	MeridianName *CodeType `xml:"http://www.opengis.net/gml meridianName,omitempty"`
 	Id           string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this prime meridian. The first meridianID, if any, is normally the primary identification code, and any others are aliases.
 	MeridianID []IdentifierType `xml:"http://www.opengis.net/gml meridianID"`
 	// Comments on or information about this prime meridian, including source information.
@@ -6974,18 +5700,6 @@ type ProjectedCRSType struct {
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
 	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -7008,181 +5722,15 @@ type QuantityExtentType struct {
 
 type QuantityPropertyType struct {
 	// A numeric value with a scale.  The content of the element is an amount using the XML Schema type double which permits decimal or scientific notation.  An XML attribute uom (unit of measure) is required, whose value is a URI which identifies the definition of the scale or units by which the numeric value must be multiplied.
-	Quantity *MeasureType `xml:"http://www.opengis.net/gml Quantity,omitempty"`
-	// This abstract element is the head of a substitutionGroup hierararchy which may contain either simpleContent or complexContent elements.  It is used to assert the model position of "class" elements declared in other GML schemas.
-	AbstractObject                    *string                                `xml:"http://www.opengis.net/gml _Object,omitempty"`
-	Array                             *ArrayType                             `xml:"http://www.opengis.net/gml Array,omitempty"`
-	Bag                               *BagType                               `xml:"http://www.opengis.net/gml Bag,omitempty"`
-	BaseUnit                          *BaseUnitType                          `xml:"http://www.opengis.net/gml BaseUnit,omitempty"`
-	CartesianCS                       *CartesianCSType                       `xml:"http://www.opengis.net/gml CartesianCS,omitempty"`
-	CompositeCurve                    *CompositeCurveType                    `xml:"http://www.opengis.net/gml CompositeCurve,omitempty"`
-	CompositeSolid                    *CompositeSolidType                    `xml:"http://www.opengis.net/gml CompositeSolid,omitempty"`
-	CompositeSurface                  *CompositeSurfaceType                  `xml:"http://www.opengis.net/gml CompositeSurface,omitempty"`
-	CompoundCRS                       *CompoundCRSType                       `xml:"http://www.opengis.net/gml CompoundCRS,omitempty"`
-	ConcatenatedOperation             *ConcatenatedOperationType             `xml:"http://www.opengis.net/gml ConcatenatedOperation,omitempty"`
-	ConventionalUnit                  *ConventionalUnitType                  `xml:"http://www.opengis.net/gml ConventionalUnit,omitempty"`
-	Conversion                        *ConversionType                        `xml:"http://www.opengis.net/gml Conversion,omitempty"`
-	CoordinateSystemAxis              *CoordinateSystemAxisType              `xml:"http://www.opengis.net/gml CoordinateSystemAxis,omitempty"`
-	Curve                             *CurveType                             `xml:"http://www.opengis.net/gml Curve,omitempty"`
-	CylindricalCS                     *CylindricalCSType                     `xml:"http://www.opengis.net/gml CylindricalCS,omitempty"`
-	Definition                        *DefinitionType                        `xml:"http://www.opengis.net/gml Definition,omitempty"`
-	DefinitionCollection              *DictionaryType                        `xml:"http://www.opengis.net/gml DefinitionCollection,omitempty"`
-	DefinitionProxy                   *DefinitionProxyType                   `xml:"http://www.opengis.net/gml DefinitionProxy,omitempty"`
-	DerivedCRS                        *DerivedCRSType                        `xml:"http://www.opengis.net/gml DerivedCRS,omitempty"`
-	DerivedUnit                       *DerivedUnitType                       `xml:"http://www.opengis.net/gml DerivedUnit,omitempty"`
-	Dictionary                        *DictionaryType                        `xml:"http://www.opengis.net/gml Dictionary,omitempty"`
-	DirectedObservation               *DirectedObservationType               `xml:"http://www.opengis.net/gml DirectedObservation,omitempty"`
-	DirectedObservationAtDistance     *DirectedObservationAtDistanceType     `xml:"http://www.opengis.net/gml DirectedObservationAtDistance,omitempty"`
-	Edge                              *EdgeType                              `xml:"http://www.opengis.net/gml Edge,omitempty"`
-	Ellipsoid                         *EllipsoidType                         `xml:"http://www.opengis.net/gml Ellipsoid,omitempty"`
-	EllipsoidalCS                     *EllipsoidalCSType                     `xml:"http://www.opengis.net/gml EllipsoidalCS,omitempty"`
-	EngineeringCRS                    *EngineeringCRSType                    `xml:"http://www.opengis.net/gml EngineeringCRS,omitempty"`
-	EngineeringDatum                  *EngineeringDatumType                  `xml:"http://www.opengis.net/gml EngineeringDatum,omitempty"`
-	Face                              *FaceType                              `xml:"http://www.opengis.net/gml Face,omitempty"`
-	FeatureCollection                 *FeatureCollectionType                 `xml:"http://www.opengis.net/gml FeatureCollection,omitempty"`
-	FeatureStyle                      *FeatureStyleType                      `xml:"http://www.opengis.net/gml FeatureStyle,omitempty"`
-	GenericMetaData                   *GenericMetaDataType                   `xml:"http://www.opengis.net/gml GenericMetaData,omitempty"`
-	GeocentricCRS                     *GeocentricCRSType                     `xml:"http://www.opengis.net/gml GeocentricCRS,omitempty"`
-	GeodeticDatum                     *GeodeticDatumType                     `xml:"http://www.opengis.net/gml GeodeticDatum,omitempty"`
-	GeographicCRS                     *GeographicCRSType                     `xml:"http://www.opengis.net/gml GeographicCRS,omitempty"`
-	GeometricComplex                  *GeometricComplexType                  `xml:"http://www.opengis.net/gml GeometricComplex,omitempty"`
-	GeometryStyle                     *GeometryStyleType                     `xml:"http://www.opengis.net/gml GeometryStyle,omitempty"`
-	GraphStyle                        *GraphStyleType                        `xml:"http://www.opengis.net/gml GraphStyle,omitempty"`
-	Grid                              *GridType                              `xml:"http://www.opengis.net/gml Grid,omitempty"`
-	GridCoverage                      *GridCoverageType                      `xml:"http://www.opengis.net/gml GridCoverage,omitempty"`
-	ImageCRS                          *ImageCRSType                          `xml:"http://www.opengis.net/gml ImageCRS,omitempty"`
-	ImageDatum                        *ImageDatumType                        `xml:"http://www.opengis.net/gml ImageDatum,omitempty"`
-	LabelStyle                        *LabelStyleType                        `xml:"http://www.opengis.net/gml LabelStyle,omitempty"`
-	LineString                        *LineStringType                        `xml:"http://www.opengis.net/gml LineString,omitempty"`
-	LinearCS                          *LinearCSType                          `xml:"http://www.opengis.net/gml LinearCS,omitempty"`
-	LinearRing                        *LinearRingType                        `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
-	MovingObjectStatus                *MovingObjectStatusType                `xml:"http://www.opengis.net/gml MovingObjectStatus,omitempty"`
-	MultiCurve                        *MultiCurveType                        `xml:"http://www.opengis.net/gml MultiCurve,omitempty"`
-	MultiCurveCoverage                *MultiCurveCoverageType                `xml:"http://www.opengis.net/gml MultiCurveCoverage,omitempty"`
-	MultiGeometry                     *MultiGeometryType                     `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
-	MultiLineString                   *MultiLineStringType                   `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
-	MultiPoint                        *MultiPointType                        `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
-	MultiPointCoverage                *MultiPointCoverageType                `xml:"http://www.opengis.net/gml MultiPointCoverage,omitempty"`
-	MultiPolygon                      *MultiPolygonType                      `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
-	MultiSolid                        *MultiSolidType                        `xml:"http://www.opengis.net/gml MultiSolid,omitempty"`
-	MultiSolidCoverage                *MultiSolidCoverageType                `xml:"http://www.opengis.net/gml MultiSolidCoverage,omitempty"`
-	MultiSurface                      *MultiSurfaceType                      `xml:"http://www.opengis.net/gml MultiSurface,omitempty"`
-	MultiSurfaceCoverage              *MultiSurfaceCoverageType              `xml:"http://www.opengis.net/gml MultiSurfaceCoverage,omitempty"`
-	Node                              *NodeType                              `xml:"http://www.opengis.net/gml Node,omitempty"`
-	ObliqueCartesianCS                *ObliqueCartesianCSType                `xml:"http://www.opengis.net/gml ObliqueCartesianCS,omitempty"`
-	Observation                       *ObservationType                       `xml:"http://www.opengis.net/gml Observation,omitempty"`
-	OperationMethod                   *OperationMethodType                   `xml:"http://www.opengis.net/gml OperationMethod,omitempty"`
-	OperationParameter                *OperationParameterType                `xml:"http://www.opengis.net/gml OperationParameter,omitempty"`
-	OperationParameterGroup           *OperationParameterGroupType           `xml:"http://www.opengis.net/gml OperationParameterGroup,omitempty"`
-	OrientableCurve                   *OrientableCurveType                   `xml:"http://www.opengis.net/gml OrientableCurve,omitempty"`
-	OrientableSurface                 *OrientableSurfaceType                 `xml:"http://www.opengis.net/gml OrientableSurface,omitempty"`
-	PassThroughOperation              *PassThroughOperationType              `xml:"http://www.opengis.net/gml PassThroughOperation,omitempty"`
-	Point                             *PointType                             `xml:"http://www.opengis.net/gml Point,omitempty"`
-	PolarCS                           *PolarCSType                           `xml:"http://www.opengis.net/gml PolarCS,omitempty"`
-	Polygon                           *PolygonType                           `xml:"http://www.opengis.net/gml Polygon,omitempty"`
-	PolyhedralSurface                 *PolyhedralSurfaceType                 `xml:"http://www.opengis.net/gml PolyhedralSurface,omitempty"`
-	PrimeMeridian                     *PrimeMeridianType                     `xml:"http://www.opengis.net/gml PrimeMeridian,omitempty"`
-	ProjectedCRS                      *ProjectedCRSType                      `xml:"http://www.opengis.net/gml ProjectedCRS,omitempty"`
-	RectifiedGrid                     *RectifiedGridType                     `xml:"http://www.opengis.net/gml RectifiedGrid,omitempty"`
-	RectifiedGridCoverage             *RectifiedGridCoverageType             `xml:"http://www.opengis.net/gml RectifiedGridCoverage,omitempty"`
-	Ring                              *RingType                              `xml:"http://www.opengis.net/gml Ring,omitempty"`
-	Solid                             *SolidType                             `xml:"http://www.opengis.net/gml Solid,omitempty"`
-	SphericalCS                       *SphericalCSType                       `xml:"http://www.opengis.net/gml SphericalCS,omitempty"`
-	Style                             *StyleType                             `xml:"http://www.opengis.net/gml Style,omitempty"`
-	Surface                           *SurfaceType                           `xml:"http://www.opengis.net/gml Surface,omitempty"`
-	TemporalCRS                       *TemporalCRSType                       `xml:"http://www.opengis.net/gml TemporalCRS,omitempty"`
-	TemporalCS                        *TemporalCSType                        `xml:"http://www.opengis.net/gml TemporalCS,omitempty"`
-	TemporalDatum                     *TemporalDatumType                     `xml:"http://www.opengis.net/gml TemporalDatum,omitempty"`
-	TimeCalendar                      *TimeCalendarType                      `xml:"http://www.opengis.net/gml TimeCalendar,omitempty"`
-	TimeCalendarEra                   *TimeCalendarEraType                   `xml:"http://www.opengis.net/gml TimeCalendarEra,omitempty"`
-	TimeClock                         *TimeClockType                         `xml:"http://www.opengis.net/gml TimeClock,omitempty"`
-	TimeCoordinateSystem              *TimeCoordinateSystemType              `xml:"http://www.opengis.net/gml TimeCoordinateSystem,omitempty"`
-	TimeEdge                          *TimeEdgeType                          `xml:"http://www.opengis.net/gml TimeEdge,omitempty"`
-	TimeInstant                       *TimeInstantType                       `xml:"http://www.opengis.net/gml TimeInstant,omitempty"`
-	TimeNode                          *TimeNodeType                          `xml:"http://www.opengis.net/gml TimeNode,omitempty"`
-	TimeOrdinalReferenceSystem        *TimeOrdinalReferenceSystemType        `xml:"http://www.opengis.net/gml TimeOrdinalReferenceSystem,omitempty"`
-	TimePeriod                        *TimePeriodType                        `xml:"http://www.opengis.net/gml TimePeriod,omitempty"`
-	TimeTopologyComplex               *TimeTopologyComplexType               `xml:"http://www.opengis.net/gml TimeTopologyComplex,omitempty"`
-	Tin                               *TinType                               `xml:"http://www.opengis.net/gml Tin,omitempty"`
-	TopoComplex                       *TopoComplexType                       `xml:"http://www.opengis.net/gml TopoComplex,omitempty"`
-	TopoSolid                         *TopoSolidType                         `xml:"http://www.opengis.net/gml TopoSolid,omitempty"`
-	TopologyStyle                     *TopologyStyleType                     `xml:"http://www.opengis.net/gml TopologyStyle,omitempty"`
-	Transformation                    *TransformationType                    `xml:"http://www.opengis.net/gml Transformation,omitempty"`
-	TriangulatedSurface               *TriangulatedSurfaceType               `xml:"http://www.opengis.net/gml TriangulatedSurface,omitempty"`
-	UnitDefinition                    *UnitDefinitionType                    `xml:"http://www.opengis.net/gml UnitDefinition,omitempty"`
-	UserDefinedCS                     *UserDefinedCSType                     `xml:"http://www.opengis.net/gml UserDefinedCS,omitempty"`
-	VerticalCRS                       *VerticalCRSType                       `xml:"http://www.opengis.net/gml VerticalCRS,omitempty"`
-	VerticalCS                        *VerticalCSType                        `xml:"http://www.opengis.net/gml VerticalCS,omitempty"`
-	VerticalDatum                     *VerticalDatumType                     `xml:"http://www.opengis.net/gml VerticalDatum,omitempty"`
-	AbstractCRS                       *AbstractReferenceSystemType           `xml:"http://www.opengis.net/gml _CRS,omitempty"`
-	AbstractContinuousCoverage        *AbstractContinuousCoverageType        `xml:"http://www.opengis.net/gml _ContinuousCoverage,omitempty"`
-	AbstractCoordinateOperation       *AbstractCoordinateOperationType       `xml:"http://www.opengis.net/gml _CoordinateOperation,omitempty"`
-	AbstractCoordinateReferenceSystem *AbstractReferenceSystemType           `xml:"http://www.opengis.net/gml _CoordinateReferenceSystem,omitempty"`
-	AbstractCoordinateSystem          *AbstractCoordinateSystemType          `xml:"http://www.opengis.net/gml _CoordinateSystem,omitempty"`
-	AbstractCoverage                  *AbstractCoverageType                  `xml:"http://www.opengis.net/gml _Coverage,omitempty"`
-	AbstractCurve                     *AbstractCurveType                     `xml:"http://www.opengis.net/gml _Curve,omitempty"`
-	AbstractDatum                     *AbstractDatumType                     `xml:"http://www.opengis.net/gml _Datum,omitempty"`
-	AbstractDiscreteCoverage          *AbstractDiscreteCoverageType          `xml:"http://www.opengis.net/gml _DiscreteCoverage,omitempty"`
-	AbstractFeature                   *AbstractFeatureType                   `xml:"http://www.opengis.net/gml _Feature,omitempty"`
-	AbstractFeatureCollection         *AbstractFeatureCollectionType         `xml:"http://www.opengis.net/gml _FeatureCollection,omitempty"`
-	AbstractGML                       *AbstractGMLType                       `xml:"http://www.opengis.net/gml _GML,omitempty"`
-	AbstractGeneralConversion         *AbstractGeneralConversionType         `xml:"http://www.opengis.net/gml _GeneralConversion,omitempty"`
-	AbstractGeneralDerivedCRS         *AbstractGeneralDerivedCRSType         `xml:"http://www.opengis.net/gml _GeneralDerivedCRS,omitempty"`
-	AbstractGeneralOperationParameter *AbstractGeneralOperationParameterType `xml:"http://www.opengis.net/gml _GeneralOperationParameter,omitempty"`
-	AbstractGeneralTransformation     *AbstractGeneralTransformationType     `xml:"http://www.opengis.net/gml _GeneralTransformation,omitempty"`
-	AbstractGeometricAggregate        *AbstractGeometricAggregateType        `xml:"http://www.opengis.net/gml _GeometricAggregate,omitempty"`
-	AbstractGeometricPrimitive        *AbstractGeometricPrimitiveType        `xml:"http://www.opengis.net/gml _GeometricPrimitive,omitempty"`
-	AbstractGeometry                  *AbstractGeometryType                  `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
-	AbstractImplicitGeometry          *AbstractGeometryType                  `xml:"http://www.opengis.net/gml _ImplicitGeometry,omitempty"`
-	AbstractMetaData                  *AbstractMetaDataType                  `xml:"http://www.opengis.net/gml _MetaData,omitempty"`
-	AbstractOperation                 *AbstractCoordinateOperationType       `xml:"http://www.opengis.net/gml _Operation,omitempty"`
-	AbstractReferenceSystem           *AbstractReferenceSystemType           `xml:"http://www.opengis.net/gml _ReferenceSystem,omitempty"`
-	AbstractRing                      *AbstractRingType                      `xml:"http://www.opengis.net/gml _Ring,omitempty"`
-	AbstractSingleOperation           *AbstractCoordinateOperationType       `xml:"http://www.opengis.net/gml _SingleOperation,omitempty"`
-	AbstractSolid                     *AbstractSolidType                     `xml:"http://www.opengis.net/gml _Solid,omitempty"`
-	AbstractStyle                     *AbstractStyleType                     `xml:"http://www.opengis.net/gml _Style,omitempty"`
-	AbstractSurface                   *AbstractSurfaceType                   `xml:"http://www.opengis.net/gml _Surface,omitempty"`
-	AbstractTimeComplex               *AbstractTimeComplexType               `xml:"http://www.opengis.net/gml _TimeComplex,omitempty"`
-	AbstractTimeGeometricPrimitive    *AbstractTimeGeometricPrimitiveType    `xml:"http://www.opengis.net/gml _TimeGeometricPrimitive,omitempty"`
-	AbstractTimeObject                *AbstractTimeObjectType                `xml:"http://www.opengis.net/gml _TimeObject,omitempty"`
-	AbstractTimePrimitive             *AbstractTimePrimitiveType             `xml:"http://www.opengis.net/gml _TimePrimitive,omitempty"`
-	AbstractTimeReferenceSystem       *AbstractTimeReferenceSystemType       `xml:"http://www.opengis.net/gml _TimeReferenceSystem,omitempty"`
-	AbstractTimeSlice                 *AbstractTimeSliceType                 `xml:"http://www.opengis.net/gml _TimeSlice,omitempty"`
-	AbstractTimeTopologyPrimitive     *AbstractTimeTopologyPrimitiveType     `xml:"http://www.opengis.net/gml _TimeTopologyPrimitive,omitempty"`
-	AbstractTopoPrimitive             *AbstractTopoPrimitiveType             `xml:"http://www.opengis.net/gml _TopoPrimitive,omitempty"`
-	AbstractTopology                  *AbstractTopologyType                  `xml:"http://www.opengis.net/gml _Topology,omitempty"`
-	Null                              *string                                `xml:"http://www.opengis.net/gml Null,omitempty"`
-	// Aggregate value built using the Composite pattern.
-	CompositeValue *CompositeValueType `xml:"http://www.opengis.net/gml CompositeValue,omitempty"`
-	ValueArray     *ValueArrayType     `xml:"http://www.opengis.net/gml ValueArray,omitempty"`
-	// A value from two-valued logic, using the XML Schema boolean type.  An instance may take the values {true, false, 1, 0}.
-	Boolean *bool `xml:"http://www.opengis.net/gml Boolean,omitempty"`
-	// A term representing a classification.  It has an optional XML attribute codeSpace, whose value is a URI which identifies a dictionary, codelist or authority for the term.
-	Category *CodeType `xml:"http://www.opengis.net/gml Category,omitempty"`
-	// An integer representing a frequency of occurrence.
-	Count *int `xml:"http://www.opengis.net/gml Count,omitempty"`
-	// XML List based on XML Schema boolean type.  An element of this type contains a space-separated list of boolean values {0,1,true,false}
-	BooleanList *string `xml:"http://www.opengis.net/gml BooleanList,omitempty"`
-	// A space-separated list of terms or nulls.  A single XML attribute codeSpace may be provided, which authorises all the terms in the list.
-	CategoryList *CodeOrNullListType `xml:"http://www.opengis.net/gml CategoryList,omitempty"`
-	// A space separated list of amounts or nulls.  The amounts use the XML Schema type double.  A single XML attribute uom (unit of measure) is required, whose value is a URI which identifies the definition of the scale or units by which all the amounts in the list must be multiplied.
-	QuantityList *MeasureOrNullListType `xml:"http://www.opengis.net/gml QuantityList,omitempty"`
-	// A space-separated list of integers or nulls.
-	CountList *string `xml:"http://www.opengis.net/gml CountList,omitempty"`
-	// Utility element to store a 2-point range of ordinal values. If one member is a null, then this is a single ended interval.
-	CategoryExtent *CategoryExtentType `xml:"http://www.opengis.net/gml CategoryExtent,omitempty"`
-	// Utility element to store a 2-point range of numeric values. If one member is a null, then this is a single ended interval.
-	QuantityExtent *QuantityExtentType `xml:"http://www.opengis.net/gml QuantityExtent,omitempty"`
-	// Utility element to store a 2-point range of frequency values. If one member is a null, then this is a single ended interval.
-	CountExtent  *string `xml:"http://www.opengis.net/gml CountExtent,omitempty"`
-	RemoteSchema string  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	Quantity     *MeasureType `xml:"http://www.opengis.net/gml Quantity,omitempty"`
+	RemoteSchema string       `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    string       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         string       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         string       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      string       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        string       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         string       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      string       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type RangeParametersType struct {
@@ -7267,76 +5815,20 @@ type RectifiedGridCoverageType struct {
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// deprecated in GML version 3.1
-	Location           *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
-	PriorityLocation   *PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	DomainSet          *DomainSetType                `xml:"http://www.opengis.net/gml domainSet,omitempty"`
-	GridDomain         *GridDomainType               `xml:"http://www.opengis.net/gml gridDomain,omitempty"`
-	MultiCurveDomain   *MultiCurveDomainType         `xml:"http://www.opengis.net/gml multiCurveDomain,omitempty"`
-	MultiPointDomain   *MultiPointDomainType         `xml:"http://www.opengis.net/gml multiPointDomain,omitempty"`
-	MultiSolidDomain   *MultiSolidDomainType         `xml:"http://www.opengis.net/gml multiSolidDomain,omitempty"`
-	MultiSurfaceDomain *MultiSurfaceDomainType       `xml:"http://www.opengis.net/gml multiSurfaceDomain,omitempty"`
-	Dimension          *int                          `xml:"dimension,attr,omitempty"`
+	Dimension               *int       `xml:"dimension,attr,omitempty"`
 }
 
 type RectifiedGridDomainType struct {
 	// Should be substitutionGroup="gml:Grid" but changed in order to accomplish Xerces-J schema validation
 	RectifiedGrid *RectifiedGridType `xml:"http://www.opengis.net/gml RectifiedGrid,omitempty"`
-	// The "_Geometry" element is the abstract head of the substituition group for all geometry elements of GML 3. This
-	// includes pre-defined and user-defined geometry elements. Any geometry element must be a direct or indirect extension/restriction
-	// of AbstractGeometryType and must be directly or indirectly in the substitution group of "_Geometry".
-	AbstractGeometry           *AbstractGeometryType           `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
-	CompositeCurve             *CompositeCurveType             `xml:"http://www.opengis.net/gml CompositeCurve,omitempty"`
-	CompositeSolid             *CompositeSolidType             `xml:"http://www.opengis.net/gml CompositeSolid,omitempty"`
-	CompositeSurface           *CompositeSurfaceType           `xml:"http://www.opengis.net/gml CompositeSurface,omitempty"`
-	Curve                      *CurveType                      `xml:"http://www.opengis.net/gml Curve,omitempty"`
-	GeometricComplex           *GeometricComplexType           `xml:"http://www.opengis.net/gml GeometricComplex,omitempty"`
-	Grid                       *GridType                       `xml:"http://www.opengis.net/gml Grid,omitempty"`
-	LineString                 *LineStringType                 `xml:"http://www.opengis.net/gml LineString,omitempty"`
-	LinearRing                 *LinearRingType                 `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
-	MultiCurve                 *MultiCurveType                 `xml:"http://www.opengis.net/gml MultiCurve,omitempty"`
-	MultiGeometry              *MultiGeometryType              `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
-	MultiLineString            *MultiLineStringType            `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
-	MultiPoint                 *MultiPointType                 `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
-	MultiPolygon               *MultiPolygonType               `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
-	MultiSolid                 *MultiSolidType                 `xml:"http://www.opengis.net/gml MultiSolid,omitempty"`
-	MultiSurface               *MultiSurfaceType               `xml:"http://www.opengis.net/gml MultiSurface,omitempty"`
-	OrientableCurve            *OrientableCurveType            `xml:"http://www.opengis.net/gml OrientableCurve,omitempty"`
-	OrientableSurface          *OrientableSurfaceType          `xml:"http://www.opengis.net/gml OrientableSurface,omitempty"`
-	Point                      *PointType                      `xml:"http://www.opengis.net/gml Point,omitempty"`
-	Polygon                    *PolygonType                    `xml:"http://www.opengis.net/gml Polygon,omitempty"`
-	PolyhedralSurface          *PolyhedralSurfaceType          `xml:"http://www.opengis.net/gml PolyhedralSurface,omitempty"`
-	Ring                       *RingType                       `xml:"http://www.opengis.net/gml Ring,omitempty"`
-	Solid                      *SolidType                      `xml:"http://www.opengis.net/gml Solid,omitempty"`
-	Surface                    *SurfaceType                    `xml:"http://www.opengis.net/gml Surface,omitempty"`
-	Tin                        *TinType                        `xml:"http://www.opengis.net/gml Tin,omitempty"`
-	TriangulatedSurface        *TriangulatedSurfaceType        `xml:"http://www.opengis.net/gml TriangulatedSurface,omitempty"`
-	AbstractCurve              *AbstractCurveType              `xml:"http://www.opengis.net/gml _Curve,omitempty"`
-	AbstractGeometricAggregate *AbstractGeometricAggregateType `xml:"http://www.opengis.net/gml _GeometricAggregate,omitempty"`
-	AbstractGeometricPrimitive *AbstractGeometricPrimitiveType `xml:"http://www.opengis.net/gml _GeometricPrimitive,omitempty"`
-	AbstractImplicitGeometry   *AbstractGeometryType           `xml:"http://www.opengis.net/gml _ImplicitGeometry,omitempty"`
-	AbstractRing               *AbstractRingType               `xml:"http://www.opengis.net/gml _Ring,omitempty"`
-	AbstractSolid              *AbstractSolidType              `xml:"http://www.opengis.net/gml _Solid,omitempty"`
-	AbstractSurface            *AbstractSurfaceType            `xml:"http://www.opengis.net/gml _Surface,omitempty"`
-	// This abstract element acts as the head of the substitution group for temporal primitives and complexes.
-	AbstractTimeObject             *AbstractTimeObjectType             `xml:"http://www.opengis.net/gml _TimeObject,omitempty"`
-	TimeEdge                       *TimeEdgeType                       `xml:"http://www.opengis.net/gml TimeEdge,omitempty"`
-	TimeInstant                    *TimeInstantType                    `xml:"http://www.opengis.net/gml TimeInstant,omitempty"`
-	TimeNode                       *TimeNodeType                       `xml:"http://www.opengis.net/gml TimeNode,omitempty"`
-	TimePeriod                     *TimePeriodType                     `xml:"http://www.opengis.net/gml TimePeriod,omitempty"`
-	TimeTopologyComplex            *TimeTopologyComplexType            `xml:"http://www.opengis.net/gml TimeTopologyComplex,omitempty"`
-	AbstractTimeComplex            *AbstractTimeComplexType            `xml:"http://www.opengis.net/gml _TimeComplex,omitempty"`
-	AbstractTimeGeometricPrimitive *AbstractTimeGeometricPrimitiveType `xml:"http://www.opengis.net/gml _TimeGeometricPrimitive,omitempty"`
-	AbstractTimePrimitive          *AbstractTimePrimitiveType          `xml:"http://www.opengis.net/gml _TimePrimitive,omitempty"`
-	AbstractTimeTopologyPrimitive  *AbstractTimeTopologyPrimitiveType  `xml:"http://www.opengis.net/gml _TimeTopologyPrimitive,omitempty"`
-	RemoteSchema                   string                              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                      string                              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                           string                              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                           string                              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                        string                              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                          string                              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                           string                              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                        string                              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  string             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type RectifiedGridType struct {
@@ -7501,175 +5993,15 @@ type ScalarValuePropertyType struct {
 	// A numeric value with a scale.  The content of the element is an amount using the XML Schema type double which permits decimal or scientific notation.  An XML attribute uom (unit of measure) is required, whose value is a URI which identifies the definition of the scale or units by which the numeric value must be multiplied.
 	Quantity *MeasureType `xml:"http://www.opengis.net/gml Quantity,omitempty"`
 	// An integer representing a frequency of occurrence.
-	Count *int `xml:"http://www.opengis.net/gml Count,omitempty"`
-	// This abstract element is the head of a substitutionGroup hierararchy which may contain either simpleContent or complexContent elements.  It is used to assert the model position of "class" elements declared in other GML schemas.
-	AbstractObject                    *string                                `xml:"http://www.opengis.net/gml _Object,omitempty"`
-	Array                             *ArrayType                             `xml:"http://www.opengis.net/gml Array,omitempty"`
-	Bag                               *BagType                               `xml:"http://www.opengis.net/gml Bag,omitempty"`
-	BaseUnit                          *BaseUnitType                          `xml:"http://www.opengis.net/gml BaseUnit,omitempty"`
-	CartesianCS                       *CartesianCSType                       `xml:"http://www.opengis.net/gml CartesianCS,omitempty"`
-	CompositeCurve                    *CompositeCurveType                    `xml:"http://www.opengis.net/gml CompositeCurve,omitempty"`
-	CompositeSolid                    *CompositeSolidType                    `xml:"http://www.opengis.net/gml CompositeSolid,omitempty"`
-	CompositeSurface                  *CompositeSurfaceType                  `xml:"http://www.opengis.net/gml CompositeSurface,omitempty"`
-	CompoundCRS                       *CompoundCRSType                       `xml:"http://www.opengis.net/gml CompoundCRS,omitempty"`
-	ConcatenatedOperation             *ConcatenatedOperationType             `xml:"http://www.opengis.net/gml ConcatenatedOperation,omitempty"`
-	ConventionalUnit                  *ConventionalUnitType                  `xml:"http://www.opengis.net/gml ConventionalUnit,omitempty"`
-	Conversion                        *ConversionType                        `xml:"http://www.opengis.net/gml Conversion,omitempty"`
-	CoordinateSystemAxis              *CoordinateSystemAxisType              `xml:"http://www.opengis.net/gml CoordinateSystemAxis,omitempty"`
-	Curve                             *CurveType                             `xml:"http://www.opengis.net/gml Curve,omitempty"`
-	CylindricalCS                     *CylindricalCSType                     `xml:"http://www.opengis.net/gml CylindricalCS,omitempty"`
-	Definition                        *DefinitionType                        `xml:"http://www.opengis.net/gml Definition,omitempty"`
-	DefinitionCollection              *DictionaryType                        `xml:"http://www.opengis.net/gml DefinitionCollection,omitempty"`
-	DefinitionProxy                   *DefinitionProxyType                   `xml:"http://www.opengis.net/gml DefinitionProxy,omitempty"`
-	DerivedCRS                        *DerivedCRSType                        `xml:"http://www.opengis.net/gml DerivedCRS,omitempty"`
-	DerivedUnit                       *DerivedUnitType                       `xml:"http://www.opengis.net/gml DerivedUnit,omitempty"`
-	Dictionary                        *DictionaryType                        `xml:"http://www.opengis.net/gml Dictionary,omitempty"`
-	DirectedObservation               *DirectedObservationType               `xml:"http://www.opengis.net/gml DirectedObservation,omitempty"`
-	DirectedObservationAtDistance     *DirectedObservationAtDistanceType     `xml:"http://www.opengis.net/gml DirectedObservationAtDistance,omitempty"`
-	Edge                              *EdgeType                              `xml:"http://www.opengis.net/gml Edge,omitempty"`
-	Ellipsoid                         *EllipsoidType                         `xml:"http://www.opengis.net/gml Ellipsoid,omitempty"`
-	EllipsoidalCS                     *EllipsoidalCSType                     `xml:"http://www.opengis.net/gml EllipsoidalCS,omitempty"`
-	EngineeringCRS                    *EngineeringCRSType                    `xml:"http://www.opengis.net/gml EngineeringCRS,omitempty"`
-	EngineeringDatum                  *EngineeringDatumType                  `xml:"http://www.opengis.net/gml EngineeringDatum,omitempty"`
-	Face                              *FaceType                              `xml:"http://www.opengis.net/gml Face,omitempty"`
-	FeatureCollection                 *FeatureCollectionType                 `xml:"http://www.opengis.net/gml FeatureCollection,omitempty"`
-	FeatureStyle                      *FeatureStyleType                      `xml:"http://www.opengis.net/gml FeatureStyle,omitempty"`
-	GenericMetaData                   *GenericMetaDataType                   `xml:"http://www.opengis.net/gml GenericMetaData,omitempty"`
-	GeocentricCRS                     *GeocentricCRSType                     `xml:"http://www.opengis.net/gml GeocentricCRS,omitempty"`
-	GeodeticDatum                     *GeodeticDatumType                     `xml:"http://www.opengis.net/gml GeodeticDatum,omitempty"`
-	GeographicCRS                     *GeographicCRSType                     `xml:"http://www.opengis.net/gml GeographicCRS,omitempty"`
-	GeometricComplex                  *GeometricComplexType                  `xml:"http://www.opengis.net/gml GeometricComplex,omitempty"`
-	GeometryStyle                     *GeometryStyleType                     `xml:"http://www.opengis.net/gml GeometryStyle,omitempty"`
-	GraphStyle                        *GraphStyleType                        `xml:"http://www.opengis.net/gml GraphStyle,omitempty"`
-	Grid                              *GridType                              `xml:"http://www.opengis.net/gml Grid,omitempty"`
-	GridCoverage                      *GridCoverageType                      `xml:"http://www.opengis.net/gml GridCoverage,omitempty"`
-	ImageCRS                          *ImageCRSType                          `xml:"http://www.opengis.net/gml ImageCRS,omitempty"`
-	ImageDatum                        *ImageDatumType                        `xml:"http://www.opengis.net/gml ImageDatum,omitempty"`
-	LabelStyle                        *LabelStyleType                        `xml:"http://www.opengis.net/gml LabelStyle,omitempty"`
-	LineString                        *LineStringType                        `xml:"http://www.opengis.net/gml LineString,omitempty"`
-	LinearCS                          *LinearCSType                          `xml:"http://www.opengis.net/gml LinearCS,omitempty"`
-	LinearRing                        *LinearRingType                        `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
-	MovingObjectStatus                *MovingObjectStatusType                `xml:"http://www.opengis.net/gml MovingObjectStatus,omitempty"`
-	MultiCurve                        *MultiCurveType                        `xml:"http://www.opengis.net/gml MultiCurve,omitempty"`
-	MultiCurveCoverage                *MultiCurveCoverageType                `xml:"http://www.opengis.net/gml MultiCurveCoverage,omitempty"`
-	MultiGeometry                     *MultiGeometryType                     `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
-	MultiLineString                   *MultiLineStringType                   `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
-	MultiPoint                        *MultiPointType                        `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
-	MultiPointCoverage                *MultiPointCoverageType                `xml:"http://www.opengis.net/gml MultiPointCoverage,omitempty"`
-	MultiPolygon                      *MultiPolygonType                      `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
-	MultiSolid                        *MultiSolidType                        `xml:"http://www.opengis.net/gml MultiSolid,omitempty"`
-	MultiSolidCoverage                *MultiSolidCoverageType                `xml:"http://www.opengis.net/gml MultiSolidCoverage,omitempty"`
-	MultiSurface                      *MultiSurfaceType                      `xml:"http://www.opengis.net/gml MultiSurface,omitempty"`
-	MultiSurfaceCoverage              *MultiSurfaceCoverageType              `xml:"http://www.opengis.net/gml MultiSurfaceCoverage,omitempty"`
-	Node                              *NodeType                              `xml:"http://www.opengis.net/gml Node,omitempty"`
-	ObliqueCartesianCS                *ObliqueCartesianCSType                `xml:"http://www.opengis.net/gml ObliqueCartesianCS,omitempty"`
-	Observation                       *ObservationType                       `xml:"http://www.opengis.net/gml Observation,omitempty"`
-	OperationMethod                   *OperationMethodType                   `xml:"http://www.opengis.net/gml OperationMethod,omitempty"`
-	OperationParameter                *OperationParameterType                `xml:"http://www.opengis.net/gml OperationParameter,omitempty"`
-	OperationParameterGroup           *OperationParameterGroupType           `xml:"http://www.opengis.net/gml OperationParameterGroup,omitempty"`
-	OrientableCurve                   *OrientableCurveType                   `xml:"http://www.opengis.net/gml OrientableCurve,omitempty"`
-	OrientableSurface                 *OrientableSurfaceType                 `xml:"http://www.opengis.net/gml OrientableSurface,omitempty"`
-	PassThroughOperation              *PassThroughOperationType              `xml:"http://www.opengis.net/gml PassThroughOperation,omitempty"`
-	Point                             *PointType                             `xml:"http://www.opengis.net/gml Point,omitempty"`
-	PolarCS                           *PolarCSType                           `xml:"http://www.opengis.net/gml PolarCS,omitempty"`
-	Polygon                           *PolygonType                           `xml:"http://www.opengis.net/gml Polygon,omitempty"`
-	PolyhedralSurface                 *PolyhedralSurfaceType                 `xml:"http://www.opengis.net/gml PolyhedralSurface,omitempty"`
-	PrimeMeridian                     *PrimeMeridianType                     `xml:"http://www.opengis.net/gml PrimeMeridian,omitempty"`
-	ProjectedCRS                      *ProjectedCRSType                      `xml:"http://www.opengis.net/gml ProjectedCRS,omitempty"`
-	RectifiedGrid                     *RectifiedGridType                     `xml:"http://www.opengis.net/gml RectifiedGrid,omitempty"`
-	RectifiedGridCoverage             *RectifiedGridCoverageType             `xml:"http://www.opengis.net/gml RectifiedGridCoverage,omitempty"`
-	Ring                              *RingType                              `xml:"http://www.opengis.net/gml Ring,omitempty"`
-	Solid                             *SolidType                             `xml:"http://www.opengis.net/gml Solid,omitempty"`
-	SphericalCS                       *SphericalCSType                       `xml:"http://www.opengis.net/gml SphericalCS,omitempty"`
-	Style                             *StyleType                             `xml:"http://www.opengis.net/gml Style,omitempty"`
-	Surface                           *SurfaceType                           `xml:"http://www.opengis.net/gml Surface,omitempty"`
-	TemporalCRS                       *TemporalCRSType                       `xml:"http://www.opengis.net/gml TemporalCRS,omitempty"`
-	TemporalCS                        *TemporalCSType                        `xml:"http://www.opengis.net/gml TemporalCS,omitempty"`
-	TemporalDatum                     *TemporalDatumType                     `xml:"http://www.opengis.net/gml TemporalDatum,omitempty"`
-	TimeCalendar                      *TimeCalendarType                      `xml:"http://www.opengis.net/gml TimeCalendar,omitempty"`
-	TimeCalendarEra                   *TimeCalendarEraType                   `xml:"http://www.opengis.net/gml TimeCalendarEra,omitempty"`
-	TimeClock                         *TimeClockType                         `xml:"http://www.opengis.net/gml TimeClock,omitempty"`
-	TimeCoordinateSystem              *TimeCoordinateSystemType              `xml:"http://www.opengis.net/gml TimeCoordinateSystem,omitempty"`
-	TimeEdge                          *TimeEdgeType                          `xml:"http://www.opengis.net/gml TimeEdge,omitempty"`
-	TimeInstant                       *TimeInstantType                       `xml:"http://www.opengis.net/gml TimeInstant,omitempty"`
-	TimeNode                          *TimeNodeType                          `xml:"http://www.opengis.net/gml TimeNode,omitempty"`
-	TimeOrdinalReferenceSystem        *TimeOrdinalReferenceSystemType        `xml:"http://www.opengis.net/gml TimeOrdinalReferenceSystem,omitempty"`
-	TimePeriod                        *TimePeriodType                        `xml:"http://www.opengis.net/gml TimePeriod,omitempty"`
-	TimeTopologyComplex               *TimeTopologyComplexType               `xml:"http://www.opengis.net/gml TimeTopologyComplex,omitempty"`
-	Tin                               *TinType                               `xml:"http://www.opengis.net/gml Tin,omitempty"`
-	TopoComplex                       *TopoComplexType                       `xml:"http://www.opengis.net/gml TopoComplex,omitempty"`
-	TopoSolid                         *TopoSolidType                         `xml:"http://www.opengis.net/gml TopoSolid,omitempty"`
-	TopologyStyle                     *TopologyStyleType                     `xml:"http://www.opengis.net/gml TopologyStyle,omitempty"`
-	Transformation                    *TransformationType                    `xml:"http://www.opengis.net/gml Transformation,omitempty"`
-	TriangulatedSurface               *TriangulatedSurfaceType               `xml:"http://www.opengis.net/gml TriangulatedSurface,omitempty"`
-	UnitDefinition                    *UnitDefinitionType                    `xml:"http://www.opengis.net/gml UnitDefinition,omitempty"`
-	UserDefinedCS                     *UserDefinedCSType                     `xml:"http://www.opengis.net/gml UserDefinedCS,omitempty"`
-	VerticalCRS                       *VerticalCRSType                       `xml:"http://www.opengis.net/gml VerticalCRS,omitempty"`
-	VerticalCS                        *VerticalCSType                        `xml:"http://www.opengis.net/gml VerticalCS,omitempty"`
-	VerticalDatum                     *VerticalDatumType                     `xml:"http://www.opengis.net/gml VerticalDatum,omitempty"`
-	AbstractCRS                       *AbstractReferenceSystemType           `xml:"http://www.opengis.net/gml _CRS,omitempty"`
-	AbstractContinuousCoverage        *AbstractContinuousCoverageType        `xml:"http://www.opengis.net/gml _ContinuousCoverage,omitempty"`
-	AbstractCoordinateOperation       *AbstractCoordinateOperationType       `xml:"http://www.opengis.net/gml _CoordinateOperation,omitempty"`
-	AbstractCoordinateReferenceSystem *AbstractReferenceSystemType           `xml:"http://www.opengis.net/gml _CoordinateReferenceSystem,omitempty"`
-	AbstractCoordinateSystem          *AbstractCoordinateSystemType          `xml:"http://www.opengis.net/gml _CoordinateSystem,omitempty"`
-	AbstractCoverage                  *AbstractCoverageType                  `xml:"http://www.opengis.net/gml _Coverage,omitempty"`
-	AbstractCurve                     *AbstractCurveType                     `xml:"http://www.opengis.net/gml _Curve,omitempty"`
-	AbstractDatum                     *AbstractDatumType                     `xml:"http://www.opengis.net/gml _Datum,omitempty"`
-	AbstractDiscreteCoverage          *AbstractDiscreteCoverageType          `xml:"http://www.opengis.net/gml _DiscreteCoverage,omitempty"`
-	AbstractFeature                   *AbstractFeatureType                   `xml:"http://www.opengis.net/gml _Feature,omitempty"`
-	AbstractFeatureCollection         *AbstractFeatureCollectionType         `xml:"http://www.opengis.net/gml _FeatureCollection,omitempty"`
-	AbstractGML                       *AbstractGMLType                       `xml:"http://www.opengis.net/gml _GML,omitempty"`
-	AbstractGeneralConversion         *AbstractGeneralConversionType         `xml:"http://www.opengis.net/gml _GeneralConversion,omitempty"`
-	AbstractGeneralDerivedCRS         *AbstractGeneralDerivedCRSType         `xml:"http://www.opengis.net/gml _GeneralDerivedCRS,omitempty"`
-	AbstractGeneralOperationParameter *AbstractGeneralOperationParameterType `xml:"http://www.opengis.net/gml _GeneralOperationParameter,omitempty"`
-	AbstractGeneralTransformation     *AbstractGeneralTransformationType     `xml:"http://www.opengis.net/gml _GeneralTransformation,omitempty"`
-	AbstractGeometricAggregate        *AbstractGeometricAggregateType        `xml:"http://www.opengis.net/gml _GeometricAggregate,omitempty"`
-	AbstractGeometricPrimitive        *AbstractGeometricPrimitiveType        `xml:"http://www.opengis.net/gml _GeometricPrimitive,omitempty"`
-	AbstractGeometry                  *AbstractGeometryType                  `xml:"http://www.opengis.net/gml _Geometry,omitempty"`
-	AbstractImplicitGeometry          *AbstractGeometryType                  `xml:"http://www.opengis.net/gml _ImplicitGeometry,omitempty"`
-	AbstractMetaData                  *AbstractMetaDataType                  `xml:"http://www.opengis.net/gml _MetaData,omitempty"`
-	AbstractOperation                 *AbstractCoordinateOperationType       `xml:"http://www.opengis.net/gml _Operation,omitempty"`
-	AbstractReferenceSystem           *AbstractReferenceSystemType           `xml:"http://www.opengis.net/gml _ReferenceSystem,omitempty"`
-	AbstractRing                      *AbstractRingType                      `xml:"http://www.opengis.net/gml _Ring,omitempty"`
-	AbstractSingleOperation           *AbstractCoordinateOperationType       `xml:"http://www.opengis.net/gml _SingleOperation,omitempty"`
-	AbstractSolid                     *AbstractSolidType                     `xml:"http://www.opengis.net/gml _Solid,omitempty"`
-	AbstractStyle                     *AbstractStyleType                     `xml:"http://www.opengis.net/gml _Style,omitempty"`
-	AbstractSurface                   *AbstractSurfaceType                   `xml:"http://www.opengis.net/gml _Surface,omitempty"`
-	AbstractTimeComplex               *AbstractTimeComplexType               `xml:"http://www.opengis.net/gml _TimeComplex,omitempty"`
-	AbstractTimeGeometricPrimitive    *AbstractTimeGeometricPrimitiveType    `xml:"http://www.opengis.net/gml _TimeGeometricPrimitive,omitempty"`
-	AbstractTimeObject                *AbstractTimeObjectType                `xml:"http://www.opengis.net/gml _TimeObject,omitempty"`
-	AbstractTimePrimitive             *AbstractTimePrimitiveType             `xml:"http://www.opengis.net/gml _TimePrimitive,omitempty"`
-	AbstractTimeReferenceSystem       *AbstractTimeReferenceSystemType       `xml:"http://www.opengis.net/gml _TimeReferenceSystem,omitempty"`
-	AbstractTimeSlice                 *AbstractTimeSliceType                 `xml:"http://www.opengis.net/gml _TimeSlice,omitempty"`
-	AbstractTimeTopologyPrimitive     *AbstractTimeTopologyPrimitiveType     `xml:"http://www.opengis.net/gml _TimeTopologyPrimitive,omitempty"`
-	AbstractTopoPrimitive             *AbstractTopoPrimitiveType             `xml:"http://www.opengis.net/gml _TopoPrimitive,omitempty"`
-	AbstractTopology                  *AbstractTopologyType                  `xml:"http://www.opengis.net/gml _Topology,omitempty"`
-	Null                              *string                                `xml:"http://www.opengis.net/gml Null,omitempty"`
-	// Aggregate value built using the Composite pattern.
-	CompositeValue *CompositeValueType `xml:"http://www.opengis.net/gml CompositeValue,omitempty"`
-	ValueArray     *ValueArrayType     `xml:"http://www.opengis.net/gml ValueArray,omitempty"`
-	// XML List based on XML Schema boolean type.  An element of this type contains a space-separated list of boolean values {0,1,true,false}
-	BooleanList *string `xml:"http://www.opengis.net/gml BooleanList,omitempty"`
-	// A space-separated list of terms or nulls.  A single XML attribute codeSpace may be provided, which authorises all the terms in the list.
-	CategoryList *CodeOrNullListType `xml:"http://www.opengis.net/gml CategoryList,omitempty"`
-	// A space separated list of amounts or nulls.  The amounts use the XML Schema type double.  A single XML attribute uom (unit of measure) is required, whose value is a URI which identifies the definition of the scale or units by which all the amounts in the list must be multiplied.
-	QuantityList *MeasureOrNullListType `xml:"http://www.opengis.net/gml QuantityList,omitempty"`
-	// A space-separated list of integers or nulls.
-	CountList *string `xml:"http://www.opengis.net/gml CountList,omitempty"`
-	// Utility element to store a 2-point range of ordinal values. If one member is a null, then this is a single ended interval.
-	CategoryExtent *CategoryExtentType `xml:"http://www.opengis.net/gml CategoryExtent,omitempty"`
-	// Utility element to store a 2-point range of numeric values. If one member is a null, then this is a single ended interval.
-	QuantityExtent *QuantityExtentType `xml:"http://www.opengis.net/gml QuantityExtent,omitempty"`
-	// Utility element to store a 2-point range of frequency values. If one member is a null, then this is a single ended interval.
-	CountExtent  *string `xml:"http://www.opengis.net/gml CountExtent,omitempty"`
-	RemoteSchema string  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	Count        *int   `xml:"http://www.opengis.net/gml Count,omitempty"`
+	RemoteSchema string `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type ScaleType struct {
@@ -7809,18 +6141,6 @@ type SphericalCSType struct {
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
 	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -8052,18 +6372,6 @@ type TemporalCRSType struct {
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
 	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -8096,18 +6404,6 @@ type TemporalCSType struct {
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
 	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -8128,28 +6424,6 @@ type TemporalDatumBaseType struct {
 	// Description of domain of usage, or limitations of usage, for which this CRS object is valid.
 	Scope *string `xml:"http://www.opengis.net/gml scope,omitempty"`
 	Id    string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	// Comments on this reference system, including source information.
-	Remarks *StringOrRefType `xml:"http://www.opengis.net/gml remarks,omitempty"`
-	// Description, possibly including coordinates, of the point or points used to anchor the datum to the Earth. Also known as the "origin", especially for engineering and image datums. The codeSpace attribute can be used to reference a source of more detailed on this point or surface, or on a set of such descriptions.
-	// - For a geodetic datum, this point is also known as the fundamental point, which is traditionally the point where the relationship between geoid and ellipsoid is defined. In some cases, the "fundamental point" may consist of a number of points. In those cases, the parameters defining the geoid/ellipsoid relationship have been averaged for these points, and the averages adopted as the datum definition.
-	// - For an engineering datum, the anchor point may be a physical point, or it may be a point with defined coordinates in another CRS. When appropriate, the coordinates of this anchor point can be referenced in another document, such as referencing a GML feature that references or includes a point position.
-	// - For an image datum, the anchor point is usually either the centre of the image or the corner of the image.
-	// - For a temporal datum, this attribute is not defined. Instead of the anchor point, a temporal datum carries a separate time origin of type DateTime.
-	AnchorPoint *CodeType `xml:"http://www.opengis.net/gml anchorPoint,omitempty"`
-	// The time after which this datum definition is valid. This time may be precise (e.g. 1997.0 for IRTF97) or merely a year (e.g. 1983 for NAD83). In the latter case, the epoch usually refers to the year in which a major recalculation of the geodetic control network, underlying the datum, was executed or initiated. An old datum can remain valid after a new datum is defined. Alternatively, a datum may be superseded by a later datum, in which case the realization epoch for the new datum defines the upper limit for the validity of the superseded datum.
-	RealizationEpoch *string `xml:"http://www.opengis.net/gml realizationEpoch,omitempty"`
 }
 
 type TemporalDatumRefType struct {
@@ -8176,28 +6450,6 @@ type TemporalDatumType struct {
 	// Description of domain of usage, or limitations of usage, for which this CRS object is valid.
 	Scope *string `xml:"http://www.opengis.net/gml scope,omitempty"`
 	Id    string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	// Comments on this reference system, including source information.
-	Remarks *StringOrRefType `xml:"http://www.opengis.net/gml remarks,omitempty"`
-	// Description, possibly including coordinates, of the point or points used to anchor the datum to the Earth. Also known as the "origin", especially for engineering and image datums. The codeSpace attribute can be used to reference a source of more detailed on this point or surface, or on a set of such descriptions.
-	// - For a geodetic datum, this point is also known as the fundamental point, which is traditionally the point where the relationship between geoid and ellipsoid is defined. In some cases, the "fundamental point" may consist of a number of points. In those cases, the parameters defining the geoid/ellipsoid relationship have been averaged for these points, and the averages adopted as the datum definition.
-	// - For an engineering datum, the anchor point may be a physical point, or it may be a point with defined coordinates in another CRS. When appropriate, the coordinates of this anchor point can be referenced in another document, such as referencing a GML feature that references or includes a point position.
-	// - For an image datum, the anchor point is usually either the centre of the image or the corner of the image.
-	// - For a temporal datum, this attribute is not defined. Instead of the anchor point, a temporal datum carries a separate time origin of type DateTime.
-	AnchorPoint *CodeType `xml:"http://www.opengis.net/gml anchorPoint,omitempty"`
-	// The time after which this datum definition is valid. This time may be precise (e.g. 1997.0 for IRTF97) or merely a year (e.g. 1983 for NAD83). In the latter case, the epoch usually refers to the year in which a major recalculation of the geodetic control network, underlying the datum, was executed or initiated. An old datum can remain valid after a new datum is defined. Alternatively, a datum may be superseded by a later datum, in which case the realization epoch for the new datum defines the upper limit for the validity of the superseded datum.
-	RealizationEpoch *string `xml:"http://www.opengis.net/gml realizationEpoch,omitempty"`
 	// The date and time origin of this temporal datum.
 	Origin *string `xml:"http://www.opengis.net/gml origin,omitempty"`
 }
@@ -8711,9 +6963,6 @@ type TinType struct {
 	// axisLabels attribute is included, this attribute shall also be included. When the axisLabels attribute is omitted, this attribute
 	// shall also be omitted.
 	UomLabels *string `xml:"uomLabels,attr,omitempty"`
-	// This element encapsulates the patches of the surface.
-	Patches        *SurfacePatchArrayPropertyType `xml:"http://www.opengis.net/gml patches,omitempty"`
-	PolygonPatches *PolygonPatchArrayPropertyType `xml:"http://www.opengis.net/gml polygonPatches,omitempty"`
 	// Stoplines are lines where the local
 	// continuity or regularity of the surface is questionable.
 	// In the area of these pathologies, triangles intersecting
@@ -8979,7 +7228,6 @@ type TopologyStyleType struct {
 
 type TrackType struct {
 	MovingObjectStatus []MovingObjectStatusType `xml:"http://www.opengis.net/gml MovingObjectStatus"`
-	AbstractTimeSlice  []AbstractTimeSliceType  `xml:"http://www.opengis.net/gml _TimeSlice"`
 }
 
 type TransformationRefType struct {
@@ -9018,18 +7266,6 @@ type TransformationType struct {
 	// Association to the target CRS (coordinate reference system) of this coordinate operation. For constraints on multiplicity of "sourceCRS" and "targetCRS", see UML model of Coordinate Operation package in OGC Abstract Specification topic 2.
 	TargetCRS *CRSRefType `xml:"http://www.opengis.net/gml targetCRS,omitempty"`
 	Id        string      `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name          []CodeType `xml:"http://www.opengis.net/gml name"`
-	CsName        []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName     []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName     []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName  []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName    []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName       []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Association to the operation method used by this coordinate operation.
 	UsesMethod *OperationMethodRefType `xml:"http://www.opengis.net/gml usesMethod,omitempty"`
 	// Unordered set of composition associations to the set of parameter values used by this transformation operation.
@@ -9038,15 +7274,6 @@ type TransformationType struct {
 
 type TrianglePatchArrayPropertyType struct {
 	Triangle []TriangleType `xml:"http://www.opengis.net/gml Triangle"`
-	// The "_SurfacePatch" element is the abstract head of the substituition group for all surface pach elements describing a continuous portion of a surface.
-	AbstractSurfacePatch           []AbstractSurfacePatchType           `xml:"http://www.opengis.net/gml _SurfacePatch"`
-	Cone                           []ConeType                           `xml:"http://www.opengis.net/gml Cone"`
-	Cylinder                       []CylinderType                       `xml:"http://www.opengis.net/gml Cylinder"`
-	PolygonPatch                   []PolygonPatchType                   `xml:"http://www.opengis.net/gml PolygonPatch"`
-	Rectangle                      []RectangleType                      `xml:"http://www.opengis.net/gml Rectangle"`
-	Sphere                         []SphereType                         `xml:"http://www.opengis.net/gml Sphere"`
-	AbstractGriddedSurface         []AbstractGriddedSurfaceType         `xml:"http://www.opengis.net/gml _GriddedSurface"`
-	AbstractParametricCurveSurface []AbstractParametricCurveSurfaceType `xml:"http://www.opengis.net/gml _ParametricCurveSurface"`
 }
 
 type TriangleType struct {
@@ -9098,9 +7325,6 @@ type TriangulatedSurfaceType struct {
 	// axisLabels attribute is included, this attribute shall also be included. When the axisLabels attribute is omitted, this attribute
 	// shall also be omitted.
 	UomLabels *string `xml:"uomLabels,attr,omitempty"`
-	// This element encapsulates the patches of the surface.
-	Patches        *SurfacePatchArrayPropertyType `xml:"http://www.opengis.net/gml patches,omitempty"`
-	PolygonPatches *PolygonPatchArrayPropertyType `xml:"http://www.opengis.net/gml polygonPatches,omitempty"`
 }
 
 type UnitDefinitionType struct {
@@ -9149,18 +7373,6 @@ type UserDefinedCSType struct {
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
 	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -9584,18 +7796,6 @@ type VerticalCRSType struct {
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
 	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -9628,18 +7828,6 @@ type VerticalCSType struct {
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
 	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	DatumName               []CodeType `xml:"http://www.opengis.net/gml datumName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -9666,18 +7854,6 @@ type VerticalDatumType struct {
 	// The name by which this datum is identified.
 	DatumName *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
 	Id        string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	// Contains a simple text description of the object, or refers to an external description.
-	Description *StringOrRefType `xml:"http://www.opengis.net/gml description,omitempty"`
-	// Label for the object, normally a descriptive name. An object may have several names, typically assigned by different authorities.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.
-	Name                    []CodeType `xml:"http://www.opengis.net/gml name"`
-	CoordinateOperationName []CodeType `xml:"http://www.opengis.net/gml coordinateOperationName"`
-	CsName                  []CodeType `xml:"http://www.opengis.net/gml csName"`
-	EllipsoidName           []CodeType `xml:"http://www.opengis.net/gml ellipsoidName"`
-	GroupName               []CodeType `xml:"http://www.opengis.net/gml groupName"`
-	MeridianName            []CodeType `xml:"http://www.opengis.net/gml meridianName"`
-	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
-	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
-	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	// Set of alternative identifications of this datum. The first datumID, if any, is normally the primary identification code, and any others are aliases.
 	DatumID []IdentifierType `xml:"http://www.opengis.net/gml datumID"`
 	// Comments on this reference system, including source information.

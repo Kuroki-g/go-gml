@@ -249,12 +249,6 @@ type AbstractGeneralConversionType struct {
 	// gml:coordinateOperationAccuracy is an association role to a DQ_PositionalAccuracy object as encoded in ISO/TS 19139, either referencing or containing the definition of that positional accuracy. That object contains an estimate of the impact of this coordinate operation on point accuracy. That is, it gives position error estimates for the target coordinates of this coordinate operation, assuming no errors in the source coordinates.
 	CoordinateOperationAccuracy []string `xml:"http://www.opengis.net/gml/3.2 coordinateOperationAccuracy"`
 	Id                          string   `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
-	// gml:operationVersion is the version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters). Mandatory when describing a transformation, and should not be supplied for a conversion.
-	OperationVersion *string `xml:"http://www.opengis.net/gml/3.2 operationVersion,omitempty"`
-	// gml:sourceCRS is an association role to the source CRS (coordinate reference system) of this coordinate operation.
-	SourceCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
-	// gml:targetCRS is an association role to the target CRS (coordinate reference system) of this coordinate operation.
-	TargetCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 targetCRS,omitempty"`
 }
 
 type AbstractGeneralDerivedCRSType struct {
@@ -1135,8 +1129,6 @@ type CircleByCenterPointType struct {
 	NumDerivativesAtStart *int               `xml:"numDerivativesAtStart,attr,omitempty"`
 	NumDerivativesAtEnd   *int               `xml:"numDerivativesAtEnd,attr,omitempty"`
 	NumDerivativeInterior *int               `xml:"numDerivativeInterior,attr,omitempty"`
-	StartAngle            *AngleType         `xml:"http://www.opengis.net/gml/3.2 startAngle,omitempty"`
-	EndAngle              *AngleType         `xml:"http://www.opengis.net/gml/3.2 endAngle,omitempty"`
 	Interpolation         *string            `xml:"interpolation,attr,omitempty"`
 	NumArc                int                `xml:"numArc,attr"`
 }
@@ -1420,12 +1412,6 @@ type ConversionType struct {
 	// gml:coordinateOperationAccuracy is an association role to a DQ_PositionalAccuracy object as encoded in ISO/TS 19139, either referencing or containing the definition of that positional accuracy. That object contains an estimate of the impact of this coordinate operation on point accuracy. That is, it gives position error estimates for the target coordinates of this coordinate operation, assuming no errors in the source coordinates.
 	CoordinateOperationAccuracy []string `xml:"http://www.opengis.net/gml/3.2 coordinateOperationAccuracy"`
 	Id                          string   `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
-	// gml:operationVersion is the version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters). Mandatory when describing a transformation, and should not be supplied for a conversion.
-	OperationVersion *string `xml:"http://www.opengis.net/gml/3.2 operationVersion,omitempty"`
-	// gml:sourceCRS is an association role to the source CRS (coordinate reference system) of this coordinate operation.
-	SourceCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
-	// gml:targetCRS is an association role to the target CRS (coordinate reference system) of this coordinate operation.
-	TargetCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 targetCRS,omitempty"`
 	// gml:method is an association role to the operation method used by a coordinate operation.
 	Method     *OperationMethodPropertyType `xml:"http://www.opengis.net/gml/3.2 method,omitempty"`
 	UsesMethod *OperationMethodPropertyType `xml:"http://www.opengis.net/gml/3.2 usesMethod,omitempty"`
@@ -4750,15 +4736,6 @@ type TemporalDatumBaseType struct {
 	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
 	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
 	Id    string   `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
-	// gml:anchorDefinition is a description, possibly including coordinates, of the definition used to anchor the datum to the Earth. Also known as the "origin", especially for engineering and image datums. The codeSpace attribute may be used to reference a source of more detailed on this point or surface, or on a set of such descriptions.
-	// -	For a geodetic datum, this point is also known as the fundamental point, which is traditionally the point where the relationship between geoid and ellipsoid is defined. In some cases, the "fundamental point" may consist of a number of points. In those cases, the parameters defining the geoid/ellipsoid relationship have been averaged for these points, and the averages adopted as the datum definition.
-	// -	For an engineering datum, the anchor definition may be a physical point, or it may be a point with defined coordinates in another CRS.may
-	// -	For an image datum, the anchor definition is usually either the centre of the image or the corner of the image.
-	// -	For a temporal datum, this attribute is not defined. Instead of the anchor definition, a temporal datum carries a separate time origin of type DateTime.
-	AnchorDefinition *CodeType `xml:"http://www.opengis.net/gml/3.2 anchorDefinition,omitempty"`
-	AnchorPoint      *CodeType `xml:"http://www.opengis.net/gml/3.2 anchorPoint,omitempty"`
-	// gml:realizationEpoch is the time after which this datum definition is valid. See ISO 19111 Table 32 for details.
-	RealizationEpoch *string `xml:"http://www.opengis.net/gml/3.2 realizationEpoch,omitempty"`
 }
 
 type TemporalDatumPropertyType struct {
@@ -4791,15 +4768,6 @@ type TemporalDatumType struct {
 	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
 	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
 	Id    string   `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
-	// gml:anchorDefinition is a description, possibly including coordinates, of the definition used to anchor the datum to the Earth. Also known as the "origin", especially for engineering and image datums. The codeSpace attribute may be used to reference a source of more detailed on this point or surface, or on a set of such descriptions.
-	// -	For a geodetic datum, this point is also known as the fundamental point, which is traditionally the point where the relationship between geoid and ellipsoid is defined. In some cases, the "fundamental point" may consist of a number of points. In those cases, the parameters defining the geoid/ellipsoid relationship have been averaged for these points, and the averages adopted as the datum definition.
-	// -	For an engineering datum, the anchor definition may be a physical point, or it may be a point with defined coordinates in another CRS.may
-	// -	For an image datum, the anchor definition is usually either the centre of the image or the corner of the image.
-	// -	For a temporal datum, this attribute is not defined. Instead of the anchor definition, a temporal datum carries a separate time origin of type DateTime.
-	AnchorDefinition *CodeType `xml:"http://www.opengis.net/gml/3.2 anchorDefinition,omitempty"`
-	AnchorPoint      *CodeType `xml:"http://www.opengis.net/gml/3.2 anchorPoint,omitempty"`
-	// gml:realizationEpoch is the time after which this datum definition is valid. See ISO 19111 Table 32 for details.
-	RealizationEpoch *string `xml:"http://www.opengis.net/gml/3.2 realizationEpoch,omitempty"`
 	// gml:origin is the date and time origin of this temporal datum.
 	Origin *string `xml:"http://www.opengis.net/gml/3.2 origin,omitempty"`
 }
