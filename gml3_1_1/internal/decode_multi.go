@@ -209,20 +209,7 @@ func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDi
 }
 
 func multiPolygonFromPolyhedralSurface(x *gen.PolyhedralSurfaceType, dim int, resolver *curveResolver) (core.MultiPolygon, error) {
-	if x.PolygonPatches == nil {
-		return nil, nil
-	}
-	var result core.MultiPolygon
-	for i := range x.PolygonPatches.PolygonPatch {
-		poly, err := polygonFromPatch(&x.PolygonPatches.PolygonPatch[i], dim, resolver)
-		if err != nil {
-			return nil, fmt.Errorf("PolyhedralSurface patch[%d]: %w", i, err)
-		}
-		if poly != nil {
-			result = append(result, poly)
-		}
-	}
-	return result, nil
+	return multiPolygonFromPolygonPatchArrayProperty(x.PolygonPatches, dim, resolver)
 }
 
 func boundFromXML(x *gen.EnvelopeType) (core.Bound, error) {

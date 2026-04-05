@@ -44,6 +44,23 @@ func polygonFromSurface(x *gen.SurfaceType, resolver *curveResolver, fallbackDim
 	return polygonFromSurfacePatchArrayProperty(x.Patches, dim, resolver)
 }
 
+func multiPolygonFromPolygonPatchArrayProperty(pp *gen.PolygonPatchArrayPropertyType, dim int, resolver *curveResolver) (core.MultiPolygon, error) {
+	if pp == nil {
+		return nil, nil
+	}
+	var result core.MultiPolygon
+	for i := range pp.PolygonPatch {
+		poly, err := polygonFromPatch(&pp.PolygonPatch[i], dim, resolver)
+		if err != nil {
+			return nil, fmt.Errorf("gml: PolygonPatch[%d]: %w", i, err)
+		}
+		if poly != nil {
+			result = append(result, poly)
+		}
+	}
+	return result, nil
+}
+
 func polygonFromSurfacePatchArrayProperty(sp *gen.SurfacePatchArrayPropertyType, dim int, resolver *curveResolver) (core.Polygon, error) {
 	if len(sp.PolygonPatch) > 0 {
 		return polygonFromPatch(&sp.PolygonPatch[0], dim, resolver)
