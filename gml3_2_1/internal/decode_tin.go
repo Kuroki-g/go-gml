@@ -43,7 +43,7 @@ func (r *Reader) handleTin(dec *xml.Decoder, se xml.StartElement) (core.Geometry
 }
 
 // multiPolygonFromPatchArray converts a SurfacePatchArrayPropertyType to a MultiPolygon,
-// handling both PolygonPatch and Triangle patch types.
+// handling PolygonPatch, Rectangle, and Triangle patch types.
 func multiPolygonFromPatchArray(sp *gen.SurfacePatchArrayPropertyType, dim int, resolver *curveResolver) (core.MultiPolygon, error) {
 	if sp == nil {
 		return nil, nil
@@ -52,7 +52,6 @@ func multiPolygonFromPatchArray(sp *gen.SurfacePatchArrayPropertyType, dim int, 
 	_ = sp.Cone
 	_ = sp.Cylinder
 	_ = sp.Sphere
-	_ = sp.Rectangle
 	var result core.MultiPolygon
 	for i := range sp.Triangle {
 		poly, err := polygonFromTriangle(&sp.Triangle[i], dim, resolver)
@@ -72,7 +71,30 @@ func multiPolygonFromPatchArray(sp *gen.SurfacePatchArrayPropertyType, dim int, 
 			result = append(result, poly)
 		}
 	}
+	for i := range sp.Rectangle {
+		poly, err := polygonFromRectangle(&sp.Rectangle[i], dim, resolver)
+		if err != nil {
+			return nil, fmt.Errorf("gml: Rectangle[%d]: %w", i, err)
+		}
+		if poly != nil {
+			result = append(result, poly)
+		}
+	}
 	return result, nil
+}
+
+func polygonFromRectangle(rect *gen.RectangleType, inheritDim int, resolver *curveResolver) (core.Polygon, error) {
+	if rect.Exterior == nil {
+		return core.Polygon(nil), nil
+	}
+	r, err := ringFromAbstractRingProp(rect.Exterior, inheritDim, "exterior", resolver)
+	if err != nil {
+		return nil, err
+	}
+	if r == nil {
+		return core.Polygon(nil), nil
+	}
+	return core.Polygon{r}, nil
 }
 
 func polygonFromTriangle(t *gen.TriangleType, dim int, resolver *curveResolver) (core.Polygon, error) {

@@ -37,10 +37,35 @@ func decodeSurfaceElement(dec *xml.Decoder, se xml.StartElement, resolver *curve
 }
 
 func polygonFromSurface(x *gen.SurfaceType, resolver *curveResolver, fallbackDim int) (core.Polygon, error) {
-	if x.Patches == nil || len(x.Patches.PolygonPatch) == 0 {
+	if x.Patches == nil {
 		return core.Polygon{}, nil
 	}
-	return polygonFromPatch(&x.Patches.PolygonPatch[0], preferDim(derefDim(x.SrsDimension), fallbackDim), resolver)
+	dim := preferDim(derefDim(x.SrsDimension), fallbackDim)
+	if len(x.Patches.PolygonPatch) > 0 {
+		return polygonFromPatch(&x.Patches.PolygonPatch[0], dim, resolver)
+	}
+	if len(x.Patches.Rectangle) > 0 {
+		return polygonFromRectangle(&x.Patches.Rectangle[0], dim, resolver)
+	}
+	return core.Polygon{}, nil
+}
+
+func polygonFromRectangle(rect *gen.RectangleType, inheritDim int, resolver *curveResolver) (core.Polygon, error) {
+	prop := rect.Exterior
+	if prop == nil {
+		prop = rect.OuterBoundaryIs
+	}
+	if prop == nil {
+		return core.Polygon(nil), nil
+	}
+	r, err := ringFromAbstractRingProp(prop, inheritDim, "exterior", resolver)
+	if err != nil {
+		return nil, err
+	}
+	if r == nil {
+		return core.Polygon(nil), nil
+	}
+	return core.Polygon{r}, nil
 }
 
 func polygonFromPatch(patch *gen.PolygonPatchType, inheritDim int, resolver *curveResolver) (core.Polygon, error) {
