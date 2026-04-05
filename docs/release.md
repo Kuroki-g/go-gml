@@ -42,44 +42,49 @@ git commit -m "chore: bump <module> to vX.Y.Z"
 
 **タグはコミット後に打つこと。**
 
-### 4. go mod tidy を実行する
+### 4. モジュールを1つずつ上流から順に処理する
 
-依存順に実行する（上流から下流へ）:
+**絶対禁止: 複数モジュールをまとめて一度に bump しない。**
+go.sum は `GOWORK=off go mod tidy` で proxy から正しいハッシュを取得して初めて確定する。
+まとめて bump すると go.sum が古いバージョンのハッシュのままタグが打たれ、壊れたリリースになる。
+
+**1モジュールずつ以下を繰り返す:**
+
+#### 4-1. go mod tidy（GOWORK=off 必須）
 
 ```bash
-GONOSUMDB='*' GOTMPDIR=/workspace/go-gml/.tmp go mod tidy -C <module>
+GOWORK=off GONOSUMDB='*' GOTMPDIR=/workspace/go-gml/.tmp go mod tidy -C <module>
 ```
 
+`GOWORK=off` を付けないと go.work がローカル解決してしまい、go.sum が更新されない。
 `GONOSUMDB='*'` は private repo の checksum DB 検索をスキップするため必須。
 
-go.sum が新規生成・更新された場合はコミットする:
+#### 4-2. コミット
 
 ```bash
-git add <module>/go.sum
-git commit -m "chore(<module>): update go.sum"
+git add <module>/go.mod <module>/go.sum
+git commit -m "chore(<module>): bump to vX.Y.Z"
 ```
 
-### 5. タグを打って push する
-
-依存順（上流から下流）に push する:
-
-```
-core → gml3_2_1 / gml3_1_1 / gml2_1_2 → gml → cmd/gml-parser
-```
+#### 4-3. タグを打って push
 
 ```bash
 git tag <module>/vX.Y.Z
 git push origin <module>/vX.Y.Z
 ```
 
+#### 4-4. proxy 反映を確認してから次のモジュールへ
+
 **proxy.golang.org への反映待ちが発生することがある。**
 タグ push 後すぐに下流の tidy が失敗する場合は、ブラウザで以下を開いてプロキシにインデックスさせる:
 
 ```
-https://proxy.golang.org/github.com/Kuroki-g/go-gml/<module>/@v/vX.Y.Z.info
+https://proxy.golang.org/github.com/!kuroki-g/go-gml/<module>/@v/vX.Y.Z.info
 ```
 
-JSON が返れば反映済み。その後に下流モジュールの tidy を実行する。
+（大文字は `!小文字` にエスケープ: `Kuroki` → `!kuroki`）
+
+JSON が返れば反映済み。その後に次の下流モジュールの処理を行う。
 
 ---
 
