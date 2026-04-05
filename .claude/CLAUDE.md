@@ -57,7 +57,7 @@
 
 - **CityGML 2.0 LoD3**: 次の実装対象 (`bldg:lod3Solid` → `gml:Solid`)
 - **gml3_1_1 / gml3_2_1 ストリームテストなし**: N03 旧形式データ取得困難。`Decode` メソッドテストは追加済み。CityGML 実装で代替する方針
-- **SF-2**: `docs/issues/sf2-curves.md` — Arc/Circle 等の曲線補間・SurfacePatchArray 内の Cone/Cylinder/Sphere/Rectangle 未実装。低優先
+- **SF-2**: `docs/issues/sf2-curves.md` — Arc/Circle 等の曲線補間・SurfacePatchArray 内の Cone/Cylinder/Sphere 未実装。低優先
 
 ---
 
