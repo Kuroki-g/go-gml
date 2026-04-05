@@ -185,14 +185,14 @@ func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDi
 		}
 	}
 	for i := range a.Tin {
-		mp, err := multiPolygonFromTrianglePatches(a.Tin[i].TrianglePatches, inheritDim, resolver)
+		mp, err := multiPolygonFromTrianglePatchArrayProperty(a.Tin[i].TrianglePatches, inheritDim, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("Tin[%d]: %w", i, err)
 		}
 		polys = append(polys, mp...)
 	}
 	for i := range a.TriangulatedSurface {
-		mp, err := multiPolygonFromTrianglePatches(a.TriangulatedSurface[i].TrianglePatches, inheritDim, resolver)
+		mp, err := multiPolygonFromTrianglePatchArrayProperty(a.TriangulatedSurface[i].TrianglePatches, inheritDim, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("TriangulatedSurface[%d]: %w", i, err)
 		}

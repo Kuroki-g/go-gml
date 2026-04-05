@@ -3,7 +3,57 @@ package cmd
 import (
 	"os"
 	"path/filepath"
+	"strings"
 )
+
+// NamingViolation is a function that handles a PropertyType but whose name
+// does not contain the expected XxxProperty substring.
+type NamingViolation struct {
+	Module   string
+	TypeName string // e.g. "SurfacePatchArrayPropertyType"
+	FuncName string
+	Expected string // e.g. "SurfacePatchArrayProperty"
+}
+
+// checkModuleNaming checks that every function taking *gen.XxxPropertyType
+// has the substring XxxProperty (= XxxPropertyType minus "Type") in its name.
+func checkModuleNaming(dir string) ([]NamingViolation, error) {
+	genDir := filepath.Join(dir, "generated")
+	intDir := filepath.Join(dir, "internal")
+
+	if _, err := os.Stat(genDir); err != nil {
+		return nil, nil
+	}
+	if _, err := os.Stat(intDir); err != nil {
+		return nil, nil
+	}
+
+	propTypes, err := parsePropertyTypes(genDir)
+	if err != nil {
+		return nil, err
+	}
+
+	funcAccesses, err := analyzeFunctions(intDir, propTypes)
+	if err != nil {
+		return nil, err
+	}
+
+	var violations []NamingViolation
+	for typeName, accesses := range funcAccesses {
+		expected := strings.TrimSuffix(typeName, "Type")
+		for _, fa := range accesses {
+			if !strings.Contains(fa.FuncName, expected) {
+				violations = append(violations, NamingViolation{
+					Module:   dir,
+					TypeName: typeName,
+					FuncName: fa.FuncName,
+					Expected: expected,
+				})
+			}
+		}
+	}
+	return violations, nil
+}
 
 // Finding represents one unhandled field in a specific function.
 type Finding struct {

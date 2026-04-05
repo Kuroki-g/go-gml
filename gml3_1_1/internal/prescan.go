@@ -80,7 +80,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("CompositeSurface %q: %w", id, err)
 			}
-			cacheSurfaceMemberIDs(x.SurfaceMember, resolver)
+			cacheSurfacePropertyMemberIDs(x.SurfaceMember, resolver)
 			deferred = append(deferred, pendingCS{id: id, x: &x})
 		case gmlOrientableSurface:
 			var x gen.OrientableSurfaceType
@@ -109,7 +109,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("Tin %q: %w", id, err)
 			}
-			if mp, err := multiPolygonFromTrianglePatches(x.TrianglePatches, 0, resolver); err == nil {
+			if mp, err := multiPolygonFromTrianglePatchArrayProperty(x.TrianglePatches, 0, resolver); err == nil {
 				resolver.multiPolygonByID[id] = mp
 			}
 		case gmlTriangulatedSurface:
@@ -117,7 +117,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("TriangulatedSurface %q: %w", id, err)
 			}
-			if mp, err := multiPolygonFromTrianglePatches(x.TrianglePatches, 0, resolver); err == nil {
+			if mp, err := multiPolygonFromTrianglePatchArrayProperty(x.TrianglePatches, 0, resolver); err == nil {
 				resolver.multiPolygonByID[id] = mp
 			}
 		case gmlPolyhedralSurface:
@@ -141,7 +141,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("CompositeSolid %q: %w", id, err)
 			}
-			if s, err := solidFromSolidMembers(x.SolidMember, 0, resolver); err == nil {
+			if s, err := solidFromSolidPropertyMembers(x.SolidMember, 0, resolver); err == nil {
 				resolver.solidByID[id] = s
 			}
 		case gmlGrid:
@@ -173,7 +173,7 @@ func resolveDeferred(pending []pendingCS, resolver *curveResolver) {
 	for len(pending) > 0 {
 		var remaining []pendingCS
 		for _, p := range pending {
-			if !allSurfaceMembersResolvable(p.x.SurfaceMember, resolver) {
+			if !allSurfacePropertyMembersResolvable(p.x.SurfaceMember, resolver) {
 				remaining = append(remaining, p)
 				continue
 			}
@@ -189,11 +189,11 @@ func resolveDeferred(pending []pendingCS, resolver *curveResolver) {
 	}
 }
 
-// cacheSurfaceMemberIDs caches inline Polygon and Surface sub-elements (with gml:id)
+// cacheSurfacePropertyMemberIDs caches inline Polygon and Surface sub-elements (with gml:id)
 // found inside a CompositeSurface's surfaceMember list into the resolver's polygonByID map.
 // This prevents silent resolution failures when another element references a sub-element's ID
 // via xlink:href after prescan has consumed the parent CompositeSurface with DecodeElement.
-func cacheSurfaceMemberIDs(members []gen.SurfacePropertyType, resolver *curveResolver) {
+func cacheSurfacePropertyMemberIDs(members []gen.SurfacePropertyType, resolver *curveResolver) {
 	for i := range members {
 		m := &members[i]
 		if m.Polygon != nil && m.Polygon.Id != "" {
@@ -207,7 +207,7 @@ func cacheSurfaceMemberIDs(members []gen.SurfacePropertyType, resolver *curveRes
 			}
 		}
 		if m.CompositeSurface != nil {
-			cacheSurfaceMemberIDs(m.CompositeSurface.SurfaceMember, resolver)
+			cacheSurfacePropertyMemberIDs(m.CompositeSurface.SurfaceMember, resolver)
 		}
 		// Only Polygon/Surface/CompositeSurface sub-elements are individually cached.
 		// Remaining fields are acknowledged to satisfy check-coverage.
@@ -226,9 +226,9 @@ func cacheSurfaceMemberIDs(members []gen.SurfacePropertyType, resolver *curveRes
 	}
 }
 
-// allSurfaceMembersResolvable reports whether every href in the surface member list
+// allSurfacePropertyMembersResolvable reports whether every href in the surface member list
 // is already cached in the resolver. Inline members are always considered resolvable.
-func allSurfaceMembersResolvable(members []gen.SurfacePropertyType, resolver *curveResolver) bool {
+func allSurfacePropertyMembersResolvable(members []gen.SurfacePropertyType, resolver *curveResolver) bool {
 	for _, m := range members {
 		if m.Href != "" {
 			id := strings.TrimPrefix(m.Href, "#")
@@ -250,7 +250,7 @@ func allSurfaceMembersResolvable(members []gen.SurfacePropertyType, resolver *cu
 			}
 		}
 		if m.CompositeSurface != nil {
-			if !allSurfaceMembersResolvable(m.CompositeSurface.SurfaceMember, resolver) {
+			if !allSurfacePropertyMembersResolvable(m.CompositeSurface.SurfaceMember, resolver) {
 				return false
 			}
 		}

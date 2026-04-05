@@ -38,12 +38,19 @@ func run(dirs []string) error {
 	}
 
 	var all []Finding
+	var naming []NamingViolation
 	for _, d := range dirs {
 		found, err := checkModule(d)
 		if err != nil {
 			return fmt.Errorf("%s: %w", d, err)
 		}
 		all = append(all, found...)
+
+		nv, err := checkModuleNaming(d)
+		if err != nil {
+			return fmt.Errorf("%s: %w", d, err)
+		}
+		naming = append(naming, nv...)
 	}
 
 	sort.Slice(all, func(i, j int) bool {
@@ -56,7 +63,14 @@ func run(dirs []string) error {
 		return all[i].Field < all[j].Field
 	})
 
-	if len(all) == 0 {
+	sort.Slice(naming, func(i, j int) bool {
+		if naming[i].Module != naming[j].Module {
+			return naming[i].Module < naming[j].Module
+		}
+		return naming[i].FuncName < naming[j].FuncName
+	})
+
+	if len(all) == 0 && len(naming) == 0 {
 		fmt.Println("OK: no unhandled fields found")
 		return nil
 	}
@@ -69,7 +83,12 @@ func run(dirs []string) error {
 		fmt.Printf("[UNHANDLED] %s / %s / %s.%s (%s:%s)\n",
 			f.Module, f.Func, f.Struct, f.Field, kind, f.XMLName)
 	}
-	return fmt.Errorf("%d unhandled field(s) found", len(all))
+	for _, v := range naming {
+		fmt.Printf("[NAMING] %s / %s handles %s but name does not contain %q\n",
+			v.Module, v.FuncName, v.TypeName, v.Expected)
+	}
+	total := len(all) + len(naming)
+	return fmt.Errorf("%d issue(s) found", total)
 }
 
 func defaultModules() []string {

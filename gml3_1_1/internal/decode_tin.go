@@ -15,7 +15,7 @@ func (r *Reader) handleTriangulatedSurface(dec *xml.Decoder, se xml.StartElement
 		return core.Geometry{}, fmt.Errorf("gml: TriangulatedSurface: %w", err)
 	}
 	dim := preferDim(derefDim(x.SrsDimension), r.globalDim)
-	mp, err := multiPolygonFromTrianglePatches(x.TrianglePatches, dim, r.resolver)
+	mp, err := multiPolygonFromTrianglePatchArrayProperty(x.TrianglePatches, dim, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
 	}
@@ -32,7 +32,7 @@ func (r *Reader) handleTin(dec *xml.Decoder, se xml.StartElement) (core.Geometry
 		return core.Geometry{}, fmt.Errorf("gml: Tin: %w", err)
 	}
 	dim := preferDim(derefDim(x.SrsDimension), r.globalDim)
-	mp, err := multiPolygonFromTrianglePatches(x.TrianglePatches, dim, r.resolver)
+	mp, err := multiPolygonFromTrianglePatchArrayProperty(x.TrianglePatches, dim, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
 	}
@@ -42,7 +42,7 @@ func (r *Reader) handleTin(dec *xml.Decoder, se xml.StartElement) (core.Geometry
 	return core.Geometry{Value: mp, SRSName: x.SrsName}, nil
 }
 
-func multiPolygonFromTrianglePatches(tp *gen.TrianglePatchArrayPropertyType, dim int, resolver *curveResolver) (core.MultiPolygon, error) {
+func multiPolygonFromTrianglePatchArrayProperty(tp *gen.TrianglePatchArrayPropertyType, dim int, resolver *curveResolver) (core.MultiPolygon, error) {
 	if tp == nil {
 		return nil, nil
 	}
@@ -63,7 +63,7 @@ func polygonFromTriangle(t *gen.TriangleType, dim int, resolver *curveResolver) 
 	if t.Exterior == nil {
 		return core.Polygon(nil), nil
 	}
-	ring, err := ringFromAbstractRingProp(t.Exterior, dim, "exterior", resolver)
+	ring, err := ringFromAbstractRingProperty(t.Exterior, dim, "exterior", resolver)
 	if err != nil {
 		return nil, fmt.Errorf("gml: Triangle exterior: %w", err)
 	}

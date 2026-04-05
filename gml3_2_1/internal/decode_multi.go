@@ -209,21 +209,21 @@ func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDi
 		}
 	}
 	for i := range a.Tin {
-		mp, err := multiPolygonFromPatchArray(a.Tin[i].TrianglePatches, inheritDim, resolver)
+		mp, err := multiPolygonFromSurfacePatchArrayProperty(a.Tin[i].TrianglePatches, inheritDim, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("Tin[%d]: %w", i, err)
 		}
 		polys = append(polys, mp...)
 	}
 	for i := range a.TriangulatedSurface {
-		mp, err := multiPolygonFromPatchArray(a.TriangulatedSurface[i].Patches, inheritDim, resolver)
+		mp, err := multiPolygonFromSurfacePatchArrayProperty(a.TriangulatedSurface[i].Patches, inheritDim, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("TriangulatedSurface[%d]: %w", i, err)
 		}
 		polys = append(polys, mp...)
 	}
 	for i := range a.PolyhedralSurface {
-		mp, err := multiPolygonFromPatchArray(a.PolyhedralSurface[i].Patches, inheritDim, resolver)
+		mp, err := multiPolygonFromSurfacePatchArrayProperty(a.PolyhedralSurface[i].Patches, inheritDim, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("PolyhedralSurface[%d]: %w", i, err)
 		}

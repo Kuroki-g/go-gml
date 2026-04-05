@@ -15,7 +15,7 @@ func (r *Reader) handleTriangulatedSurface(dec *xml.Decoder, se xml.StartElement
 		return core.Geometry{}, fmt.Errorf("gml: TriangulatedSurface: %w", err)
 	}
 	dim := preferDim(derefDim(x.SrsDimension), r.globalDim)
-	mp, err := multiPolygonFromPatchArray(x.Patches, dim, r.resolver)
+	mp, err := multiPolygonFromSurfacePatchArrayProperty(x.Patches, dim, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
 	}
@@ -32,7 +32,7 @@ func (r *Reader) handleTin(dec *xml.Decoder, se xml.StartElement) (core.Geometry
 		return core.Geometry{}, fmt.Errorf("gml: Tin: %w", err)
 	}
 	dim := preferDim(derefDim(x.SrsDimension), r.globalDim)
-	mp, err := multiPolygonFromPatchArray(x.TrianglePatches, dim, r.resolver)
+	mp, err := multiPolygonFromSurfacePatchArrayProperty(x.TrianglePatches, dim, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
 	}
@@ -42,9 +42,9 @@ func (r *Reader) handleTin(dec *xml.Decoder, se xml.StartElement) (core.Geometry
 	return core.Geometry{Value: mp, SRSName: x.SrsName}, nil
 }
 
-// multiPolygonFromPatchArray converts a SurfacePatchArrayPropertyType to a MultiPolygon,
+// multiPolygonFromSurfacePatchArrayProperty converts a SurfacePatchArrayPropertyType to a MultiPolygon,
 // handling PolygonPatch, Rectangle, and Triangle patch types.
-func multiPolygonFromPatchArray(sp *gen.SurfacePatchArrayPropertyType, dim int, resolver *curveResolver) (core.MultiPolygon, error) {
+func multiPolygonFromSurfacePatchArrayProperty(sp *gen.SurfacePatchArrayPropertyType, dim int, resolver *curveResolver) (core.MultiPolygon, error) {
 	if sp == nil {
 		return nil, nil
 	}
@@ -87,7 +87,7 @@ func polygonFromRectangle(rect *gen.RectangleType, inheritDim int, resolver *cur
 	if rect.Exterior == nil {
 		return core.Polygon(nil), nil
 	}
-	r, err := ringFromAbstractRingProp(rect.Exterior, inheritDim, "exterior", resolver)
+	r, err := ringFromAbstractRingProperty(rect.Exterior, inheritDim, "exterior", resolver)
 	if err != nil {
 		return nil, err
 	}
@@ -101,7 +101,7 @@ func polygonFromTriangle(t *gen.TriangleType, dim int, resolver *curveResolver) 
 	if t.Exterior == nil {
 		return core.Polygon(nil), nil
 	}
-	ring, err := ringFromAbstractRingProp(t.Exterior, dim, "exterior", resolver)
+	ring, err := ringFromAbstractRingProperty(t.Exterior, dim, "exterior", resolver)
 	if err != nil {
 		return nil, fmt.Errorf("gml: Triangle exterior: %w", err)
 	}

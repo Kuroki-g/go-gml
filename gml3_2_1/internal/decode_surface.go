@@ -41,19 +41,27 @@ func polygonFromSurface(x *gen.SurfaceType, resolver *curveResolver, fallbackDim
 		return core.Polygon{}, nil
 	}
 	dim := preferDim(derefDim(x.SrsDimension), fallbackDim)
-	if len(x.Patches.PolygonPatch) > 0 {
-		return polygonFromPatch(&x.Patches.PolygonPatch[0], dim, resolver)
+	return polygonFromSurfacePatchArrayProperty(x.Patches, dim, resolver)
+}
+
+func polygonFromSurfacePatchArrayProperty(sp *gen.SurfacePatchArrayPropertyType, dim int, resolver *curveResolver) (core.Polygon, error) {
+	if len(sp.PolygonPatch) > 0 {
+		return polygonFromPatch(&sp.PolygonPatch[0], dim, resolver)
 	}
-	if len(x.Patches.Rectangle) > 0 {
-		return polygonFromRectangle(&x.Patches.Rectangle[0], dim, resolver)
+	if len(sp.Rectangle) > 0 {
+		return polygonFromRectangle(&sp.Rectangle[0], dim, resolver)
 	}
+	_ = sp.Triangle // SF-2: 未実装 (docs/issues/sf2-curves.md)
+	_ = sp.Cone
+	_ = sp.Cylinder
+	_ = sp.Sphere
 	return core.Polygon{}, nil
 }
 
 func polygonFromPatch(patch *gen.PolygonPatchType, inheritDim int, resolver *curveResolver) (core.Polygon, error) {
 	var rings []core.Ring
 	if patch.Exterior != nil {
-		r, err := ringFromAbstractRingProp(patch.Exterior, inheritDim, "exterior", resolver)
+		r, err := ringFromAbstractRingProperty(patch.Exterior, inheritDim, "exterior", resolver)
 		if err != nil {
 			return nil, err
 		}
@@ -62,7 +70,7 @@ func polygonFromPatch(patch *gen.PolygonPatchType, inheritDim int, resolver *cur
 		}
 	}
 	for i, ir := range patch.Interior {
-		r, err := ringFromAbstractRingProp(&ir, inheritDim, fmt.Sprintf("interior[%d]", i), resolver)
+		r, err := ringFromAbstractRingProperty(&ir, inheritDim, fmt.Sprintf("interior[%d]", i), resolver)
 		if err != nil {
 			return nil, err
 		}
@@ -73,7 +81,7 @@ func polygonFromPatch(patch *gen.PolygonPatchType, inheritDim int, resolver *cur
 	return core.Polygon(rings), nil
 }
 
-func ringFromAbstractRingProp(prop *gen.AbstractRingPropertyType, inheritDim int, label string, resolver *curveResolver) (core.Ring, error) {
+func ringFromAbstractRingProperty(prop *gen.AbstractRingPropertyType, inheritDim int, label string, resolver *curveResolver) (core.Ring, error) {
 	if prop.LinearRing != nil {
 		lr := prop.LinearRing
 		dim := preferDim(inheritDim, derefDim(lr.SrsDimension))

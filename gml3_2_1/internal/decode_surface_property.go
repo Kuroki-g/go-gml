@@ -37,11 +37,11 @@ func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim int,
 	}
 	if m.TriangulatedSurface != nil {
 		ts := m.TriangulatedSurface
-		return multiPolygonFromPatchArray(ts.Patches, preferDim(derefDim(ts.SrsDimension), inheritDim), resolver)
+		return multiPolygonFromSurfacePatchArrayProperty(ts.Patches, preferDim(derefDim(ts.SrsDimension), inheritDim), resolver)
 	}
 	if m.Tin != nil {
 		t := m.Tin
-		return multiPolygonFromPatchArray(t.TrianglePatches, preferDim(derefDim(t.SrsDimension), inheritDim), resolver)
+		return multiPolygonFromSurfacePatchArrayProperty(t.TrianglePatches, preferDim(derefDim(t.SrsDimension), inheritDim), resolver)
 	}
 	if m.Polygon != nil {
 		poly, err := polygonFromXML(m.Polygon, inheritDim)

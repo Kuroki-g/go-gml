@@ -183,6 +183,15 @@ corpus ファイルは gitignore 済み (`**/testdata/fuzz/`)。
 - **1ファイル ~150行以下** を厳守 (AI コンテキスト効率のため)
 - `internal/reader.go` の switch 文が対応済み要素の索引 → 新要素は `internal/decode_*.go` 追加 + switch に1 case 追加
 
+### PropertyType owning 関数の命名規則
+
+`*gen.XxxPropertyType` を直接引数に取る関数は名前に `XxxProperty` を含む。
+
+- AI はこの命名を手がかりに `FromXxxProperty` で grep して owning 関数を発見する
+- PropertyType のフィールドには必ず owning 関数の中でアクセスする
+- owning 関数を経由せず間接アクセスしてはならない
+- 違反は `make check-coverage` がエラーとして報告する
+
 ### 依存関係
 
 - 各パーサモジュールは `encoding/xml` (stdlib) のみ。外部ライブラリを追加しない
