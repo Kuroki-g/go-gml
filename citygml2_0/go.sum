@@ -1,0 +1,4 @@
+github.com/Kuroki-g/go-gml/core v0.2.0 h1:0qQwk0+KUjqh6l1dhd8essaCVwG7bDwME4rpccwmaKc=
+github.com/Kuroki-g/go-gml/core v0.2.0/go.mod h1:c5wWa2DRLJi+lXZCCXrRxCVxMLVV7V09cS4qazugZPM=
+github.com/Kuroki-g/go-gml/gml3_1_1 v0.2.1 h1:DELYE2OGdk9+fPdlJyx5Jbrg7tiXbhTYiU3ku2FHfSs=
+github.com/Kuroki-g/go-gml/gml3_1_1 v0.2.1/go.mod h1:GIeKyhBpvQyEhXBBH2RFKYO+P8qp6fGjzOAuoFYwGeo=
