@@ -1,8 +1,8 @@
 github.com/Kuroki-g/go-gml/core v0.2.0 h1:0qQwk0+KUjqh6l1dhd8essaCVwG7bDwME4rpccwmaKc=
 github.com/Kuroki-g/go-gml/core v0.2.0/go.mod h1:c5wWa2DRLJi+lXZCCXrRxCVxMLVV7V09cS4qazugZPM=
-github.com/Kuroki-g/go-gml/gml2_1_2 v0.2.0 h1:Y7Rx51glO/n+HAenj5T75nnvxq/sNJHzpnWcG8wH//A=
-github.com/Kuroki-g/go-gml/gml2_1_2 v0.2.0/go.mod h1:H7BT5UON32V5yJxACdTcCtfKdfHznRlse1w0H6K0A1o=
-github.com/Kuroki-g/go-gml/gml3_1_1 v0.2.0 h1:O4v/TfPbuFzX+S19bTs1VfBKOhZl5y5eP367Y6WNH+A=
-github.com/Kuroki-g/go-gml/gml3_1_1 v0.2.0/go.mod h1:GIeKyhBpvQyEhXBBH2RFKYO+P8qp6fGjzOAuoFYwGeo=
-github.com/Kuroki-g/go-gml/gml3_2_1 v0.2.0 h1:UuOCidd8kakKk4sY5drMy0hHtVnI0Y+6FRpScQnjMoQ=
-github.com/Kuroki-g/go-gml/gml3_2_1 v0.2.0/go.mod h1:uxnIcwejyrgy8BUzcJp4zOMWStArb0eWaT5hM75eMsw=
+github.com/Kuroki-g/go-gml/gml2_1_2 v0.2.1 h1:ZqPDNDtYs0Z0e3vPqWjmWM0HrkeTEiBjGTL9ivfLnog=
+github.com/Kuroki-g/go-gml/gml2_1_2 v0.2.1/go.mod h1:H7BT5UON32V5yJxACdTcCtfKdfHznRlse1w0H6K0A1o=
+github.com/Kuroki-g/go-gml/gml3_1_1 v0.2.1 h1:DELYE2OGdk9+fPdlJyx5Jbrg7tiXbhTYiU3ku2FHfSs=
+github.com/Kuroki-g/go-gml/gml3_1_1 v0.2.1/go.mod h1:GIeKyhBpvQyEhXBBH2RFKYO+P8qp6fGjzOAuoFYwGeo=
+github.com/Kuroki-g/go-gml/gml3_2_1 v0.2.1 h1:xIMi2wpYiDTdd9GQPfr3BWBvH28LBtiuKhJSs/gJjnA=
+github.com/Kuroki-g/go-gml/gml3_2_1 v0.2.1/go.mod h1:uxnIcwejyrgy8BUzcJp4zOMWStArb0eWaT5hM75eMsw=
