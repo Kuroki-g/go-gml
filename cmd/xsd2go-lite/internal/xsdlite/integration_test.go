@@ -369,7 +369,7 @@ func TestEndToEnd_basicPipeline(t *testing.T) {
 	}
 
 	types := r.ResolveAll("http://example.com/geo")
-	src, err := Generate(types, "geo", false, false, nil)
+	src, err := Generate(types, "geo", false, false, nil, "", "")
 	if err != nil {
 		t.Fatalf("Generate: %v\n%s", err, src)
 	}
@@ -444,7 +444,7 @@ func TestBug1_simpleTypeRestrictionNonBuiltinBase(t *testing.T) {
 	}
 	types := r.ResolveAll("http://example.com/test")
 
-	src, err := Generate(types, "test", false, false, nil)
+	src, err := Generate(types, "test", false, false, nil, "", "")
 	// Before the fix, Generate would produce `Code * \`xml:...\`` (invalid Go)
 	// and go/format would fail. After the fix it must compile cleanly.
 	if err != nil {
@@ -488,7 +488,7 @@ func TestBug2_elementRefWithEmptyGoType(t *testing.T) {
 	}
 	types := r.ResolveAll("http://example.com/test")
 
-	src, err := Generate(types, "test", false, false, nil)
+	src, err := Generate(types, "test", false, false, nil, "", "")
 	if err != nil {
 		t.Fatalf("Generate produced invalid Go (bug2): %v", err)
 	}
@@ -528,7 +528,7 @@ func TestBug3_baseSimpleTypeWithEmptyGoType(t *testing.T) {
 	}
 	types := r.ResolveAll("http://example.com/test")
 
-	src, err := Generate(types, "test", false, false, nil)
+	src, err := Generate(types, "test", false, false, nil, "", "")
 	if err != nil {
 		t.Fatalf("Generate produced invalid Go (bug3): %v", err)
 	}

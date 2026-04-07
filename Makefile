@@ -133,7 +133,7 @@ citygml2_0-gen: xsd2go-build
 		--catalog "$(XLINK_NS)=$(XLINK_XSD)" \
 		--catalog "$(XAL_NS)=$(XAL_XSD)" \
 		--catalog "$(GML311_NS)=$(GML311_XSD)" \
-		--omit-namespace "$(GML311_NS)" \
+		--map-namespace "$(GML311_NS)=github.com/Kuroki-g/go-gml/gml3_1_1/generated" \
 		-o citygml2_0/generated/core.go \
 		$(CITYGML20_XSD)
 	$(XSD2GO_BIN) \
@@ -144,7 +144,7 @@ citygml2_0-gen: xsd2go-build
 		--catalog "$(XAL_NS)=$(XAL_XSD)" \
 		--catalog "$(GML311_NS)=$(GML311_XSD)" \
 		--catalog "$(CITYGML20_NS)=$(CITYGML20_XSD)" \
-		--omit-namespace "$(GML311_NS)" \
+		--map-namespace "$(GML311_NS)=github.com/Kuroki-g/go-gml/gml3_1_1/generated" \
 		-o citygml2_0/generated/building.go \
 		$(CITYGML20_BLDG_XSD)
 

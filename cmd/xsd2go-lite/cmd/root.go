@@ -10,6 +10,10 @@ import (
 	"xsd2go-lite/internal/xsdlite"
 )
 
+// Version is the tool version string, injected at build time via
+// -ldflags "-X xsd2go-lite/cmd.Version=$(git describe --tags --always)".
+var Version = "dev"
+
 var (
 	namespace    string
 	pkgName      string
@@ -17,7 +21,7 @@ var (
 	skipAbstract bool
 	withDoc      bool
 	catalogPairs []string
-	omitNS       []string
+	mapNSPairs   []string
 )
 
 var rootCmd = &cobra.Command{
@@ -43,7 +47,7 @@ func init() {
 	rootCmd.Flags().BoolVar(&skipAbstract, "skip-abstract", false, "Skip abstract types")
 	rootCmd.Flags().BoolVar(&withDoc, "with-doc", false, "Include XSD documentation as field comments")
 	rootCmd.Flags().StringArrayVar(&catalogPairs, "catalog", nil, "Namespace-to-local-path mapping: ns=path (repeatable)")
-	rootCmd.Flags().StringArrayVar(&omitNS, "omit-namespace", nil, "Namespace URI to omit from output (repeatable)")
+	rootCmd.Flags().StringArrayVar(&mapNSPairs, "map-namespace", nil, "Map namespace to external Go package: ns=pkgPath (repeatable)")
 	_ = rootCmd.MarkFlagRequired("namespace")
 }
 
@@ -65,7 +69,16 @@ func run(inputXSD string) error {
 		fmt.Fprintf(os.Stderr, "warn: no types found for namespace %q\n", namespace)
 	}
 
-	src, err := xsdlite.Generate(types, pkgName, skipAbstract, withDoc, omitNS)
+	mapNS := make(map[string]string, len(mapNSPairs))
+	for _, pair := range mapNSPairs {
+		ns, pkgPath, ok := strings.Cut(pair, "=")
+		if !ok {
+			return fmt.Errorf("--map-namespace: invalid format %q, expected ns=pkgPath", pair)
+		}
+		mapNS[ns] = pkgPath
+	}
+
+	src, err := xsdlite.Generate(types, pkgName, skipAbstract, withDoc, mapNS, inputXSD, Version)
 	if err != nil {
 		// Print unformatted source for debugging, but still report error.
 		fmt.Fprint(os.Stderr, src)

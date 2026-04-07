@@ -119,7 +119,7 @@ func TestBuildTagSuffix(t *testing.T) {
 // ---- Generate ----
 
 func TestGenerate_empty(t *testing.T) {
-	src, err := Generate(nil, "mypkg", false, false, nil)
+	src, err := Generate(nil, "mypkg", false, false, nil, "", "")
 	if err != nil {
 		t.Fatalf("Generate(nil): %v", err)
 	}
@@ -138,7 +138,7 @@ func TestGenerate_singleStruct(t *testing.T) {
 			},
 		},
 	}
-	src, err := Generate(types, "gml", false, false, nil)
+	src, err := Generate(types, "gml", false, false, nil, "", "")
 	if err != nil {
 		t.Fatalf("Generate: %v", err)
 	}
@@ -161,7 +161,7 @@ func TestGenerate_skipAbstract(t *testing.T) {
 			{GoName: "Id", GoType: "string", XMLTag: "id,attr", IsAttr: true},
 		}},
 	}
-	src, err := Generate(types, "gml", true, false, nil)
+	src, err := Generate(types, "gml", true, false, nil, "", "")
 	if err != nil {
 		t.Fatalf("Generate: %v", err)
 	}
@@ -179,7 +179,7 @@ func TestGenerate_emptyName(t *testing.T) {
 		{Name: "", Fields: []Field{{GoName: "X", GoType: "string", XMLTag: "x"}}},
 		{Name: "Valid", Fields: []Field{{GoName: "Y", GoType: "int", XMLTag: "y"}}},
 	}
-	src, err := Generate(types, "pkg", false, false, nil)
+	src, err := Generate(types, "pkg", false, false, nil, "", "")
 	if err != nil {
 		t.Fatalf("Generate: %v", err)
 	}
@@ -197,7 +197,7 @@ func TestGenerate_sliceField(t *testing.T) {
 			},
 		},
 	}
-	src, err := Generate(types, "gml", false, false, nil)
+	src, err := Generate(types, "gml", false, false, nil, "", "")
 	if err != nil {
 		t.Fatalf("Generate: %v", err)
 	}
@@ -214,7 +214,7 @@ func TestGenerate_sortedOutput(t *testing.T) {
 		{Name: "Alpha", Fields: []Field{{GoName: "V", GoType: "string", XMLTag: "v"}}},
 		{Name: "Mango", Fields: []Field{{GoName: "V", GoType: "string", XMLTag: "v"}}},
 	}
-	src, err := Generate(types, "pkg", false, false, nil)
+	src, err := Generate(types, "pkg", false, false, nil, "", "")
 	if err != nil {
 		t.Fatalf("Generate: %v", err)
 	}
@@ -235,7 +235,7 @@ func TestGenerate_pointerField(t *testing.T) {
 			},
 		},
 	}
-	src, err := Generate(types, "gml", false, false, nil)
+	src, err := Generate(types, "gml", false, false, nil, "", "")
 	if err != nil {
 		t.Fatalf("Generate: %v", err)
 	}
@@ -256,7 +256,7 @@ func TestGenerate_namespaceInTag(t *testing.T) {
 			},
 		},
 	}
-	src, err := Generate(types, "gml", false, false, nil)
+	src, err := Generate(types, "gml", false, false, nil, "", "")
 	if err != nil {
 		t.Fatalf("Generate: %v", err)
 	}
@@ -277,7 +277,7 @@ func TestGenerate_withDoc(t *testing.T) {
 	}
 
 	// withDoc=true: field comment should appear
-	src, err := Generate(types, "gml", false, true, nil)
+	src, err := Generate(types, "gml", false, true, nil, "", "")
 	if err != nil {
 		t.Fatalf("Generate(withDoc=true): %v", err)
 	}
@@ -286,7 +286,7 @@ func TestGenerate_withDoc(t *testing.T) {
 	}
 
 	// withDoc=false: no comment
-	src2, err := Generate(types, "gml", false, false, nil)
+	src2, err := Generate(types, "gml", false, false, nil, "", "")
 	if err != nil {
 		t.Fatalf("Generate(withDoc=false): %v", err)
 	}
@@ -304,7 +304,7 @@ func TestGenerate_withDoc_multiline(t *testing.T) {
 			},
 		},
 	}
-	src, err := Generate(types, "pkg", false, true, nil)
+	src, err := Generate(types, "pkg", false, true, nil, "", "")
 	if err != nil {
 		t.Fatalf("Generate: %v", err)
 	}
@@ -313,6 +313,145 @@ func TestGenerate_withDoc_multiline(t *testing.T) {
 	}
 	if !strings.Contains(src, "// Line two.") {
 		t.Errorf("expected second line of doc, got:\n%s", src)
+	}
+}
+
+// ---- --map-namespace ----
+
+func TestGenerate_mapNS_fieldKept(t *testing.T) {
+	// A field whose TypeNS is in mapNS should be kept and qualified with the alias.
+	types := []*ComplexType{
+		{
+			Name: "WallSurfaceType",
+			Fields: []Field{
+				{GoName: "Lod2MultiSurface", GoType: "*MultiSurfacePropertyType",
+					XMLTag: "http://www.opengis.net/citygml/building/2.0 lod2MultiSurface",
+					TypeNS: "http://www.opengis.net/gml", Omit: true},
+			},
+		},
+	}
+	mapNS := map[string]string{
+		"http://www.opengis.net/gml": "github.com/Kuroki-g/go-gml/gml3_1_1/generated",
+	}
+	src, err := Generate(types, "generated", false, false, mapNS, "", "")
+	if err != nil {
+		t.Fatalf("Generate: %v", err)
+	}
+	// Field must be present (not dropped)
+	if !strings.Contains(src, "Lod2MultiSurface") {
+		t.Errorf("field should be kept, got:\n%s", src)
+	}
+	// Type must be qualified with alias
+	if !strings.Contains(src, "gml3_1_1gen.MultiSurfacePropertyType") {
+		t.Errorf("expected qualified type gml3_1_1gen.MultiSurfacePropertyType, got:\n%s", src)
+	}
+}
+
+func TestGenerate_mapNS_importAdded(t *testing.T) {
+	// When a field uses a mapped namespace, the import block should be generated.
+	types := []*ComplexType{
+		{
+			Name: "FooType",
+			Fields: []Field{
+				{GoName: "Geom", GoType: "*PointType",
+					XMLTag: "http://www.opengis.net/gml/3.2 geom",
+					TypeNS: "http://www.opengis.net/gml/3.2", Omit: true},
+			},
+		},
+	}
+	mapNS := map[string]string{
+		"http://www.opengis.net/gml/3.2": "github.com/Kuroki-g/go-gml/gml3_2_1/generated",
+	}
+	src, err := Generate(types, "pkg", false, false, mapNS, "", "")
+	if err != nil {
+		t.Fatalf("Generate: %v", err)
+	}
+	if !strings.Contains(src, `gml3_2_1gen "github.com/Kuroki-g/go-gml/gml3_2_1/generated"`) {
+		t.Errorf("expected import statement, got:\n%s", src)
+	}
+}
+
+func TestGenerate_mapNS_noImportWhenUnused(t *testing.T) {
+	// Import should not appear when no field actually uses the mapped namespace.
+	types := []*ComplexType{
+		{
+			Name: "FooType",
+			Fields: []Field{
+				{GoName: "Name", GoType: "string", XMLTag: "name", TypeNS: ""},
+			},
+		},
+	}
+	mapNS := map[string]string{
+		"http://www.opengis.net/gml": "github.com/Kuroki-g/go-gml/gml3_1_1/generated",
+	}
+	src, err := Generate(types, "pkg", false, false, mapNS, "", "")
+	if err != nil {
+		t.Fatalf("Generate: %v", err)
+	}
+	if strings.Contains(src, "import") {
+		t.Errorf("unexpected import when no field uses mapped namespace:\n%s", src)
+	}
+}
+
+func TestGenerate_mapNS_aliasCollision(t *testing.T) {
+	// Two different namespaces mapping to aliases that collide should return an error.
+	mapNS := map[string]string{
+		"http://ns1": "github.com/foo/mypkg/generated",
+		"http://ns2": "github.com/bar/mypkg/generated",
+	}
+	_, err := Generate(nil, "pkg", false, false, mapNS, "", "")
+	if err == nil {
+		t.Error("expected alias collision error, got nil")
+	}
+	if !strings.Contains(err.Error(), "alias collision") {
+		t.Errorf("expected 'alias collision' in error message, got: %v", err)
+	}
+}
+
+// ---- deriveAlias ----
+
+func TestDeriveAlias(t *testing.T) {
+	tests := []struct {
+		pkgPath string
+		want    string
+	}{
+		// last segment is "generated" → use preceding segment + "gen", keep underscores
+		{"github.com/Kuroki-g/go-gml/gml3_1_1/generated", "gml3_1_1gen"},
+		{"github.com/Kuroki-g/go-gml/gml3_2_1/generated", "gml3_2_1gen"},
+		{"github.com/Kuroki-g/go-gml/gml2_1_2/generated", "gml2_1_2gen"},
+		// last segment is not "generated" → use last segment
+		{"github.com/foo/mypkg", "mypkg"},
+		// hyphens and dots stripped
+		{"github.com/foo/my-pkg", "mypkg"},
+	}
+	for _, tt := range tests {
+		got := deriveAlias(tt.pkgPath)
+		if got != tt.want {
+			t.Errorf("deriveAlias(%q) = %q, want %q", tt.pkgPath, got, tt.want)
+		}
+	}
+}
+
+// ---- generated header ----
+
+func TestGenerate_header(t *testing.T) {
+	src, err := Generate(nil, "pkg", false, false, nil, "path/to/geometry.xsd", "v1.2.3")
+	if err != nil {
+		t.Fatalf("Generate: %v", err)
+	}
+	want := "// Code generated by xsd2go-lite v1.2.3 from geometry.xsd. DO NOT EDIT."
+	if !strings.Contains(src, want) {
+		t.Errorf("expected header %q, got:\n%s", want, src)
+	}
+}
+
+func TestGenerate_noHeaderWhenEmpty(t *testing.T) {
+	src, err := Generate(nil, "pkg", false, false, nil, "", "")
+	if err != nil {
+		t.Fatalf("Generate: %v", err)
+	}
+	if strings.Contains(src, "DO NOT EDIT") {
+		t.Errorf("unexpected DO NOT EDIT when xsdSource and version are empty:\n%s", src)
 	}
 }
 
