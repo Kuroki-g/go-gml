@@ -1,6 +1,7 @@
 ---
 name: architecture-critical-discussion
 description: This skill should be used when the user wants to "建築について議論したい", "批判的に分析したい", "問題点を整理したい", "前提を洗い出したい", "議論を構造化したい", "建築の課題を考えたい", "何が足りないか議論したい", "方針を検討したい", "現状分析をしたい", or when architectural discussion requires critical thinking, premise verification, structured argumentation, or identification of gaps and next actions.
+disable-model-invocation: true
 version: 0.1.0
 ---
 

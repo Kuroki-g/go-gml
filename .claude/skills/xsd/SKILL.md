@@ -1,6 +1,7 @@
 ---
 name: xsd
 description: git diff の変更内容が Schema 準拠かどうか、および他バージョンで実装漏れがないかをレビューするスキル。実装・修正後に使う。Trigger when the user types /xsd or asks to verify schema compliance or check for missing implementations across versions.
+disable-model-invocation: true
 ---
 
 # /xsd — Schema 準拠 & クロスバージョン実装漏れ確認

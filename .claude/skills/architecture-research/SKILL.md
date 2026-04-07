@@ -1,6 +1,7 @@
 ---
 name: architecture-research
 description: This skill should be used when the user asks to "調査して", "事例を調べて", "建築基準を確認して", "論文を探して", "データを集めて", "根拠を調べて", "海外事例を調べて", "歴史的背景を調べて", or when architecture-critical-discussion skill detects missing or unverified premises requiring investigation. Provides structured multi-source research methodology for architectural topics using WebSearch and WebFetch in combination, with focus on Japanese sources (建築基準法, J-STAGE, CiNii, 国土交通省).
+disable-model-invocation: true
 version: 0.1.0
 ---
 

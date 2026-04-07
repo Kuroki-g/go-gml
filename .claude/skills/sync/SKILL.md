@@ -1,6 +1,7 @@
 ---
 name: sync
 description: Sync the project's documentation and memory to match the current state of the codebase. Run after significant changes — new modules, version bumps, refactors, or completed features. Checks git status/log, build, module versions, then updates README, CLAUDE.md, and Memory as needed.
+disable-model-invocation: true
 ---
 
 # /sync — Project State Sync

@@ -1,6 +1,7 @@
 ---
 name: search
 description: Deep research skill that spawns parallel subagents to investigate topics thoroughly and write findings to markdown. Use this when the user types /search or asks for deep research, investigation, latest information lookup, or wants multiple topics researched in parallel. Also trigger when the user points to a directory or set of files and wants them researched, enriched, or updated with latest findings. Even if the user just says "調べて" or "deep dive" without the slash command, use this skill. The key signal is: multiple topics or files to research, or wanting more thorough investigation than a single direct answer.
+disable-model-invocation: true
 ---
 
 # /search — Deep Research with Subagents
