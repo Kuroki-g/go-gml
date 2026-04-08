@@ -7,7 +7,8 @@ import (
 	"strings"
 
 	"github.com/spf13/cobra"
-	"xsd2go-lite/internal/xsdlite"
+	"xsd2go-lite/internal/gen"
+	"xsd2go-lite/internal/resolve"
 )
 
 // Version is the tool version string, injected at build time via
@@ -52,7 +53,7 @@ func init() {
 }
 
 func run(inputXSD string) error {
-	resolver := xsdlite.NewResolver()
+	resolver := resolve.NewResolver()
 	for _, pair := range catalogPairs {
 		ns, path, ok := strings.Cut(pair, "=")
 		if !ok {
@@ -78,7 +79,7 @@ func run(inputXSD string) error {
 		mapNS[ns] = pkgPath
 	}
 
-	src, err := xsdlite.Generate(types, pkgName, skipAbstract, withDoc, mapNS, inputXSD, Version)
+	src, err := gen.Generate(types, pkgName, skipAbstract, withDoc, mapNS, inputXSD, Version)
 	if err != nil {
 		// Print unformatted source for debugging, but still report error.
 		fmt.Fprint(os.Stderr, src)
