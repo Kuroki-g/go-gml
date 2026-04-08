@@ -1,4 +1,5 @@
 .up.lock
+.worktrees/
 .vscode/
 mise.toml
 .claude/settings.local.json
