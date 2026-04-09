@@ -4,13 +4,13 @@ package generated
 
 type AddressDetails struct {
 	// Postal authorities use specific postal service data to expedient delivery of mail
-	PostalServiceElements string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 PostalServiceElements,omitempty"`
+	PostalServiceElements *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 PostalServiceElements,omitempty"`
 	// Address as one line of free text
-	Address string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 Address,omitempty"`
+	Address string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 Address"`
 	// Container for Address lines
-	AddressLines *AddressLinesType `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 AddressLines,omitempty"`
+	AddressLines *AddressLinesType `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 AddressLines"`
 	// Specification of a country
-	Country string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 Country,omitempty"`
+	Country string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 Country"`
 	// Examples of administrative areas are provinces counties, special regions (such as "Rijnmond"), etc.
 	AdministrativeArea *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 AdministrativeArea,omitempty"`
 	// Locality is one level lower than adminisstrative area. Eg.: cities, reservations and any other built-up areas.
@@ -53,7 +53,7 @@ type DependentLocalityType struct {
 	// Name of the dependent locality
 	DependentLocalityName []string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 DependentLocalityName"`
 	// Number of the dependent locality. Some areas are numbered. Eg. SECTOR 5 in a Suburb as in India or SOI SUKUMVIT 10 as in Thailand
-	DependentLocalityNumber string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 DependentLocalityNumber,omitempty"`
+	DependentLocalityNumber *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 DependentLocalityNumber,omitempty"`
 	// Specification of a thoroughfare. A thoroughfare could be a rd, street, canal, river, etc.  Note dependentlocality in a street. For example, in some countries, a large street will
 	// have many subdivisions with numbers. Normally the subdivision name is the same as the road name, but with a number to identifiy it. Eg. SOI SUKUMVIT 3, SUKUMVIT RD, BANGKOK
 	Thoroughfare *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 Thoroughfare,omitempty"`
@@ -68,11 +68,11 @@ type DependentLocalityType struct {
 	// Specification of a postbox like mail delivery point. Only a single postbox number can be specified. Examples of postboxes are POBox, free mail numbers, etc.
 	PostBox *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 PostBox,omitempty"`
 	// Specification of a large mail user address. Examples of large mail users are postal companies, companies in France with a cedex number, hospitals and airports with their own post code. Large mail user addresses do not have a street name with premise name or premise number in countries like Netherlands. But they have a POBox and street also in countries like France
-	LargeMailUser *LargeMailUserType `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 LargeMailUser,omitempty"`
+	LargeMailUser *LargeMailUserType `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 LargeMailUser"`
 	// Specification of a post office. Examples are a rural post office where post is delivered and a post office containing post office boxes.
 	PostOffice *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 PostOffice,omitempty"`
 	// A Postal van is specific for a route as in Is`rael, Rural route
-	PostalRoute *PostalRouteType `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 PostalRoute,omitempty"`
+	PostalRoute *PostalRouteType `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 PostalRoute"`
 	// City or IndustrialEstate, etc
 	TypeField *string `xml:"Type,attr,omitempty"`
 	// Postal or Political - Sometimes locations must be distinguished between postal system, and physical locations as defined by a political system
@@ -103,7 +103,7 @@ type LargeMailUserType struct {
 	// Name of the large mail user. eg. Smith Ford International airport
 	LargeMailUserName []string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 LargeMailUserName"`
 	// Specification of the identification number of a large mail user. An example are the Cedex codes in France.
-	LargeMailUserIdentifier string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 LargeMailUserIdentifier,omitempty"`
+	LargeMailUserIdentifier *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 LargeMailUserIdentifier,omitempty"`
 	// Name of the building
 	BuildingName []BuildingNameType `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 BuildingName"`
 	// Subdivision in the firm: School of Physics at Victoria University (School of Physics is the department)
@@ -122,9 +122,9 @@ type MailStopType struct {
 	// Free format address representation. An address can have more than one line. The order of the AddressLine elements must be preserved.
 	AddressLine []string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 AddressLine"`
 	// Name of the the Mail Stop. eg. MSP, MS, etc
-	MailStopName string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 MailStopName,omitempty"`
+	MailStopName *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 MailStopName,omitempty"`
 	// Number of the Mail stop. eg. 123 in MS 123
-	MailStopNumber string  `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 MailStopNumber,omitempty"`
+	MailStopNumber *string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 MailStopNumber,omitempty"`
 	TypeField      *string `xml:"Type,attr,omitempty"`
 }
 
@@ -136,7 +136,7 @@ type PostalRouteType struct {
 	// Name of the Postal Route
 	PostalRouteName []string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 PostalRouteName"`
 	// Number of the Postal Route
-	PostalRouteNumber string  `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 PostalRouteNumber,omitempty"`
+	PostalRouteNumber string  `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 PostalRouteNumber"`
 	TypeField         *string `xml:"Type,attr,omitempty"`
 }
 
@@ -162,7 +162,7 @@ type SubPremiseType struct {
 	// Multiple levels within a premise by recursively calling SubPremise Eg. Level 4, Suite 2, Block C
 	SubPremise *SubPremiseType `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 SubPremise,omitempty"`
 	// Name of the SubPremise Location. eg. LOBBY, BASEMENT, GROUND FLOOR, etc...
-	SubPremiseLocation string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 SubPremiseLocation,omitempty"`
+	SubPremiseLocation string `xml:"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0 SubPremiseLocation"`
 	// Specification of the identifier of a sub-premise. Examples of sub-premises are apartments and suites. sub-premises in a building are often uniquely identified by means of consecutive
 	// identifiers. The identifier can be a number, a letter or any combination of the two. In the latter case, the identifier includes exactly one variable (range) part, which is either a
 	// number or a single letter that is surrounded by fixed parts at the left (prefix) or the right (postfix).

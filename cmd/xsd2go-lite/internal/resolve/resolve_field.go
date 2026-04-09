@@ -143,7 +143,7 @@ func (r *Resolver) resolveLocalField(rf parse.RawField, schemaNS string) []parse
 	isSlice := rf.MaxOccurs == "unbounded" || (rf.MaxOccurs != "" && rf.MaxOccurs != "1" && rf.MaxOccurs != "0")
 	isOmit := rf.IsAttr && rf.MinOccurs != "required"
 	if !rf.IsAttr {
-		isOmit = rf.MinOccurs == "0" || rf.MinOccurs == ""
+		isOmit = rf.MinOccurs == "0"
 	}
 
 	xmlTag := buildXMLTag(schemaNS, rf.LocalName, rf.IsAttr)
@@ -167,6 +167,8 @@ func (r *Resolver) resolveLocalField(rf parse.RawField, schemaNS string) []parse
 		f.GoType = "[]" + strings.TrimPrefix(goType, "[]")
 	} else if !isSlice && !rf.IsAttr && !parse.IsBuiltinGoType(goType) {
 		f.GoType = "*" + strings.TrimPrefix(goType, "*")
+	} else if !isSlice && !rf.IsAttr && isOmit && parse.IsBuiltinGoType(goType) {
+		f.GoType = "*" + goType
 	} else if rf.IsAttr && isOmit {
 		// XSD optional attribute (use="optional" or use omitted) → pointer type
 		// so encoding/xml can distinguish absent (nil) from present-but-empty ("").

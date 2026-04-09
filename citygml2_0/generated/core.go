@@ -27,12 +27,12 @@ type AbstractCityObjectType struct {
 	// deprecated in GML version 3.1
 	Location                                       *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                               *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                   string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                   *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                              []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                  []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                              string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                              *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 }
 
@@ -57,12 +57,12 @@ type AbstractSiteType struct {
 	// deprecated in GML version 3.1
 	Location                                       *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                               *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                   string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                   *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                              []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                  []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                              string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                              *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 	AbstractGenericApplicationPropertyOfSite       []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfSite"`
 }
@@ -100,7 +100,7 @@ type AddressType struct {
 	// deprecated in GML version 3.1
 	Location                                    *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                            *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	XalAddress                                  *XalAddressPropertyType                   `xml:"http://www.opengis.net/citygml/2.0 xalAddress,omitempty"`
+	XalAddress                                  *XalAddressPropertyType                   `xml:"http://www.opengis.net/citygml/2.0 xalAddress"`
 	MultiPoint                                  *gml3_1_1gen.MultiPointPropertyType       `xml:"http://www.opengis.net/citygml/2.0 multiPoint,omitempty"`
 	AbstractGenericApplicationPropertyOfAddress []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfAddress"`
 }
@@ -133,13 +133,13 @@ type CityModelType struct {
 }
 
 type ExternalObjectReferenceType struct {
-	Name string `xml:"http://www.opengis.net/citygml/2.0 name,omitempty"`
-	Uri  string `xml:"http://www.opengis.net/citygml/2.0 uri,omitempty"`
+	Name string `xml:"http://www.opengis.net/citygml/2.0 name"`
+	Uri  string `xml:"http://www.opengis.net/citygml/2.0 uri"`
 }
 
 type ExternalReferenceType struct {
-	InformationSystem string                       `xml:"http://www.opengis.net/citygml/2.0 informationSystem,omitempty"`
-	ExternalObject    *ExternalObjectReferenceType `xml:"http://www.opengis.net/citygml/2.0 externalObject,omitempty"`
+	InformationSystem *string                      `xml:"http://www.opengis.net/citygml/2.0 informationSystem,omitempty"`
+	ExternalObject    *ExternalObjectReferenceType `xml:"http://www.opengis.net/citygml/2.0 externalObject"`
 }
 
 type GeneralizationRelationType struct {
@@ -173,10 +173,10 @@ type ImplicitGeometryType struct {
 	SrsName                 []gml3_1_1gen.CodeType            `xml:"http://www.opengis.net/gml srsName"`
 	Id                      string                            `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	MimeType                *gml3_1_1gen.CodeType             `xml:"http://www.opengis.net/citygml/2.0 mimeType,omitempty"`
-	TransformationMatrix    string                            `xml:"http://www.opengis.net/citygml/2.0 transformationMatrix,omitempty"`
-	LibraryObject           string                            `xml:"http://www.opengis.net/citygml/2.0 libraryObject,omitempty"`
+	TransformationMatrix    *string                           `xml:"http://www.opengis.net/citygml/2.0 transformationMatrix,omitempty"`
+	LibraryObject           *string                           `xml:"http://www.opengis.net/citygml/2.0 libraryObject,omitempty"`
 	RelativeGMLGeometry     *gml3_1_1gen.GeometryPropertyType `xml:"http://www.opengis.net/citygml/2.0 relativeGMLGeometry,omitempty"`
-	ReferencePoint          *gml3_1_1gen.PointPropertyType    `xml:"http://www.opengis.net/citygml/2.0 referencePoint,omitempty"`
+	ReferencePoint          *gml3_1_1gen.PointPropertyType    `xml:"http://www.opengis.net/citygml/2.0 referencePoint"`
 }
 
 type ImplicitRepresentationPropertyType struct {

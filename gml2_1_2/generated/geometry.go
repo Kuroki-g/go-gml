@@ -36,7 +36,7 @@ type AbstractGeometryType struct {
 
 type BoundingShapeType struct {
 	Box  *BoxType `xml:"http://www.opengis.net/gml Box,omitempty"`
-	Null string   `xml:"http://www.opengis.net/gml null,omitempty"`
+	Null string   `xml:"http://www.opengis.net/gml null"`
 }
 
 type BoxType struct {
@@ -47,9 +47,9 @@ type BoxType struct {
 }
 
 type CoordType struct {
-	X float64 `xml:"http://www.opengis.net/gml X,omitempty"`
-	Y float64 `xml:"http://www.opengis.net/gml Y,omitempty"`
-	Z float64 `xml:"http://www.opengis.net/gml Z,omitempty"`
+	X float64  `xml:"http://www.opengis.net/gml X"`
+	Y *float64 `xml:"http://www.opengis.net/gml Y,omitempty"`
+	Z *float64 `xml:"http://www.opengis.net/gml Z,omitempty"`
 }
 
 type CoordinatesType struct {

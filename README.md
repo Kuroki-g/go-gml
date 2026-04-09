@@ -49,7 +49,7 @@ for {
 | `gml:MultiCurve` / `gml:MultiLineString` | `MultiLineString` | ✓ |
 | `gml:MultiSurface` / `gml:MultiPolygon` | `MultiPolygon` | ✓ |
 | `gml:Curve` + `LineStringSegment` | `LineString` | ✓ |
-| `gml:Surface` + `PolygonPatch` | `Polygon` | ✓ |
+| `gml:Surface` + `PolygonPatch` | `Polygon` / `MultiPolygon` | ✓ |
 | `gml:CompositeCurve` / `gml:OrientableCurve` | `LineString` | ✓ |
 | `gml:CompositeSurface` | `MultiPolygon` | ✓ |
 | `gml:OrientableSurface` | `Polygon` | ✓ |

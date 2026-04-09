@@ -28,7 +28,8 @@ func ringFromLinearRing(lr *gen.LinearRingType) (core.Ring, error) {
 		return core.RingFromCoordinatesString(lr.Coordinates.Value, derefStrOr(lr.Coordinates.Cs, ","), derefStrOr(lr.Coordinates.Ts, " "))
 	}
 	if len(lr.Coord) > 0 {
-		return core.RingFromFlat(coordSliceToFlat(lr.Coord), 2)
+		flat, dim := coordSliceToFlat(lr.Coord)
+		return core.RingFromFlat(flat, dim)
 	}
 	return nil, fmt.Errorf("gml: LinearRing has no coordinate data")
 }

@@ -97,9 +97,17 @@ func boundFromBoxXML(x *gen.BoxType) (core.Bound, error) {
 		return core.Bound{Min: core.Point{coords[0], coords[1]}, Max: core.Point{coords[2], coords[3]}}, nil
 	}
 	if len(x.Coord) >= 2 {
+		y0 := 0.0
+		if x.Coord[0].Y != nil {
+			y0 = *x.Coord[0].Y
+		}
+		y1 := 0.0
+		if x.Coord[1].Y != nil {
+			y1 = *x.Coord[1].Y
+		}
 		return core.Bound{
-			Min: core.Point{x.Coord[0].X, x.Coord[0].Y},
-			Max: core.Point{x.Coord[1].X, x.Coord[1].Y},
+			Min: core.Point{x.Coord[0].X, y0},
+			Max: core.Point{x.Coord[1].X, y1},
 		}, nil
 	}
 	return core.Bound{}, fmt.Errorf("gml: Box has no coordinate data")

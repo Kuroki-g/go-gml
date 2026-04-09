@@ -625,10 +625,10 @@ type AffineCSType struct {
 }
 
 type AffinePlacementType struct {
-	Location     *DirectPositionType `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
+	Location     *DirectPositionType `xml:"http://www.opengis.net/gml/3.2 location"`
 	RefDirection []VectorType        `xml:"http://www.opengis.net/gml/3.2 refDirection"`
-	InDimension  int                 `xml:"http://www.opengis.net/gml/3.2 inDimension,omitempty"`
-	OutDimension int                 `xml:"http://www.opengis.net/gml/3.2 outDimension,omitempty"`
+	InDimension  int                 `xml:"http://www.opengis.net/gml/3.2 inDimension"`
+	OutDimension int                 `xml:"http://www.opengis.net/gml/3.2 outDimension"`
 }
 
 type AngleChoiceType struct {
@@ -642,8 +642,8 @@ type AngleType struct {
 }
 
 type ArcByBulgeType struct {
-	Bulge       float64                 `xml:"http://www.opengis.net/gml/3.2 bulge,omitempty"`
-	Normal      *VectorType             `xml:"http://www.opengis.net/gml/3.2 normal,omitempty"`
+	Bulge       float64                 `xml:"http://www.opengis.net/gml/3.2 bulge"`
+	Normal      *VectorType             `xml:"http://www.opengis.net/gml/3.2 normal"`
 	PosList     *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
 	Pos         *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
@@ -661,7 +661,7 @@ type ArcByCenterPointType struct {
 	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
 	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
 	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
-	Radius                *LengthType             `xml:"http://www.opengis.net/gml/3.2 radius,omitempty"`
+	Radius                *LengthType             `xml:"http://www.opengis.net/gml/3.2 radius"`
 	StartAngle            *AngleType              `xml:"http://www.opengis.net/gml/3.2 startAngle,omitempty"`
 	EndAngle              *AngleType              `xml:"http://www.opengis.net/gml/3.2 endAngle,omitempty"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
@@ -937,7 +937,7 @@ type BSplineType struct {
 	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
 	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
 	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
-	Degree                int                     `xml:"http://www.opengis.net/gml/3.2 degree,omitempty"`
+	Degree                int                     `xml:"http://www.opengis.net/gml/3.2 degree"`
 	Knot                  []KnotPropertyType      `xml:"http://www.opengis.net/gml/3.2 knot"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
@@ -985,11 +985,11 @@ type BaseUnitType struct {
 	// The catalogSymbol is the preferred lexical symbol used for this unit of measure.
 	// The codeSpace attribute in gml:CodeType identifies a namespace for the catalog symbol value, and might reference the external catalog. The string value in gml:CodeType contains the value of a symbol that should be unique within this catalog namespace. This symbol often appears explicitly in the catalog, but it could be a combination of symbols using a specified algebra of units.
 	CatalogSymbol *CodeType      `xml:"http://www.opengis.net/gml/3.2 catalogSymbol,omitempty"`
-	UnitsSystem   *ReferenceType `xml:"http://www.opengis.net/gml/3.2 unitsSystem,omitempty"`
+	UnitsSystem   *ReferenceType `xml:"http://www.opengis.net/gml/3.2 unitsSystem"`
 }
 
 type BezierType struct {
-	Degree      int                     `xml:"http://www.opengis.net/gml/3.2 degree,omitempty"`
+	Degree      int                     `xml:"http://www.opengis.net/gml/3.2 degree"`
 	Knot        []KnotPropertyType      `xml:"http://www.opengis.net/gml/3.2 knot"`
 	PosList     *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
@@ -1121,7 +1121,7 @@ type CategoryPropertyType struct {
 }
 
 type CircleByCenterPointType struct {
-	Radius      *LengthType             `xml:"http://www.opengis.net/gml/3.2 radius,omitempty"`
+	Radius      *LengthType             `xml:"http://www.opengis.net/gml/3.2 radius"`
 	PosList     *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
 	Pos         *DirectPositionType     `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
@@ -1153,10 +1153,10 @@ type ClothoidType struct {
 	NumDerivativesAtStart *int    `xml:"numDerivativesAtStart,attr,omitempty"`
 	NumDerivativesAtEnd   *int    `xml:"numDerivativesAtEnd,attr,omitempty"`
 	NumDerivativeInterior *int    `xml:"numDerivativeInterior,attr,omitempty"`
-	RefLocation           string  `xml:"http://www.opengis.net/gml/3.2 refLocation,omitempty"`
-	ScaleFactor           float64 `xml:"http://www.opengis.net/gml/3.2 scaleFactor,omitempty"`
-	StartParameter        float64 `xml:"http://www.opengis.net/gml/3.2 startParameter,omitempty"`
-	EndParameter          float64 `xml:"http://www.opengis.net/gml/3.2 endParameter,omitempty"`
+	RefLocation           string  `xml:"http://www.opengis.net/gml/3.2 refLocation"`
+	ScaleFactor           float64 `xml:"http://www.opengis.net/gml/3.2 scaleFactor"`
+	StartParameter        float64 `xml:"http://www.opengis.net/gml/3.2 startParameter"`
+	EndParameter          float64 `xml:"http://www.opengis.net/gml/3.2 endParameter"`
 	Interpolation         *string `xml:"interpolation,attr,omitempty"`
 }
 
@@ -1392,8 +1392,8 @@ type ConversionPropertyType struct {
 
 type ConversionToPreferredUnitType struct {
 	Uom     string       `xml:"uom,attr"`
-	Factor  float64      `xml:"http://www.opengis.net/gml/3.2 factor,omitempty"`
-	Formula *FormulaType `xml:"http://www.opengis.net/gml/3.2 formula,omitempty"`
+	Factor  float64      `xml:"http://www.opengis.net/gml/3.2 factor"`
+	Formula *FormulaType `xml:"http://www.opengis.net/gml/3.2 formula"`
 }
 
 type ConversionType struct {
@@ -1549,8 +1549,8 @@ type CubicSplineType struct {
 	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
 	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
 	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
-	VectorAtStart         *VectorType             `xml:"http://www.opengis.net/gml/3.2 vectorAtStart,omitempty"`
-	VectorAtEnd           *VectorType             `xml:"http://www.opengis.net/gml/3.2 vectorAtEnd,omitempty"`
+	VectorAtStart         *VectorType             `xml:"http://www.opengis.net/gml/3.2 vectorAtStart"`
+	VectorAtEnd           *VectorType             `xml:"http://www.opengis.net/gml/3.2 vectorAtEnd"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
 	Pos                   []DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos"`
@@ -2031,7 +2031,7 @@ type DirectedObservationAtDistanceType struct {
 	ResultOf  *ResultType                `xml:"http://www.opengis.net/gml/3.2 resultOf,omitempty"`
 	// The property gml:direction is intended as a pre-defined property expressing a direction to be assigned to features defined in a GML application schema.
 	Direction *DirectionPropertyType `xml:"http://www.opengis.net/gml/3.2 direction,omitempty"`
-	Distance  *MeasureType           `xml:"http://www.opengis.net/gml/3.2 distance,omitempty"`
+	Distance  *MeasureType           `xml:"http://www.opengis.net/gml/3.2 distance"`
 }
 
 type DirectedObservationType struct {
@@ -2078,18 +2078,18 @@ type DirectedTopoSolidPropertyType struct {
 }
 
 type DirectionDescriptionType struct {
-	CompassPoint string         `xml:"http://www.opengis.net/gml/3.2 compassPoint,omitempty"`
-	Keyword      *CodeType      `xml:"http://www.opengis.net/gml/3.2 keyword,omitempty"`
-	Description  string         `xml:"http://www.opengis.net/gml/3.2 description,omitempty"`
-	Reference    *ReferenceType `xml:"http://www.opengis.net/gml/3.2 reference,omitempty"`
+	CompassPoint string         `xml:"http://www.opengis.net/gml/3.2 compassPoint"`
+	Keyword      *CodeType      `xml:"http://www.opengis.net/gml/3.2 keyword"`
+	Description  string         `xml:"http://www.opengis.net/gml/3.2 description"`
+	Reference    *ReferenceType `xml:"http://www.opengis.net/gml/3.2 reference"`
 }
 
 type DirectionPropertyType struct {
-	DirectionVector      *DirectionVectorType      `xml:"http://www.opengis.net/gml/3.2 DirectionVector,omitempty"`
-	DirectionDescription *DirectionDescriptionType `xml:"http://www.opengis.net/gml/3.2 DirectionDescription,omitempty"`
-	CompassPoint         string                    `xml:"http://www.opengis.net/gml/3.2 CompassPoint,omitempty"`
-	DirectionKeyword     *CodeType                 `xml:"http://www.opengis.net/gml/3.2 DirectionKeyword,omitempty"`
-	DirectionString      *StringOrRefType          `xml:"http://www.opengis.net/gml/3.2 DirectionString,omitempty"`
+	DirectionVector      *DirectionVectorType      `xml:"http://www.opengis.net/gml/3.2 DirectionVector"`
+	DirectionDescription *DirectionDescriptionType `xml:"http://www.opengis.net/gml/3.2 DirectionDescription"`
+	CompassPoint         string                    `xml:"http://www.opengis.net/gml/3.2 CompassPoint"`
+	DirectionKeyword     *CodeType                 `xml:"http://www.opengis.net/gml/3.2 DirectionKeyword"`
+	DirectionString      *StringOrRefType          `xml:"http://www.opengis.net/gml/3.2 DirectionString"`
 	Owns                 *bool                     `xml:"owns,attr,omitempty"`
 	NilReason            *string                   `xml:"nilReason,attr,omitempty"`
 	RemoteSchema         string                    `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
@@ -2104,8 +2104,8 @@ type DirectionPropertyType struct {
 
 type DirectionVectorType struct {
 	Vector          *VectorType `xml:"http://www.opengis.net/gml/3.2 vector,omitempty"`
-	HorizontalAngle *AngleType  `xml:"http://www.opengis.net/gml/3.2 horizontalAngle,omitempty"`
-	VerticalAngle   *AngleType  `xml:"http://www.opengis.net/gml/3.2 verticalAngle,omitempty"`
+	HorizontalAngle *AngleType  `xml:"http://www.opengis.net/gml/3.2 horizontalAngle"`
+	VerticalAngle   *AngleType  `xml:"http://www.opengis.net/gml/3.2 verticalAngle"`
 }
 
 type DiscreteCoverageType struct {
@@ -2441,8 +2441,8 @@ type EngineeringDatumType struct {
 type EnvelopeType struct {
 	Pos          []DirectPositionType `xml:"http://www.opengis.net/gml/3.2 pos"`
 	Coordinates  *CoordinatesType     `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
-	LowerCorner  *DirectPositionType  `xml:"http://www.opengis.net/gml/3.2 lowerCorner,omitempty"`
-	UpperCorner  *DirectPositionType  `xml:"http://www.opengis.net/gml/3.2 upperCorner,omitempty"`
+	LowerCorner  *DirectPositionType  `xml:"http://www.opengis.net/gml/3.2 lowerCorner"`
+	UpperCorner  *DirectPositionType  `xml:"http://www.opengis.net/gml/3.2 upperCorner"`
 	SrsName      *string              `xml:"srsName,attr,omitempty"`
 	SrsDimension *int                 `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string              `xml:"axisLabels,attr,omitempty"`
@@ -2452,14 +2452,14 @@ type EnvelopeType struct {
 type EnvelopeWithTimePeriodType struct {
 	Pos           []DirectPositionType `xml:"http://www.opengis.net/gml/3.2 pos"`
 	Coordinates   *CoordinatesType     `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
-	LowerCorner   *DirectPositionType  `xml:"http://www.opengis.net/gml/3.2 lowerCorner,omitempty"`
-	UpperCorner   *DirectPositionType  `xml:"http://www.opengis.net/gml/3.2 upperCorner,omitempty"`
+	LowerCorner   *DirectPositionType  `xml:"http://www.opengis.net/gml/3.2 lowerCorner"`
+	UpperCorner   *DirectPositionType  `xml:"http://www.opengis.net/gml/3.2 upperCorner"`
 	SrsName       *string              `xml:"srsName,attr,omitempty"`
 	SrsDimension  *int                 `xml:"srsDimension,attr,omitempty"`
 	AxisLabels    *string              `xml:"axisLabels,attr,omitempty"`
 	UomLabels     *string              `xml:"uomLabels,attr,omitempty"`
-	BeginPosition *TimePositionType    `xml:"http://www.opengis.net/gml/3.2 beginPosition,omitempty"`
-	EndPosition   *TimePositionType    `xml:"http://www.opengis.net/gml/3.2 endPosition,omitempty"`
+	BeginPosition *TimePositionType    `xml:"http://www.opengis.net/gml/3.2 beginPosition"`
+	EndPosition   *TimePositionType    `xml:"http://www.opengis.net/gml/3.2 endPosition"`
 	Frame         *string              `xml:"frame,attr,omitempty"`
 }
 
@@ -2583,18 +2583,18 @@ type FeaturePropertyType struct {
 
 type FileType struct {
 	RangeParameters *AssociationRoleType `xml:"http://www.opengis.net/gml/3.2 rangeParameters,omitempty"`
-	FileStructure   *CodeType            `xml:"http://www.opengis.net/gml/3.2 fileStructure,omitempty"`
-	MimeType        string               `xml:"http://www.opengis.net/gml/3.2 mimeType,omitempty"`
-	Compression     string               `xml:"http://www.opengis.net/gml/3.2 compression,omitempty"`
-	FileName        string               `xml:"http://www.opengis.net/gml/3.2 fileName,omitempty"`
-	FileReference   string               `xml:"http://www.opengis.net/gml/3.2 fileReference,omitempty"`
+	FileStructure   *CodeType            `xml:"http://www.opengis.net/gml/3.2 fileStructure"`
+	MimeType        *string              `xml:"http://www.opengis.net/gml/3.2 mimeType,omitempty"`
+	Compression     *string              `xml:"http://www.opengis.net/gml/3.2 compression,omitempty"`
+	FileName        string               `xml:"http://www.opengis.net/gml/3.2 fileName"`
+	FileReference   string               `xml:"http://www.opengis.net/gml/3.2 fileReference"`
 }
 
 type FormulaType struct {
-	A float64 `xml:"http://www.opengis.net/gml/3.2 a,omitempty"`
-	B float64 `xml:"http://www.opengis.net/gml/3.2 b,omitempty"`
-	C float64 `xml:"http://www.opengis.net/gml/3.2 c,omitempty"`
-	D float64 `xml:"http://www.opengis.net/gml/3.2 d,omitempty"`
+	A *float64 `xml:"http://www.opengis.net/gml/3.2 a,omitempty"`
+	B float64  `xml:"http://www.opengis.net/gml/3.2 b"`
+	C float64  `xml:"http://www.opengis.net/gml/3.2 c"`
+	D *float64 `xml:"http://www.opengis.net/gml/3.2 d,omitempty"`
 }
 
 type GeneralConversionPropertyType struct {
@@ -2979,13 +2979,13 @@ type GeometryPropertyType struct {
 }
 
 type GridEnvelopeType struct {
-	Low  string `xml:"http://www.opengis.net/gml/3.2 low,omitempty"`
-	High string `xml:"http://www.opengis.net/gml/3.2 high,omitempty"`
+	Low  string `xml:"http://www.opengis.net/gml/3.2 low"`
+	High string `xml:"http://www.opengis.net/gml/3.2 high"`
 }
 
 type GridFunctionType struct {
 	SequenceRule *SequenceRuleType `xml:"http://www.opengis.net/gml/3.2 sequenceRule,omitempty"`
-	StartPoint   string            `xml:"http://www.opengis.net/gml/3.2 startPoint,omitempty"`
+	StartPoint   *string           `xml:"http://www.opengis.net/gml/3.2 startPoint,omitempty"`
 }
 
 type GridLengthType struct {
@@ -2993,7 +2993,7 @@ type GridLengthType struct {
 }
 
 type GridLimitsType struct {
-	GridEnvelope *GridEnvelopeType `xml:"http://www.opengis.net/gml/3.2 GridEnvelope,omitempty"`
+	GridEnvelope *GridEnvelopeType `xml:"http://www.opengis.net/gml/3.2 GridEnvelope"`
 }
 
 type GridType struct {
@@ -3009,9 +3009,9 @@ type GridType struct {
 	Id           string          `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string         `xml:"srsName,attr,omitempty"`
 	SrsDimension *int            `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string          `xml:"http://www.opengis.net/gml/3.2 axisLabels,omitempty"`
+	AxisLabels   string          `xml:"http://www.opengis.net/gml/3.2 axisLabels"`
 	UomLabels    *string         `xml:"uomLabels,attr,omitempty"`
-	Limits       *GridLimitsType `xml:"http://www.opengis.net/gml/3.2 limits,omitempty"`
+	Limits       *GridLimitsType `xml:"http://www.opengis.net/gml/3.2 limits"`
 	AxisName     []string        `xml:"http://www.opengis.net/gml/3.2 axisName"`
 	Dimension    int             `xml:"dimension,attr"`
 }
@@ -3138,13 +3138,13 @@ type KnotPropertyType struct {
 	// value is the value of the parameter at the knot of the spline (see ISO 19107:2003, 6.4.24.2).
 	// multiplicity is the multiplicity of this knot used in the definition of the spline (with the same weight).
 	// weight is the value of the averaging weight used for this knot of the spline.
-	Knot *KnotType `xml:"http://www.opengis.net/gml/3.2 Knot,omitempty"`
+	Knot *KnotType `xml:"http://www.opengis.net/gml/3.2 Knot"`
 }
 
 type KnotType struct {
-	Value        float64 `xml:"http://www.opengis.net/gml/3.2 value,omitempty"`
-	Multiplicity int     `xml:"http://www.opengis.net/gml/3.2 multiplicity,omitempty"`
-	Weight       float64 `xml:"http://www.opengis.net/gml/3.2 weight,omitempty"`
+	Value        float64 `xml:"http://www.opengis.net/gml/3.2 value"`
+	Multiplicity int     `xml:"http://www.opengis.net/gml/3.2 multiplicity"`
+	Weight       float64 `xml:"http://www.opengis.net/gml/3.2 weight"`
 }
 
 type LengthType struct {
@@ -3303,8 +3303,8 @@ type LocationPropertyType struct {
 }
 
 type MappingRuleType struct {
-	RuleDefinition string         `xml:"http://www.opengis.net/gml/3.2 ruleDefinition,omitempty"`
-	RuleReference  *ReferenceType `xml:"http://www.opengis.net/gml/3.2 ruleReference,omitempty"`
+	RuleDefinition string         `xml:"http://www.opengis.net/gml/3.2 ruleDefinition"`
+	RuleReference  *ReferenceType `xml:"http://www.opengis.net/gml/3.2 ruleReference"`
 }
 
 type MeasureListType struct {
@@ -3358,7 +3358,7 @@ type MovingObjectStatusType struct {
 	Elevation       *MeasureType           `xml:"http://www.opengis.net/gml/3.2 elevation,omitempty"`
 	Status          *StringOrRefType       `xml:"http://www.opengis.net/gml/3.2 status,omitempty"`
 	StatusReference *ReferenceType         `xml:"http://www.opengis.net/gml/3.2 statusReference,omitempty"`
-	Position        *GeometryPropertyType  `xml:"http://www.opengis.net/gml/3.2 position,omitempty"`
+	Position        *GeometryPropertyType  `xml:"http://www.opengis.net/gml/3.2 position"`
 	Pos             *DirectPositionType    `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
 	// The gml:locationName property element is a convenience property where the text value describes the location of the feature. If the location names are selected from a controlled list, then the list shall be identified in the codeSpace attribute.
 	LocationName *CodeType `xml:"http://www.opengis.net/gml/3.2 locationName,omitempty"`
@@ -3680,8 +3680,8 @@ type OffsetCurveType struct {
 	NumDerivativesAtStart *int               `xml:"numDerivativesAtStart,attr,omitempty"`
 	NumDerivativesAtEnd   *int               `xml:"numDerivativesAtEnd,attr,omitempty"`
 	NumDerivativeInterior *int               `xml:"numDerivativeInterior,attr,omitempty"`
-	OffsetBase            *CurvePropertyType `xml:"http://www.opengis.net/gml/3.2 offsetBase,omitempty"`
-	Distance              *LengthType        `xml:"http://www.opengis.net/gml/3.2 distance,omitempty"`
+	OffsetBase            *CurvePropertyType `xml:"http://www.opengis.net/gml/3.2 offsetBase"`
+	Distance              *LengthType        `xml:"http://www.opengis.net/gml/3.2 distance"`
 	RefDirection          *VectorType        `xml:"http://www.opengis.net/gml/3.2 refDirection,omitempty"`
 }
 
@@ -4248,12 +4248,12 @@ type RectifiedGridType struct {
 	Id           string             `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string            `xml:"srsName,attr,omitempty"`
 	SrsDimension *int               `xml:"srsDimension,attr,omitempty"`
-	AxisLabels   string             `xml:"http://www.opengis.net/gml/3.2 axisLabels,omitempty"`
+	AxisLabels   string             `xml:"http://www.opengis.net/gml/3.2 axisLabels"`
 	UomLabels    *string            `xml:"uomLabels,attr,omitempty"`
-	Limits       *GridLimitsType    `xml:"http://www.opengis.net/gml/3.2 limits,omitempty"`
+	Limits       *GridLimitsType    `xml:"http://www.opengis.net/gml/3.2 limits"`
 	AxisName     []string           `xml:"http://www.opengis.net/gml/3.2 axisName"`
 	Dimension    int                `xml:"dimension,attr"`
-	Origin       *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 origin,omitempty"`
+	Origin       *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 origin"`
 	OffsetVector []VectorType       `xml:"http://www.opengis.net/gml/3.2 offsetVector"`
 }
 
@@ -4837,10 +4837,10 @@ type TimeCalendarEraType struct {
 	Name            []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id              string                  `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Remarks         *string                 `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	ReferenceEvent  *StringOrRefType        `xml:"http://www.opengis.net/gml/3.2 referenceEvent,omitempty"`
-	ReferenceDate   string                  `xml:"http://www.opengis.net/gml/3.2 referenceDate,omitempty"`
-	JulianReference float64                 `xml:"http://www.opengis.net/gml/3.2 julianReference,omitempty"`
-	EpochOfUse      *TimePeriodPropertyType `xml:"http://www.opengis.net/gml/3.2 epochOfUse,omitempty"`
+	ReferenceEvent  *StringOrRefType        `xml:"http://www.opengis.net/gml/3.2 referenceEvent"`
+	ReferenceDate   string                  `xml:"http://www.opengis.net/gml/3.2 referenceDate"`
+	JulianReference float64                 `xml:"http://www.opengis.net/gml/3.2 julianReference"`
+	EpochOfUse      *TimePeriodPropertyType `xml:"http://www.opengis.net/gml/3.2 epochOfUse"`
 }
 
 type TimeCalendarPropertyType struct {
@@ -4872,7 +4872,7 @@ type TimeCalendarType struct {
 	Name             []CodeType                    `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id               string                        `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Remarks          *string                       `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity string                        `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	DomainOfValidity string                        `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
 	ReferenceFrame   []TimeCalendarEraPropertyType `xml:"http://www.opengis.net/gml/3.2 referenceFrame"`
 }
 
@@ -4908,10 +4908,10 @@ type TimeClockType struct {
 	Name             []CodeType                 `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id               string                     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Remarks          *string                    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity string                     `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
-	ReferenceEvent   *StringOrRefType           `xml:"http://www.opengis.net/gml/3.2 referenceEvent,omitempty"`
-	ReferenceTime    string                     `xml:"http://www.opengis.net/gml/3.2 referenceTime,omitempty"`
-	UtcReference     string                     `xml:"http://www.opengis.net/gml/3.2 utcReference,omitempty"`
+	DomainOfValidity string                     `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
+	ReferenceEvent   *StringOrRefType           `xml:"http://www.opengis.net/gml/3.2 referenceEvent"`
+	ReferenceTime    string                     `xml:"http://www.opengis.net/gml/3.2 referenceTime"`
+	UtcReference     string                     `xml:"http://www.opengis.net/gml/3.2 utcReference"`
 	DateBasis        []TimeCalendarPropertyType `xml:"http://www.opengis.net/gml/3.2 dateBasis"`
 }
 
@@ -4927,10 +4927,10 @@ type TimeCoordinateSystemType struct {
 	Name             []CodeType               `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id               string                   `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Remarks          *string                  `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity string                   `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
-	Interval         *TimeIntervalLengthType  `xml:"http://www.opengis.net/gml/3.2 interval,omitempty"`
-	OriginPosition   *TimePositionType        `xml:"http://www.opengis.net/gml/3.2 originPosition,omitempty"`
-	Origin           *TimeInstantPropertyType `xml:"http://www.opengis.net/gml/3.2 origin,omitempty"`
+	DomainOfValidity string                   `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
+	Interval         *TimeIntervalLengthType  `xml:"http://www.opengis.net/gml/3.2 interval"`
+	OriginPosition   *TimePositionType        `xml:"http://www.opengis.net/gml/3.2 originPosition"`
+	Origin           *TimeInstantPropertyType `xml:"http://www.opengis.net/gml/3.2 origin"`
 }
 
 type TimeEdgePropertyType struct {
@@ -4961,8 +4961,8 @@ type TimeEdgeType struct {
 	Id          string                  `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	RelatedTime []RelatedTimeType       `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
 	Complex     *ReferenceType          `xml:"http://www.opengis.net/gml/3.2 complex,omitempty"`
-	Start       *TimeNodePropertyType   `xml:"http://www.opengis.net/gml/3.2 start,omitempty"`
-	End         *TimeNodePropertyType   `xml:"http://www.opengis.net/gml/3.2 end,omitempty"`
+	Start       *TimeNodePropertyType   `xml:"http://www.opengis.net/gml/3.2 start"`
+	End         *TimeNodePropertyType   `xml:"http://www.opengis.net/gml/3.2 end"`
 	Extent      *TimePeriodPropertyType `xml:"http://www.opengis.net/gml/3.2 extent,omitempty"`
 }
 
@@ -5086,7 +5086,7 @@ type TimeOrdinalReferenceSystemType struct {
 	Name             []CodeType                   `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id               string                       `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Remarks          *string                      `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity string                       `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	DomainOfValidity string                       `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
 	Component        []TimeOrdinalEraPropertyType `xml:"http://www.opengis.net/gml/3.2 component"`
 }
 
@@ -5121,10 +5121,10 @@ type TimePeriodType struct {
 	Id            string                   `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	RelatedTime   []RelatedTimeType        `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
 	Frame         *string                  `xml:"frame,attr,omitempty"`
-	BeginPosition *TimePositionType        `xml:"http://www.opengis.net/gml/3.2 beginPosition,omitempty"`
-	Begin         *TimeInstantPropertyType `xml:"http://www.opengis.net/gml/3.2 begin,omitempty"`
-	EndPosition   *TimePositionType        `xml:"http://www.opengis.net/gml/3.2 endPosition,omitempty"`
-	End           *TimeInstantPropertyType `xml:"http://www.opengis.net/gml/3.2 end,omitempty"`
+	BeginPosition *TimePositionType        `xml:"http://www.opengis.net/gml/3.2 beginPosition"`
+	Begin         *TimeInstantPropertyType `xml:"http://www.opengis.net/gml/3.2 begin"`
+	EndPosition   *TimePositionType        `xml:"http://www.opengis.net/gml/3.2 endPosition"`
+	End           *TimeInstantPropertyType `xml:"http://www.opengis.net/gml/3.2 end"`
 	// gml:duration conforms to the ISO 8601 syntax for temporal length as implemented by the XML Schema duration type.
 	Duration *string `xml:"http://www.opengis.net/gml/3.2 duration,omitempty"`
 	// gml:timeInterval conforms to ISO 11404 which is based on floating point values for temporal length.
@@ -5173,7 +5173,7 @@ type TimeReferenceSystemType struct {
 	Name             []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id               string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Remarks          *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
-	DomainOfValidity string     `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
+	DomainOfValidity string     `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
 }
 
 type TimeTopologyComplexPropertyType struct {
@@ -5251,8 +5251,8 @@ type TinType struct {
 	TrianglePatches *SurfacePatchArrayPropertyType       `xml:"http://www.opengis.net/gml/3.2 trianglePatches,omitempty"`
 	StopLines       []LineStringSegmentArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 stopLines"`
 	BreakLines      []LineStringSegmentArrayPropertyType `xml:"http://www.opengis.net/gml/3.2 breakLines"`
-	MaxLength       *LengthType                          `xml:"http://www.opengis.net/gml/3.2 maxLength,omitempty"`
-	ControlPoint    string                               `xml:"http://www.opengis.net/gml/3.2 controlPoint,omitempty"`
+	MaxLength       *LengthType                          `xml:"http://www.opengis.net/gml/3.2 maxLength"`
+	ControlPoint    string                               `xml:"http://www.opengis.net/gml/3.2 controlPoint"`
 }
 
 type TopoComplexPropertyType struct {

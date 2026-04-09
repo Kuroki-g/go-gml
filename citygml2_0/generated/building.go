@@ -27,12 +27,12 @@ type AbstractBoundarySurfaceType struct {
 	// deprecated in GML version 3.1
 	Location                                            *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                                    *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                        string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                     string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                        *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                     *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                                   []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                       []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                                   string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                     string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                                   *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                     *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject      []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 	Lod2MultiSurface                                    *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod2MultiSurface,omitempty"`
 	Lod3MultiSurface                                    *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod3MultiSurface,omitempty"`
@@ -62,23 +62,23 @@ type AbstractBuildingType struct {
 	// deprecated in GML version 3.1
 	Location                                             *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                                     *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                         string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                      string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                         *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                      *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                                    []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                        []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                                    string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                      string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                                    *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                      *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject       []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 	AbstractGenericApplicationPropertyOfSite             []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfSite"`
 	Class                                                *gml3_1_1gen.CodeType                     `xml:"http://www.opengis.net/citygml/building/2.0 class,omitempty"`
 	Function                                             []gml3_1_1gen.CodeType                    `xml:"http://www.opengis.net/citygml/building/2.0 function"`
 	Usage                                                []gml3_1_1gen.CodeType                    `xml:"http://www.opengis.net/citygml/building/2.0 usage"`
-	YearOfConstruction                                   string                                    `xml:"http://www.opengis.net/citygml/building/2.0 yearOfConstruction,omitempty"`
-	YearOfDemolition                                     string                                    `xml:"http://www.opengis.net/citygml/building/2.0 yearOfDemolition,omitempty"`
+	YearOfConstruction                                   *string                                   `xml:"http://www.opengis.net/citygml/building/2.0 yearOfConstruction,omitempty"`
+	YearOfDemolition                                     *string                                   `xml:"http://www.opengis.net/citygml/building/2.0 yearOfDemolition,omitempty"`
 	RoofType                                             *gml3_1_1gen.CodeType                     `xml:"http://www.opengis.net/citygml/building/2.0 roofType,omitempty"`
 	MeasuredHeight                                       *gml3_1_1gen.LengthType                   `xml:"http://www.opengis.net/citygml/building/2.0 measuredHeight,omitempty"`
-	StoreysAboveGround                                   int                                       `xml:"http://www.opengis.net/citygml/building/2.0 storeysAboveGround,omitempty"`
-	StoreysBelowGround                                   int                                       `xml:"http://www.opengis.net/citygml/building/2.0 storeysBelowGround,omitempty"`
+	StoreysAboveGround                                   *int                                      `xml:"http://www.opengis.net/citygml/building/2.0 storeysAboveGround,omitempty"`
+	StoreysBelowGround                                   *int                                      `xml:"http://www.opengis.net/citygml/building/2.0 storeysBelowGround,omitempty"`
 	StoreyHeightsAboveGround                             *gml3_1_1gen.MeasureOrNullListType        `xml:"http://www.opengis.net/citygml/building/2.0 storeyHeightsAboveGround,omitempty"`
 	StoreyHeightsBelowGround                             *gml3_1_1gen.MeasureOrNullListType        `xml:"http://www.opengis.net/citygml/building/2.0 storeyHeightsBelowGround,omitempty"`
 	Lod0FootPrint                                        *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod0FootPrint,omitempty"`
@@ -127,12 +127,12 @@ type AbstractOpeningType struct {
 	// deprecated in GML version 3.1
 	Location                                       *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                               *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                   string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                   *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                              []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                  []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                              string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                              *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 	Lod3MultiSurface                               *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod3MultiSurface,omitempty"`
 	Lod4MultiSurface                               *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod4MultiSurface,omitempty"`
@@ -183,12 +183,12 @@ type BuildingFurnitureType struct {
 	// deprecated in GML version 3.1
 	Location                                              *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                                      *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                          string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                       string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                          *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                       *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                                     []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                         []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                                     string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                       string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                                     *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                       *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject        []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 	Class                                                 *gml3_1_1gen.CodeType                     `xml:"http://www.opengis.net/citygml/building/2.0 class,omitempty"`
 	Function                                              []gml3_1_1gen.CodeType                    `xml:"http://www.opengis.net/citygml/building/2.0 function"`
@@ -231,12 +231,12 @@ type BuildingInstallationType struct {
 	// deprecated in GML version 3.1
 	Location                                                 *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                                         *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                             string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                          string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                             *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                          *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                                        []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                            []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                                        string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                          string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                                        *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                          *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject           []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 	Class                                                    *gml3_1_1gen.CodeType                     `xml:"http://www.opengis.net/citygml/building/2.0 class,omitempty"`
 	Function                                                 []gml3_1_1gen.CodeType                    `xml:"http://www.opengis.net/citygml/building/2.0 function"`
@@ -283,23 +283,23 @@ type BuildingPartType struct {
 	// deprecated in GML version 3.1
 	Location                                             *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                                     *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                         string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                      string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                         *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                      *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                                    []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                        []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                                    string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                      string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                                    *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                      *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject       []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 	AbstractGenericApplicationPropertyOfSite             []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfSite"`
 	Class                                                *gml3_1_1gen.CodeType                     `xml:"http://www.opengis.net/citygml/building/2.0 class,omitempty"`
 	Function                                             []gml3_1_1gen.CodeType                    `xml:"http://www.opengis.net/citygml/building/2.0 function"`
 	Usage                                                []gml3_1_1gen.CodeType                    `xml:"http://www.opengis.net/citygml/building/2.0 usage"`
-	YearOfConstruction                                   string                                    `xml:"http://www.opengis.net/citygml/building/2.0 yearOfConstruction,omitempty"`
-	YearOfDemolition                                     string                                    `xml:"http://www.opengis.net/citygml/building/2.0 yearOfDemolition,omitempty"`
+	YearOfConstruction                                   *string                                   `xml:"http://www.opengis.net/citygml/building/2.0 yearOfConstruction,omitempty"`
+	YearOfDemolition                                     *string                                   `xml:"http://www.opengis.net/citygml/building/2.0 yearOfDemolition,omitempty"`
 	RoofType                                             *gml3_1_1gen.CodeType                     `xml:"http://www.opengis.net/citygml/building/2.0 roofType,omitempty"`
 	MeasuredHeight                                       *gml3_1_1gen.LengthType                   `xml:"http://www.opengis.net/citygml/building/2.0 measuredHeight,omitempty"`
-	StoreysAboveGround                                   int                                       `xml:"http://www.opengis.net/citygml/building/2.0 storeysAboveGround,omitempty"`
-	StoreysBelowGround                                   int                                       `xml:"http://www.opengis.net/citygml/building/2.0 storeysBelowGround,omitempty"`
+	StoreysAboveGround                                   *int                                      `xml:"http://www.opengis.net/citygml/building/2.0 storeysAboveGround,omitempty"`
+	StoreysBelowGround                                   *int                                      `xml:"http://www.opengis.net/citygml/building/2.0 storeysBelowGround,omitempty"`
 	StoreyHeightsAboveGround                             *gml3_1_1gen.MeasureOrNullListType        `xml:"http://www.opengis.net/citygml/building/2.0 storeyHeightsAboveGround,omitempty"`
 	StoreyHeightsBelowGround                             *gml3_1_1gen.MeasureOrNullListType        `xml:"http://www.opengis.net/citygml/building/2.0 storeyHeightsBelowGround,omitempty"`
 	Lod0FootPrint                                        *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod0FootPrint,omitempty"`
@@ -349,23 +349,23 @@ type BuildingType struct {
 	// deprecated in GML version 3.1
 	Location                                             *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                                     *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                         string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                      string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                         *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                      *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                                    []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                        []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                                    string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                      string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                                    *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                      *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject       []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 	AbstractGenericApplicationPropertyOfSite             []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfSite"`
 	Class                                                *gml3_1_1gen.CodeType                     `xml:"http://www.opengis.net/citygml/building/2.0 class,omitempty"`
 	Function                                             []gml3_1_1gen.CodeType                    `xml:"http://www.opengis.net/citygml/building/2.0 function"`
 	Usage                                                []gml3_1_1gen.CodeType                    `xml:"http://www.opengis.net/citygml/building/2.0 usage"`
-	YearOfConstruction                                   string                                    `xml:"http://www.opengis.net/citygml/building/2.0 yearOfConstruction,omitempty"`
-	YearOfDemolition                                     string                                    `xml:"http://www.opengis.net/citygml/building/2.0 yearOfDemolition,omitempty"`
+	YearOfConstruction                                   *string                                   `xml:"http://www.opengis.net/citygml/building/2.0 yearOfConstruction,omitempty"`
+	YearOfDemolition                                     *string                                   `xml:"http://www.opengis.net/citygml/building/2.0 yearOfDemolition,omitempty"`
 	RoofType                                             *gml3_1_1gen.CodeType                     `xml:"http://www.opengis.net/citygml/building/2.0 roofType,omitempty"`
 	MeasuredHeight                                       *gml3_1_1gen.LengthType                   `xml:"http://www.opengis.net/citygml/building/2.0 measuredHeight,omitempty"`
-	StoreysAboveGround                                   int                                       `xml:"http://www.opengis.net/citygml/building/2.0 storeysAboveGround,omitempty"`
-	StoreysBelowGround                                   int                                       `xml:"http://www.opengis.net/citygml/building/2.0 storeysBelowGround,omitempty"`
+	StoreysAboveGround                                   *int                                      `xml:"http://www.opengis.net/citygml/building/2.0 storeysAboveGround,omitempty"`
+	StoreysBelowGround                                   *int                                      `xml:"http://www.opengis.net/citygml/building/2.0 storeysBelowGround,omitempty"`
 	StoreyHeightsAboveGround                             *gml3_1_1gen.MeasureOrNullListType        `xml:"http://www.opengis.net/citygml/building/2.0 storeyHeightsAboveGround,omitempty"`
 	StoreyHeightsBelowGround                             *gml3_1_1gen.MeasureOrNullListType        `xml:"http://www.opengis.net/citygml/building/2.0 storeyHeightsBelowGround,omitempty"`
 	Lod0FootPrint                                        *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod0FootPrint,omitempty"`
@@ -415,12 +415,12 @@ type CeilingSurfaceType struct {
 	// deprecated in GML version 3.1
 	Location                                            *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                                    *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                        string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                     string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                        *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                     *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                                   []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                       []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                                   string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                     string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                                   *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                     *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject      []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 	Lod2MultiSurface                                    *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod2MultiSurface,omitempty"`
 	Lod3MultiSurface                                    *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod3MultiSurface,omitempty"`
@@ -451,12 +451,12 @@ type ClosureSurfaceType struct {
 	// deprecated in GML version 3.1
 	Location                                            *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                                    *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                        string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                     string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                        *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                     *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                                   []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                       []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                                   string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                     string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                                   *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                     *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject      []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 	Lod2MultiSurface                                    *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod2MultiSurface,omitempty"`
 	Lod3MultiSurface                                    *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod3MultiSurface,omitempty"`
@@ -487,12 +487,12 @@ type DoorType struct {
 	// deprecated in GML version 3.1
 	Location                                       *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                               *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                   string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                   *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                              []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                  []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                              string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                              *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 	Lod3MultiSurface                               *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod3MultiSurface,omitempty"`
 	Lod4MultiSurface                               *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod4MultiSurface,omitempty"`
@@ -524,12 +524,12 @@ type FloorSurfaceType struct {
 	// deprecated in GML version 3.1
 	Location                                            *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                                    *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                        string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                     string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                        *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                     *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                                   []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                       []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                                   string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                     string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                                   *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                     *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject      []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 	Lod2MultiSurface                                    *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod2MultiSurface,omitempty"`
 	Lod3MultiSurface                                    *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod3MultiSurface,omitempty"`
@@ -560,12 +560,12 @@ type GroundSurfaceType struct {
 	// deprecated in GML version 3.1
 	Location                                            *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                                    *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                        string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                     string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                        *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                     *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                                   []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                       []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                                   string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                     string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                                   *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                     *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject      []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 	Lod2MultiSurface                                    *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod2MultiSurface,omitempty"`
 	Lod3MultiSurface                                    *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod3MultiSurface,omitempty"`
@@ -608,12 +608,12 @@ type IntBuildingInstallationType struct {
 	// deprecated in GML version 3.1
 	Location                                                    *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                                            *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                                string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                             string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                                *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                             *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                                           []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                               []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                                           string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                             string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                                           *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                             *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject              []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 	Class                                                       *gml3_1_1gen.CodeType                     `xml:"http://www.opengis.net/citygml/building/2.0 class,omitempty"`
 	Function                                                    []gml3_1_1gen.CodeType                    `xml:"http://www.opengis.net/citygml/building/2.0 function"`
@@ -668,12 +668,12 @@ type InteriorWallSurfaceType struct {
 	// deprecated in GML version 3.1
 	Location                                                *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                                        *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                            string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                         string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                            *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                         *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                                       []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                           []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                                       string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                         string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                                       *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                         *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject          []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 	Lod2MultiSurface                                        *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod2MultiSurface,omitempty"`
 	Lod3MultiSurface                                        *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod3MultiSurface,omitempty"`
@@ -718,12 +718,12 @@ type OuterCeilingSurfaceType struct {
 	// deprecated in GML version 3.1
 	Location                                                *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                                        *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                            string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                         string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                            *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                         *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                                       []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                           []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                                       string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                         string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                                       *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                         *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject          []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 	Lod2MultiSurface                                        *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod2MultiSurface,omitempty"`
 	Lod3MultiSurface                                        *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod3MultiSurface,omitempty"`
@@ -754,12 +754,12 @@ type OuterFloorSurfaceType struct {
 	// deprecated in GML version 3.1
 	Location                                              *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                                      *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                          string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                       string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                          *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                       *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                                     []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                         []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                                     string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                       string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                                     *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                       *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject        []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 	Lod2MultiSurface                                      *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod2MultiSurface,omitempty"`
 	Lod3MultiSurface                                      *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod3MultiSurface,omitempty"`
@@ -790,12 +790,12 @@ type RoofSurfaceType struct {
 	// deprecated in GML version 3.1
 	Location                                            *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                                    *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                        string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                     string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                        *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                     *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                                   []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                       []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                                   string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                     string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                                   *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                     *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject      []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 	Lod2MultiSurface                                    *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod2MultiSurface,omitempty"`
 	Lod3MultiSurface                                    *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod3MultiSurface,omitempty"`
@@ -826,12 +826,12 @@ type RoomType struct {
 	// deprecated in GML version 3.1
 	Location                                       *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                               *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                   string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                   *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                              []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                  []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                              string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                              *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 	Class                                          *gml3_1_1gen.CodeType                     `xml:"http://www.opengis.net/citygml/building/2.0 class,omitempty"`
 	Function                                       []gml3_1_1gen.CodeType                    `xml:"http://www.opengis.net/citygml/building/2.0 function"`
@@ -864,12 +864,12 @@ type WallSurfaceType struct {
 	// deprecated in GML version 3.1
 	Location                                            *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                                    *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                        string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                     string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                        *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                     *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                                   []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                       []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                                   string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                     string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                                   *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                     *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject      []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 	Lod2MultiSurface                                    *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod2MultiSurface,omitempty"`
 	Lod3MultiSurface                                    *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod3MultiSurface,omitempty"`
@@ -900,12 +900,12 @@ type WindowType struct {
 	// deprecated in GML version 3.1
 	Location                                       *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
 	PriorityLocation                               *gml3_1_1gen.PriorityLocationPropertyType `xml:"http://www.opengis.net/gml priorityLocation,omitempty"`
-	CreationDate                                   string                                    `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
-	TerminationDate                                string                                    `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
+	CreationDate                                   *string                                   `xml:"http://www.opengis.net/citygml/2.0 creationDate,omitempty"`
+	TerminationDate                                *string                                   `xml:"http://www.opengis.net/citygml/2.0 terminationDate,omitempty"`
 	ExternalReference                              []ExternalReferenceType                   `xml:"http://www.opengis.net/citygml/2.0 externalReference"`
 	GeneralizesTo                                  []GeneralizationRelationType              `xml:"http://www.opengis.net/citygml/2.0 generalizesTo"`
-	RelativeToTerrain                              string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
-	RelativeToWater                                string                                    `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
+	RelativeToTerrain                              *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToTerrain,omitempty"`
+	RelativeToWater                                *string                                   `xml:"http://www.opengis.net/citygml/2.0 relativeToWater,omitempty"`
 	AbstractGenericApplicationPropertyOfCityObject []string                                  `xml:"http://www.opengis.net/citygml/2.0 _GenericApplicationPropertyOfCityObject"`
 	Lod3MultiSurface                               *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod3MultiSurface,omitempty"`
 	Lod4MultiSurface                               *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod4MultiSurface,omitempty"`

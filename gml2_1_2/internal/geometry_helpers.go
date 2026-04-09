@@ -4,13 +4,36 @@ import (
 	gen "github.com/Kuroki-g/go-gml/gml2_1_2/generated"
 )
 
-// coordSliceToFlat converts a []CoordType to a flat []float64 (X, Y pairs).
-func coordSliceToFlat(coords []gen.CoordType) []float64 {
-	flat := make([]float64, 0, len(coords)*2)
-	for _, c := range coords {
-		flat = append(flat, c.X, c.Y)
+// coordSliceToFlat converts a []CoordType to a flat []float64 and returns the stride.
+// stride is 3 if any coord has Z != nil, otherwise 2.
+func coordSliceToFlat(coords []gen.CoordType) ([]float64, int) {
+	if len(coords) == 0 {
+		return nil, 2
 	}
-	return flat
+	dim := 2
+	for _, c := range coords {
+		if c.Z != nil {
+			dim = 3
+			break
+		}
+	}
+	flat := make([]float64, 0, len(coords)*dim)
+	for _, c := range coords {
+		y := 0.0
+		if c.Y != nil {
+			y = *c.Y
+		}
+		if dim == 3 {
+			z := 0.0
+			if c.Z != nil {
+				z = *c.Z
+			}
+			flat = append(flat, c.X, y, z)
+		} else {
+			flat = append(flat, c.X, y)
+		}
+	}
+	return flat, dim
 }
 
 // derefStrOr dereferences a *string attribute; nil → def (the XSD default value).
