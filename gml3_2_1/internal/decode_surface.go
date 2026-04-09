@@ -9,7 +9,7 @@ import (
 	gen "github.com/Kuroki-g/go-gml/gml3_2_1/generated"
 )
 
-// handleSurface decodes a gml:Surface, caches the resulting Polygon by gml:id, and returns it.
+// handleSurface decodes a gml:Surface, caches the resulting geometry by gml:id, and returns it.
 func (r *Reader) handleSurface(dec *xml.Decoder, se xml.StartElement) (core.Geometry, error) {
 	id := extractGMLID(se)
 	g, err := decodeSurfaceElement(dec, se, r.resolver, r.globalDim)
@@ -17,17 +17,28 @@ func (r *Reader) handleSurface(dec *xml.Decoder, se xml.StartElement) (core.Geom
 		return core.Geometry{}, err
 	}
 	if id != "" {
-		if poly, ok := g.Value.(core.Polygon); ok {
-			r.resolver.polygonByID[id] = poly
+		switch v := g.Value.(type) {
+		case core.Polygon:
+			r.resolver.polygonByID[id] = v
+		case core.MultiPolygon:
+			r.resolver.multiPolygonByID[id] = v
 		}
 	}
-	return g, err
+	return g, nil
 }
 
 func decodeSurfaceElement(dec *xml.Decoder, se xml.StartElement, resolver *curveResolver, fallbackDim int) (core.Geometry, error) {
 	var x gen.SurfaceType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: Surface: %w", err)
+	}
+	if x.Patches != nil && (len(x.Patches.PolygonPatch)+len(x.Patches.Rectangle)) > 1 {
+		dim := preferDim(derefDim(x.SrsDimension), fallbackDim)
+		mp, err := multiPolygonFromSurfacePatchArrayProperty(x.Patches, dim, resolver)
+		if err != nil {
+			return core.Geometry{}, err
+		}
+		return core.Geometry{Value: mp, SRSName: x.SrsName}, nil
 	}
 	poly, err := polygonFromSurface(&x, resolver, fallbackDim)
 	if err != nil {
@@ -113,7 +124,7 @@ func ringFromRingType(ring *gen.RingType, inheritDim int, resolver *curveResolve
 			curve = resolver.resolve(strings.TrimPrefix(cm.Href, "#"))
 		}
 		if curve == nil {
-			continue
+			return nil, fmt.Errorf("curveMember[%d]: unresolved curve reference (href=%q)", i, cm.Href)
 		}
 		ls, err := lineStringFromCurve(curve, dim)
 		if err != nil {

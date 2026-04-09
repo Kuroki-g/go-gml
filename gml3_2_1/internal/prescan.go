@@ -72,8 +72,14 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("Surface %q: %w", id, err)
 			}
-			if poly, err := polygonFromSurface(&x, resolver, 0); err == nil {
-				resolver.polygonByID[id] = poly
+			if x.Patches != nil {
+				if mp, err := multiPolygonFromSurfacePatchArrayProperty(x.Patches, derefDim(x.SrsDimension), resolver); err == nil {
+					if len(mp) == 1 {
+						resolver.polygonByID[id] = mp[0]
+					} else if len(mp) > 1 {
+						resolver.multiPolygonByID[id] = mp
+					}
+				}
 			}
 		case gmlCompositeSurface:
 			var x gen.CompositeSurfaceType
@@ -201,9 +207,14 @@ func cacheSurfacePropertyMemberIDs(members []gen.SurfacePropertyType, resolver *
 				resolver.polygonByID[m.Polygon.Id] = poly
 			}
 		}
-		if m.Surface != nil && m.Surface.Id != "" {
-			if poly, err := polygonFromSurface(m.Surface, resolver, 0); err == nil {
-				resolver.polygonByID[m.Surface.Id] = poly
+		if m.Surface != nil && m.Surface.Id != "" && m.Surface.Patches != nil {
+			id := m.Surface.Id
+			if mp, err := multiPolygonFromSurfacePatchArrayProperty(m.Surface.Patches, derefDim(m.Surface.SrsDimension), resolver); err == nil {
+				if len(mp) == 1 {
+					resolver.polygonByID[id] = mp[0]
+				} else if len(mp) > 1 {
+					resolver.multiPolygonByID[id] = mp
+				}
 			}
 		}
 		if m.CompositeSurface != nil {

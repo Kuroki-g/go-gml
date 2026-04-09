@@ -41,14 +41,12 @@ func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim int,
 		return core.MultiPolygon{poly}, nil
 	}
 	if m.Surface != nil {
-		poly, err := polygonFromSurface(m.Surface, resolver, inheritDim)
-		if err != nil {
-			return nil, err
-		}
-		if poly == nil {
+		s := m.Surface
+		if s.Patches == nil {
 			return nil, nil
 		}
-		return core.MultiPolygon{poly}, nil
+		dim := preferDim(derefDim(s.SrsDimension), inheritDim)
+		return multiPolygonFromSurfacePatchArrayProperty(s.Patches, dim, resolver)
 	}
 	if m.OrientableSurface != nil {
 		os := m.OrientableSurface

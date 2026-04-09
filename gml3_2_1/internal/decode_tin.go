@@ -85,7 +85,7 @@ func multiPolygonFromSurfacePatchArrayProperty(sp *gen.SurfacePatchArrayProperty
 
 func polygonFromRectangle(rect *gen.RectangleType, inheritDim int, resolver *curveResolver) (core.Polygon, error) {
 	if rect.Exterior == nil {
-		return core.Polygon(nil), nil
+		return nil, fmt.Errorf("gml: Rectangle: missing required exterior")
 	}
 	r, err := ringFromAbstractRingProperty(rect.Exterior, inheritDim, "exterior", resolver)
 	if err != nil {
@@ -99,7 +99,7 @@ func polygonFromRectangle(rect *gen.RectangleType, inheritDim int, resolver *cur
 
 func polygonFromTriangle(t *gen.TriangleType, dim int, resolver *curveResolver) (core.Polygon, error) {
 	if t.Exterior == nil {
-		return core.Polygon(nil), nil
+		return nil, fmt.Errorf("gml: Triangle: missing required exterior")
 	}
 	ring, err := ringFromAbstractRingProperty(t.Exterior, dim, "exterior", resolver)
 	if err != nil {

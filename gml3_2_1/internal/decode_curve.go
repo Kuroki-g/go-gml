@@ -93,8 +93,9 @@ func lineStringFromCurve(x *gen.CurveType, inheritDim int) (core.LineString, err
 	for i, seg := range x.Segments.LineStringSegment {
 		var ls core.LineString
 		var err error
+		curveDim := derefDim(x.SrsDimension)
 		if seg.PosList != nil {
-			dim := preferDim(preferDim(inheritDim, derefDim(x.SrsDimension)), derefDim(seg.PosList.SrsDimension))
+			dim := preferDim(preferDim(inheritDim, curveDim), derefDim(seg.PosList.SrsDimension))
 			ls, err = core.LineStringFromPosListString(seg.PosList.Value, dim)
 		} else if seg.Coordinates != nil {
 			var coords []float64
@@ -102,6 +103,12 @@ func lineStringFromCurve(x *gen.CurveType, inheritDim int) (core.LineString, err
 			if err == nil {
 				ls, err = core.LineStringFromFlat(coords, 2)
 			}
+		} else if len(seg.Pos) > 0 {
+			ls, err = lineStringFromPosSlice(seg.Pos, preferDim(inheritDim, curveDim))
+		} else if len(seg.PointProperty) > 0 {
+			ls, err = lineStringFromPointPropertySlice(seg.PointProperty, preferDim(inheritDim, curveDim))
+		} else if len(seg.PointRep) > 0 {
+			ls, err = lineStringFromPointPropertySlice(seg.PointRep, preferDim(inheritDim, curveDim))
 		} else {
 			return nil, fmt.Errorf("gml: LineStringSegment[%d] has no coordinate data", i)
 		}
@@ -113,6 +120,39 @@ func lineStringFromCurve(x *gen.CurveType, inheritDim int) (core.LineString, err
 		} else {
 			result = append(result, ls...)
 		}
+	}
+	return result, nil
+}
+
+func lineStringFromPosSlice(poses []gen.DirectPositionType, inheritDim int) (core.LineString, error) {
+	var result core.LineString
+	for j, p := range poses {
+		dim := preferDim(inheritDim, derefDim(p.SrsDimension))
+		pt, err := core.PointFromPosString(p.Value, dim)
+		if err != nil {
+			return nil, fmt.Errorf("pos[%d]: %w", j, err)
+		}
+		result = append(result, pt)
+	}
+	return result, nil
+}
+
+func lineStringFromPointPropertySlice(pps []gen.PointPropertyType, inheritDim int) (core.LineString, error) {
+	var result core.LineString
+	for j, pp := range pps {
+		if pp.Point == nil {
+			return nil, fmt.Errorf("pointProperty[%d]: missing Point element", j)
+		}
+		p := pp.Point
+		if p.Pos == nil {
+			return nil, fmt.Errorf("pointProperty[%d]: missing pos", j)
+		}
+		dim := preferDim(preferDim(inheritDim, derefDim(p.SrsDimension)), derefDim(p.Pos.SrsDimension))
+		pt, err := core.PointFromPosString(p.Pos.Value, dim)
+		if err != nil {
+			return nil, fmt.Errorf("pointProperty[%d]: %w", j, err)
+		}
+		result = append(result, pt)
 	}
 	return result, nil
 }
