@@ -16,9 +16,11 @@ type FieldInfo struct {
 }
 
 // parsePropertyTypes parses all .go files in dir and returns a map of
-// PropertyType struct name → all XML-tagged, non-abstract fields.
+// association struct name → all XML-tagged, non-abstract fields.
 //
-// "PropertyType" structs are identified by the "PropertyType" suffix.
+// Association structs are identified by having an "Href" field (i.e. they
+// embed AssociationAttributeGroup from the XSD). This covers *PropertyType,
+// *MemberType, *RefType, and *AssociationType suffixes.
 // All XML-tagged fields are collected: inline element pointers, string
 // attributes (Href, SrsName, etc.), and slice fields. Abstract substitution
 // group head fields (Abstract* prefix) are excluded because they cannot be
@@ -42,11 +44,11 @@ func parsePropertyTypes(dir string) (map[string][]FieldInfo, error) {
 					if !ok {
 						continue
 					}
-					if !strings.HasSuffix(ts.Name.Name, "PropertyType") {
-						continue
-					}
 					st, ok := ts.Type.(*ast.StructType)
 					if !ok {
+						continue
+					}
+					if !structHasHrefField(st) {
 						continue
 					}
 					fields := collectXMLFields(st)
@@ -58,6 +60,19 @@ func parsePropertyTypes(dir string) (map[string][]FieldInfo, error) {
 		}
 	}
 	return result, nil
+}
+
+// structHasHrefField reports whether a struct has a field named "Href",
+// which indicates it embeds AssociationAttributeGroup from the GML XSD.
+func structHasHrefField(st *ast.StructType) bool {
+	for _, f := range st.Fields.List {
+		for _, n := range f.Names {
+			if n.Name == "Href" {
+				return true
+			}
+		}
+	}
+	return false
 }
 
 // collectXMLFields returns all XML-tagged, non-abstract fields of a struct.
