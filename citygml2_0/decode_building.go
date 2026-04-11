@@ -105,6 +105,14 @@ func decodeBuilding(dec *xml.Decoder, se xml.StartElement, gmlDec core.Decoder) 
 					return nil, err
 				}
 				b.Lod2TerrainIntersection = g
+			case "boundedBy":
+				bs, err := decodeBoundedBy(dec, t, gmlDec)
+				if err != nil {
+					return nil, err
+				}
+				if bs != nil {
+					b.BoundedBy = append(b.BoundedBy, bs)
+				}
 			default:
 				if err := dec.Skip(); err != nil {
 					return nil, err

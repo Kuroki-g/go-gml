@@ -85,6 +85,85 @@ func TestNext_Lod1Solid(t *testing.T) {
 	t.Logf("Building ID=%s, Lod1Solid Exterior polygons=%d", b.ID, len(solid.Exterior))
 }
 
+const boundedByXML = `<?xml version="1.0" encoding="UTF-8"?>
+<CityModel xmlns="http://www.opengis.net/citygml/2.0"
+           xmlns:bldg="http://www.opengis.net/citygml/building/2.0"
+           xmlns:gml="http://www.opengis.net/gml">
+  <cityObjectMember>
+    <bldg:Building gml:id="bld1">
+      <bldg:boundedBy>
+        <bldg:WallSurface gml:id="ws1">
+          <bldg:lod2MultiSurface>
+            <gml:MultiSurface>
+              <gml:surfaceMember>
+                <gml:Polygon>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList srsDimension="3">0 0 0 1 0 0 1 1 0 0 0 0</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:Polygon>
+              </gml:surfaceMember>
+            </gml:MultiSurface>
+          </bldg:lod2MultiSurface>
+        </bldg:WallSurface>
+      </bldg:boundedBy>
+      <bldg:boundedBy>
+        <bldg:RoofSurface gml:id="rs1">
+          <bldg:lod2MultiSurface>
+            <gml:MultiSurface>
+              <gml:surfaceMember>
+                <gml:Polygon>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList srsDimension="3">0 0 1 1 0 1 1 1 1 0 0 1</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:Polygon>
+              </gml:surfaceMember>
+            </gml:MultiSurface>
+          </bldg:lod2MultiSurface>
+        </bldg:RoofSurface>
+      </bldg:boundedBy>
+    </bldg:Building>
+  </cityObjectMember>
+</CityModel>`
+
+func TestNext_BoundedBy(t *testing.T) {
+	r := citygml2_0.NewReader(strings.NewReader(boundedByXML), newGMLDecoder())
+	b, err := r.Next()
+	if err != nil {
+		t.Fatalf("Next: %v", err)
+	}
+	if len(b.BoundedBy) != 2 {
+		t.Fatalf("BoundedBy count = %d, want 2", len(b.BoundedBy))
+	}
+
+	wall := b.BoundedBy[0]
+	if wall.ID != "ws1" {
+		t.Errorf("BoundedBy[0].ID = %q, want %q", wall.ID, "ws1")
+	}
+	if wall.SurfaceType != citygml2_0.SurfaceTypeWallSurface {
+		t.Errorf("BoundedBy[0].SurfaceType = %q, want %q", wall.SurfaceType, citygml2_0.SurfaceTypeWallSurface)
+	}
+	if wall.Lod2MultiSurface == nil {
+		t.Error("BoundedBy[0].Lod2MultiSurface is nil")
+	}
+
+	roof := b.BoundedBy[1]
+	if roof.ID != "rs1" {
+		t.Errorf("BoundedBy[1].ID = %q, want %q", roof.ID, "rs1")
+	}
+	if roof.SurfaceType != citygml2_0.SurfaceTypeRoofSurface {
+		t.Errorf("BoundedBy[1].SurfaceType = %q, want %q", roof.SurfaceType, citygml2_0.SurfaceTypeRoofSurface)
+	}
+	if roof.Lod2MultiSurface == nil {
+		t.Error("BoundedBy[1].Lod2MultiSurface is nil")
+	}
+	t.Logf("BoundedBy[0]: %s/%s Lod2MultiSurface=%T", wall.SurfaceType, wall.ID, wall.Lod2MultiSurface.Value)
+	t.Logf("BoundedBy[1]: %s/%s Lod2MultiSurface=%T", roof.SurfaceType, roof.ID, roof.Lod2MultiSurface.Value)
+}
+
 func TestNext_AllBuildings(t *testing.T) {
 	f := openGML(t, plateauGML)
 	r := citygml2_0.NewReader(f, newGMLDecoder())

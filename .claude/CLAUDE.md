@@ -50,7 +50,7 @@
 |---|---|---|
 | **LoD0** | ✓ 完了 | `reader.go` / `building.go` / `internal/subtree.go` 実装済み。`lod0FootPrint` / `lod0RoofEdge` (MultiSurface) をストリーム読み取り |
 | **LoD1** | ✓ 完了 | ブロックモデル (`bldg:lod1Solid` → `gml:Solid`) |
-| **LoD2** | ✓ 完了 | `bldg:lod2Solid` / `lod2MultiSurface` / `lod2MultiCurve` / `lod2TerrainIntersection` |
+| **LoD2** | ✓ 完了 | `bldg:lod2Solid` / `lod2MultiSurface` / `lod2MultiCurve` / `lod2TerrainIntersection` / `boundedBy` (BoundarySurface) |
 | **LoD3** | 未実装 | 建築詳細モデル (`bldg:lod3Solid`) |
 
 ### 未実装・残課題
