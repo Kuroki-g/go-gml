@@ -106,9 +106,23 @@ func lineStringFromCurve(x *gen.CurveType, inheritDim int) (core.LineString, err
 		} else if len(seg.Pos) > 0 {
 			ls, err = lineStringFromPosSlice(seg.Pos, preferDim(inheritDim, curveDim))
 		} else if len(seg.PointProperty) > 0 {
-			ls, err = lineStringFromPointPropertySlice(seg.PointProperty, preferDim(inheritDim, curveDim))
+			for j := range seg.PointProperty {
+				pt, ptErr := fromPointProperty(&seg.PointProperty[j], j, preferDim(inheritDim, curveDim))
+				if ptErr != nil {
+					err = ptErr
+					break
+				}
+				ls = append(ls, pt)
+			}
 		} else if len(seg.PointRep) > 0 {
-			ls, err = lineStringFromPointPropertySlice(seg.PointRep, preferDim(inheritDim, curveDim))
+			for j := range seg.PointRep {
+				pt, ptErr := fromPointProperty(&seg.PointRep[j], j, preferDim(inheritDim, curveDim))
+				if ptErr != nil {
+					err = ptErr
+					break
+				}
+				ls = append(ls, pt)
+			}
 		} else {
 			return nil, fmt.Errorf("gml: LineStringSegment[%d] has no coordinate data", i)
 		}
@@ -137,22 +151,34 @@ func lineStringFromPosSlice(poses []gen.DirectPositionType, inheritDim int) (cor
 	return result, nil
 }
 
-func lineStringFromPointPropertySlice(pps []gen.PointPropertyType, inheritDim int) (core.LineString, error) {
-	var result core.LineString
-	for j, pp := range pps {
-		if pp.Point == nil {
-			return nil, fmt.Errorf("pointProperty[%d]: missing Point element", j)
-		}
-		p := pp.Point
-		if p.Pos == nil {
-			return nil, fmt.Errorf("pointProperty[%d]: missing pos", j)
-		}
-		dim := preferDim(preferDim(inheritDim, derefDim(p.SrsDimension)), derefDim(p.Pos.SrsDimension))
-		pt, err := core.PointFromPosString(p.Pos.Value, dim)
-		if err != nil {
-			return nil, fmt.Errorf("pointProperty[%d]: %w", j, err)
-		}
-		result = append(result, pt)
+// fromPointProperty extracts a Point from a PointPropertyType.
+// Returns an error if the property uses xlink:href (unresolved reference) or has no Point element.
+func fromPointProperty(pp *gen.PointPropertyType, j, inheritDim int) (core.Point, error) {
+	_ = pp.TypeField
+	_ = pp.Role
+	_ = pp.Arcrole
+	_ = pp.Title
+	_ = pp.Show
+	_ = pp.Actuate
+	_ = pp.RemoteSchema
+	_ = pp.Owns
+	if pp.NilReason != nil {
+		return core.Point{}, fmt.Errorf("pointProperty[%d]: nil point (nilReason=%s)", j, *pp.NilReason)
 	}
-	return result, nil
+	if pp.Href != "" {
+		return core.Point{}, fmt.Errorf("pointProperty[%d]: unresolved xlink:href %q", j, pp.Href)
+	}
+	if pp.Point == nil {
+		return core.Point{}, fmt.Errorf("pointProperty[%d]: missing Point element", j)
+	}
+	p := pp.Point
+	if p.Pos == nil {
+		return core.Point{}, fmt.Errorf("pointProperty[%d]: missing pos", j)
+	}
+	dim := preferDim(preferDim(inheritDim, derefDim(p.SrsDimension)), derefDim(p.Pos.SrsDimension))
+	pt, err := core.PointFromPosString(p.Pos.Value, dim)
+	if err != nil {
+		return core.Point{}, fmt.Errorf("pointProperty[%d]: %w", j, err)
+	}
+	return pt, nil
 }

@@ -55,7 +55,9 @@
 
 ### 未実装・残課題
 
-- **CityGML 2.0 LoD3**: 次の実装対象 (`bldg:lod3Solid` → `gml:Solid`)
+- **CityGML 2.0 LoD3**: 次の実装対象 (`bldg:lod3Solid` → `gml:Solid`) — `docs/issues/citygml2_0-lod3.md`
+- **CityGML 2.0 xlink:href 未解決**: `lod2Solid` が PLATEAU 実データ (22 ファイル中 13) で失敗。resolver が subtree decode で失われる。詳細は `docs/issues/citygml2_0-xlink.md`
+- **check-coverage MemberType owning 関数**: `gml2_1_2` は owning 関数導入済み。`gml3_1_1` / `gml3_2_1` の `lineStringFromPointPropertySlice` が `PointPropertyType` xlink 属性を未処理 (check-coverage 18件エラー) — `docs/issues/check-coverage-membertype.md`
 - **gml3_1_1 / gml3_2_1 ストリームテストなし**: N03 旧形式データ取得困難。`Decode` メソッドテストは追加済み。CityGML 実装で代替する方針
 - **SF-2**: `docs/issues/sf2-curves.md` — Arc/Circle 等の曲線補間・SurfacePatchArray 内の Cone/Cylinder/Sphere 未実装。低優先
 
