@@ -102,6 +102,79 @@ func collectXMLFields(st *ast.StructType) []FieldInfo {
 	return fields
 }
 
+// parseContainerFields scans all .go files in dir and returns a map of
+// field name → PropertyType name for slice fields whose element type is a
+// known PropertyType (e.g. "PointMember" → "PointPropertyType").
+//
+// Only fields whose name maps to exactly one PropertyType across all structs
+// are included. Ambiguous field names (same name, different element types in
+// different structs) are excluded to avoid false positives.
+func parseContainerFields(dir string, knownTypes map[string][]FieldInfo) (map[string]string, error) {
+	fset := token.NewFileSet()
+	pkgs, err := parser.ParseDir(fset, dir, nil, 0)
+	if err != nil {
+		return nil, err
+	}
+	// allSliceElemTypes collects ALL element type names seen for each slice field
+	// name across all structs (regardless of whether the type is a known
+	// PropertyType). This prevents false positives when the same field name is
+	// used with different element types in different structs.
+	allSliceElemTypes := make(map[string]map[string]bool)
+	for _, pkg := range pkgs {
+		for _, file := range pkg.Files {
+			for _, decl := range file.Decls {
+				gd, ok := decl.(*ast.GenDecl)
+				if !ok {
+					continue
+				}
+				for _, spec := range gd.Specs {
+					ts, ok := spec.(*ast.TypeSpec)
+					if !ok {
+						continue
+					}
+					st, ok := ts.Type.(*ast.StructType)
+					if !ok {
+						continue
+					}
+					for _, f := range st.Fields.List {
+						if len(f.Names) == 0 {
+							continue
+						}
+						arr, ok := f.Type.(*ast.ArrayType)
+						if !ok {
+							continue
+						}
+						typeName := baseTypeName(arr.Elt, "")
+						if typeName == "" {
+							continue
+						}
+						fieldName := f.Names[0].Name
+						if allSliceElemTypes[fieldName] == nil {
+							allSliceElemTypes[fieldName] = make(map[string]bool)
+						}
+						allSliceElemTypes[fieldName][typeName] = true
+					}
+				}
+			}
+		}
+	}
+	// Keep only fields where all occurrences use the same element type AND that
+	// type is a known PropertyType. Fields shared across structs with different
+	// element types are excluded to avoid false positives.
+	result := make(map[string]string)
+	for fieldName, elemTypes := range allSliceElemTypes {
+		if len(elemTypes) != 1 {
+			continue // ambiguous: different element types across structs
+		}
+		for typeName := range elemTypes {
+			if _, known := knownTypes[typeName]; known {
+				result[fieldName] = typeName
+			}
+		}
+	}
+	return result, nil
+}
+
 var xmlTagRe = regexp.MustCompile(`xml:"([^"]*)"`)
 
 // extractXMLInfo returns the XML local name and whether the field is an

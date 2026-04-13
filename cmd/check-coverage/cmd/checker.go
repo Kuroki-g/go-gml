@@ -55,6 +55,56 @@ func checkModuleNaming(dir string) ([]NamingViolation, error) {
 	return violations, nil
 }
 
+// BypassViolation represents a range-loop that accesses a PropertyType's
+// fields directly instead of going through the owning function.
+type BypassViolation struct {
+	Module    string
+	FuncName  string // function containing the range loop
+	FieldName string // container field (e.g. "PointMember")
+	TypeName  string // PropertyType name (e.g. "PointPropertyType")
+}
+
+// checkModuleBypass detects range-loop bypass violations in one module.
+// It returns violations where internal/ code iterates a []XxxPropertyType
+// field and accesses the range variable's fields directly.
+func checkModuleBypass(dir string) ([]BypassViolation, error) {
+	genDir := filepath.Join(dir, "generated")
+	intDir := filepath.Join(dir, "internal")
+
+	if _, err := os.Stat(genDir); err != nil {
+		return nil, nil
+	}
+	if _, err := os.Stat(intDir); err != nil {
+		return nil, nil
+	}
+
+	propTypes, err := parsePropertyTypes(genDir)
+	if err != nil {
+		return nil, err
+	}
+
+	containerFields, err := parseContainerFields(genDir, propTypes)
+	if err != nil {
+		return nil, err
+	}
+
+	accesses, err := detectBypassInDir(intDir, containerFields)
+	if err != nil {
+		return nil, err
+	}
+
+	violations := make([]BypassViolation, len(accesses))
+	for i, a := range accesses {
+		violations[i] = BypassViolation{
+			Module:    dir,
+			FuncName:  a.FuncName,
+			FieldName: a.FieldName,
+			TypeName:  a.TypeName,
+		}
+	}
+	return violations, nil
+}
+
 // Finding represents one unhandled field in a specific function.
 type Finding struct {
 	Module  string

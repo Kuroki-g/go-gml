@@ -150,6 +150,119 @@ func selectorFields(body *ast.BlockStmt) map[string]bool {
 	return fields
 }
 
+// BypassAccess records one range-loop bypass: a range variable's fields were
+// accessed directly without going through the owning function.
+type BypassAccess struct {
+	FuncName  string // function containing the range loop
+	FieldName string // container field iterated (e.g. "PointMember")
+	TypeName  string // PropertyType element type (e.g. "PointPropertyType")
+}
+
+// detectBypassInDir scans all .go files in dir for range loops that iterate
+// over a container field and directly access the range variable's fields
+// without calling the owning function.
+func detectBypassInDir(dir string, containerFields map[string]string) ([]BypassAccess, error) {
+	files, err := filepath.Glob(filepath.Join(dir, "*.go"))
+	if err != nil {
+		return nil, err
+	}
+	var result []BypassAccess
+	for _, path := range files {
+		fset := token.NewFileSet()
+		f, err := parser.ParseFile(fset, path, nil, 0)
+		if err != nil {
+			return nil, err
+		}
+		for _, decl := range f.Decls {
+			fd, ok := decl.(*ast.FuncDecl)
+			if !ok || fd.Body == nil {
+				continue
+			}
+			result = append(result, bypassInFunc(fd, containerFields)...)
+		}
+	}
+	return result, nil
+}
+
+// bypassInFunc inspects a function body for range-loop bypass violations.
+func bypassInFunc(fd *ast.FuncDecl, containerFields map[string]string) []BypassAccess {
+	var result []BypassAccess
+	funcName := qualifiedFuncName(fd)
+
+	ast.Inspect(fd.Body, func(n ast.Node) bool {
+		rs, ok := n.(*ast.RangeStmt)
+		if !ok {
+			return true
+		}
+		// Range expression must be a selector: something.FieldName
+		sel, ok := rs.X.(*ast.SelectorExpr)
+		if !ok {
+			return true
+		}
+		propTypeName, found := containerFields[sel.Sel.Name]
+		if !found {
+			return true
+		}
+		// Range value variable must be a named identifier (not "_").
+		valueIdent, ok := rs.Value.(*ast.Ident)
+		if !ok || valueIdent.Name == "_" {
+			return true
+		}
+		rangeVar := valueIdent.Name
+
+		// Check whether the loop body directly accesses a field on the range var.
+		hasDirectAccess := false
+		ast.Inspect(rs.Body, func(inner ast.Node) bool {
+			s, ok2 := inner.(*ast.SelectorExpr)
+			if ok2 {
+				if id, ok3 := s.X.(*ast.Ident); ok3 && id.Name == rangeVar {
+					hasDirectAccess = true
+				}
+			}
+			return true
+		})
+		if !hasDirectAccess {
+			return true
+		}
+
+		// Check whether an owning function (name contains XxxProperty) is called.
+		expected := strings.TrimSuffix(propTypeName, "Type") // "PointProperty"
+		hasOwningCall := false
+		ast.Inspect(rs.Body, func(inner ast.Node) bool {
+			call, ok2 := inner.(*ast.CallExpr)
+			if !ok2 {
+				return true
+			}
+			if strings.Contains(callFuncName(call), expected) {
+				hasOwningCall = true
+			}
+			return true
+		})
+
+		if !hasOwningCall {
+			result = append(result, BypassAccess{
+				FuncName:  funcName,
+				FieldName: sel.Sel.Name,
+				TypeName:  propTypeName,
+			})
+		}
+		return true
+	})
+
+	return result
+}
+
+// callFuncName returns the local function name from a call expression.
+func callFuncName(call *ast.CallExpr) string {
+	switch fn := call.Fun.(type) {
+	case *ast.Ident:
+		return fn.Name
+	case *ast.SelectorExpr:
+		return fn.Sel.Name
+	}
+	return ""
+}
+
 // qualifiedFuncName returns "ReceiverType.MethodName" for methods and
 // "FuncName" for plain functions.
 func qualifiedFuncName(fd *ast.FuncDecl) string {

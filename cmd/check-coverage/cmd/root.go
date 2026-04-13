@@ -39,6 +39,7 @@ func run(dirs []string) error {
 
 	var all []Finding
 	var naming []NamingViolation
+	var bypass []BypassViolation
 	for _, d := range dirs {
 		found, err := checkModule(d)
 		if err != nil {
@@ -51,6 +52,12 @@ func run(dirs []string) error {
 			return fmt.Errorf("%s: %w", d, err)
 		}
 		naming = append(naming, nv...)
+
+		bv, err := checkModuleBypass(d)
+		if err != nil {
+			return fmt.Errorf("%s: %w", d, err)
+		}
+		bypass = append(bypass, bv...)
 	}
 
 	sort.Slice(all, func(i, j int) bool {
@@ -70,7 +77,14 @@ func run(dirs []string) error {
 		return naming[i].FuncName < naming[j].FuncName
 	})
 
-	if len(all) == 0 && len(naming) == 0 {
+	sort.Slice(bypass, func(i, j int) bool {
+		if bypass[i].Module != bypass[j].Module {
+			return bypass[i].Module < bypass[j].Module
+		}
+		return bypass[i].FuncName < bypass[j].FuncName
+	})
+
+	if len(all) == 0 && len(naming) == 0 && len(bypass) == 0 {
 		fmt.Println("OK: no unhandled fields found")
 		return nil
 	}
@@ -87,7 +101,14 @@ func run(dirs []string) error {
 		fmt.Printf("[NAMING] %s / %s handles %s but name does not contain %q\n",
 			v.Module, v.FuncName, v.TypeName, v.Expected)
 	}
-	total := len(all) + len(naming)
+	// Bypass results depend on correct naming; skip if naming violations exist.
+	if len(naming) == 0 {
+		for _, v := range bypass {
+			fmt.Printf("[BYPASS] %s / %s iterates %s ([]%s) without owning function\n",
+				v.Module, v.FuncName, v.FieldName, v.TypeName)
+		}
+	}
+	total := len(all) + len(naming) + len(bypass)
 	return fmt.Errorf("%d issue(s) found", total)
 }
 
