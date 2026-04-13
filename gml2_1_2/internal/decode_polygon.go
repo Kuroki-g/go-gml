@@ -34,6 +34,23 @@ func ringFromLinearRing(lr *gen.LinearRingType) (core.Ring, error) {
 	return nil, fmt.Errorf("gml: LinearRing has no coordinate data")
 }
 
+// fromLinearRingMember extracts the LinearRingType from a LinearRingMemberType.
+// Returns nil when the member is an xlink:href reference — gml2_1_2 has no
+// prescan resolver, so href references are silently skipped.
+func fromLinearRingMember(m *gen.LinearRingMemberType) *gen.LinearRingType {
+	_ = m.RemoteSchema
+	_ = m.TypeField
+	_ = m.Role
+	_ = m.Arcrole
+	_ = m.Title
+	_ = m.Show
+	_ = m.Actuate
+	if m.Href != "" {
+		return nil
+	}
+	return m.LinearRing
+}
+
 func polygonFromXML(x *gen.PolygonType) (core.Polygon, error) {
 	var rings []core.Ring
 	if x.OuterBoundaryIs != nil && x.OuterBoundaryIs.LinearRing != nil {
@@ -43,11 +60,12 @@ func polygonFromXML(x *gen.PolygonType) (core.Polygon, error) {
 		}
 		rings = append(rings, r)
 	}
-	for i, ir := range x.InnerBoundaryIs {
-		if ir.LinearRing == nil {
+	for i := range x.InnerBoundaryIs {
+		lr := fromLinearRingMember(&x.InnerBoundaryIs[i])
+		if lr == nil {
 			continue
 		}
-		r, err := ringFromLinearRing(ir.LinearRing)
+		r, err := ringFromLinearRing(lr)
 		if err != nil {
 			return nil, fmt.Errorf("gml: Polygon innerBoundaryIs[%d]: %w", i, err)
 		}
