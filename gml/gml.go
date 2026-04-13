@@ -55,6 +55,8 @@ func NewReader311(r io.ReadSeeker) *Reader311 {
 
 // NewReader212 creates a GML 2.1.2 Reader that streams geometry elements from r.
 // For non-UTF-8 encoded files (e.g. Shift-JIS), call SetCharsetReader after creation.
-func NewReader212(r io.Reader) *Reader212 {
+// On the first call to Next, the document is pre-scanned to populate the xlink:href
+// resolver cache, enabling forward references to be resolved correctly.
+func NewReader212(r io.ReadSeeker) *Reader212 {
 	return gml2_1_2.NewReader(r)
 }

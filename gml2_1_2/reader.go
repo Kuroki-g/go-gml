@@ -12,6 +12,8 @@ type Reader = intl.Reader
 
 // NewReader creates a Reader that streams geometry elements from r.
 // For non-UTF-8 encoded files (e.g. Shift-JIS), call SetCharsetReader after creation.
-func NewReader(r io.Reader) *Reader {
+// On the first call to Next, the document is pre-scanned to populate the xlink:href
+// resolver cache, enabling forward references to be resolved correctly.
+func NewReader(r io.ReadSeeker) *Reader {
 	return intl.NewReader(r)
 }
