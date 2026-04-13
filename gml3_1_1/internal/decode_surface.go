@@ -3,7 +3,6 @@ package internal
 import (
 	"encoding/xml"
 	"fmt"
-	"strings"
 
 	core "github.com/Kuroki-g/go-gml/core"
 	gen "github.com/Kuroki-g/go-gml/gml3_1_1/generated"
@@ -142,17 +141,13 @@ func ringFromAbstractRingProperty(prop *gen.AbstractRingPropertyType, inheritDim
 func ringFromRingType(ring *gen.RingType, inheritDim int, resolver *curveResolver) (core.Ring, error) {
 	var pts core.Ring
 	dim := preferDim(inheritDim, derefDim(ring.SrsDimension))
-	for i, cm := range ring.CurveMember {
-		curve := cm.Curve
-		if curve == nil && cm.Href != "" {
-			curve = resolver.resolve(strings.TrimPrefix(cm.Href, "#"))
-		}
-		if curve == nil {
-			continue
-		}
-		ls, err := lineStringFromCurve(curve, dim)
+	for i := range ring.CurveMember {
+		ls, err := lineStringFromCurveProperty(&ring.CurveMember[i], dim, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("curveMember[%d]: %w", i, err)
+		}
+		if ls == nil {
+			continue
 		}
 		if len(pts) > 0 && len(ls) > 0 {
 			pts = append(pts, ls[1:]...)

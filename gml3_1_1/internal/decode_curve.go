@@ -153,6 +153,7 @@ func lineStringFromPosSlice(poses []gen.DirectPositionType, inheritDim int) (cor
 
 // fromPointProperty extracts a Point from a PointPropertyType.
 // Returns an error if the property uses xlink:href (unresolved reference) or has no Point element.
+// inheritDim is the srsDimension inherited from the enclosing geometry.
 func fromPointProperty(pp *gen.PointPropertyType, j, inheritDim int) (core.Point, error) {
 	_ = pp.TypeField
 	_ = pp.Role
@@ -168,11 +169,10 @@ func fromPointProperty(pp *gen.PointPropertyType, j, inheritDim int) (core.Point
 		return core.Point{}, fmt.Errorf("pointProperty[%d]: missing Point element", j)
 	}
 	p := pp.Point
-	if p.Pos == nil {
-		return core.Point{}, fmt.Errorf("pointProperty[%d]: missing pos", j)
+	if p.SrsDimension == nil && inheritDim > 0 {
+		p.SrsDimension = &inheritDim
 	}
-	dim := preferDim(preferDim(inheritDim, derefDim(p.SrsDimension)), derefDim(p.Pos.SrsDimension))
-	pt, err := core.PointFromPosString(p.Pos.Value, dim)
+	pt, err := pointFromXML(p)
 	if err != nil {
 		return core.Point{}, fmt.Errorf("pointProperty[%d]: %w", j, err)
 	}

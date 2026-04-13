@@ -16,16 +16,11 @@ func decodeMultiPointElement(dec *xml.Decoder, se xml.StartElement) (core.Geomet
 		return core.Geometry{}, fmt.Errorf("gml: MultiPoint: %w", err)
 	}
 	var pts core.MultiPoint
-	for _, m := range x.PointMember {
-		if m.Point == nil {
-			continue
-		}
-		if m.Point.SrsDimension == nil {
-			m.Point.SrsDimension = x.SrsDimension
-		}
-		pt, err := pointFromXML(m.Point)
+	dim := derefDim(x.SrsDimension)
+	for i := range x.PointMember {
+		pt, err := fromPointProperty(&x.PointMember[i], i, dim)
 		if err != nil {
-			return core.Geometry{}, err
+			continue // xlink:href or missing Point — skip
 		}
 		pts = append(pts, pt)
 	}
