@@ -44,7 +44,7 @@ func (r *Reader) handleTin(dec *xml.Decoder, se xml.StartElement) (core.Geometry
 
 // multiPolygonFromSurfacePatchArrayProperty converts a SurfacePatchArrayPropertyType to a MultiPolygon,
 // handling PolygonPatch, Rectangle, and Triangle patch types.
-func multiPolygonFromSurfacePatchArrayProperty(sp *gen.SurfacePatchArrayPropertyType, dim int, resolver *curveResolver) (core.MultiPolygon, error) {
+func multiPolygonFromSurfacePatchArrayProperty(sp *gen.SurfacePatchArrayPropertyType, dim uint, resolver *curveResolver) (core.MultiPolygon, error) {
 	if sp == nil {
 		return nil, nil
 	}
@@ -83,7 +83,7 @@ func multiPolygonFromSurfacePatchArrayProperty(sp *gen.SurfacePatchArrayProperty
 	return result, nil
 }
 
-func polygonFromRectangle(rect *gen.RectangleType, inheritDim int, resolver *curveResolver) (core.Polygon, error) {
+func polygonFromRectangle(rect *gen.RectangleType, inheritDim uint, resolver *curveResolver) (core.Polygon, error) {
 	if rect.Exterior == nil {
 		return nil, fmt.Errorf("gml: Rectangle: missing required exterior")
 	}
@@ -97,7 +97,7 @@ func polygonFromRectangle(rect *gen.RectangleType, inheritDim int, resolver *cur
 	return core.Polygon{r}, nil
 }
 
-func polygonFromTriangle(t *gen.TriangleType, dim int, resolver *curveResolver) (core.Polygon, error) {
+func polygonFromTriangle(t *gen.TriangleType, dim uint, resolver *curveResolver) (core.Polygon, error) {
 	if t.Exterior == nil {
 		return nil, fmt.Errorf("gml: Triangle: missing required exterior")
 	}

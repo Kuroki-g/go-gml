@@ -85,7 +85,7 @@ func (r *Reader) cacheOrientableCurve(dec *xml.Decoder, se xml.StartElement) err
 }
 
 // lineStringFromCurve converts a gml:Curve to a LineString.
-func lineStringFromCurve(x *gen.CurveType, inheritDim int) (core.LineString, error) {
+func lineStringFromCurve(x *gen.CurveType, inheritDim uint) (core.LineString, error) {
 	if x.Segments == nil || len(x.Segments.LineStringSegment) == 0 {
 		return nil, fmt.Errorf("gml: Curve has no LineStringSegment")
 	}
@@ -138,7 +138,7 @@ func lineStringFromCurve(x *gen.CurveType, inheritDim int) (core.LineString, err
 	return result, nil
 }
 
-func lineStringFromPosSlice(poses []gen.DirectPositionType, inheritDim int) (core.LineString, error) {
+func lineStringFromPosSlice(poses []gen.DirectPositionType, inheritDim uint) (core.LineString, error) {
 	var result core.LineString
 	for j, p := range poses {
 		dim := preferDim(inheritDim, derefDim(p.SrsDimension))
@@ -153,7 +153,7 @@ func lineStringFromPosSlice(poses []gen.DirectPositionType, inheritDim int) (cor
 
 // fromPointProperty extracts a Point from a PointPropertyType.
 // Returns an error if the property uses xlink:href (unresolved reference) or has no Point element.
-func fromPointProperty(pp *gen.PointPropertyType, j, inheritDim int) (core.Point, error) {
+func fromPointProperty(pp *gen.PointPropertyType, j int, inheritDim uint) (core.Point, error) {
 	_ = pp.TypeField
 	_ = pp.Role
 	_ = pp.Arcrole

@@ -35,15 +35,15 @@ func pointFromXML(x *gen.PointType) (core.Point, error) {
 }
 
 // preferDim returns a if non-zero, otherwise b.
-func preferDim(a, b int) int {
+func preferDim(a, b uint) uint {
 	if a > 0 {
 		return a
 	}
 	return b
 }
 
-// derefDim dereferences a *int dimension attribute; nil → 0.
-func derefDim(p *int) int {
+// derefDim dereferences a *uint dimension attribute (xs:positiveInteger); nil → 0.
+func derefDim(p *uint) uint {
 	if p == nil {
 		return 0
 	}

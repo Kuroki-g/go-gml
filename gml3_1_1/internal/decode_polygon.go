@@ -24,7 +24,7 @@ func (r *Reader) handlePolygon(dec *xml.Decoder, se xml.StartElement) (core.Geom
 	return g, err
 }
 
-func decodePolygonElement(dec *xml.Decoder, se xml.StartElement, fallbackDim int) (core.Geometry, error) {
+func decodePolygonElement(dec *xml.Decoder, se xml.StartElement, fallbackDim uint) (core.Geometry, error) {
 	var x gen.PolygonType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: Polygon: %w", err)
@@ -39,7 +39,7 @@ func decodePolygonElement(dec *xml.Decoder, se xml.StartElement, fallbackDim int
 // ringFromLinearRing builds a Ring from a decoded LinearRingType.
 // inheritDim carries srsDimension from the enclosing Polygon (which in turn
 // inherits from the document-root gml:Envelope via Reader.globalDim).
-func ringFromLinearRing(lr *gen.LinearRingType, inheritDim int) (core.Ring, error) {
+func ringFromLinearRing(lr *gen.LinearRingType, inheritDim uint) (core.Ring, error) {
 	if lr == nil {
 		return nil, fmt.Errorf("gml: nil LinearRing")
 	}
@@ -58,7 +58,7 @@ func ringFromLinearRing(lr *gen.LinearRingType, inheritDim int) (core.Ring, erro
 		}
 		d := preferDim(dim, derefDim(lr.Pos[0].SrsDimension))
 		if d == 0 {
-			d = len(strings.Fields(lr.Pos[0].Value))
+			d = uint(len(strings.Fields(lr.Pos[0].Value)))
 			if d < 2 {
 				d = 2
 			}
@@ -71,7 +71,7 @@ func ringFromLinearRing(lr *gen.LinearRingType, inheritDim int) (core.Ring, erro
 	return nil, fmt.Errorf("gml: LinearRing has no coordinate data")
 }
 
-func polygonFromXML(x *gen.PolygonType, fallbackDim int) (core.Polygon, error) {
+func polygonFromXML(x *gen.PolygonType, fallbackDim uint) (core.Polygon, error) {
 	dim := preferDim(derefDim(x.SrsDimension), fallbackDim)
 	var rings []core.Ring
 	if x.Exterior != nil && x.Exterior.LinearRing != nil {

@@ -22,7 +22,7 @@ func (r *Reader) handleCompositeCurve(dec *xml.Decoder, se xml.StartElement) (co
 	return core.Geometry{Value: ls, SRSName: x.SrsName}, nil
 }
 
-func lineStringFromCompositeCurveType(x *gen.CompositeCurveType, inheritDim int, resolver *curveResolver) (core.LineString, error) {
+func lineStringFromCompositeCurveType(x *gen.CompositeCurveType, inheritDim uint, resolver *curveResolver) (core.LineString, error) {
 	var result core.LineString
 	dim := preferDim(inheritDim, derefDim(x.SrsDimension))
 	for i, cm := range x.CurveMember {
@@ -40,7 +40,7 @@ func lineStringFromCompositeCurveType(x *gen.CompositeCurveType, inheritDim int,
 }
 
 // lineStringFromCurveProperty converts a single CurvePropertyType to a LineString.
-func lineStringFromCurveProperty(cm *gen.CurvePropertyType, inheritDim int, resolver *curveResolver) (core.LineString, error) {
+func lineStringFromCurveProperty(cm *gen.CurvePropertyType, inheritDim uint, resolver *curveResolver) (core.LineString, error) {
 	if cm.Curve != nil {
 		return lineStringFromCurve(cm.Curve, inheritDim)
 	}

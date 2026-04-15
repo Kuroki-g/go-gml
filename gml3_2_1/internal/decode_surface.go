@@ -26,7 +26,7 @@ func (r *Reader) handleSurface(dec *xml.Decoder, se xml.StartElement) (core.Geom
 	return g, nil
 }
 
-func decodeSurfaceElement(dec *xml.Decoder, se xml.StartElement, resolver *curveResolver, fallbackDim int) (core.Geometry, error) {
+func decodeSurfaceElement(dec *xml.Decoder, se xml.StartElement, resolver *curveResolver, fallbackDim uint) (core.Geometry, error) {
 	var x gen.SurfaceType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: Surface: %w", err)
@@ -46,7 +46,7 @@ func decodeSurfaceElement(dec *xml.Decoder, se xml.StartElement, resolver *curve
 	return core.Geometry{Value: poly, SRSName: x.SrsName}, nil
 }
 
-func polygonFromSurface(x *gen.SurfaceType, resolver *curveResolver, fallbackDim int) (core.Polygon, error) {
+func polygonFromSurface(x *gen.SurfaceType, resolver *curveResolver, fallbackDim uint) (core.Polygon, error) {
 	if x.Patches == nil {
 		return core.Polygon{}, nil
 	}
@@ -54,7 +54,7 @@ func polygonFromSurface(x *gen.SurfaceType, resolver *curveResolver, fallbackDim
 	return polygonFromSurfacePatchArrayProperty(x.Patches, dim, resolver)
 }
 
-func polygonFromSurfacePatchArrayProperty(sp *gen.SurfacePatchArrayPropertyType, dim int, resolver *curveResolver) (core.Polygon, error) {
+func polygonFromSurfacePatchArrayProperty(sp *gen.SurfacePatchArrayPropertyType, dim uint, resolver *curveResolver) (core.Polygon, error) {
 	if len(sp.PolygonPatch) > 0 {
 		return polygonFromPatch(&sp.PolygonPatch[0], dim, resolver)
 	}
@@ -68,7 +68,7 @@ func polygonFromSurfacePatchArrayProperty(sp *gen.SurfacePatchArrayPropertyType,
 	return core.Polygon{}, nil
 }
 
-func polygonFromPatch(patch *gen.PolygonPatchType, inheritDim int, resolver *curveResolver) (core.Polygon, error) {
+func polygonFromPatch(patch *gen.PolygonPatchType, inheritDim uint, resolver *curveResolver) (core.Polygon, error) {
 	var rings []core.Ring
 	if patch.Exterior != nil {
 		r, err := ringFromAbstractRingProperty(patch.Exterior, inheritDim, "exterior", resolver)
@@ -91,7 +91,7 @@ func polygonFromPatch(patch *gen.PolygonPatchType, inheritDim int, resolver *cur
 	return core.Polygon(rings), nil
 }
 
-func ringFromAbstractRingProperty(prop *gen.AbstractRingPropertyType, inheritDim int, label string, resolver *curveResolver) (core.Ring, error) {
+func ringFromAbstractRingProperty(prop *gen.AbstractRingPropertyType, inheritDim uint, label string, resolver *curveResolver) (core.Ring, error) {
 	if prop.LinearRing != nil {
 		lr := prop.LinearRing
 		dim := preferDim(inheritDim, derefDim(lr.SrsDimension))
@@ -114,7 +114,7 @@ func ringFromAbstractRingProperty(prop *gen.AbstractRingPropertyType, inheritDim
 	return nil, nil
 }
 
-func ringFromRingType(ring *gen.RingType, inheritDim int, resolver *curveResolver) (core.Ring, error) {
+func ringFromRingType(ring *gen.RingType, inheritDim uint, resolver *curveResolver) (core.Ring, error) {
 	var pts core.Ring
 	dim := preferDim(inheritDim, derefDim(ring.SrsDimension))
 	for i := range ring.CurveMember {

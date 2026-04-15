@@ -70,7 +70,7 @@ func (r *Reader) handleMultiSolid(dec *xml.Decoder, se xml.StartElement) (core.G
 	return core.Geometry{Value: solids, SRSName: x.SrsName}, nil
 }
 
-func solidFromXML(x *gen.SolidType, dim int, resolver *curveResolver) (core.Solid, error) {
+func solidFromXML(x *gen.SolidType, dim uint, resolver *curveResolver) (core.Solid, error) {
 	var s core.Solid
 	if x.Exterior != nil && x.Exterior.Shell != nil {
 		mp, err := multiPolygonFromShell(x.Exterior.Shell, dim, resolver)
@@ -93,7 +93,7 @@ func solidFromXML(x *gen.SolidType, dim int, resolver *curveResolver) (core.Soli
 }
 
 // multiPolygonFromShell converts a ShellType (set of surface members) to a MultiPolygon.
-func multiPolygonFromShell(shell *gen.ShellType, dim int, resolver *curveResolver) (core.MultiPolygon, error) {
+func multiPolygonFromShell(shell *gen.ShellType, dim uint, resolver *curveResolver) (core.MultiPolygon, error) {
 	var result core.MultiPolygon
 	for i := range shell.SurfaceMember {
 		mp, err := multiPolygonFromSurfaceProperty(&shell.SurfaceMember[i], dim, resolver)
@@ -107,7 +107,7 @@ func multiPolygonFromShell(shell *gen.ShellType, dim int, resolver *curveResolve
 
 // solidFromSolidPropertyMembers merges SolidPropertyType members into one core.Solid.
 // Used by handleCompositeSolid (XSD: CompositeSolid has "all properties of a primitive solid").
-func solidFromSolidPropertyMembers(members []gen.SolidPropertyType, dim int, resolver *curveResolver) (core.Solid, error) {
+func solidFromSolidPropertyMembers(members []gen.SolidPropertyType, dim uint, resolver *curveResolver) (core.Solid, error) {
 	var merged core.Solid
 	for i := range members {
 		m := &members[i]
@@ -150,7 +150,7 @@ func solidFromSolidPropertyMembers(members []gen.SolidPropertyType, dim int, res
 
 // solidsFromSolidPropertyMembers collects SolidPropertyType members as individual core.Solid values.
 // Used by handleMultiSolid (XSD: MultiSolid is a _GeometricAggregate collection).
-func solidsFromSolidPropertyMembers(members []gen.SolidPropertyType, dim int, resolver *curveResolver) (core.MultiSolid, error) {
+func solidsFromSolidPropertyMembers(members []gen.SolidPropertyType, dim uint, resolver *curveResolver) (core.MultiSolid, error) {
 	var result core.MultiSolid
 	for i := range members {
 		m := &members[i]
@@ -191,6 +191,6 @@ func solidsFromSolidPropertyMembers(members []gen.SolidPropertyType, dim int, re
 }
 
 // solidFromCompositeSolid recursively resolves a CompositeSolidType into a core.Solid.
-func solidFromCompositeSolid(x *gen.CompositeSolidType, dim int, resolver *curveResolver) (core.Solid, error) {
+func solidFromCompositeSolid(x *gen.CompositeSolidType, dim uint, resolver *curveResolver) (core.Solid, error) {
 	return solidFromSolidPropertyMembers(x.SolidMember, dim, resolver)
 }

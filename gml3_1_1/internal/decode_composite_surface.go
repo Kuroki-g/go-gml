@@ -48,7 +48,7 @@ func (r *Reader) handleOrientableSurface(dec *xml.Decoder, se xml.StartElement) 
 
 // multiPolygonFromCompositeSurface returns one Polygon per surfaceMember.
 // Nested CompositeSurface members are flattened into the result.
-func multiPolygonFromCompositeSurface(x *gen.CompositeSurfaceType, resolver *curveResolver, fallbackDim int) (core.MultiPolygon, error) {
+func multiPolygonFromCompositeSurface(x *gen.CompositeSurfaceType, resolver *curveResolver, fallbackDim uint) (core.MultiPolygon, error) {
 	dim := preferDim(derefDim(x.SrsDimension), fallbackDim)
 	var result core.MultiPolygon
 	for i, m := range x.SurfaceMember {

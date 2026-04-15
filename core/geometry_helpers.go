@@ -3,18 +3,18 @@ package core
 import "fmt"
 
 // PointFromFlat builds a Point from a flat coord slice.
-func PointFromFlat(coords []float64, dim int) (Point, error) {
-	if dim <= 0 {
+func PointFromFlat(coords []float64, dim uint) (Point, error) {
+	if dim == 0 {
 		dim = 2
 	}
-	if len(coords) < dim {
+	if uint(len(coords)) < dim {
 		return Point{}, fmt.Errorf("gml: need at least %d values for a point, got %d", dim, len(coords))
 	}
 	return append(Point(nil), coords[:dim]...), nil
 }
 
 // LineStringFromFlat builds a LineString from a flat coord slice.
-func LineStringFromFlat(coords []float64, dim int) (LineString, error) {
+func LineStringFromFlat(coords []float64, dim uint) (LineString, error) {
 	pts, err := ToPoints(coords, dim)
 	if err != nil {
 		return nil, err
@@ -23,7 +23,7 @@ func LineStringFromFlat(coords []float64, dim int) (LineString, error) {
 }
 
 // RingFromFlat builds a Ring from a flat coord slice.
-func RingFromFlat(coords []float64, dim int) (Ring, error) {
+func RingFromFlat(coords []float64, dim uint) (Ring, error) {
 	pts, err := ToPoints(coords, dim)
 	if err != nil {
 		return nil, err
@@ -41,19 +41,19 @@ func RingFromCoordinatesString(s, cs, ts string) (Ring, error) {
 }
 
 // PointFromPosString parses a gml:pos chardata string and returns a Point.
-func PointFromPosString(s string, dim int) (Point, error) {
+func PointFromPosString(s string, dim uint) (Point, error) {
 	coords, err := ParsePosList(s)
 	if err != nil {
 		return Point{}, err
 	}
-	if dim <= 0 {
-		dim = len(coords)
+	if dim == 0 {
+		dim = uint(len(coords))
 	}
 	return PointFromFlat(coords, dim)
 }
 
 // LineStringFromPosListString parses a gml:posList chardata string.
-func LineStringFromPosListString(s string, dim int) (LineString, error) {
+func LineStringFromPosListString(s string, dim uint) (LineString, error) {
 	coords, err := ParsePosList(s)
 	if err != nil {
 		return nil, err
@@ -66,7 +66,7 @@ func LineStringFromPosListString(s string, dim int) (LineString, error) {
 }
 
 // RingFromPosListString parses a gml:posList chardata string into a Ring.
-func RingFromPosListString(s string, dim int) (Ring, error) {
+func RingFromPosListString(s string, dim uint) (Ring, error) {
 	coords, err := ParsePosList(s)
 	if err != nil {
 		return nil, err
@@ -85,7 +85,7 @@ func RingFromPosListString(s string, dim int) (Ring, error) {
 // When nValues is divisible by both 2 and 3 (e.g. 6, 12, 18), 2D is assumed
 // because the true dimension cannot be determined without the parent CRS.
 // Dimensions other than 0, 2, or 3 are not supported and return an error.
-func effectiveDim(dim, nValues int) (int, error) {
+func effectiveDim(dim uint, nValues int) (uint, error) {
 	switch dim {
 	case 0:
 		if nValues%2 != 0 {

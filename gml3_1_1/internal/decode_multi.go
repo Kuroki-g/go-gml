@@ -95,7 +95,7 @@ func decodeEnvelopeElement(dec *xml.Decoder, se xml.StartElement) (core.Geometry
 	return core.Geometry{Value: b, SRSName: x.SrsName}, nil
 }
 
-func lineStringsFromCurveArrayProperty(a *gen.CurveArrayPropertyType, inheritDim int, resolver *curveResolver) (core.MultiLineString, error) {
+func lineStringsFromCurveArrayProperty(a *gen.CurveArrayPropertyType, inheritDim uint, resolver *curveResolver) (core.MultiLineString, error) {
 	var lines core.MultiLineString
 	for i := range a.Curve {
 		cm := gen.CurvePropertyType{Curve: &a.Curve[i]}
@@ -140,7 +140,7 @@ func lineStringsFromCurveArrayProperty(a *gen.CurveArrayPropertyType, inheritDim
 	return lines, nil
 }
 
-func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDim int, resolver *curveResolver) (core.MultiPolygon, error) {
+func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDim uint, resolver *curveResolver) (core.MultiPolygon, error) {
 	var polys core.MultiPolygon
 	for i := range a.Polygon {
 		sm := gen.SurfacePropertyType{Polygon: &a.Polygon[i]}
@@ -203,7 +203,7 @@ func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDi
 	return polys, nil
 }
 
-func multiPolygonFromPolyhedralSurface(x *gen.PolyhedralSurfaceType, dim int, resolver *curveResolver) (core.MultiPolygon, error) {
+func multiPolygonFromPolyhedralSurface(x *gen.PolyhedralSurfaceType, dim uint, resolver *curveResolver) (core.MultiPolygon, error) {
 	return multiPolygonFromPolygonPatchArrayProperty(x.PolygonPatches, dim, resolver)
 }
 

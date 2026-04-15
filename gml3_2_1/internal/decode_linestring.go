@@ -37,7 +37,7 @@ func lineStringFromXML(x *gen.LineStringType) (core.LineString, error) {
 		}
 		d := preferDim(dim, derefDim(x.Pos[0].SrsDimension))
 		if d == 0 {
-			d = len(strings.Fields(x.Pos[0].Value))
+			d = uint(len(strings.Fields(x.Pos[0].Value)))
 			if d < 2 {
 				d = 2
 			}

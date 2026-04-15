@@ -97,7 +97,7 @@ func TestToPoints(t *testing.T) {
 	tests := []struct {
 		name    string
 		coords  []float64
-		dim     int
+		dim     uint
 		want    []Point
 		wantErr bool
 	}{

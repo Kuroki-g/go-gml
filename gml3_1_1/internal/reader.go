@@ -22,7 +22,7 @@ type Reader struct {
 	resolver    *curveResolver
 	prescanned  bool
 	pendingGrid *gridBounds
-	globalDim   int // srsDimension captured from root gml:Envelope; 0 if not yet seen
+	globalDim   uint // srsDimension captured from root gml:Envelope; 0 if not yet seen
 }
 
 // NewReader creates a Reader that streams geometry elements from r.
@@ -106,7 +106,7 @@ func (r *Reader) Next() (core.Geometry, error) {
 			for _, a := range se.Attr {
 				if a.Name.Local == "srsDimension" {
 					if d, err2 := strconv.Atoi(a.Value); err2 == nil && d > 0 {
-						r.globalDim = d
+						r.globalDim = uint(d)
 					}
 				}
 			}

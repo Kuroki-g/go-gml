@@ -18,7 +18,7 @@ func TestPointFromFlat(t *testing.T) {
 	tests := []struct {
 		name    string
 		coords  []float64
-		dim     int
+		dim     uint
 		want    Point
 		wantErr bool
 	}{
@@ -80,7 +80,7 @@ func TestRingFromFlat(t *testing.T) {
 func TestPointFromPosString(t *testing.T) {
 	tests := []struct {
 		input string
-		dim   int
+		dim   uint
 		want  Point
 	}{
 		{"139.691667 35.689722", 2, Point{139.691667, 35.689722}},
@@ -101,7 +101,7 @@ func TestPointFromPosString(t *testing.T) {
 }
 
 func TestLineStringFromPosListString(t *testing.T) {
-	got, err := LineStringFromPosListString("139.7 35.6 139.8 35.7", 2)
+	got, err := LineStringFromPosListString("139.7 35.6 139.8 35.7", uint(2))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -117,7 +117,7 @@ func TestLineStringFromPosListString(t *testing.T) {
 }
 
 func TestRingFromPosListString(t *testing.T) {
-	got, err := RingFromPosListString("139.7 35.6 139.8 35.6 139.8 35.7 139.7 35.6", 2)
+	got, err := RingFromPosListString("139.7 35.6 139.8 35.6 139.8 35.7 139.7 35.6", uint(2))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -137,7 +137,7 @@ func TestRingFromCoordinatesString(t *testing.T) {
 }
 
 func TestEffectiveDim(t *testing.T) {
-	check := func(dim, nValues, want int) {
+	check := func(dim uint, nValues int, want uint) {
 		t.Helper()
 		got, err := effectiveDim(dim, nValues)
 		if err != nil {
@@ -147,19 +147,19 @@ func TestEffectiveDim(t *testing.T) {
 			t.Errorf("effectiveDim(%d, %d) = %d, want %d", dim, nValues, got, want)
 		}
 	}
-	checkErr := func(dim, nValues int) {
+	checkErr := func(dim uint, nValues int) {
 		t.Helper()
 		if _, err := effectiveDim(dim, nValues); err == nil {
 			t.Errorf("effectiveDim(%d, %d) expected error, got nil", dim, nValues)
 		}
 	}
 
-	check(2, 4, 2)  // explicit 2D
-	check(3, 9, 3)  // explicit 3D
-	check(0, 4, 2)  // omitted, even → 2D
-	check(0, 9, 3)  // omitted, odd → 3D (PLATEAU pattern)
-	check(0, 27, 3) // omitted, odd → 3D
-	check(0, 12, 2) // omitted, even (ambiguous) → 2D fallback
-	checkErr(1, 0)  // 1D: unsupported
-	checkErr(4, 0)  // 4D: unsupported
+	check(uint(2), 4, uint(2))  // explicit 2D
+	check(uint(3), 9, uint(3))  // explicit 3D
+	check(uint(0), 4, uint(2))  // omitted, even → 2D
+	check(uint(0), 9, uint(3))  // omitted, odd → 3D (PLATEAU pattern)
+	check(uint(0), 27, uint(3)) // omitted, odd → 3D
+	check(uint(0), 12, uint(2)) // omitted, even (ambiguous) → 2D fallback
+	checkErr(uint(1), 0)        // 1D: unsupported
+	checkErr(uint(4), 0)        // 4D: unsupported
 }
