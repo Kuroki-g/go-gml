@@ -38,7 +38,7 @@ type AbstractContinuousCoverageType struct {
 	MultiSurfaceDomain  *MultiSurfaceDomainType       `xml:"http://www.opengis.net/gml multiSurfaceDomain,omitempty"`
 	RectifiedGridDomain *RectifiedGridDomainType      `xml:"http://www.opengis.net/gml rectifiedGridDomain,omitempty"`
 	RangeSet            *RangeSetType                 `xml:"http://www.opengis.net/gml rangeSet,omitempty"`
-	Dimension           *int                          `xml:"dimension,attr,omitempty"`
+	Dimension           *uint                         `xml:"dimension,attr,omitempty"`
 	CoverageFunction    *CoverageFunctionType         `xml:"http://www.opengis.net/gml coverageFunction,omitempty"`
 }
 
@@ -128,7 +128,7 @@ type AbstractCoverageType struct {
 	MultiSurfaceDomain  *MultiSurfaceDomainType       `xml:"http://www.opengis.net/gml multiSurfaceDomain,omitempty"`
 	RectifiedGridDomain *RectifiedGridDomainType      `xml:"http://www.opengis.net/gml rectifiedGridDomain,omitempty"`
 	RangeSet            *RangeSetType                 `xml:"http://www.opengis.net/gml rangeSet,omitempty"`
-	Dimension           *int                          `xml:"dimension,attr,omitempty"`
+	Dimension           *uint                         `xml:"dimension,attr,omitempty"`
 }
 
 type AbstractCurveSegmentType struct {
@@ -171,7 +171,7 @@ type AbstractCurveType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -244,7 +244,7 @@ type AbstractDiscreteCoverageType struct {
 	MultiSurfaceDomain  *MultiSurfaceDomainType       `xml:"http://www.opengis.net/gml multiSurfaceDomain,omitempty"`
 	RectifiedGridDomain *RectifiedGridDomainType      `xml:"http://www.opengis.net/gml rectifiedGridDomain,omitempty"`
 	RangeSet            *RangeSetType                 `xml:"http://www.opengis.net/gml rangeSet,omitempty"`
-	Dimension           *int                          `xml:"dimension,attr,omitempty"`
+	Dimension           *uint                         `xml:"dimension,attr,omitempty"`
 	CoverageFunction    *CoverageFunctionType         `xml:"http://www.opengis.net/gml coverageFunction,omitempty"`
 }
 
@@ -387,7 +387,7 @@ type AbstractGeneralOperationParameterType struct {
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
-	MinimumOccurs *int `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
+	MinimumOccurs *uint `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
 }
 
 type AbstractGeneralParameterValueType struct {
@@ -447,7 +447,7 @@ type AbstractGeometricAggregateType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -487,7 +487,7 @@ type AbstractGeometricPrimitiveType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -527,7 +527,7 @@ type AbstractGeometryType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -620,7 +620,7 @@ type AbstractRingType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -660,7 +660,7 @@ type AbstractSolidType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -722,7 +722,7 @@ type AbstractSurfaceType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -929,9 +929,9 @@ type AffinePlacementType struct {
 	RefDirection []VectorType `xml:"http://www.opengis.net/gml refDirection"`
 	// Dimension of the constructive parameter
 	// space.
-	InDimension int `xml:"http://www.opengis.net/gml inDimension"`
+	InDimension *uint `xml:"http://www.opengis.net/gml inDimension"`
 	// Dimension of the co-ordinate space.
-	OutDimension int `xml:"http://www.opengis.net/gml outDimension"`
+	OutDimension *uint `xml:"http://www.opengis.net/gml outDimension"`
 }
 
 type AngleChoiceType struct {
@@ -1431,7 +1431,7 @@ type BSplineType struct {
 	// NOTE: Use of these values is only appropriate when the basic curve definition is an underdetermined system. For example, line string segments cannot support continuity above C 0 , since there is no spare control parameter to adjust the incoming angle at the end points of the segment. Spline functions on the other hand often have extra degrees of freedom on end segments that allow them to adjust the values of the derivatives to support C 1 or higher continuity.
 	NumDerivativeInterior *int `xml:"numDerivativeInterior,attr,omitempty"`
 	// The attribute "degree" shall be the degree of the polynomial used for interpolation in this spline.
-	Degree int `xml:"http://www.opengis.net/gml degree"`
+	Degree *uint `xml:"http://www.opengis.net/gml degree"`
 	// The property "knot" shall be the sequence of distinct knots used to define the spline basis functions.
 	Knot    []KnotPropertyType      `xml:"http://www.opengis.net/gml knot"`
 	PosList *DirectPositionListType `xml:"http://www.opengis.net/gml posList,omitempty"`
@@ -1526,7 +1526,7 @@ type BaseUnitType struct {
 
 type BezierType struct {
 	// The attribute "degree" shall be the degree of the polynomial used for interpolation in this spline.
-	Degree int `xml:"http://www.opengis.net/gml degree"`
+	Degree *uint `xml:"http://www.opengis.net/gml degree"`
 	// The property "knot" shall be the sequence of distinct knots used to define the spline basis functions.
 	Knot    []KnotPropertyType      `xml:"http://www.opengis.net/gml knot"`
 	PosList *DirectPositionListType `xml:"http://www.opengis.net/gml posList,omitempty"`
@@ -1819,7 +1819,7 @@ type CompositeCurveType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -1874,7 +1874,7 @@ type CompositeSolidType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -1929,7 +1929,7 @@ type CompositeSurfaceType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -2285,9 +2285,9 @@ type CountPropertyType struct {
 
 type CovarianceElementType struct {
 	// Row number of this covariance element value.
-	RowIndex *int `xml:"http://www.opengis.net/gml rowIndex,omitempty"`
+	RowIndex *uint `xml:"http://www.opengis.net/gml rowIndex,omitempty"`
 	// Column number of this covariance element value.
-	ColumnIndex *int `xml:"http://www.opengis.net/gml columnIndex,omitempty"`
+	ColumnIndex *uint `xml:"http://www.opengis.net/gml columnIndex,omitempty"`
 	// Value of covariance matrix element.
 	Covariance *float64 `xml:"http://www.opengis.net/gml covariance,omitempty"`
 }
@@ -2413,7 +2413,7 @@ type CurveType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -2468,7 +2468,7 @@ type CylindricalCSType struct {
 type DMSAngleType struct {
 	Degrees        *DegreesType `xml:"http://www.opengis.net/gml degrees,omitempty"`
 	DecimalMinutes *float64     `xml:"http://www.opengis.net/gml decimalMinutes,omitempty"`
-	Minutes        *int         `xml:"http://www.opengis.net/gml minutes,omitempty"`
+	Minutes        *uint        `xml:"http://www.opengis.net/gml minutes,omitempty"`
 	Seconds        *float64     `xml:"http://www.opengis.net/gml seconds,omitempty"`
 }
 
@@ -2551,7 +2551,7 @@ type DefinitionType struct {
 }
 
 type DegreesType struct {
-	Value     int     `xml:",chardata"`
+	Value     string  `xml:",chardata"`
 	Direction *string `xml:"direction,attr,omitempty"`
 }
 
@@ -2726,7 +2726,7 @@ type DirectPositionListType struct {
 	Value string `xml:",chardata"`
 	// "count" allows to specify the number of direct positions in the list. If the attribute count is present then
 	// the attribute srsDimension shall be present, too.
-	Count *int `xml:"count,attr,omitempty"`
+	Count *uint `xml:"count,attr,omitempty"`
 	// In general this reference points to a CRS instance of gml:CoordinateReferenceSystemType
 	// (see coordinateReferenceSystems.xsd). For well known references it is not required that the CRS description exists at the
 	// location the URI points to. If no srsName attribute is given, the CRS must be specified as part of the larger context this
@@ -2735,7 +2735,7 @@ type DirectPositionListType struct {
 	SrsName *string `xml:"srsName,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -2757,7 +2757,7 @@ type DirectPositionType struct {
 	SrsName *string `xml:"srsName,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -3187,7 +3187,7 @@ type EnvelopeType struct {
 	SrsName *string `xml:"srsName,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -3216,7 +3216,7 @@ type EnvelopeWithTimePeriodType struct {
 	SrsName *string `xml:"srsName,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -3620,7 +3620,7 @@ type GeometricComplexType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -3867,7 +3867,7 @@ type GridCoverageType struct {
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	Dimension               *int       `xml:"dimension,attr,omitempty"`
+	Dimension               *uint      `xml:"dimension,attr,omitempty"`
 }
 
 type GridDomainType struct {
@@ -3930,7 +3930,7 @@ type GridType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -3942,7 +3942,7 @@ type GridType struct {
 	UomLabels *string         `xml:"uomLabels,attr,omitempty"`
 	Limits    *GridLimitsType `xml:"http://www.opengis.net/gml limits"`
 	AxisName  []string        `xml:"http://www.opengis.net/gml axisName"`
-	Dimension int             `xml:"dimension,attr"`
+	Dimension uint            `xml:"dimension,attr"`
 }
 
 type HistoryPropertyType struct {
@@ -4072,7 +4072,7 @@ type KnotType struct {
 	// The property "value" is the value of the parameter at the knot of the spline. The sequence of knots shall be a non-decreasing sequence. That is, each knot's value in the sequence shall be equal to or greater than the previous knot's value. The use of equal consecutive knots is normally handled using the multiplicity.
 	Value float64 `xml:"http://www.opengis.net/gml value"`
 	// The property "multiplicity" is the multiplicity of this knot used in the definition of the spline (with the same weight).
-	Multiplicity int `xml:"http://www.opengis.net/gml multiplicity"`
+	Multiplicity *uint `xml:"http://www.opengis.net/gml multiplicity"`
 	// The property "weight" is the value of the averaging weight used for this knot of the spline.
 	Weight float64 `xml:"http://www.opengis.net/gml weight"`
 }
@@ -4196,7 +4196,7 @@ type LineStringType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -4280,7 +4280,7 @@ type LinearRingType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -4432,7 +4432,7 @@ type MultiCurveCoverageType struct {
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	Dimension               *int       `xml:"dimension,attr,omitempty"`
+	Dimension               *uint      `xml:"dimension,attr,omitempty"`
 }
 
 type MultiCurveDomainType struct {
@@ -4487,7 +4487,7 @@ type MultiCurveType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -4551,7 +4551,7 @@ type MultiGeometryType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -4608,7 +4608,7 @@ type MultiLineStringType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -4644,7 +4644,7 @@ type MultiPointCoverageType struct {
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	Dimension               *int       `xml:"dimension,attr,omitempty"`
+	Dimension               *uint      `xml:"dimension,attr,omitempty"`
 }
 
 type MultiPointDomainType struct {
@@ -4699,7 +4699,7 @@ type MultiPointType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -4756,7 +4756,7 @@ type MultiPolygonType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -4792,7 +4792,7 @@ type MultiSolidCoverageType struct {
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	Dimension               *int       `xml:"dimension,attr,omitempty"`
+	Dimension               *uint      `xml:"dimension,attr,omitempty"`
 }
 
 type MultiSolidDomainType struct {
@@ -4847,7 +4847,7 @@ type MultiSolidType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -4884,7 +4884,7 @@ type MultiSurfaceCoverageType struct {
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	Dimension               *int       `xml:"dimension,attr,omitempty"`
+	Dimension               *uint      `xml:"dimension,attr,omitempty"`
 }
 
 type MultiSurfaceDomainType struct {
@@ -4939,7 +4939,7 @@ type MultiSurfaceType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -5124,9 +5124,9 @@ type OperationMethodType struct {
 	// Formula(s) used by this operation method. The value may be a reference to a publication. Note that the operation method may not be analytic, in which case this element references or contains the procedure, not an analytic formula.
 	MethodFormula *CodeType `xml:"http://www.opengis.net/gml methodFormula,omitempty"`
 	// Number of dimensions in the source CRS of this operation method.
-	SourceDimensions *int `xml:"http://www.opengis.net/gml sourceDimensions,omitempty"`
+	SourceDimensions *uint `xml:"http://www.opengis.net/gml sourceDimensions,omitempty"`
 	// Number of dimensions in the target CRS of this operation method.
-	TargetDimensions *int `xml:"http://www.opengis.net/gml targetDimensions,omitempty"`
+	TargetDimensions *uint `xml:"http://www.opengis.net/gml targetDimensions,omitempty"`
 	// Unordered list of associations to the set of operation parameters and parameter groups used by this operation method.
 	UsesParameter []AbstractGeneralOperationParameterRefType `xml:"http://www.opengis.net/gml usesParameter"`
 }
@@ -5137,7 +5137,7 @@ type OperationParameterBaseType struct {
 	// The name by which this operation parameter is identified.
 	ParameterName *CodeType `xml:"http://www.opengis.net/gml parameterName,omitempty"`
 	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
-	MinimumOccurs *int   `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
+	MinimumOccurs *uint  `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
 	Id            string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 }
 
@@ -5147,7 +5147,7 @@ type OperationParameterGroupBaseType struct {
 	// The name by which this operation parameter group is identified.
 	GroupName *CodeType `xml:"http://www.opengis.net/gml groupName,omitempty"`
 	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
-	MinimumOccurs *int   `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
+	MinimumOccurs *uint  `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
 	Id            string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 }
 
@@ -5169,14 +5169,14 @@ type OperationParameterGroupType struct {
 	// The name by which this operation parameter group is identified.
 	GroupName *CodeType `xml:"http://www.opengis.net/gml groupName,omitempty"`
 	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
-	MinimumOccurs *int   `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
+	MinimumOccurs *uint  `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
 	Id            string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this operation parameter group. The first groupID, if any, is normally the primary identification code, and any others are aliases.
 	GroupID []IdentifierType `xml:"http://www.opengis.net/gml groupID"`
 	// Comments on or information about this operation parameter group, including source information.
 	Remarks *StringOrRefType `xml:"http://www.opengis.net/gml remarks,omitempty"`
 	// The maximum number of times that values for this parameter group can be included. If this attribute is omitted, the maximum number is one.
-	MaximumOccurs *int `xml:"http://www.opengis.net/gml maximumOccurs,omitempty"`
+	MaximumOccurs *uint `xml:"http://www.opengis.net/gml maximumOccurs,omitempty"`
 	// Unordered list of associations to the set of operation parameters that are members of this group.
 	IncludesParameter []AbstractGeneralOperationParameterRefType `xml:"http://www.opengis.net/gml includesParameter"`
 }
@@ -5199,7 +5199,7 @@ type OperationParameterType struct {
 	// The name by which this operation parameter is identified.
 	ParameterName *CodeType `xml:"http://www.opengis.net/gml parameterName,omitempty"`
 	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
-	MinimumOccurs *int   `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
+	MinimumOccurs *uint  `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
 	Id            string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Set of alternative identifications of this operation parameter. The first parameterID, if any, is normally the primary identification code, and any others are aliases.
 	ParameterID []IdentifierType `xml:"http://www.opengis.net/gml parameterID"`
@@ -5254,7 +5254,7 @@ type OrientableCurveType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -5299,7 +5299,7 @@ type OrientableSurfaceType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -5332,7 +5332,7 @@ type ParameterValueType struct {
 	// String value of an operation parameter. A string value does not have an associated unit of measure.
 	StringValue *string `xml:"http://www.opengis.net/gml stringValue,omitempty"`
 	// Positive integer value of an operation parameter, usually used for a count. An integer value does not have an associated unit of measure.
-	IntegerValue *int `xml:"http://www.opengis.net/gml integerValue,omitempty"`
+	IntegerValue *uint `xml:"http://www.opengis.net/gml integerValue,omitempty"`
 	// Boolean value of an operation parameter. A Boolean value does not have an associated unit of measure.
 	BooleanValue *bool `xml:"http://www.opengis.net/gml booleanValue,omitempty"`
 	// Ordered sequence of two or more numeric values of an operation parameter list, where each value has the same associated unit of measure. An element of this type contains a space-separated sequence of double values.
@@ -5381,7 +5381,7 @@ type PassThroughOperationType struct {
 	// Association to the target CRS (coordinate reference system) of this coordinate operation. For constraints on multiplicity of "sourceCRS" and "targetCRS", see UML model of Coordinate Operation package in OGC Abstract Specification topic 2.
 	TargetCRS *CRSRefType `xml:"http://www.opengis.net/gml targetCRS,omitempty"`
 	// Ordered sequence of positive integers defining the positions in a coordinate tuple of the coordinates affected by this pass-through operation.
-	ModifiedCoordinate []int `xml:"http://www.opengis.net/gml modifiedCoordinate"`
+	ModifiedCoordinate []uint `xml:"http://www.opengis.net/gml modifiedCoordinate"`
 	// Association to the operation applied to the specified ordinates.
 	UsesOperation *OperationRefType `xml:"http://www.opengis.net/gml usesOperation,omitempty"`
 }
@@ -5436,7 +5436,7 @@ type PointType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -5537,7 +5537,7 @@ type PolygonType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -5586,7 +5586,7 @@ type PolyhedralSurfaceType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -5817,7 +5817,7 @@ type RectifiedGridCoverageType struct {
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
 	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
-	Dimension               *int       `xml:"dimension,attr,omitempty"`
+	Dimension               *uint      `xml:"dimension,attr,omitempty"`
 }
 
 type RectifiedGridDomainType struct {
@@ -5861,7 +5861,7 @@ type RectifiedGridType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -5873,7 +5873,7 @@ type RectifiedGridType struct {
 	UomLabels    *string            `xml:"uomLabels,attr,omitempty"`
 	Limits       *GridLimitsType    `xml:"http://www.opengis.net/gml limits"`
 	AxisName     []string           `xml:"http://www.opengis.net/gml axisName"`
-	Dimension    int                `xml:"dimension,attr"`
+	Dimension    uint               `xml:"dimension,attr"`
 	Origin       *PointPropertyType `xml:"http://www.opengis.net/gml origin"`
 	OffsetVector []VectorType       `xml:"http://www.opengis.net/gml offsetVector"`
 }
@@ -5972,7 +5972,7 @@ type RingType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -6093,7 +6093,7 @@ type SolidType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -6263,7 +6263,7 @@ type SurfaceType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -6693,7 +6693,7 @@ type TimeInstantType struct {
 type TimeIntervalLengthType struct {
 	Value  float64 `xml:",chardata"`
 	Unit   string  `xml:"unit,attr"`
-	Radix  *int    `xml:"radix,attr,omitempty"`
+	Radix  *uint   `xml:"radix,attr,omitempty"`
 	Factor *int    `xml:"factor,attr,omitempty"`
 }
 
@@ -6955,7 +6955,7 @@ type TinType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -7317,7 +7317,7 @@ type TriangulatedSurfaceType struct {
 	Gid *string `xml:"gid,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.
@@ -7768,7 +7768,7 @@ type VectorType struct {
 	SrsName *string `xml:"srsName,attr,omitempty"`
 	// The "srsDimension" is the length of coordinate sequence (the number of entries in the list). This dimension is
 	// specified by the coordinate reference system. When the srsName attribute is omitted, this attribute shall be omitted.
-	SrsDimension *int `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint `xml:"srsDimension,attr,omitempty"`
 	// Ordered list of labels for all the axes of this CRS. The gml:axisAbbrev value should be used for these axis
 	// labels, after spaces and forbiddden characters are removed. When the srsName attribute is included, this attribute is optional.
 	// When the srsName attribute is omitted, this attribute shall also be omitted.

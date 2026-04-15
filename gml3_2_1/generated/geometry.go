@@ -148,7 +148,7 @@ type AbstractCurveType struct {
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
-	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 }
@@ -303,7 +303,7 @@ type AbstractGeneralOperationParameterType struct {
 	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// gml:minimumOccurs is the minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number shall be one.
-	MinimumOccurs *int `xml:"http://www.opengis.net/gml/3.2 minimumOccurs,omitempty"`
+	MinimumOccurs *uint `xml:"http://www.opengis.net/gml/3.2 minimumOccurs,omitempty"`
 }
 
 type AbstractGeneralParameterValuePropertyType struct {
@@ -355,7 +355,7 @@ type AbstractGeometricAggregateType struct {
 	Name            []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id              string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName         *string    `xml:"srsName,attr,omitempty"`
-	SrsDimension    *int       `xml:"srsDimension,attr,omitempty"`
+	SrsDimension    *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels      *string    `xml:"axisLabels,attr,omitempty"`
 	UomLabels       *string    `xml:"uomLabels,attr,omitempty"`
 	AggregationType *string    `xml:"aggregationType,attr,omitempty"`
@@ -373,7 +373,7 @@ type AbstractGeometricPrimitiveType struct {
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
-	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 }
@@ -390,7 +390,7 @@ type AbstractGeometryType struct {
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
-	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 }
@@ -437,7 +437,7 @@ type AbstractRingType struct {
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
-	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 }
@@ -454,7 +454,7 @@ type AbstractSolidType struct {
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
-	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 }
@@ -474,7 +474,7 @@ type AbstractSurfaceType struct {
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
-	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 }
@@ -627,8 +627,8 @@ type AffineCSType struct {
 type AffinePlacementType struct {
 	Location     *DirectPositionType `xml:"http://www.opengis.net/gml/3.2 location"`
 	RefDirection []VectorType        `xml:"http://www.opengis.net/gml/3.2 refDirection"`
-	InDimension  int                 `xml:"http://www.opengis.net/gml/3.2 inDimension"`
-	OutDimension int                 `xml:"http://www.opengis.net/gml/3.2 outDimension"`
+	InDimension  *uint               `xml:"http://www.opengis.net/gml/3.2 inDimension"`
+	OutDimension *uint               `xml:"http://www.opengis.net/gml/3.2 outDimension"`
 }
 
 type AngleChoiceType struct {
@@ -937,7 +937,7 @@ type BSplineType struct {
 	NumDerivativesAtStart *int                    `xml:"numDerivativesAtStart,attr,omitempty"`
 	NumDerivativesAtEnd   *int                    `xml:"numDerivativesAtEnd,attr,omitempty"`
 	NumDerivativeInterior *int                    `xml:"numDerivativeInterior,attr,omitempty"`
-	Degree                int                     `xml:"http://www.opengis.net/gml/3.2 degree"`
+	Degree                *uint                   `xml:"http://www.opengis.net/gml/3.2 degree"`
 	Knot                  []KnotPropertyType      `xml:"http://www.opengis.net/gml/3.2 knot"`
 	PosList               *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates           *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
@@ -989,7 +989,7 @@ type BaseUnitType struct {
 }
 
 type BezierType struct {
-	Degree      int                     `xml:"http://www.opengis.net/gml/3.2 degree"`
+	Degree      *uint                   `xml:"http://www.opengis.net/gml/3.2 degree"`
 	Knot        []KnotPropertyType      `xml:"http://www.opengis.net/gml/3.2 knot"`
 	PosList     *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
 	Coordinates *CoordinatesType        `xml:"http://www.opengis.net/gml/3.2 coordinates,omitempty"`
@@ -1192,7 +1192,7 @@ type CompositeCurveType struct {
 	Name            []CodeType          `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id              string              `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName         *string             `xml:"srsName,attr,omitempty"`
-	SrsDimension    *int                `xml:"srsDimension,attr,omitempty"`
+	SrsDimension    *uint               `xml:"srsDimension,attr,omitempty"`
 	AxisLabels      *string             `xml:"axisLabels,attr,omitempty"`
 	UomLabels       *string             `xml:"uomLabels,attr,omitempty"`
 	CurveMember     []CurvePropertyType `xml:"http://www.opengis.net/gml/3.2 curveMember"`
@@ -1211,7 +1211,7 @@ type CompositeSolidType struct {
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
-	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 	// This property element either references a solid via the XLink-attributes or contains the solid element. A solid element is any element, which is substitutable for gml:AbstractSolid.
@@ -1231,7 +1231,7 @@ type CompositeSurfaceType struct {
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
-	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 	// This property element either references a surface via the XLink-attributes or contains the surface element. A surface element is any element, which is substitutable for gml:AbstractSurface.
@@ -1631,7 +1631,7 @@ type CurveType struct {
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
-	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 	// This property element contains a list of curve segments. The order of the elements is significant and shall be preserved when processing the array.
@@ -1681,7 +1681,7 @@ type CylindricalCSType struct {
 type DMSAngleType struct {
 	Degrees        *DegreesType `xml:"http://www.opengis.net/gml/3.2 degrees,omitempty"`
 	DecimalMinutes *float64     `xml:"http://www.opengis.net/gml/3.2 decimalMinutes,omitempty"`
-	Minutes        *int         `xml:"http://www.opengis.net/gml/3.2 minutes,omitempty"`
+	Minutes        *uint        `xml:"http://www.opengis.net/gml/3.2 minutes,omitempty"`
 	Seconds        *float64     `xml:"http://www.opengis.net/gml/3.2 seconds,omitempty"`
 }
 
@@ -1756,7 +1756,7 @@ type DefinitionType struct {
 }
 
 type DegreesType struct {
-	Value     int     `xml:",chardata"`
+	Value     string  `xml:",chardata"`
 	Direction *string `xml:"direction,attr,omitempty"`
 }
 
@@ -1935,9 +1935,9 @@ type DictionaryType struct {
 
 type DirectPositionListType struct {
 	Value        string  `xml:",chardata"`
-	Count        *int    `xml:"count,attr,omitempty"`
+	Count        *uint   `xml:"count,attr,omitempty"`
 	SrsName      *string `xml:"srsName,attr,omitempty"`
-	SrsDimension *int    `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint   `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string `xml:"uomLabels,attr,omitempty"`
 }
@@ -1945,7 +1945,7 @@ type DirectPositionListType struct {
 type DirectPositionType struct {
 	Value        string  `xml:",chardata"`
 	SrsName      *string `xml:"srsName,attr,omitempty"`
-	SrsDimension *int    `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint   `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string `xml:"uomLabels,attr,omitempty"`
 }
@@ -2444,7 +2444,7 @@ type EnvelopeType struct {
 	LowerCorner  *DirectPositionType  `xml:"http://www.opengis.net/gml/3.2 lowerCorner"`
 	UpperCorner  *DirectPositionType  `xml:"http://www.opengis.net/gml/3.2 upperCorner"`
 	SrsName      *string              `xml:"srsName,attr,omitempty"`
-	SrsDimension *int                 `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint                `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string              `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string              `xml:"uomLabels,attr,omitempty"`
 }
@@ -2455,7 +2455,7 @@ type EnvelopeWithTimePeriodType struct {
 	LowerCorner   *DirectPositionType  `xml:"http://www.opengis.net/gml/3.2 lowerCorner"`
 	UpperCorner   *DirectPositionType  `xml:"http://www.opengis.net/gml/3.2 upperCorner"`
 	SrsName       *string              `xml:"srsName,attr,omitempty"`
-	SrsDimension  *int                 `xml:"srsDimension,attr,omitempty"`
+	SrsDimension  *uint                `xml:"srsDimension,attr,omitempty"`
 	AxisLabels    *string              `xml:"axisLabels,attr,omitempty"`
 	UomLabels     *string              `xml:"uomLabels,attr,omitempty"`
 	BeginPosition *TimePositionType    `xml:"http://www.opengis.net/gml/3.2 beginPosition"`
@@ -2850,7 +2850,7 @@ type GeometricComplexType struct {
 	Name            []CodeType                       `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id              string                           `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName         *string                          `xml:"srsName,attr,omitempty"`
-	SrsDimension    *int                             `xml:"srsDimension,attr,omitempty"`
+	SrsDimension    *uint                            `xml:"srsDimension,attr,omitempty"`
 	AxisLabels      *string                          `xml:"axisLabels,attr,omitempty"`
 	UomLabels       *string                          `xml:"uomLabels,attr,omitempty"`
 	Element         []GeometricPrimitivePropertyType `xml:"http://www.opengis.net/gml/3.2 element"`
@@ -3008,12 +3008,12 @@ type GridType struct {
 	Name         []CodeType      `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string          `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string         `xml:"srsName,attr,omitempty"`
-	SrsDimension *int            `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint           `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   string          `xml:"http://www.opengis.net/gml/3.2 axisLabels"`
 	UomLabels    *string         `xml:"uomLabels,attr,omitempty"`
 	Limits       *GridLimitsType `xml:"http://www.opengis.net/gml/3.2 limits"`
 	AxisName     []string        `xml:"http://www.opengis.net/gml/3.2 axisName"`
-	Dimension    int             `xml:"dimension,attr"`
+	Dimension    uint            `xml:"dimension,attr"`
 }
 
 type HistoryPropertyType struct {
@@ -3143,7 +3143,7 @@ type KnotPropertyType struct {
 
 type KnotType struct {
 	Value        float64 `xml:"http://www.opengis.net/gml/3.2 value"`
-	Multiplicity int     `xml:"http://www.opengis.net/gml/3.2 multiplicity"`
+	Multiplicity *uint   `xml:"http://www.opengis.net/gml/3.2 multiplicity"`
 	Weight       float64 `xml:"http://www.opengis.net/gml/3.2 weight"`
 }
 
@@ -3182,7 +3182,7 @@ type LineStringType struct {
 	Name         []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string                  `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string                 `xml:"srsName,attr,omitempty"`
-	SrsDimension *int                    `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint                   `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string                 `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string                 `xml:"uomLabels,attr,omitempty"`
 	PosList      *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
@@ -3242,7 +3242,7 @@ type LinearRingType struct {
 	Name         []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string                  `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string                 `xml:"srsName,attr,omitempty"`
-	SrsDimension *int                    `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint                   `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string                 `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string                 `xml:"uomLabels,attr,omitempty"`
 	PosList      *DirectPositionListType `xml:"http://www.opengis.net/gml/3.2 posList,omitempty"`
@@ -3396,7 +3396,7 @@ type MultiCurveType struct {
 	Name            []CodeType          `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id              string              `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName         *string             `xml:"srsName,attr,omitempty"`
-	SrsDimension    *int                `xml:"srsDimension,attr,omitempty"`
+	SrsDimension    *uint               `xml:"srsDimension,attr,omitempty"`
 	AxisLabels      *string             `xml:"axisLabels,attr,omitempty"`
 	UomLabels       *string             `xml:"uomLabels,attr,omitempty"`
 	AggregationType *string             `xml:"aggregationType,attr,omitempty"`
@@ -3437,7 +3437,7 @@ type MultiGeometryType struct {
 	Name            []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id              string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName         *string    `xml:"srsName,attr,omitempty"`
-	SrsDimension    *int       `xml:"srsDimension,attr,omitempty"`
+	SrsDimension    *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels      *string    `xml:"axisLabels,attr,omitempty"`
 	UomLabels       *string    `xml:"uomLabels,attr,omitempty"`
 	AggregationType *string    `xml:"aggregationType,attr,omitempty"`
@@ -3475,7 +3475,7 @@ type MultiPointType struct {
 	Name            []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id              string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName         *string    `xml:"srsName,attr,omitempty"`
-	SrsDimension    *int       `xml:"srsDimension,attr,omitempty"`
+	SrsDimension    *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels      *string    `xml:"axisLabels,attr,omitempty"`
 	UomLabels       *string    `xml:"uomLabels,attr,omitempty"`
 	AggregationType *string    `xml:"aggregationType,attr,omitempty"`
@@ -3513,7 +3513,7 @@ type MultiSolidType struct {
 	Name            []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id              string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName         *string    `xml:"srsName,attr,omitempty"`
-	SrsDimension    *int       `xml:"srsDimension,attr,omitempty"`
+	SrsDimension    *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels      *string    `xml:"axisLabels,attr,omitempty"`
 	UomLabels       *string    `xml:"uomLabels,attr,omitempty"`
 	AggregationType *string    `xml:"aggregationType,attr,omitempty"`
@@ -3551,7 +3551,7 @@ type MultiSurfaceType struct {
 	Name            []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id              string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName         *string    `xml:"srsName,attr,omitempty"`
-	SrsDimension    *int       `xml:"srsDimension,attr,omitempty"`
+	SrsDimension    *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels      *string    `xml:"axisLabels,attr,omitempty"`
 	UomLabels       *string    `xml:"uomLabels,attr,omitempty"`
 	AggregationType *string    `xml:"aggregationType,attr,omitempty"`
@@ -3713,9 +3713,9 @@ type OperationMethodType struct {
 	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// gml:sourceDimensions is the number of dimensions in the source CRS of this operation method.
-	SourceDimensions *int `xml:"http://www.opengis.net/gml/3.2 sourceDimensions,omitempty"`
+	SourceDimensions *uint `xml:"http://www.opengis.net/gml/3.2 sourceDimensions,omitempty"`
 	// gml:targetDimensions is the number of dimensions in the target CRS of this operation method.
-	TargetDimensions *int `xml:"http://www.opengis.net/gml/3.2 targetDimensions,omitempty"`
+	TargetDimensions *uint `xml:"http://www.opengis.net/gml/3.2 targetDimensions,omitempty"`
 	// gml:parameter is an association to an operation parameter or parameter group.
 	Parameter                 []AbstractGeneralOperationParameterPropertyType `xml:"http://www.opengis.net/gml/3.2 parameter"`
 	GeneralOperationParameter []AbstractGeneralOperationParameterPropertyType `xml:"http://www.opengis.net/gml/3.2 generalOperationParameter"`
@@ -3756,9 +3756,9 @@ type OperationParameterGroupType struct {
 	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// gml:minimumOccurs is the minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number shall be one.
-	MinimumOccurs *int `xml:"http://www.opengis.net/gml/3.2 minimumOccurs,omitempty"`
+	MinimumOccurs *uint `xml:"http://www.opengis.net/gml/3.2 minimumOccurs,omitempty"`
 	// gml:maximumOccurs is the maximum number of times that values for this parameter group may be included. If this attribute is omitted, the maximum number shall be one.
-	MaximumOccurs *int `xml:"http://www.opengis.net/gml/3.2 maximumOccurs,omitempty"`
+	MaximumOccurs *uint `xml:"http://www.opengis.net/gml/3.2 maximumOccurs,omitempty"`
 	// gml:parameter is an association to an operation parameter or parameter group.
 	Parameter                 []AbstractGeneralOperationParameterPropertyType `xml:"http://www.opengis.net/gml/3.2 parameter"`
 	GeneralOperationParameter []AbstractGeneralOperationParameterPropertyType `xml:"http://www.opengis.net/gml/3.2 generalOperationParameter"`
@@ -3793,7 +3793,7 @@ type OperationParameterType struct {
 	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// gml:minimumOccurs is the minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number shall be one.
-	MinimumOccurs *int `xml:"http://www.opengis.net/gml/3.2 minimumOccurs,omitempty"`
+	MinimumOccurs *uint `xml:"http://www.opengis.net/gml/3.2 minimumOccurs,omitempty"`
 }
 
 type OperationPropertyType struct {
@@ -3825,7 +3825,7 @@ type OrientableCurveType struct {
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
-	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 	// The property baseCurve references or contains the base curve, i.e. it either references the base curve via the XLink-attributes or contains the curve element. A curve element is any element which is substitutable for AbstractCurve. The base curve has positive orientation.
@@ -3845,7 +3845,7 @@ type OrientableSurfaceType struct {
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
-	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 	// The property baseSurface references or contains the base surface. The property baseSurface either references the base surface via the XLink-attributes or contains the surface element. A surface element is any element which is substitutable for gml:AbstractSurface. The base surface has positive orientation.
@@ -3873,7 +3873,7 @@ type ParameterValueType struct {
 	// gml:stringValue is a character string value of an operation parameter. A string value does not have an associated unit of measure.
 	StringValue *string `xml:"http://www.opengis.net/gml/3.2 stringValue,omitempty"`
 	// gml:integerValue is a positive integer value of an operation parameter, usually used for a count. An integer value does not have an associated unit of measure.
-	IntegerValue *int `xml:"http://www.opengis.net/gml/3.2 integerValue,omitempty"`
+	IntegerValue *uint `xml:"http://www.opengis.net/gml/3.2 integerValue,omitempty"`
 	// gml:booleanValue is a boolean value of an operation parameter. A Boolean value does not have an associated unit of measure.
 	BooleanValue *bool `xml:"http://www.opengis.net/gml/3.2 booleanValue,omitempty"`
 	// gml:valueList is an ordered sequence of two or more numeric values of an operation parameter list, where each value has the same associated unit of measure. An element of this type contains a space-separated sequence of double values.
@@ -3924,7 +3924,7 @@ type PassThroughOperationType struct {
 	// gml:targetCRS is an association role to the target CRS (coordinate reference system) of this coordinate operation.
 	TargetCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 targetCRS,omitempty"`
 	// gml:modifiedCoordinate is a positive integer defining a position in a coordinate tuple.
-	ModifiedCoordinate []int `xml:"http://www.opengis.net/gml/3.2 modifiedCoordinate"`
+	ModifiedCoordinate []uint `xml:"http://www.opengis.net/gml/3.2 modifiedCoordinate"`
 	// gml:coordOperation is an association role to a coordinate operation.
 	CoordOperation      *CoordinateOperationPropertyType `xml:"http://www.opengis.net/gml/3.2 coordOperation,omitempty"`
 	UsesOperation       *CoordinateOperationPropertyType `xml:"http://www.opengis.net/gml/3.2 usesOperation,omitempty"`
@@ -3965,7 +3965,7 @@ type PointType struct {
 	Name         []CodeType          `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string              `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string             `xml:"srsName,attr,omitempty"`
-	SrsDimension *int                `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint               `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string             `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string             `xml:"uomLabels,attr,omitempty"`
 	Pos          *DirectPositionType `xml:"http://www.opengis.net/gml/3.2 pos,omitempty"`
@@ -4024,7 +4024,7 @@ type PolygonType struct {
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
-	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 	// A boundary of a surface consists of a number of rings. In the normal 2D case, one of these rings is distinguished as being the exterior boundary. In a general manifold this is not always possible, in which case all boundaries shall be listed as interior boundaries, and the exterior will be empty.
@@ -4247,12 +4247,12 @@ type RectifiedGridType struct {
 	Name         []CodeType         `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string             `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string            `xml:"srsName,attr,omitempty"`
-	SrsDimension *int               `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint              `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   string             `xml:"http://www.opengis.net/gml/3.2 axisLabels"`
 	UomLabels    *string            `xml:"uomLabels,attr,omitempty"`
 	Limits       *GridLimitsType    `xml:"http://www.opengis.net/gml/3.2 limits"`
 	AxisName     []string           `xml:"http://www.opengis.net/gml/3.2 axisName"`
-	Dimension    int                `xml:"dimension,attr"`
+	Dimension    uint               `xml:"dimension,attr"`
 	Origin       *PointPropertyType `xml:"http://www.opengis.net/gml/3.2 origin"`
 	OffsetVector []VectorType       `xml:"http://www.opengis.net/gml/3.2 offsetVector"`
 }
@@ -4324,7 +4324,7 @@ type RingType struct {
 	Name            []CodeType          `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id              string              `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName         *string             `xml:"srsName,attr,omitempty"`
-	SrsDimension    *int                `xml:"srsDimension,attr,omitempty"`
+	SrsDimension    *uint               `xml:"srsDimension,attr,omitempty"`
 	AxisLabels      *string             `xml:"axisLabels,attr,omitempty"`
 	UomLabels       *string             `xml:"uomLabels,attr,omitempty"`
 	CurveMember     []CurvePropertyType `xml:"http://www.opengis.net/gml/3.2 curveMember"`
@@ -4360,7 +4360,7 @@ type ShellType struct {
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
-	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 	// This property element either references a surface via the XLink-attributes or contains the surface element. A surface element is any element, which is substitutable for gml:AbstractSurface.
@@ -4449,7 +4449,7 @@ type SolidType struct {
 	Name         []CodeType          `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string              `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string             `xml:"srsName,attr,omitempty"`
-	SrsDimension *int                `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint               `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string             `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string             `xml:"uomLabels,attr,omitempty"`
 	Exterior     *ShellPropertyType  `xml:"http://www.opengis.net/gml/3.2 exterior,omitempty"`
@@ -4577,7 +4577,7 @@ type SurfaceType struct {
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
-	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 	// The patches property element contains the sequence of surface patches. The order of the elements is significant and shall be preserved when processing the array.
@@ -5001,7 +5001,7 @@ type TimeInstantType struct {
 type TimeIntervalLengthType struct {
 	Value  float64 `xml:",chardata"`
 	Unit   string  `xml:"unit,attr"`
-	Radix  *int    `xml:"radix,attr,omitempty"`
+	Radix  *uint   `xml:"radix,attr,omitempty"`
 	Factor *int    `xml:"factor,attr,omitempty"`
 }
 
@@ -5242,7 +5242,7 @@ type TinType struct {
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
 	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
-	SrsDimension *int       `xml:"srsDimension,attr,omitempty"`
+	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
 	UomLabels    *string    `xml:"uomLabels,attr,omitempty"`
 	// The patches property element contains the sequence of surface patches. The order of the elements is significant and shall be preserved when processing the array.

@@ -77,8 +77,8 @@ type AbstractBuildingType struct {
 	YearOfDemolition                                     *string                                   `xml:"http://www.opengis.net/citygml/building/2.0 yearOfDemolition,omitempty"`
 	RoofType                                             *gml3_1_1gen.CodeType                     `xml:"http://www.opengis.net/citygml/building/2.0 roofType,omitempty"`
 	MeasuredHeight                                       *gml3_1_1gen.LengthType                   `xml:"http://www.opengis.net/citygml/building/2.0 measuredHeight,omitempty"`
-	StoreysAboveGround                                   *int                                      `xml:"http://www.opengis.net/citygml/building/2.0 storeysAboveGround,omitempty"`
-	StoreysBelowGround                                   *int                                      `xml:"http://www.opengis.net/citygml/building/2.0 storeysBelowGround,omitempty"`
+	StoreysAboveGround                                   *uint                                     `xml:"http://www.opengis.net/citygml/building/2.0 storeysAboveGround,omitempty"`
+	StoreysBelowGround                                   *uint                                     `xml:"http://www.opengis.net/citygml/building/2.0 storeysBelowGround,omitempty"`
 	StoreyHeightsAboveGround                             *gml3_1_1gen.MeasureOrNullListType        `xml:"http://www.opengis.net/citygml/building/2.0 storeyHeightsAboveGround,omitempty"`
 	StoreyHeightsBelowGround                             *gml3_1_1gen.MeasureOrNullListType        `xml:"http://www.opengis.net/citygml/building/2.0 storeyHeightsBelowGround,omitempty"`
 	Lod0FootPrint                                        *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod0FootPrint,omitempty"`
@@ -298,8 +298,8 @@ type BuildingPartType struct {
 	YearOfDemolition                                     *string                                   `xml:"http://www.opengis.net/citygml/building/2.0 yearOfDemolition,omitempty"`
 	RoofType                                             *gml3_1_1gen.CodeType                     `xml:"http://www.opengis.net/citygml/building/2.0 roofType,omitempty"`
 	MeasuredHeight                                       *gml3_1_1gen.LengthType                   `xml:"http://www.opengis.net/citygml/building/2.0 measuredHeight,omitempty"`
-	StoreysAboveGround                                   *int                                      `xml:"http://www.opengis.net/citygml/building/2.0 storeysAboveGround,omitempty"`
-	StoreysBelowGround                                   *int                                      `xml:"http://www.opengis.net/citygml/building/2.0 storeysBelowGround,omitempty"`
+	StoreysAboveGround                                   *uint                                     `xml:"http://www.opengis.net/citygml/building/2.0 storeysAboveGround,omitempty"`
+	StoreysBelowGround                                   *uint                                     `xml:"http://www.opengis.net/citygml/building/2.0 storeysBelowGround,omitempty"`
 	StoreyHeightsAboveGround                             *gml3_1_1gen.MeasureOrNullListType        `xml:"http://www.opengis.net/citygml/building/2.0 storeyHeightsAboveGround,omitempty"`
 	StoreyHeightsBelowGround                             *gml3_1_1gen.MeasureOrNullListType        `xml:"http://www.opengis.net/citygml/building/2.0 storeyHeightsBelowGround,omitempty"`
 	Lod0FootPrint                                        *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod0FootPrint,omitempty"`
@@ -364,8 +364,8 @@ type BuildingType struct {
 	YearOfDemolition                                     *string                                   `xml:"http://www.opengis.net/citygml/building/2.0 yearOfDemolition,omitempty"`
 	RoofType                                             *gml3_1_1gen.CodeType                     `xml:"http://www.opengis.net/citygml/building/2.0 roofType,omitempty"`
 	MeasuredHeight                                       *gml3_1_1gen.LengthType                   `xml:"http://www.opengis.net/citygml/building/2.0 measuredHeight,omitempty"`
-	StoreysAboveGround                                   *int                                      `xml:"http://www.opengis.net/citygml/building/2.0 storeysAboveGround,omitempty"`
-	StoreysBelowGround                                   *int                                      `xml:"http://www.opengis.net/citygml/building/2.0 storeysBelowGround,omitempty"`
+	StoreysAboveGround                                   *uint                                     `xml:"http://www.opengis.net/citygml/building/2.0 storeysAboveGround,omitempty"`
+	StoreysBelowGround                                   *uint                                     `xml:"http://www.opengis.net/citygml/building/2.0 storeysBelowGround,omitempty"`
 	StoreyHeightsAboveGround                             *gml3_1_1gen.MeasureOrNullListType        `xml:"http://www.opengis.net/citygml/building/2.0 storeyHeightsAboveGround,omitempty"`
 	StoreyHeightsBelowGround                             *gml3_1_1gen.MeasureOrNullListType        `xml:"http://www.opengis.net/citygml/building/2.0 storeyHeightsBelowGround,omitempty"`
 	Lod0FootPrint                                        *gml3_1_1gen.MultiSurfacePropertyType     `xml:"http://www.opengis.net/citygml/building/2.0 lod0FootPrint,omitempty"`
