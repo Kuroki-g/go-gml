@@ -126,11 +126,36 @@ func XsBuiltinGoType(xsType string) string {
 		return "string"
 	case "boolean":
 		return "bool"
-	case "integer", "positiveInteger", "nonNegativeInteger", "nonPositiveInteger",
-		"negativeInteger", "long", "int", "short", "byte",
-		"unsignedLong", "unsignedInt", "unsignedShort", "unsignedByte":
+	case "int":
+		return "int32"
+	case "long":
+		return "int64"
+	case "short":
+		return "int16"
+	case "byte":
+		return "int8"
+	case "unsignedLong":
+		return "uint64"
+	case "unsignedInt":
+		return "uint32"
+	case "unsignedShort":
+		return "uint16"
+	case "unsignedByte":
+		return "uint8"
+	case "nonNegativeInteger", "positiveInteger":
+		return "uint"
+	case "integer", "nonPositiveInteger", "negativeInteger":
 		return "int"
-	case "double", "decimal":
+	case "double":
+		return "float64"
+	// xs:decimal is an arbitrary-precision decimal (W3C XSD Part 2, §3.2.3), not a
+	// binary floating-point type. The semantically correct Go representation would
+	// require an external arbitrary-precision decimal library (math/big.Float is
+	// binary, not decimal). Mapping to float64 is a known compromise: the precision
+	// (~15 digits) is sufficient for all GML use cases (coordinates, arc-minutes,
+	// arc-seconds), but the type meaning differs. Changing this would require adding
+	// an external dependency, which is prohibited for parser modules.
+	case "decimal":
 		return "float64"
 	case "float":
 		return "float32"
