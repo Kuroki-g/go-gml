@@ -92,9 +92,9 @@ FROM base AS go
 
 USER root
 
-RUN curl -OL https://golang.org/dl/go1.26.0.linux-amd64.tar.gz \
-    && tar -C /usr/local -xzf go1.26.0.linux-amd64.tar.gz \
-    && rm go1.26.0.linux-amd64.tar.gz
+RUN curl -OL https://golang.org/dl/go1.26.2.linux-amd64.tar.gz \
+    && tar -C /usr/local -xzf go1.26.2.linux-amd64.tar.gz \
+    && rm go1.26.2.linux-amd64.tar.gz
 
 ENV GOPATH=/home/${USER}/go \
     GOTMPDIR=/home/${USER}/.go-tmp \
