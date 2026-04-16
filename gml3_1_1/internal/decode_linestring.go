@@ -24,7 +24,7 @@ func decodeLineStringElement(dec *xml.Decoder, se xml.StartElement) (core.Geomet
 func lineStringFromXML(x *gen.LineStringType) (core.LineString, error) {
 	dim := derefDim(x.SrsDimension)
 	if x.PosList != nil {
-		return core.LineStringFromPosListString(x.PosList.Value, preferDim(dim, derefDim(x.PosList.SrsDimension)))
+		return core.LineStringFromPosListString(x.PosList.Value, preferDim(derefDim(x.PosList.SrsDimension), dim))
 	}
 	if len(x.Pos) > 0 {
 		var flat []float64
@@ -35,7 +35,7 @@ func lineStringFromXML(x *gen.LineStringType) (core.LineString, error) {
 			}
 			flat = append(flat, vals...)
 		}
-		d := preferDim(dim, derefDim(x.Pos[0].SrsDimension))
+		d := preferDim(derefDim(x.Pos[0].SrsDimension), dim)
 		if d == 0 {
 			d = uint(len(strings.Fields(x.Pos[0].Value)))
 			if d < 2 {

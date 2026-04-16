@@ -94,11 +94,11 @@ func polygonFromPatch(patch *gen.PolygonPatchType, inheritDim uint, resolver *cu
 func ringFromAbstractRingProperty(prop *gen.AbstractRingPropertyType, inheritDim uint, label string, resolver *curveResolver) (core.Ring, error) {
 	if prop.LinearRing != nil {
 		lr := prop.LinearRing
-		dim := preferDim(inheritDim, derefDim(lr.SrsDimension))
+		dim := preferDim(derefDim(lr.SrsDimension), inheritDim)
 		if lr.PosList == nil {
 			return nil, nil
 		}
-		r, err := core.RingFromPosListString(lr.PosList.Value, preferDim(dim, derefDim(lr.PosList.SrsDimension)))
+		r, err := core.RingFromPosListString(lr.PosList.Value, preferDim(derefDim(lr.PosList.SrsDimension), dim))
 		if err != nil {
 			return nil, fmt.Errorf("gml: PolygonPatch %s LinearRing: %w", label, err)
 		}
@@ -116,7 +116,7 @@ func ringFromAbstractRingProperty(prop *gen.AbstractRingPropertyType, inheritDim
 
 func ringFromRingType(ring *gen.RingType, inheritDim uint, resolver *curveResolver) (core.Ring, error) {
 	var pts core.Ring
-	dim := preferDim(inheritDim, derefDim(ring.SrsDimension))
+	dim := preferDim(derefDim(ring.SrsDimension), inheritDim)
 	for i := range ring.CurveMember {
 		ls, err := lineStringFromCurveProperty(&ring.CurveMember[i], dim, resolver)
 		if err != nil {

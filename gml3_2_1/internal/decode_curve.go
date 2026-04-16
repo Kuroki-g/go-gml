@@ -93,9 +93,9 @@ func lineStringFromCurve(x *gen.CurveType, inheritDim uint) (core.LineString, er
 	for i, seg := range x.Segments.LineStringSegment {
 		var ls core.LineString
 		var err error
-		curveDim := derefDim(x.SrsDimension)
+		curveDim := preferDim(derefDim(x.SrsDimension), inheritDim)
 		if seg.PosList != nil {
-			dim := preferDim(preferDim(inheritDim, curveDim), derefDim(seg.PosList.SrsDimension))
+			dim := preferDim(derefDim(seg.PosList.SrsDimension), curveDim)
 			ls, err = core.LineStringFromPosListString(seg.PosList.Value, dim)
 		} else if seg.Coordinates != nil {
 			var coords []float64
@@ -104,10 +104,10 @@ func lineStringFromCurve(x *gen.CurveType, inheritDim uint) (core.LineString, er
 				ls, err = core.LineStringFromFlat(coords, 2)
 			}
 		} else if len(seg.Pos) > 0 {
-			ls, err = lineStringFromPosSlice(seg.Pos, preferDim(inheritDim, curveDim))
+			ls, err = lineStringFromPosSlice(seg.Pos, curveDim)
 		} else if len(seg.PointProperty) > 0 {
 			for j := range seg.PointProperty {
-				pt, ptErr := fromPointProperty(&seg.PointProperty[j], j, preferDim(inheritDim, curveDim))
+				pt, ptErr := fromPointProperty(&seg.PointProperty[j], j, curveDim)
 				if ptErr != nil {
 					err = ptErr
 					break
@@ -116,7 +116,7 @@ func lineStringFromCurve(x *gen.CurveType, inheritDim uint) (core.LineString, er
 			}
 		} else if len(seg.PointRep) > 0 {
 			for j := range seg.PointRep {
-				pt, ptErr := fromPointProperty(&seg.PointRep[j], j, preferDim(inheritDim, curveDim))
+				pt, ptErr := fromPointProperty(&seg.PointRep[j], j, curveDim)
 				if ptErr != nil {
 					err = ptErr
 					break
@@ -141,7 +141,7 @@ func lineStringFromCurve(x *gen.CurveType, inheritDim uint) (core.LineString, er
 func lineStringFromPosSlice(poses []gen.DirectPositionType, inheritDim uint) (core.LineString, error) {
 	var result core.LineString
 	for j, p := range poses {
-		dim := preferDim(inheritDim, derefDim(p.SrsDimension))
+		dim := preferDim(derefDim(p.SrsDimension), inheritDim)
 		pt, err := core.PointFromPosString(p.Value, dim)
 		if err != nil {
 			return nil, fmt.Errorf("pos[%d]: %w", j, err)

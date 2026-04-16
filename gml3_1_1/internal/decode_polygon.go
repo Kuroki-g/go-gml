@@ -43,9 +43,9 @@ func ringFromLinearRing(lr *gen.LinearRingType, inheritDim uint) (core.Ring, err
 	if lr == nil {
 		return nil, fmt.Errorf("gml: nil LinearRing")
 	}
-	dim := preferDim(inheritDim, derefDim(lr.SrsDimension))
+	dim := preferDim(derefDim(lr.SrsDimension), inheritDim)
 	if lr.PosList != nil {
-		return core.RingFromPosListString(lr.PosList.Value, preferDim(dim, derefDim(lr.PosList.SrsDimension)))
+		return core.RingFromPosListString(lr.PosList.Value, preferDim(derefDim(lr.PosList.SrsDimension), dim))
 	}
 	if len(lr.Pos) > 0 {
 		var flat []float64
@@ -56,7 +56,7 @@ func ringFromLinearRing(lr *gen.LinearRingType, inheritDim uint) (core.Ring, err
 			}
 			flat = append(flat, vals...)
 		}
-		d := preferDim(dim, derefDim(lr.Pos[0].SrsDimension))
+		d := preferDim(derefDim(lr.Pos[0].SrsDimension), dim)
 		if d == 0 {
 			d = uint(len(strings.Fields(lr.Pos[0].Value)))
 			if d < 2 {

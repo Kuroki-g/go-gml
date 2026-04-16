@@ -47,7 +47,7 @@ func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim uint
 	if m.OrientableSurface != nil {
 		os := m.OrientableSurface
 		if os.BaseSurface != nil {
-			return multiPolygonFromSurfaceProperty(os.BaseSurface, preferDim(inheritDim, derefDim(os.SrsDimension)), resolver)
+			return multiPolygonFromSurfaceProperty(os.BaseSurface, preferDim(derefDim(os.SrsDimension), inheritDim), resolver)
 		}
 		return nil, nil
 	}
@@ -84,7 +84,7 @@ func polygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim uint, res
 	if m.OrientableSurface != nil {
 		os := m.OrientableSurface
 		if os.BaseSurface != nil {
-			return polygonFromSurfaceProperty(os.BaseSurface, preferDim(inheritDim, derefDim(os.SrsDimension)), resolver)
+			return polygonFromSurfaceProperty(os.BaseSurface, preferDim(derefDim(os.SrsDimension), inheritDim), resolver)
 		}
 	}
 	if m.CompositeSurface != nil {
