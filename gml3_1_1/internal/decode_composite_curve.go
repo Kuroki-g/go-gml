@@ -45,7 +45,7 @@ func lineStringFromCurveProperty(cm *gen.CurvePropertyType, inheritDim uint, res
 		return lineStringFromCurve(cm.Curve, inheritDim)
 	}
 	if cm.LineString != nil {
-		return lineStringFromXML(cm.LineString)
+		return lineStringFromXML(cm.LineString, inheritDim)
 	}
 	if cm.CompositeCurve != nil {
 		return lineStringFromCompositeCurveType(cm.CompositeCurve, inheritDim, resolver)

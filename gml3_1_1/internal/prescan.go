@@ -48,7 +48,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("LineString %q: %w", id, err)
 			}
-			if ls, err := lineStringFromXML(&x); err == nil {
+			if ls, err := lineStringFromXML(&x, 0); err == nil {
 				resolver.lineStringByID[id] = ls
 			}
 		case gmlCompositeCurve:

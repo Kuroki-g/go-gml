@@ -14,16 +14,16 @@ func decodeLineStringElement(dec *xml.Decoder, se xml.StartElement) (core.Geomet
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: LineString: %w", err)
 	}
-	ls, err := lineStringFromXML(&x)
+	ls, err := lineStringFromXML(&x, 0)
 	if err != nil {
 		return core.Geometry{}, err
 	}
 	return core.Geometry{Value: ls, SRSName: x.SrsName}, nil
 }
 
-func lineStringFromXML(x *gen.LineStringType) (core.LineString, error) {
+func lineStringFromXML(x *gen.LineStringType, inheritDim uint) (core.LineString, error) {
 	dim := x.SrsDimension
-	resolvedDim := preferDim(dim, 0)
+	resolvedDim := preferDim(dim, inheritDim)
 	if x.PosList != nil {
 		return core.LineStringFromPosListString(x.PosList.Value, preferDim(x.PosList.SrsDimension, resolvedDim))
 	}
