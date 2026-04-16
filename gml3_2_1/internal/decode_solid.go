@@ -15,7 +15,7 @@ func (r *Reader) handleSolid(dec *xml.Decoder, se xml.StartElement) (core.Geomet
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: Solid: %w", err)
 	}
-	dim := preferDim(derefDim(x.SrsDimension), r.globalDim)
+	dim := preferDim(x.SrsDimension, r.globalDim)
 	solid, err := solidFromXML(&x, dim, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
@@ -31,7 +31,7 @@ func (r *Reader) handleCompositeSolid(dec *xml.Decoder, se xml.StartElement) (co
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: CompositeSolid: %w", err)
 	}
-	dim := preferDim(derefDim(x.SrsDimension), r.globalDim)
+	dim := preferDim(x.SrsDimension, r.globalDim)
 	solid, err := solidFromSolidPropertyMembers(x.SolidMember, dim, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
@@ -46,7 +46,7 @@ func (r *Reader) handleMultiSolid(dec *xml.Decoder, se xml.StartElement) (core.G
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: MultiSolid: %w", err)
 	}
-	dim := preferDim(derefDim(x.SrsDimension), r.globalDim)
+	dim := preferDim(x.SrsDimension, r.globalDim)
 	solids, err := solidsFromSolidPropertyMembers(x.SolidMember, dim, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err

@@ -93,9 +93,9 @@ func lineStringFromCurve(x *gen.CurveType, inheritDim uint) (core.LineString, er
 	for i, seg := range x.Segments.LineStringSegment {
 		var ls core.LineString
 		var err error
-		curveDim := preferDim(derefDim(x.SrsDimension), inheritDim)
+		curveDim := preferDim(x.SrsDimension, inheritDim)
 		if seg.PosList != nil {
-			dim := preferDim(derefDim(seg.PosList.SrsDimension), curveDim)
+			dim := preferDim(seg.PosList.SrsDimension, curveDim)
 			ls, err = core.LineStringFromPosListString(seg.PosList.Value, dim)
 		} else if seg.Coordinates != nil {
 			var coords []float64
@@ -141,7 +141,7 @@ func lineStringFromCurve(x *gen.CurveType, inheritDim uint) (core.LineString, er
 func lineStringFromPosSlice(poses []gen.DirectPositionType, inheritDim uint) (core.LineString, error) {
 	var result core.LineString
 	for j, p := range poses {
-		dim := preferDim(derefDim(p.SrsDimension), inheritDim)
+		dim := preferDim(p.SrsDimension, inheritDim)
 		pt, err := core.PointFromPosString(p.Value, dim)
 		if err != nil {
 			return nil, fmt.Errorf("pos[%d]: %w", j, err)

@@ -22,7 +22,7 @@ func decodePointElement(dec *xml.Decoder, se xml.StartElement) (core.Geometry, e
 
 func pointFromXML(x *gen.PointType) (core.Point, error) {
 	if x.Pos != nil {
-		return core.PointFromPosString(x.Pos.Value, preferDim(derefDim(x.Pos.SrsDimension), derefDim(x.SrsDimension)))
+		return core.PointFromPosString(x.Pos.Value, preferDim(x.Pos.SrsDimension, preferDim(x.SrsDimension, 0)))
 	}
 	if x.Coordinates != nil {
 		coords, err := core.ParseCoordinates(x.Coordinates.Value, derefStrOr(x.Coordinates.Cs, ","), derefStrOr(x.Coordinates.Ts, " "))
@@ -34,20 +34,12 @@ func pointFromXML(x *gen.PointType) (core.Point, error) {
 	return core.Point{}, fmt.Errorf("gml: Point has no coordinate data")
 }
 
-// preferDim returns a if non-zero, otherwise b.
-func preferDim(a, b uint) uint {
-	if a > 0 {
-		return a
+// preferDim returns *explicit if non-nil, otherwise fallback.
+func preferDim(explicit *uint, fallback uint) uint {
+	if explicit != nil {
+		return *explicit
 	}
-	return b
-}
-
-// derefDim dereferences a *uint dimension attribute (xs:positiveInteger); nil → 0.
-func derefDim(p *uint) uint {
-	if p == nil {
-		return 0
-	}
-	return *p
+	return fallback
 }
 
 // derefStrOr dereferences a *string attribute; nil → def (the XSD default value).

@@ -16,7 +16,7 @@ func decodeMultiPointElement(dec *xml.Decoder, se xml.StartElement) (core.Geomet
 		return core.Geometry{}, fmt.Errorf("gml: MultiPoint: %w", err)
 	}
 	var pts core.MultiPoint
-	dim := derefDim(x.SrsDimension)
+	dim := preferDim(x.SrsDimension, 0)
 	for i := range x.PointMember {
 		pt, err := fromPointProperty(&x.PointMember[i], i, dim)
 		if err != nil {
@@ -34,7 +34,7 @@ func (r *Reader) handleMultiCurve(dec *xml.Decoder, se xml.StartElement) (core.G
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: %s: %w", se.Name.Local, err)
 	}
-	dim := preferDim(derefDim(x.SrsDimension), r.globalDim)
+	dim := preferDim(x.SrsDimension, r.globalDim)
 	var lines core.MultiLineString
 	for i := range x.CurveMember {
 		ls, err := lineStringFromCurveProperty(&x.CurveMember[i], dim, r.resolver)
@@ -62,7 +62,7 @@ func (r *Reader) handleMultiSurface(dec *xml.Decoder, se xml.StartElement) (core
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: %s: %w", se.Name.Local, err)
 	}
-	dim := preferDim(derefDim(x.SrsDimension), r.globalDim)
+	dim := preferDim(x.SrsDimension, r.globalDim)
 	var polys core.MultiPolygon
 	for i := range x.SurfaceMember {
 		mp, err := multiPolygonFromSurfaceProperty(&x.SurfaceMember[i], dim, r.resolver)
@@ -235,9 +235,9 @@ func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDi
 }
 
 func boundFromXML(x *gen.EnvelopeType) (core.Bound, error) {
-	dim := derefDim(x.SrsDimension)
+	resolvedDim := preferDim(x.SrsDimension, 0)
 	if x.LowerCorner != nil && x.UpperCorner != nil {
-		d := preferDim(derefDim(x.LowerCorner.SrsDimension), dim)
+		d := preferDim(x.LowerCorner.SrsDimension, resolvedDim)
 		lo, err := core.PointFromPosString(x.LowerCorner.Value, d)
 		if err != nil {
 			return core.Bound{}, fmt.Errorf("gml: Envelope lowerCorner: %w", err)
@@ -249,7 +249,7 @@ func boundFromXML(x *gen.EnvelopeType) (core.Bound, error) {
 		return core.Bound{Min: lo, Max: hi}, nil
 	}
 	if len(x.Pos) >= 2 {
-		d := preferDim(derefDim(x.Pos[0].SrsDimension), dim)
+		d := preferDim(x.Pos[0].SrsDimension, resolvedDim)
 		lo, err := core.PointFromPosString(x.Pos[0].Value, d)
 		if err != nil {
 			return core.Bound{}, fmt.Errorf("gml: Envelope pos[0]: %w", err)

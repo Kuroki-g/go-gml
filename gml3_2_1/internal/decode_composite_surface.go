@@ -36,7 +36,7 @@ func (r *Reader) handleOrientableSurface(dec *xml.Decoder, se xml.StartElement) 
 	if x.BaseSurface == nil {
 		return core.Geometry{Value: core.Polygon(nil), SRSName: x.SrsName}, nil
 	}
-	poly, err := polygonFromSurfaceProperty(x.BaseSurface, preferDim(derefDim(x.SrsDimension), r.globalDim), r.resolver)
+	poly, err := polygonFromSurfaceProperty(x.BaseSurface, preferDim(x.SrsDimension, r.globalDim), r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
 	}
@@ -49,7 +49,7 @@ func (r *Reader) handleOrientableSurface(dec *xml.Decoder, se xml.StartElement) 
 // multiPolygonFromCompositeSurface returns one Polygon per surfaceMember.
 // Nested CompositeSurface members are flattened into the result.
 func multiPolygonFromCompositeSurface(x *gen.CompositeSurfaceType, resolver *curveResolver, fallbackDim uint) (core.MultiPolygon, error) {
-	dim := preferDim(derefDim(x.SrsDimension), fallbackDim)
+	dim := preferDim(x.SrsDimension, fallbackDim)
 	var result core.MultiPolygon
 	for i, m := range x.SurfaceMember {
 		if m.CompositeSurface != nil {

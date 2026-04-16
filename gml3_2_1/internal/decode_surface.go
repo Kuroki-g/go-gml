@@ -32,7 +32,7 @@ func decodeSurfaceElement(dec *xml.Decoder, se xml.StartElement, resolver *curve
 		return core.Geometry{}, fmt.Errorf("gml: Surface: %w", err)
 	}
 	if x.Patches != nil && (len(x.Patches.PolygonPatch)+len(x.Patches.Rectangle)) > 1 {
-		dim := preferDim(derefDim(x.SrsDimension), fallbackDim)
+		dim := preferDim(x.SrsDimension, fallbackDim)
 		mp, err := multiPolygonFromSurfacePatchArrayProperty(x.Patches, dim, resolver)
 		if err != nil {
 			return core.Geometry{}, err
@@ -50,7 +50,7 @@ func polygonFromSurface(x *gen.SurfaceType, resolver *curveResolver, fallbackDim
 	if x.Patches == nil {
 		return core.Polygon{}, nil
 	}
-	dim := preferDim(derefDim(x.SrsDimension), fallbackDim)
+	dim := preferDim(x.SrsDimension, fallbackDim)
 	return polygonFromSurfacePatchArrayProperty(x.Patches, dim, resolver)
 }
 
@@ -94,11 +94,11 @@ func polygonFromPatch(patch *gen.PolygonPatchType, inheritDim uint, resolver *cu
 func ringFromAbstractRingProperty(prop *gen.AbstractRingPropertyType, inheritDim uint, label string, resolver *curveResolver) (core.Ring, error) {
 	if prop.LinearRing != nil {
 		lr := prop.LinearRing
-		dim := preferDim(derefDim(lr.SrsDimension), inheritDim)
+		dim := preferDim(lr.SrsDimension, inheritDim)
 		if lr.PosList == nil {
 			return nil, nil
 		}
-		r, err := core.RingFromPosListString(lr.PosList.Value, preferDim(derefDim(lr.PosList.SrsDimension), dim))
+		r, err := core.RingFromPosListString(lr.PosList.Value, preferDim(lr.PosList.SrsDimension, dim))
 		if err != nil {
 			return nil, fmt.Errorf("gml: PolygonPatch %s LinearRing: %w", label, err)
 		}
@@ -116,7 +116,7 @@ func ringFromAbstractRingProperty(prop *gen.AbstractRingPropertyType, inheritDim
 
 func ringFromRingType(ring *gen.RingType, inheritDim uint, resolver *curveResolver) (core.Ring, error) {
 	var pts core.Ring
-	dim := preferDim(derefDim(ring.SrsDimension), inheritDim)
+	dim := preferDim(ring.SrsDimension, inheritDim)
 	for i := range ring.CurveMember {
 		ls, err := lineStringFromCurveProperty(&ring.CurveMember[i], dim, resolver)
 		if err != nil {

@@ -24,7 +24,7 @@ func (r *Reader) handleCompositeCurve(dec *xml.Decoder, se xml.StartElement) (co
 
 func lineStringFromCompositeCurveType(x *gen.CompositeCurveType, inheritDim uint, resolver *curveResolver) (core.LineString, error) {
 	var result core.LineString
-	dim := preferDim(derefDim(x.SrsDimension), inheritDim)
+	dim := preferDim(x.SrsDimension, inheritDim)
 	for i, cm := range x.CurveMember {
 		ls, err := lineStringFromCurveProperty(&cm, dim, resolver)
 		if err != nil {

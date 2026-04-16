@@ -73,7 +73,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 				return fmt.Errorf("Surface %q: %w", id, err)
 			}
 			if x.Patches != nil {
-				if mp, err := multiPolygonFromSurfacePatchArrayProperty(x.Patches, derefDim(x.SrsDimension), resolver); err == nil {
+				if mp, err := multiPolygonFromSurfacePatchArrayProperty(x.Patches, preferDim(x.SrsDimension, 0), resolver); err == nil {
 					if len(mp) == 1 {
 						resolver.polygonByID[id] = mp[0]
 					} else if len(mp) > 1 {
@@ -94,7 +94,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 				return fmt.Errorf("OrientableSurface %q: %w", id, err)
 			}
 			if x.BaseSurface != nil {
-				if poly, err := polygonFromSurfaceProperty(x.BaseSurface, derefDim(x.SrsDimension), resolver); err == nil {
+				if poly, err := polygonFromSurfaceProperty(x.BaseSurface, preferDim(x.SrsDimension, 0), resolver); err == nil {
 					resolver.polygonByID[id] = poly
 				}
 			}
@@ -209,7 +209,7 @@ func cacheSurfacePropertyMemberIDs(members []gen.SurfacePropertyType, resolver *
 		}
 		if m.Surface != nil && m.Surface.Id != "" && m.Surface.Patches != nil {
 			id := m.Surface.Id
-			if mp, err := multiPolygonFromSurfacePatchArrayProperty(m.Surface.Patches, derefDim(m.Surface.SrsDimension), resolver); err == nil {
+			if mp, err := multiPolygonFromSurfacePatchArrayProperty(m.Surface.Patches, preferDim(m.Surface.SrsDimension, 0), resolver); err == nil {
 				if len(mp) == 1 {
 					resolver.polygonByID[id] = mp[0]
 				} else if len(mp) > 1 {

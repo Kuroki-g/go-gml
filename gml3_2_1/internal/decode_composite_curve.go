@@ -24,7 +24,12 @@ func (r *Reader) handleCompositeCurve(dec *xml.Decoder, se xml.StartElement) (co
 
 func lineStringFromCompositeCurveType(x *gen.CompositeCurveType, inheritDim uint, resolver *curveResolver) (core.LineString, error) {
 	var result core.LineString
-	dim := preferDim(inheritDim, derefDim(x.SrsDimension))
+	var dim uint
+	if inheritDim != 0 {
+		dim = inheritDim
+	} else {
+		dim = preferDim(x.SrsDimension, 0)
+	}
 	for i, cm := range x.CurveMember {
 		ls, err := lineStringFromCurveProperty(&cm, dim, resolver)
 		if err != nil {
@@ -95,9 +100,9 @@ func lineStringFromCurveProperty(cm *gen.CurvePropertyType, inheritDim uint, res
 
 // lineStringFromLinearRingType extracts coordinates from a LinearRingType as a LineString.
 func lineStringFromLinearRingType(x *gen.LinearRingType, inheritDim uint) (core.LineString, error) {
-	dim := preferDim(derefDim(x.SrsDimension), inheritDim)
+	dim := preferDim(x.SrsDimension, inheritDim)
 	if x.PosList != nil {
-		return core.LineStringFromPosListString(x.PosList.Value, preferDim(derefDim(x.PosList.SrsDimension), dim))
+		return core.LineStringFromPosListString(x.PosList.Value, preferDim(x.PosList.SrsDimension, dim))
 	}
 	if len(x.Pos) > 0 {
 		var flat []float64
@@ -108,7 +113,7 @@ func lineStringFromLinearRingType(x *gen.LinearRingType, inheritDim uint) (core.
 			}
 			flat = append(flat, vals...)
 		}
-		d := preferDim(derefDim(x.Pos[0].SrsDimension), dim)
+		d := preferDim(x.Pos[0].SrsDimension, dim)
 		if d == 0 {
 			d = uint(len(strings.Fields(x.Pos[0].Value)))
 			if d < 2 {
@@ -130,7 +135,7 @@ func lineStringFromLinearRingType(x *gen.LinearRingType, inheritDim uint) (core.
 // lineStringFromRingType concatenates curveMember segments of a RingType into a LineString.
 func lineStringFromRingType(x *gen.RingType, inheritDim uint, resolver *curveResolver) (core.LineString, error) {
 	var result core.LineString
-	dim := preferDim(derefDim(x.SrsDimension), inheritDim)
+	dim := preferDim(x.SrsDimension, inheritDim)
 	for i := range x.CurveMember {
 		ls, err := lineStringFromCurveProperty(&x.CurveMember[i], dim, resolver)
 		if err != nil {

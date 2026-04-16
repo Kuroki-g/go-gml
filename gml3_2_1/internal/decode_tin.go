@@ -14,7 +14,7 @@ func (r *Reader) handleTriangulatedSurface(dec *xml.Decoder, se xml.StartElement
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: TriangulatedSurface: %w", err)
 	}
-	dim := preferDim(derefDim(x.SrsDimension), r.globalDim)
+	dim := preferDim(x.SrsDimension, r.globalDim)
 	mp, err := multiPolygonFromSurfacePatchArrayProperty(x.Patches, dim, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
@@ -31,7 +31,7 @@ func (r *Reader) handleTin(dec *xml.Decoder, se xml.StartElement) (core.Geometry
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: Tin: %w", err)
 	}
-	dim := preferDim(derefDim(x.SrsDimension), r.globalDim)
+	dim := preferDim(x.SrsDimension, r.globalDim)
 	mp, err := multiPolygonFromSurfacePatchArrayProperty(x.TrianglePatches, dim, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
