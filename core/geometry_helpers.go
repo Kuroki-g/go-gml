@@ -48,10 +48,10 @@ func PointFromPosString(s string, dim *uint) (Point, error) {
 		return Point{}, err
 	}
 	var d uint
-	if dim != nil {
-		d = *dim
-	} else {
+	if dim == nil {
 		d = uint(len(coords))
+	} else {
+		d = *dim
 	}
 	return PointFromFlat(coords, d)
 }

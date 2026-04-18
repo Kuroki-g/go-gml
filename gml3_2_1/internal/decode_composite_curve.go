@@ -110,13 +110,13 @@ func lineStringFromLinearRingType(x *gen.LinearRingType, inheritDim *uint) (core
 		}
 		dPtr := preferDim(x.Pos[0].SrsDimension, dim)
 		var d uint
-		if dPtr != nil {
-			d = *dPtr
-		} else {
+		if dPtr == nil {
 			d = uint(len(strings.Fields(x.Pos[0].Value)))
 			if d < 2 {
 				d = 2
 			}
+		} else {
+			d = *dPtr
 		}
 		return core.LineStringFromFlat(flat, d)
 	}

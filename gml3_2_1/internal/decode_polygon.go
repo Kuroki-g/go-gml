@@ -55,13 +55,13 @@ func ringFromLinearRing(lr *gen.LinearRingType, inheritDim *uint) (core.Ring, er
 		}
 		dPtr := preferDim(lr.Pos[0].SrsDimension, dim)
 		var d uint
-		if dPtr != nil {
-			d = *dPtr
-		} else {
+		if dPtr == nil {
 			d = uint(len(strings.Fields(lr.Pos[0].Value)))
 			if d < 2 {
 				d = 2
 			}
+		} else {
+			d = *dPtr
 		}
 		return core.RingFromFlat(flat, d)
 	}
