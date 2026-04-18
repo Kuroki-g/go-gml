@@ -10,7 +10,7 @@ import (
 
 // multiPolygonFromSurfaceProperty converts a SurfacePropertyType to a MultiPolygon.
 // Used for gml:Solid exterior/interior where the surface may be a CompositeSurface.
-func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim uint, resolver *curveResolver) (core.MultiPolygon, error) {
+func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim *uint, resolver *curveResolver) (core.MultiPolygon, error) {
 	if m.CompositeSurface != nil {
 		return multiPolygonFromCompositeSurface(m.CompositeSurface, resolver, inheritDim)
 	}
@@ -74,7 +74,7 @@ func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim uint
 
 // polygonFromSurfaceProperty converts a SurfacePropertyType to a Polygon.
 // For CompositeSurface members, use multiPolygonFromSurfaceProperty instead.
-func polygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim uint, resolver *curveResolver) (core.Polygon, error) {
+func polygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim *uint, resolver *curveResolver) (core.Polygon, error) {
 	if m.Polygon != nil {
 		return polygonFromXML(m.Polygon, inheritDim)
 	}

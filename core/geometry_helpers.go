@@ -41,19 +41,23 @@ func RingFromCoordinatesString(s, cs, ts string) (Ring, error) {
 }
 
 // PointFromPosString parses a gml:pos chardata string and returns a Point.
-func PointFromPosString(s string, dim uint) (Point, error) {
+// dim is the srsDimension hint; nil means infer from the number of values in s.
+func PointFromPosString(s string, dim *uint) (Point, error) {
 	coords, err := ParsePosList(s)
 	if err != nil {
 		return Point{}, err
 	}
-	if dim == 0 {
-		dim = uint(len(coords))
+	var d uint
+	if dim != nil {
+		d = *dim
+	} else {
+		d = uint(len(coords))
 	}
-	return PointFromFlat(coords, dim)
+	return PointFromFlat(coords, d)
 }
 
 // LineStringFromPosListString parses a gml:posList chardata string.
-func LineStringFromPosListString(s string, dim uint) (LineString, error) {
+func LineStringFromPosListString(s string, dim *uint) (LineString, error) {
 	coords, err := ParsePosList(s)
 	if err != nil {
 		return nil, err
@@ -66,7 +70,7 @@ func LineStringFromPosListString(s string, dim uint) (LineString, error) {
 }
 
 // RingFromPosListString parses a gml:posList chardata string into a Ring.
-func RingFromPosListString(s string, dim uint) (Ring, error) {
+func RingFromPosListString(s string, dim *uint) (Ring, error) {
 	coords, err := ParsePosList(s)
 	if err != nil {
 		return nil, err
@@ -78,23 +82,16 @@ func RingFromPosListString(s string, dim uint) (Ring, error) {
 	return RingFromFlat(coords, d)
 }
 
-// effectiveDim resolves the coordinate dimension.
-// If dim is explicitly provided (2 or 3), it is returned as-is.
-// If dim is 0 (srsDimension omitted), the dimension is inferred from nValues:
-// an odd value count cannot be 2D, so dim=3 is assumed.
-// When nValues is divisible by both 2 and 3 (e.g. 6, 12, 18), 2D is assumed
-// because the true dimension cannot be determined without the parent CRS.
-// Dimensions other than 0, 2, or 3 are not supported and return an error.
-func effectiveDim(dim uint, nValues int) (uint, error) {
-	switch dim {
-	case 0:
-		if nValues%2 != 0 {
-			return 3, nil
-		}
-		return 2, nil
-	case 2, 3:
-		return dim, nil
-	default:
-		return 0, fmt.Errorf("gml: unsupported srsDimension %d", dim)
+// effectiveDim resolves the coordinate dimension for a posList.
+// srsDimension is positiveInteger and optional per GML XSD; any dim>0 is valid.
+// If dim is nil (srsDimension omitted), the dimension is inferred from nValues:
+// an odd value count cannot be 2D, so dim=3 is assumed; otherwise 2D is assumed.
+func effectiveDim(dim *uint, nValues int) (uint, error) {
+	if dim != nil {
+		return *dim, nil
 	}
+	if nValues%2 != 0 {
+		return 3, nil
+	}
+	return 2, nil
 }

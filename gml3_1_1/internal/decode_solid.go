@@ -73,7 +73,7 @@ func (r *Reader) handleMultiSolid(dec *xml.Decoder, se xml.StartElement) (core.G
 
 // solidFromSolidPropertyMembers merges a slice of SolidPropertyType into one core.Solid.
 // Used by handleCompositeSolid (XSD: CompositeSolid has "all properties of a primitive solid").
-func solidFromSolidPropertyMembers(members []gen.SolidPropertyType, dim uint, resolver *curveResolver) (core.Solid, error) {
+func solidFromSolidPropertyMembers(members []gen.SolidPropertyType, dim *uint, resolver *curveResolver) (core.Solid, error) {
 	var merged core.Solid
 	for i := range members {
 		m := &members[i]
@@ -112,7 +112,7 @@ func solidFromSolidPropertyMembers(members []gen.SolidPropertyType, dim uint, re
 
 // solidsFromSolidPropertyMembers collects a slice of SolidPropertyType as individual core.Solid values.
 // Used by handleMultiSolid (XSD: MultiSolid is a _GeometricAggregate collection).
-func solidsFromSolidPropertyMembers(members []gen.SolidPropertyType, dim uint, resolver *curveResolver) (core.MultiSolid, error) {
+func solidsFromSolidPropertyMembers(members []gen.SolidPropertyType, dim *uint, resolver *curveResolver) (core.MultiSolid, error) {
 	var result core.MultiSolid
 	for i := range members {
 		m := &members[i]
@@ -149,11 +149,11 @@ func solidsFromSolidPropertyMembers(members []gen.SolidPropertyType, dim uint, r
 }
 
 // solidFromCompositeSolid recursively resolves a CompositeSolidType into a core.Solid.
-func solidFromCompositeSolid(x *gen.CompositeSolidType, dim uint, resolver *curveResolver) (core.Solid, error) {
+func solidFromCompositeSolid(x *gen.CompositeSolidType, dim *uint, resolver *curveResolver) (core.Solid, error) {
 	return solidFromSolidPropertyMembers(x.SolidMember, dim, resolver)
 }
 
-func solidFromXML(x *gen.SolidType, dim uint, resolver *curveResolver) (core.Solid, error) {
+func solidFromXML(x *gen.SolidType, dim *uint, resolver *curveResolver) (core.Solid, error) {
 	var s core.Solid
 	if x.Exterior != nil {
 		mp, err := multiPolygonFromSurfaceProperty(x.Exterior, dim, resolver)

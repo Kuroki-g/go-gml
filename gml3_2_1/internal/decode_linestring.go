@@ -14,16 +14,15 @@ func decodeLineStringElement(dec *xml.Decoder, se xml.StartElement) (core.Geomet
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: LineString: %w", err)
 	}
-	ls, err := lineStringFromXML(&x, 0)
+	ls, err := lineStringFromXML(&x, nil)
 	if err != nil {
 		return core.Geometry{}, err
 	}
 	return core.Geometry{Value: ls, SRSName: x.SrsName}, nil
 }
 
-func lineStringFromXML(x *gen.LineStringType, inheritDim uint) (core.LineString, error) {
-	dim := x.SrsDimension
-	resolvedDim := preferDim(dim, inheritDim)
+func lineStringFromXML(x *gen.LineStringType, inheritDim *uint) (core.LineString, error) {
+	resolvedDim := preferDim(x.SrsDimension, inheritDim)
 	if x.PosList != nil {
 		return core.LineStringFromPosListString(x.PosList.Value, preferDim(x.PosList.SrsDimension, resolvedDim))
 	}
@@ -36,8 +35,11 @@ func lineStringFromXML(x *gen.LineStringType, inheritDim uint) (core.LineString,
 			}
 			flat = append(flat, vals...)
 		}
-		d := preferDim(x.Pos[0].SrsDimension, resolvedDim)
-		if d == 0 {
+		dPtr := preferDim(x.Pos[0].SrsDimension, resolvedDim)
+		var d uint
+		if dPtr != nil {
+			d = *dPtr
+		} else {
 			d = uint(len(strings.Fields(x.Pos[0].Value)))
 			if d < 2 {
 				d = 2

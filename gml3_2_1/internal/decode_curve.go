@@ -65,7 +65,7 @@ func (r *Reader) handleCurve(dec *xml.Decoder, se xml.StartElement) (core.Geomet
 	if x.Id != "" {
 		r.resolver.curves[x.Id] = x
 	}
-	ls, err := lineStringFromCurve(x, 0)
+	ls, err := lineStringFromCurve(x, nil)
 	if err != nil {
 		return core.Geometry{}, err
 	}
@@ -85,7 +85,7 @@ func (r *Reader) cacheOrientableCurve(dec *xml.Decoder, se xml.StartElement) err
 }
 
 // lineStringFromCurve converts a gml:Curve to a LineString.
-func lineStringFromCurve(x *gen.CurveType, inheritDim uint) (core.LineString, error) {
+func lineStringFromCurve(x *gen.CurveType, inheritDim *uint) (core.LineString, error) {
 	if x.Segments == nil || len(x.Segments.LineStringSegment) == 0 {
 		return nil, fmt.Errorf("gml: Curve has no LineStringSegment")
 	}
@@ -108,6 +108,7 @@ func lineStringFromCurve(x *gen.CurveType, inheritDim uint) (core.LineString, er
 		} else if len(seg.PointProperty) > 0 {
 			for j := range seg.PointProperty {
 				pt, ptErr := fromPointProperty(&seg.PointProperty[j], j, curveDim)
+
 				if ptErr != nil {
 					err = ptErr
 					break
@@ -138,11 +139,10 @@ func lineStringFromCurve(x *gen.CurveType, inheritDim uint) (core.LineString, er
 	return result, nil
 }
 
-func lineStringFromPosSlice(poses []gen.DirectPositionType, inheritDim uint) (core.LineString, error) {
+func lineStringFromPosSlice(poses []gen.DirectPositionType, inheritDim *uint) (core.LineString, error) {
 	var result core.LineString
 	for j, p := range poses {
-		dim := preferDim(p.SrsDimension, inheritDim)
-		pt, err := core.PointFromPosString(p.Value, dim)
+		pt, err := core.PointFromPosString(p.Value, preferDim(p.SrsDimension, inheritDim))
 		if err != nil {
 			return nil, fmt.Errorf("pos[%d]: %w", j, err)
 		}
@@ -153,7 +153,7 @@ func lineStringFromPosSlice(poses []gen.DirectPositionType, inheritDim uint) (co
 
 // fromPointProperty extracts a Point from a PointPropertyType.
 // Returns an error if the property uses xlink:href (unresolved reference) or has no Point element.
-func fromPointProperty(pp *gen.PointPropertyType, j int, inheritDim uint) (core.Point, error) {
+func fromPointProperty(pp *gen.PointPropertyType, j int, inheritDim *uint) (core.Point, error) {
 	_ = pp.TypeField
 	_ = pp.Role
 	_ = pp.Arcrole
@@ -172,8 +172,8 @@ func fromPointProperty(pp *gen.PointPropertyType, j int, inheritDim uint) (core.
 		return core.Point{}, fmt.Errorf("pointProperty[%d]: missing Point element", j)
 	}
 	p := pp.Point
-	if p.SrsDimension == nil && inheritDim > 0 {
-		p.SrsDimension = &inheritDim
+	if p.SrsDimension == nil && inheritDim != nil {
+		p.SrsDimension = inheritDim
 	}
 	pt, err := pointFromXML(p)
 	if err != nil {

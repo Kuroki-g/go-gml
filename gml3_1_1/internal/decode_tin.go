@@ -42,7 +42,7 @@ func (r *Reader) handleTin(dec *xml.Decoder, se xml.StartElement) (core.Geometry
 	return core.Geometry{Value: mp, SRSName: x.SrsName}, nil
 }
 
-func multiPolygonFromTrianglePatchArrayProperty(tp *gen.TrianglePatchArrayPropertyType, dim uint, resolver *curveResolver) (core.MultiPolygon, error) {
+func multiPolygonFromTrianglePatchArrayProperty(tp *gen.TrianglePatchArrayPropertyType, dim *uint, resolver *curveResolver) (core.MultiPolygon, error) {
 	if tp == nil {
 		return nil, nil
 	}
@@ -59,7 +59,7 @@ func multiPolygonFromTrianglePatchArrayProperty(tp *gen.TrianglePatchArrayProper
 	return result, nil
 }
 
-func polygonFromTriangle(t *gen.TriangleType, dim uint, resolver *curveResolver) (core.Polygon, error) {
+func polygonFromTriangle(t *gen.TriangleType, dim *uint, resolver *curveResolver) (core.Polygon, error) {
 	if t.Exterior == nil {
 		return core.Polygon(nil), nil
 	}

@@ -15,14 +15,14 @@ func (r *Reader) handleCompositeCurve(dec *xml.Decoder, se xml.StartElement) (co
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: CompositeCurve: %w", err)
 	}
-	ls, err := lineStringFromCompositeCurveType(&x, 0, r.resolver)
+	ls, err := lineStringFromCompositeCurveType(&x, nil, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
 	}
 	return core.Geometry{Value: ls, SRSName: x.SrsName}, nil
 }
 
-func lineStringFromCompositeCurveType(x *gen.CompositeCurveType, inheritDim uint, resolver *curveResolver) (core.LineString, error) {
+func lineStringFromCompositeCurveType(x *gen.CompositeCurveType, inheritDim *uint, resolver *curveResolver) (core.LineString, error) {
 	var result core.LineString
 	dim := preferDim(x.SrsDimension, inheritDim)
 	for i, cm := range x.CurveMember {
@@ -40,7 +40,7 @@ func lineStringFromCompositeCurveType(x *gen.CompositeCurveType, inheritDim uint
 }
 
 // lineStringFromCurveProperty converts a single CurvePropertyType to a LineString.
-func lineStringFromCurveProperty(cm *gen.CurvePropertyType, inheritDim uint, resolver *curveResolver) (core.LineString, error) {
+func lineStringFromCurveProperty(cm *gen.CurvePropertyType, inheritDim *uint, resolver *curveResolver) (core.LineString, error) {
 	if cm.Curve != nil {
 		return lineStringFromCurve(cm.Curve, inheritDim)
 	}

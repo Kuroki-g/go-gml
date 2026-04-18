@@ -16,7 +16,7 @@ func decodeMultiPointElement(dec *xml.Decoder, se xml.StartElement) (core.Geomet
 		return core.Geometry{}, fmt.Errorf("gml: MultiPoint: %w", err)
 	}
 	var pts core.MultiPoint
-	dim := preferDim(x.SrsDimension, 0)
+	dim := preferDim(x.SrsDimension, nil)
 	for i := range x.PointMember {
 		pt, err := fromPointProperty(&x.PointMember[i], i, dim)
 		if err != nil {
@@ -95,7 +95,7 @@ func decodeEnvelopeElement(dec *xml.Decoder, se xml.StartElement) (core.Geometry
 	return core.Geometry{Value: b, SRSName: x.SrsName}, nil
 }
 
-func lineStringsFromCurveArrayProperty(a *gen.CurveArrayPropertyType, inheritDim uint, resolver *curveResolver) (core.MultiLineString, error) {
+func lineStringsFromCurveArrayProperty(a *gen.CurveArrayPropertyType, inheritDim *uint, resolver *curveResolver) (core.MultiLineString, error) {
 	// xlink ownership attribute — not used for curve collection resolution.
 	_ = a.Owns
 	var lines core.MultiLineString
@@ -162,7 +162,7 @@ func lineStringsFromCurveArrayProperty(a *gen.CurveArrayPropertyType, inheritDim
 	return lines, nil
 }
 
-func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDim uint, resolver *curveResolver) (core.MultiPolygon, error) {
+func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDim *uint, resolver *curveResolver) (core.MultiPolygon, error) {
 	// xlink ownership attribute — not used for surface collection resolution.
 	_ = a.Owns
 	var polys core.MultiPolygon
@@ -235,7 +235,7 @@ func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDi
 }
 
 func boundFromXML(x *gen.EnvelopeType) (core.Bound, error) {
-	resolvedDim := preferDim(x.SrsDimension, 0)
+	resolvedDim := preferDim(x.SrsDimension, nil)
 	if x.LowerCorner != nil && x.UpperCorner != nil {
 		d := preferDim(x.LowerCorner.SrsDimension, resolvedDim)
 		lo, err := core.PointFromPosString(x.LowerCorner.Value, d)

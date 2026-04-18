@@ -78,14 +78,15 @@ func TestRingFromFlat(t *testing.T) {
 }
 
 func TestPointFromPosString(t *testing.T) {
+	d2, d3 := uint(2), uint(3)
 	tests := []struct {
 		input string
-		dim   uint
+		dim   *uint
 		want  Point
 	}{
-		{"139.691667 35.689722", 2, Point{139.691667, 35.689722}},
-		{"139.7 35.6 10.5", 3, Point{139.7, 35.6, 10.5}},
-		{"139.7 35.6 10.5", 0, Point{139.7, 35.6, 10.5}},
+		{"139.691667 35.689722", &d2, Point{139.691667, 35.689722}},
+		{"139.7 35.6 10.5", &d3, Point{139.7, 35.6, 10.5}},
+		{"139.7 35.6 10.5", nil, Point{139.7, 35.6, 10.5}}, // nil → infer from data
 	}
 	for _, tt := range tests {
 		t.Run(tt.input, func(t *testing.T) {
@@ -101,7 +102,8 @@ func TestPointFromPosString(t *testing.T) {
 }
 
 func TestLineStringFromPosListString(t *testing.T) {
-	got, err := LineStringFromPosListString("139.7 35.6 139.8 35.7", uint(2))
+	d := uint(2)
+	got, err := LineStringFromPosListString("139.7 35.6 139.8 35.7", &d)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -117,7 +119,8 @@ func TestLineStringFromPosListString(t *testing.T) {
 }
 
 func TestRingFromPosListString(t *testing.T) {
-	got, err := RingFromPosListString("139.7 35.6 139.8 35.6 139.8 35.7 139.7 35.6", uint(2))
+	d := uint(2)
+	got, err := RingFromPosListString("139.7 35.6 139.8 35.6 139.8 35.7 139.7 35.6", &d)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -137,29 +140,24 @@ func TestRingFromCoordinatesString(t *testing.T) {
 }
 
 func TestEffectiveDim(t *testing.T) {
-	check := func(dim uint, nValues int, want uint) {
+	p := func(n uint) *uint { return &n }
+	check := func(dim *uint, nValues int, want uint) {
 		t.Helper()
 		got, err := effectiveDim(dim, nValues)
 		if err != nil {
-			t.Fatalf("effectiveDim(%d, %d) unexpected error: %v", dim, nValues, err)
+			t.Fatalf("effectiveDim(%v, %d) unexpected error: %v", dim, nValues, err)
 		}
 		if got != want {
-			t.Errorf("effectiveDim(%d, %d) = %d, want %d", dim, nValues, got, want)
-		}
-	}
-	checkErr := func(dim uint, nValues int) {
-		t.Helper()
-		if _, err := effectiveDim(dim, nValues); err == nil {
-			t.Errorf("effectiveDim(%d, %d) expected error, got nil", dim, nValues)
+			t.Errorf("effectiveDim(%v, %d) = %d, want %d", dim, nValues, got, want)
 		}
 	}
 
-	check(uint(2), 4, uint(2))  // explicit 2D
-	check(uint(3), 9, uint(3))  // explicit 3D
-	check(uint(0), 4, uint(2))  // omitted, even → 2D
-	check(uint(0), 9, uint(3))  // omitted, odd → 3D (PLATEAU pattern)
-	check(uint(0), 27, uint(3)) // omitted, odd → 3D
-	check(uint(0), 12, uint(2)) // omitted, even (ambiguous) → 2D fallback
-	checkErr(uint(1), 0)        // 1D: unsupported
-	checkErr(uint(4), 0)        // 4D: unsupported
+	check(p(2), 4, 2) // explicit 2D
+	check(p(3), 9, 3) // explicit 3D
+	check(p(1), 0, 1) // positiveInteger: 1D is valid per XSD
+	check(p(4), 0, 4) // positiveInteger: 4D is valid per XSD
+	check(nil, 4, 2)  // omitted, even → 2D
+	check(nil, 9, 3)  // omitted, odd → 3D (PLATEAU pattern)
+	check(nil, 27, 3) // omitted, odd → 3D
+	check(nil, 12, 2) // omitted, even (ambiguous) → 2D fallback
 }

@@ -48,7 +48,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("LineString %q: %w", id, err)
 			}
-			if ls, err := lineStringFromXML(&x, 0); err == nil {
+			if ls, err := lineStringFromXML(&x, nil); err == nil {
 				resolver.lineStringByID[id] = ls
 			}
 		case gmlCompositeCurve:
@@ -56,7 +56,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("CompositeCurve %q: %w", id, err)
 			}
-			if ls, err := lineStringFromCompositeCurveType(&x, 0, resolver); err == nil {
+			if ls, err := lineStringFromCompositeCurveType(&x, nil, resolver); err == nil {
 				resolver.lineStringByID[id] = ls
 			}
 		case gmlPolygon:
@@ -64,7 +64,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("Polygon %q: %w", id, err)
 			}
-			if poly, err := polygonFromXML(&x, 0); err == nil {
+			if poly, err := polygonFromXML(&x, nil); err == nil {
 				resolver.polygonByID[id] = poly
 			}
 		case gmlSurface:
@@ -73,7 +73,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 				return fmt.Errorf("Surface %q: %w", id, err)
 			}
 			if x.Patches != nil {
-				if mp, err := multiPolygonFromSurfacePatchArrayProperty(x.Patches, preferDim(x.SrsDimension, 0), resolver); err == nil {
+				if mp, err := multiPolygonFromSurfacePatchArrayProperty(x.Patches, preferDim(x.SrsDimension, nil), resolver); err == nil {
 					if len(mp) == 1 {
 						resolver.polygonByID[id] = mp[0]
 					} else if len(mp) > 1 {
@@ -94,7 +94,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 				return fmt.Errorf("OrientableSurface %q: %w", id, err)
 			}
 			if x.BaseSurface != nil {
-				if poly, err := polygonFromSurfaceProperty(x.BaseSurface, preferDim(x.SrsDimension, 0), resolver); err == nil {
+				if poly, err := polygonFromSurfaceProperty(x.BaseSurface, preferDim(x.SrsDimension, nil), resolver); err == nil {
 					resolver.polygonByID[id] = poly
 				}
 			}
@@ -115,7 +115,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("Tin %q: %w", id, err)
 			}
-			if mp, err := multiPolygonFromSurfacePatchArrayProperty(x.TrianglePatches, 0, resolver); err == nil {
+			if mp, err := multiPolygonFromSurfacePatchArrayProperty(x.TrianglePatches, nil, resolver); err == nil {
 				resolver.multiPolygonByID[id] = mp
 			}
 		case gmlTriangulatedSurface:
@@ -123,7 +123,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("TriangulatedSurface %q: %w", id, err)
 			}
-			if mp, err := multiPolygonFromSurfacePatchArrayProperty(x.Patches, 0, resolver); err == nil {
+			if mp, err := multiPolygonFromSurfacePatchArrayProperty(x.Patches, nil, resolver); err == nil {
 				resolver.multiPolygonByID[id] = mp
 			}
 		case gmlPolyhedralSurface:
@@ -131,7 +131,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("PolyhedralSurface %q: %w", id, err)
 			}
-			if mp, err := multiPolygonFromSurfacePatchArrayProperty(x.Patches, 0, resolver); err == nil {
+			if mp, err := multiPolygonFromSurfacePatchArrayProperty(x.Patches, nil, resolver); err == nil {
 				resolver.multiPolygonByID[id] = mp
 			}
 		case gmlSolid:
@@ -139,7 +139,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("Solid %q: %w", id, err)
 			}
-			if s, err := solidFromXML(&x, 0, resolver); err == nil {
+			if s, err := solidFromXML(&x, nil, resolver); err == nil {
 				resolver.solidByID[id] = s
 			}
 		case gmlCompositeSolid:
@@ -147,7 +147,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("CompositeSolid %q: %w", id, err)
 			}
-			if s, err := solidFromSolidPropertyMembers(x.SolidMember, 0, resolver); err == nil {
+			if s, err := solidFromSolidPropertyMembers(x.SolidMember, nil, resolver); err == nil {
 				resolver.solidByID[id] = s
 			}
 		case gmlGrid:
@@ -183,7 +183,7 @@ func resolveDeferred(pending []pendingCS, resolver *curveResolver) {
 				remaining = append(remaining, p)
 				continue
 			}
-			if mp, err := multiPolygonFromCompositeSurface(p.x, resolver, 0); err == nil {
+			if mp, err := multiPolygonFromCompositeSurface(p.x, resolver, nil); err == nil {
 				resolver.multiPolygonByID[p.id] = mp
 			}
 		}
@@ -203,13 +203,13 @@ func cacheSurfacePropertyMemberIDs(members []gen.SurfacePropertyType, resolver *
 	for i := range members {
 		m := &members[i]
 		if m.Polygon != nil && m.Polygon.Id != "" {
-			if poly, err := polygonFromXML(m.Polygon, 0); err == nil {
+			if poly, err := polygonFromXML(m.Polygon, nil); err == nil {
 				resolver.polygonByID[m.Polygon.Id] = poly
 			}
 		}
 		if m.Surface != nil && m.Surface.Id != "" && m.Surface.Patches != nil {
 			id := m.Surface.Id
-			if mp, err := multiPolygonFromSurfacePatchArrayProperty(m.Surface.Patches, preferDim(m.Surface.SrsDimension, 0), resolver); err == nil {
+			if mp, err := multiPolygonFromSurfacePatchArrayProperty(m.Surface.Patches, preferDim(m.Surface.SrsDimension, nil), resolver); err == nil {
 				if len(mp) == 1 {
 					resolver.polygonByID[id] = mp[0]
 				} else if len(mp) > 1 {
@@ -221,7 +221,7 @@ func cacheSurfacePropertyMemberIDs(members []gen.SurfacePropertyType, resolver *
 			cacheSurfacePropertyMemberIDs(m.CompositeSurface.SurfaceMember, resolver)
 		}
 		if m.Shell != nil && m.Shell.Id != "" {
-			if mp, err := multiPolygonFromShell(m.Shell, 0, resolver); err == nil {
+			if mp, err := multiPolygonFromShell(m.Shell, nil, resolver); err == nil {
 				resolver.multiPolygonByID[m.Shell.Id] = mp
 			}
 		}

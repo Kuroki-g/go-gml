@@ -10,7 +10,7 @@ import (
 
 // multiPolygonFromSurfaceProperty converts a SurfacePropertyType to a MultiPolygon.
 // CompositeSurface/Shell members produce multiple Polygons; all other surface types produce one.
-func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim uint, resolver *curveResolver) (core.MultiPolygon, error) {
+func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim *uint, resolver *curveResolver) (core.MultiPolygon, error) {
 	if m.NilReason != nil {
 		return nil, nil
 	}
@@ -79,7 +79,7 @@ func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim uint
 
 // polygonFromSurfaceProperty converts a SurfacePropertyType to a Polygon.
 // For CompositeSurface/Shell members, use multiPolygonFromSurfaceProperty instead.
-func polygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim uint, resolver *curveResolver) (core.Polygon, error) {
+func polygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim *uint, resolver *curveResolver) (core.Polygon, error) {
 	if m.NilReason != nil {
 		return core.Polygon(nil), nil
 	}
