@@ -21,6 +21,10 @@ help:
 	@echo "check-coverage"
 	@echo "  check-coverage   未処理 PropertyType フィールドを検出"
 	@echo ""
+	@echo "epsg-gen (EPSG dimension table generator)"
+	@echo "  epsg-gen-build   バイナリビルド"
+	@echo "  epsg-gen CODES=\"4326 6668\"  EPSG コードの次元を API から取得し core/epsg_dim_table.go を更新"
+	@echo ""
 	@echo "gml-parser (CLI example)"
 	@echo "  gml-parser-build バイナリビルド"
 	@echo "  gml-parser-run   inspect サブコマンド実行 (testdata/N03)"
@@ -180,3 +184,16 @@ citygml-parser-build:
 
 citygml-parser-run: citygml-parser-build
 	$(CITYGML_PARSER_BIN) inspect -i testdata/13105_bunkyo-ku_pref_2023_citygml_2_op/udx/bldg/53394548_bldg_6697_op.gml
+
+# ---- epsg-gen (EPSG dimension table generator) ----
+
+EPSG_GEN_DIR := cmd/epsg-gen
+EPSG_GEN_BIN := $(EPSG_GEN_DIR)/.tmp/epsg-gen
+
+.PHONY: epsg-gen-build epsg-gen
+
+epsg-gen-build:
+	go -C $(EPSG_GEN_DIR) build -o .tmp/epsg-gen .
+
+epsg-gen: epsg-gen-build
+	$(EPSG_GEN_BIN) $(CODES)
