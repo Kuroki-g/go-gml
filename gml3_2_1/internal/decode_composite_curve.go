@@ -15,18 +15,19 @@ func (r *Reader) handleCompositeCurve(dec *xml.Decoder, se xml.StartElement) (co
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: CompositeCurve: %w", err)
 	}
-	ls, err := lineStringFromCompositeCurveType(&x, nil, r.resolver)
+	ls, err := lineStringFromCompositeCurveType(&x, nil, nil, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
 	}
 	return core.Geometry{Value: ls, SRSName: x.SrsName}, nil
 }
 
-func lineStringFromCompositeCurveType(x *gen.CompositeCurveType, inheritDim *uint, resolver *curveResolver) (core.LineString, error) {
+func lineStringFromCompositeCurveType(x *gen.CompositeCurveType, inheritDim *uint, inheritSrsName *string, resolver *curveResolver) (core.LineString, error) {
 	var result core.LineString
 	dim := preferDim(x.SrsDimension, inheritDim)
+	srsName := preferSrsName(x.SrsName, inheritSrsName)
 	for i, cm := range x.CurveMember {
-		ls, err := lineStringFromCurveProperty(&cm, dim, resolver)
+		ls, err := lineStringFromCurveProperty(&cm, dim, srsName, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("curveMember[%d]: %w", i, err)
 		}
@@ -40,42 +41,42 @@ func lineStringFromCompositeCurveType(x *gen.CompositeCurveType, inheritDim *uin
 }
 
 // lineStringFromCurveProperty converts a single CurvePropertyType to a LineString.
-func lineStringFromCurveProperty(cm *gen.CurvePropertyType, inheritDim *uint, resolver *curveResolver) (core.LineString, error) {
+func lineStringFromCurveProperty(cm *gen.CurvePropertyType, inheritDim *uint, inheritSrsName *string, resolver *curveResolver) (core.LineString, error) {
 	if cm.NilReason != nil {
 		return nil, nil
 	}
 	if cm.Curve != nil {
-		return lineStringFromCurve(cm.Curve, inheritDim)
+		return lineStringFromCurve(cm.Curve, inheritDim, inheritSrsName)
 	}
 	if cm.LineString != nil {
-		return lineStringFromXML(cm.LineString, inheritDim)
+		return lineStringFromXML(cm.LineString, inheritDim, inheritSrsName)
 	}
 	if cm.CompositeCurve != nil {
-		return lineStringFromCompositeCurveType(cm.CompositeCurve, inheritDim, resolver)
+		return lineStringFromCompositeCurveType(cm.CompositeCurve, inheritDim, inheritSrsName, resolver)
 	}
 	if cm.OrientableCurve != nil {
 		oc := cm.OrientableCurve
 		if oc.BaseCurve != nil {
 			if oc.BaseCurve.Curve != nil {
-				return lineStringFromCurve(oc.BaseCurve.Curve, inheritDim)
+				return lineStringFromCurve(oc.BaseCurve.Curve, inheritDim, inheritSrsName)
 			}
 			if oc.BaseCurve.Href != "" {
 				if c := resolver.resolve(strings.TrimPrefix(oc.BaseCurve.Href, "#")); c != nil {
-					return lineStringFromCurve(c, inheritDim)
+					return lineStringFromCurve(c, inheritDim, inheritSrsName)
 				}
 			}
 		}
 	}
 	if cm.LinearRing != nil {
-		return lineStringFromLinearRingType(cm.LinearRing, inheritDim)
+		return lineStringFromLinearRingType(cm.LinearRing, inheritDim, inheritSrsName)
 	}
 	if cm.Ring != nil {
-		return lineStringFromRingType(cm.Ring, inheritDim, resolver)
+		return lineStringFromRingType(cm.Ring, inheritDim, inheritSrsName, resolver)
 	}
 	if cm.Href != "" {
 		id := strings.TrimPrefix(cm.Href, "#")
 		if c := resolver.resolve(id); c != nil {
-			return lineStringFromCurve(c, inheritDim)
+			return lineStringFromCurve(c, inheritDim, inheritSrsName)
 		}
 		if ls, ok := resolver.lineStringByID[id]; ok {
 			return ls, nil
@@ -94,10 +95,11 @@ func lineStringFromCurveProperty(cm *gen.CurvePropertyType, inheritDim *uint, re
 }
 
 // lineStringFromLinearRingType extracts coordinates from a LinearRingType as a LineString.
-func lineStringFromLinearRingType(x *gen.LinearRingType, inheritDim *uint) (core.LineString, error) {
+func lineStringFromLinearRingType(x *gen.LinearRingType, inheritDim *uint, inheritSrsName *string) (core.LineString, error) {
 	dim := preferDim(x.SrsDimension, inheritDim)
+	srsName := preferSrsName(x.SrsName, inheritSrsName)
 	if x.PosList != nil {
-		return core.LineStringFromPosListString(x.PosList.Value, preferDim(x.PosList.SrsDimension, dim))
+		return core.LineStringFromPosListString(x.PosList.Value, preferDim(x.PosList.SrsDimension, dim), preferSrsName(x.PosList.SrsName, srsName))
 	}
 	if len(x.Pos) > 0 {
 		var flat []float64
@@ -125,11 +127,12 @@ func lineStringFromLinearRingType(x *gen.LinearRingType, inheritDim *uint) (core
 }
 
 // lineStringFromRingType concatenates curveMember segments of a RingType into a LineString.
-func lineStringFromRingType(x *gen.RingType, inheritDim *uint, resolver *curveResolver) (core.LineString, error) {
+func lineStringFromRingType(x *gen.RingType, inheritDim *uint, inheritSrsName *string, resolver *curveResolver) (core.LineString, error) {
 	var result core.LineString
 	dim := preferDim(x.SrsDimension, inheritDim)
+	srsName := preferSrsName(x.SrsName, inheritSrsName)
 	for i := range x.CurveMember {
-		ls, err := lineStringFromCurveProperty(&x.CurveMember[i], dim, resolver)
+		ls, err := lineStringFromCurveProperty(&x.CurveMember[i], dim, srsName, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("curveMember[%d]: %w", i, err)
 		}

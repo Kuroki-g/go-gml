@@ -37,7 +37,7 @@ func (r *Reader) handleMultiCurve(dec *xml.Decoder, se xml.StartElement) (core.G
 	dim := preferDim(x.SrsDimension, r.globalDim)
 	var lines core.MultiLineString
 	for i := range x.CurveMember {
-		ls, err := lineStringFromCurveProperty(&x.CurveMember[i], dim, r.resolver)
+		ls, err := lineStringFromCurveProperty(&x.CurveMember[i], dim, x.SrsName, r.resolver)
 		if err != nil {
 			return core.Geometry{}, fmt.Errorf("gml: %s curveMember[%d]: %w", se.Name.Local, i, err)
 		}
@@ -46,7 +46,7 @@ func (r *Reader) handleMultiCurve(dec *xml.Decoder, se xml.StartElement) (core.G
 		}
 	}
 	if x.CurveMembers != nil {
-		extra, err := lineStringsFromCurveArrayProperty(x.CurveMembers, dim, r.resolver)
+		extra, err := lineStringsFromCurveArrayProperty(x.CurveMembers, dim, x.SrsName, r.resolver)
 		if err != nil {
 			return core.Geometry{}, fmt.Errorf("gml: %s curveMembers: %w", se.Name.Local, err)
 		}
@@ -65,14 +65,14 @@ func (r *Reader) handleMultiSurface(dec *xml.Decoder, se xml.StartElement) (core
 	dim := preferDim(x.SrsDimension, r.globalDim)
 	var polys core.MultiPolygon
 	for i := range x.SurfaceMember {
-		mp, err := multiPolygonFromSurfaceProperty(&x.SurfaceMember[i], dim, r.resolver)
+		mp, err := multiPolygonFromSurfaceProperty(&x.SurfaceMember[i], dim, x.SrsName, r.resolver)
 		if err != nil {
 			return core.Geometry{}, fmt.Errorf("gml: %s surfaceMember[%d]: %w", se.Name.Local, i, err)
 		}
 		polys = append(polys, mp...)
 	}
 	if x.SurfaceMembers != nil {
-		extra, err := polygonsFromSurfaceArrayProperty(x.SurfaceMembers, dim, r.resolver)
+		extra, err := polygonsFromSurfaceArrayProperty(x.SurfaceMembers, dim, x.SrsName, r.resolver)
 		if err != nil {
 			return core.Geometry{}, fmt.Errorf("gml: %s surfaceMembers: %w", se.Name.Local, err)
 		}
@@ -95,13 +95,13 @@ func decodeEnvelopeElement(dec *xml.Decoder, se xml.StartElement) (core.Geometry
 	return core.Geometry{Value: b, SRSName: x.SrsName}, nil
 }
 
-func lineStringsFromCurveArrayProperty(a *gen.CurveArrayPropertyType, inheritDim *uint, resolver *curveResolver) (core.MultiLineString, error) {
+func lineStringsFromCurveArrayProperty(a *gen.CurveArrayPropertyType, inheritDim *uint, inheritSrsName *string, resolver *curveResolver) (core.MultiLineString, error) {
 	// xlink ownership attribute — not used for curve collection resolution.
 	_ = a.Owns
 	var lines core.MultiLineString
 	for i := range a.Curve {
 		cm := gen.CurvePropertyType{Curve: &a.Curve[i]}
-		ls, err := lineStringFromCurveProperty(&cm, inheritDim, resolver)
+		ls, err := lineStringFromCurveProperty(&cm, inheritDim, inheritSrsName, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("Curve[%d]: %w", i, err)
 		}
@@ -111,7 +111,7 @@ func lineStringsFromCurveArrayProperty(a *gen.CurveArrayPropertyType, inheritDim
 	}
 	for i := range a.LineString {
 		cm := gen.CurvePropertyType{LineString: &a.LineString[i]}
-		ls, err := lineStringFromCurveProperty(&cm, inheritDim, resolver)
+		ls, err := lineStringFromCurveProperty(&cm, inheritDim, inheritSrsName, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("LineString[%d]: %w", i, err)
 		}
@@ -121,7 +121,7 @@ func lineStringsFromCurveArrayProperty(a *gen.CurveArrayPropertyType, inheritDim
 	}
 	for i := range a.CompositeCurve {
 		cm := gen.CurvePropertyType{CompositeCurve: &a.CompositeCurve[i]}
-		ls, err := lineStringFromCurveProperty(&cm, inheritDim, resolver)
+		ls, err := lineStringFromCurveProperty(&cm, inheritDim, inheritSrsName, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("CompositeCurve[%d]: %w", i, err)
 		}
@@ -131,7 +131,7 @@ func lineStringsFromCurveArrayProperty(a *gen.CurveArrayPropertyType, inheritDim
 	}
 	for i := range a.OrientableCurve {
 		cm := gen.CurvePropertyType{OrientableCurve: &a.OrientableCurve[i]}
-		ls, err := lineStringFromCurveProperty(&cm, inheritDim, resolver)
+		ls, err := lineStringFromCurveProperty(&cm, inheritDim, inheritSrsName, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("OrientableCurve[%d]: %w", i, err)
 		}
@@ -141,7 +141,7 @@ func lineStringsFromCurveArrayProperty(a *gen.CurveArrayPropertyType, inheritDim
 	}
 	for i := range a.LinearRing {
 		cm := gen.CurvePropertyType{LinearRing: &a.LinearRing[i]}
-		ls, err := lineStringFromCurveProperty(&cm, inheritDim, resolver)
+		ls, err := lineStringFromCurveProperty(&cm, inheritDim, inheritSrsName, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("LinearRing[%d]: %w", i, err)
 		}
@@ -151,7 +151,7 @@ func lineStringsFromCurveArrayProperty(a *gen.CurveArrayPropertyType, inheritDim
 	}
 	for i := range a.Ring {
 		cm := gen.CurvePropertyType{Ring: &a.Ring[i]}
-		ls, err := lineStringFromCurveProperty(&cm, inheritDim, resolver)
+		ls, err := lineStringFromCurveProperty(&cm, inheritDim, inheritSrsName, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("Ring[%d]: %w", i, err)
 		}
@@ -162,13 +162,13 @@ func lineStringsFromCurveArrayProperty(a *gen.CurveArrayPropertyType, inheritDim
 	return lines, nil
 }
 
-func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDim *uint, resolver *curveResolver) (core.MultiPolygon, error) {
+func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDim *uint, inheritSrsName *string, resolver *curveResolver) (core.MultiPolygon, error) {
 	// xlink ownership attribute — not used for surface collection resolution.
 	_ = a.Owns
 	var polys core.MultiPolygon
 	for i := range a.Polygon {
 		sm := gen.SurfacePropertyType{Polygon: &a.Polygon[i]}
-		poly, err := polygonFromSurfaceProperty(&sm, inheritDim, resolver)
+		poly, err := polygonFromSurfaceProperty(&sm, inheritDim, inheritSrsName, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("Polygon[%d]: %w", i, err)
 		}
@@ -178,7 +178,7 @@ func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDi
 	}
 	for i := range a.Surface {
 		sm := gen.SurfacePropertyType{Surface: &a.Surface[i]}
-		poly, err := polygonFromSurfaceProperty(&sm, inheritDim, resolver)
+		poly, err := polygonFromSurfaceProperty(&sm, inheritDim, inheritSrsName, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("Surface[%d]: %w", i, err)
 		}
@@ -187,7 +187,7 @@ func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDi
 		}
 	}
 	for i := range a.CompositeSurface {
-		mp, err := multiPolygonFromCompositeSurface(&a.CompositeSurface[i], resolver, inheritDim)
+		mp, err := multiPolygonFromCompositeSurface(&a.CompositeSurface[i], resolver, inheritDim, inheritSrsName)
 		if err != nil {
 			return nil, fmt.Errorf("CompositeSurface[%d]: %w", i, err)
 		}
@@ -195,7 +195,7 @@ func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDi
 	}
 	for i := range a.OrientableSurface {
 		sm := gen.SurfacePropertyType{OrientableSurface: &a.OrientableSurface[i]}
-		poly, err := polygonFromSurfaceProperty(&sm, inheritDim, resolver)
+		poly, err := polygonFromSurfaceProperty(&sm, inheritDim, inheritSrsName, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("OrientableSurface[%d]: %w", i, err)
 		}
@@ -204,28 +204,31 @@ func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDi
 		}
 	}
 	for i := range a.Tin {
-		mp, err := multiPolygonFromSurfacePatchArrayProperty(a.Tin[i].TrianglePatches, inheritDim, resolver)
+		t := &a.Tin[i]
+		mp, err := multiPolygonFromSurfacePatchArrayProperty(t.TrianglePatches, inheritDim, preferSrsName(t.SrsName, inheritSrsName), resolver)
 		if err != nil {
 			return nil, fmt.Errorf("Tin[%d]: %w", i, err)
 		}
 		polys = append(polys, mp...)
 	}
 	for i := range a.TriangulatedSurface {
-		mp, err := multiPolygonFromSurfacePatchArrayProperty(a.TriangulatedSurface[i].Patches, inheritDim, resolver)
+		ts := &a.TriangulatedSurface[i]
+		mp, err := multiPolygonFromSurfacePatchArrayProperty(ts.Patches, inheritDim, preferSrsName(ts.SrsName, inheritSrsName), resolver)
 		if err != nil {
 			return nil, fmt.Errorf("TriangulatedSurface[%d]: %w", i, err)
 		}
 		polys = append(polys, mp...)
 	}
 	for i := range a.PolyhedralSurface {
-		mp, err := multiPolygonFromSurfacePatchArrayProperty(a.PolyhedralSurface[i].Patches, inheritDim, resolver)
+		ps := &a.PolyhedralSurface[i]
+		mp, err := multiPolygonFromSurfacePatchArrayProperty(ps.Patches, inheritDim, preferSrsName(ps.SrsName, inheritSrsName), resolver)
 		if err != nil {
 			return nil, fmt.Errorf("PolyhedralSurface[%d]: %w", i, err)
 		}
 		polys = append(polys, mp...)
 	}
 	for i := range a.Shell {
-		mp, err := multiPolygonFromShell(&a.Shell[i], inheritDim, resolver)
+		mp, err := multiPolygonFromShell(&a.Shell[i], inheritDim, inheritSrsName, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("Shell[%d]: %w", i, err)
 		}

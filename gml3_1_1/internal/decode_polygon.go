@@ -29,7 +29,7 @@ func decodePolygonElement(dec *xml.Decoder, se xml.StartElement, fallbackDim *ui
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: Polygon: %w", err)
 	}
-	poly, err := polygonFromXML(&x, fallbackDim)
+	poly, err := polygonFromXML(&x, fallbackDim, nil)
 	if err != nil {
 		return core.Geometry{}, err
 	}
@@ -39,13 +39,14 @@ func decodePolygonElement(dec *xml.Decoder, se xml.StartElement, fallbackDim *ui
 // ringFromLinearRing builds a Ring from a decoded LinearRingType.
 // inheritDim carries srsDimension from the enclosing Polygon (which in turn
 // inherits from the document-root gml:Envelope via Reader.globalDim).
-func ringFromLinearRing(lr *gen.LinearRingType, inheritDim *uint) (core.Ring, error) {
+func ringFromLinearRing(lr *gen.LinearRingType, inheritDim *uint, inheritSrsName *string) (core.Ring, error) {
 	if lr == nil {
 		return nil, fmt.Errorf("gml: nil LinearRing")
 	}
 	dim := preferDim(lr.SrsDimension, inheritDim)
+	srsName := preferSrsName(lr.SrsName, inheritSrsName)
 	if lr.PosList != nil {
-		return core.RingFromPosListString(lr.PosList.Value, preferDim(lr.PosList.SrsDimension, dim))
+		return core.RingFromPosListString(lr.PosList.Value, preferDim(lr.PosList.SrsDimension, dim), preferSrsName(lr.PosList.SrsName, srsName))
 	}
 	if len(lr.Pos) > 0 {
 		var flat []float64
@@ -68,11 +69,12 @@ func ringFromLinearRing(lr *gen.LinearRingType, inheritDim *uint) (core.Ring, er
 	return nil, fmt.Errorf("gml: LinearRing has no coordinate data")
 }
 
-func polygonFromXML(x *gen.PolygonType, fallbackDim *uint) (core.Polygon, error) {
+func polygonFromXML(x *gen.PolygonType, fallbackDim *uint, fallbackSrsName *string) (core.Polygon, error) {
 	dim := preferDim(x.SrsDimension, fallbackDim)
+	srsName := preferSrsName(x.SrsName, fallbackSrsName)
 	var rings []core.Ring
 	if x.Exterior != nil && x.Exterior.LinearRing != nil {
-		r, err := ringFromLinearRing(x.Exterior.LinearRing, dim)
+		r, err := ringFromLinearRing(x.Exterior.LinearRing, dim, srsName)
 		if err != nil {
 			return nil, fmt.Errorf("gml: Polygon exterior: %w", err)
 		}
@@ -82,7 +84,7 @@ func polygonFromXML(x *gen.PolygonType, fallbackDim *uint) (core.Polygon, error)
 		if ir.LinearRing == nil {
 			continue
 		}
-		r, err := ringFromLinearRing(ir.LinearRing, dim)
+		r, err := ringFromLinearRing(ir.LinearRing, dim, srsName)
 		if err != nil {
 			return nil, fmt.Errorf("gml: Polygon interior[%d]: %w", i, err)
 		}

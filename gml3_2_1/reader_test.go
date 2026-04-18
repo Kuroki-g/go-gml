@@ -379,7 +379,7 @@ func TestParseSurface_linearRing(t *testing.T) {
 			<gml:PolygonPatch>
 				<gml:exterior>
 					<gml:LinearRing>
-						<gml:posList>0 0 10 0 10 10 0 10 0 0</gml:posList>
+						<gml:posList srsDimension="2">0 0 10 0 10 10 0 10 0 0</gml:posList>
 					</gml:LinearRing>
 				</gml:exterior>
 			</gml:PolygonPatch>
@@ -442,7 +442,7 @@ func TestParseSurface_xlinkHref_via_orientablecurve(t *testing.T) {
 		<gml:Curve gml:id="cv1_0">
 			<gml:segments>
 				<gml:LineStringSegment>
-					<gml:posList>0 0 10 0 10 10 0 10 0 0</gml:posList>
+					<gml:posList srsDimension="2">0 0 10 0 10 10 0 10 0 0</gml:posList>
 				</gml:LineStringSegment>
 			</gml:segments>
 		</gml:Curve>
@@ -581,7 +581,7 @@ func TestParseCompositeSurface_surfaceMembers(t *testing.T) {
 					<gml:PolygonPatch>
 						<gml:exterior>
 							<gml:LinearRing>
-								<gml:posList>0 0 10 0 10 10 0 10 0 0</gml:posList>
+								<gml:posList srsDimension="2">0 0 10 0 10 10 0 10 0 0</gml:posList>
 							</gml:LinearRing>
 						</gml:exterior>
 					</gml:PolygonPatch>
@@ -607,7 +607,7 @@ func TestParseOrientableSurface_inlinePolygon(t *testing.T) {
 			<gml:Polygon>
 				<gml:exterior>
 					<gml:LinearRing>
-						<gml:posList>0 0 10 0 10 10 0 10 0 0</gml:posList>
+						<gml:posList srsDimension="2">0 0 10 0 10 10 0 10 0 0</gml:posList>
 					</gml:LinearRing>
 				</gml:exterior>
 			</gml:Polygon>
@@ -631,7 +631,7 @@ func TestParseOrientableSurface_inlineSurface(t *testing.T) {
 					<gml:PolygonPatch>
 						<gml:exterior>
 							<gml:LinearRing>
-								<gml:posList>0 0 10 0 10 10 0 10 0 0</gml:posList>
+								<gml:posList srsDimension="2">0 0 10 0 10 10 0 10 0 0</gml:posList>
 							</gml:LinearRing>
 						</gml:exterior>
 					</gml:PolygonPatch>
@@ -656,7 +656,7 @@ func TestParseCompositeSurface_forwardRef(t *testing.T) {
 		<gml:Polygon gml:id="P1">
 			<gml:exterior>
 				<gml:LinearRing>
-					<gml:posList>0 0 10 0 10 10 0 10 0 0</gml:posList>
+					<gml:posList srsDimension="2">0 0 10 0 10 10 0 10 0 0</gml:posList>
 				</gml:LinearRing>
 			</gml:exterior>
 		</gml:Polygon>
@@ -690,7 +690,7 @@ func TestParseCompositeSurface_chainForwardRef(t *testing.T) {
 		<gml:Polygon gml:id="P1">
 			<gml:exterior>
 				<gml:LinearRing>
-					<gml:posList>0 0 10 0 10 10 0 10 0 0</gml:posList>
+					<gml:posList srsDimension="2">0 0 10 0 10 10 0 10 0 0</gml:posList>
 				</gml:LinearRing>
 			</gml:exterior>
 		</gml:Polygon>

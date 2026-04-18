@@ -10,31 +10,31 @@ import (
 
 // multiPolygonFromSurfaceProperty converts a SurfacePropertyType to a MultiPolygon.
 // CompositeSurface/Shell members produce multiple Polygons; all other surface types produce one.
-func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim *uint, resolver *curveResolver) (core.MultiPolygon, error) {
+func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim *uint, inheritSrsName *string, resolver *curveResolver) (core.MultiPolygon, error) {
 	if m.NilReason != nil {
 		return nil, nil
 	}
 	if m.CompositeSurface != nil {
-		return multiPolygonFromCompositeSurface(m.CompositeSurface, resolver, inheritDim)
+		return multiPolygonFromCompositeSurface(m.CompositeSurface, resolver, inheritDim, inheritSrsName)
 	}
 	if m.Shell != nil {
-		return multiPolygonFromShell(m.Shell, preferDim(m.Shell.SrsDimension, inheritDim), resolver)
+		return multiPolygonFromShell(m.Shell, preferDim(m.Shell.SrsDimension, inheritDim), inheritSrsName, resolver)
 	}
 	if m.PolyhedralSurface != nil {
 		ps := m.PolyhedralSurface
 		dim := preferDim(ps.SrsDimension, inheritDim)
-		return multiPolygonFromSurfacePatchArrayProperty(ps.Patches, dim, resolver)
+		return multiPolygonFromSurfacePatchArrayProperty(ps.Patches, dim, preferSrsName(ps.SrsName, inheritSrsName), resolver)
 	}
 	if m.TriangulatedSurface != nil {
 		ts := m.TriangulatedSurface
-		return multiPolygonFromSurfacePatchArrayProperty(ts.Patches, preferDim(ts.SrsDimension, inheritDim), resolver)
+		return multiPolygonFromSurfacePatchArrayProperty(ts.Patches, preferDim(ts.SrsDimension, inheritDim), preferSrsName(ts.SrsName, inheritSrsName), resolver)
 	}
 	if m.Tin != nil {
 		t := m.Tin
-		return multiPolygonFromSurfacePatchArrayProperty(t.TrianglePatches, preferDim(t.SrsDimension, inheritDim), resolver)
+		return multiPolygonFromSurfacePatchArrayProperty(t.TrianglePatches, preferDim(t.SrsDimension, inheritDim), preferSrsName(t.SrsName, inheritSrsName), resolver)
 	}
 	if m.Polygon != nil {
-		poly, err := polygonFromXML(m.Polygon, inheritDim)
+		poly, err := polygonFromXML(m.Polygon, inheritDim, inheritSrsName)
 		if err != nil {
 			return nil, err
 		}
@@ -46,12 +46,12 @@ func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim *uin
 			return nil, nil
 		}
 		dim := preferDim(s.SrsDimension, inheritDim)
-		return multiPolygonFromSurfacePatchArrayProperty(s.Patches, dim, resolver)
+		return multiPolygonFromSurfacePatchArrayProperty(s.Patches, dim, preferSrsName(s.SrsName, inheritSrsName), resolver)
 	}
 	if m.OrientableSurface != nil {
 		os := m.OrientableSurface
 		if os.BaseSurface != nil {
-			return multiPolygonFromSurfaceProperty(os.BaseSurface, preferDim(os.SrsDimension, inheritDim), resolver)
+			return multiPolygonFromSurfaceProperty(os.BaseSurface, preferDim(os.SrsDimension, inheritDim), preferSrsName(os.SrsName, inheritSrsName), resolver)
 		}
 		return nil, nil
 	}
@@ -79,24 +79,24 @@ func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim *uin
 
 // polygonFromSurfaceProperty converts a SurfacePropertyType to a Polygon.
 // For CompositeSurface/Shell members, use multiPolygonFromSurfaceProperty instead.
-func polygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim *uint, resolver *curveResolver) (core.Polygon, error) {
+func polygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim *uint, inheritSrsName *string, resolver *curveResolver) (core.Polygon, error) {
 	if m.NilReason != nil {
 		return core.Polygon(nil), nil
 	}
 	if m.Polygon != nil {
-		return polygonFromXML(m.Polygon, inheritDim)
+		return polygonFromXML(m.Polygon, inheritDim, inheritSrsName)
 	}
 	if m.Surface != nil {
-		return polygonFromSurface(m.Surface, resolver, inheritDim)
+		return polygonFromSurface(m.Surface, resolver, inheritDim, inheritSrsName)
 	}
 	if m.OrientableSurface != nil {
 		os := m.OrientableSurface
 		if os.BaseSurface != nil {
-			return polygonFromSurfaceProperty(os.BaseSurface, preferDim(os.SrsDimension, inheritDim), resolver)
+			return polygonFromSurfaceProperty(os.BaseSurface, preferDim(os.SrsDimension, inheritDim), preferSrsName(os.SrsName, inheritSrsName), resolver)
 		}
 	}
 	if m.CompositeSurface != nil {
-		mp, err := multiPolygonFromCompositeSurface(m.CompositeSurface, resolver, inheritDim)
+		mp, err := multiPolygonFromCompositeSurface(m.CompositeSurface, resolver, inheritDim, inheritSrsName)
 		if err != nil {
 			return nil, err
 		}
@@ -106,7 +106,7 @@ func polygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim *uint, re
 		return mp[0], nil
 	}
 	if m.Shell != nil {
-		mp, err := multiPolygonFromShell(m.Shell, preferDim(m.Shell.SrsDimension, inheritDim), resolver)
+		mp, err := multiPolygonFromShell(m.Shell, preferDim(m.Shell.SrsDimension, inheritDim), inheritSrsName, resolver)
 		if err != nil {
 			return nil, err
 		}
@@ -116,11 +116,11 @@ func polygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim *uint, re
 		return mp[0], nil
 	}
 	if m.PolyhedralSurface != nil {
-		return polygonFromSurface(m.PolyhedralSurface, resolver, inheritDim)
+		return polygonFromSurface(m.PolyhedralSurface, resolver, inheritDim, inheritSrsName)
 	}
 	if m.TriangulatedSurface != nil {
 		ts := m.TriangulatedSurface
-		mp, err := multiPolygonFromSurfacePatchArrayProperty(ts.Patches, preferDim(ts.SrsDimension, inheritDim), resolver)
+		mp, err := multiPolygonFromSurfacePatchArrayProperty(ts.Patches, preferDim(ts.SrsDimension, inheritDim), preferSrsName(ts.SrsName, inheritSrsName), resolver)
 		if err != nil {
 			return nil, err
 		}
@@ -131,7 +131,7 @@ func polygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim *uint, re
 	}
 	if m.Tin != nil {
 		t := m.Tin
-		mp, err := multiPolygonFromSurfacePatchArrayProperty(t.TrianglePatches, preferDim(t.SrsDimension, inheritDim), resolver)
+		mp, err := multiPolygonFromSurfacePatchArrayProperty(t.TrianglePatches, preferDim(t.SrsDimension, inheritDim), preferSrsName(t.SrsName, inheritSrsName), resolver)
 		if err != nil {
 			return nil, err
 		}

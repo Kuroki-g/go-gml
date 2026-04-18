@@ -15,7 +15,7 @@ func (r *Reader) handleTriangulatedSurface(dec *xml.Decoder, se xml.StartElement
 		return core.Geometry{}, fmt.Errorf("gml: TriangulatedSurface: %w", err)
 	}
 	dim := preferDim(x.SrsDimension, r.globalDim)
-	mp, err := multiPolygonFromSurfacePatchArrayProperty(x.Patches, dim, r.resolver)
+	mp, err := multiPolygonFromSurfacePatchArrayProperty(x.Patches, dim, x.SrsName, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
 	}
@@ -32,7 +32,7 @@ func (r *Reader) handleTin(dec *xml.Decoder, se xml.StartElement) (core.Geometry
 		return core.Geometry{}, fmt.Errorf("gml: Tin: %w", err)
 	}
 	dim := preferDim(x.SrsDimension, r.globalDim)
-	mp, err := multiPolygonFromSurfacePatchArrayProperty(x.TrianglePatches, dim, r.resolver)
+	mp, err := multiPolygonFromSurfacePatchArrayProperty(x.TrianglePatches, dim, x.SrsName, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
 	}
@@ -44,7 +44,7 @@ func (r *Reader) handleTin(dec *xml.Decoder, se xml.StartElement) (core.Geometry
 
 // multiPolygonFromSurfacePatchArrayProperty converts a SurfacePatchArrayPropertyType to a MultiPolygon,
 // handling PolygonPatch, Rectangle, and Triangle patch types.
-func multiPolygonFromSurfacePatchArrayProperty(sp *gen.SurfacePatchArrayPropertyType, dim *uint, resolver *curveResolver) (core.MultiPolygon, error) {
+func multiPolygonFromSurfacePatchArrayProperty(sp *gen.SurfacePatchArrayPropertyType, dim *uint, srsName *string, resolver *curveResolver) (core.MultiPolygon, error) {
 	if sp == nil {
 		return nil, nil
 	}
@@ -54,7 +54,7 @@ func multiPolygonFromSurfacePatchArrayProperty(sp *gen.SurfacePatchArrayProperty
 	_ = sp.Sphere
 	var result core.MultiPolygon
 	for i := range sp.Triangle {
-		poly, err := polygonFromTriangle(&sp.Triangle[i], dim, resolver)
+		poly, err := polygonFromTriangle(&sp.Triangle[i], dim, srsName, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("gml: Triangle[%d]: %w", i, err)
 		}
@@ -63,7 +63,7 @@ func multiPolygonFromSurfacePatchArrayProperty(sp *gen.SurfacePatchArrayProperty
 		}
 	}
 	for i := range sp.PolygonPatch {
-		poly, err := polygonFromPatch(&sp.PolygonPatch[i], dim, resolver)
+		poly, err := polygonFromPatch(&sp.PolygonPatch[i], dim, srsName, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("gml: PolygonPatch[%d]: %w", i, err)
 		}
@@ -72,7 +72,7 @@ func multiPolygonFromSurfacePatchArrayProperty(sp *gen.SurfacePatchArrayProperty
 		}
 	}
 	for i := range sp.Rectangle {
-		poly, err := polygonFromRectangle(&sp.Rectangle[i], dim, resolver)
+		poly, err := polygonFromRectangle(&sp.Rectangle[i], dim, srsName, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("gml: Rectangle[%d]: %w", i, err)
 		}
@@ -83,11 +83,11 @@ func multiPolygonFromSurfacePatchArrayProperty(sp *gen.SurfacePatchArrayProperty
 	return result, nil
 }
 
-func polygonFromRectangle(rect *gen.RectangleType, inheritDim *uint, resolver *curveResolver) (core.Polygon, error) {
+func polygonFromRectangle(rect *gen.RectangleType, inheritDim *uint, inheritSrsName *string, resolver *curveResolver) (core.Polygon, error) {
 	if rect.Exterior == nil {
 		return nil, fmt.Errorf("gml: Rectangle: missing required exterior")
 	}
-	r, err := ringFromAbstractRingProperty(rect.Exterior, inheritDim, "exterior", resolver)
+	r, err := ringFromAbstractRingProperty(rect.Exterior, inheritDim, inheritSrsName, "exterior", resolver)
 	if err != nil {
 		return nil, err
 	}
@@ -97,11 +97,11 @@ func polygonFromRectangle(rect *gen.RectangleType, inheritDim *uint, resolver *c
 	return core.Polygon{r}, nil
 }
 
-func polygonFromTriangle(t *gen.TriangleType, dim *uint, resolver *curveResolver) (core.Polygon, error) {
+func polygonFromTriangle(t *gen.TriangleType, dim *uint, srsName *string, resolver *curveResolver) (core.Polygon, error) {
 	if t.Exterior == nil {
 		return nil, fmt.Errorf("gml: Triangle: missing required exterior")
 	}
-	ring, err := ringFromAbstractRingProperty(t.Exterior, dim, "exterior", resolver)
+	ring, err := ringFromAbstractRingProperty(t.Exterior, dim, srsName, "exterior", resolver)
 	if err != nil {
 		return nil, fmt.Errorf("gml: Triangle exterior: %w", err)
 	}

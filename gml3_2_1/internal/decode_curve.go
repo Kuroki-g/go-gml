@@ -65,7 +65,7 @@ func (r *Reader) handleCurve(dec *xml.Decoder, se xml.StartElement) (core.Geomet
 	if x.Id != "" {
 		r.resolver.curves[x.Id] = x
 	}
-	ls, err := lineStringFromCurve(x, nil)
+	ls, err := lineStringFromCurve(x, nil, nil)
 	if err != nil {
 		return core.Geometry{}, err
 	}
@@ -85,18 +85,19 @@ func (r *Reader) cacheOrientableCurve(dec *xml.Decoder, se xml.StartElement) err
 }
 
 // lineStringFromCurve converts a gml:Curve to a LineString.
-func lineStringFromCurve(x *gen.CurveType, inheritDim *uint) (core.LineString, error) {
+func lineStringFromCurve(x *gen.CurveType, inheritDim *uint, inheritSrsName *string) (core.LineString, error) {
 	if x.Segments == nil || len(x.Segments.LineStringSegment) == 0 {
 		return nil, fmt.Errorf("gml: Curve has no LineStringSegment")
 	}
 	var result core.LineString
+	curveSrsName := preferSrsName(x.SrsName, inheritSrsName)
 	for i, seg := range x.Segments.LineStringSegment {
 		var ls core.LineString
 		var err error
 		curveDim := preferDim(x.SrsDimension, inheritDim)
 		if seg.PosList != nil {
 			dim := preferDim(seg.PosList.SrsDimension, curveDim)
-			ls, err = core.LineStringFromPosListString(seg.PosList.Value, dim)
+			ls, err = core.LineStringFromPosListString(seg.PosList.Value, dim, preferSrsName(seg.PosList.SrsName, curveSrsName))
 		} else if seg.Coordinates != nil {
 			var coords []float64
 			coords, err = core.ParseCoordinates(seg.Coordinates.Value, derefStrOr(seg.Coordinates.Cs, ","), derefStrOr(seg.Coordinates.Ts, " "))

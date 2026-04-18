@@ -48,7 +48,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("LineString %q: %w", id, err)
 			}
-			if ls, err := lineStringFromXML(&x, nil); err == nil {
+			if ls, err := lineStringFromXML(&x, nil, nil); err == nil {
 				resolver.lineStringByID[id] = ls
 			}
 		case gmlCompositeCurve:
@@ -56,7 +56,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("CompositeCurve %q: %w", id, err)
 			}
-			if ls, err := lineStringFromCompositeCurveType(&x, nil, resolver); err == nil {
+			if ls, err := lineStringFromCompositeCurveType(&x, nil, nil, resolver); err == nil {
 				resolver.lineStringByID[id] = ls
 			}
 		case gmlPolygon:
@@ -64,7 +64,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("Polygon %q: %w", id, err)
 			}
-			if poly, err := polygonFromXML(&x, nil); err == nil {
+			if poly, err := polygonFromXML(&x, nil, nil); err == nil {
 				resolver.polygonByID[id] = poly
 			}
 		case gmlSurface:
@@ -72,7 +72,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("Surface %q: %w", id, err)
 			}
-			if poly, err := polygonFromSurface(&x, resolver, nil); err == nil {
+			if poly, err := polygonFromSurface(&x, resolver, nil, nil); err == nil {
 				resolver.polygonByID[id] = poly
 			}
 		case gmlCompositeSurface:
@@ -88,7 +88,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 				return fmt.Errorf("OrientableSurface %q: %w", id, err)
 			}
 			if x.BaseSurface != nil {
-				if poly, err := polygonFromSurfaceProperty(x.BaseSurface, preferDim(x.SrsDimension, nil), resolver); err == nil {
+				if poly, err := polygonFromSurfaceProperty(x.BaseSurface, preferDim(x.SrsDimension, nil), x.SrsName, resolver); err == nil {
 					resolver.polygonByID[id] = poly
 				}
 			}
@@ -109,7 +109,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("Tin %q: %w", id, err)
 			}
-			if mp, err := multiPolygonFromTrianglePatchArrayProperty(x.TrianglePatches, nil, resolver); err == nil {
+			if mp, err := multiPolygonFromTrianglePatchArrayProperty(x.TrianglePatches, nil, nil, resolver); err == nil {
 				resolver.multiPolygonByID[id] = mp
 			}
 		case gmlTriangulatedSurface:
@@ -117,7 +117,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("TriangulatedSurface %q: %w", id, err)
 			}
-			if mp, err := multiPolygonFromTrianglePatchArrayProperty(x.TrianglePatches, nil, resolver); err == nil {
+			if mp, err := multiPolygonFromTrianglePatchArrayProperty(x.TrianglePatches, nil, nil, resolver); err == nil {
 				resolver.multiPolygonByID[id] = mp
 			}
 		case gmlPolyhedralSurface:
@@ -125,7 +125,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("PolyhedralSurface %q: %w", id, err)
 			}
-			if mp, err := multiPolygonFromPolyhedralSurface(&x, nil, resolver); err == nil {
+			if mp, err := multiPolygonFromPolyhedralSurface(&x, nil, nil, resolver); err == nil {
 				resolver.multiPolygonByID[id] = mp
 			}
 		case gmlSolid:
@@ -133,7 +133,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("Solid %q: %w", id, err)
 			}
-			if s, err := solidFromXML(&x, nil, resolver); err == nil {
+			if s, err := solidFromXML(&x, nil, nil, resolver); err == nil {
 				resolver.solidByID[id] = s
 			}
 		case gmlCompositeSolid:
@@ -141,7 +141,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			if err := dec.DecodeElement(&x, &se); err != nil {
 				return fmt.Errorf("CompositeSolid %q: %w", id, err)
 			}
-			if s, err := solidFromSolidPropertyMembers(x.SolidMember, nil, resolver); err == nil {
+			if s, err := solidFromSolidPropertyMembers(x.SolidMember, nil, nil, resolver); err == nil {
 				resolver.solidByID[id] = s
 			}
 		case gmlGrid:
@@ -177,7 +177,7 @@ func resolveDeferred(pending []pendingCS, resolver *curveResolver) {
 				remaining = append(remaining, p)
 				continue
 			}
-			if mp, err := multiPolygonFromCompositeSurface(p.x, resolver, nil); err == nil {
+			if mp, err := multiPolygonFromCompositeSurface(p.x, resolver, nil, nil); err == nil {
 				resolver.multiPolygonByID[p.id] = mp
 			}
 		}
@@ -197,12 +197,12 @@ func cacheSurfacePropertyMemberIDs(members []gen.SurfacePropertyType, resolver *
 	for i := range members {
 		m := &members[i]
 		if m.Polygon != nil && m.Polygon.Id != "" {
-			if poly, err := polygonFromXML(m.Polygon, nil); err == nil {
+			if poly, err := polygonFromXML(m.Polygon, nil, nil); err == nil {
 				resolver.polygonByID[m.Polygon.Id] = poly
 			}
 		}
 		if m.Surface != nil && m.Surface.Id != "" {
-			if poly, err := polygonFromSurface(m.Surface, resolver, nil); err == nil {
+			if poly, err := polygonFromSurface(m.Surface, resolver, nil, nil); err == nil {
 				resolver.polygonByID[m.Surface.Id] = poly
 			}
 		}

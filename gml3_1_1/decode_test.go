@@ -28,7 +28,7 @@ func TestDecode_Point(t *testing.T) {
 func TestDecode_Polygon(t *testing.T) {
 	const src = `<gml:Polygon xmlns:gml="http://www.opengis.net/gml">` +
 		`<gml:exterior><gml:LinearRing>` +
-		`<gml:posList>0 0 1 0 1 1 0 1 0 0</gml:posList>` +
+		`<gml:posList srsDimension="2">0 0 1 0 1 1 0 1 0 0</gml:posList>` +
 		`</gml:LinearRing></gml:exterior></gml:Polygon>`
 	r := gml.NewReader(strings.NewReader(""))
 	g, err := r.Decode(strings.NewReader(src))
@@ -47,7 +47,7 @@ const gmlNS = `xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3
 func TestNext_SolidExteriorHrefResolved(t *testing.T) {
 	const src = `<root ` + gmlNS + `>
 <gml:Polygon gml:id="P1">
-  <gml:exterior><gml:LinearRing><gml:posList>0 0 1 0 1 1 0 0</gml:posList></gml:LinearRing></gml:exterior>
+  <gml:exterior><gml:LinearRing><gml:posList srsDimension="2">0 0 1 0 1 1 0 0</gml:posList></gml:LinearRing></gml:exterior>
 </gml:Polygon>
 <gml:Solid>
   <gml:exterior><gml:CompositeSurface><gml:surfaceMember xlink:href="#P1"/></gml:CompositeSurface></gml:exterior>
@@ -283,7 +283,7 @@ func TestNext_CompositeSurfaceSubPolygonHref(t *testing.T) {
 <gml:CompositeSurface gml:id="CS1">
   <gml:surfaceMember>
     <gml:Polygon gml:id="P1">
-      <gml:exterior><gml:LinearRing><gml:posList>0 0 1 0 1 1 0 0</gml:posList></gml:LinearRing></gml:exterior>
+      <gml:exterior><gml:LinearRing><gml:posList srsDimension="2">0 0 1 0 1 1 0 0</gml:posList></gml:LinearRing></gml:exterior>
     </gml:Polygon>
   </gml:surfaceMember>
 </gml:CompositeSurface>

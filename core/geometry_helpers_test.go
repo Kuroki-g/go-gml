@@ -103,7 +103,7 @@ func TestPointFromPosString(t *testing.T) {
 
 func TestLineStringFromPosListString(t *testing.T) {
 	d := uint(2)
-	got, err := LineStringFromPosListString("139.7 35.6 139.8 35.7", &d)
+	got, err := LineStringFromPosListString("139.7 35.6 139.8 35.7", &d, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -120,7 +120,7 @@ func TestLineStringFromPosListString(t *testing.T) {
 
 func TestRingFromPosListString(t *testing.T) {
 	d := uint(2)
-	got, err := RingFromPosListString("139.7 35.6 139.8 35.6 139.8 35.7 139.7 35.6", &d)
+	got, err := RingFromPosListString("139.7 35.6 139.8 35.6 139.8 35.7 139.7 35.6", &d, nil)
 	if err != nil {
 		t.Fatal(err)
 	}

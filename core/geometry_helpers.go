@@ -58,11 +58,14 @@ func PointFromPosString(s string, dim *uint) (Point, error) {
 
 // LineStringFromPosListString parses a gml:posList chardata string.
 // dim is the resolved srsDimension (from the element itself or inherited from parent context).
-// Per GML XSD, if srsDimension is absent the dimension is derived from the CRS definition.
-// TODO: CRS-based dimension resolution is not yet implemented; dim=nil returns an error.
-func LineStringFromPosListString(s string, dim *uint) (LineString, error) {
+// If dim is nil, the dimension is derived from the CRS definition via srsName.
+// Returns an error if neither dim nor srsName can resolve the dimension.
+func LineStringFromPosListString(s string, dim *uint, srsName *string) (LineString, error) {
 	if dim == nil {
-		return nil, fmt.Errorf("gml: cannot parse gml:posList: srsDimension absent and CRS-based dimension resolution is not implemented")
+		dim = DimFromSRSName(srsName)
+	}
+	if dim == nil {
+		return nil, fmt.Errorf("gml: cannot parse gml:posList: srsDimension absent and CRS dimension unknown")
 	}
 	coords, err := ParsePosList(s)
 	if err != nil {
@@ -73,11 +76,14 @@ func LineStringFromPosListString(s string, dim *uint) (LineString, error) {
 
 // RingFromPosListString parses a gml:posList chardata string into a Ring.
 // dim is the resolved srsDimension (from the element itself or inherited from parent context).
-// Per GML XSD, if srsDimension is absent the dimension is derived from the CRS definition.
-// TODO: CRS-based dimension resolution is not yet implemented; dim=nil returns an error.
-func RingFromPosListString(s string, dim *uint) (Ring, error) {
+// If dim is nil, the dimension is derived from the CRS definition via srsName.
+// Returns an error if neither dim nor srsName can resolve the dimension.
+func RingFromPosListString(s string, dim *uint, srsName *string) (Ring, error) {
 	if dim == nil {
-		return nil, fmt.Errorf("gml: cannot parse gml:posList: srsDimension absent and CRS-based dimension resolution is not implemented")
+		dim = DimFromSRSName(srsName)
+	}
+	if dim == nil {
+		return nil, fmt.Errorf("gml: cannot parse gml:posList: srsDimension absent and CRS dimension unknown")
 	}
 	coords, err := ParsePosList(s)
 	if err != nil {

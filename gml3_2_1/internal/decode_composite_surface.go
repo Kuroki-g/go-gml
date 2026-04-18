@@ -16,7 +16,7 @@ func (r *Reader) handleCompositeSurface(dec *xml.Decoder, se xml.StartElement) (
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: CompositeSurface: %w", err)
 	}
-	mp, err := multiPolygonFromCompositeSurface(&x, r.resolver, r.globalDim)
+	mp, err := multiPolygonFromCompositeSurface(&x, r.resolver, r.globalDim, nil)
 	if err != nil {
 		return core.Geometry{}, err
 	}
@@ -36,7 +36,7 @@ func (r *Reader) handleOrientableSurface(dec *xml.Decoder, se xml.StartElement) 
 	if x.BaseSurface == nil {
 		return core.Geometry{Value: core.Polygon(nil), SRSName: x.SrsName}, nil
 	}
-	poly, err := polygonFromSurfaceProperty(x.BaseSurface, preferDim(x.SrsDimension, r.globalDim), r.resolver)
+	poly, err := polygonFromSurfaceProperty(x.BaseSurface, preferDim(x.SrsDimension, r.globalDim), x.SrsName, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
 	}
@@ -48,12 +48,13 @@ func (r *Reader) handleOrientableSurface(dec *xml.Decoder, se xml.StartElement) 
 
 // multiPolygonFromCompositeSurface returns one Polygon per surfaceMember.
 // Nested CompositeSurface members are flattened into the result.
-func multiPolygonFromCompositeSurface(x *gen.CompositeSurfaceType, resolver *curveResolver, fallbackDim *uint) (core.MultiPolygon, error) {
+func multiPolygonFromCompositeSurface(x *gen.CompositeSurfaceType, resolver *curveResolver, fallbackDim *uint, fallbackSrsName *string) (core.MultiPolygon, error) {
 	dim := preferDim(x.SrsDimension, fallbackDim)
+	srsName := preferSrsName(x.SrsName, fallbackSrsName)
 	var result core.MultiPolygon
 	for i, m := range x.SurfaceMember {
 		if m.CompositeSurface != nil {
-			nested, err := multiPolygonFromCompositeSurface(m.CompositeSurface, resolver, fallbackDim)
+			nested, err := multiPolygonFromCompositeSurface(m.CompositeSurface, resolver, fallbackDim, fallbackSrsName)
 			if err != nil {
 				return nil, fmt.Errorf("gml: CompositeSurface surfaceMember[%d]: %w", i, err)
 			}
@@ -67,7 +68,7 @@ func multiPolygonFromCompositeSurface(x *gen.CompositeSurfaceType, resolver *cur
 				continue
 			}
 		}
-		poly, err := polygonFromSurfaceProperty(&m, dim, resolver)
+		poly, err := polygonFromSurfaceProperty(&m, dim, srsName, resolver)
 		if err != nil {
 			return nil, fmt.Errorf("gml: CompositeSurface surfaceMember[%d]: %w", i, err)
 		}

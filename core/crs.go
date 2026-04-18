@@ -43,6 +43,23 @@ func EPSGFromSRSName(srsName string) int {
 	return 0
 }
 
+// DimFromSRSName resolves the number of spatial dimensions from a srsName attribute
+// by looking up the EPSG code in the built-in dimension table.
+// Returns nil if the dimension cannot be determined.
+func DimFromSRSName(srsName *string) *uint {
+	if srsName == nil {
+		return nil
+	}
+	epsg := EPSGFromSRSName(*srsName)
+	if epsg == 0 {
+		return nil
+	}
+	if d, ok := epsgDimTable[epsg]; ok {
+		return &d
+	}
+	return nil
+}
+
 func parseTrailingInt(s string) int {
 	s = strings.TrimSpace(s)
 	v, err := strconv.Atoi(s)

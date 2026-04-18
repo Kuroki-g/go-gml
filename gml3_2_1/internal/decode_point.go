@@ -42,6 +42,14 @@ func preferDim(explicit *uint, fallback *uint) *uint {
 	return fallback
 }
 
+// preferSrsName returns a if non-nil, otherwise b.
+func preferSrsName(a, b *string) *string {
+	if a != nil {
+		return a
+	}
+	return b
+}
+
 // derefStrOr dereferences a *string attribute; nil → def (the XSD default value).
 func derefStrOr(p *string, def string) string {
 	if p == nil {
