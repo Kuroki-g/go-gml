@@ -138,26 +138,3 @@ func TestRingFromCoordinatesString(t *testing.T) {
 		t.Fatalf("len=%d want 4", len(got))
 	}
 }
-
-func TestEffectiveDim(t *testing.T) {
-	p := func(n uint) *uint { return &n }
-	check := func(dim *uint, nValues int, want uint) {
-		t.Helper()
-		got, err := effectiveDim(dim, nValues)
-		if err != nil {
-			t.Fatalf("effectiveDim(%v, %d) unexpected error: %v", dim, nValues, err)
-		}
-		if got != want {
-			t.Errorf("effectiveDim(%v, %d) = %d, want %d", dim, nValues, got, want)
-		}
-	}
-
-	check(p(2), 4, 2) // explicit 2D
-	check(p(3), 9, 3) // explicit 3D
-	check(p(1), 0, 1) // positiveInteger: 1D is valid per XSD
-	check(p(4), 0, 4) // positiveInteger: 4D is valid per XSD
-	check(nil, 4, 2)  // omitted, even → 2D
-	check(nil, 9, 3)  // omitted, odd → 3D (PLATEAU pattern)
-	check(nil, 27, 3) // omitted, odd → 3D
-	check(nil, 12, 2) // omitted, even (ambiguous) → 2D fallback
-}

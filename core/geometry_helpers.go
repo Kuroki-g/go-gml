@@ -57,41 +57,31 @@ func PointFromPosString(s string, dim *uint) (Point, error) {
 }
 
 // LineStringFromPosListString parses a gml:posList chardata string.
+// dim is the resolved srsDimension (from the element itself or inherited from parent context).
+// Per GML XSD, if srsDimension is absent the dimension is derived from the CRS definition.
+// TODO: CRS-based dimension resolution is not yet implemented; dim=nil returns an error.
 func LineStringFromPosListString(s string, dim *uint) (LineString, error) {
+	if dim == nil {
+		return nil, fmt.Errorf("gml: cannot parse gml:posList: srsDimension absent and CRS-based dimension resolution is not implemented")
+	}
 	coords, err := ParsePosList(s)
 	if err != nil {
 		return nil, err
 	}
-	d, err := effectiveDim(dim, len(coords))
-	if err != nil {
-		return nil, err
-	}
-	return LineStringFromFlat(coords, d)
+	return LineStringFromFlat(coords, *dim)
 }
 
 // RingFromPosListString parses a gml:posList chardata string into a Ring.
+// dim is the resolved srsDimension (from the element itself or inherited from parent context).
+// Per GML XSD, if srsDimension is absent the dimension is derived from the CRS definition.
+// TODO: CRS-based dimension resolution is not yet implemented; dim=nil returns an error.
 func RingFromPosListString(s string, dim *uint) (Ring, error) {
+	if dim == nil {
+		return nil, fmt.Errorf("gml: cannot parse gml:posList: srsDimension absent and CRS-based dimension resolution is not implemented")
+	}
 	coords, err := ParsePosList(s)
 	if err != nil {
 		return nil, err
 	}
-	d, err := effectiveDim(dim, len(coords))
-	if err != nil {
-		return nil, err
-	}
-	return RingFromFlat(coords, d)
-}
-
-// effectiveDim resolves the coordinate dimension for a posList.
-// srsDimension is positiveInteger and optional per GML XSD; any dim>0 is valid.
-// If dim is nil (srsDimension omitted), the dimension is inferred from nValues:
-// an odd value count cannot be 2D, so dim=3 is assumed; otherwise 2D is assumed.
-func effectiveDim(dim *uint, nValues int) (uint, error) {
-	if dim != nil {
-		return *dim, nil
-	}
-	if nValues%2 != 0 {
-		return 3, nil
-	}
-	return 2, nil
+	return RingFromFlat(coords, *dim)
 }
