@@ -43,18 +43,21 @@ func EPSGFromSRSName(srsName string) int {
 	return 0
 }
 
-// DimFromSRSName resolves the number of spatial dimensions from a srsName attribute
-// by looking up the EPSG code in the built-in dimension table.
+// DimFromSRSName resolves the number of spatial dimensions from a srsName attribute.
+// First looks up the EPSG code in the built-in dimension table, then falls back to
+// a table of known non-EPSG srsName strings.
 // Returns nil if the dimension cannot be determined.
 func DimFromSRSName(srsName *string) *uint {
 	if srsName == nil {
 		return nil
 	}
 	epsg := EPSGFromSRSName(*srsName)
-	if epsg == 0 {
-		return nil
+	if epsg != 0 {
+		if d, ok := epsgDimTable[epsg]; ok {
+			return &d
+		}
 	}
-	if d, ok := epsgDimTable[epsg]; ok {
+	if d, ok := nonEPSGDimTable[*srsName]; ok {
 		return &d
 	}
 	return nil
