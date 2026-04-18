@@ -56,15 +56,9 @@ func ringFromLinearRing(lr *gen.LinearRingType, inheritDim *uint) (core.Ring, er
 			}
 			flat = append(flat, vals...)
 		}
-		dPtr := preferDim(lr.Pos[0].SrsDimension, dim)
-		var d uint
-		if dPtr == nil {
-			d = uint(len(strings.Fields(lr.Pos[0].Value)))
-			if d < 2 {
-				d = 2
-			}
-		} else {
-			d = *dPtr
+		d := uint(len(strings.Fields(lr.Pos[0].Value)))
+		if d == 0 {
+			return nil, fmt.Errorf("gml: pos has no values")
 		}
 		return core.RingFromFlat(flat, d)
 	}

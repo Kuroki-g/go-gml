@@ -108,15 +108,9 @@ func lineStringFromLinearRingType(x *gen.LinearRingType, inheritDim *uint) (core
 			}
 			flat = append(flat, vals...)
 		}
-		dPtr := preferDim(x.Pos[0].SrsDimension, dim)
-		var d uint
-		if dPtr == nil {
-			d = uint(len(strings.Fields(x.Pos[0].Value)))
-			if d < 2 {
-				d = 2
-			}
-		} else {
-			d = *dPtr
+		d := uint(len(strings.Fields(x.Pos[0].Value)))
+		if d == 0 {
+			return nil, fmt.Errorf("gml: pos has no values")
 		}
 		return core.LineStringFromFlat(flat, d)
 	}
