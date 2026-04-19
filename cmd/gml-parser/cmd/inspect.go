@@ -12,11 +12,12 @@ import (
 )
 
 type inspectStats struct {
-	File          string         `json:"file"`
-	TotalFeatures int            `json:"total_features"`
-	GeometryTypes map[string]int `json:"geometry_types"`
-	EPSGCodes     map[string]int `json:"epsg_codes"`
-	SRSNames      map[string]int `json:"srs_names"`
+	File            string         `json:"file"`
+	TotalFeatures   int            `json:"total_features"`
+	GeometryTypes   map[string]int `json:"geometry_types"`
+	EPSGCodes       map[string]int `json:"epsg_codes"`
+	SRSNames        map[string]int `json:"srs_names"`
+	UnknownElements map[string]int `json:"unknown_elements,omitempty"`
 }
 
 var inspectCmd = &cobra.Command{
@@ -33,23 +34,28 @@ var inspectCmd = &cobra.Command{
 		defer closer()
 
 		stats := &inspectStats{
-			File:          inFile,
-			GeometryTypes: map[string]int{},
-			EPSGCodes:     map[string]int{},
-			SRSNames:      map[string]int{},
+			File:            inFile,
+			GeometryTypes:   map[string]int{},
+			EPSGCodes:       map[string]int{},
+			SRSNames:        map[string]int{},
+			UnknownElements: map[string]int{},
 		}
 
-		reader, err := newGMLReader(r, gmlVersion)
+		reader, err := newGMLReader(r, gmlVersion, func(name string) {
+			stats.UnknownElements[name]++
+		})
 		if err != nil {
 			return err
 		}
+		var parseErr error
 		for {
 			g, err := reader.Next()
 			if errors.Is(err, io.EOF) {
 				break
 			}
 			if err != nil {
-				return err
+				parseErr = err
+				break
 			}
 
 			stats.TotalFeatures++
@@ -75,7 +81,10 @@ var inspectCmd = &cobra.Command{
 
 		enc := json.NewEncoder(os.Stdout)
 		enc.SetIndent("", "  ")
-		return enc.Encode(stats)
+		if err := enc.Encode(stats); err != nil {
+			return err
+		}
+		return parseErr
 	},
 }
 

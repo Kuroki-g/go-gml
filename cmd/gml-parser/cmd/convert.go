@@ -31,7 +31,7 @@ Coordinate axis order:
 		}
 		defer closer()
 
-		reader, err := newGMLReader(r, gmlVersion)
+		reader, err := newGMLReader(r, gmlVersion, nil)
 		if err != nil {
 			return err
 		}

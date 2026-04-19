@@ -16,13 +16,14 @@ func isGMLNS(ns string) bool { return ns == gmlNS31 }
 
 // Reader scans a GML 3.1.1 document for geometry elements.
 type Reader struct {
-	src         io.ReadSeeker
-	dec         *xml.Decoder
-	charsetFn   func(string, io.Reader) (io.Reader, error)
-	resolver    *curveResolver
-	prescanned  bool
-	pendingGrid *gridBounds
-	globalDim   *uint // srsDimension captured from root gml:Envelope; nil if not yet seen
+	src              io.ReadSeeker
+	dec              *xml.Decoder
+	charsetFn        func(string, io.Reader) (io.Reader, error)
+	resolver         *curveResolver
+	prescanned       bool
+	pendingGrid      *gridBounds
+	globalDim        *uint // srsDimension captured from root gml:Envelope; nil if not yet seen
+	OnUnknownElement func(name string)
 }
 
 // NewReader creates a Reader that streams geometry elements from r.
@@ -92,6 +93,9 @@ func (r *Reader) Next() (core.Geometry, error) {
 			continue
 		}
 		if !isGMLNS(se.Name.Space) {
+			if r.OnUnknownElement != nil {
+				r.OnUnknownElement(se.Name.Space + ":" + se.Name.Local)
+			}
 			continue
 		}
 		switch se.Name.Local {
@@ -152,6 +156,9 @@ func (r *Reader) Next() (core.Geometry, error) {
 		}
 		h, ok := handlers[se.Name.Local]
 		if !ok {
+			if r.OnUnknownElement != nil {
+				r.OnUnknownElement(se.Name.Local)
+			}
 			continue
 		}
 		g, err := h(r.dec, se)

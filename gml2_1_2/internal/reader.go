@@ -15,11 +15,12 @@ func isGMLNS(ns string) bool { return ns == gmlNS2 }
 
 // Reader scans a GML 2.1.2 document for geometry elements.
 type Reader struct {
-	src        io.ReadSeeker
-	dec        *xml.Decoder
-	charsetFn  func(string, io.Reader) (io.Reader, error)
-	resolver   *resolver
-	prescanned bool
+	src              io.ReadSeeker
+	dec              *xml.Decoder
+	charsetFn        func(string, io.Reader) (io.Reader, error)
+	resolver         *resolver
+	prescanned       bool
+	OnUnknownElement func(name string)
 }
 
 // NewReader creates a Reader that streams geometry elements from r.
@@ -80,6 +81,9 @@ func (r *Reader) Next() (core.Geometry, error) {
 			continue
 		}
 		if !isGMLNS(se.Name.Space) {
+			if r.OnUnknownElement != nil {
+				r.OnUnknownElement(se.Name.Space + ":" + se.Name.Local)
+			}
 			continue
 		}
 		switch se.Name.Local {
@@ -92,6 +96,9 @@ func (r *Reader) Next() (core.Geometry, error) {
 		}
 		h, ok := handlers[se.Name.Local]
 		if !ok {
+			if r.OnUnknownElement != nil {
+				r.OnUnknownElement(se.Name.Local)
+			}
 			continue
 		}
 		return h(r.dec, se)
