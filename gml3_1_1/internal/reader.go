@@ -159,6 +159,9 @@ func (r *Reader) Next() (core.Geometry, error) {
 			if r.OnUnknownElement != nil {
 				r.OnUnknownElement(se.Name.Local)
 			}
+			if err := r.dec.Skip(); err != nil {
+				return core.Geometry{}, err
+			}
 			continue
 		}
 		g, err := h(r.dec, se)
