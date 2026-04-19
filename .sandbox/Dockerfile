@@ -78,7 +78,7 @@ ENV PATH="/home/${USER}/.local/bin:$PATH" \
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
   echo "alias clip='xclip -selection clipboard'" >> $HOME/.bashrc
 
-RUN npm install -g @anthropic-ai/claude-code@2.1.97
+RUN npm install -g @anthropic-ai/claude-code@2.1.98
 # RUN curl -fsSL https://claude.ai/install.sh | bash
 
 WORKDIR /workspace
