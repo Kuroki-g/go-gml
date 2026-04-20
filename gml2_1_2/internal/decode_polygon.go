@@ -25,7 +25,7 @@ func ringFromLinearRing(lr *gen.LinearRingType) (core.Ring, error) {
 		return nil, fmt.Errorf("gml: nil LinearRing")
 	}
 	if lr.Coordinates != nil {
-		return core.RingFromCoordinatesString(lr.Coordinates.Value, derefStrOr(lr.Coordinates.Cs, ","), derefStrOr(lr.Coordinates.Ts, " "))
+		return core.RingFromCoordinatesString(lr.Coordinates.Value, derefStrOr(lr.Coordinates.Cs, ","), derefStrOr(lr.Coordinates.Ts, " "), derefStrOr(lr.Coordinates.Decimal, "."))
 	}
 	if len(lr.Coord) > 0 {
 		flat, dim := coordSliceToFlat(lr.Coord)

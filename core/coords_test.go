@@ -45,22 +45,25 @@ func TestParsePosList(t *testing.T) {
 
 func TestParseCoordinates(t *testing.T) {
 	tests := []struct {
-		name    string
-		input   string
-		cs, ts  string
-		want    []float64
-		wantErr bool
+		name            string
+		input           string
+		cs, ts, decimal string
+		want            []float64
+		wantDim         uint
+		wantErr         bool
 	}{
-		{"default separators", "139.7,35.6 139.8,35.7", "", "", []float64{139.7, 35.6, 139.8, 35.7}, false},
-		{"3D default separators", "139.7,35.6,10.5 139.8,35.7,11.0", "", "", []float64{139.7, 35.6, 10.5, 139.8, 35.7, 11.0}, false},
-		{"custom separators", "139.7;35.6|139.8;35.7", ";", "|", []float64{139.7, 35.6, 139.8, 35.7}, false},
-		{"leading trailing whitespace", "\n  139.7,35.6 139.8,35.7  \n", "", "", []float64{139.7, 35.6, 139.8, 35.7}, false},
-		{"empty string", "", "", "", nil, false},
-		{"invalid coordinate", "139.7,bad 139.8,35.7", "", "", nil, true},
+		{"2D default separators", "139.7,35.6 139.8,35.7", "", "", "", []float64{139.7, 35.6, 139.8, 35.7}, 2, false},
+		{"3D default separators", "139.7,35.6,10.5 139.8,35.7,11.0", "", "", "", []float64{139.7, 35.6, 10.5, 139.8, 35.7, 11.0}, 3, false},
+		{"custom separators", "139.7;35.6|139.8;35.7", ";", "|", "", []float64{139.7, 35.6, 139.8, 35.7}, 2, false},
+		{"custom decimal", "139,7;35,6|139,8;35,7", ";", "|", ",", []float64{139.7, 35.6, 139.8, 35.7}, 2, false},
+		{"leading trailing whitespace", "\n  139.7,35.6 139.8,35.7  \n", "", "", "", []float64{139.7, 35.6, 139.8, 35.7}, 2, false},
+		{"empty string", "", "", "", "", nil, 0, true},
+		{"single value tuple", "139.7 35.6", ",", " ", "", nil, 0, true},
+		{"invalid coordinate", "139.7,bad 139.8,35.7", "", "", "", nil, 0, true},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := ParseCoordinates(tt.input, tt.cs, tt.ts)
+			got, dim, err := ParseCoordinates(tt.input, tt.cs, tt.ts, tt.decimal)
 			if tt.wantErr {
 				if err == nil {
 					t.Fatal("expected error, got nil")
@@ -69,6 +72,9 @@ func TestParseCoordinates(t *testing.T) {
 			}
 			if err != nil {
 				t.Fatalf("unexpected error: %v", err)
+			}
+			if dim != tt.wantDim {
+				t.Errorf("dim=%d, want %d", dim, tt.wantDim)
 			}
 			if len(got) != len(tt.want) {
 				t.Fatalf("len=%d, want %d: %v", len(got), len(tt.want), got)

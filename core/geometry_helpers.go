@@ -32,12 +32,33 @@ func RingFromFlat(coords []float64, dim uint) (Ring, error) {
 }
 
 // RingFromCoordinatesString parses a deprecated gml:coordinates string into a Ring.
-func RingFromCoordinatesString(s, cs, ts string) (Ring, error) {
-	coords, err := ParseCoordinates(s, cs, ts)
+// cs, ts, decimal are the CoordinatesType attributes (empty string means use XSD default).
+func RingFromCoordinatesString(s, cs, ts, decimal string) (Ring, error) {
+	coords, dim, err := ParseCoordinates(s, cs, ts, decimal)
 	if err != nil {
 		return nil, err
 	}
-	return RingFromFlat(coords, 2)
+	return RingFromFlat(coords, dim)
+}
+
+// LineStringFromCoordinatesString parses a deprecated gml:coordinates string into a LineString.
+// cs, ts, decimal are the CoordinatesType attributes (empty string means use XSD default).
+func LineStringFromCoordinatesString(s, cs, ts, decimal string) (LineString, error) {
+	coords, dim, err := ParseCoordinates(s, cs, ts, decimal)
+	if err != nil {
+		return nil, err
+	}
+	return LineStringFromFlat(coords, dim)
+}
+
+// PointFromCoordinatesString parses a deprecated gml:coordinates string into a Point.
+// cs, ts, decimal are the CoordinatesType attributes (empty string means use XSD default).
+func PointFromCoordinatesString(s, cs, ts, decimal string) (Point, error) {
+	coords, dim, err := ParseCoordinates(s, cs, ts, decimal)
+	if err != nil {
+		return Point{}, err
+	}
+	return PointFromFlat(coords, dim)
 }
 
 // PointFromPosString parses a gml:pos chardata string and returns a Point.

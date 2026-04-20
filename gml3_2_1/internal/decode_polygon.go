@@ -61,7 +61,7 @@ func ringFromLinearRing(lr *gen.LinearRingType, inheritDim *uint, inheritSrsName
 		return core.RingFromFlat(flat, d)
 	}
 	if lr.Coordinates != nil {
-		return core.RingFromCoordinatesString(lr.Coordinates.Value, derefStrOr(lr.Coordinates.Cs, ","), derefStrOr(lr.Coordinates.Ts, " "))
+		return core.RingFromCoordinatesString(lr.Coordinates.Value, derefStrOr(lr.Coordinates.Cs, ","), derefStrOr(lr.Coordinates.Ts, " "), derefStrOr(lr.Coordinates.Decimal, "."))
 	}
 	return nil, fmt.Errorf("gml: LinearRing has no coordinate data")
 }

@@ -99,11 +99,7 @@ func lineStringFromCurve(x *gen.CurveType, inheritDim *uint, inheritSrsName *str
 			dim := preferDim(seg.PosList.SrsDimension, curveDim)
 			ls, err = core.LineStringFromPosListString(seg.PosList.Value, dim, preferSrsName(seg.PosList.SrsName, curveSrsName))
 		} else if seg.Coordinates != nil {
-			var coords []float64
-			coords, err = core.ParseCoordinates(seg.Coordinates.Value, derefStrOr(seg.Coordinates.Cs, ","), derefStrOr(seg.Coordinates.Ts, " "))
-			if err == nil {
-				ls, err = core.LineStringFromFlat(coords, 2)
-			}
+			ls, err = core.LineStringFromCoordinatesString(seg.Coordinates.Value, derefStrOr(seg.Coordinates.Cs, ","), derefStrOr(seg.Coordinates.Ts, " "), derefStrOr(seg.Coordinates.Decimal, "."))
 		} else if len(seg.Pos) > 0 {
 			ls, err = lineStringFromPosSlice(seg.Pos, curveDim)
 		} else if len(seg.PointProperty) > 0 {

@@ -130,7 +130,7 @@ func TestRingFromPosListString(t *testing.T) {
 }
 
 func TestRingFromCoordinatesString(t *testing.T) {
-	got, err := RingFromCoordinatesString("139.7,35.6 139.8,35.6 139.8,35.7 139.7,35.6", "", "")
+	got, err := RingFromCoordinatesString("139.7,35.6 139.8,35.6 139.8,35.7 139.7,35.6", "", "", "")
 	if err != nil {
 		t.Fatal(err)
 	}

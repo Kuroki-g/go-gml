@@ -157,7 +157,7 @@ func decodeBoxElement(dec *xml.Decoder, se xml.StartElement) (core.Geometry, err
 
 func boundFromBoxXML(x *gen.BoxType) (core.Bound, error) {
 	if x.Coordinates != nil {
-		coords, err := core.ParseCoordinates(x.Coordinates.Value, derefStrOr(x.Coordinates.Cs, ","), derefStrOr(x.Coordinates.Ts, " "))
+		coords, _, err := core.ParseCoordinates(x.Coordinates.Value, derefStrOr(x.Coordinates.Cs, ","), derefStrOr(x.Coordinates.Ts, " "), derefStrOr(x.Coordinates.Decimal, "."))
 		if err != nil {
 			return core.Bound{}, fmt.Errorf("gml: Box coordinates: %w", err)
 		}

@@ -22,11 +22,7 @@ func decodeLineStringElement(dec *xml.Decoder, se xml.StartElement) (core.Geomet
 
 func lineStringFromXML(x *gen.LineStringType) (core.LineString, error) {
 	if x.Coordinates != nil {
-		coords, err := core.ParseCoordinates(x.Coordinates.Value, derefStrOr(x.Coordinates.Cs, ","), derefStrOr(x.Coordinates.Ts, " "))
-		if err != nil {
-			return nil, err
-		}
-		return core.LineStringFromFlat(coords, 2)
+		return core.LineStringFromCoordinatesString(x.Coordinates.Value, derefStrOr(x.Coordinates.Cs, ","), derefStrOr(x.Coordinates.Ts, " "), derefStrOr(x.Coordinates.Decimal, "."))
 	}
 	if len(x.Coord) > 0 {
 		flat, dim := coordSliceToFlat(x.Coord)

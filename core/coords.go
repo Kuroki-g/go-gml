@@ -21,35 +21,57 @@ func ParsePosList(s string) ([]float64, error) {
 	return result, nil
 }
 
-// ParseCoordinates parses the deprecated gml:coordinates format.
-// cs is the coordinate separator (default ","), ts is the tuple separator (default " ").
-func ParseCoordinates(s, cs, ts string) ([]float64, error) {
+// ParseCoordinates parses the deprecated gml:coordinates format and infers the
+// coordinate dimension from the first tuple.
+// cs is the coordinate separator (default ","), ts is the tuple separator (default " "),
+// decimal is the decimal point character (default ".").
+// Returns an error if the dimension cannot be determined (empty string or first tuple has fewer than 2 values).
+func ParseCoordinates(s, cs, ts, decimal string) ([]float64, uint, error) {
 	if cs == "" {
 		cs = ","
 	}
 	if ts == "" {
 		ts = " "
 	}
+	if decimal == "" {
+		decimal = "."
+	}
 	s = strings.TrimSpace(s)
 	var result []float64
+	var dim uint
 	for _, tuple := range strings.Split(s, ts) {
 		tuple = strings.TrimSpace(tuple)
 		if tuple == "" {
 			continue
 		}
-		for _, coord := range strings.Split(tuple, cs) {
+		parts := strings.Split(tuple, cs)
+		var tupleVals []float64
+		for _, coord := range parts {
 			coord = strings.TrimSpace(coord)
 			if coord == "" {
 				continue
 			}
+			if decimal != "." {
+				coord = strings.ReplaceAll(coord, decimal, ".")
+			}
 			v, err := strconv.ParseFloat(coord, 64)
 			if err != nil {
-				return nil, fmt.Errorf("gml: invalid coordinate %q: %w", coord, err)
+				return nil, 0, fmt.Errorf("gml: invalid coordinate %q: %w", coord, err)
 			}
-			result = append(result, v)
+			tupleVals = append(tupleVals, v)
 		}
+		if dim == 0 {
+			if uint(len(tupleVals)) < 2 {
+				return nil, 0, fmt.Errorf("gml: gml:coordinates: cannot determine dimension from first tuple (got %d value)", len(tupleVals))
+			}
+			dim = uint(len(tupleVals))
+		}
+		result = append(result, tupleVals...)
 	}
-	return result, nil
+	if dim == 0 {
+		return nil, 0, fmt.Errorf("gml: gml:coordinates: empty coordinate string")
+	}
+	return result, dim, nil
 }
 
 // ToPoints converts a flat coordinate slice into a slice of Points.

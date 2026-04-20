@@ -22,11 +22,7 @@ func decodePointElement(dec *xml.Decoder, se xml.StartElement) (core.Geometry, e
 
 func pointFromXML(x *gen.PointType) (core.Point, error) {
 	if x.Coordinates != nil {
-		coords, err := core.ParseCoordinates(x.Coordinates.Value, derefStrOr(x.Coordinates.Cs, ","), derefStrOr(x.Coordinates.Ts, " "))
-		if err != nil {
-			return core.Point{}, err
-		}
-		return core.PointFromFlat(coords, uint(len(coords)))
+		return core.PointFromCoordinatesString(x.Coordinates.Value, derefStrOr(x.Coordinates.Cs, ","), derefStrOr(x.Coordinates.Ts, " "), derefStrOr(x.Coordinates.Decimal, "."))
 	}
 	if x.Coord != nil {
 		y := 0.0
