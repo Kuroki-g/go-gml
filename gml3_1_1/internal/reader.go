@@ -22,7 +22,8 @@ type Reader struct {
 	resolver         *curveResolver
 	prescanned       bool
 	pendingGrid      *gridBounds
-	globalDim        *uint // srsDimension captured from root gml:Envelope; nil if not yet seen
+	globalDim        *uint   // srsDimension captured from root gml:Envelope; nil if not yet seen
+	globalSrsName    *string // srsName captured from root gml:Envelope; nil if not yet seen
 	OnUnknownElement func(name string)
 }
 
@@ -106,14 +107,27 @@ func (r *Reader) Next() (core.Geometry, error) {
 				return core.Geometry{}, err
 			}
 			continue
-		case gmlEnvelope:
+		case gmlBoundedBy:
+			continue // pass child elements (Envelope / EnvelopeWithTimePeriod) into the loop
+		case gmlEnvelope, gmlEnvelopeWithTimePeriod:
 			for _, a := range se.Attr {
-				if a.Name.Local == "srsDimension" {
+				switch a.Name.Local {
+				case "srsDimension":
 					if d, err2 := strconv.Atoi(a.Value); err2 == nil && d > 0 {
 						gd := uint(d)
 						r.globalDim = &gd
 					}
+				case "srsName":
+					if a.Value != "" {
+						r.globalSrsName = &a.Value
+					}
 				}
+			}
+			if se.Name.Local == gmlEnvelopeWithTimePeriod {
+				if err := r.dec.Skip(); err != nil {
+					return core.Geometry{}, err
+				}
+				continue
 			}
 			return decodeEnvelopeElement(r.dec, se)
 		case gmlPolygon:

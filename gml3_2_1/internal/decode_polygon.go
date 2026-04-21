@@ -12,7 +12,7 @@ import (
 // handlePolygon decodes a gml:Polygon, caches it by gml:id for xlink:href resolution, and returns it.
 func (r *Reader) handlePolygon(dec *xml.Decoder, se xml.StartElement) (core.Geometry, error) {
 	id := extractGMLID(se)
-	g, err := decodePolygonElement(dec, se, r.globalDim)
+	g, err := decodePolygonElement(dec, se, r.globalDim, r.globalSrsName)
 	if err != nil {
 		return core.Geometry{}, err
 	}
@@ -24,12 +24,12 @@ func (r *Reader) handlePolygon(dec *xml.Decoder, se xml.StartElement) (core.Geom
 	return g, err
 }
 
-func decodePolygonElement(dec *xml.Decoder, se xml.StartElement, fallbackDim *uint) (core.Geometry, error) {
+func decodePolygonElement(dec *xml.Decoder, se xml.StartElement, fallbackDim *uint, fallbackSrsName *string) (core.Geometry, error) {
 	var x gen.PolygonType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: Polygon: %w", err)
 	}
-	poly, err := polygonFromXML(&x, fallbackDim, nil)
+	poly, err := polygonFromXML(&x, fallbackDim, fallbackSrsName)
 	if err != nil {
 		return core.Geometry{}, err
 	}

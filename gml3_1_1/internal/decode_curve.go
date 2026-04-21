@@ -65,7 +65,7 @@ func (r *Reader) handleCurve(dec *xml.Decoder, se xml.StartElement) (core.Geomet
 	if x.Id != "" {
 		r.resolver.curves[x.Id] = x
 	}
-	ls, err := lineStringFromCurve(x, nil, nil)
+	ls, err := lineStringFromCurve(x, r.globalDim, r.globalSrsName)
 	if err != nil {
 		return core.Geometry{}, err
 	}

@@ -11,7 +11,7 @@ import (
 // handleSurface decodes a gml:Surface, caches the resulting geometry by gml:id, and returns it.
 func (r *Reader) handleSurface(dec *xml.Decoder, se xml.StartElement) (core.Geometry, error) {
 	id := extractGMLID(se)
-	g, err := decodeSurfaceElement(dec, se, r.resolver, r.globalDim)
+	g, err := decodeSurfaceElement(dec, se, r.resolver, r.globalDim, r.globalSrsName)
 	if err != nil {
 		return core.Geometry{}, err
 	}
@@ -26,20 +26,20 @@ func (r *Reader) handleSurface(dec *xml.Decoder, se xml.StartElement) (core.Geom
 	return g, nil
 }
 
-func decodeSurfaceElement(dec *xml.Decoder, se xml.StartElement, resolver *curveResolver, fallbackDim *uint) (core.Geometry, error) {
+func decodeSurfaceElement(dec *xml.Decoder, se xml.StartElement, resolver *curveResolver, fallbackDim *uint, fallbackSrsName *string) (core.Geometry, error) {
 	var x gen.SurfaceType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: Surface: %w", err)
 	}
 	if x.Patches != nil && (len(x.Patches.PolygonPatch)+len(x.Patches.Rectangle)) > 1 {
 		dim := preferDim(x.SrsDimension, fallbackDim)
-		mp, err := multiPolygonFromSurfacePatchArrayProperty(x.Patches, dim, x.SrsName, resolver)
+		mp, err := multiPolygonFromSurfacePatchArrayProperty(x.Patches, dim, preferSrsName(x.SrsName, fallbackSrsName), resolver)
 		if err != nil {
 			return core.Geometry{}, err
 		}
 		return core.Geometry{Value: mp, SRSName: x.SrsName}, nil
 	}
-	poly, err := polygonFromSurface(&x, resolver, fallbackDim, nil)
+	poly, err := polygonFromSurface(&x, resolver, fallbackDim, fallbackSrsName)
 	if err != nil {
 		return core.Geometry{}, err
 	}
