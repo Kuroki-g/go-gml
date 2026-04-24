@@ -78,18 +78,25 @@ func (r *Resolver) resolveAttrRef(rf parse.RawField, schemaNS string) []parse.Fi
 		agRef := strings.TrimPrefix(rf.AttrRef, "__group__:")
 		return r.resolveAttrGroupRef(agRef, schemaNS)
 	}
+	if rf.Use == parse.UseProhibited {
+		return nil
+	}
 	refNS, refName := r.resolveQName(rf.AttrRef, schemaNS)
 	refKey := refNS + " " + refName
 	goType := "string"
 	if ga, ok := r.allAttrGroups[refKey]; ok {
 		_ = ga // attribute group as attribute ref is unusual; treat as string
 	}
+	isOmit := rf.Use != parse.UseRequired
+	if isOmit {
+		goType = "*" + goType
+	}
 	return []parse.Field{{
 		GoName: parse.GoName(refName),
 		XMLTag: buildXMLTag(refNS, refName, true),
 		GoType: goType,
 		IsAttr: true,
-		Omit:   true,
+		Omit:   isOmit,
 	}}
 }
 
