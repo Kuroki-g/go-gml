@@ -2,6 +2,13 @@ package parse
 
 // ---- Internal representation ----
 
+// XSD attribute use= values.
+const (
+	UseRequired   = "required"
+	UseOptional   = "optional"
+	UseProhibited = "prohibited"
+)
+
 // Schema is the fully-loaded (but not yet resolved) schema data.
 type Schema struct {
 	TargetNamespace string
@@ -24,8 +31,9 @@ type RawField struct {
 	AttrRef   string // ref="ns:name" (for attribute refs)
 	TypeRef   string // type="ns:name"
 	IsAttr    bool
-	IsChar    bool // simpleContent chardata
-	MinOccurs string
+	IsChar    bool   // simpleContent chardata
+	Use       string // for attributes: UseRequired | UseOptional | UseProhibited | ""
+	MinOccurs string // for elements: "0" | "1" | ""
 	MaxOccurs string
 	GroupRef  string // group ref="ns:name"
 	Doc       string // xs:annotation/xs:documentation text

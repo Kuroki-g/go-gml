@@ -72,7 +72,7 @@ func TestConvertComplexType_directSequence(t *testing.T) {
 			},
 		},
 		Attributes: []xsdAttribute{
-			{Name: "id", Type: "string", Use: "required"},
+			{Name: "id", Type: "string", Use: UseRequired},
 		},
 	}
 	result := convertComplexType(ct, "http://example.com")

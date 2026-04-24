@@ -100,6 +100,7 @@ func convertAttributes(attrs []xsdAttribute) []RawField {
 			fields = append(fields, RawField{
 				AttrRef: a.Ref,
 				IsAttr:  true,
+				Use:     a.Use,
 				Doc:     doc,
 			})
 		} else {
@@ -107,7 +108,7 @@ func convertAttributes(attrs []xsdAttribute) []RawField {
 				LocalName: a.Name,
 				TypeRef:   a.Type,
 				IsAttr:    true,
-				MinOccurs: a.Use, // "required" | "optional" | ""
+				Use:       a.Use,
 				Doc:       doc,
 			})
 		}

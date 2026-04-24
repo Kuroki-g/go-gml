@@ -102,7 +102,7 @@ func TestCollectSequenceFields_groupRef(t *testing.T) {
 
 func TestConvertAttributes_required(t *testing.T) {
 	attrs := []xsdAttribute{
-		{Name: "srsName", Type: "anyURI", Use: "required"},
+		{Name: "srsName", Type: "anyURI", Use: UseRequired},
 	}
 	fields := convertAttributes(attrs)
 	if len(fields) != 1 {
@@ -115,9 +115,8 @@ func TestConvertAttributes_required(t *testing.T) {
 	if f.LocalName != "srsName" {
 		t.Errorf("LocalName = %q", f.LocalName)
 	}
-	// Use="required" is stored in MinOccurs
-	if f.MinOccurs != "required" {
-		t.Errorf("MinOccurs = %q, want %q", f.MinOccurs, "required")
+	if f.Use != UseRequired {
+		t.Errorf("Use = %q, want %q", f.Use, UseRequired)
 	}
 }
 

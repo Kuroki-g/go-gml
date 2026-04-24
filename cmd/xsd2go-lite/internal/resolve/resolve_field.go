@@ -141,8 +141,10 @@ func (r *Resolver) resolveLocalField(rf parse.RawField, schemaNS string) []parse
 	}
 
 	isSlice := rf.MaxOccurs == "unbounded" || (rf.MaxOccurs != "" && rf.MaxOccurs != "1" && rf.MaxOccurs != "0")
-	isOmit := rf.IsAttr && rf.MinOccurs != "required"
-	if !rf.IsAttr {
+	var isOmit bool
+	if rf.IsAttr {
+		isOmit = rf.Use != parse.UseRequired
+	} else {
 		isOmit = rf.MinOccurs == "0"
 	}
 
