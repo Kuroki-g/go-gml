@@ -45,7 +45,7 @@ func fromLinearRingMember(m *gen.LinearRingMemberType) *gen.LinearRingType {
 	_ = m.Title
 	_ = m.Show
 	_ = m.Actuate
-	if m.Href != "" {
+	if m.Href != nil {
 		return nil
 	}
 	return m.LinearRing

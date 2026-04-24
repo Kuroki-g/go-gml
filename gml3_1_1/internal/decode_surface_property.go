@@ -51,15 +51,15 @@ func multiPolygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim *uin
 		}
 		return nil, nil
 	}
-	if m.Href != "" {
-		id := strings.TrimPrefix(m.Href, "#")
+	if m.Href != nil {
+		id := strings.TrimPrefix(*m.Href, "#")
 		if mp, ok := resolver.multiPolygonByID[id]; ok {
 			return mp, nil
 		}
 		if poly, ok := resolver.polygonByID[id]; ok {
 			return core.MultiPolygon{poly}, nil
 		}
-		return nil, fmt.Errorf("gml: unresolved xlink:href %q", m.Href)
+		return nil, fmt.Errorf("gml: unresolved xlink:href %q", *m.Href)
 	}
 	// xlink metadata attributes — not used for geometry.
 	_ = m.RemoteSchema
@@ -131,12 +131,12 @@ func polygonFromSurfaceProperty(m *gen.SurfacePropertyType, inheritDim *uint, in
 		}
 		return mp[0], nil
 	}
-	if m.Href != "" {
-		id := strings.TrimPrefix(m.Href, "#")
+	if m.Href != nil {
+		id := strings.TrimPrefix(*m.Href, "#")
 		if poly, ok := resolver.polygonByID[id]; ok {
 			return poly, nil
 		}
-		return core.Polygon(nil), fmt.Errorf("gml: unresolved xlink:href %q", m.Href)
+		return core.Polygon(nil), fmt.Errorf("gml: unresolved xlink:href %q", *m.Href)
 	}
 	// xlink metadata attributes — not used for geometry.
 	_ = m.RemoteSchema

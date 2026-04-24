@@ -25,7 +25,7 @@ type AbstractContinuousCoverageType struct {
 	MethodName              []CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string             `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string            `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location            *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -47,7 +47,7 @@ type AbstractCoordinateOperationBaseType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this coordinate operation is identified.
 	CoordinateOperationName *CodeType `xml:"http://www.opengis.net/gml coordinateOperationName,omitempty"`
-	Id                      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      string    `xml:"http://www.opengis.net/gml id,attr"`
 }
 
 type AbstractCoordinateOperationType struct {
@@ -55,7 +55,7 @@ type AbstractCoordinateOperationType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this coordinate operation is identified.
 	CoordinateOperationName *CodeType `xml:"http://www.opengis.net/gml coordinateOperationName,omitempty"`
-	Id                      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this coordinate operation. The first coordinateOperationID, if any, is normally the primary identification code, and any others are aliases.
 	CoordinateOperationID []IdentifierType `xml:"http://www.opengis.net/gml coordinateOperationID"`
 	// Comments on or information about this coordinate operation, including source information.
@@ -82,7 +82,7 @@ type AbstractCoordinateSystemBaseType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
-	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr"`
 }
 
 type AbstractCoordinateSystemType struct {
@@ -90,7 +90,7 @@ type AbstractCoordinateSystemType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
-	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -115,7 +115,7 @@ type AbstractCoverageType struct {
 	MethodName              []CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string             `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string            `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location            *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -164,7 +164,7 @@ type AbstractCurveType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -188,7 +188,7 @@ type AbstractDatumBaseType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this datum is identified.
 	DatumName *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
-	Id        string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id        string    `xml:"http://www.opengis.net/gml id,attr"`
 }
 
 type AbstractDatumType struct {
@@ -196,7 +196,7 @@ type AbstractDatumType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this datum is identified.
 	DatumName *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
-	Id        string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id        string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this datum. The first datumID, if any, is normally the primary identification code, and any others are aliases.
 	DatumID []IdentifierType `xml:"http://www.opengis.net/gml datumID"`
 	// Comments on this reference system, including source information.
@@ -231,7 +231,7 @@ type AbstractDiscreteCoverageType struct {
 	MethodName              []CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string             `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string            `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location            *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -264,7 +264,7 @@ type AbstractFeatureCollectionType struct {
 	MethodName              []CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string             `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string            `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -289,7 +289,7 @@ type AbstractFeatureType struct {
 	MethodName              []CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string             `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string            `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -312,7 +312,7 @@ type AbstractGMLType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 }
 
 type AbstractGeneralConversionType struct {
@@ -332,7 +332,7 @@ type AbstractGeneralConversionType struct {
 	AbsoluteExternalPositionalAccuracy []AbsoluteExternalPositionalAccuracyType `xml:"http://www.opengis.net/gml absoluteExternalPositionalAccuracy"`
 	CovarianceMatrix                   []CovarianceMatrixType                   `xml:"http://www.opengis.net/gml covarianceMatrix"`
 	RelativeInternalPositionalAccuracy []RelativeInternalPositionalAccuracyType `xml:"http://www.opengis.net/gml relativeInternalPositionalAccuracy"`
-	Id                                 string                                   `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                                 string                                   `xml:"http://www.opengis.net/gml id,attr"`
 }
 
 type AbstractGeneralDerivedCRSType struct {
@@ -340,7 +340,7 @@ type AbstractGeneralDerivedCRSType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
-	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -359,14 +359,14 @@ type AbstractGeneralOperationParameterRefType struct {
 	AbstractGeneralOperationParameter *AbstractGeneralOperationParameterType `xml:"http://www.opengis.net/gml _GeneralOperationParameter,omitempty"`
 	OperationParameter                *OperationParameterType                `xml:"http://www.opengis.net/gml OperationParameter,omitempty"`
 	OperationParameterGroup           *OperationParameterGroupType           `xml:"http://www.opengis.net/gml OperationParameterGroup,omitempty"`
-	RemoteSchema                      string                                 `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                         string                                 `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                              string                                 `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                              string                                 `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                           string                                 `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                             string                                 `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                              string                                 `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                           string                                 `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                      *string                                `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                         *string                                `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                              *string                                `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                              *string                                `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                           *string                                `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                             *string                                `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                              *string                                `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                           *string                                `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type AbstractGeneralOperationParameterType struct {
@@ -385,7 +385,7 @@ type AbstractGeneralOperationParameterType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      string     `xml:"http://www.opengis.net/gml id,attr"`
 	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
 	MinimumOccurs *uint `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
 }
@@ -416,7 +416,7 @@ type AbstractGeneralTransformationType struct {
 	SourceCRS *CRSRefType `xml:"http://www.opengis.net/gml sourceCRS,omitempty"`
 	// Association to the target CRS (coordinate reference system) of this coordinate operation. For constraints on multiplicity of "sourceCRS" and "targetCRS", see UML model of Coordinate Operation package in OGC Abstract Specification topic 2.
 	TargetCRS *CRSRefType `xml:"http://www.opengis.net/gml targetCRS,omitempty"`
-	Id        string      `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id        string      `xml:"http://www.opengis.net/gml id,attr"`
 }
 
 type AbstractGeometricAggregateType struct {
@@ -440,7 +440,7 @@ type AbstractGeometricAggregateType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -480,7 +480,7 @@ type AbstractGeometricPrimitiveType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -520,7 +520,7 @@ type AbstractGeometryType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -550,7 +550,7 @@ type AbstractGriddedSurfaceType struct {
 }
 
 type AbstractMetaDataType struct {
-	Id string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 }
 
 type AbstractParametricCurveSurfaceType struct {
@@ -566,7 +566,7 @@ type AbstractReferenceSystemBaseType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
-	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr"`
 }
 
 type AbstractReferenceSystemType struct {
@@ -574,7 +574,7 @@ type AbstractReferenceSystemType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
-	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -613,7 +613,7 @@ type AbstractRingType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -653,7 +653,7 @@ type AbstractSolidType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -688,7 +688,7 @@ type AbstractStyleType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 }
 
 type AbstractSurfacePatchType struct {
@@ -715,7 +715,7 @@ type AbstractSurfaceType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -750,7 +750,7 @@ type AbstractTimeComplexType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 }
 
 type AbstractTimeGeometricPrimitiveType struct {
@@ -769,7 +769,7 @@ type AbstractTimeGeometricPrimitiveType struct {
 	MethodName              []CodeType        `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType        `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType        `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string            `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string           `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	RelatedTime             []RelatedTimeType `xml:"http://www.opengis.net/gml relatedTime"`
 	Frame                   *string           `xml:"frame,attr,omitempty"`
 }
@@ -790,7 +790,7 @@ type AbstractTimeObjectType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 }
 
 type AbstractTimePrimitiveType struct {
@@ -809,7 +809,7 @@ type AbstractTimePrimitiveType struct {
 	MethodName              []CodeType        `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType        `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType        `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string            `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string           `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	RelatedTime             []RelatedTimeType `xml:"http://www.opengis.net/gml relatedTime"`
 }
 
@@ -829,7 +829,7 @@ type AbstractTimeReferenceSystemType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      string     `xml:"http://www.opengis.net/gml id,attr"`
 	DomainOfValidity        *string    `xml:"http://www.opengis.net/gml domainOfValidity,omitempty"`
 }
 
@@ -849,7 +849,7 @@ type AbstractTimeSliceType struct {
 	MethodName              []CodeType                 `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType                 `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType                 `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	ValidTime               *TimePrimitivePropertyType `xml:"http://www.opengis.net/gml validTime,omitempty"`
 	DataSource              *StringOrRefType           `xml:"http://www.opengis.net/gml dataSource,omitempty"`
 }
@@ -870,7 +870,7 @@ type AbstractTimeTopologyPrimitiveType struct {
 	MethodName              []CodeType        `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType        `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType        `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string            `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string           `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	RelatedTime             []RelatedTimeType `xml:"http://www.opengis.net/gml relatedTime"`
 	Complex                 *ReferenceType    `xml:"http://www.opengis.net/gml complex,omitempty"`
 }
@@ -891,7 +891,7 @@ type AbstractTopoPrimitiveType struct {
 	MethodName              []CodeType             `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType             `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType             `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                 `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	Isolated                []IsolatedPropertyType `xml:"http://www.opengis.net/gml isolated"`
 	Container               *ContainerPropertyType `xml:"http://www.opengis.net/gml container,omitempty"`
 }
@@ -912,7 +912,7 @@ type AbstractTopologyType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 }
 
 type AffinePlacementType struct {
@@ -1263,7 +1263,7 @@ type ArrayType struct {
 	MethodName              []CodeType            `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType            `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType            `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string               `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	Members                 *ArrayAssociationType `xml:"http://www.opengis.net/gml members,omitempty"`
 }
 
@@ -1410,14 +1410,14 @@ type AssociationType struct {
 	AbstractTimeTopologyPrimitive     *AbstractTimeTopologyPrimitiveType     `xml:"http://www.opengis.net/gml _TimeTopologyPrimitive,omitempty"`
 	AbstractTopoPrimitive             *AbstractTopoPrimitiveType             `xml:"http://www.opengis.net/gml _TopoPrimitive,omitempty"`
 	AbstractTopology                  *AbstractTopologyType                  `xml:"http://www.opengis.net/gml _Topology,omitempty"`
-	RemoteSchema                      string                                 `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                         string                                 `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                              string                                 `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                              string                                 `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                           string                                 `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                             string                                 `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                              string                                 `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                           string                                 `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                      *string                                `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                         *string                                `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                              *string                                `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                              *string                                `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                           *string                                `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                             *string                                `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                              *string                                `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                           *string                                `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type BSplineType struct {
@@ -1470,7 +1470,7 @@ type BagType struct {
 	MethodName              []CodeType            `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType            `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType            `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string               `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	Member                  []AssociationType     `xml:"http://www.opengis.net/gml member"`
 	Members                 *ArrayAssociationType `xml:"http://www.opengis.net/gml members,omitempty"`
 }
@@ -1491,7 +1491,7 @@ type BaseStyleDescriptorType struct {
 	MethodName              []CodeType           `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType           `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType           `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string               `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string              `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	SpatialResolution       *ScaleType           `xml:"http://www.opengis.net/gml spatialResolution,omitempty"`
 	StyleVariation          []StyleVariationType `xml:"http://www.opengis.net/gml styleVariation"`
 	Animate                 []string             `xml:"http://www.w3.org/2001/SMIL20/ animate"`
@@ -1516,7 +1516,7 @@ type BaseUnitType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      string     `xml:"http://www.opengis.net/gml id,attr"`
 	// Informal description of the phenomenon or type of quantity that is measured or observed. For example, "length", "angle", "time", "pressure", or "temperature". When the quantity is the result of an observation or measurement, this term is known as Observable Type or Measurand.
 	QuantityType *StringOrRefType `xml:"http://www.opengis.net/gml quantityType,omitempty"`
 	// For global understanding of a unit of measure, it is often possible to reference an item in a catalog of units, using a symbol in that catalog. The "codeSpace" attribute in "CodeType" identifies a namespace for the catalog symbol value, and might reference the catalog. The "string" value in "CodeType" contains the value of a symbol that is unique within this catalog namespace. This symbol often appears explicitly in the catalog, but it could be a combination of symbols using a specified algebra of units. For example, the symbol "cm" might indicate that it is the "m" symbol combined with the "c" prefix.
@@ -1559,15 +1559,15 @@ type BezierType struct {
 
 type BooleanPropertyType struct {
 	// A value from two-valued logic, using the XML Schema boolean type.  An instance may take the values {true, false, 1, 0}.
-	Boolean      *bool  `xml:"http://www.opengis.net/gml Boolean,omitempty"`
-	RemoteSchema string `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	Boolean      *bool   `xml:"http://www.opengis.net/gml Boolean,omitempty"`
+	RemoteSchema *string `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type BoundedFeatureType struct {
@@ -1590,7 +1590,7 @@ type BoundedFeatureType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 }
 
 type BoundingShapeType struct {
@@ -1613,26 +1613,26 @@ type CRSRefType struct {
 	VerticalCRS                       *VerticalCRSType               `xml:"http://www.opengis.net/gml VerticalCRS,omitempty"`
 	AbstractCoordinateReferenceSystem *AbstractReferenceSystemType   `xml:"http://www.opengis.net/gml _CoordinateReferenceSystem,omitempty"`
 	AbstractGeneralDerivedCRS         *AbstractGeneralDerivedCRSType `xml:"http://www.opengis.net/gml _GeneralDerivedCRS,omitempty"`
-	RemoteSchema                      string                         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                         string                         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                              string                         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                              string                         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                           string                         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                             string                         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                              string                         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                           string                         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                      *string                        `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                         *string                        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                              *string                        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                              *string                        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                           *string                        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                             *string                        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                              *string                        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                           *string                        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CartesianCSRefType struct {
 	CartesianCS  *CartesianCSType `xml:"http://www.opengis.net/gml CartesianCS,omitempty"`
-	RemoteSchema string           `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CartesianCSType struct {
@@ -1640,7 +1640,7 @@ type CartesianCSType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
-	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -1656,14 +1656,14 @@ type CategoryExtentType struct {
 type CategoryPropertyType struct {
 	// A term representing a classification.  It has an optional XML attribute codeSpace, whose value is a URI which identifies a dictionary, codelist or authority for the term.
 	Category     *CodeType `xml:"http://www.opengis.net/gml Category,omitempty"`
-	RemoteSchema string    `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string   `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string   `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string   `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string   `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string   `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string   `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string   `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string   `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CircleByCenterPointType struct {
@@ -1781,14 +1781,14 @@ type CodeType struct {
 
 type CompositeCurvePropertyType struct {
 	CompositeCurve *CompositeCurveType `xml:"http://www.opengis.net/gml CompositeCurve,omitempty"`
-	RemoteSchema   string              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField      string              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href           string              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role           string              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole        string              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title          string              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show           string              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate        string              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema   *string             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField      *string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href           *string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role           *string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole        *string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title          *string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show           *string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate        *string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CompositeCurveType struct {
@@ -1812,7 +1812,7 @@ type CompositeCurveType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -1836,14 +1836,14 @@ type CompositeCurveType struct {
 
 type CompositeSolidPropertyType struct {
 	CompositeSolid *CompositeSolidType `xml:"http://www.opengis.net/gml CompositeSolid,omitempty"`
-	RemoteSchema   string              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField      string              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href           string              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role           string              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole        string              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title          string              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show           string              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate        string              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema   *string             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField      *string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href           *string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role           *string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole        *string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title          *string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show           *string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate        *string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CompositeSolidType struct {
@@ -1867,7 +1867,7 @@ type CompositeSolidType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -1891,14 +1891,14 @@ type CompositeSolidType struct {
 
 type CompositeSurfacePropertyType struct {
 	CompositeSurface *CompositeSurfaceType `xml:"http://www.opengis.net/gml CompositeSurface,omitempty"`
-	RemoteSchema     string                `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField        string                `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href             string                `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role             string                `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole          string                `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title            string                `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show             string                `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate          string                `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema     *string               `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField        *string               `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href             *string               `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role             *string               `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole          *string               `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title            *string               `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show             *string               `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate          *string               `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CompositeSurfaceType struct {
@@ -1922,7 +1922,7 @@ type CompositeSurfaceType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -1960,7 +1960,7 @@ type CompositeValueType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Element which refers to, or contains, a Value.  This version is used in CompositeValues.
 	ValueComponent []ValuePropertyType `xml:"http://www.opengis.net/gml valueComponent"`
 	// Element which refers to, or contains, a set of homogeneously typed Values.
@@ -1969,14 +1969,14 @@ type CompositeValueType struct {
 
 type CompoundCRSRefType struct {
 	CompoundCRS  *CompoundCRSType `xml:"http://www.opengis.net/gml CompoundCRS,omitempty"`
-	RemoteSchema string           `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CompoundCRSType struct {
@@ -1984,7 +1984,7 @@ type CompoundCRSType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
-	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -1999,14 +1999,14 @@ type CompoundCRSType struct {
 
 type ConcatenatedOperationRefType struct {
 	ConcatenatedOperation *ConcatenatedOperationType `xml:"http://www.opengis.net/gml ConcatenatedOperation,omitempty"`
-	RemoteSchema          string                     `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField             string                     `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                  string                     `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                  string                     `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole               string                     `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                 string                     `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                  string                     `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate               string                     `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema          *string                    `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField             *string                    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                  *string                    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                  *string                    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole               *string                    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                 *string                    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                  *string                    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate               *string                    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type ConcatenatedOperationType struct {
@@ -2014,7 +2014,7 @@ type ConcatenatedOperationType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this coordinate operation is identified.
 	CoordinateOperationName *CodeType `xml:"http://www.opengis.net/gml coordinateOperationName,omitempty"`
-	Id                      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this coordinate operation. The first coordinateOperationID, if any, is normally the primary identification code, and any others are aliases.
 	CoordinateOperationID []IdentifierType `xml:"http://www.opengis.net/gml coordinateOperationID"`
 	// Comments on or information about this coordinate operation, including source information.
@@ -2053,14 +2053,14 @@ type ConeType struct {
 type ContainerPropertyType struct {
 	Face         *FaceType      `xml:"http://www.opengis.net/gml Face,omitempty"`
 	TopoSolid    *TopoSolidType `xml:"http://www.opengis.net/gml TopoSolid,omitempty"`
-	RemoteSchema string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string        `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type ConventionalUnitType struct {
@@ -2079,7 +2079,7 @@ type ConventionalUnitType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      string     `xml:"http://www.opengis.net/gml id,attr"`
 	// Informal description of the phenomenon or type of quantity that is measured or observed. For example, "length", "angle", "time", "pressure", or "temperature". When the quantity is the result of an observation or measurement, this term is known as Observable Type or Measurand.
 	QuantityType *StringOrRefType `xml:"http://www.opengis.net/gml quantityType,omitempty"`
 	// For global understanding of a unit of measure, it is often possible to reference an item in a catalog of units, using a symbol in that catalog. The "codeSpace" attribute in "CodeType" identifies a namespace for the catalog symbol value, and might reference the catalog. The "string" value in "CodeType" contains the value of a symbol that is unique within this catalog namespace. This symbol often appears explicitly in the catalog, but it could be a combination of symbols using a specified algebra of units. For example, the symbol "cm" might indicate that it is the "m" symbol combined with the "c" prefix.
@@ -2093,14 +2093,14 @@ type ConventionalUnitType struct {
 
 type ConversionRefType struct {
 	Conversion   *ConversionType `xml:"http://www.opengis.net/gml Conversion,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type ConversionToPreferredUnitType struct {
@@ -2129,7 +2129,7 @@ type ConversionType struct {
 	AbsoluteExternalPositionalAccuracy []AbsoluteExternalPositionalAccuracyType `xml:"http://www.opengis.net/gml absoluteExternalPositionalAccuracy"`
 	CovarianceMatrix                   []CovarianceMatrixType                   `xml:"http://www.opengis.net/gml covarianceMatrix"`
 	RelativeInternalPositionalAccuracy []RelativeInternalPositionalAccuracyType `xml:"http://www.opengis.net/gml relativeInternalPositionalAccuracy"`
-	Id                                 string                                   `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                                 string                                   `xml:"http://www.opengis.net/gml id,attr"`
 	// Association to the operation method used by this coordinate operation.
 	UsesMethod *OperationMethodRefType `xml:"http://www.opengis.net/gml usesMethod,omitempty"`
 	// Unordered list of composition associations to the set of parameter values used by this conversion operation.
@@ -2152,14 +2152,14 @@ type CoordinateOperationRefType struct {
 	AbstractGeneralTransformation *AbstractGeneralTransformationType `xml:"http://www.opengis.net/gml _GeneralTransformation,omitempty"`
 	AbstractOperation             *AbstractCoordinateOperationType   `xml:"http://www.opengis.net/gml _Operation,omitempty"`
 	AbstractSingleOperation       *AbstractCoordinateOperationType   `xml:"http://www.opengis.net/gml _SingleOperation,omitempty"`
-	RemoteSchema                  string                             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                     string                             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                          string                             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                          string                             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                       string                             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                         string                             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                          string                             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                       string                             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                  *string                            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                     *string                            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                          *string                            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                          *string                            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                       *string                            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                         *string                            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                          *string                            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                       *string                            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CoordinateReferenceSystemRefType struct {
@@ -2176,14 +2176,14 @@ type CoordinateReferenceSystemRefType struct {
 	TemporalCRS                       *TemporalCRSType               `xml:"http://www.opengis.net/gml TemporalCRS,omitempty"`
 	VerticalCRS                       *VerticalCRSType               `xml:"http://www.opengis.net/gml VerticalCRS,omitempty"`
 	AbstractGeneralDerivedCRS         *AbstractGeneralDerivedCRSType `xml:"http://www.opengis.net/gml _GeneralDerivedCRS,omitempty"`
-	RemoteSchema                      string                         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                         string                         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                              string                         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                              string                         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                           string                         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                             string                         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                              string                         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                           string                         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                      *string                        `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                         *string                        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                              *string                        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                              *string                        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                           *string                        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                             *string                        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                              *string                        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                           *string                        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CoordinateSystemAxisBaseType struct {
@@ -2200,19 +2200,19 @@ type CoordinateSystemAxisBaseType struct {
 	MethodName              *CodeType `xml:"http://www.opengis.net/gml methodName,omitempty"`
 	ParameterName           *CodeType `xml:"http://www.opengis.net/gml parameterName,omitempty"`
 	SrsName                 *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
-	Id                      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      string    `xml:"http://www.opengis.net/gml id,attr"`
 }
 
 type CoordinateSystemAxisRefType struct {
 	CoordinateSystemAxis *CoordinateSystemAxisType `xml:"http://www.opengis.net/gml CoordinateSystemAxis,omitempty"`
-	RemoteSchema         string                    `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField            string                    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                 string                    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                 string                    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole              string                    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                string                    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                 string                    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate              string                    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema         *string                   `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField            *string                   `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                 *string                   `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                 *string                   `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole              *string                   `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                *string                   `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                 *string                   `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate              *string                   `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CoordinateSystemAxisType struct {
@@ -2229,7 +2229,7 @@ type CoordinateSystemAxisType struct {
 	MethodName              *CodeType `xml:"http://www.opengis.net/gml methodName,omitempty"`
 	ParameterName           *CodeType `xml:"http://www.opengis.net/gml parameterName,omitempty"`
 	SrsName                 *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
-	Id                      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this coordinate system axis. The first axisID, if any, is normally the primary identification code, and any others are aliases.
 	AxisID []IdentifierType `xml:"http://www.opengis.net/gml axisID"`
 	// Comments on or information about this coordinate system axis, including data source information.
@@ -2238,7 +2238,7 @@ type CoordinateSystemAxisType struct {
 	AxisAbbrev *CodeType `xml:"http://www.opengis.net/gml axisAbbrev,omitempty"`
 	// Direction of this coordinate system axis (or in the case of Cartesian projected coordinates, the direction of this coordinate system axis at the origin). Examples: north or south, east or west, up or down. Within any set of coordinate system axes, only one of each pair of terms can be used. For earth-fixed CRSs, this direction is often approximate and intended to provide a human interpretable meaning to the axis. When a geodetic datum is used, the precise directions of the axes may therefore vary slightly from this approximate direction. Note that an EngineeringCRS can include specific descriptions of the directions of its coordinate system axes. For example, the path of a linear CRS axis can be referenced in another document, such as referencing a GML feature that references or includes a curve geometry. The codeSpace attribute can reference a source of more information on a set of standardized directions, or on this direction.
 	AxisDirection *CodeType `xml:"http://www.opengis.net/gml axisDirection,omitempty"`
-	Uom           string    `xml:"http://www.opengis.net/gml uom,attr,omitempty"`
+	Uom           string    `xml:"http://www.opengis.net/gml uom,attr"`
 }
 
 type CoordinateSystemRefType struct {
@@ -2253,14 +2253,14 @@ type CoordinateSystemRefType struct {
 	TemporalCS               *TemporalCSType               `xml:"http://www.opengis.net/gml TemporalCS,omitempty"`
 	UserDefinedCS            *UserDefinedCSType            `xml:"http://www.opengis.net/gml UserDefinedCS,omitempty"`
 	VerticalCS               *VerticalCSType               `xml:"http://www.opengis.net/gml VerticalCS,omitempty"`
-	RemoteSchema             string                        `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                string                        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                     string                        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                     string                        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                  string                        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                    string                        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                     string                        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                  string                        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema             *string                       `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                *string                       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                     *string                       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                     *string                       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                  *string                       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                    *string                       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                     *string                       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                  *string                       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CoordinatesType struct {
@@ -2272,15 +2272,15 @@ type CoordinatesType struct {
 
 type CountPropertyType struct {
 	// An integer representing a frequency of occurrence.
-	Count        *int   `xml:"http://www.opengis.net/gml Count,omitempty"`
-	RemoteSchema string `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	Count        *int    `xml:"http://www.opengis.net/gml Count,omitempty"`
+	RemoteSchema *string `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CovarianceElementType struct {
@@ -2355,14 +2355,14 @@ type CurvePropertyType struct {
 	Curve           *CurveType           `xml:"http://www.opengis.net/gml Curve,omitempty"`
 	LineString      *LineStringType      `xml:"http://www.opengis.net/gml LineString,omitempty"`
 	OrientableCurve *OrientableCurveType `xml:"http://www.opengis.net/gml OrientableCurve,omitempty"`
-	RemoteSchema    string               `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField       string               `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href            string               `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role            string               `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole         string               `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title           string               `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show            string               `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate         string               `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema    *string              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField       *string              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href            *string              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role            *string              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole         *string              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title           *string              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show            *string              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate         *string              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CurveSegmentArrayPropertyType struct {
@@ -2406,7 +2406,7 @@ type CurveType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -2441,14 +2441,14 @@ type CylinderType struct {
 
 type CylindricalCSRefType struct {
 	CylindricalCS *CylindricalCSType `xml:"http://www.opengis.net/gml CylindricalCS,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CylindricalCSType struct {
@@ -2456,7 +2456,7 @@ type CylindricalCSType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
-	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -2485,14 +2485,14 @@ type DatumRefType struct {
 	ImageDatum       *ImageDatumType       `xml:"http://www.opengis.net/gml ImageDatum,omitempty"`
 	TemporalDatum    *TemporalDatumType    `xml:"http://www.opengis.net/gml TemporalDatum,omitempty"`
 	VerticalDatum    *VerticalDatumType    `xml:"http://www.opengis.net/gml VerticalDatum,omitempty"`
-	RemoteSchema     string                `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField        string                `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href             string                `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role             string                `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole          string                `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title            string                `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show             string                `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate          string                `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema     *string               `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField        *string               `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href             *string               `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role             *string               `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole          *string               `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title            *string               `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show             *string               `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate          *string               `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type DefaultStylePropertyType struct {
@@ -2500,14 +2500,14 @@ type DefaultStylePropertyType struct {
 	AbstractStyle *AbstractStyleType `xml:"http://www.opengis.net/gml _Style,omitempty"`
 	Style         *StyleType         `xml:"http://www.opengis.net/gml Style,omitempty"`
 	About         *string            `xml:"about,attr,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type DefinitionProxyType struct {
@@ -2526,7 +2526,7 @@ type DefinitionProxyType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      string     `xml:"http://www.opengis.net/gml id,attr"`
 	// A reference to a remote entry in this dictionary, used when this dictionary entry is identified to allow external references to this specific entry. The remote entry referenced can be in a dictionary in the same or different XML document.
 	DefinitionRef *ReferenceType `xml:"http://www.opengis.net/gml definitionRef,omitempty"`
 }
@@ -2547,7 +2547,7 @@ type DefinitionType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      string     `xml:"http://www.opengis.net/gml id,attr"`
 }
 
 type DegreesType struct {
@@ -2563,14 +2563,14 @@ type DerivationUnitTermType struct {
 
 type DerivedCRSRefType struct {
 	DerivedCRS   *DerivedCRSType `xml:"http://www.opengis.net/gml DerivedCRS,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type DerivedCRSType struct {
@@ -2578,7 +2578,7 @@ type DerivedCRSType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
-	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -2618,7 +2618,7 @@ type DerivedUnitType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      string     `xml:"http://www.opengis.net/gml id,attr"`
 	// Informal description of the phenomenon or type of quantity that is measured or observed. For example, "length", "angle", "time", "pressure", or "temperature". When the quantity is the result of an observation or measurement, this term is known as Observable Type or Measurand.
 	QuantityType *StringOrRefType `xml:"http://www.opengis.net/gml quantityType,omitempty"`
 	// For global understanding of a unit of measure, it is often possible to reference an item in a catalog of units, using a symbol in that catalog. The "codeSpace" attribute in "CodeType" identifies a namespace for the catalog symbol value, and might reference the catalog. The "string" value in "CodeType" contains the value of a symbol that is unique within this catalog namespace. This symbol often appears explicitly in the catalog, but it could be a combination of symbols using a specified algebra of units. For example, the symbol "cm" might indicate that it is the "m" symbol combined with the "c" prefix.
@@ -2688,14 +2688,14 @@ type DictionaryEntryType struct {
 	AbstractReferenceSystem           *AbstractReferenceSystemType           `xml:"http://www.opengis.net/gml _ReferenceSystem,omitempty"`
 	AbstractSingleOperation           *AbstractCoordinateOperationType       `xml:"http://www.opengis.net/gml _SingleOperation,omitempty"`
 	AbstractTimeReferenceSystem       *AbstractTimeReferenceSystemType       `xml:"http://www.opengis.net/gml _TimeReferenceSystem,omitempty"`
-	RemoteSchema                      string                                 `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                         string                                 `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                              string                                 `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                              string                                 `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                           string                                 `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                             string                                 `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                              string                                 `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                           string                                 `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                      *string                                `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                         *string                                `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                              *string                                `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                              *string                                `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                           *string                                `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                             *string                                `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                              *string                                `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                           *string                                `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type DictionaryType struct {
@@ -2714,7 +2714,7 @@ type DictionaryType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      string     `xml:"http://www.opengis.net/gml id,attr"`
 	// An entry in this dictionary. The content of an entry can itself be a lower level dictionary or definition collection. This element follows the standard GML property model, so the value may be provided directly or by reference. Note that if the value is provided by reference, this definition does not carry a handle (gml:id) in this context, so does not allow external references to this specific entry in this context. When used in this way the referenced definition will usually be in a dictionary in the same XML document.
 	DictionaryEntry  *DictionaryEntryType `xml:"http://www.opengis.net/gml dictionaryEntry,omitempty"`
 	DefinitionMember *DictionaryEntryType `xml:"http://www.opengis.net/gml definitionMember,omitempty"`
@@ -2772,40 +2772,40 @@ type DirectPositionType struct {
 type DirectedEdgePropertyType struct {
 	Edge         *EdgeType `xml:"http://www.opengis.net/gml Edge,omitempty"`
 	Orientation  *string   `xml:"orientation,attr,omitempty"`
-	RemoteSchema string    `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string   `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string   `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string   `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string   `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string   `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string   `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string   `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string   `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type DirectedFacePropertyType struct {
 	Face         *FaceType `xml:"http://www.opengis.net/gml Face,omitempty"`
 	Orientation  *string   `xml:"orientation,attr,omitempty"`
-	RemoteSchema string    `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string   `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string   `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string   `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string   `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string   `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string   `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string   `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string   `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type DirectedNodePropertyType struct {
 	Node         *NodeType `xml:"http://www.opengis.net/gml Node,omitempty"`
 	Orientation  *string   `xml:"orientation,attr,omitempty"`
-	RemoteSchema string    `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string   `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string   `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string   `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string   `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string   `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string   `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string   `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string   `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type DirectedObservationAtDistanceType struct {
@@ -2824,7 +2824,7 @@ type DirectedObservationAtDistanceType struct {
 	MethodName              []CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string             `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string            `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -2857,7 +2857,7 @@ type DirectedObservationType struct {
 	MethodName              []CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string             `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string            `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -2876,14 +2876,14 @@ type DirectedObservationType struct {
 type DirectedTopoSolidPropertyType struct {
 	TopoSolid    *TopoSolidType `xml:"http://www.opengis.net/gml TopoSolid,omitempty"`
 	Orientation  *string        `xml:"orientation,attr,omitempty"`
-	RemoteSchema string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string        `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type DirectionPropertyType struct {
@@ -2891,14 +2891,14 @@ type DirectionPropertyType struct {
 	CompassPoint     *string              `xml:"http://www.opengis.net/gml CompassPoint,omitempty"`
 	DirectionKeyword *CodeType            `xml:"http://www.opengis.net/gml DirectionKeyword"`
 	DirectionString  *StringOrRefType     `xml:"http://www.opengis.net/gml DirectionString"`
-	RemoteSchema     string               `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField        string               `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href             string               `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role             string               `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole          string               `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title            string               `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show             string               `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate          string               `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema     *string              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField        *string              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href             *string              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role             *string              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole          *string              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title            *string              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show             *string              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate          *string              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type DirectionVectorType struct {
@@ -2956,14 +2956,14 @@ type DomainSetType struct {
 	AbstractTimeGeometricPrimitive *AbstractTimeGeometricPrimitiveType `xml:"http://www.opengis.net/gml _TimeGeometricPrimitive,omitempty"`
 	AbstractTimePrimitive          *AbstractTimePrimitiveType          `xml:"http://www.opengis.net/gml _TimePrimitive,omitempty"`
 	AbstractTimeTopologyPrimitive  *AbstractTimeTopologyPrimitiveType  `xml:"http://www.opengis.net/gml _TimeTopologyPrimitive,omitempty"`
-	RemoteSchema                   string                              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                      string                              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                           string                              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                           string                              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                        string                              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                          string                              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                           string                              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                        string                              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                   *string                             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                      *string                             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                           *string                             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                           *string                             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                        *string                             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                          *string                             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                           *string                             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                        *string                             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type DynamicFeatureCollectionType struct {
@@ -2982,7 +2982,7 @@ type DynamicFeatureCollectionType struct {
 	MethodName              []CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string             `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string            `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -3007,7 +3007,7 @@ type DynamicFeatureType struct {
 	MethodName              []CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string             `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string            `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -3030,7 +3030,7 @@ type EdgeType struct {
 	MethodName              []CodeType                 `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType                 `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType                 `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	Isolated                []IsolatedPropertyType     `xml:"http://www.opengis.net/gml isolated"`
 	Container               *ContainerPropertyType     `xml:"http://www.opengis.net/gml container,omitempty"`
 	DirectedNode            []DirectedNodePropertyType `xml:"http://www.opengis.net/gml directedNode"`
@@ -3046,19 +3046,19 @@ type EllipsoidBaseType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this ellipsoid is identified.
 	EllipsoidName *CodeType `xml:"http://www.opengis.net/gml ellipsoidName,omitempty"`
-	Id            string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id            string    `xml:"http://www.opengis.net/gml id,attr"`
 }
 
 type EllipsoidRefType struct {
 	Ellipsoid    *EllipsoidType `xml:"http://www.opengis.net/gml Ellipsoid,omitempty"`
-	RemoteSchema string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string        `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type EllipsoidType struct {
@@ -3066,7 +3066,7 @@ type EllipsoidType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this ellipsoid is identified.
 	EllipsoidName *CodeType `xml:"http://www.opengis.net/gml ellipsoidName,omitempty"`
-	Id            string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id            string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this ellipsoid. The first ellipsoidID, if any, is normally the primary identification code, and any others are aliases.
 	EllipsoidID []IdentifierType `xml:"http://www.opengis.net/gml ellipsoidID"`
 	// Comments on or information about this ellipsoid, including source information.
@@ -3078,14 +3078,14 @@ type EllipsoidType struct {
 
 type EllipsoidalCSRefType struct {
 	EllipsoidalCS *EllipsoidalCSType `xml:"http://www.opengis.net/gml EllipsoidalCS,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type EllipsoidalCSType struct {
@@ -3093,7 +3093,7 @@ type EllipsoidalCSType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
-	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -3104,14 +3104,14 @@ type EllipsoidalCSType struct {
 
 type EngineeringCRSRefType struct {
 	EngineeringCRS *EngineeringCRSType `xml:"http://www.opengis.net/gml EngineeringCRS,omitempty"`
-	RemoteSchema   string              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField      string              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href           string              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role           string              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole        string              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title          string              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show           string              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate        string              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema   *string             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField      *string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href           *string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role           *string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole        *string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title          *string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show           *string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate        *string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type EngineeringCRSType struct {
@@ -3119,7 +3119,7 @@ type EngineeringCRSType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
-	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -3136,14 +3136,14 @@ type EngineeringCRSType struct {
 
 type EngineeringDatumRefType struct {
 	EngineeringDatum *EngineeringDatumType `xml:"http://www.opengis.net/gml EngineeringDatum,omitempty"`
-	RemoteSchema     string                `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField        string                `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href             string                `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role             string                `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole          string                `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title            string                `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show             string                `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate          string                `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema     *string               `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField        *string               `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href             *string               `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role             *string               `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole          *string               `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title            *string               `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show             *string               `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate          *string               `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type EngineeringDatumType struct {
@@ -3151,7 +3151,7 @@ type EngineeringDatumType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this datum is identified.
 	DatumName *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
-	Id        string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id        string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this datum. The first datumID, if any, is normally the primary identification code, and any others are aliases.
 	DatumID []IdentifierType `xml:"http://www.opengis.net/gml datumID"`
 	// Comments on this reference system, including source information.
@@ -3260,7 +3260,7 @@ type FaceType struct {
 	MethodName              []CodeType                      `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType                      `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType                      `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                          `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	Isolated                []IsolatedPropertyType          `xml:"http://www.opengis.net/gml isolated"`
 	Container               *ContainerPropertyType          `xml:"http://www.opengis.net/gml container,omitempty"`
 	DirectedEdge            []DirectedEdgePropertyType      `xml:"http://www.opengis.net/gml directedEdge"`
@@ -3303,7 +3303,7 @@ type FeatureCollectionType struct {
 	MethodName              []CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string             `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string            `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -3328,28 +3328,28 @@ type FeaturePropertyType struct {
 	AbstractCoverage              *AbstractCoverageType              `xml:"http://www.opengis.net/gml _Coverage,omitempty"`
 	AbstractDiscreteCoverage      *AbstractDiscreteCoverageType      `xml:"http://www.opengis.net/gml _DiscreteCoverage,omitempty"`
 	AbstractFeatureCollection     *AbstractFeatureCollectionType     `xml:"http://www.opengis.net/gml _FeatureCollection,omitempty"`
-	RemoteSchema                  string                             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                     string                             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                          string                             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                          string                             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                       string                             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                         string                             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                          string                             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                       string                             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                  *string                            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                     *string                            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                          *string                            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                          *string                            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                       *string                            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                         *string                            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                          *string                            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                       *string                            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type FeatureStylePropertyType struct {
 	// The style descriptor for features.
 	FeatureStyle *FeatureStyleType `xml:"http://www.opengis.net/gml FeatureStyle,omitempty"`
 	About        *string           `xml:"about,attr,omitempty"`
-	RemoteSchema string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string           `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type FeatureStyleType struct {
@@ -3368,7 +3368,7 @@ type FeatureStyleType struct {
 	MethodName              []CodeType                  `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType                  `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType                  `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                      `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	FeatureConstraint       *string                     `xml:"http://www.opengis.net/gml featureConstraint,omitempty"`
 	GeometryStyle           []GeometryStylePropertyType `xml:"http://www.opengis.net/gml geometryStyle"`
 	TopologyStyle           []TopologyStylePropertyType `xml:"http://www.opengis.net/gml topologyStyle"`
@@ -3396,43 +3396,43 @@ type FormulaType struct {
 type GeneralConversionRefType struct {
 	AbstractGeneralConversion *AbstractGeneralConversionType `xml:"http://www.opengis.net/gml _GeneralConversion,omitempty"`
 	Conversion                *ConversionType                `xml:"http://www.opengis.net/gml Conversion,omitempty"`
-	RemoteSchema              string                         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                 string                         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                      string                         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                      string                         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                   string                         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                     string                         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                      string                         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                   string                         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema              *string                        `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                 *string                        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                      *string                        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                      *string                        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                   *string                        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                     *string                        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                      *string                        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                   *string                        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GeneralTransformationRefType struct {
 	AbstractGeneralTransformation *AbstractGeneralTransformationType `xml:"http://www.opengis.net/gml _GeneralTransformation,omitempty"`
 	Transformation                *TransformationType                `xml:"http://www.opengis.net/gml Transformation,omitempty"`
-	RemoteSchema                  string                             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                     string                             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                          string                             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                          string                             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                       string                             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                         string                             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                          string                             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                       string                             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                  *string                            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                     *string                            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                          *string                            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                          *string                            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                       *string                            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                         *string                            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                          *string                            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                       *string                            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GenericMetaDataType struct {
-	Id string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 }
 
 type GeocentricCRSRefType struct {
 	GeocentricCRS *GeocentricCRSType `xml:"http://www.opengis.net/gml GeocentricCRS,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GeocentricCRSType struct {
@@ -3440,7 +3440,7 @@ type GeocentricCRSType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
-	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -3507,14 +3507,14 @@ type GeodesicType struct {
 
 type GeodeticDatumRefType struct {
 	GeodeticDatum *GeodeticDatumType `xml:"http://www.opengis.net/gml GeodeticDatum,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GeodeticDatumType struct {
@@ -3522,7 +3522,7 @@ type GeodeticDatumType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this datum is identified.
 	DatumName *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
-	Id        string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id        string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this datum. The first datumID, if any, is normally the primary identification code, and any others are aliases.
 	DatumID []IdentifierType `xml:"http://www.opengis.net/gml datumID"`
 	// Comments on this reference system, including source information.
@@ -3547,14 +3547,14 @@ type GeodeticDatumType struct {
 
 type GeographicCRSRefType struct {
 	GeographicCRS *GeographicCRSType `xml:"http://www.opengis.net/gml GeographicCRS,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GeographicCRSType struct {
@@ -3562,7 +3562,7 @@ type GeographicCRSType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
-	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -3582,14 +3582,14 @@ type GeometricComplexPropertyType struct {
 	CompositeCurve   *CompositeCurveType   `xml:"http://www.opengis.net/gml CompositeCurve,omitempty"`
 	CompositeSurface *CompositeSurfaceType `xml:"http://www.opengis.net/gml CompositeSurface,omitempty"`
 	CompositeSolid   *CompositeSolidType   `xml:"http://www.opengis.net/gml CompositeSolid,omitempty"`
-	RemoteSchema     string                `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField        string                `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href             string                `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role             string                `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole          string                `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title            string                `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show             string                `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate          string                `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema     *string               `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField        *string               `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href             *string               `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role             *string               `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole          *string               `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title            *string               `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show             *string               `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate          *string               `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GeometricComplexType struct {
@@ -3613,7 +3613,7 @@ type GeometricComplexType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -3654,14 +3654,14 @@ type GeometricPrimitivePropertyType struct {
 	AbstractCurve              *AbstractCurveType              `xml:"http://www.opengis.net/gml _Curve,omitempty"`
 	AbstractSolid              *AbstractSolidType              `xml:"http://www.opengis.net/gml _Solid,omitempty"`
 	AbstractSurface            *AbstractSurfaceType            `xml:"http://www.opengis.net/gml _Surface,omitempty"`
-	RemoteSchema               string                          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                  string                          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                       string                          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                       string                          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                    string                          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                      string                          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                       string                          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                    string                          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema               *string                         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                  *string                         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                       *string                         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                       *string                         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                    *string                         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                      *string                         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                       *string                         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                    *string                         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GeometryArrayPropertyType struct {
@@ -3742,28 +3742,28 @@ type GeometryPropertyType struct {
 	AbstractRing               *AbstractRingType               `xml:"http://www.opengis.net/gml _Ring,omitempty"`
 	AbstractSolid              *AbstractSolidType              `xml:"http://www.opengis.net/gml _Solid,omitempty"`
 	AbstractSurface            *AbstractSurfaceType            `xml:"http://www.opengis.net/gml _Surface,omitempty"`
-	RemoteSchema               string                          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                  string                          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                       string                          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                       string                          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                    string                          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                      string                          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                       string                          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                    string                          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema               *string                         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                  *string                         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                       *string                         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                       *string                         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                    *string                         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                      *string                         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                       *string                         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                    *string                         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GeometryStylePropertyType struct {
 	// The style descriptor for geometries of a feature.
 	GeometryStyle *GeometryStyleType `xml:"http://www.opengis.net/gml GeometryStyle,omitempty"`
 	About         *string            `xml:"about,attr,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GeometryStyleType struct {
@@ -3782,7 +3782,7 @@ type GeometryStyleType struct {
 	MethodName              []CodeType              `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType              `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType              `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                 `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	SpatialResolution       *ScaleType              `xml:"http://www.opengis.net/gml spatialResolution,omitempty"`
 	StyleVariation          []StyleVariationType    `xml:"http://www.opengis.net/gml styleVariation"`
 	Animate                 []string                `xml:"http://www.w3.org/2001/SMIL20/ animate"`
@@ -3802,14 +3802,14 @@ type GraphStylePropertyType struct {
 	// The style descriptor for a graph consisting of a number of features. Describes graph-specific style attributes.
 	GraphStyle   *GraphStyleType `xml:"http://www.opengis.net/gml GraphStyle,omitempty"`
 	About        *string         `xml:"about,attr,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GraphStyleType struct {
@@ -3828,7 +3828,7 @@ type GraphStyleType struct {
 	MethodName              []CodeType           `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType           `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType           `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string               `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string              `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	SpatialResolution       *ScaleType           `xml:"http://www.opengis.net/gml spatialResolution,omitempty"`
 	StyleVariation          []StyleVariationType `xml:"http://www.opengis.net/gml styleVariation"`
 	Animate                 []string             `xml:"http://www.w3.org/2001/SMIL20/ animate"`
@@ -3866,20 +3866,20 @@ type GridCoverageType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	Dimension               *uint      `xml:"dimension,attr,omitempty"`
 }
 
 type GridDomainType struct {
 	Grid         *GridType `xml:"http://www.opengis.net/gml Grid,omitempty"`
-	RemoteSchema string    `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string   `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string   `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string   `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string   `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string   `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string   `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string   `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string   `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GridEnvelopeType struct {
@@ -3923,7 +3923,7 @@ type GridType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -3970,14 +3970,14 @@ type IdentifierType struct {
 
 type ImageCRSRefType struct {
 	ImageCRS     *ImageCRSType `xml:"http://www.opengis.net/gml ImageCRS,omitempty"`
-	RemoteSchema string        `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string       `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type ImageCRSType struct {
@@ -3985,7 +3985,7 @@ type ImageCRSType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
-	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -4004,14 +4004,14 @@ type ImageCRSType struct {
 
 type ImageDatumRefType struct {
 	ImageDatum   *ImageDatumType `xml:"http://www.opengis.net/gml ImageDatum,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type ImageDatumType struct {
@@ -4019,7 +4019,7 @@ type ImageDatumType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this datum is identified.
 	DatumName *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
-	Id        string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id        string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this datum. The first datumID, if any, is normally the primary identification code, and any others are aliases.
 	DatumID []IdentifierType `xml:"http://www.opengis.net/gml datumID"`
 	// Comments on this reference system, including source information.
@@ -4054,14 +4054,14 @@ type IndirectEntryType struct {
 type IsolatedPropertyType struct {
 	Node         *NodeType `xml:"http://www.opengis.net/gml Node,omitempty"`
 	Edge         *EdgeType `xml:"http://www.opengis.net/gml Edge,omitempty"`
-	RemoteSchema string    `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string   `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string   `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string   `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string   `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string   `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string   `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string   `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string   `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type KnotPropertyType struct {
@@ -4081,14 +4081,14 @@ type LabelStylePropertyType struct {
 	// The style descriptor for labels of a feature, geometry or topology.
 	LabelStyle   *LabelStyleType `xml:"http://www.opengis.net/gml LabelStyle,omitempty"`
 	About        *string         `xml:"about,attr,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type LabelStyleType struct {
@@ -4107,7 +4107,7 @@ type LabelStyleType struct {
 	MethodName              []CodeType           `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType           `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType           `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string               `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string              `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	SpatialResolution       *ScaleType           `xml:"http://www.opengis.net/gml spatialResolution,omitempty"`
 	StyleVariation          []StyleVariationType `xml:"http://www.opengis.net/gml styleVariation"`
 	Animate                 []string             `xml:"http://www.w3.org/2001/SMIL20/ animate"`
@@ -4120,7 +4120,7 @@ type LabelStyleType struct {
 
 type LabelType struct {
 	LabelExpression []string `xml:"http://www.opengis.net/gml LabelExpression"`
-	Transform       string   `xml:"http://www.opengis.net/gml transform,attr,omitempty"`
+	Transform       *string  `xml:"http://www.opengis.net/gml transform,attr,omitempty"`
 }
 
 type LengthType struct {
@@ -4129,14 +4129,14 @@ type LengthType struct {
 
 type LineStringPropertyType struct {
 	LineString   *LineStringType `xml:"http://www.opengis.net/gml LineString,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type LineStringSegmentArrayPropertyType struct {
@@ -4189,7 +4189,7 @@ type LineStringType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -4224,14 +4224,14 @@ type LineStringType struct {
 
 type LinearCSRefType struct {
 	LinearCS     *LinearCSType `xml:"http://www.opengis.net/gml LinearCS,omitempty"`
-	RemoteSchema string        `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string       `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type LinearCSType struct {
@@ -4239,7 +4239,7 @@ type LinearCSType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
-	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -4273,7 +4273,7 @@ type LinearRingType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -4345,14 +4345,14 @@ type LocationPropertyType struct {
 	LocationKeyWord            *CodeType                       `xml:"http://www.opengis.net/gml LocationKeyWord,omitempty"`
 	LocationString             *StringOrRefType                `xml:"http://www.opengis.net/gml LocationString,omitempty"`
 	Null                       *string                         `xml:"http://www.opengis.net/gml Null,omitempty"`
-	RemoteSchema               string                          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                  string                          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                       string                          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                       string                          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                    string                          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                      string                          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                       string                          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                    string                          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema               *string                         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                  *string                         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                       *string                         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                       *string                         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                    *string                         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                      *string                         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                       *string                         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                    *string                         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MeasureListType struct {
@@ -4372,14 +4372,14 @@ type MeasureType struct {
 
 type MetaDataPropertyType struct {
 	About        *string `xml:"about,attr,omitempty"`
-	RemoteSchema string  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MovingObjectStatusType struct {
@@ -4398,7 +4398,7 @@ type MovingObjectStatusType struct {
 	MethodName              []CodeType                 `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType                 `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType                 `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	ValidTime               *TimePrimitivePropertyType `xml:"http://www.opengis.net/gml validTime,omitempty"`
 	DataSource              *StringOrRefType           `xml:"http://www.opengis.net/gml dataSource,omitempty"`
 	// Deprecated in GML 3.1.0
@@ -4431,32 +4431,32 @@ type MultiCurveCoverageType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	Dimension               *uint      `xml:"dimension,attr,omitempty"`
 }
 
 type MultiCurveDomainType struct {
 	MultiCurve   *MultiCurveType `xml:"http://www.opengis.net/gml MultiCurve,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MultiCurvePropertyType struct {
 	MultiCurve   *MultiCurveType `xml:"http://www.opengis.net/gml MultiCurve,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MultiCurveType struct {
@@ -4480,7 +4480,7 @@ type MultiCurveType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -4513,14 +4513,14 @@ type MultiGeometryPropertyType struct {
 	MultiPolygon               *MultiPolygonType               `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
 	MultiSolid                 *MultiSolidType                 `xml:"http://www.opengis.net/gml MultiSolid,omitempty"`
 	MultiSurface               *MultiSurfaceType               `xml:"http://www.opengis.net/gml MultiSurface,omitempty"`
-	RemoteSchema               string                          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                  string                          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                       string                          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                       string                          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                    string                          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                      string                          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                       string                          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                    string                          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema               *string                         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                  *string                         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                       *string                         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                       *string                         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                    *string                         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                      *string                         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                       *string                         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                    *string                         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MultiGeometryType struct {
@@ -4544,7 +4544,7 @@ type MultiGeometryType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -4570,14 +4570,14 @@ type MultiGeometryType struct {
 type MultiLineStringPropertyType struct {
 	// Deprecated with GML 3.0 and included for backwards compatibility with GML 2. Use the "MultiCurve" element instead.
 	MultiLineString *MultiLineStringType `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
-	RemoteSchema    string               `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField       string               `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href            string               `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role            string               `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole         string               `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title           string               `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show            string               `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate         string               `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema    *string              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField       *string              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href            *string              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role            *string              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole         *string              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title           *string              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show            *string              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate         *string              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MultiLineStringType struct {
@@ -4601,7 +4601,7 @@ type MultiLineStringType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -4643,32 +4643,32 @@ type MultiPointCoverageType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	Dimension               *uint      `xml:"dimension,attr,omitempty"`
 }
 
 type MultiPointDomainType struct {
 	MultiPoint   *MultiPointType `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MultiPointPropertyType struct {
 	MultiPoint   *MultiPointType `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MultiPointType struct {
@@ -4692,7 +4692,7 @@ type MultiPointType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -4718,14 +4718,14 @@ type MultiPointType struct {
 type MultiPolygonPropertyType struct {
 	// Deprecated with GML 3.0 and included for backwards compatibility with GML 2. Use the "MultiSurface" element instead.
 	MultiPolygon *MultiPolygonType `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
-	RemoteSchema string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string           `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MultiPolygonType struct {
@@ -4749,7 +4749,7 @@ type MultiPolygonType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -4791,32 +4791,32 @@ type MultiSolidCoverageType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	Dimension               *uint      `xml:"dimension,attr,omitempty"`
 }
 
 type MultiSolidDomainType struct {
 	MultiSolid   *MultiSolidType `xml:"http://www.opengis.net/gml MultiSolid,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MultiSolidPropertyType struct {
 	MultiSolid   *MultiSolidType `xml:"http://www.opengis.net/gml MultiSolid,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MultiSolidType struct {
@@ -4840,7 +4840,7 @@ type MultiSolidType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -4883,32 +4883,32 @@ type MultiSurfaceCoverageType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	Dimension               *uint      `xml:"dimension,attr,omitempty"`
 }
 
 type MultiSurfaceDomainType struct {
 	MultiSurface *MultiSurfaceType `xml:"http://www.opengis.net/gml MultiSurface,omitempty"`
-	RemoteSchema string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string           `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MultiSurfacePropertyType struct {
 	MultiSurface *MultiSurfaceType `xml:"http://www.opengis.net/gml MultiSurface,omitempty"`
-	RemoteSchema string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string           `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MultiSurfaceType struct {
@@ -4932,7 +4932,7 @@ type MultiSurfaceType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -4971,7 +4971,7 @@ type NodeType struct {
 	MethodName              []CodeType                 `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType                 `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType                 `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	Isolated                []IsolatedPropertyType     `xml:"http://www.opengis.net/gml isolated"`
 	Container               *ContainerPropertyType     `xml:"http://www.opengis.net/gml container,omitempty"`
 	DirectedEdge            []DirectedEdgePropertyType `xml:"http://www.opengis.net/gml directedEdge"`
@@ -4983,14 +4983,14 @@ type NodeType struct {
 
 type ObliqueCartesianCSRefType struct {
 	ObliqueCartesianCS *ObliqueCartesianCSType `xml:"http://www.opengis.net/gml ObliqueCartesianCS,omitempty"`
-	RemoteSchema       string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField          string                  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href               string                  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role               string                  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole            string                  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title              string                  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show               string                  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate            string                  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema       *string                 `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField          *string                 `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href               *string                 `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role               *string                 `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole            *string                 `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title              *string                 `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show               *string                 `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate            *string                 `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type ObliqueCartesianCSType struct {
@@ -4998,7 +4998,7 @@ type ObliqueCartesianCSType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
-	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -5023,7 +5023,7 @@ type ObservationType struct {
 	MethodName              []CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string             `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string            `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -5096,19 +5096,19 @@ type OperationMethodBaseType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this operation method is identified.
 	MethodName *CodeType `xml:"http://www.opengis.net/gml methodName,omitempty"`
-	Id         string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id         string    `xml:"http://www.opengis.net/gml id,attr"`
 }
 
 type OperationMethodRefType struct {
 	OperationMethod *OperationMethodType `xml:"http://www.opengis.net/gml OperationMethod,omitempty"`
-	RemoteSchema    string               `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField       string               `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href            string               `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role            string               `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole         string               `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title           string               `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show            string               `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate         string               `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema    *string              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField       *string              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href            *string              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role            *string              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole         *string              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title           *string              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show            *string              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate         *string              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type OperationMethodType struct {
@@ -5116,7 +5116,7 @@ type OperationMethodType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this operation method is identified.
 	MethodName *CodeType `xml:"http://www.opengis.net/gml methodName,omitempty"`
-	Id         string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id         string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this operation method. The first methodID, if any, is normally the primary identification code, and any others are aliases.
 	MethodID []IdentifierType `xml:"http://www.opengis.net/gml methodID"`
 	// Comments on or information about this operation method, including source information.
@@ -5138,7 +5138,7 @@ type OperationParameterBaseType struct {
 	ParameterName *CodeType `xml:"http://www.opengis.net/gml parameterName,omitempty"`
 	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
 	MinimumOccurs *uint  `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
-	Id            string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id            string `xml:"http://www.opengis.net/gml id,attr"`
 }
 
 type OperationParameterGroupBaseType struct {
@@ -5148,19 +5148,19 @@ type OperationParameterGroupBaseType struct {
 	GroupName *CodeType `xml:"http://www.opengis.net/gml groupName,omitempty"`
 	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
 	MinimumOccurs *uint  `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
-	Id            string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id            string `xml:"http://www.opengis.net/gml id,attr"`
 }
 
 type OperationParameterGroupRefType struct {
 	OperationParameterGroup *OperationParameterGroupType `xml:"http://www.opengis.net/gml OperationParameterGroup,omitempty"`
-	RemoteSchema            string                       `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField               string                       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                    string                       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                    string                       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                 string                       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                   string                       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                    string                       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                 string                       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema            *string                      `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField               *string                      `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                    *string                      `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                    *string                      `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                 *string                      `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                   *string                      `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                    *string                      `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                 *string                      `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type OperationParameterGroupType struct {
@@ -5170,7 +5170,7 @@ type OperationParameterGroupType struct {
 	GroupName *CodeType `xml:"http://www.opengis.net/gml groupName,omitempty"`
 	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
 	MinimumOccurs *uint  `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
-	Id            string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id            string `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this operation parameter group. The first groupID, if any, is normally the primary identification code, and any others are aliases.
 	GroupID []IdentifierType `xml:"http://www.opengis.net/gml groupID"`
 	// Comments on or information about this operation parameter group, including source information.
@@ -5183,14 +5183,14 @@ type OperationParameterGroupType struct {
 
 type OperationParameterRefType struct {
 	OperationParameter *OperationParameterType `xml:"http://www.opengis.net/gml OperationParameter,omitempty"`
-	RemoteSchema       string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField          string                  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href               string                  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role               string                  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole            string                  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title              string                  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show               string                  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate            string                  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema       *string                 `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField          *string                 `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href               *string                 `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role               *string                 `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole            *string                 `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title              *string                 `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show               *string                 `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate            *string                 `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type OperationParameterType struct {
@@ -5200,7 +5200,7 @@ type OperationParameterType struct {
 	ParameterName *CodeType `xml:"http://www.opengis.net/gml parameterName,omitempty"`
 	// The minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number is one.
 	MinimumOccurs *uint  `xml:"http://www.opengis.net/gml minimumOccurs,omitempty"`
-	Id            string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id            string `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this operation parameter. The first parameterID, if any, is normally the primary identification code, and any others are aliases.
 	ParameterID []IdentifierType `xml:"http://www.opengis.net/gml parameterID"`
 	// Comments on or information about this operation parameter, including source information.
@@ -5216,14 +5216,14 @@ type OperationRefType struct {
 	Transformation                *TransformationType                `xml:"http://www.opengis.net/gml Transformation,omitempty"`
 	AbstractGeneralConversion     *AbstractGeneralConversionType     `xml:"http://www.opengis.net/gml _GeneralConversion,omitempty"`
 	AbstractGeneralTransformation *AbstractGeneralTransformationType `xml:"http://www.opengis.net/gml _GeneralTransformation,omitempty"`
-	RemoteSchema                  string                             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                     string                             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                          string                             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                          string                             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                       string                             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                         string                             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                          string                             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                       string                             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                  *string                            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                     *string                            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                          *string                            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                          *string                            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                       *string                            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                         *string                            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                          *string                            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                       *string                            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type OrientableCurveType struct {
@@ -5247,7 +5247,7 @@ type OrientableCurveType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -5292,7 +5292,7 @@ type OrientableSurfaceType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -5345,14 +5345,14 @@ type ParameterValueType struct {
 
 type PassThroughOperationRefType struct {
 	PassThroughOperation *PassThroughOperationType `xml:"http://www.opengis.net/gml PassThroughOperation,omitempty"`
-	RemoteSchema         string                    `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField            string                    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                 string                    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                 string                    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole              string                    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                string                    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                 string                    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate              string                    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema         *string                   `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField            *string                   `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                 *string                   `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                 *string                   `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole              *string                   `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                *string                   `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                 *string                   `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate              *string                   `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type PassThroughOperationType struct {
@@ -5360,7 +5360,7 @@ type PassThroughOperationType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this coordinate operation is identified.
 	CoordinateOperationName *CodeType `xml:"http://www.opengis.net/gml coordinateOperationName,omitempty"`
-	Id                      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this coordinate operation. The first coordinateOperationID, if any, is normally the primary identification code, and any others are aliases.
 	CoordinateOperationID []IdentifierType `xml:"http://www.opengis.net/gml coordinateOperationID"`
 	// Comments on or information about this coordinate operation, including source information.
@@ -5398,14 +5398,14 @@ type PointArrayPropertyType struct {
 
 type PointPropertyType struct {
 	Point        *PointType `xml:"http://www.opengis.net/gml Point,omitempty"`
-	RemoteSchema string     `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string     `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string     `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string     `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string     `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string     `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string     `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string     `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string    `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type PointType struct {
@@ -5429,7 +5429,7 @@ type PointType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -5458,14 +5458,14 @@ type PointType struct {
 
 type PolarCSRefType struct {
 	PolarCS      *PolarCSType `xml:"http://www.opengis.net/gml PolarCS,omitempty"`
-	RemoteSchema string       `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string      `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string      `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string      `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string      `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string      `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string      `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string      `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string      `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type PolarCSType struct {
@@ -5473,7 +5473,7 @@ type PolarCSType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
-	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -5499,14 +5499,14 @@ type PolygonPatchType struct {
 
 type PolygonPropertyType struct {
 	Polygon      *PolygonType `xml:"http://www.opengis.net/gml Polygon,omitempty"`
-	RemoteSchema string       `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string      `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string      `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string      `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string      `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string      `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string      `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string      `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string      `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type PolygonType struct {
@@ -5530,7 +5530,7 @@ type PolygonType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -5579,7 +5579,7 @@ type PolyhedralSurfaceType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -5603,19 +5603,19 @@ type PrimeMeridianBaseType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this prime meridian is identified. The meridianName most common value is Greenwich, and that value shall be used when the greenwichLongitude value is zero.
 	MeridianName *CodeType `xml:"http://www.opengis.net/gml meridianName,omitempty"`
-	Id           string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id           string    `xml:"http://www.opengis.net/gml id,attr"`
 }
 
 type PrimeMeridianRefType struct {
 	PrimeMeridian *PrimeMeridianType `xml:"http://www.opengis.net/gml PrimeMeridian,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type PrimeMeridianType struct {
@@ -5623,7 +5623,7 @@ type PrimeMeridianType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this prime meridian is identified. The meridianName most common value is Greenwich, and that value shall be used when the greenwichLongitude value is zero.
 	MeridianName *CodeType `xml:"http://www.opengis.net/gml meridianName,omitempty"`
-	Id           string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id           string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this prime meridian. The first meridianID, if any, is normally the primary identification code, and any others are aliases.
 	MeridianID []IdentifierType `xml:"http://www.opengis.net/gml meridianID"`
 	// Comments on or information about this prime meridian, including source information.
@@ -5673,27 +5673,27 @@ type PriorityLocationPropertyType struct {
 	LocationKeyWord            *CodeType                       `xml:"http://www.opengis.net/gml LocationKeyWord,omitempty"`
 	LocationString             *StringOrRefType                `xml:"http://www.opengis.net/gml LocationString,omitempty"`
 	Null                       *string                         `xml:"http://www.opengis.net/gml Null,omitempty"`
-	RemoteSchema               string                          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                  string                          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                       string                          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                       string                          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                    string                          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                      string                          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                       string                          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                    string                          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema               *string                         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                  *string                         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                       *string                         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                       *string                         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                    *string                         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                      *string                         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                       *string                         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                    *string                         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Priority                   *string                         `xml:"priority,attr,omitempty"`
 }
 
 type ProjectedCRSRefType struct {
 	ProjectedCRS *ProjectedCRSType `xml:"http://www.opengis.net/gml ProjectedCRS,omitempty"`
-	RemoteSchema string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string           `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type ProjectedCRSType struct {
@@ -5701,7 +5701,7 @@ type ProjectedCRSType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
-	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -5725,14 +5725,14 @@ type QuantityExtentType struct {
 type QuantityPropertyType struct {
 	// A numeric value with a scale.  The content of the element is an amount using the XML Schema type double which permits decimal or scientific notation.  An XML attribute uom (unit of measure) is required, whose value is a URI which identifies the definition of the scale or units by which the numeric value must be multiplied.
 	Quantity     *MeasureType `xml:"http://www.opengis.net/gml Quantity,omitempty"`
-	RemoteSchema string       `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string      `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string      `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string      `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string      `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string      `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string      `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string      `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string      `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type RangeParametersType struct {
@@ -5761,14 +5761,14 @@ type RangeParametersType struct {
 	QuantityExtent *QuantityExtentType `xml:"http://www.opengis.net/gml QuantityExtent,omitempty"`
 	// Utility element to store a 2-point range of frequency values. If one member is a null, then this is a single ended interval.
 	CountExtent  *string `xml:"http://www.opengis.net/gml CountExtent,omitempty"`
-	RemoteSchema string  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type RangeSetType struct {
@@ -5816,21 +5816,21 @@ type RectifiedGridCoverageType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	Dimension               *uint      `xml:"dimension,attr,omitempty"`
 }
 
 type RectifiedGridDomainType struct {
 	// Should be substitutionGroup="gml:Grid" but changed in order to accomplish Xerces-J schema validation
 	RectifiedGrid *RectifiedGridType `xml:"http://www.opengis.net/gml RectifiedGrid,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type RectifiedGridType struct {
@@ -5854,7 +5854,7 @@ type RectifiedGridType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -5892,25 +5892,25 @@ type ReferenceSystemRefType struct {
 	AbstractCRS                       *AbstractReferenceSystemType   `xml:"http://www.opengis.net/gml _CRS,omitempty"`
 	AbstractCoordinateReferenceSystem *AbstractReferenceSystemType   `xml:"http://www.opengis.net/gml _CoordinateReferenceSystem,omitempty"`
 	AbstractGeneralDerivedCRS         *AbstractGeneralDerivedCRSType `xml:"http://www.opengis.net/gml _GeneralDerivedCRS,omitempty"`
-	RemoteSchema                      string                         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                         string                         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                              string                         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                              string                         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                           string                         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                             string                         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                              string                         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                           string                         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                      *string                        `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                         *string                        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                              *string                        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                              *string                        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                           *string                        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                             *string                        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                              *string                        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                           *string                        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type ReferenceType struct {
-	RemoteSchema string `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type RelatedTimeType struct {
@@ -5922,14 +5922,14 @@ type RelatedTimeType struct {
 	TimePeriod                     *TimePeriodType                     `xml:"http://www.opengis.net/gml TimePeriod,omitempty"`
 	AbstractTimeGeometricPrimitive *AbstractTimeGeometricPrimitiveType `xml:"http://www.opengis.net/gml _TimeGeometricPrimitive,omitempty"`
 	AbstractTimeTopologyPrimitive  *AbstractTimeTopologyPrimitiveType  `xml:"http://www.opengis.net/gml _TimeTopologyPrimitive,omitempty"`
-	RemoteSchema                   string                              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                      string                              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                           string                              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                           string                              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                        string                              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                          string                              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                           string                              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                        string                              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                   *string                             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                      *string                             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                           *string                             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                           *string                             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                        *string                             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                          *string                             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                           *string                             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                        *string                             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	RelativePosition               *string                             `xml:"relativePosition,attr,omitempty"`
 }
 
@@ -5965,7 +5965,7 @@ type RingType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -5995,15 +5995,15 @@ type ScalarValuePropertyType struct {
 	// A numeric value with a scale.  The content of the element is an amount using the XML Schema type double which permits decimal or scientific notation.  An XML attribute uom (unit of measure) is required, whose value is a URI which identifies the definition of the scale or units by which the numeric value must be multiplied.
 	Quantity *MeasureType `xml:"http://www.opengis.net/gml Quantity,omitempty"`
 	// An integer representing a frequency of occurrence.
-	Count        *int   `xml:"http://www.opengis.net/gml Count,omitempty"`
-	RemoteSchema string `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	Count        *int    `xml:"http://www.opengis.net/gml Count,omitempty"`
+	RemoteSchema *string `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type ScaleType struct {
@@ -6033,14 +6033,14 @@ type SingleOperationRefType struct {
 	AbstractGeneralConversion     *AbstractGeneralConversionType     `xml:"http://www.opengis.net/gml _GeneralConversion,omitempty"`
 	AbstractGeneralTransformation *AbstractGeneralTransformationType `xml:"http://www.opengis.net/gml _GeneralTransformation,omitempty"`
 	AbstractOperation             *AbstractCoordinateOperationType   `xml:"http://www.opengis.net/gml _Operation,omitempty"`
-	RemoteSchema                  string                             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                     string                             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                          string                             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                          string                             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                       string                             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                         string                             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                          string                             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                       string                             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                  *string                            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                     *string                            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                          *string                            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                          *string                            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                       *string                            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                         *string                            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                          *string                            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                       *string                            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type SolidArrayPropertyType struct {
@@ -6055,14 +6055,14 @@ type SolidPropertyType struct {
 	AbstractSolid  *AbstractSolidType  `xml:"http://www.opengis.net/gml _Solid,omitempty"`
 	CompositeSolid *CompositeSolidType `xml:"http://www.opengis.net/gml CompositeSolid,omitempty"`
 	Solid          *SolidType          `xml:"http://www.opengis.net/gml Solid,omitempty"`
-	RemoteSchema   string              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField      string              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href           string              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role           string              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole        string              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title          string              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show           string              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate        string              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema   *string             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField      *string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href           *string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role           *string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole        *string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title          *string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show           *string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate        *string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type SolidType struct {
@@ -6086,7 +6086,7 @@ type SolidType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -6127,14 +6127,14 @@ type SphereType struct {
 
 type SphericalCSRefType struct {
 	SphericalCS  *SphericalCSType `xml:"http://www.opengis.net/gml SphericalCS,omitempty"`
-	RemoteSchema string           `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type SphericalCSType struct {
@@ -6142,7 +6142,7 @@ type SphericalCSType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
-	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -6152,15 +6152,15 @@ type SphericalCSType struct {
 }
 
 type StringOrRefType struct {
-	Value        string `xml:",chardata"`
-	RemoteSchema string `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	Value        string  `xml:",chardata"`
+	RemoteSchema *string `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type StyleType struct {
@@ -6179,7 +6179,7 @@ type StyleType struct {
 	MethodName              []CodeType                 `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType                 `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType                 `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	FeatureStyle            []FeatureStylePropertyType `xml:"http://www.opengis.net/gml featureStyle"`
 	GraphStyle              *GraphStylePropertyType    `xml:"http://www.opengis.net/gml graphStyle,omitempty"`
 }
@@ -6225,14 +6225,14 @@ type SurfacePropertyType struct {
 	Surface             *SurfaceType             `xml:"http://www.opengis.net/gml Surface,omitempty"`
 	Tin                 *TinType                 `xml:"http://www.opengis.net/gml Tin,omitempty"`
 	TriangulatedSurface *TriangulatedSurfaceType `xml:"http://www.opengis.net/gml TriangulatedSurface,omitempty"`
-	RemoteSchema        string                   `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField           string                   `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                string                   `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                string                   `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole             string                   `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title               string                   `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                string                   `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate             string                   `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema        *string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField           *string                  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                *string                  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                *string                  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole             *string                  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title               *string                  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                *string                  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate             *string                  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type SurfaceType struct {
@@ -6256,7 +6256,7 @@ type SurfaceType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -6281,16 +6281,16 @@ type SurfaceType struct {
 
 type SymbolType struct {
 	SymbolType   string  `xml:"symbolType,attr"`
-	Transform    string  `xml:"http://www.opengis.net/gml transform,attr,omitempty"`
+	Transform    *string `xml:"http://www.opengis.net/gml transform,attr,omitempty"`
 	About        *string `xml:"about,attr,omitempty"`
-	RemoteSchema string  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TargetPropertyType struct {
@@ -6346,26 +6346,26 @@ type TargetPropertyType struct {
 	AbstractRing               *AbstractRingType               `xml:"http://www.opengis.net/gml _Ring,omitempty"`
 	AbstractSolid              *AbstractSolidType              `xml:"http://www.opengis.net/gml _Solid,omitempty"`
 	AbstractSurface            *AbstractSurfaceType            `xml:"http://www.opengis.net/gml _Surface,omitempty"`
-	RemoteSchema               string                          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                  string                          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                       string                          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                       string                          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                    string                          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                      string                          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                       string                          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                    string                          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema               *string                         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                  *string                         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                       *string                         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                       *string                         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                    *string                         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                      *string                         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                       *string                         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                    *string                         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TemporalCRSRefType struct {
 	TemporalCRS  *TemporalCRSType `xml:"http://www.opengis.net/gml TemporalCRS,omitempty"`
-	RemoteSchema string           `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TemporalCRSType struct {
@@ -6373,7 +6373,7 @@ type TemporalCRSType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
-	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -6390,14 +6390,14 @@ type TemporalCRSType struct {
 
 type TemporalCSRefType struct {
 	TemporalCS   *TemporalCSType `xml:"http://www.opengis.net/gml TemporalCS,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TemporalCSType struct {
@@ -6405,7 +6405,7 @@ type TemporalCSType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
-	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -6425,19 +6425,19 @@ type TemporalDatumBaseType struct {
 	ValidArea *ExtentType `xml:"http://www.opengis.net/gml validArea,omitempty"`
 	// Description of domain of usage, or limitations of usage, for which this CRS object is valid.
 	Scope *string `xml:"http://www.opengis.net/gml scope,omitempty"`
-	Id    string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id    string  `xml:"http://www.opengis.net/gml id,attr"`
 }
 
 type TemporalDatumRefType struct {
 	TemporalDatum *TemporalDatumType `xml:"http://www.opengis.net/gml TemporalDatum,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TemporalDatumType struct {
@@ -6451,21 +6451,21 @@ type TemporalDatumType struct {
 	ValidArea *ExtentType `xml:"http://www.opengis.net/gml validArea,omitempty"`
 	// Description of domain of usage, or limitations of usage, for which this CRS object is valid.
 	Scope *string `xml:"http://www.opengis.net/gml scope,omitempty"`
-	Id    string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id    string  `xml:"http://www.opengis.net/gml id,attr"`
 	// The date and time origin of this temporal datum.
 	Origin *string `xml:"http://www.opengis.net/gml origin,omitempty"`
 }
 
 type TimeCalendarEraPropertyType struct {
 	TimeCalendarEra *TimeCalendarEraType `xml:"http://www.opengis.net/gml TimeCalendarEra,omitempty"`
-	RemoteSchema    string               `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField       string               `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href            string               `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role            string               `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole         string               `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title           string               `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show            string               `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate         string               `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema    *string              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField       *string              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href            *string              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role            *string              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole         *string              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title           *string              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show            *string              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate         *string              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TimeCalendarEraType struct {
@@ -6484,7 +6484,7 @@ type TimeCalendarEraType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      string     `xml:"http://www.opengis.net/gml id,attr"`
 	// Name or description of a mythical or historic event which fixes the position of the base scale of the calendar era.
 	ReferenceEvent *StringOrRefType `xml:"http://www.opengis.net/gml referenceEvent"`
 	// Date of the referenceEvent expressed as a date in the given calendar.
@@ -6505,14 +6505,14 @@ type TimeCalendarEraType struct {
 
 type TimeCalendarPropertyType struct {
 	TimeCalendar *TimeCalendarType `xml:"http://www.opengis.net/gml TimeCalendar,omitempty"`
-	RemoteSchema string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string           `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TimeCalendarType struct {
@@ -6531,7 +6531,7 @@ type TimeCalendarType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      string     `xml:"http://www.opengis.net/gml id,attr"`
 	DomainOfValidity        *string    `xml:"http://www.opengis.net/gml domainOfValidity,omitempty"`
 	// Link to the CalendarEras that it uses as a reference for dating.
 	ReferenceFrame []TimeCalendarEraPropertyType `xml:"http://www.opengis.net/gml referenceFrame"`
@@ -6539,14 +6539,14 @@ type TimeCalendarType struct {
 
 type TimeClockPropertyType struct {
 	TimeClock    *TimeClockType `xml:"http://www.opengis.net/gml TimeClock,omitempty"`
-	RemoteSchema string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string        `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TimeClockType struct {
@@ -6565,7 +6565,7 @@ type TimeClockType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      string     `xml:"http://www.opengis.net/gml id,attr"`
 	DomainOfValidity        *string    `xml:"http://www.opengis.net/gml domainOfValidity,omitempty"`
 	// Name or description of an event, such as solar noon or sunrise,
 	// which fixes the position of the base scale of the clock.
@@ -6594,7 +6594,7 @@ type TimeCoordinateSystemType struct {
 	MethodName              []CodeType               `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType               `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType               `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                   `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      string                   `xml:"http://www.opengis.net/gml id,attr"`
 	DomainOfValidity        *string                  `xml:"http://www.opengis.net/gml domainOfValidity,omitempty"`
 	Interval                *TimeIntervalLengthType  `xml:"http://www.opengis.net/gml interval"`
 	OriginPosition          *TimePositionType        `xml:"http://www.opengis.net/gml originPosition"`
@@ -6606,14 +6606,14 @@ type TimeEdgePropertyType struct {
 	// expresses a state in topological time. It has an orientation from its start toward the end,
 	// and its boundaries shall associate with two different time nodes.
 	TimeEdge     *TimeEdgeType `xml:"http://www.opengis.net/gml TimeEdge,omitempty"`
-	RemoteSchema string        `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string       `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TimeEdgeType struct {
@@ -6632,7 +6632,7 @@ type TimeEdgeType struct {
 	MethodName              []CodeType              `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType              `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType              `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                 `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	RelatedTime             []RelatedTimeType       `xml:"http://www.opengis.net/gml relatedTime"`
 	Complex                 *ReferenceType          `xml:"http://www.opengis.net/gml complex,omitempty"`
 	Start                   *TimeNodePropertyType   `xml:"http://www.opengis.net/gml start"`
@@ -6645,26 +6645,26 @@ type TimeGeometricPrimitivePropertyType struct {
 	AbstractTimeGeometricPrimitive *AbstractTimeGeometricPrimitiveType `xml:"http://www.opengis.net/gml _TimeGeometricPrimitive,omitempty"`
 	TimeInstant                    *TimeInstantType                    `xml:"http://www.opengis.net/gml TimeInstant,omitempty"`
 	TimePeriod                     *TimePeriodType                     `xml:"http://www.opengis.net/gml TimePeriod,omitempty"`
-	RemoteSchema                   string                              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                      string                              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                           string                              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                           string                              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                        string                              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                          string                              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                           string                              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                        string                              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                   *string                             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                      *string                             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                           *string                             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                           *string                             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                        *string                             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                          *string                             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                           *string                             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                        *string                             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TimeInstantPropertyType struct {
 	TimeInstant  *TimeInstantType `xml:"http://www.opengis.net/gml TimeInstant,omitempty"`
-	RemoteSchema string           `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TimeInstantType struct {
@@ -6683,7 +6683,7 @@ type TimeInstantType struct {
 	MethodName              []CodeType        `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType        `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType        `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string            `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string           `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	RelatedTime             []RelatedTimeType `xml:"http://www.opengis.net/gml relatedTime"`
 	Frame                   *string           `xml:"frame,attr,omitempty"`
 	// Direct representation of a temporal position
@@ -6703,14 +6703,14 @@ type TimeNodePropertyType struct {
 	// Time node may be isolated. However, it cannot describe the ordering relationships with other primitives.
 	// An isolated node may not be an element of any temporal topology complex.
 	TimeNode     *TimeNodeType `xml:"http://www.opengis.net/gml TimeNode,omitempty"`
-	RemoteSchema string        `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string       `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TimeNodeType struct {
@@ -6729,7 +6729,7 @@ type TimeNodeType struct {
 	MethodName              []CodeType               `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType               `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType               `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                   `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	RelatedTime             []RelatedTimeType        `xml:"http://www.opengis.net/gml relatedTime"`
 	Complex                 *ReferenceType           `xml:"http://www.opengis.net/gml complex,omitempty"`
 	PreviousEdge            []TimeEdgePropertyType   `xml:"http://www.opengis.net/gml previousEdge"`
@@ -6739,14 +6739,14 @@ type TimeNodeType struct {
 
 type TimeOrdinalEraPropertyType struct {
 	TimeOrdinalEra *TimeOrdinalEraType `xml:"http://www.opengis.net/gml TimeOrdinalEra,omitempty"`
-	RemoteSchema   string              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField      string              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href           string              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role           string              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole        string              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title          string              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show           string              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate        string              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema   *string             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField      *string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href           *string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role           *string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole        *string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title          *string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show           *string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate        *string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TimeOrdinalEraType struct {
@@ -6765,7 +6765,7 @@ type TimeOrdinalEraType struct {
 	MethodName              []CodeType              `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType              `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType              `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      string                  `xml:"http://www.opengis.net/gml id,attr"`
 	RelatedTime             []RelatedTimeType       `xml:"http://www.opengis.net/gml relatedTime"`
 	Start                   *TimeNodePropertyType   `xml:"http://www.opengis.net/gml start"`
 	End                     *TimeNodePropertyType   `xml:"http://www.opengis.net/gml end"`
@@ -6796,21 +6796,21 @@ type TimeOrdinalReferenceSystemType struct {
 	MethodName              []CodeType                   `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType                   `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType                   `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                       `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      string                       `xml:"http://www.opengis.net/gml id,attr"`
 	DomainOfValidity        *string                      `xml:"http://www.opengis.net/gml domainOfValidity,omitempty"`
 	Component               []TimeOrdinalEraPropertyType `xml:"http://www.opengis.net/gml component"`
 }
 
 type TimePeriodPropertyType struct {
 	TimePeriod   *TimePeriodType `xml:"http://www.opengis.net/gml TimePeriod,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TimePeriodType struct {
@@ -6829,7 +6829,7 @@ type TimePeriodType struct {
 	MethodName              []CodeType               `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType               `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType               `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                   `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	RelatedTime             []RelatedTimeType        `xml:"http://www.opengis.net/gml relatedTime"`
 	Frame                   *string                  `xml:"frame,attr,omitempty"`
 	BeginPosition           *TimePositionType        `xml:"http://www.opengis.net/gml beginPosition"`
@@ -6862,27 +6862,27 @@ type TimePrimitivePropertyType struct {
 	TimePeriod                     *TimePeriodType                     `xml:"http://www.opengis.net/gml TimePeriod,omitempty"`
 	AbstractTimeGeometricPrimitive *AbstractTimeGeometricPrimitiveType `xml:"http://www.opengis.net/gml _TimeGeometricPrimitive,omitempty"`
 	AbstractTimeTopologyPrimitive  *AbstractTimeTopologyPrimitiveType  `xml:"http://www.opengis.net/gml _TimeTopologyPrimitive,omitempty"`
-	RemoteSchema                   string                              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                      string                              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                           string                              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                           string                              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                        string                              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                          string                              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                           string                              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                        string                              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                   *string                             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                      *string                             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                           *string                             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                           *string                             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                        *string                             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                          *string                             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                           *string                             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                        *string                             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TimeTopologyComplexPropertyType struct {
 	// This element represents temporal topology complex. It shall be the connected acyclic directed graph composed of time nodes and time edges.
 	TimeTopologyComplex *TimeTopologyComplexType `xml:"http://www.opengis.net/gml TimeTopologyComplex,omitempty"`
-	RemoteSchema        string                   `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField           string                   `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                string                   `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                string                   `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole             string                   `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title               string                   `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                string                   `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate             string                   `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema        *string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField           *string                  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                *string                  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                *string                  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole             *string                  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title               *string                  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                *string                  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate             *string                  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TimeTopologyComplexType struct {
@@ -6901,7 +6901,7 @@ type TimeTopologyComplexType struct {
 	MethodName              []CodeType                          `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType                          `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType                          `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                              `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                             `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	Primitive               []TimeTopologyPrimitivePropertyType `xml:"http://www.opengis.net/gml primitive"`
 }
 
@@ -6910,14 +6910,14 @@ type TimeTopologyPrimitivePropertyType struct {
 	AbstractTimeTopologyPrimitive *AbstractTimeTopologyPrimitiveType `xml:"http://www.opengis.net/gml _TimeTopologyPrimitive,omitempty"`
 	TimeEdge                      *TimeEdgeType                      `xml:"http://www.opengis.net/gml TimeEdge,omitempty"`
 	TimeNode                      *TimeNodeType                      `xml:"http://www.opengis.net/gml TimeNode,omitempty"`
-	RemoteSchema                  string                             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                     string                             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                          string                             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                          string                             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                       string                             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                         string                             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                          string                             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                       string                             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                  *string                            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                     *string                            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                          *string                            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                          *string                            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                       *string                            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                         *string                            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                          *string                            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                       *string                            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TimeType struct {
@@ -6948,7 +6948,7 @@ type TinType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -7002,14 +7002,14 @@ type TinType struct {
 
 type TopoComplexMemberType struct {
 	TopoComplex  *TopoComplexType `xml:"http://www.opengis.net/gml TopoComplex,omitempty"`
-	RemoteSchema string           `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TopoComplexType struct {
@@ -7028,7 +7028,7 @@ type TopoComplexType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Need schamatron test here that isMaximal attribute value is true
 	MaximalComplex       *TopoComplexMemberType             `xml:"http://www.opengis.net/gml maximalComplex,omitempty"`
 	SuperComplex         []TopoComplexMemberType            `xml:"http://www.opengis.net/gml superComplex"`
@@ -7058,7 +7058,7 @@ type TopoCurveType struct {
 	MethodName              []CodeType                 `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType                 `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType                 `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	DirectedEdge            []DirectedEdgePropertyType `xml:"http://www.opengis.net/gml directedEdge"`
 }
 
@@ -7082,7 +7082,7 @@ type TopoPointType struct {
 	MethodName              []CodeType                `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType                `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType                `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                   `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	DirectedNode            *DirectedNodePropertyType `xml:"http://www.opengis.net/gml directedNode,omitempty"`
 }
 
@@ -7102,14 +7102,14 @@ type TopoPrimitiveMemberType struct {
 	Face                  *FaceType                  `xml:"http://www.opengis.net/gml Face,omitempty"`
 	Node                  *NodeType                  `xml:"http://www.opengis.net/gml Node,omitempty"`
 	TopoSolid             *TopoSolidType             `xml:"http://www.opengis.net/gml TopoSolid,omitempty"`
-	RemoteSchema          string                     `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField             string                     `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                  string                     `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                  string                     `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole               string                     `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                 string                     `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                  string                     `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate               string                     `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema          *string                    `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField             *string                    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                  *string                    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                  *string                    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole               *string                    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                 *string                    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                  *string                    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate               *string                    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TopoSolidType struct {
@@ -7128,7 +7128,7 @@ type TopoSolidType struct {
 	MethodName              []CodeType                 `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType                 `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType                 `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	Isolated                []IsolatedPropertyType     `xml:"http://www.opengis.net/gml isolated"`
 	Container               *ContainerPropertyType     `xml:"http://www.opengis.net/gml container,omitempty"`
 	DirectedFace            []DirectedFacePropertyType `xml:"http://www.opengis.net/gml directedFace"`
@@ -7154,7 +7154,7 @@ type TopoSurfaceType struct {
 	MethodName              []CodeType                 `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType                 `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType                 `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	DirectedFace            []DirectedFacePropertyType `xml:"http://www.opengis.net/gml directedFace"`
 }
 
@@ -7178,7 +7178,7 @@ type TopoVolumeType struct {
 	MethodName              []CodeType                      `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType                      `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType                      `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                          `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	DirectedTopoSolid       []DirectedTopoSolidPropertyType `xml:"http://www.opengis.net/gml directedTopoSolid"`
 }
 
@@ -7186,14 +7186,14 @@ type TopologyStylePropertyType struct {
 	// The style descriptor for topologies of a feature. Describes individual topology elements styles.
 	TopologyStyle *TopologyStyleType `xml:"http://www.opengis.net/gml TopologyStyle,omitempty"`
 	About         *string            `xml:"about,attr,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TopologyStyleType struct {
@@ -7212,7 +7212,7 @@ type TopologyStyleType struct {
 	MethodName              []CodeType              `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType              `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType              `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                 `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	SpatialResolution       *ScaleType              `xml:"http://www.opengis.net/gml spatialResolution,omitempty"`
 	StyleVariation          []StyleVariationType    `xml:"http://www.opengis.net/gml styleVariation"`
 	Animate                 []string                `xml:"http://www.w3.org/2001/SMIL20/ animate"`
@@ -7234,14 +7234,14 @@ type TrackType struct {
 
 type TransformationRefType struct {
 	Transformation *TransformationType `xml:"http://www.opengis.net/gml Transformation,omitempty"`
-	RemoteSchema   string              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField      string              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href           string              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role           string              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole        string              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title          string              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show           string              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate        string              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema   *string             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField      *string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href           *string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role           *string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole        *string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title          *string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show           *string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate        *string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TransformationType struct {
@@ -7267,7 +7267,7 @@ type TransformationType struct {
 	SourceCRS *CRSRefType `xml:"http://www.opengis.net/gml sourceCRS,omitempty"`
 	// Association to the target CRS (coordinate reference system) of this coordinate operation. For constraints on multiplicity of "sourceCRS" and "targetCRS", see UML model of Coordinate Operation package in OGC Abstract Specification topic 2.
 	TargetCRS *CRSRefType `xml:"http://www.opengis.net/gml targetCRS,omitempty"`
-	Id        string      `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id        string      `xml:"http://www.opengis.net/gml id,attr"`
 	// Association to the operation method used by this coordinate operation.
 	UsesMethod *OperationMethodRefType `xml:"http://www.opengis.net/gml usesMethod,omitempty"`
 	// Unordered set of composition associations to the set of parameter values used by this transformation operation.
@@ -7310,7 +7310,7 @@ type TriangulatedSurfaceType struct {
 	// geometry element is part of, e.g. a geometric element like point, curve, etc. It is expected that this attribute will be specified
 	// at the direct position level only in rare cases.
 	SrsName *string `xml:"srsName,attr,omitempty"`
-	Id      string  `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      *string `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// This attribute is included for backward compatibility with GML 2 and is deprecated with GML 3.
 	// This identifer is superceded by "gml:id" inherited from AbstractGMLType. The attribute "gid" should not be used
 	// anymore and may be deleted in future versions of GML without further notice.
@@ -7345,7 +7345,7 @@ type UnitDefinitionType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      string     `xml:"http://www.opengis.net/gml id,attr"`
 	// Informal description of the phenomenon or type of quantity that is measured or observed. For example, "length", "angle", "time", "pressure", or "temperature". When the quantity is the result of an observation or measurement, this term is known as Observable Type or Measurand.
 	QuantityType *StringOrRefType `xml:"http://www.opengis.net/gml quantityType,omitempty"`
 	// For global understanding of a unit of measure, it is often possible to reference an item in a catalog of units, using a symbol in that catalog. The "codeSpace" attribute in "CodeType" identifies a namespace for the catalog symbol value, and might reference the catalog. The "string" value in "CodeType" contains the value of a symbol that is unique within this catalog namespace. This symbol often appears explicitly in the catalog, but it could be a combination of symbols using a specified algebra of units. For example, the symbol "cm" might indicate that it is the "m" symbol combined with the "c" prefix.
@@ -7359,14 +7359,14 @@ type UnitOfMeasureType struct {
 
 type UserDefinedCSRefType struct {
 	UserDefinedCS *UserDefinedCSType `xml:"http://www.opengis.net/gml UserDefinedCS,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type UserDefinedCSType struct {
@@ -7374,7 +7374,7 @@ type UserDefinedCSType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
-	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -7570,7 +7570,7 @@ type ValueArrayType struct {
 	MethodName              []CodeType `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []CodeType `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []CodeType `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string     `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	// Element which refers to, or contains, a Value.  This version is used in CompositeValues.
 	ValueComponent []ValuePropertyType `xml:"http://www.opengis.net/gml valueComponent"`
 	// Element which refers to, or contains, a set of homogeneously typed Values.
@@ -7748,14 +7748,14 @@ type ValuePropertyType struct {
 	QuantityExtent *QuantityExtentType `xml:"http://www.opengis.net/gml QuantityExtent,omitempty"`
 	// Utility element to store a 2-point range of frequency values. If one member is a null, then this is a single ended interval.
 	CountExtent  *string `xml:"http://www.opengis.net/gml CountExtent,omitempty"`
-	RemoteSchema string  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type VectorType struct {
@@ -7782,14 +7782,14 @@ type VectorType struct {
 
 type VerticalCRSRefType struct {
 	VerticalCRS  *VerticalCRSType `xml:"http://www.opengis.net/gml VerticalCRS,omitempty"`
-	RemoteSchema string           `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type VerticalCRSType struct {
@@ -7797,7 +7797,7 @@ type VerticalCRSType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this reference system is identified.
 	SrsName *CodeType `xml:"http://www.opengis.net/gml srsName,omitempty"`
-	Id      string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id      string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alterative identifications of this reference system. The first srsID, if any, is normally the primary identification code, and any others are aliases.
 	SrsID []IdentifierType `xml:"http://www.opengis.net/gml srsID"`
 	// Comments on or information about this reference system, including source information.
@@ -7814,14 +7814,14 @@ type VerticalCRSType struct {
 
 type VerticalCSRefType struct {
 	VerticalCS   *VerticalCSType `xml:"http://www.opengis.net/gml VerticalCS,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type VerticalCSType struct {
@@ -7829,7 +7829,7 @@ type VerticalCSType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this coordinate system is identified.
 	CsName *CodeType `xml:"http://www.opengis.net/gml csName,omitempty"`
-	Id     string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id     string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this coordinate system. The first csID, if any, is normally the primary identification code, and any others are aliases.
 	CsID []IdentifierType `xml:"http://www.opengis.net/gml csID"`
 	// Comments on or information about this coordinate system, including data source information.
@@ -7840,14 +7840,14 @@ type VerticalCSType struct {
 
 type VerticalDatumRefType struct {
 	VerticalDatum *VerticalDatumType `xml:"http://www.opengis.net/gml VerticalDatum,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type VerticalDatumType struct {
@@ -7855,7 +7855,7 @@ type VerticalDatumType struct {
 	MetaDataProperty []MetaDataPropertyType `xml:"http://www.opengis.net/gml metaDataProperty"`
 	// The name by which this datum is identified.
 	DatumName *CodeType `xml:"http://www.opengis.net/gml datumName,omitempty"`
-	Id        string    `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id        string    `xml:"http://www.opengis.net/gml id,attr"`
 	// Set of alternative identifications of this datum. The first datumID, if any, is normally the primary identification code, and any others are aliases.
 	DatumID []IdentifierType `xml:"http://www.opengis.net/gml datumID"`
 	// Comments on this reference system, including source information.

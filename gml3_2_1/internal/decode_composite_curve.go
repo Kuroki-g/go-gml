@@ -60,8 +60,8 @@ func lineStringFromCurveProperty(cm *gen.CurvePropertyType, inheritDim *uint, in
 			if oc.BaseCurve.Curve != nil {
 				return lineStringFromCurve(oc.BaseCurve.Curve, inheritDim, inheritSrsName)
 			}
-			if oc.BaseCurve.Href != "" {
-				if c := resolver.resolve(strings.TrimPrefix(oc.BaseCurve.Href, "#")); c != nil {
+			if oc.BaseCurve.Href != nil {
+				if c := resolver.resolve(strings.TrimPrefix(*oc.BaseCurve.Href, "#")); c != nil {
 					return lineStringFromCurve(c, inheritDim, inheritSrsName)
 				}
 			}
@@ -73,8 +73,8 @@ func lineStringFromCurveProperty(cm *gen.CurvePropertyType, inheritDim *uint, in
 	if cm.Ring != nil {
 		return lineStringFromRingType(cm.Ring, inheritDim, inheritSrsName, resolver)
 	}
-	if cm.Href != "" {
-		id := strings.TrimPrefix(cm.Href, "#")
+	if cm.Href != nil {
+		id := strings.TrimPrefix(*cm.Href, "#")
 		if c := resolver.resolve(id); c != nil {
 			return lineStringFromCurve(c, inheritDim, inheritSrsName)
 		}

@@ -12,7 +12,7 @@ type AbstractCRSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
@@ -30,7 +30,7 @@ type AbstractContinuousCoverageType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
 	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
 	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
@@ -65,7 +65,7 @@ type AbstractCoordinateOperationType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
@@ -91,7 +91,7 @@ type AbstractCoordinateSystemType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
@@ -109,7 +109,7 @@ type AbstractCoverageType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
 	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
 	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
@@ -146,7 +146,7 @@ type AbstractCurveType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
 	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
@@ -163,7 +163,7 @@ type AbstractDatumType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
@@ -190,7 +190,7 @@ type AbstractFeatureCollectionType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
 	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
 	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
@@ -213,7 +213,7 @@ type AbstractFeatureType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
 	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
 	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
@@ -230,7 +230,7 @@ type AbstractGMLType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 }
 
 type AbstractGeneralConversionType struct {
@@ -250,7 +250,7 @@ type AbstractGeneralConversionType struct {
 	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
 	// gml:coordinateOperationAccuracy is an association role to a DQ_PositionalAccuracy object as encoded in ISO/TS 19139, either referencing or containing the definition of that positional accuracy. That object contains an estimate of the impact of this coordinate operation on point accuracy. That is, it gives position error estimates for the target coordinates of this coordinate operation, assuming no errors in the source coordinates.
 	CoordinateOperationAccuracy []string `xml:"http://www.opengis.net/gml/3.2 coordinateOperationAccuracy"`
-	Id                          string   `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id                          string   `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 }
 
 type AbstractGeneralDerivedCRSType struct {
@@ -263,7 +263,7 @@ type AbstractGeneralDerivedCRSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
@@ -280,14 +280,14 @@ type AbstractGeneralOperationParameterPropertyType struct {
 	OperationParameter                *OperationParameterType                `xml:"http://www.opengis.net/gml/3.2 OperationParameter,omitempty"`
 	OperationParameterGroup           *OperationParameterGroupType           `xml:"http://www.opengis.net/gml/3.2 OperationParameterGroup,omitempty"`
 	NilReason                         *string                                `xml:"nilReason,attr,omitempty"`
-	RemoteSchema                      string                                 `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                         string                                 `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                              string                                 `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                              string                                 `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                           string                                 `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                             string                                 `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                              string                                 `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                           string                                 `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                      *string                                `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                         *string                                `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                              *string                                `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                              *string                                `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                           *string                                `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                             *string                                `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                              *string                                `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                           *string                                `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type AbstractGeneralOperationParameterType struct {
@@ -300,7 +300,7 @@ type AbstractGeneralOperationParameterType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// gml:minimumOccurs is the minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number shall be one.
 	MinimumOccurs *uint `xml:"http://www.opengis.net/gml/3.2 minimumOccurs,omitempty"`
@@ -340,7 +340,7 @@ type AbstractGeneralTransformationType struct {
 	SourceCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
 	// gml:targetCRS is an association role to the target CRS (coordinate reference system) of this coordinate operation.
 	TargetCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 targetCRS,omitempty"`
-	Id        string           `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id        string           `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 }
 
 type AbstractGeometricAggregateType struct {
@@ -353,7 +353,7 @@ type AbstractGeometricAggregateType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name            []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id              string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id              *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName         *string    `xml:"srsName,attr,omitempty"`
 	SrsDimension    *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels      *string    `xml:"axisLabels,attr,omitempty"`
@@ -371,7 +371,7 @@ type AbstractGeometricPrimitiveType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
 	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
@@ -388,7 +388,7 @@ type AbstractGeometryType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
 	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
@@ -406,7 +406,7 @@ type AbstractMemberType struct {
 }
 
 type AbstractMetaDataType struct {
-	Id string `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id *string `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 }
 
 type AbstractMetadataPropertyType struct {
@@ -435,7 +435,7 @@ type AbstractRingType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
 	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
@@ -452,7 +452,7 @@ type AbstractSolidType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
 	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
@@ -472,7 +472,7 @@ type AbstractSurfaceType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
 	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
@@ -489,7 +489,7 @@ type AbstractTimeComplexType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 }
 
 type AbstractTimeGeometricPrimitiveType struct {
@@ -502,7 +502,7 @@ type AbstractTimeGeometricPrimitiveType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name        []CodeType        `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id          string            `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id          *string           `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	RelatedTime []RelatedTimeType `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
 	Frame       *string           `xml:"frame,attr,omitempty"`
 }
@@ -517,7 +517,7 @@ type AbstractTimeObjectType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 }
 
 type AbstractTimePrimitiveType struct {
@@ -530,7 +530,7 @@ type AbstractTimePrimitiveType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name        []CodeType        `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id          string            `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id          *string           `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	RelatedTime []RelatedTimeType `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
 }
 
@@ -544,7 +544,7 @@ type AbstractTimeSliceType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// gml:validTime is a convenience property element.
 	ValidTime *TimePrimitivePropertyType `xml:"http://www.opengis.net/gml/3.2 validTime,omitempty"`
 	// Evidence is represented by a simple gml:dataSource or gml:dataSourceReference property that indicates the source of the temporal data. The remote link attributes of the gml:dataSource element have been deprecated along with its current type.
@@ -561,7 +561,7 @@ type AbstractTimeTopologyPrimitiveType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name        []CodeType        `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id          string            `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id          *string           `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	RelatedTime []RelatedTimeType `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
 	Complex     *ReferenceType    `xml:"http://www.opengis.net/gml/3.2 complex,omitempty"`
 }
@@ -576,7 +576,7 @@ type AbstractTopoPrimitiveType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 }
 
 type AbstractTopologyType struct {
@@ -589,21 +589,21 @@ type AbstractTopologyType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 }
 
 type AffineCSPropertyType struct {
 	// gml:AffineCS is a two- or three-dimensional coordinate system with straight axes that are not necessarily orthogonal. An AffineCS shall have two or three gml:axis property elements; the number of property elements shall equal the dimension of the CS.
 	AffineCS     *AffineCSType `xml:"http://www.opengis.net/gml/3.2 AffineCS,omitempty"`
 	NilReason    *string       `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string        `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string       `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type AffineCSType struct {
@@ -616,7 +616,7 @@ type AffineCSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
@@ -916,21 +916,21 @@ type ArrayType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType            `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string                `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      *string               `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Members *ArrayAssociationType `xml:"http://www.opengis.net/gml/3.2 members,omitempty"`
 }
 
 type AssociationRoleType struct {
 	Owns         *bool   `xml:"owns,attr,omitempty"`
 	NilReason    *string `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string  `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type BSplineType struct {
@@ -960,7 +960,7 @@ type BagType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType            `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string                `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      *string               `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Member  []AssociationRoleType `xml:"http://www.opengis.net/gml/3.2 member"`
 	Members *ArrayAssociationType `xml:"http://www.opengis.net/gml/3.2 members,omitempty"`
 }
@@ -975,7 +975,7 @@ type BaseUnitType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:quantityType property indicates the phenomenon to which the units apply. This element contains an informal description of the phenomenon or type of physical quantity that is measured or observed. When the physical quantity is the result of an observation or measurement, this term is known as observable type or measurand.
 	// The use of gml:quantityType for references to remote values is deprecated.
@@ -1008,14 +1008,14 @@ type BezierType struct {
 type BooleanPropertyType struct {
 	Boolean      *string `xml:"http://www.opengis.net/gml/3.2 Boolean,omitempty"`
 	NilReason    *string `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string  `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type BoundedFeatureType struct {
@@ -1032,7 +1032,7 @@ type BoundedFeatureType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 }
 
 type BoundingShapeType struct {
@@ -1060,28 +1060,28 @@ type CRSPropertyType struct {
 	TemporalCRS               *TemporalCRSType               `xml:"http://www.opengis.net/gml/3.2 TemporalCRS,omitempty"`
 	VerticalCRS               *VerticalCRSType               `xml:"http://www.opengis.net/gml/3.2 VerticalCRS,omitempty"`
 	NilReason                 *string                        `xml:"nilReason,attr,omitempty"`
-	RemoteSchema              string                         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                 string                         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                      string                         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                      string                         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                   string                         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                     string                         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                      string                         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                   string                         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema              *string                        `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                 *string                        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                      *string                        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                      *string                        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                   *string                        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                     *string                        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                      *string                        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                   *string                        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CartesianCSPropertyType struct {
 	// gml:CartesianCS is a 1-, 2-, or 3-dimensional coordinate system. In the 1-dimensional case, it contains a single straight coordinate axis. In the 2- and 3-dimensional cases gives the position of points relative to orthogonal straight axes. In the multi-dimensional case, all axes shall have the same length unit of measure. A CartesianCS shall have one, two, or three gml:axis property elements.
 	CartesianCS  *CartesianCSType `xml:"http://www.opengis.net/gml/3.2 CartesianCS,omitempty"`
 	NilReason    *string          `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string           `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CartesianCSType struct {
@@ -1094,7 +1094,7 @@ type CartesianCSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
@@ -1110,14 +1110,14 @@ type CategoryPropertyType struct {
 	// A gml:Category has an optional XML attribute codeSpace, whose value is a URI which identifies a dictionary, codelist or authority for the term.
 	Category     *string `xml:"http://www.opengis.net/gml/3.2 Category,omitempty"`
 	NilReason    *string `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string  `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CircleByCenterPointType struct {
@@ -1190,7 +1190,7 @@ type CompositeCurveType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name            []CodeType          `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id              string              `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id              *string             `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName         *string             `xml:"srsName,attr,omitempty"`
 	SrsDimension    *uint               `xml:"srsDimension,attr,omitempty"`
 	AxisLabels      *string             `xml:"axisLabels,attr,omitempty"`
@@ -1209,7 +1209,7 @@ type CompositeSolidType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
 	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
@@ -1229,7 +1229,7 @@ type CompositeSurfaceType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
 	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
@@ -1249,7 +1249,7 @@ type CompositeValueType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// Property that refers to, or contains, a Value.
 	ValueComponent []ValuePropertyType `xml:"http://www.opengis.net/gml/3.2 valueComponent"`
 	// Property that contains Values.
@@ -1261,14 +1261,14 @@ type CompoundCRSPropertyType struct {
 	// gml:CompundCRS is a coordinate reference system describing the position of points through two or more independent coordinate reference systems. It is associated with a non-repeating sequence of two or more instances of SingleCRS.
 	CompoundCRS  *CompoundCRSType `xml:"http://www.opengis.net/gml/3.2 CompoundCRS,omitempty"`
 	NilReason    *string          `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string           `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CompoundCRSType struct {
@@ -1281,7 +1281,7 @@ type CompoundCRSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
@@ -1296,14 +1296,14 @@ type CompoundCRSType struct {
 type ConcatenatedOperationPropertyType struct {
 	ConcatenatedOperation *ConcatenatedOperationType `xml:"http://www.opengis.net/gml/3.2 ConcatenatedOperation,omitempty"`
 	NilReason             *string                    `xml:"nilReason,attr,omitempty"`
-	RemoteSchema          string                     `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField             string                     `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                  string                     `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                  string                     `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole               string                     `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                 string                     `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                  string                     `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate               string                     `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema          *string                    `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField             *string                    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                  *string                    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                  *string                    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole               *string                    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                 *string                    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                  *string                    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate               *string                    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type ConcatenatedOperationType struct {
@@ -1316,7 +1316,7 @@ type ConcatenatedOperationType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
@@ -1355,7 +1355,7 @@ type ConventionalUnitType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:quantityType property indicates the phenomenon to which the units apply. This element contains an informal description of the phenomenon or type of physical quantity that is measured or observed. When the physical quantity is the result of an observation or measurement, this term is known as observable type or measurand.
 	// The use of gml:quantityType for references to remote values is deprecated.
@@ -1380,14 +1380,14 @@ type ConversionPropertyType struct {
 	// The usesValue property elements are an unordered list of composition associations to the set of parameter values used by this conversion operation.
 	Conversion   *ConversionType `xml:"http://www.opengis.net/gml/3.2 Conversion,omitempty"`
 	NilReason    *string         `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type ConversionToPreferredUnitType struct {
@@ -1413,7 +1413,7 @@ type ConversionType struct {
 	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
 	// gml:coordinateOperationAccuracy is an association role to a DQ_PositionalAccuracy object as encoded in ISO/TS 19139, either referencing or containing the definition of that positional accuracy. That object contains an estimate of the impact of this coordinate operation on point accuracy. That is, it gives position error estimates for the target coordinates of this coordinate operation, assuming no errors in the source coordinates.
 	CoordinateOperationAccuracy []string `xml:"http://www.opengis.net/gml/3.2 coordinateOperationAccuracy"`
-	Id                          string   `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id                          string   `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	// gml:method is an association role to the operation method used by a coordinate operation.
 	Method     *OperationMethodPropertyType `xml:"http://www.opengis.net/gml/3.2 method,omitempty"`
 	UsesMethod *OperationMethodPropertyType `xml:"http://www.opengis.net/gml/3.2 usesMethod,omitempty"`
@@ -1436,28 +1436,28 @@ type CoordinateOperationPropertyType struct {
 	PassThroughOperation          *PassThroughOperationType          `xml:"http://www.opengis.net/gml/3.2 PassThroughOperation,omitempty"`
 	Transformation                *TransformationType                `xml:"http://www.opengis.net/gml/3.2 Transformation,omitempty"`
 	NilReason                     *string                            `xml:"nilReason,attr,omitempty"`
-	RemoteSchema                  string                             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                     string                             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                          string                             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                          string                             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                       string                             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                         string                             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                          string                             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                       string                             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                  *string                            `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                     *string                            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                          *string                            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                          *string                            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                       *string                            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                         *string                            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                          *string                            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                       *string                            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CoordinateSystemAxisPropertyType struct {
 	// gml:CoordinateSystemAxis is a definition of a coordinate system axis.
 	CoordinateSystemAxis *CoordinateSystemAxisType `xml:"http://www.opengis.net/gml/3.2 CoordinateSystemAxis,omitempty"`
 	NilReason            *string                   `xml:"nilReason,attr,omitempty"`
-	RemoteSchema         string                    `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField            string                    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                 string                    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                 string                    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole              string                    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                string                    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                 string                    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate              string                    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema         *string                   `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField            *string                   `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                 *string                   `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                 *string                   `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole              *string                   `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                *string                   `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                 *string                   `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate              *string                   `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CoordinateSystemAxisType struct {
@@ -1470,7 +1470,7 @@ type CoordinateSystemAxisType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// gml:axisAbbrev is the abbreviation used for this coordinate system axis; this abbreviation is also used to identify the coordinates in the coordinate tuple. The codeSpace attribute may reference a source of more information on a set of standardized abbreviations, or on this abbreviation.
 	AxisAbbrev *CodeType `xml:"http://www.opengis.net/gml/3.2 axisAbbrev,omitempty"`
@@ -1504,14 +1504,14 @@ type CoordinateSystemPropertyType struct {
 	UserDefinedCS            *UserDefinedCSType            `xml:"http://www.opengis.net/gml/3.2 UserDefinedCS,omitempty"`
 	VerticalCS               *VerticalCSType               `xml:"http://www.opengis.net/gml/3.2 VerticalCS,omitempty"`
 	NilReason                *string                       `xml:"nilReason,attr,omitempty"`
-	RemoteSchema             string                        `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                string                        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                     string                        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                     string                        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                  string                        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                    string                        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                     string                        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                  string                        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema             *string                       `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                *string                       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                     *string                       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                     *string                       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                  *string                       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                    *string                       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                     *string                       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                  *string                       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CoordinatesType struct {
@@ -1524,14 +1524,14 @@ type CoordinatesType struct {
 type CountPropertyType struct {
 	Count        *string `xml:"http://www.opengis.net/gml/3.2 Count,omitempty"`
 	NilReason    *string `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string  `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CoverageFunctionType struct {
@@ -1585,14 +1585,14 @@ type CurvePropertyType struct {
 	OrientableCurve *OrientableCurveType `xml:"http://www.opengis.net/gml/3.2 OrientableCurve,omitempty"`
 	Ring            *RingType            `xml:"http://www.opengis.net/gml/3.2 Ring,omitempty"`
 	NilReason       *string              `xml:"nilReason,attr,omitempty"`
-	RemoteSchema    string               `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField       string               `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href            string               `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role            string               `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole         string               `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title           string               `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show            string               `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate         string               `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema    *string              `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField       *string              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href            *string              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role            *string              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole         *string              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title           *string              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show            *string              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate         *string              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns            *bool                `xml:"owns,attr,omitempty"`
 }
 
@@ -1629,7 +1629,7 @@ type CurveType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
 	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
@@ -1650,14 +1650,14 @@ type CylindricalCSPropertyType struct {
 	// gml:CylindricalCS is a three-dimensional coordinate system consisting of a polar coordinate system extended by a straight coordinate axis perpendicular to the plane spanned by the polar coordinate system. A CylindricalCS shall have three gml:axis property elements.
 	CylindricalCS *CylindricalCSType `xml:"http://www.opengis.net/gml/3.2 CylindricalCS,omitempty"`
 	NilReason     *string            `xml:"nilReason,attr,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type CylindricalCSType struct {
@@ -1670,7 +1670,7 @@ type CylindricalCSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
@@ -1703,14 +1703,14 @@ type DatumPropertyType struct {
 	TemporalDatum    *TemporalDatumType    `xml:"http://www.opengis.net/gml/3.2 TemporalDatum,omitempty"`
 	VerticalDatum    *VerticalDatumType    `xml:"http://www.opengis.net/gml/3.2 VerticalDatum,omitempty"`
 	NilReason        *string               `xml:"nilReason,attr,omitempty"`
-	RemoteSchema     string                `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField        string                `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href             string                `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role             string                `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole          string                `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title            string                `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show             string                `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate          string                `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema     *string               `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField        *string               `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href             *string               `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role             *string               `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole          *string               `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title            *string               `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show             *string               `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate          *string               `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type DefinitionBaseType struct {
@@ -1723,7 +1723,7 @@ type DefinitionBaseType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 }
 
 type DefinitionProxyType struct {
@@ -1736,7 +1736,7 @@ type DefinitionProxyType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name          []CodeType     `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id            string         `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id            string         `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks       *string        `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	DefinitionRef *ReferenceType `xml:"http://www.opengis.net/gml/3.2 definitionRef,omitempty"`
 }
@@ -1751,7 +1751,7 @@ type DefinitionType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 }
 
@@ -1769,14 +1769,14 @@ type DerivedCRSPropertyType struct {
 	// gml:DerivedCRS is a single coordinate reference system that is defined by its coordinate conversion from another single coordinate reference system known as the base CRS. The base CRS can be a projected coordinate reference system, if this DerivedCRS is used for a georectified grid coverage as described in ISO 19123, Clause 8.
 	DerivedCRS   *DerivedCRSType `xml:"http://www.opengis.net/gml/3.2 DerivedCRS,omitempty"`
 	NilReason    *string         `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type DerivedCRSType struct {
@@ -1789,7 +1789,7 @@ type DerivedCRSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
@@ -1817,7 +1817,7 @@ type DerivedUnitType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:quantityType property indicates the phenomenon to which the units apply. This element contains an informal description of the phenomenon or type of physical quantity that is measured or observed. When the physical quantity is the result of an observation or measurement, this term is known as observable type or measurand.
 	// The use of gml:quantityType for references to remote values is deprecated.
@@ -1902,14 +1902,14 @@ type DictionaryEntryType struct {
 	VerticalCS                        *VerticalCSType                        `xml:"http://www.opengis.net/gml/3.2 VerticalCS,omitempty"`
 	VerticalDatum                     *VerticalDatumType                     `xml:"http://www.opengis.net/gml/3.2 VerticalDatum,omitempty"`
 	NilReason                         *string                                `xml:"nilReason,attr,omitempty"`
-	RemoteSchema                      string                                 `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                         string                                 `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                              string                                 `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                              string                                 `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                           string                                 `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                             string                                 `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                              string                                 `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                           string                                 `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                      *string                                `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                         *string                                `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                              *string                                `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                              *string                                `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                           *string                                `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                             *string                                `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                              *string                                `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                           *string                                `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type DictionaryType struct {
@@ -1922,7 +1922,7 @@ type DictionaryType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// This property element contains or refers to the definitions which are members of a dictionary.
 	// The content model follows the standard GML property pattern, so a gml:dictionaryEntry may either contain or refer to a single gml:Definition. Since gml:Dictionary is substitutable for gml:Definition, the content of an entry may itself be a lower level dictionary.
@@ -1959,14 +1959,14 @@ type DirectedEdgePropertyType struct {
 	Edge         *EdgeType `xml:"http://www.opengis.net/gml/3.2 Edge,omitempty"`
 	Orientation  *string   `xml:"orientation,attr,omitempty"`
 	NilReason    *string   `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string    `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string   `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string   `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string   `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string   `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string   `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string   `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string   `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string   `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns         *bool     `xml:"owns,attr,omitempty"`
 }
 
@@ -1978,14 +1978,14 @@ type DirectedFacePropertyType struct {
 	Face         *FaceType `xml:"http://www.opengis.net/gml/3.2 Face,omitempty"`
 	Orientation  *string   `xml:"orientation,attr,omitempty"`
 	NilReason    *string   `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string    `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string   `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string   `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string   `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string   `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string   `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string   `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string   `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string   `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns         *bool     `xml:"owns,attr,omitempty"`
 }
 
@@ -1997,14 +1997,14 @@ type DirectedNodePropertyType struct {
 	Node         *NodeType `xml:"http://www.opengis.net/gml/3.2 Node,omitempty"`
 	Orientation  *string   `xml:"orientation,attr,omitempty"`
 	NilReason    *string   `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string    `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string   `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string   `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string   `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string   `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string   `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string   `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string   `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string   `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns         *bool     `xml:"owns,attr,omitempty"`
 }
 
@@ -2018,7 +2018,7 @@ type DirectedObservationAtDistanceType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
 	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
 	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
@@ -2044,7 +2044,7 @@ type DirectedObservationType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
 	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
 	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
@@ -2066,14 +2066,14 @@ type DirectedTopoSolidPropertyType struct {
 	TopoSolid    *TopoSolidType `xml:"http://www.opengis.net/gml/3.2 TopoSolid,omitempty"`
 	Orientation  *string        `xml:"orientation,attr,omitempty"`
 	NilReason    *string        `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string        `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns         *bool          `xml:"owns,attr,omitempty"`
 }
 
@@ -2092,14 +2092,14 @@ type DirectionPropertyType struct {
 	DirectionString      *StringOrRefType          `xml:"http://www.opengis.net/gml/3.2 DirectionString"`
 	Owns                 *bool                     `xml:"owns,attr,omitempty"`
 	NilReason            *string                   `xml:"nilReason,attr,omitempty"`
-	RemoteSchema         string                    `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField            string                    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                 string                    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                 string                    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole              string                    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                string                    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                 string                    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate              string                    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema         *string                   `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField            *string                   `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                 *string                   `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                 *string                   `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole              *string                   `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                *string                   `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                 *string                   `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate              *string                   `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type DirectionVectorType struct {
@@ -2118,7 +2118,7 @@ type DiscreteCoverageType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
 	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
 	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
@@ -2191,14 +2191,14 @@ type DomainSetType struct {
 	TimeTopologyComplex            *TimeTopologyComplexType            `xml:"http://www.opengis.net/gml/3.2 TimeTopologyComplex,omitempty"`
 	Owns                           *bool                               `xml:"owns,attr,omitempty"`
 	NilReason                      *string                             `xml:"nilReason,attr,omitempty"`
-	RemoteSchema                   string                              `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                      string                              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                           string                              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                           string                              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                        string                              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                          string                              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                           string                              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                        string                              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                   *string                             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                      *string                             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                           *string                             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                           *string                             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                        *string                             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                          *string                             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                           *string                             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                        *string                             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type DynamicFeatureCollectionType struct {
@@ -2211,7 +2211,7 @@ type DynamicFeatureCollectionType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
 	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
 	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
@@ -2226,14 +2226,14 @@ type DynamicFeatureMemberType struct {
 	DynamicFeature           []DynamicFeatureType           `xml:"http://www.opengis.net/gml/3.2 DynamicFeature"`
 	DynamicFeatureCollection []DynamicFeatureCollectionType `xml:"http://www.opengis.net/gml/3.2 DynamicFeatureCollection"`
 	NilReason                *string                        `xml:"nilReason,attr,omitempty"`
-	RemoteSchema             string                         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                string                         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                     string                         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                     string                         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                  string                         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                    string                         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                     string                         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                  string                         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema             *string                        `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                *string                        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                     *string                        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                     *string                        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                  *string                        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                    *string                        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                     *string                        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                  *string                        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type DynamicFeatureType struct {
@@ -2246,7 +2246,7 @@ type DynamicFeatureType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
 	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
 	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
@@ -2263,7 +2263,7 @@ type EdgeType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name      []CodeType             `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id        string                 `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id        *string                `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Container *TopoSolidPropertyType `xml:"http://www.opengis.net/gml/3.2 container,omitempty"`
 	// A gml:directedNode property element describes the boundary of topology edges and is used in the support of topological point features via the gml:TopoPoint expression, see below. The orientation attribute of type gml:SignType expresses the sense in which the included node is used: start ("-") or end ("+") node.
 	DirectedNode []DirectedNodePropertyType `xml:"http://www.opengis.net/gml/3.2 directedNode"`
@@ -2278,14 +2278,14 @@ type EllipsoidPropertyType struct {
 	// A gml:Ellipsoid is a geometric figure that may be used to describe the approximate shape of the earth. In mathematical terms, it is a surface formed by the rotation of an ellipse about its minor axis.
 	Ellipsoid    *EllipsoidType `xml:"http://www.opengis.net/gml/3.2 Ellipsoid,omitempty"`
 	NilReason    *string        `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string        `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type EllipsoidType struct {
@@ -2298,7 +2298,7 @@ type EllipsoidType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// gml:semiMajorAxis specifies the length of the semi-major axis of the ellipsoid, with its units. Uses the MeasureType with the restriction that the unit of measure referenced by uom must be suitable for a length, such as metres or feet.
 	SemiMajorAxis *MeasureType `xml:"http://www.opengis.net/gml/3.2 semiMajorAxis,omitempty"`
@@ -2312,14 +2312,14 @@ type EllipsoidalCSPropertyType struct {
 	// gml:EllipsoidalCS is a two- or three-dimensional coordinate system in which position is specified by geodetic latitude, geodetic longitude, and (in the three-dimensional case) ellipsoidal height. An EllipsoidalCS shall have two or three gml:axis property elements; the number of associations shall equal the dimension of the CS.
 	EllipsoidalCS *EllipsoidalCSType `xml:"http://www.opengis.net/gml/3.2 EllipsoidalCS,omitempty"`
 	NilReason     *string            `xml:"nilReason,attr,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type EllipsoidalCSType struct {
@@ -2332,7 +2332,7 @@ type EllipsoidalCSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
@@ -2346,14 +2346,14 @@ type EngineeringCRSPropertyType struct {
 	// -	CRSs on moving platforms such as road vehicles, vessels, aircraft, or spacecraft, see ISO 19111 8.3.
 	EngineeringCRS *EngineeringCRSType `xml:"http://www.opengis.net/gml/3.2 EngineeringCRS,omitempty"`
 	NilReason      *string             `xml:"nilReason,attr,omitempty"`
-	RemoteSchema   string              `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField      string              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href           string              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role           string              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole        string              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title          string              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show           string              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate        string              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema   *string             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField      *string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href           *string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role           *string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole        *string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title          *string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show           *string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate        *string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type EngineeringCRSType struct {
@@ -2366,7 +2366,7 @@ type EngineeringCRSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
@@ -2401,14 +2401,14 @@ type EngineeringDatumPropertyType struct {
 	// gml:EngineeringDatum defines the origin of an engineering coordinate reference system, and is used in a region around that origin. This origin may be fixed with respect to the earth (such as a defined point at a construction site), or be a defined point on a moving vehicle (such as on a ship or satellite).
 	EngineeringDatum *EngineeringDatumType `xml:"http://www.opengis.net/gml/3.2 EngineeringDatum,omitempty"`
 	NilReason        *string               `xml:"nilReason,attr,omitempty"`
-	RemoteSchema     string                `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField        string                `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href             string                `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role             string                `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole          string                `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title            string                `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show             string                `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate          string                `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema     *string               `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField        *string               `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href             *string               `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role             *string               `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole          *string               `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title            *string               `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show             *string               `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate          *string               `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type EngineeringDatumType struct {
@@ -2421,7 +2421,7 @@ type EngineeringDatumType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
@@ -2474,14 +2474,14 @@ type FaceOrTopoSolidPropertyType struct {
 	// A solid may optionally be realised by a 3-dimensional geometric primitive (gml:solidProperty).
 	TopoSolid    *TopoSolidType `xml:"http://www.opengis.net/gml/3.2 TopoSolid,omitempty"`
 	NilReason    *string        `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string        `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns         *bool          `xml:"owns,attr,omitempty"`
 }
 
@@ -2495,7 +2495,7 @@ type FaceType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name     []CodeType         `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id       string             `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id       *string            `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Isolated []NodePropertyType `xml:"http://www.opengis.net/gml/3.2 isolated"`
 	// A gml:directedEdge property element describes the boundary of topology faces, the coBoundary of topology nodes and is used in the support of topological line features via the gml:TopoCurve expression, see below. The orientation attribute of type gml:SignType expresses the sense in which the included edge is used, i.e. forward or reverse.
 	DirectedEdge []DirectedEdgePropertyType `xml:"http://www.opengis.net/gml/3.2 directedEdge"`
@@ -2540,7 +2540,7 @@ type FeatureCollectionType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
 	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
 	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
@@ -2571,14 +2571,14 @@ type FeaturePropertyType struct {
 	RectifiedGridCoverage         *DiscreteCoverageType              `xml:"http://www.opengis.net/gml/3.2 RectifiedGridCoverage,omitempty"`
 	Owns                          *bool                              `xml:"owns,attr,omitempty"`
 	NilReason                     *string                            `xml:"nilReason,attr,omitempty"`
-	RemoteSchema                  string                             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                     string                             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                          string                             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                          string                             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                       string                             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                         string                             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                          string                             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                       string                             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                  *string                            `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                     *string                            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                          *string                            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                          *string                            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                       *string                            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                         *string                            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                          *string                            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                       *string                            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type FileType struct {
@@ -2603,14 +2603,14 @@ type GeneralConversionPropertyType struct {
 	AbstractGeneralConversion *AbstractGeneralConversionType `xml:"http://www.opengis.net/gml/3.2 AbstractGeneralConversion,omitempty"`
 	Conversion                *ConversionType                `xml:"http://www.opengis.net/gml/3.2 Conversion,omitempty"`
 	NilReason                 *string                        `xml:"nilReason,attr,omitempty"`
-	RemoteSchema              string                         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                 string                         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                      string                         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                      string                         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                   string                         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                     string                         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                      string                         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                   string                         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema              *string                        `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                 *string                        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                      *string                        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                      *string                        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                   *string                        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                     *string                        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                      *string                        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                   *string                        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GeneralTransformationPropertyType struct {
@@ -2619,31 +2619,31 @@ type GeneralTransformationPropertyType struct {
 	AbstractGeneralTransformation *AbstractGeneralTransformationType `xml:"http://www.opengis.net/gml/3.2 AbstractGeneralTransformation,omitempty"`
 	Transformation                *TransformationType                `xml:"http://www.opengis.net/gml/3.2 Transformation,omitempty"`
 	NilReason                     *string                            `xml:"nilReason,attr,omitempty"`
-	RemoteSchema                  string                             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                     string                             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                          string                             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                          string                             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                       string                             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                         string                             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                          string                             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                       string                             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                  *string                            `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                     *string                            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                          *string                            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                          *string                            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                       *string                            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                         *string                            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                          *string                            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                       *string                            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GenericMetaDataType struct {
-	Id string `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id *string `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 }
 
 type GeocentricCRSPropertyType struct {
 	GeocentricCRS *GeocentricCRSType `xml:"http://www.opengis.net/gml/3.2 GeocentricCRS,omitempty"`
 	NilReason     *string            `xml:"nilReason,attr,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GeocentricCRSType struct {
@@ -2656,7 +2656,7 @@ type GeocentricCRSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
@@ -2692,14 +2692,14 @@ type GeodesicType struct {
 type GeodeticCRSPropertyType struct {
 	GeodeticCRS  *GeodeticCRSType `xml:"http://www.opengis.net/gml/3.2 GeodeticCRS,omitempty"`
 	NilReason    *string          `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string           `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GeodeticCRSType struct {
@@ -2712,7 +2712,7 @@ type GeodeticCRSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
@@ -2736,14 +2736,14 @@ type GeodeticDatumPropertyType struct {
 	// gml:GeodeticDatum is a geodetic datum defines the precise location and orientation in 3-dimensional space of a defined ellipsoid (or sphere), or of a Cartesian coordinate system centered in this ellipsoid (or sphere).
 	GeodeticDatum *GeodeticDatumType `xml:"http://www.opengis.net/gml/3.2 GeodeticDatum,omitempty"`
 	NilReason     *string            `xml:"nilReason,attr,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GeodeticDatumType struct {
@@ -2756,7 +2756,7 @@ type GeodeticDatumType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
@@ -2782,14 +2782,14 @@ type GeodeticDatumType struct {
 type GeographicCRSPropertyType struct {
 	GeographicCRS *GeographicCRSType `xml:"http://www.opengis.net/gml/3.2 GeographicCRS,omitempty"`
 	NilReason     *string            `xml:"nilReason,attr,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GeographicCRSType struct {
@@ -2802,7 +2802,7 @@ type GeographicCRSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
@@ -2828,14 +2828,14 @@ type GeometricComplexPropertyType struct {
 	CompositeSolid *CompositeSolidType `xml:"http://www.opengis.net/gml/3.2 CompositeSolid,omitempty"`
 	Owns           *bool               `xml:"owns,attr,omitempty"`
 	NilReason      *string             `xml:"nilReason,attr,omitempty"`
-	RemoteSchema   string              `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField      string              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href           string              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role           string              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole        string              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title          string              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show           string              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate        string              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema   *string             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField      *string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href           *string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role           *string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole        *string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title          *string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show           *string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate        *string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GeometricComplexType struct {
@@ -2848,7 +2848,7 @@ type GeometricComplexType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name            []CodeType                       `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id              string                           `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id              *string                          `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName         *string                          `xml:"srsName,attr,omitempty"`
 	SrsDimension    *uint                            `xml:"srsDimension,attr,omitempty"`
 	AxisLabels      *string                          `xml:"axisLabels,attr,omitempty"`
@@ -2883,14 +2883,14 @@ type GeometricPrimitivePropertyType struct {
 	TriangulatedSurface        *SurfaceType                    `xml:"http://www.opengis.net/gml/3.2 TriangulatedSurface,omitempty"`
 	Owns                       *bool                           `xml:"owns,attr,omitempty"`
 	NilReason                  *string                         `xml:"nilReason,attr,omitempty"`
-	RemoteSchema               string                          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                  string                          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                       string                          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                       string                          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                    string                          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                      string                          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                       string                          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                    string                          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema               *string                         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                  *string                         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                       *string                         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                       *string                         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                    *string                         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                      *string                         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                       *string                         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                    *string                         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GeometryArrayPropertyType struct {
@@ -2967,14 +2967,14 @@ type GeometryPropertyType struct {
 	Tin                        *TinType                        `xml:"http://www.opengis.net/gml/3.2 Tin,omitempty"`
 	TriangulatedSurface        *SurfaceType                    `xml:"http://www.opengis.net/gml/3.2 TriangulatedSurface,omitempty"`
 	NilReason                  *string                         `xml:"nilReason,attr,omitempty"`
-	RemoteSchema               string                          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                  string                          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                       string                          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                       string                          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                    string                          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                      string                          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                       string                          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                    string                          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema               *string                         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                  *string                         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                       *string                         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                       *string                         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                    *string                         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                      *string                         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                       *string                         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                    *string                         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns                       *bool                           `xml:"owns,attr,omitempty"`
 }
 
@@ -3006,7 +3006,7 @@ type GridType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType      `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string          `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string         `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string         `xml:"srsName,attr,omitempty"`
 	SrsDimension *uint           `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   string          `xml:"http://www.opengis.net/gml/3.2 axisLabels"`
@@ -3036,7 +3036,7 @@ type IdentifiedObjectType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 }
 
@@ -3044,14 +3044,14 @@ type ImageCRSPropertyType struct {
 	// gml:ImageCRS is an engineering coordinate reference system applied to locations in images. Image coordinate reference systems are treated as a separate sub-type because the definition of the associated image datum contains two attributes not relevant to other engineering datums.
 	ImageCRS     *ImageCRSType `xml:"http://www.opengis.net/gml/3.2 ImageCRS,omitempty"`
 	NilReason    *string       `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string        `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string       `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type ImageCRSType struct {
@@ -3064,7 +3064,7 @@ type ImageCRSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
@@ -3086,14 +3086,14 @@ type ImageDatumPropertyType struct {
 	// gml:ImageDatum defines the origin of an image coordinate reference system, and is used in a local context only. For an image datum, the anchor definition is usually either the centre of the image or the corner of the image. For more information, see ISO 19111 B.3.5.
 	ImageDatum   *ImageDatumType `xml:"http://www.opengis.net/gml/3.2 ImageDatum,omitempty"`
 	NilReason    *string         `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type ImageDatumType struct {
@@ -3106,7 +3106,7 @@ type ImageDatumType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
@@ -3180,7 +3180,7 @@ type LineStringType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string                  `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string                 `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string                 `xml:"srsName,attr,omitempty"`
 	SrsDimension *uint                   `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string                 `xml:"axisLabels,attr,omitempty"`
@@ -3197,14 +3197,14 @@ type LinearCSPropertyType struct {
 	// gml:LinearCS is a one-dimensional coordinate system that consists of the points that lie on the single axis described. The associated coordinate is the distance – with or without offset – from the specified datum to the point along the axis. A LinearCS shall have one gml:axis property element.
 	LinearCS     *LinearCSType `xml:"http://www.opengis.net/gml/3.2 LinearCS,omitempty"`
 	NilReason    *string       `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string        `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string       `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type LinearCSType struct {
@@ -3217,7 +3217,7 @@ type LinearCSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
@@ -3240,7 +3240,7 @@ type LinearRingType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string                  `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string                 `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string                 `xml:"srsName,attr,omitempty"`
 	SrsDimension *uint                   `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string                 `xml:"axisLabels,attr,omitempty"`
@@ -3292,14 +3292,14 @@ type LocationPropertyType struct {
 	LocationString             *StringOrRefType                `xml:"http://www.opengis.net/gml/3.2 LocationString,omitempty"`
 	Null                       *string                         `xml:"http://www.opengis.net/gml/3.2 Null,omitempty"`
 	NilReason                  *string                         `xml:"nilReason,attr,omitempty"`
-	RemoteSchema               string                          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                  string                          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                       string                          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                       string                          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                    string                          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                      string                          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                       string                          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                    string                          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema               *string                         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                  *string                         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                       *string                         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                       *string                         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                    *string                         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                      *string                         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                       *string                         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                    *string                         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MappingRuleType struct {
@@ -3327,14 +3327,14 @@ type MetaDataPropertyType struct {
 	GenericMetaData  *GenericMetaDataType  `xml:"http://www.opengis.net/gml/3.2 GenericMetaData,omitempty"`
 	About            *string               `xml:"about,attr,omitempty"`
 	NilReason        *string               `xml:"nilReason,attr,omitempty"`
-	RemoteSchema     string                `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField        string                `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href             string                `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role             string                `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole          string                `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title            string                `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show             string                `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate          string                `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema     *string               `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField        *string               `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href             *string               `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role             *string               `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole          *string               `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title            *string               `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show             *string               `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate          *string               `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MovingObjectStatusType struct {
@@ -3347,7 +3347,7 @@ type MovingObjectStatusType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// gml:validTime is a convenience property element.
 	ValidTime *TimePrimitivePropertyType `xml:"http://www.opengis.net/gml/3.2 validTime,omitempty"`
 	// Evidence is represented by a simple gml:dataSource or gml:dataSourceReference property that indicates the source of the temporal data. The remote link attributes of the gml:dataSource element have been deprecated along with its current type.
@@ -3373,14 +3373,14 @@ type MultiCurvePropertyType struct {
 	// The members of the geometric aggregate may be specified either using the "standard" property (gml:curveMember) or the array property (gml:curveMembers). It is also valid to use both the "standard" and the array properties in the same collection.
 	MultiCurve   *MultiCurveType `xml:"http://www.opengis.net/gml/3.2 MultiCurve,omitempty"`
 	NilReason    *string         `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns         *bool           `xml:"owns,attr,omitempty"`
 }
 
@@ -3394,7 +3394,7 @@ type MultiCurveType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name            []CodeType          `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id              string              `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id              *string             `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName         *string             `xml:"srsName,attr,omitempty"`
 	SrsDimension    *uint               `xml:"srsDimension,attr,omitempty"`
 	AxisLabels      *string             `xml:"axisLabels,attr,omitempty"`
@@ -3414,14 +3414,14 @@ type MultiGeometryPropertyType struct {
 	MultiSolid                 *MultiSolidType                 `xml:"http://www.opengis.net/gml/3.2 MultiSolid,omitempty"`
 	MultiSurface               *MultiSurfaceType               `xml:"http://www.opengis.net/gml/3.2 MultiSurface,omitempty"`
 	NilReason                  *string                         `xml:"nilReason,attr,omitempty"`
-	RemoteSchema               string                          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                  string                          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                       string                          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                       string                          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                    string                          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                      string                          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                       string                          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                    string                          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema               *string                         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                  *string                         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                       *string                         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                       *string                         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                    *string                         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                      *string                         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                       *string                         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                    *string                         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns                       *bool                           `xml:"owns,attr,omitempty"`
 }
 
@@ -3435,7 +3435,7 @@ type MultiGeometryType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name            []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id              string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id              *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName         *string    `xml:"srsName,attr,omitempty"`
 	SrsDimension    *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels      *string    `xml:"axisLabels,attr,omitempty"`
@@ -3452,14 +3452,14 @@ type MultiPointPropertyType struct {
 	// The members of the geometric aggregate may be specified either using the "standard" property (gml:pointMember) or the array property (gml:pointMembers). It is also valid to use both the "standard" and the array properties in the same collection.
 	MultiPoint   *MultiPointType `xml:"http://www.opengis.net/gml/3.2 MultiPoint,omitempty"`
 	NilReason    *string         `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns         *bool           `xml:"owns,attr,omitempty"`
 }
 
@@ -3473,7 +3473,7 @@ type MultiPointType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name            []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id              string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id              *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName         *string    `xml:"srsName,attr,omitempty"`
 	SrsDimension    *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels      *string    `xml:"axisLabels,attr,omitempty"`
@@ -3490,14 +3490,14 @@ type MultiSolidPropertyType struct {
 	// The members of the geometric aggregate may be specified either using the "standard" property (gml:solidMember) or the array property (gml:solidMembers). It is also valid to use both the "standard" and the array properties in the same collection.
 	MultiSolid   *MultiSolidType `xml:"http://www.opengis.net/gml/3.2 MultiSolid,omitempty"`
 	NilReason    *string         `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns         *bool           `xml:"owns,attr,omitempty"`
 }
 
@@ -3511,7 +3511,7 @@ type MultiSolidType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name            []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id              string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id              *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName         *string    `xml:"srsName,attr,omitempty"`
 	SrsDimension    *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels      *string    `xml:"axisLabels,attr,omitempty"`
@@ -3528,14 +3528,14 @@ type MultiSurfacePropertyType struct {
 	// The members of the geometric aggregate may be specified either using the "standard" property (gml:surfaceMember) or the array property (gml:surfaceMembers). It is also valid to use both the "standard" and the array properties in the same collection.
 	MultiSurface *MultiSurfaceType `xml:"http://www.opengis.net/gml/3.2 MultiSurface,omitempty"`
 	NilReason    *string           `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string            `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string           `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns         *bool             `xml:"owns,attr,omitempty"`
 }
 
@@ -3549,7 +3549,7 @@ type MultiSurfaceType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name            []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id              string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id              *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName         *string    `xml:"srsName,attr,omitempty"`
 	SrsDimension    *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels      *string    `xml:"axisLabels,attr,omitempty"`
@@ -3574,14 +3574,14 @@ type NodeOrEdgePropertyType struct {
 	// An edge may optionally be realised by a 1-dimensional geometric primitive (gml:curveProperty).
 	Edge         *EdgeType `xml:"http://www.opengis.net/gml/3.2 Edge,omitempty"`
 	NilReason    *string   `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string    `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string   `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string   `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string   `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string   `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string   `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string   `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string   `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string   `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns         *bool     `xml:"owns,attr,omitempty"`
 }
 
@@ -3592,14 +3592,14 @@ type NodePropertyType struct {
 	// A node may optionally be realised by a 0-dimensional geometric primitive (gml:pointProperty).
 	Node         *NodeType `xml:"http://www.opengis.net/gml/3.2 Node,omitempty"`
 	NilReason    *string   `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string    `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string   `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string   `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string   `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string   `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string   `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string   `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string   `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string   `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns         *bool     `xml:"owns,attr,omitempty"`
 }
 
@@ -3613,7 +3613,7 @@ type NodeType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name      []CodeType                   `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id        string                       `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id        *string                      `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Container *FaceOrTopoSolidPropertyType `xml:"http://www.opengis.net/gml/3.2 container,omitempty"`
 	// In the case of planar topology, a gml:Node must have a clockwise sequence of gml:directedEdge properties, to ensure a lossless topology representation as defined by Kuijpers, et. al. (see OGC 05-102 Topology IPR).
 	DirectedEdge []DirectedEdgePropertyType `xml:"http://www.opengis.net/gml/3.2 directedEdge"`
@@ -3625,14 +3625,14 @@ type NodeType struct {
 type ObliqueCartesianCSPropertyType struct {
 	ObliqueCartesianCS *ObliqueCartesianCSType `xml:"http://www.opengis.net/gml/3.2 ObliqueCartesianCS,omitempty"`
 	NilReason          *string                 `xml:"nilReason,attr,omitempty"`
-	RemoteSchema       string                  `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField          string                  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href               string                  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role               string                  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole            string                  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title              string                  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show               string                  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate            string                  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema       *string                 `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField          *string                 `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href               *string                 `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role               *string                 `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole            *string                 `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title              *string                 `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show               *string                 `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate            *string                 `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type ObliqueCartesianCSType struct {
@@ -3645,7 +3645,7 @@ type ObliqueCartesianCSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
@@ -3663,7 +3663,7 @@ type ObservationType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// This property describes the minimum bounding box or rectangle that encloses the entire feature.
 	BoundedBy        *BoundingShapeType            `xml:"http://www.opengis.net/gml/3.2 boundedBy,omitempty"`
 	Location         *LocationPropertyType         `xml:"http://www.opengis.net/gml/3.2 location,omitempty"`
@@ -3690,14 +3690,14 @@ type OperationMethodPropertyType struct {
 	// The parameter elements are an unordered list of associations to the set of operation parameters and parameter groups used by this operation method.
 	OperationMethod *OperationMethodType `xml:"http://www.opengis.net/gml/3.2 OperationMethod,omitempty"`
 	NilReason       *string              `xml:"nilReason,attr,omitempty"`
-	RemoteSchema    string               `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField       string               `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href            string               `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role            string               `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole         string               `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title           string               `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show            string               `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate         string               `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema    *string              `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField       *string              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href            *string              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role            *string              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole         *string              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title           *string              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show            *string              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate         *string              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type OperationMethodType struct {
@@ -3710,7 +3710,7 @@ type OperationMethodType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// gml:sourceDimensions is the number of dimensions in the source CRS of this operation method.
 	SourceDimensions *uint `xml:"http://www.opengis.net/gml/3.2 sourceDimensions,omitempty"`
@@ -3733,14 +3733,14 @@ type OperationParameterGroupPropertyType struct {
 	// The generalOperationParameter elements are an unordered list of associations to the set of operation parameters that are members of this group.
 	OperationParameterGroup *OperationParameterGroupType `xml:"http://www.opengis.net/gml/3.2 OperationParameterGroup,omitempty"`
 	NilReason               *string                      `xml:"nilReason,attr,omitempty"`
-	RemoteSchema            string                       `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField               string                       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                    string                       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                    string                       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                 string                       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                   string                       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                    string                       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                 string                       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema            *string                      `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField               *string                      `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                    *string                      `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                    *string                      `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                 *string                      `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                   *string                      `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                    *string                      `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                 *string                      `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type OperationParameterGroupType struct {
@@ -3753,7 +3753,7 @@ type OperationParameterGroupType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// gml:minimumOccurs is the minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number shall be one.
 	MinimumOccurs *uint `xml:"http://www.opengis.net/gml/3.2 minimumOccurs,omitempty"`
@@ -3770,14 +3770,14 @@ type OperationParameterPropertyType struct {
 	// gml:OperationParameter is the definition of a parameter used by an operation method. Most parameter values are numeric, but other types of parameter values are possible. This complex type is expected to be used or extended for all operation methods, without defining operation-method-specialized element names.
 	OperationParameter *OperationParameterType `xml:"http://www.opengis.net/gml/3.2 OperationParameter,omitempty"`
 	NilReason          *string                 `xml:"nilReason,attr,omitempty"`
-	RemoteSchema       string                  `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField          string                  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href               string                  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role               string                  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole            string                  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title              string                  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show               string                  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate            string                  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema       *string                 `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField          *string                 `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href               *string                 `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role               *string                 `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole            *string                 `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title              *string                 `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show               *string                 `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate            *string                 `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type OperationParameterType struct {
@@ -3790,7 +3790,7 @@ type OperationParameterType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// gml:minimumOccurs is the minimum number of times that values for this parameter group or parameter are required. If this attribute is omitted, the minimum number shall be one.
 	MinimumOccurs *uint `xml:"http://www.opengis.net/gml/3.2 minimumOccurs,omitempty"`
@@ -3803,14 +3803,14 @@ type OperationPropertyType struct {
 	Conversion                    *ConversionType                    `xml:"http://www.opengis.net/gml/3.2 Conversion,omitempty"`
 	Transformation                *TransformationType                `xml:"http://www.opengis.net/gml/3.2 Transformation,omitempty"`
 	NilReason                     *string                            `xml:"nilReason,attr,omitempty"`
-	RemoteSchema                  string                             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                     string                             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                          string                             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                          string                             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                       string                             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                         string                             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                          string                             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                       string                             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                  *string                            `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                     *string                            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                          *string                            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                          *string                            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                       *string                            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                         *string                            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                          *string                            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                       *string                            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type OrientableCurveType struct {
@@ -3823,7 +3823,7 @@ type OrientableCurveType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
 	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
@@ -3843,7 +3843,7 @@ type OrientableSurfaceType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
 	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
@@ -3889,14 +3889,14 @@ type PassThroughOperationPropertyType struct {
 	// The modifiedCoordinate property elements are an ordered sequence of positive integers defining the positions in a coordinate tuple of the coordinates affected by this pass-through operation. The AggregationAttributeGroup should be used to specify that the modifiedCoordinate elements are ordered.
 	PassThroughOperation *PassThroughOperationType `xml:"http://www.opengis.net/gml/3.2 PassThroughOperation,omitempty"`
 	NilReason            *string                   `xml:"nilReason,attr,omitempty"`
-	RemoteSchema         string                    `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField            string                    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                 string                    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                 string                    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole              string                    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                string                    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                 string                    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate              string                    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema         *string                   `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField            *string                   `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                 *string                   `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                 *string                   `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole              *string                   `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                *string                   `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                 *string                   `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate              *string                   `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type PassThroughOperationType struct {
@@ -3909,7 +3909,7 @@ type PassThroughOperationType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
@@ -3942,14 +3942,14 @@ type PointPropertyType struct {
 	// A Point is defined by a single coordinate tuple. The direct position of a point is specified by the pos element which is of type DirectPositionType.
 	Point        *PointType `xml:"http://www.opengis.net/gml/3.2 Point,omitempty"`
 	NilReason    *string    `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string     `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string     `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string     `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string     `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string     `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string     `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string     `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string     `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string    `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns         *bool      `xml:"owns,attr,omitempty"`
 }
 
@@ -3963,7 +3963,7 @@ type PointType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType          `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string              `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string             `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string             `xml:"srsName,attr,omitempty"`
 	SrsDimension *uint               `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string             `xml:"axisLabels,attr,omitempty"`
@@ -3976,14 +3976,14 @@ type PolarCSPropertyType struct {
 	// gml:PolarCS ia s two-dimensional coordinate system in which position is specified by the distance from the origin and the angle between the line from the origin to a point and a reference direction. A PolarCS shall have two gml:axis property elements.
 	PolarCS      *PolarCSType `xml:"http://www.opengis.net/gml/3.2 PolarCS,omitempty"`
 	NilReason    *string      `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string       `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string      `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string      `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string      `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string      `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string      `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string      `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string      `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string      `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type PolarCSType struct {
@@ -3996,7 +3996,7 @@ type PolarCSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
@@ -4022,7 +4022,7 @@ type PolygonType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
 	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
@@ -4037,14 +4037,14 @@ type PrimeMeridianPropertyType struct {
 	// A gml:PrimeMeridian defines the origin from which longitude values are determined. The default value for the prime meridian gml:identifier value is "Greenwich".
 	PrimeMeridian *PrimeMeridianType `xml:"http://www.opengis.net/gml/3.2 PrimeMeridian,omitempty"`
 	NilReason     *string            `xml:"nilReason,attr,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type PrimeMeridianType struct {
@@ -4057,7 +4057,7 @@ type PrimeMeridianType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// gml:greenwichLongitude is the longitude of the prime meridian measured from the Greenwich meridian, positive eastward. If the value of the prime meridian "name" is "Greenwich" then the value of greenwichLongitude shall be 0 degrees.
 	GreenwichLongitude *AngleType `xml:"http://www.opengis.net/gml/3.2 greenwichLongitude,omitempty"`
@@ -4102,14 +4102,14 @@ type PriorityLocationPropertyType struct {
 	LocationString             *StringOrRefType                `xml:"http://www.opengis.net/gml/3.2 LocationString,omitempty"`
 	Null                       *string                         `xml:"http://www.opengis.net/gml/3.2 Null,omitempty"`
 	NilReason                  *string                         `xml:"nilReason,attr,omitempty"`
-	RemoteSchema               string                          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                  string                          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                       string                          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                       string                          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                    string                          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                      string                          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                       string                          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                    string                          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema               *string                         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                  *string                         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                       *string                         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                       *string                         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                    *string                         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                      *string                         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                       *string                         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                    *string                         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Priority                   *string                         `xml:"priority,attr,omitempty"`
 }
 
@@ -4135,28 +4135,28 @@ type ProcedurePropertyType struct {
 	RectifiedGridCoverage         *DiscreteCoverageType              `xml:"http://www.opengis.net/gml/3.2 RectifiedGridCoverage,omitempty"`
 	Owns                          *bool                              `xml:"owns,attr,omitempty"`
 	NilReason                     *string                            `xml:"nilReason,attr,omitempty"`
-	RemoteSchema                  string                             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                     string                             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                          string                             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                          string                             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                       string                             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                         string                             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                          string                             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                       string                             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                  *string                            `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                     *string                            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                          *string                            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                          *string                            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                       *string                            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                         *string                            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                          *string                            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                       *string                            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type ProjectedCRSPropertyType struct {
 	// gml:ProjectedCRS is a 2D coordinate reference system used to approximate the shape of the earth on a planar surface, but in such a way that the distortion that is inherent to the approximation is carefully controlled and known. Distortion correction is commonly applied to calculated bearings and distances to produce values that are a close match to actual field values.
 	ProjectedCRS *ProjectedCRSType `xml:"http://www.opengis.net/gml/3.2 ProjectedCRS,omitempty"`
 	NilReason    *string           `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string            `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string           `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type ProjectedCRSType struct {
@@ -4169,7 +4169,7 @@ type ProjectedCRSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
@@ -4194,14 +4194,14 @@ type QuantityPropertyType struct {
 	// An XML attribute uom ("unit of measure") is required, whose value is a URI which identifies the definition of a ratio scale or units by which the numeric value shall be multiplied, or an interval or position scale on which the value occurs.
 	Quantity     *string `xml:"http://www.opengis.net/gml/3.2 Quantity,omitempty"`
 	NilReason    *string `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string  `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type RangeSetType struct {
@@ -4245,7 +4245,7 @@ type RectifiedGridType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType         `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string             `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string            `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string            `xml:"srsName,attr,omitempty"`
 	SrsDimension *uint              `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   string             `xml:"http://www.opengis.net/gml/3.2 axisLabels"`
@@ -4260,14 +4260,14 @@ type RectifiedGridType struct {
 type ReferenceType struct {
 	Owns         *bool   `xml:"owns,attr,omitempty"`
 	NilReason    *string `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string  `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type RelatedTimeType struct {
@@ -4280,14 +4280,14 @@ type RelatedTimeType struct {
 	TimeNode                       *TimeNodeType                       `xml:"http://www.opengis.net/gml/3.2 TimeNode,omitempty"`
 	TimePeriod                     *TimePeriodType                     `xml:"http://www.opengis.net/gml/3.2 TimePeriod,omitempty"`
 	NilReason                      *string                             `xml:"nilReason,attr,omitempty"`
-	RemoteSchema                   string                              `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                      string                              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                           string                              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                           string                              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                        string                              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                          string                              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                           string                              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                        string                              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                   *string                             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                      *string                             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                           *string                             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                           *string                             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                        *string                             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                          *string                             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                           *string                             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                        *string                             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns                           *bool                               `xml:"owns,attr,omitempty"`
 	RelativePosition               *string                             `xml:"relativePosition,attr,omitempty"`
 }
@@ -4295,14 +4295,14 @@ type RelatedTimeType struct {
 type ResultType struct {
 	Owns         *bool   `xml:"owns,attr,omitempty"`
 	NilReason    *string `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string  `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type RingPropertyType struct {
@@ -4322,7 +4322,7 @@ type RingType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name            []CodeType          `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id              string              `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id              *string             `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName         *string             `xml:"srsName,attr,omitempty"`
 	SrsDimension    *uint               `xml:"srsDimension,attr,omitempty"`
 	AxisLabels      *string             `xml:"axisLabels,attr,omitempty"`
@@ -4358,7 +4358,7 @@ type ShellType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
 	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
@@ -4382,14 +4382,14 @@ type SingleCRSPropertyType struct {
 	TemporalCRS               *TemporalCRSType               `xml:"http://www.opengis.net/gml/3.2 TemporalCRS,omitempty"`
 	VerticalCRS               *VerticalCRSType               `xml:"http://www.opengis.net/gml/3.2 VerticalCRS,omitempty"`
 	NilReason                 *string                        `xml:"nilReason,attr,omitempty"`
-	RemoteSchema              string                         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                 string                         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                      string                         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                      string                         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                   string                         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                     string                         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                      string                         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                   string                         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema              *string                        `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                 *string                        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                      *string                        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                      *string                        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                   *string                        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                     *string                        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                      *string                        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                   *string                        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type SingleOperationPropertyType struct {
@@ -4402,14 +4402,14 @@ type SingleOperationPropertyType struct {
 	PassThroughOperation          *PassThroughOperationType          `xml:"http://www.opengis.net/gml/3.2 PassThroughOperation,omitempty"`
 	Transformation                *TransformationType                `xml:"http://www.opengis.net/gml/3.2 Transformation,omitempty"`
 	NilReason                     *string                            `xml:"nilReason,attr,omitempty"`
-	RemoteSchema                  string                             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                     string                             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                          string                             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                          string                             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                       string                             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                         string                             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                          string                             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                       string                             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                  *string                            `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                     *string                            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                          *string                            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                          *string                            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                       *string                            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                         *string                            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                          *string                            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                       *string                            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type SolidArrayPropertyType struct {
@@ -4426,14 +4426,14 @@ type SolidPropertyType struct {
 	CompositeSolid *CompositeSolidType `xml:"http://www.opengis.net/gml/3.2 CompositeSolid,omitempty"`
 	Solid          *SolidType          `xml:"http://www.opengis.net/gml/3.2 Solid,omitempty"`
 	NilReason      *string             `xml:"nilReason,attr,omitempty"`
-	RemoteSchema   string              `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField      string              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href           string              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role           string              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole        string              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title          string              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show           string              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate        string              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema   *string             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField      *string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href           *string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role           *string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole        *string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title          *string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show           *string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate        *string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns           *bool               `xml:"owns,attr,omitempty"`
 }
 
@@ -4447,7 +4447,7 @@ type SolidType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType          `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string              `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string             `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string             `xml:"srsName,attr,omitempty"`
 	SrsDimension *uint               `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string             `xml:"axisLabels,attr,omitempty"`
@@ -4472,14 +4472,14 @@ type SphericalCSPropertyType struct {
 	// gml:SphericalCS is a three-dimensional coordinate system with one distance measured from the origin and two angular coordinates. A SphericalCS shall have three gml:axis property elements.
 	SphericalCS  *SphericalCSType `xml:"http://www.opengis.net/gml/3.2 SphericalCS,omitempty"`
 	NilReason    *string          `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string           `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type SphericalCSType struct {
@@ -4492,7 +4492,7 @@ type SphericalCSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
@@ -4503,14 +4503,14 @@ type SphericalCSType struct {
 type StringOrRefType struct {
 	Value        string  `xml:",chardata"`
 	NilReason    *string `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string  `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type SurfaceArrayPropertyType struct {
@@ -4554,14 +4554,14 @@ type SurfacePropertyType struct {
 	Tin                 *TinType               `xml:"http://www.opengis.net/gml/3.2 Tin,omitempty"`
 	TriangulatedSurface *SurfaceType           `xml:"http://www.opengis.net/gml/3.2 TriangulatedSurface,omitempty"`
 	NilReason           *string                `xml:"nilReason,attr,omitempty"`
-	RemoteSchema        string                 `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField           string                 `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                string                 `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                string                 `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole             string                 `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title               string                 `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                string                 `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate             string                 `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema        *string                `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField           *string                `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                *string                `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                *string                `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole             *string                `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title               *string                `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                *string                `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate             *string                `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns                *bool                  `xml:"owns,attr,omitempty"`
 }
 
@@ -4575,7 +4575,7 @@ type SurfaceType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
 	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
@@ -4642,28 +4642,28 @@ type TargetPropertyType struct {
 	TriangulatedSurface        *SurfaceType                    `xml:"http://www.opengis.net/gml/3.2 TriangulatedSurface,omitempty"`
 	Owns                       *bool                           `xml:"owns,attr,omitempty"`
 	NilReason                  *string                         `xml:"nilReason,attr,omitempty"`
-	RemoteSchema               string                          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                  string                          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                       string                          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                       string                          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                    string                          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                      string                          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                       string                          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                    string                          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema               *string                         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                  *string                         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                       *string                         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                       *string                         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                    *string                         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                      *string                         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                       *string                         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                    *string                         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TemporalCRSPropertyType struct {
 	// gml:TemporalCRS is a 1D coordinate reference system used for the recording of time.
 	TemporalCRS  *TemporalCRSType `xml:"http://www.opengis.net/gml/3.2 TemporalCRS,omitempty"`
 	NilReason    *string          `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string           `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TemporalCRSType struct {
@@ -4676,7 +4676,7 @@ type TemporalCRSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
@@ -4694,14 +4694,14 @@ type TemporalCRSType struct {
 type TemporalCSPropertyType struct {
 	TemporalCS   *TemporalCSType `xml:"http://www.opengis.net/gml/3.2 TemporalCS,omitempty"`
 	NilReason    *string         `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TemporalCSType struct {
@@ -4714,7 +4714,7 @@ type TemporalCSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
@@ -4737,21 +4737,21 @@ type TemporalDatumBaseType struct {
 	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
 	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
 	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
-	Id    string   `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id    string   `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 }
 
 type TemporalDatumPropertyType struct {
 	// A gml:TemporalDatum defines the origin of a Temporal Reference System. This type omits the "anchorDefinition" and "realizationEpoch" elements and adds the "origin" element with the dateTime type.
 	TemporalDatum *TemporalDatumType `xml:"http://www.opengis.net/gml/3.2 TemporalDatum,omitempty"`
 	NilReason     *string            `xml:"nilReason,attr,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TemporalDatumType struct {
@@ -4769,7 +4769,7 @@ type TemporalDatumType struct {
 	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`
 	// The gml:scope property provides a description of the usage, or limitations of usage, for which this CRS-related object is valid. If unknown, enter "not known".
 	Scope []string `xml:"http://www.opengis.net/gml/3.2 scope"`
-	Id    string   `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id    string   `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	// gml:origin is the date and time origin of this temporal datum.
 	Origin *string `xml:"http://www.opengis.net/gml/3.2 origin,omitempty"`
 }
@@ -4778,14 +4778,14 @@ type TimeCSPropertyType struct {
 	// gml:TimeCS is a one-dimensional coordinate system containing a time axis, used to describe the temporal position of a point in the specified time units from a specified time origin. A TimeCS shall have one gml:axis property element.
 	TimeCS       *TimeCSType `xml:"http://www.opengis.net/gml/3.2 TimeCS,omitempty"`
 	NilReason    *string     `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string      `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string      `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string      `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string      `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string      `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string      `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string      `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string      `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string     `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string     `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string     `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string     `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string     `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string     `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string     `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string     `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TimeCSType struct {
@@ -4798,7 +4798,7 @@ type TimeCSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
@@ -4815,14 +4815,14 @@ type TimeCalendarEraPropertyType struct {
 	TimeCalendarEra *TimeCalendarEraType `xml:"http://www.opengis.net/gml/3.2 TimeCalendarEra,omitempty"`
 	Owns            *bool                `xml:"owns,attr,omitempty"`
 	NilReason       *string              `xml:"nilReason,attr,omitempty"`
-	RemoteSchema    string               `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField       string               `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href            string               `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role            string               `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole         string               `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title           string               `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show            string               `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate         string               `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema    *string              `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField       *string              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href            *string              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role            *string              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole         *string              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title           *string              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show            *string              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate         *string              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TimeCalendarEraType struct {
@@ -4835,7 +4835,7 @@ type TimeCalendarEraType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name            []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id              string                  `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id              string                  `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks         *string                 `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	ReferenceEvent  *StringOrRefType        `xml:"http://www.opengis.net/gml/3.2 referenceEvent"`
 	ReferenceDate   string                  `xml:"http://www.opengis.net/gml/3.2 referenceDate"`
@@ -4850,14 +4850,14 @@ type TimeCalendarPropertyType struct {
 	TimeCalendar *TimeCalendarType `xml:"http://www.opengis.net/gml/3.2 TimeCalendar,omitempty"`
 	Owns         *bool             `xml:"owns,attr,omitempty"`
 	NilReason    *string           `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string            `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string           `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TimeCalendarType struct {
@@ -4870,7 +4870,7 @@ type TimeCalendarType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name             []CodeType                    `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id               string                        `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id               string                        `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks          *string                       `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	DomainOfValidity string                        `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
 	ReferenceFrame   []TimeCalendarEraPropertyType `xml:"http://www.opengis.net/gml/3.2 referenceFrame"`
@@ -4886,14 +4886,14 @@ type TimeClockPropertyType struct {
 	TimeClock    *TimeClockType `xml:"http://www.opengis.net/gml/3.2 TimeClock,omitempty"`
 	Owns         *bool          `xml:"owns,attr,omitempty"`
 	NilReason    *string        `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string        `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TimeClockType struct {
@@ -4906,7 +4906,7 @@ type TimeClockType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name             []CodeType                 `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id               string                     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id               string                     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks          *string                    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	DomainOfValidity string                     `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
 	ReferenceEvent   *StringOrRefType           `xml:"http://www.opengis.net/gml/3.2 referenceEvent"`
@@ -4925,7 +4925,7 @@ type TimeCoordinateSystemType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name             []CodeType               `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id               string                   `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id               string                   `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks          *string                  `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	DomainOfValidity string                   `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
 	Interval         *TimeIntervalLengthType  `xml:"http://www.opengis.net/gml/3.2 interval"`
@@ -4937,14 +4937,14 @@ type TimeEdgePropertyType struct {
 	// A time edge is a one-dimensional topological primitive. It is an open interval that starts and ends at a node. The edge may be realised as a geometry whose value is a time period.
 	TimeEdge     *TimeEdgeType `xml:"http://www.opengis.net/gml/3.2 TimeEdge,omitempty"`
 	NilReason    *string       `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string        `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string       `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns         *bool         `xml:"owns,attr,omitempty"`
 }
 
@@ -4958,7 +4958,7 @@ type TimeEdgeType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name        []CodeType              `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id          string                  `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id          *string                 `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	RelatedTime []RelatedTimeType       `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
 	Complex     *ReferenceType          `xml:"http://www.opengis.net/gml/3.2 complex,omitempty"`
 	Start       *TimeNodePropertyType   `xml:"http://www.opengis.net/gml/3.2 start"`
@@ -4970,14 +4970,14 @@ type TimeInstantPropertyType struct {
 	// gml:TimeInstant acts as a zero-dimensional geometric primitive that represents an identifiable position in time.
 	TimeInstant  *TimeInstantType `xml:"http://www.opengis.net/gml/3.2 TimeInstant,omitempty"`
 	NilReason    *string          `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string           `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns         *bool            `xml:"owns,attr,omitempty"`
 }
 
@@ -4991,7 +4991,7 @@ type TimeInstantType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name        []CodeType        `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id          string            `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id          *string           `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	RelatedTime []RelatedTimeType `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
 	Frame       *string           `xml:"frame,attr,omitempty"`
 	// This element is used directly as a property of gml:TimeInstant (see 15.2.2.3), and may also be used in application schemas.
@@ -5009,14 +5009,14 @@ type TimeNodePropertyType struct {
 	// A time node is a zero-dimensional topological primitive that represents an identifiable node in time (it is equivalent to a point in space). A node may act as the termination or initiation of any number of time edges. A time node may be realised as a geometry, its position, whose value is a time instant.
 	TimeNode     *TimeNodeType `xml:"http://www.opengis.net/gml/3.2 TimeNode,omitempty"`
 	NilReason    *string       `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string        `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string       `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns         *bool         `xml:"owns,attr,omitempty"`
 }
 
@@ -5030,7 +5030,7 @@ type TimeNodeType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType               `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string                   `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string                  `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	RelatedTime  []RelatedTimeType        `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
 	Complex      *ReferenceType           `xml:"http://www.opengis.net/gml/3.2 complex,omitempty"`
 	PreviousEdge []TimeEdgePropertyType   `xml:"http://www.opengis.net/gml/3.2 previousEdge"`
@@ -5044,14 +5044,14 @@ type TimeOrdinalEraPropertyType struct {
 	TimeOrdinalEra *TimeOrdinalEraType `xml:"http://www.opengis.net/gml/3.2 TimeOrdinalEra,omitempty"`
 	Owns           *bool               `xml:"owns,attr,omitempty"`
 	NilReason      *string             `xml:"nilReason,attr,omitempty"`
-	RemoteSchema   string              `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField      string              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href           string              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role           string              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole        string              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title          string              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show           string              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate        string              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema   *string             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField      *string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href           *string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role           *string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole        *string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title          *string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show           *string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate        *string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TimeOrdinalEraType struct {
@@ -5064,7 +5064,7 @@ type TimeOrdinalEraType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name        []CodeType                   `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id          string                       `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id          string                       `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks     *string                      `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	RelatedTime []RelatedTimeType            `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
 	Start       *TimeNodePropertyType        `xml:"http://www.opengis.net/gml/3.2 start,omitempty"`
@@ -5084,7 +5084,7 @@ type TimeOrdinalReferenceSystemType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name             []CodeType                   `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id               string                       `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id               string                       `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks          *string                      `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	DomainOfValidity string                       `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
 	Component        []TimeOrdinalEraPropertyType `xml:"http://www.opengis.net/gml/3.2 component"`
@@ -5097,14 +5097,14 @@ type TimePeriodPropertyType struct {
 	// Alternatively a limit of a gml:TimePeriod may use the conventional GML property model to make a reference to a time instant described elsewhere, or a limit may be indicated as a direct position.
 	TimePeriod   *TimePeriodType `xml:"http://www.opengis.net/gml/3.2 TimePeriod,omitempty"`
 	NilReason    *string         `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns         *bool           `xml:"owns,attr,omitempty"`
 }
 
@@ -5118,7 +5118,7 @@ type TimePeriodType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name          []CodeType               `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id            string                   `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id            *string                  `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	RelatedTime   []RelatedTimeType        `xml:"http://www.opengis.net/gml/3.2 relatedTime"`
 	Frame         *string                  `xml:"frame,attr,omitempty"`
 	BeginPosition *TimePositionType        `xml:"http://www.opengis.net/gml/3.2 beginPosition"`
@@ -5150,14 +5150,14 @@ type TimePrimitivePropertyType struct {
 	TimeNode                       *TimeNodeType                       `xml:"http://www.opengis.net/gml/3.2 TimeNode,omitempty"`
 	TimePeriod                     *TimePeriodType                     `xml:"http://www.opengis.net/gml/3.2 TimePeriod,omitempty"`
 	NilReason                      *string                             `xml:"nilReason,attr,omitempty"`
-	RemoteSchema                   string                              `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                      string                              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                           string                              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                           string                              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                        string                              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                          string                              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                           string                              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                        string                              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                   *string                             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                      *string                             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                           *string                             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                           *string                             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                        *string                             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                          *string                             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                           *string                             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                        *string                             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns                           *bool                               `xml:"owns,attr,omitempty"`
 }
 
@@ -5171,7 +5171,7 @@ type TimeReferenceSystemType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name             []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id               string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id               string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks          *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	DomainOfValidity string     `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
 }
@@ -5182,14 +5182,14 @@ type TimeTopologyComplexPropertyType struct {
 	// A temporal topological complex is a set of connected temporal topological primitives. The member primtives are indicated, either by reference or by value, using the primitive property.
 	TimeTopologyComplex *TimeTopologyComplexType `xml:"http://www.opengis.net/gml/3.2 TimeTopologyComplex,omitempty"`
 	NilReason           *string                  `xml:"nilReason,attr,omitempty"`
-	RemoteSchema        string                   `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField           string                   `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                string                   `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                string                   `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole             string                   `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title               string                   `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                string                   `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate             string                   `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema        *string                  `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField           *string                  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                *string                  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                *string                  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole             *string                  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title               *string                  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                *string                  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate             *string                  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns                *bool                    `xml:"owns,attr,omitempty"`
 }
 
@@ -5203,7 +5203,7 @@ type TimeTopologyComplexType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name      []CodeType                          `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id        string                              `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id        *string                             `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Primitive []TimeTopologyPrimitivePropertyType `xml:"http://www.opengis.net/gml/3.2 primitive"`
 }
 
@@ -5215,14 +5215,14 @@ type TimeTopologyPrimitivePropertyType struct {
 	TimeEdge                      *TimeEdgeType                      `xml:"http://www.opengis.net/gml/3.2 TimeEdge,omitempty"`
 	TimeNode                      *TimeNodeType                      `xml:"http://www.opengis.net/gml/3.2 TimeNode,omitempty"`
 	NilReason                     *string                            `xml:"nilReason,attr,omitempty"`
-	RemoteSchema                  string                             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                     string                             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                          string                             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                          string                             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                       string                             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                         string                             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                          string                             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                       string                             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                  *string                            `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                     *string                            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                          *string                            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                          *string                            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                       *string                            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                         *string                            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                          *string                            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                       *string                            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns                          *bool                              `xml:"owns,attr,omitempty"`
 }
 
@@ -5240,7 +5240,7 @@ type TinType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name         []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id           string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id           *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	SrsName      *string    `xml:"srsName,attr,omitempty"`
 	SrsDimension *uint      `xml:"srsDimension,attr,omitempty"`
 	AxisLabels   *string    `xml:"axisLabels,attr,omitempty"`
@@ -5261,14 +5261,14 @@ type TopoComplexPropertyType struct {
 	// A topology complex contains its primitive and sub-complex members.
 	TopoComplex  *TopoComplexType `xml:"http://www.opengis.net/gml/3.2 TopoComplex,omitempty"`
 	NilReason    *string          `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string           `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TopoComplexType struct {
@@ -5281,7 +5281,7 @@ type TopoComplexType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// The property elements gml:subComplex, gml:superComplex and gml:maximalComplex provide an encoding for relationships between topology complexes as described for gml:TopoComplex above.
 	MaximalComplex *TopoComplexPropertyType `xml:"http://www.opengis.net/gml/3.2 maximalComplex,omitempty"`
 	// The property elements gml:subComplex, gml:superComplex and gml:maximalComplex provide an encoding for relationships between topology complexes as described for gml:TopoComplex above.
@@ -5313,7 +5313,7 @@ type TopoCurveType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// A gml:directedEdge property element describes the boundary of topology faces, the coBoundary of topology nodes and is used in the support of topological line features via the gml:TopoCurve expression, see below. The orientation attribute of type gml:SignType expresses the sense in which the included edge is used, i.e. forward or reverse.
 	DirectedEdge    []DirectedEdgePropertyType `xml:"http://www.opengis.net/gml/3.2 directedEdge"`
 	AggregationType *string                    `xml:"aggregationType,attr,omitempty"`
@@ -5335,7 +5335,7 @@ type TopoPointType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// A gml:directedNode property element describes the boundary of topology edges and is used in the support of topological point features via the gml:TopoPoint expression, see below. The orientation attribute of type gml:SignType expresses the sense in which the included node is used: start ("-") or end ("+") node.
 	DirectedNode *DirectedNodePropertyType `xml:"http://www.opengis.net/gml/3.2 directedNode,omitempty"`
 }
@@ -5360,14 +5360,14 @@ type TopoPrimitiveMemberType struct {
 	Node                  *NodeType                  `xml:"http://www.opengis.net/gml/3.2 Node,omitempty"`
 	TopoSolid             *TopoSolidType             `xml:"http://www.opengis.net/gml/3.2 TopoSolid,omitempty"`
 	NilReason             *string                    `xml:"nilReason,attr,omitempty"`
-	RemoteSchema          string                     `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField             string                     `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                  string                     `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                  string                     `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole               string                     `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                 string                     `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                  string                     `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate               string                     `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema          *string                    `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField             *string                    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                  *string                    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                  *string                    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole               *string                    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                 *string                    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                  *string                    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate               *string                    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns                  *bool                      `xml:"owns,attr,omitempty"`
 }
 
@@ -5377,14 +5377,14 @@ type TopoSolidPropertyType struct {
 	// A solid may optionally be realised by a 3-dimensional geometric primitive (gml:solidProperty).
 	TopoSolid    *TopoSolidType `xml:"http://www.opengis.net/gml/3.2 TopoSolid,omitempty"`
 	NilReason    *string        `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string        `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns         *bool          `xml:"owns,attr,omitempty"`
 }
 
@@ -5398,7 +5398,7 @@ type TopoSolidType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name     []CodeType               `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id       string                   `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id       *string                  `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	Isolated []NodeOrEdgePropertyType `xml:"http://www.opengis.net/gml/3.2 isolated"`
 	// The gml:directedFace property element describes the boundary of topology solids, in the coBoundary of topology edges and is used in the support of surface features via the gml:TopoSurface expression, see below. The orientation attribute of type gml:SignType expresses the sense in which the included face is used i.e. inward or outward with respect to the surface normal in any geometric realisation.
 	DirectedFace []DirectedFacePropertyType `xml:"http://www.opengis.net/gml/3.2 directedFace"`
@@ -5425,7 +5425,7 @@ type TopoSurfaceType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// The gml:directedFace property element describes the boundary of topology solids, in the coBoundary of topology edges and is used in the support of surface features via the gml:TopoSurface expression, see below. The orientation attribute of type gml:SignType expresses the sense in which the included face is used i.e. inward or outward with respect to the surface normal in any geometric realisation.
 	DirectedFace    []DirectedFacePropertyType `xml:"http://www.opengis.net/gml/3.2 directedFace"`
 	AggregationType *string                    `xml:"aggregationType,attr,omitempty"`
@@ -5447,7 +5447,7 @@ type TopoVolumeType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// The gml:directedSolid property element describes the coBoundary of topology faces and is used in the support of volume features via the gml:TopoVolume expression, see below. The orientation attribute of type gml:SignType expresses the sense in which the included solid appears in the face coboundary. In the context of a gml:TopoVolume the orientation attribute has no meaning.
 	DirectedTopoSolid []DirectedTopoSolidPropertyType `xml:"http://www.opengis.net/gml/3.2 directedTopoSolid"`
 	AggregationType   *string                         `xml:"aggregationType,attr,omitempty"`
@@ -5459,14 +5459,14 @@ type TransformationPropertyType struct {
 	// The parameterValue elements are an unordered list of composition associations to the set of parameter values used by this conversion operation.
 	Transformation *TransformationType `xml:"http://www.opengis.net/gml/3.2 Transformation,omitempty"`
 	NilReason      *string             `xml:"nilReason,attr,omitempty"`
-	RemoteSchema   string              `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField      string              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href           string              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role           string              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole        string              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title          string              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show           string              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate        string              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema   *string             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField      *string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href           *string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role           *string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole        *string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title          *string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show           *string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate        *string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type TransformationType struct {
@@ -5492,7 +5492,7 @@ type TransformationType struct {
 	SourceCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 sourceCRS,omitempty"`
 	// gml:targetCRS is an association role to the target CRS (coordinate reference system) of this coordinate operation.
 	TargetCRS *CRSPropertyType `xml:"http://www.opengis.net/gml/3.2 targetCRS,omitempty"`
-	Id        string           `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id        string           `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	// gml:method is an association role to the operation method used by a coordinate operation.
 	Method     *OperationMethodPropertyType `xml:"http://www.opengis.net/gml/3.2 method,omitempty"`
 	UsesMethod *OperationMethodPropertyType `xml:"http://www.opengis.net/gml/3.2 usesMethod,omitempty"`
@@ -5518,7 +5518,7 @@ type UnitDefinitionType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:quantityType property indicates the phenomenon to which the units apply. This element contains an informal description of the phenomenon or type of physical quantity that is measured or observed. When the physical quantity is the result of an observation or measurement, this term is known as observable type or measurand.
 	// The use of gml:quantityType for references to remote values is deprecated.
@@ -5538,14 +5538,14 @@ type UserDefinedCSPropertyType struct {
 	// gml:UserDefinedCS is a two- or three-dimensional coordinate system that consists of any combination of coordinate axes not covered by any other coordinate system type. A UserDefinedCS shall have two or three gml:axis property elements; the number of property elements shall equal the dimension of the CS.
 	UserDefinedCS *UserDefinedCSType `xml:"http://www.opengis.net/gml/3.2 UserDefinedCS,omitempty"`
 	NilReason     *string            `xml:"nilReason,attr,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type UserDefinedCSType struct {
@@ -5558,7 +5558,7 @@ type UserDefinedCSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
@@ -5644,7 +5644,7 @@ type ValueArrayType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id   string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id   *string    `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
 	// Property that refers to, or contains, a Value.
 	ValueComponent []ValuePropertyType `xml:"http://www.opengis.net/gml/3.2 valueComponent"`
 	// Property that contains Values.
@@ -5720,14 +5720,14 @@ type ValuePropertyType struct {
 	TimeTopologyComplex            *TimeTopologyComplexType            `xml:"http://www.opengis.net/gml/3.2 TimeTopologyComplex,omitempty"`
 	Null                           *string                             `xml:"http://www.opengis.net/gml/3.2 Null,omitempty"`
 	NilReason                      *string                             `xml:"nilReason,attr,omitempty"`
-	RemoteSchema                   string                              `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField                      string                              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                           string                              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                           string                              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                        string                              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                          string                              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                           string                              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                        string                              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema                   *string                             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField                      *string                             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                           *string                             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                           *string                             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                        *string                             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                          *string                             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                           *string                             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                        *string                             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 	Owns                           *bool                               `xml:"owns,attr,omitempty"`
 }
 
@@ -5739,14 +5739,14 @@ type VerticalCRSPropertyType struct {
 	// gml:VerticalCRS is a 1D coordinate reference system used for recording heights or depths. Vertical CRSs make use of the direction of gravity to define the concept of height or depth, but the relationship with gravity may not be straightforward. By implication, ellipsoidal heights (h) cannot be captured in a vertical coordinate reference system. Ellipsoidal heights cannot exist independently, but only as an inseparable part of a 3D coordinate tuple defined in a geographic 3D coordinate reference system.
 	VerticalCRS  *VerticalCRSType `xml:"http://www.opengis.net/gml/3.2 VerticalCRS,omitempty"`
 	NilReason    *string          `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string           `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type VerticalCRSType struct {
@@ -5759,7 +5759,7 @@ type VerticalCRSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity []string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity"`
@@ -5777,14 +5777,14 @@ type VerticalCSPropertyType struct {
 	// gml:VerticalCS is a one-dimensional coordinate system used to record the heights or depths of points. Such a coordinate system is usually dependent on the Earth's gravity field, perhaps loosely as when atmospheric pressure is the basis for the vertical coordinate system axis. A VerticalCS shall have one gml:axis property element.
 	VerticalCS   *VerticalCSType `xml:"http://www.opengis.net/gml/3.2 VerticalCS,omitempty"`
 	NilReason    *string         `xml:"nilReason,attr,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type VerticalCSType struct {
@@ -5797,7 +5797,7 @@ type VerticalCSType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:axis property is an association role (ordered sequence) to the coordinate system axes included in this coordinate system. The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system. The gml:AggregationAttributeGroup should be used to specify that the axis objects are ordered.
 	Axis            []CoordinateSystemAxisPropertyType `xml:"http://www.opengis.net/gml/3.2 axis"`
@@ -5809,14 +5809,14 @@ type VerticalDatumPropertyType struct {
 	// gml:VerticalDatum is a textual description and/or a set of parameters identifying a particular reference level surface used as a zero-height surface, including its position with respect to the Earth for any of the height types recognized by this International Standard.
 	VerticalDatum *VerticalDatumType `xml:"http://www.opengis.net/gml/3.2 VerticalDatum,omitempty"`
 	NilReason     *string            `xml:"nilReason,attr,omitempty"`
-	RemoteSchema  string             `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
-	TypeField     string             `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string             `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string             `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string             `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string             `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string             `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string             `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string            `xml:"http://www.opengis.net/gml/3.2 remoteSchema,attr,omitempty"`
+	TypeField     *string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type VerticalDatumType struct {
@@ -5829,7 +5829,7 @@ type VerticalDatumType struct {
 	Identifier *CodeWithAuthorityType `xml:"http://www.opengis.net/gml/3.2 identifier,omitempty"`
 	// The gml:name property provides a label or identifier for the object, commonly a descriptive name. An object may have several names, typically assigned by different authorities. gml:name uses the gml:CodeType content model.  The authority for a name is indicated by the value of its (optional) codeSpace attribute.  The name may or may not be unique, as determined by the rules of the organization responsible for the codeSpace.  In common usage there will be one name per authority, so a processing application may select the name from its preferred codeSpace.
 	Name    []CodeType `xml:"http://www.opengis.net/gml/3.2 name"`
-	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr,omitempty"`
+	Id      string     `xml:"http://www.opengis.net/gml/3.2 id,attr"`
 	Remarks *string    `xml:"http://www.opengis.net/gml/3.2 remarks,omitempty"`
 	// The gml:domainOfValidity property implements an association role to an EX_Extent object as encoded in ISO/TS 19139, either referencing or containing the definition of that extent.
 	DomainOfValidity *string `xml:"http://www.opengis.net/gml/3.2 domainOfValidity,omitempty"`

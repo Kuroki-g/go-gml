@@ -126,7 +126,11 @@ func ringFromRingType(ring *gen.RingType, inheritDim *uint, inheritSrsName *stri
 			return nil, fmt.Errorf("curveMember[%d]: %w", i, err)
 		}
 		if ls == nil {
-			return nil, fmt.Errorf("curveMember[%d]: unresolved curve reference (href=%q)", i, ring.CurveMember[i].Href)
+			href := ""
+			if ring.CurveMember[i].Href != nil {
+				href = *ring.CurveMember[i].Href
+			}
+			return nil, fmt.Errorf("curveMember[%d]: unresolved curve reference (href=%q)", i, href)
 		}
 		if len(pts) > 0 && len(ls) > 0 {
 			pts = append(pts, ls[1:]...)

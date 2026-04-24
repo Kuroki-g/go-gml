@@ -131,11 +131,11 @@ func solidFromSolidPropertyMembers(members []gen.SolidPropertyType, dim *uint, i
 			s, err = solidFromXML(m.Solid, dim, inheritSrsName, resolver)
 		case m.CompositeSolid != nil:
 			s, err = solidFromCompositeSolid(m.CompositeSolid, dim, inheritSrsName, resolver)
-		case m.Href != "":
-			id := strings.TrimPrefix(m.Href, "#")
+		case m.Href != nil:
+			id := strings.TrimPrefix(*m.Href, "#")
 			var ok bool
 			if s, ok = resolver.solidByID[id]; !ok {
-				return core.Solid{}, fmt.Errorf("gml: unresolved xlink:href %q", m.Href)
+				return core.Solid{}, fmt.Errorf("gml: unresolved xlink:href %q", *m.Href)
 			}
 		default:
 			continue
@@ -174,11 +174,11 @@ func solidsFromSolidPropertyMembers(members []gen.SolidPropertyType, dim *uint, 
 			s, err = solidFromXML(m.Solid, dim, inheritSrsName, resolver)
 		case m.CompositeSolid != nil:
 			s, err = solidFromCompositeSolid(m.CompositeSolid, dim, inheritSrsName, resolver)
-		case m.Href != "":
-			id := strings.TrimPrefix(m.Href, "#")
+		case m.Href != nil:
+			id := strings.TrimPrefix(*m.Href, "#")
 			var ok bool
 			if s, ok = resolver.solidByID[id]; !ok {
-				return nil, fmt.Errorf("gml: unresolved xlink:href %q", m.Href)
+				return nil, fmt.Errorf("gml: unresolved xlink:href %q", *m.Href)
 			}
 		default:
 			continue

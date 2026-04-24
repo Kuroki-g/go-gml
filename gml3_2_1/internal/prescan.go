@@ -202,13 +202,13 @@ func resolveDeferred(pending []pendingCS, resolver *curveResolver) {
 func cacheSurfacePropertyMemberIDs(members []gen.SurfacePropertyType, resolver *curveResolver) {
 	for i := range members {
 		m := &members[i]
-		if m.Polygon != nil && m.Polygon.Id != "" {
+		if m.Polygon != nil && m.Polygon.Id != nil {
 			if poly, err := polygonFromXML(m.Polygon, nil, nil); err == nil {
-				resolver.polygonByID[m.Polygon.Id] = poly
+				resolver.polygonByID[*m.Polygon.Id] = poly
 			}
 		}
-		if m.Surface != nil && m.Surface.Id != "" && m.Surface.Patches != nil {
-			id := m.Surface.Id
+		if m.Surface != nil && m.Surface.Id != nil && m.Surface.Patches != nil {
+			id := *m.Surface.Id
 			if mp, err := multiPolygonFromSurfacePatchArrayProperty(m.Surface.Patches, preferDim(m.Surface.SrsDimension, nil), m.Surface.SrsName, resolver); err == nil {
 				if len(mp) == 1 {
 					resolver.polygonByID[id] = mp[0]
@@ -220,9 +220,9 @@ func cacheSurfacePropertyMemberIDs(members []gen.SurfacePropertyType, resolver *
 		if m.CompositeSurface != nil {
 			cacheSurfacePropertyMemberIDs(m.CompositeSurface.SurfaceMember, resolver)
 		}
-		if m.Shell != nil && m.Shell.Id != "" {
+		if m.Shell != nil && m.Shell.Id != nil {
 			if mp, err := multiPolygonFromShell(m.Shell, nil, nil, resolver); err == nil {
-				resolver.multiPolygonByID[m.Shell.Id] = mp
+				resolver.multiPolygonByID[*m.Shell.Id] = mp
 			}
 		}
 		// Only Polygon/Surface/CompositeSurface/Shell sub-elements are individually cached.
@@ -248,8 +248,8 @@ func cacheSurfacePropertyMemberIDs(members []gen.SurfacePropertyType, resolver *
 // is already cached in the resolver. Inline members are always considered resolvable.
 func allSurfacePropertyMembersResolvable(members []gen.SurfacePropertyType, resolver *curveResolver) bool {
 	for _, m := range members {
-		if m.Href != "" {
-			id := strings.TrimPrefix(m.Href, "#")
+		if m.Href != nil {
+			id := strings.TrimPrefix(*m.Href, "#")
 			_, inPoly := resolver.polygonByID[id]
 			_, inMulti := resolver.multiPolygonByID[id]
 			if !inPoly && !inMulti {
@@ -258,8 +258,8 @@ func allSurfacePropertyMembersResolvable(members []gen.SurfacePropertyType, reso
 		}
 		if m.OrientableSurface != nil && m.OrientableSurface.BaseSurface != nil {
 			bs := m.OrientableSurface.BaseSurface
-			if bs.Href != "" {
-				id := strings.TrimPrefix(bs.Href, "#")
+			if bs.Href != nil {
+				id := strings.TrimPrefix(*bs.Href, "#")
 				_, inPoly := resolver.polygonByID[id]
 				_, inMulti := resolver.multiPolygonByID[id]
 				if !inPoly && !inMulti {

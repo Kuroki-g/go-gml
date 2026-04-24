@@ -61,8 +61,8 @@ func multiPolygonFromCompositeSurface(x *gen.CompositeSurfaceType, resolver *cur
 			result = append(result, nested...)
 			continue
 		}
-		if m.Href != "" {
-			id := strings.TrimPrefix(m.Href, "#")
+		if m.Href != nil {
+			id := strings.TrimPrefix(*m.Href, "#")
 			if mp, ok := resolver.multiPolygonByID[id]; ok {
 				result = append(result, mp...)
 				continue

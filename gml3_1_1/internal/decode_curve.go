@@ -41,8 +41,8 @@ func (cr *curveResolver) resolve(id string) *gen.CurveType {
 		if oc.BaseCurve.Curve != nil {
 			return oc.BaseCurve.Curve
 		}
-		if oc.BaseCurve.Href != "" {
-			return cr.curves[strings.TrimPrefix(oc.BaseCurve.Href, "#")]
+		if oc.BaseCurve.Href != nil {
+			return cr.curves[strings.TrimPrefix(*oc.BaseCurve.Href, "#")]
 		}
 	}
 	return nil
@@ -62,8 +62,8 @@ func (r *Reader) handleCurve(dec *xml.Decoder, se xml.StartElement) (core.Geomet
 	if err != nil {
 		return core.Geometry{}, err
 	}
-	if x.Id != "" {
-		r.resolver.curves[x.Id] = x
+	if x.Id != nil {
+		r.resolver.curves[*x.Id] = x
 	}
 	ls, err := lineStringFromCurve(x, r.globalDim, r.globalSrsName)
 	if err != nil {
@@ -78,8 +78,8 @@ func (r *Reader) cacheOrientableCurve(dec *xml.Decoder, se xml.StartElement) err
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return fmt.Errorf("gml: OrientableCurve: %w", err)
 	}
-	if x.Id != "" {
-		r.resolver.orientable[x.Id] = &x
+	if x.Id != nil {
+		r.resolver.orientable[*x.Id] = &x
 	}
 	return nil
 }
@@ -158,8 +158,8 @@ func fromPointProperty(pp *gen.PointPropertyType, j int, inheritDim *uint) (core
 	_ = pp.Show
 	_ = pp.Actuate
 	_ = pp.RemoteSchema
-	if pp.Href != "" {
-		return core.Point{}, fmt.Errorf("pointProperty[%d]: unresolved xlink:href %q", j, pp.Href)
+	if pp.Href != nil {
+		return core.Point{}, fmt.Errorf("pointProperty[%d]: unresolved xlink:href %q", j, *pp.Href)
 	}
 	if pp.Point == nil {
 		return core.Point{}, fmt.Errorf("pointProperty[%d]: missing Point element", j)

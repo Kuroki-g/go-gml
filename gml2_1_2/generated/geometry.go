@@ -62,14 +62,14 @@ type CoordinatesType struct {
 type FeatureAssociationType struct {
 	AbstractFeature           *AbstractFeatureType           `xml:"http://www.opengis.net/gml _Feature,omitempty"`
 	AbstractFeatureCollection *AbstractFeatureCollectionType `xml:"http://www.opengis.net/gml _FeatureCollection,omitempty"`
-	RemoteSchema              string                         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                 string                         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                      string                         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                      string                         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                   string                         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                     string                         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                      string                         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                   string                         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema              *string                        `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                 *string                        `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                      *string                        `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                      *string                        `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                   *string                        `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                     *string                        `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                      *string                        `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                   *string                        `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GeometryAssociationType struct {
@@ -83,14 +83,14 @@ type GeometryAssociationType struct {
 	Point                      *PointType              `xml:"http://www.opengis.net/gml Point,omitempty"`
 	Polygon                    *PolygonType            `xml:"http://www.opengis.net/gml Polygon,omitempty"`
 	AbstractGeometryCollection *GeometryCollectionType `xml:"http://www.opengis.net/gml _GeometryCollection,omitempty"`
-	RemoteSchema               string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                  string                  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                       string                  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                       string                  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                    string                  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                      string                  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                       string                  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                    string                  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema               *string                 `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                  *string                 `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                       *string                 `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                       *string                 `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                    *string                 `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                      *string                 `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                       *string                 `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                    *string                 `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type GeometryCollectionType struct {
@@ -113,38 +113,38 @@ type GeometryPropertyType struct {
 	Point                      *PointType              `xml:"http://www.opengis.net/gml Point,omitempty"`
 	Polygon                    *PolygonType            `xml:"http://www.opengis.net/gml Polygon,omitempty"`
 	AbstractGeometryCollection *GeometryCollectionType `xml:"http://www.opengis.net/gml _GeometryCollection,omitempty"`
-	RemoteSchema               string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField                  string                  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                       string                  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                       string                  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                    string                  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                      string                  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                       string                  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                    string                  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema               *string                 `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField                  *string                 `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                       *string                 `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                       *string                 `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                    *string                 `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                      *string                 `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                       *string                 `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                    *string                 `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type LineStringMemberType struct {
 	LineString   *LineStringType `xml:"http://www.opengis.net/gml LineString,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type LineStringPropertyType struct {
 	LineString   *LineStringType `xml:"http://www.opengis.net/gml LineString,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type LineStringType struct {
@@ -156,14 +156,14 @@ type LineStringType struct {
 
 type LinearRingMemberType struct {
 	LinearRing   *LinearRingType `xml:"http://www.opengis.net/gml LinearRing,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type LinearRingType struct {
@@ -175,26 +175,26 @@ type LinearRingType struct {
 
 type MultiGeometryPropertyType struct {
 	MultiGeometry *GeometryCollectionType `xml:"http://www.opengis.net/gml MultiGeometry,omitempty"`
-	RemoteSchema  string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField     string                  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href          string                  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role          string                  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole       string                  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title         string                  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show          string                  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate       string                  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema  *string                 `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField     *string                 `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href          *string                 `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role          *string                 `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole       *string                 `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title         *string                 `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show          *string                 `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate       *string                 `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MultiLineStringPropertyType struct {
 	MultiLineString *MultiLineStringType `xml:"http://www.opengis.net/gml MultiLineString,omitempty"`
-	RemoteSchema    string               `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField       string               `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href            string               `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role            string               `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole         string               `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title           string               `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show            string               `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate         string               `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema    *string              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField       *string              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href            *string              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role            *string              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole         *string              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title           *string              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show            *string              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate         *string              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MultiLineStringType struct {
@@ -205,14 +205,14 @@ type MultiLineStringType struct {
 
 type MultiPointPropertyType struct {
 	MultiPoint   *MultiPointType `xml:"http://www.opengis.net/gml MultiPoint,omitempty"`
-	RemoteSchema string          `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string          `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string          `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string          `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string          `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string          `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string          `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string          `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string         `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string         `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string         `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string         `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string         `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string         `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string         `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string         `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MultiPointType struct {
@@ -223,14 +223,14 @@ type MultiPointType struct {
 
 type MultiPolygonPropertyType struct {
 	MultiPolygon *MultiPolygonType `xml:"http://www.opengis.net/gml MultiPolygon,omitempty"`
-	RemoteSchema string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string           `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type MultiPolygonType struct {
@@ -241,26 +241,26 @@ type MultiPolygonType struct {
 
 type PointMemberType struct {
 	Point        *PointType `xml:"http://www.opengis.net/gml Point,omitempty"`
-	RemoteSchema string     `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string     `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string     `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string     `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string     `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string     `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string     `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string     `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string    `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type PointPropertyType struct {
 	Point        *PointType `xml:"http://www.opengis.net/gml Point,omitempty"`
-	RemoteSchema string     `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string     `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string     `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string     `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string     `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string     `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string     `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string     `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string    `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type PointType struct {
@@ -272,26 +272,26 @@ type PointType struct {
 
 type PolygonMemberType struct {
 	Polygon      *PolygonType `xml:"http://www.opengis.net/gml Polygon,omitempty"`
-	RemoteSchema string       `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string      `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string      `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string      `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string      `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string      `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string      `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string      `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string      `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type PolygonPropertyType struct {
 	Polygon      *PolygonType `xml:"http://www.opengis.net/gml Polygon,omitempty"`
-	RemoteSchema string       `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string      `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string      `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string      `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string      `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string      `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string      `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string      `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string      `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type PolygonType struct {

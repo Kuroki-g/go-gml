@@ -22,7 +22,7 @@ type AbstractCityObjectType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                       *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -52,7 +52,7 @@ type AbstractSiteType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                       *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -69,14 +69,14 @@ type AbstractSiteType struct {
 
 type AddressPropertyType struct {
 	Address      *AddressType `xml:"http://www.opengis.net/citygml/2.0 Address,omitempty"`
-	RemoteSchema string       `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string      `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string      `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string      `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string      `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string      `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string      `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string      `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string      `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type AddressType struct {
@@ -95,7 +95,7 @@ type AddressType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                    *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -121,7 +121,7 @@ type CityModelType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                      *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -145,14 +145,14 @@ type ExternalReferenceType struct {
 type GeneralizationRelationType struct {
 	AbstractCityObject *AbstractCityObjectType `xml:"http://www.opengis.net/citygml/2.0 _CityObject,omitempty"`
 	AbstractSite       *AbstractSiteType       `xml:"http://www.opengis.net/citygml/2.0 _Site,omitempty"`
-	RemoteSchema       string                  `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField          string                  `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href               string                  `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role               string                  `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole            string                  `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title              string                  `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show               string                  `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate            string                  `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema       *string                 `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField          *string                 `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href               *string                 `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role               *string                 `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole            *string                 `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title              *string                 `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show               *string                 `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate            *string                 `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type ImplicitGeometryType struct {
@@ -171,7 +171,7 @@ type ImplicitGeometryType struct {
 	MethodName              []gml3_1_1gen.CodeType            `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType            `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType            `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                            `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                           `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	MimeType                *gml3_1_1gen.CodeType             `xml:"http://www.opengis.net/citygml/2.0 mimeType,omitempty"`
 	TransformationMatrix    *string                           `xml:"http://www.opengis.net/citygml/2.0 transformationMatrix,omitempty"`
 	LibraryObject           *string                           `xml:"http://www.opengis.net/citygml/2.0 libraryObject,omitempty"`
@@ -181,14 +181,14 @@ type ImplicitGeometryType struct {
 
 type ImplicitRepresentationPropertyType struct {
 	ImplicitGeometry *ImplicitGeometryType `xml:"http://www.opengis.net/citygml/2.0 ImplicitGeometry,omitempty"`
-	RemoteSchema     string                `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField        string                `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href             string                `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role             string                `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole          string                `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title            string                `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show             string                `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate          string                `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema     *string               `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField        *string               `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href             *string               `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role             *string               `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole          *string               `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title            *string               `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show             *string               `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate          *string               `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type XalAddressPropertyType struct {

@@ -23,8 +23,8 @@ func (r *Reader) handleDomainSet(dec *xml.Decoder, se xml.StartElement) error {
 	if err := dec.DecodeElement(&ds, &se); err != nil {
 		return fmt.Errorf("gml: domainSet: %w", err)
 	}
-	if ds.Href != "" {
-		id := strings.TrimPrefix(ds.Href, "#")
+	if ds.Href != nil {
+		id := strings.TrimPrefix(*ds.Href, "#")
 		r.pendingGrid = r.resolver.gridByID[id]
 		return nil
 	}

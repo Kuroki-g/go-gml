@@ -22,7 +22,7 @@ type AbstractBoundarySurfaceType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                            *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -57,7 +57,7 @@ type AbstractBuildingType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                             *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -122,7 +122,7 @@ type AbstractOpeningType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                       *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -152,14 +152,14 @@ type BoundarySurfacePropertyType struct {
 	OuterFloorSurface       *OuterFloorSurfaceType       `xml:"http://www.opengis.net/citygml/building/2.0 OuterFloorSurface,omitempty"`
 	RoofSurface             *RoofSurfaceType             `xml:"http://www.opengis.net/citygml/building/2.0 RoofSurface,omitempty"`
 	WallSurface             *WallSurfaceType             `xml:"http://www.opengis.net/citygml/building/2.0 WallSurface,omitempty"`
-	RemoteSchema            string                       `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField               string                       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                    string                       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                    string                       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                 string                       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                   string                       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                    string                       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                 string                       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema            *string                      `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField               *string                      `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                    *string                      `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                    *string                      `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                 *string                      `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                   *string                      `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                    *string                      `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                 *string                      `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type BuildingFurnitureType struct {
@@ -178,7 +178,7 @@ type BuildingFurnitureType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                              *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -200,14 +200,14 @@ type BuildingFurnitureType struct {
 
 type BuildingInstallationPropertyType struct {
 	BuildingInstallation *BuildingInstallationType `xml:"http://www.opengis.net/citygml/building/2.0 BuildingInstallation,omitempty"`
-	RemoteSchema         string                    `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField            string                    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                 string                    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                 string                    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole              string                    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                string                    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                 string                    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate              string                    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema         *string                   `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField            *string                   `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                 *string                   `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                 *string                   `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole              *string                   `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                *string                   `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                 *string                   `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate              *string                   `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type BuildingInstallationType struct {
@@ -226,7 +226,7 @@ type BuildingInstallationType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                                 *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -252,14 +252,14 @@ type BuildingInstallationType struct {
 
 type BuildingPartPropertyType struct {
 	BuildingPart *BuildingPartType `xml:"http://www.opengis.net/citygml/building/2.0 BuildingPart,omitempty"`
-	RemoteSchema string            `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string            `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string            `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string            `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string            `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string            `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string            `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string            `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string           `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string           `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string           `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string           `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string           `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string           `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string           `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string           `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type BuildingPartType struct {
@@ -278,7 +278,7 @@ type BuildingPartType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                             *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -344,7 +344,7 @@ type BuildingType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                             *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -410,7 +410,7 @@ type CeilingSurfaceType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                            *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -446,7 +446,7 @@ type ClosureSurfaceType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                            *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -482,7 +482,7 @@ type DoorType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                       *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -519,7 +519,7 @@ type FloorSurfaceType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                            *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -555,7 +555,7 @@ type GroundSurfaceType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                            *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -577,14 +577,14 @@ type GroundSurfaceType struct {
 
 type IntBuildingInstallationPropertyType struct {
 	IntBuildingInstallation *IntBuildingInstallationType `xml:"http://www.opengis.net/citygml/building/2.0 IntBuildingInstallation,omitempty"`
-	RemoteSchema            string                       `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField               string                       `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href                    string                       `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role                    string                       `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole                 string                       `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title                   string                       `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show                    string                       `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate                 string                       `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema            *string                      `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField               *string                      `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href                    *string                      `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role                    *string                      `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole                 *string                      `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title                   *string                      `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show                    *string                      `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate                 *string                      `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type IntBuildingInstallationType struct {
@@ -603,7 +603,7 @@ type IntBuildingInstallationType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                                    *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -625,26 +625,26 @@ type IntBuildingInstallationType struct {
 
 type InteriorFurniturePropertyType struct {
 	BuildingFurniture *BuildingFurnitureType `xml:"http://www.opengis.net/citygml/building/2.0 BuildingFurniture,omitempty"`
-	RemoteSchema      string                 `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField         string                 `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href              string                 `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role              string                 `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole           string                 `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title             string                 `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show              string                 `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate           string                 `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema      *string                `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField         *string                `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href              *string                `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role              *string                `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole           *string                `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title             *string                `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show              *string                `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate           *string                `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type InteriorRoomPropertyType struct {
 	Room         *RoomType `xml:"http://www.opengis.net/citygml/building/2.0 Room,omitempty"`
-	RemoteSchema string    `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField    string    `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href         string    `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role         string    `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole      string    `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title        string    `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show         string    `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate      string    `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema *string   `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField    *string   `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href         *string   `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role         *string   `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole      *string   `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title        *string   `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show         *string   `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate      *string   `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type InteriorWallSurfaceType struct {
@@ -663,7 +663,7 @@ type InteriorWallSurfaceType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                                *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -687,14 +687,14 @@ type OpeningPropertyType struct {
 	AbstractOpening *AbstractOpeningType `xml:"http://www.opengis.net/citygml/building/2.0 _Opening,omitempty"`
 	Door            *DoorType            `xml:"http://www.opengis.net/citygml/building/2.0 Door,omitempty"`
 	Window          *WindowType          `xml:"http://www.opengis.net/citygml/building/2.0 Window,omitempty"`
-	RemoteSchema    string               `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
-	TypeField       string               `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
-	Href            string               `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
-	Role            string               `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
-	Arcrole         string               `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
-	Title           string               `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
-	Show            string               `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
-	Actuate         string               `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
+	RemoteSchema    *string              `xml:"http://www.opengis.net/gml remoteSchema,attr,omitempty"`
+	TypeField       *string              `xml:"http://www.w3.org/1999/xlink type,attr,omitempty"`
+	Href            *string              `xml:"http://www.w3.org/1999/xlink href,attr,omitempty"`
+	Role            *string              `xml:"http://www.w3.org/1999/xlink role,attr,omitempty"`
+	Arcrole         *string              `xml:"http://www.w3.org/1999/xlink arcrole,attr,omitempty"`
+	Title           *string              `xml:"http://www.w3.org/1999/xlink title,attr,omitempty"`
+	Show            *string              `xml:"http://www.w3.org/1999/xlink show,attr,omitempty"`
+	Actuate         *string              `xml:"http://www.w3.org/1999/xlink actuate,attr,omitempty"`
 }
 
 type OuterCeilingSurfaceType struct {
@@ -713,7 +713,7 @@ type OuterCeilingSurfaceType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                                *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -749,7 +749,7 @@ type OuterFloorSurfaceType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                              *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -785,7 +785,7 @@ type RoofSurfaceType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                            *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -821,7 +821,7 @@ type RoomType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                       *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -859,7 +859,7 @@ type WallSurfaceType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                            *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`
@@ -895,7 +895,7 @@ type WindowType struct {
 	MethodName              []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml methodName"`
 	ParameterName           []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml parameterName"`
 	SrsName                 []gml3_1_1gen.CodeType         `xml:"http://www.opengis.net/gml srsName"`
-	Id                      string                         `xml:"http://www.opengis.net/gml id,attr,omitempty"`
+	Id                      *string                        `xml:"http://www.opengis.net/gml id,attr,omitempty"`
 	BoundedBy               *gml3_1_1gen.BoundingShapeType `xml:"http://www.opengis.net/gml boundedBy,omitempty"`
 	// deprecated in GML version 3.1
 	Location                                       *gml3_1_1gen.LocationPropertyType         `xml:"http://www.opengis.net/gml location,omitempty"`

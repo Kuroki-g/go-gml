@@ -46,12 +46,12 @@ func fromPointMember(m *gen.PointMemberType, res *resolver) (core.Point, error) 
 	_ = m.Show
 	_ = m.Actuate
 	_ = m.RemoteSchema
-	if m.Href != "" {
-		id := stripHash(m.Href)
+	if m.Href != nil {
+		id := stripHash(*m.Href)
 		if pt, ok := res.pointByID[id]; ok {
 			return pt, nil
 		}
-		return core.Point{}, fmt.Errorf("gml: unresolved xlink:href %q", m.Href)
+		return core.Point{}, fmt.Errorf("gml: unresolved xlink:href %q", *m.Href)
 	}
 	if m.Point == nil {
 		return core.Point{}, fmt.Errorf("gml: missing Point element")
@@ -87,12 +87,12 @@ func fromLineStringMember(m *gen.LineStringMemberType, res *resolver) (core.Line
 	_ = m.Show
 	_ = m.Actuate
 	_ = m.RemoteSchema
-	if m.Href != "" {
-		id := stripHash(m.Href)
+	if m.Href != nil {
+		id := stripHash(*m.Href)
 		if ls, ok := res.lineStringByID[id]; ok {
 			return ls, nil
 		}
-		return nil, fmt.Errorf("gml: unresolved xlink:href %q", m.Href)
+		return nil, fmt.Errorf("gml: unresolved xlink:href %q", *m.Href)
 	}
 	if m.LineString == nil {
 		return nil, fmt.Errorf("gml: missing LineString element")
@@ -128,12 +128,12 @@ func fromPolygonMember(m *gen.PolygonMemberType, res *resolver) (core.Polygon, e
 	_ = m.Show
 	_ = m.Actuate
 	_ = m.RemoteSchema
-	if m.Href != "" {
-		id := stripHash(m.Href)
+	if m.Href != nil {
+		id := stripHash(*m.Href)
 		if poly, ok := res.polygonByID[id]; ok {
 			return poly, nil
 		}
-		return nil, fmt.Errorf("gml: unresolved xlink:href %q", m.Href)
+		return nil, fmt.Errorf("gml: unresolved xlink:href %q", *m.Href)
 	}
 	if m.Polygon == nil {
 		return nil, fmt.Errorf("gml: missing Polygon element")
