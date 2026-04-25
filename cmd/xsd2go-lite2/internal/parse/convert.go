@@ -37,10 +37,10 @@ func convertComplexType(ct xsdComplexType, ns string) ComplexType {
 	}
 	switch {
 	case ct.SimpleContent != nil:
-		result.ContentKind = "simple"
+		result.ContentKind = ContentKindSimple
 		convertSimpleContentType(ct.SimpleContent, &result)
 	case ct.ComplexContent != nil:
-		result.ContentKind = "complex"
+		result.ContentKind = ContentKindComplex
 		convertComplexContentType(ct.ComplexContent, &result)
 	default:
 		result.Content = firstCompositor(ct.Sequence, ct.All, ct.Choice)

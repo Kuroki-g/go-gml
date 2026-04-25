@@ -21,7 +21,7 @@ type ComplexType struct {
 	Doc      string
 	Source   string // targetNamespace of defining schema
 
-	ContentKind string // "complex" | "simple" | ""
+	ContentKind string // ContentKindComplex | ContentKindSimple | ""
 
 	Derivation *Derivation   // nil = direct definition
 	Content    *ContentModel // element content (nil for simpleContent)
@@ -140,4 +140,10 @@ const (
 	UseRequired   = "required"
 	UseOptional   = "optional"
 	UseProhibited = "prohibited"
+)
+
+// ContentKind values for ComplexType.ContentKind.
+const (
+	ContentKindSimple  = "simple"
+	ContentKindComplex = "complex"
 )
