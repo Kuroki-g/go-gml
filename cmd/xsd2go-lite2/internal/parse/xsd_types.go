@@ -63,6 +63,8 @@ type xsdExtension struct {
 type xsdRestriction struct {
 	Base       string            `xml:"base,attr"`
 	Sequence   *xsdSequence      `xml:"sequence"`
+	All        *xsdSequence      `xml:"all"`
+	Choice     *xsdSequence      `xml:"choice"`
 	AttrGroups []xsdAttrGroupRef `xml:"attributeGroup"`
 	Attributes []xsdAttribute    `xml:"attribute"`
 }
@@ -74,8 +76,15 @@ type xsdSequence struct {
 	Groups     []xsdGroupRef     `xml:"group"`
 	AttrGroups []xsdAttrGroupRef `xml:"attributeGroup"`
 	Attributes []xsdAttribute    `xml:"attribute"`
+	Anys       []xsdAny          `xml:"any"`
 	MinOccurs  string            `xml:"minOccurs,attr"`
 	MaxOccurs  string            `xml:"maxOccurs,attr"`
+}
+
+type xsdAny struct {
+	Namespace string `xml:"namespace,attr"`
+	MinOccurs string `xml:"minOccurs,attr"`
+	MaxOccurs string `xml:"maxOccurs,attr"`
 }
 
 type xsdElement struct {
@@ -84,6 +93,8 @@ type xsdElement struct {
 	Type        string          `xml:"type,attr"`
 	MinOccurs   string          `xml:"minOccurs,attr"`
 	MaxOccurs   string          `xml:"maxOccurs,attr"`
+	Default     string          `xml:"default,attr"`
+	Fixed       string          `xml:"fixed,attr"`
 	Annotation  *xsdAnnotation  `xml:"annotation"`
 	ComplexType *xsdComplexType `xml:"complexType"`
 	SimpleType  *xsdSimpleType  `xml:"simpleType"`
@@ -97,6 +108,7 @@ type xsdAttribute struct {
 	Type       string         `xml:"type,attr"`
 	Use        string         `xml:"use,attr"`
 	Default    string         `xml:"default,attr"`
+	Fixed      string         `xml:"fixed,attr"`
 	Annotation *xsdAnnotation `xml:"annotation"`
 	Simple     *xsdSimpleType `xml:"simpleType"`
 }
@@ -138,7 +150,12 @@ type xsdSimpleType struct {
 }
 
 type xsdSRestrict struct {
-	Base string `xml:"base,attr"`
+	Base         string           `xml:"base,attr"`
+	Enumerations []xsdEnumeration `xml:"enumeration"`
+}
+
+type xsdEnumeration struct {
+	Value string `xml:"value,attr"`
 }
 
 type xsdList struct {
