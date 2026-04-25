@@ -15,6 +15,10 @@ help:
 	@echo "               GML XSD → gml<version>/generated/geometry.go 生成"
 	@echo "               デフォルト: GML_VERSION=3.2.1"
 	@echo ""
+	@echo "xsd2go-lite2 (next-gen code generator)"
+	@echo "  xsd2go2-build    バイナリビルド"
+	@echo "  xsd2go2-test     ユニットテスト実行"
+	@echo ""
 	@echo "fuzz"
 	@echo "  fuzz-gen         fuzz seed corpus 生成 (gml*/testdata/fuzz/FuzzReader/)"
 	@echo ""
@@ -29,8 +33,10 @@ help:
 	@echo "  gml-parser-build バイナリビルド"
 	@echo "  gml-parser-run   inspect サブコマンド実行 (testdata/N03)"
 
-XSD2GO_DIR := cmd/xsd2go-lite
-XSD2GO_BIN := $(XSD2GO_DIR)/xsd2go-lite
+XSD2GO_DIR  := cmd/xsd2go-lite
+XSD2GO_BIN  := $(XSD2GO_DIR)/xsd2go-lite
+XSD2GO2_DIR := cmd/xsd2go-lite2
+XSD2GO2_BIN := $(XSD2GO2_DIR)/xsd2go-lite2
 SCHEMA_DIR := docs/schemas
 
 # ---- xsd2go-gen version configuration ----
@@ -98,6 +104,16 @@ xsd2go-test:
 xsd2go-cover:
 	cd $(XSD2GO_DIR) && GOWORK=off go test -count=1 -coverprofile=$(GOTMPDIR)/cover_xsd2go.out ./...
 	go tool cover -func=$(GOTMPDIR)/cover_xsd2go.out
+
+# ---- xsd2go-lite2 (next-gen code generator) ----
+
+.PHONY: xsd2go2-build xsd2go2-test
+
+xsd2go2-build:
+	GONOSUMDB='*' GOWORK=off go build -C $(XSD2GO2_DIR) -o xsd2go-lite2 .
+
+xsd2go2-test:
+	GONOSUMDB='*' GOWORK=off go test -C $(XSD2GO2_DIR) -count=1 ./...
 
 XLINK_NS  := http://www.w3.org/1999/xlink
 XLINK_XSD := $(SCHEMA_DIR)/xlink/xlink.xsd
