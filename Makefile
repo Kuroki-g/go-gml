@@ -74,6 +74,8 @@ test:
 		echo "=== $$m ==="; \
 		go -C $$m test -count=1 ./...; \
 	done
+	@echo "=== xsd2go-lite2 ==="
+	GONOSUMDB='*' GOWORK=off go test -C $(XSD2GO2_DIR) -count=1 ./...
 
 cover:
 	@for m in $(MODULES); do \
