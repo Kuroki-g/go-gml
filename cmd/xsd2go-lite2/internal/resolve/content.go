@@ -10,32 +10,30 @@ import (
 
 // resolveContentModel recursively converts a ContentModel to []Field.
 //
-// inChoice: some ancestor compositor is "choice"; all descendants become optional.
-// parentUnbounded: OR semantics — if any ancestor compositor has maxOccurs=unbounded,
-// all descendant Fields become slices regardless of their own maxOccurs.
-func (r *Resolver) resolveContentModel(cm *parse.ContentModel, schemaNS string, inChoice, parentUnbounded bool) []parse.Field {
-	// OR semantics: compositor unbounded propagates down to all descendant Fields.
-	unbounded := parentUnbounded || cm.MaxOccurs == "unbounded"
+// optional: some ancestor compositor is choice or has minOccurs=0 (only relevant
+// for group content, since inline ElemDecl.MinOccurs is pre-computed in parse).
+// unbounded: some ancestor compositor has maxOccurs=unbounded (same caveat).
+func (r *Resolver) resolveContentModel(cm *parse.ContentModel, schemaNS string, optional, unbounded bool) []parse.Field {
+	childUnbounded := unbounded || cm.MaxOccurs == "unbounded"
+	childOptional := optional || cm.MinOccurs == "0" || cm.Kind == "choice"
 
 	var fields []parse.Field
 	for _, ed := range cm.Elems {
-		fields = append(fields, r.resolveElemDecl(ed, schemaNS, inChoice, unbounded)...)
+		fields = append(fields, r.resolveElemDecl(ed, schemaNS, childOptional, childUnbounded)...)
 	}
 	for _, gr := range cm.Groups {
-		fields = append(fields, r.resolveGroupRef(gr, schemaNS, inChoice, unbounded)...)
+		fields = append(fields, r.resolveGroupRef(gr, schemaNS, childOptional, childUnbounded)...)
 	}
 	for i := range cm.Children {
-		child := &cm.Children[i]
-		childInChoice := inChoice || child.Kind == "choice"
-		fields = append(fields, r.resolveContentModel(child, schemaNS, childInChoice, unbounded)...)
+		fields = append(fields, r.resolveContentModel(&cm.Children[i], schemaNS, childOptional, childUnbounded)...)
 	}
 	return fields
 }
 
 // resolveElemDecl converts an ElemDecl to zero or more Fields.
-func (r *Resolver) resolveElemDecl(ed parse.ElemDecl, schemaNS string, inChoice, parentUnbounded bool) []parse.Field {
+func (r *Resolver) resolveElemDecl(ed parse.ElemDecl, schemaNS string, optional, unbounded bool) []parse.Field {
 	if ed.Ref != "" {
-		return r.resolveElemRef(ed, schemaNS, inChoice, parentUnbounded)
+		return r.resolveElemRef(ed, schemaNS, optional, unbounded)
 	}
 
 	goType := r.resolveTypeName(ed.TypeRef, schemaNS)
@@ -48,9 +46,8 @@ func (r *Resolver) resolveElemDecl(ed parse.ElemDecl, schemaNS string, inChoice,
 		typeNS, _ = r.resolveQName(ed.TypeRef, schemaNS)
 	}
 
-	// OR semantics: either the ancestor compositor or this element's own maxOccurs makes it a slice.
-	isSlice := parentUnbounded || ed.MaxOccurs == "unbounded" || (ed.MaxOccurs != "" && ed.MaxOccurs != "1" && ed.MaxOccurs != "0")
-	isOmit := inChoice || ed.MinOccurs == "0"
+	isSlice := unbounded || ed.MaxOccurs == "unbounded" || (ed.MaxOccurs != "" && ed.MaxOccurs != "1" && ed.MaxOccurs != "0")
+	isOmit := optional || ed.MinOccurs == "0"
 
 	f := parse.Field{
 		GoName: parse.GoName(ed.Name),
@@ -74,7 +71,7 @@ func (r *Resolver) resolveElemDecl(ed parse.ElemDecl, schemaNS string, inChoice,
 }
 
 // resolveElemRef resolves an element ref QName, expanding substitutionGroup members.
-func (r *Resolver) resolveElemRef(ed parse.ElemDecl, schemaNS string, inChoice, parentUnbounded bool) []parse.Field {
+func (r *Resolver) resolveElemRef(ed parse.ElemDecl, schemaNS string, optional, unbounded bool) []parse.Field {
 	refNS, refName := r.resolveQName(ed.Ref, schemaNS)
 	refKey := refNS + " " + refName
 
@@ -94,9 +91,8 @@ func (r *Resolver) resolveElemRef(ed parse.ElemDecl, schemaNS string, inChoice, 
 		doc = elem.Doc
 	}
 
-	// OR semantics: either the ancestor compositor or this element's own maxOccurs makes it a slice.
-	isSlice := parentUnbounded || ed.MaxOccurs == "unbounded" || (ed.MaxOccurs != "" && ed.MaxOccurs != "1" && ed.MaxOccurs != "0")
-	isOmit := inChoice || ed.MinOccurs == "0"
+	isSlice := unbounded || ed.MaxOccurs == "unbounded" || (ed.MaxOccurs != "" && ed.MaxOccurs != "1" && ed.MaxOccurs != "0")
+	isOmit := optional || ed.MinOccurs == "0"
 
 	f := parse.Field{
 		GoName: parse.GoName(refName),
@@ -145,8 +141,9 @@ func (r *Resolver) resolveElemRef(ed parse.ElemDecl, schemaNS string, inChoice, 
 	return result
 }
 
-// resolveGroupRef expands a model group reference into Fields.
-func (r *Resolver) resolveGroupRef(gr parse.GroupRef, schemaNS string, inChoice, parentUnbounded bool) []parse.Field {
+// resolveGroupRef expands a named model group reference into Fields.
+// gr.MinOccurs/MaxOccurs are effective values pre-computed in the parse phase.
+func (r *Resolver) resolveGroupRef(gr parse.GroupRef, schemaNS string, parentOptional, parentUnbounded bool) []parse.Field {
 	groupNS, groupName := r.resolveQName(gr.Ref, schemaNS)
 	groupKey := groupNS + " " + groupName
 	group, ok := r.allGroups[groupKey]
@@ -157,7 +154,8 @@ func (r *Resolver) resolveGroupRef(gr parse.GroupRef, schemaNS string, inChoice,
 	if group.Content == nil {
 		return nil
 	}
-	// The group ref itself may also have maxOccurs=unbounded.
-	grUnbounded := parentUnbounded || gr.MaxOccurs == "unbounded"
-	return r.resolveContentModel(group.Content, groupNS, inChoice, grUnbounded)
+	// Combine caller context with this group ref's own effective values.
+	optional := parentOptional || gr.MinOccurs == "0"
+	unbounded := parentUnbounded || gr.MaxOccurs == "unbounded"
+	return r.resolveContentModel(group.Content, groupNS, optional, unbounded)
 }
