@@ -41,7 +41,11 @@ func (r *Resolver) resolveComplexType(ct *parse.ComplexType, visiting map[string
 	if ct.Derivation != nil {
 		switch ct.Derivation.Kind {
 		case "extension":
-			baseFields := r.resolveBaseExtension(ct.Derivation.Base, ct.Source, visiting)
+			// simpleContent base is always a SimpleType; no struct fields to inherit.
+			var baseFields []parse.Field
+			if ct.ContentKind != parse.ContentKindSimple {
+				baseFields = r.resolveBaseExtension(ct.Derivation.Base, ct.Source, visiting)
+			}
 			var ownFields []parse.Field
 			if ct.Content != nil {
 				ownFields = append(ownFields, r.resolveContentModel(ct.Content, ct.Source, false, false)...)
