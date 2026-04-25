@@ -39,7 +39,34 @@ func (r *Resolver) resolveComplexType(ct *parse.ComplexType, visiting map[string
 	}
 
 	if ct.Derivation != nil {
-		// Inheritance (extension/restriction) is implemented in Step 4.
+		switch ct.Derivation.Kind {
+		case "extension":
+			baseFields := r.resolveBaseExtension(ct.Derivation.Base, ct.Source, visiting)
+			var ownFields []parse.Field
+			if ct.Content != nil {
+				ownFields = append(ownFields, r.resolveContentModel(ct.Content, ct.Source, false, false)...)
+			}
+			if ct.CharData != nil {
+				ownFields = append(ownFields, r.resolveCharData(ct.CharData, ct.Source)...)
+			}
+			for _, ad := range ct.Attrs {
+				ownFields = append(ownFields, r.resolveAttrDecl(ad, ct.Source)...)
+			}
+			for _, agRef := range ct.AttrGroups {
+				ownFields = append(ownFields, r.resolveAttrGroupRef(agRef, ct.Source)...)
+			}
+			ct.Fields = deduplicateFields(append(baseFields, ownFields...))
+		case "restriction":
+			prohibited := r.collectProhibited(ct.Attrs, ct.Source)
+			if ct.Content != nil {
+				ct.Fields = append(ct.Fields, r.resolveContentModel(ct.Content, ct.Source, false, false)...)
+			}
+			if ct.CharData != nil {
+				ct.Fields = append(ct.Fields, r.resolveCharData(ct.CharData, ct.Source)...)
+			}
+			attrFields := r.resolveBaseRestrictionAttrs(ct.Derivation.Base, ct.Source, visiting, prohibited, ct.Attrs, ct.AttrGroups)
+			ct.Fields = append(ct.Fields, attrFields...)
+		}
 		return
 	}
 
@@ -76,27 +103,21 @@ func (r *Resolver) resolveCharData(cd *parse.CharDataDecl, schemaNS string) []pa
 	}}
 }
 
-// deduplicateFields removes fields with duplicate GoNames.
-// When an attribute and an element conflict, the later-defined (own) field wins.
-// Used only for extension (Step 4); defined here for reuse.
+// deduplicateFields removes fields with duplicate GoNames, keeping the last occurrence.
+// Derived type declarations override base type declarations (last wins).
+// Used for extension; defined here for reuse.
 func deduplicateFields(fields []parse.Field) []parse.Field {
-	type entry struct {
-		idx    int
-		isAttr bool
-	}
 	if len(fields) == 0 {
 		return fields
 	}
-	seen := make(map[string]entry)
+	seen := make(map[string]int)
 	result := make([]parse.Field, 0, len(fields))
 	for _, f := range fields {
-		e, exists := seen[f.GoName]
-		if !exists {
-			seen[f.GoName] = entry{len(result), f.IsAttr}
+		if idx, exists := seen[f.GoName]; exists {
+			result[idx] = f
+		} else {
+			seen[f.GoName] = len(result)
 			result = append(result, f)
-		} else if f.IsAttr != e.isAttr {
-			result[e.idx] = f
-			seen[f.GoName] = entry{e.idx, f.IsAttr}
 		}
 	}
 	return result
