@@ -43,7 +43,11 @@ func convertComplexType(ct xsdComplexType, ns string) ComplexType {
 		result.ContentKind = ContentKindComplex
 		convertComplexContentType(ct.ComplexContent, &result)
 	default:
-		result.Content = firstCompositor(ct.Sequence, ct.All, ct.Choice)
+		cm := firstCompositor(ct.Sequence, ct.All, ct.Choice)
+		if cm == nil {
+			cm = directGroupsContentModel(ct.Groups)
+		}
+		result.Content = cm
 		result.AttrGroups = collectAttrGroupRefs(ct.AttrGroups)
 		result.Attrs = convertAttributes(ct.Attributes)
 	}
@@ -67,12 +71,20 @@ func convertSimpleContentType(sc *xsdSimpleContent, result *ComplexType) {
 func convertComplexContentType(cc *xsdComplexContent, result *ComplexType) {
 	if ext := cc.Extension; ext != nil {
 		result.Derivation = &Derivation{Kind: "extension", Base: ext.Base}
-		result.Content = firstCompositor(ext.Sequence, ext.All, ext.Choice)
+		cm := firstCompositor(ext.Sequence, ext.All, ext.Choice)
+		if cm == nil {
+			cm = directGroupsContentModel(ext.Groups)
+		}
+		result.Content = cm
 		result.Attrs = convertAttributes(ext.Attributes)
 		result.AttrGroups = collectAttrGroupRefs(ext.AttrGroups)
 	} else if res := cc.Restriction; res != nil {
 		result.Derivation = &Derivation{Kind: "restriction", Base: res.Base}
-		result.Content = firstCompositor(res.Sequence, res.All, res.Choice)
+		cm := firstCompositor(res.Sequence, res.All, res.Choice)
+		if cm == nil {
+			cm = directGroupsContentModel(res.Groups)
+		}
+		result.Content = cm
 		result.Attrs = convertAttributes(res.Attributes)
 		result.AttrGroups = collectAttrGroupRefs(res.AttrGroups)
 	}

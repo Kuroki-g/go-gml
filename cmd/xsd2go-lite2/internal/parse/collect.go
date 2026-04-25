@@ -150,3 +150,21 @@ func collectAttrGroupDecl(ag xsdAttrGroup) AttrGroup {
 func collectGroupContent(g xsdGroup) *ContentModel {
 	return firstCompositor(g.Sequence, g.All, g.Choice)
 }
+
+// directGroupsContentModel wraps direct <group ref> particles (under extension/restriction/complexType)
+// into a synthetic sequence ContentModel. Returns nil if groups is empty.
+func directGroupsContentModel(groups []xsdGroupRef) *ContentModel {
+	if len(groups) == 0 {
+		return nil
+	}
+	ctx := buildCtx{}
+	cm := ContentModel{Kind: "sequence"}
+	for _, gr := range groups {
+		cm.Groups = append(cm.Groups, GroupRef{
+			Ref:       gr.Ref,
+			MinOccurs: ctx.effectiveMin(gr.MinOccurs),
+			MaxOccurs: ctx.effectiveMax(gr.MaxOccurs),
+		})
+	}
+	return &cm
+}

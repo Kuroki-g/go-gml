@@ -37,6 +37,7 @@ type xsdComplexType struct {
 	Sequence       *xsdSequence       `xml:"sequence"`
 	All            *xsdSequence       `xml:"all"`
 	Choice         *xsdSequence       `xml:"choice"`
+	Groups         []xsdGroupRef      `xml:"group"`
 	AttrGroups     []xsdAttrGroupRef  `xml:"attributeGroup"`
 	Attributes     []xsdAttribute     `xml:"attribute"`
 }
@@ -56,6 +57,7 @@ type xsdExtension struct {
 	Sequence   *xsdSequence      `xml:"sequence"`
 	All        *xsdSequence      `xml:"all"`
 	Choice     *xsdSequence      `xml:"choice"`
+	Groups     []xsdGroupRef     `xml:"group"`
 	AttrGroups []xsdAttrGroupRef `xml:"attributeGroup"`
 	Attributes []xsdAttribute    `xml:"attribute"`
 }
@@ -65,6 +67,7 @@ type xsdRestriction struct {
 	Sequence   *xsdSequence      `xml:"sequence"`
 	All        *xsdSequence      `xml:"all"`
 	Choice     *xsdSequence      `xml:"choice"`
+	Groups     []xsdGroupRef     `xml:"group"`
 	AttrGroups []xsdAttrGroupRef `xml:"attributeGroup"`
 	Attributes []xsdAttribute    `xml:"attribute"`
 }
