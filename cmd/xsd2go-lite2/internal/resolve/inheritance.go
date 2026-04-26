@@ -29,7 +29,17 @@ func (r *Resolver) resolveBaseRestrictionAttrs(base, schemaNS string, visiting m
 	baseCT, ok := r.allComplexTypes[baseNS+" "+baseName]
 	if !ok {
 		fmt.Fprintf(os.Stderr, "warn: restriction base type not found: %s\n", base)
-		return nil
+		var fields []parse.Field
+		for _, ad := range ownAttrs {
+			if ad.Use == parse.UseProhibited {
+				continue
+			}
+			fields = append(fields, r.resolveAttrDecl(ad, schemaNS)...)
+		}
+		for _, agRef := range ownAttrGroups {
+			fields = append(fields, r.resolveAttrGroupRef(agRef, schemaNS)...)
+		}
+		return deduplicateFields(fields)
 	}
 	r.resolveComplexType(baseCT, visiting)
 
