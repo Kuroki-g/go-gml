@@ -120,9 +120,9 @@ xsd2go2-test:
 XLINK_NS  := http://www.w3.org/1999/xlink
 XLINK_XSD := $(SCHEMA_DIR)/xlink/xlink.xsd
 
-xsd2go-gen: xsd2go-build
+xsd2go-gen: xsd2go2-build
 	@test -n "$(_GEN_OUT)" || (echo "Unknown GML_VERSION=$(GML_VERSION). Valid values: 3.2.1, 3.1.1, 2.1.2" >&2 && exit 1)
-	$(XSD2GO_BIN) \
+	$(XSD2GO2_BIN) \
 		-n "$(_GEN_NS)" \
 		-p gml \
 		--with-doc \
@@ -141,14 +141,14 @@ CITYGML20_BLDG_XSD := $(SCHEMA_DIR)/citygml/building/2.0/building.xsd
 XAL2_NS  := urn:oasis:names:tc:ciq:xsdschema:xAL:2.0
 
 .PHONY: citygml2_0-gen
-citygml2_0-gen: xsd2go-build
-	$(XSD2GO_BIN) \
+citygml2_0-gen: xsd2go2-build
+	$(XSD2GO2_BIN) \
 		-n "$(XAL2_NS)" \
 		-p generated \
 		--with-doc \
 		-o citygml2_0/generated/xal.go \
 		$(XAL_XSD)
-	$(XSD2GO_BIN) \
+	$(XSD2GO2_BIN) \
 		-n "$(CITYGML20_NS)" \
 		-p generated \
 		--with-doc \
@@ -158,7 +158,7 @@ citygml2_0-gen: xsd2go-build
 		--map-namespace "$(GML311_NS)=github.com/Kuroki-g/go-gml/gml3_1_1/generated" \
 		-o citygml2_0/generated/core.go \
 		$(CITYGML20_XSD)
-	$(XSD2GO_BIN) \
+	$(XSD2GO2_BIN) \
 		-n "http://www.opengis.net/citygml/building/2.0" \
 		-p generated \
 		--with-doc \
