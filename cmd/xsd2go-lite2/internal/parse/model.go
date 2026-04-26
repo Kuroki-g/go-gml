@@ -31,6 +31,7 @@ type ComplexType struct {
 
 	// After resolve:
 	Fields []Field
+	Embeds []EmbedRef // attributeGroup/group refs, populated by resolve phase
 }
 
 // Derivation holds XSD extension/restriction info.
@@ -120,6 +121,13 @@ type SimpleType struct {
 	GoType       string
 	Enumerations []string // enumeration facet values
 	Base         string   // restriction base type QName
+}
+
+// EmbedRef records a named attributeGroup or group for future embed struct generation.
+type EmbedRef struct {
+	XSDName string // local name
+	NS      string // namespace URI
+	Kind    string // "attributeGroup" | "group"
 }
 
 // Field is a single resolved struct field (gen phase input).

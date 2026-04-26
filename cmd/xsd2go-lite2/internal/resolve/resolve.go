@@ -45,6 +45,7 @@ func (r *Resolver) resolveComplexType(ct *parse.ComplexType, visiting map[string
 			var baseFields []parse.Field
 			if ct.ContentKind != parse.ContentKindSimple {
 				baseFields = r.resolveBaseExtension(ct.Derivation.Base, ct.Source, visiting)
+				ct.Embeds = r.copyBaseEmbeds(ct.Derivation.Base, ct.Source)
 			}
 			var ownFields []parse.Field
 			if ct.Content != nil {
@@ -58,8 +59,11 @@ func (r *Resolver) resolveComplexType(ct *parse.ComplexType, visiting map[string
 			}
 			for _, agRef := range ct.AttrGroups {
 				ownFields = append(ownFields, r.resolveAttrGroupRef(agRef, ct.Source)...)
+				agNS, agName := r.resolveQName(agRef, ct.Source)
+				ct.Embeds = appendEmbed(ct.Embeds, parse.EmbedRef{XSDName: agName, NS: agNS, Kind: "attributeGroup"})
 			}
 			ct.Fields = deduplicateFields(append(baseFields, ownFields...))
+			r.addGroupEmbeds(ct)
 		case "restriction":
 			prohibited := r.collectProhibited(ct.Attrs, ct.Source)
 			if ct.Content != nil {
@@ -70,6 +74,13 @@ func (r *Resolver) resolveComplexType(ct *parse.ComplexType, visiting map[string
 			}
 			attrFields := r.resolveBaseRestrictionAttrs(ct.Derivation.Base, ct.Source, visiting, prohibited, ct.Attrs, ct.AttrGroups)
 			ct.Fields = append(ct.Fields, attrFields...)
+			// Base is now resolved; copy its Embeds then add own.
+			ct.Embeds = r.copyBaseEmbeds(ct.Derivation.Base, ct.Source)
+			for _, agRef := range ct.AttrGroups {
+				agNS, agName := r.resolveQName(agRef, ct.Source)
+				ct.Embeds = appendEmbed(ct.Embeds, parse.EmbedRef{XSDName: agName, NS: agNS, Kind: "attributeGroup"})
+			}
+			r.addGroupEmbeds(ct)
 		}
 		return
 	}
@@ -88,9 +99,12 @@ func (r *Resolver) resolveComplexType(ct *parse.ComplexType, visiting map[string
 	}
 	for _, agRef := range ct.AttrGroups {
 		fields = append(fields, r.resolveAttrGroupRef(agRef, ct.Source)...)
+		agNS, agName := r.resolveQName(agRef, ct.Source)
+		ct.Embeds = appendEmbed(ct.Embeds, parse.EmbedRef{XSDName: agName, NS: agNS, Kind: "attributeGroup"})
 	}
 
 	ct.Fields = fields
+	r.addGroupEmbeds(ct)
 }
 
 // resolveCharData converts a CharDataDecl to a chardata Field.

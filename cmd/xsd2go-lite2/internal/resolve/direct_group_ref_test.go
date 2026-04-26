@@ -118,6 +118,86 @@ func TestResolveRestrictionBaseAnyType(t *testing.T) {
 	}
 }
 
+// TestEmbedsDirectAttrGroup verifies that an attributeGroup ref on a direct definition
+// is recorded in ct.Embeds with Kind="attributeGroup".
+func TestEmbedsDirectAttrGroup(t *testing.T) {
+	r := NewResolver()
+	r.nsMaps[gmlNS] = map[string]string{"gml": gmlNS}
+
+	ag := &parse.AttrGroup{
+		Name:  "SRSReferenceGroup",
+		Attrs: []parse.AttrDecl{{Name: "srsName", TypeRef: "xs:anyURI", Use: "optional"}},
+	}
+	r.allAttrGroups[gmlNS+" SRSReferenceGroup"] = ag
+
+	ct := &parse.ComplexType{
+		Name:       "AbstractGeometryTypeA",
+		Source:     gmlNS,
+		AttrGroups: []string{"gml:SRSReferenceGroup"},
+	}
+	r.allComplexTypes[gmlNS+" AbstractGeometryTypeA"] = ct
+
+	r.resolveComplexType(ct, nil)
+
+	if len(ct.Embeds) == 0 {
+		t.Fatal("expected Embeds to be populated")
+	}
+	if ct.Embeds[0].XSDName != "SRSReferenceGroup" || ct.Embeds[0].Kind != "attributeGroup" {
+		t.Errorf("unexpected Embeds[0]: %+v", ct.Embeds[0])
+	}
+}
+
+// TestEmbedsInheritedOnExtension verifies that extension inherits base Embeds and adds own
+// without duplicating entries already present in the base.
+func TestEmbedsInheritedOnExtension(t *testing.T) {
+	r := NewResolver()
+	r.nsMaps[gmlNS] = map[string]string{"gml": gmlNS}
+
+	ag := &parse.AttrGroup{
+		Name:  "SRSReferenceGroup",
+		Attrs: []parse.AttrDecl{{Name: "srsName", TypeRef: "xs:anyURI", Use: "optional"}},
+	}
+	r.allAttrGroups[gmlNS+" SRSReferenceGroup"] = ag
+
+	agB := &parse.AttrGroup{
+		Name:  "StandardObjectProperties",
+		Attrs: []parse.AttrDecl{{Name: "id", TypeRef: "xs:ID", Use: "optional"}},
+	}
+	r.allAttrGroups[gmlNS+" StandardObjectProperties"] = agB
+
+	// Base already embeds SRSReferenceGroup.
+	base := &parse.ComplexType{
+		Name:       "BaseType",
+		Source:     gmlNS,
+		AttrGroups: []string{"gml:SRSReferenceGroup"},
+	}
+	r.allComplexTypes[gmlNS+" BaseType"] = base
+
+	// Derived extends base and adds StandardObjectProperties (not a duplicate).
+	// It also references SRSReferenceGroup again — must NOT appear twice in Embeds.
+	derived := &parse.ComplexType{
+		Name:        "DerivedType",
+		Source:      gmlNS,
+		ContentKind: parse.ContentKindComplex,
+		Derivation:  &parse.Derivation{Kind: "extension", Base: "gml:BaseType"},
+		AttrGroups:  []string{"gml:StandardObjectProperties", "gml:SRSReferenceGroup"},
+	}
+	r.allComplexTypes[gmlNS+" DerivedType"] = derived
+
+	r.resolveComplexType(derived, nil)
+
+	names := make(map[string]int)
+	for _, e := range derived.Embeds {
+		names[e.XSDName]++
+	}
+	if names["SRSReferenceGroup"] != 1 {
+		t.Errorf("SRSReferenceGroup should appear exactly once; Embeds=%v", derived.Embeds)
+	}
+	if names["StandardObjectProperties"] != 1 {
+		t.Errorf("StandardObjectProperties missing from Embeds; Embeds=%v", derived.Embeds)
+	}
+}
+
 // TestResolveRestrictionBaseMissingExternal verifies that when the restriction
 // base references an unresolvable external type, own attrs are still emitted
 // as Fields (warning is expected but not asserted here).
