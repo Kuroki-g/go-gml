@@ -89,6 +89,7 @@ func (r *Resolver) Load(filename string) (*parse.Schema, error) {
 	}
 	for name, ag := range s.AttributeGroups {
 		agCopy := ag
+		agCopy.Source = ns
 		r.allAttrGroups[ns+" "+name] = &agCopy
 	}
 	for name, g := range s.Groups {

@@ -77,7 +77,7 @@ func run(inputXSD string) error {
 		mapNS[ns] = pkgPath
 	}
 
-	src, err := gen.Generate(types, pkgName, skipAbstract, withDoc, mapNS, inputXSD, Version)
+	src, err := gen.Generate(types, pkgName, skipAbstract, withDoc, mapNS, inputXSD, Version, resolver.AllAttrGroups())
 	if err != nil {
 		fmt.Fprint(os.Stderr, src)
 		return fmt.Errorf("generate: %w", err)

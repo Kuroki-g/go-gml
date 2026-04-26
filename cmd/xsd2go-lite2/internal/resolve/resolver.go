@@ -42,3 +42,9 @@ func NewResolver() *Resolver {
 func (r *Resolver) AddCatalogEntry(namespaceURI, localPath string) {
 	r.catalog[namespaceURI] = localPath
 }
+
+// AllAttrGroups returns the full map of resolved attributeGroup definitions,
+// keyed by "NS LocalName". Intended for use by the gen phase.
+func (r *Resolver) AllAttrGroups() map[string]*parse.AttrGroup {
+	return r.allAttrGroups
+}

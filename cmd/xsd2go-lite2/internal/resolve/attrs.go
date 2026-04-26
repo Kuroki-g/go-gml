@@ -68,6 +68,7 @@ func (r *Resolver) resolveAttrRef(ref, use, schemaNS string) []parse.Field {
 }
 
 // resolveAttrGroupRef recursively expands an attributeGroup ref to Fields.
+// It also populates ag.Fields as a side effect (idempotent).
 func (r *Resolver) resolveAttrGroupRef(ref, schemaNS string) []parse.Field {
 	agNS, agName := r.resolveQName(ref, schemaNS)
 	agKey := agNS + " " + agName
@@ -76,7 +77,15 @@ func (r *Resolver) resolveAttrGroupRef(ref, schemaNS string) []parse.Field {
 		fmt.Fprintf(os.Stderr, "warn: attributeGroup not found: %s\n", ref)
 		return nil
 	}
+	r.cacheAttrGroupFields(ag, agNS)
+	return ag.Fields
+}
 
+// cacheAttrGroupFields populates ag.Fields if not already done.
+func (r *Resolver) cacheAttrGroupFields(ag *parse.AttrGroup, agNS string) {
+	if len(ag.Fields) > 0 {
+		return
+	}
 	var fields []parse.Field
 	for _, ad := range ag.Attrs {
 		fields = append(fields, r.resolveAttrDecl(ad, agNS)...)
@@ -84,5 +93,5 @@ func (r *Resolver) resolveAttrGroupRef(ref, schemaNS string) []parse.Field {
 	for _, nestedRef := range ag.NestedGroups {
 		fields = append(fields, r.resolveAttrGroupRef(nestedRef, agNS)...)
 	}
-	return fields
+	ag.Fields = fields
 }

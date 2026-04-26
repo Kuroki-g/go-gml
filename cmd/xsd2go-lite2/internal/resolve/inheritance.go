@@ -37,7 +37,7 @@ func (r *Resolver) resolveBaseRestrictionAttrs(base, schemaNS string, visiting m
 			fields = append(fields, r.resolveAttrDecl(ad, schemaNS)...)
 		}
 		for _, agRef := range ownAttrGroups {
-			fields = append(fields, r.resolveAttrGroupRef(agRef, schemaNS)...)
+			r.resolveAttrGroupRef(agRef, schemaNS) // populate ag.Fields only
 		}
 		return deduplicateFields(fields)
 	}
@@ -57,7 +57,7 @@ func (r *Resolver) resolveBaseRestrictionAttrs(base, schemaNS string, visiting m
 		fields = append(fields, r.resolveAttrDecl(ad, schemaNS)...)
 	}
 	for _, agRef := range ownAttrGroups {
-		fields = append(fields, r.resolveAttrGroupRef(agRef, schemaNS)...)
+		r.resolveAttrGroupRef(agRef, schemaNS) // populate ag.Fields only
 	}
 	return deduplicateFields(fields)
 }

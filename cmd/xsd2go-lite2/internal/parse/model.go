@@ -88,8 +88,12 @@ type CharDataDecl struct {
 // AttrGroup is an attribute group definition.
 type AttrGroup struct {
 	Name         string
+	Source       string // targetNamespace of defining schema
 	Attrs        []AttrDecl
 	NestedGroups []string // nested attributeGroup ref QNames
+
+	// After resolve:
+	Fields []Field
 }
 
 // Group is a named model group definition.

@@ -10,7 +10,7 @@ import (
 )
 
 // Generate produces a Go source file string for the given types.
-func Generate(types []*parse.ComplexType, pkgName string, skipAbstract bool, withDoc bool, mapNS map[string]string, xsdSource string, version string) (string, error) {
+func Generate(types []*parse.ComplexType, pkgName string, skipAbstract bool, withDoc bool, mapNS map[string]string, xsdSource string, version string, attrGroups map[string]*parse.AttrGroup) (string, error) {
 	aliases := make(map[string]string)
 	importPaths := make(map[string]string)
 	aliasToNS := make(map[string]string)
@@ -28,8 +28,11 @@ func Generate(types []*parse.ComplexType, pkgName string, skipAbstract bool, wit
 		return types[i].Name < types[j].Name
 	})
 
+	// Collect attributeGroup structs referenced by the types (in stable order).
 	usedAliases := make(map[string]bool)
 	var structsSB strings.Builder
+	writeAttrGroupStructs(&structsSB, types, attrGroups, withDoc, aliases, usedAliases)
+
 	for _, ct := range types {
 		if skipAbstract && ct.Abstract {
 			continue
@@ -37,7 +40,7 @@ func Generate(types []*parse.ComplexType, pkgName string, skipAbstract bool, wit
 		if ct.Name == "" {
 			continue
 		}
-		writeStruct(&structsSB, ct, withDoc, aliases, usedAliases)
+		writeStruct(&structsSB, ct, withDoc, aliases, usedAliases, attrGroups)
 	}
 
 	var header strings.Builder
@@ -75,10 +78,72 @@ func Generate(types []*parse.ComplexType, pkgName string, skipAbstract bool, wit
 	return string(formatted), nil
 }
 
-func writeStruct(sb *strings.Builder, ct *parse.ComplexType, withDoc bool, aliases map[string]string, usedAliases map[string]bool) {
+// writeAttrGroupStructs generates struct definitions for all attributeGroups
+// referenced by at least one of the given types, each emitted exactly once.
+func writeAttrGroupStructs(sb *strings.Builder, types []*parse.ComplexType, attrGroups map[string]*parse.AttrGroup, withDoc bool, aliases map[string]string, usedAliases map[string]bool) {
+	seen := make(map[string]bool)
+	for _, ct := range types {
+		for _, em := range ct.Embeds {
+			if em.Kind != "attributeGroup" {
+				continue
+			}
+			key := em.NS + " " + em.XSDName
+			if seen[key] {
+				continue
+			}
+			seen[key] = true
+			ag, ok := attrGroups[key]
+			if !ok {
+				continue
+			}
+			writeAttrGroupStruct(sb, ag, withDoc, aliases, usedAliases)
+		}
+	}
+}
+
+func writeAttrGroupStruct(sb *strings.Builder, ag *parse.AttrGroup, withDoc bool, aliases map[string]string, usedAliases map[string]bool) {
+	sb.WriteString("type ")
+	sb.WriteString(parse.GoTypeName(ag.Name))
+	sb.WriteString(" struct {\n")
+	for _, f := range ag.Fields {
+		goType := f.GoType
+		if alias, ok := aliases[f.TypeNS]; ok {
+			goType = qualifyType(goType, alias)
+			usedAliases[alias] = true
+		}
+		if withDoc && f.Doc != "" {
+			writeComment(sb, f.Doc)
+		}
+		sb.WriteString("\t")
+		sb.WriteString(f.GoName)
+		sb.WriteString(" ")
+		sb.WriteString(goType)
+		sb.WriteString(" `xml:\"")
+		sb.WriteString(f.XMLTag)
+		sb.WriteString(buildTagSuffix(f))
+		sb.WriteString("\"`\n")
+	}
+	sb.WriteString("}\n\n")
+}
+
+func writeStruct(sb *strings.Builder, ct *parse.ComplexType, withDoc bool, aliases map[string]string, usedAliases map[string]bool, attrGroups map[string]*parse.AttrGroup) {
 	sb.WriteString("type ")
 	sb.WriteString(parse.GoTypeName(ct.Name))
 	sb.WriteString(" struct {\n")
+
+	// Emit attributeGroup embeds before own fields.
+	for _, em := range ct.Embeds {
+		if em.Kind != "attributeGroup" {
+			continue
+		}
+		key := em.NS + " " + em.XSDName
+		if _, ok := attrGroups[key]; !ok {
+			continue
+		}
+		sb.WriteString("\t")
+		sb.WriteString(parse.GoTypeName(em.XSDName))
+		sb.WriteString("\n")
+	}
 
 	for _, f := range ct.Fields {
 		goType := f.GoType

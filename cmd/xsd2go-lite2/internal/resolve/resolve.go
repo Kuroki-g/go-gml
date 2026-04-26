@@ -58,7 +58,7 @@ func (r *Resolver) resolveComplexType(ct *parse.ComplexType, visiting map[string
 				ownFields = append(ownFields, r.resolveAttrDecl(ad, ct.Source)...)
 			}
 			for _, agRef := range ct.AttrGroups {
-				ownFields = append(ownFields, r.resolveAttrGroupRef(agRef, ct.Source)...)
+				r.resolveAttrGroupRef(agRef, ct.Source) // populate ag.Fields only
 				agNS, agName := r.resolveQName(agRef, ct.Source)
 				ct.Embeds = appendEmbed(ct.Embeds, parse.EmbedRef{XSDName: agName, NS: agNS, Kind: "attributeGroup"})
 			}
@@ -98,7 +98,7 @@ func (r *Resolver) resolveComplexType(ct *parse.ComplexType, visiting map[string
 		fields = append(fields, r.resolveAttrDecl(ad, ct.Source)...)
 	}
 	for _, agRef := range ct.AttrGroups {
-		fields = append(fields, r.resolveAttrGroupRef(agRef, ct.Source)...)
+		r.resolveAttrGroupRef(agRef, ct.Source) // populate ag.Fields only
 		agNS, agName := r.resolveQName(agRef, ct.Source)
 		ct.Embeds = appendEmbed(ct.Embeds, parse.EmbedRef{XSDName: agName, NS: agNS, Kind: "attributeGroup"})
 	}
