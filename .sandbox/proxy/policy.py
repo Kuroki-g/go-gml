@@ -1,6 +1,13 @@
 import re
+import sys
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Callable
+
+if sys.version_info >= (3, 11):
+    import tomllib
+else:
+    import tomli as tomllib
 
 # ---------------------------------------------------------------------------
 # DLP – secret patterns
@@ -61,47 +68,25 @@ class DomainPolicy:
     dlp: DlpFn = field(default=default_dlp)
 
 
-POLICIES: dict[str, DomainPolicy] = {
-    # --- Anthropic (POST allowed, DLP enforced) ---
-    "anthropic.com":            DomainPolicy(methods=frozenset({"GET", "POST", "HEAD"})),
-    "claude.ai":                DomainPolicy(methods=frozenset({"GET", "POST", "HEAD"})),
-    "claude.com":               DomainPolicy(methods=frozenset({"GET", "POST", "HEAD"})),
-    # --- Dev tools ---
-    "github.com":               DomainPolicy(),
-    "githubusercontent.com":    DomainPolicy(),
-    # --- Python ecosystem ---
-    "pypi.org":                 DomainPolicy(),
-    "pythonhosted.org":         DomainPolicy(),
-    "docs.python.org":          DomainPolicy(),
-    "docs.astral.sh":           DomainPolicy(),
-    "docs.pydantic.dev":        DomainPolicy(),
-    # --- Go ecosystem ---
-    "go.dev":                   DomainPolicy(),
-    "pkg.go.dev":               DomainPolicy(),
-    "proxy.golang.org":         DomainPolicy(),
-    "sum.golang.org":           DomainPolicy(),
-    # --- Docs / community ---
-    "google.github.io":         DomainPolicy(),
-    "learn.microsoft.com":      DomainPolicy(),
-    "modelcontextprotocol.io":  DomainPolicy(),
-    "speakerdeck.com":          DomainPolicy(),
-    "qiita.com":                DomainPolicy(),
-    "zenn.dev":                 DomainPolicy(),
-    "testing.googleblog.com":   DomainPolicy(),
-    "www.w3.org":               DomainPolicy(),
-    "schemas.opengis.net":      DomainPolicy(),
-    # --- Geometry---
-    "www.geospatial.jp":        DomainPolicy(),
-    "nlftp.mlit.go.jp":         DomainPolicy(),
-    "www.mlit.go.jp":           DomainPolicy(),
-    "www.geopackage.org":       DomainPolicy(),
-    "gdal.org":                 DomainPolicy(),
-    "www.ogc.org":              DomainPolicy(),
-    "www.citygmlwiki.org":      DomainPolicy(),
-    # --- 学術論文 ---
-    "jstage.jst.go.jp":         DomainPolicy(),
-    "ci.nii.ac.jp":             DomainPolicy(),
+_DLP_FNS: dict[str, DlpFn] = {
+    "default": default_dlp,
+    "none":    no_dlp,
 }
+
+_WHITELIST_PATH = Path(__file__).with_name("whitelist.toml")
+
+def _load_policies() -> dict[str, DomainPolicy]:
+    with open(_WHITELIST_PATH, "rb") as f:
+        data = tomllib.load(f)
+    policies: dict[str, DomainPolicy] = {}
+    for host, entry in data.get("domains", {}).items():
+        methods = frozenset(entry.get("methods", ["GET", "HEAD"]))
+        dlp_key = entry.get("dlp", "default")
+        dlp_fn  = _DLP_FNS.get(dlp_key, default_dlp)
+        policies[host] = DomainPolicy(methods=methods, dlp=dlp_fn)
+    return policies
+
+POLICIES: dict[str, DomainPolicy] = _load_policies()
 
 
 def get_policy(host: str) -> DomainPolicy | None:

@@ -92,7 +92,8 @@ class SandboxFilter:
                 "(1) Is this domain directly required for the current research task? "
                 "(2) Is it a legitimate public domain (not a personal/private service)? "
                 "(3) Does it fit the research scope (weather data, building standards, academic papers)? "
-                "If all checks pass, propose adding it to .sandbox/proxy/policy.py in the POLICIES dict. "
+                "If all checks pass, ask the user for permission to add it to .sandbox/proxy/whitelist.toml "
+                "before making any changes. "
                 "If any check fails, report why you attempted this access instead."
             )
             body = self._block_body("domain_not_whitelisted", guidance, domain=host)
