@@ -16,6 +16,7 @@ services:
       - ./proxy/entrypoint.sh:/scripts/entrypoint.sh:ro
       - ./proxy/filter.py:/scripts/filter.py:ro
       - ./proxy/policy.py:/scripts/policy.py:ro
+      - ./proxy/whitelist.toml:/scripts/whitelist.toml:ro
       - mitmproxy-data:/data
       - mitmproxy-logs:/logs
     networks:
