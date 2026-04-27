@@ -19,13 +19,13 @@ func (r *Reader) handleCompositeCurve(dec *xml.Decoder, se xml.StartElement) (co
 	if err != nil {
 		return core.Geometry{}, err
 	}
-	return core.Geometry{Value: ls, SRSName: x.SrsName}, nil
+	return core.Geometry{Value: ls, SRSName: x.SRSReferenceGroup.SrsName}, nil
 }
 
 func lineStringFromCompositeCurveType(x *gen.CompositeCurveType, inheritDim *uint, inheritSrsName *string, resolver *curveResolver) (core.LineString, error) {
 	var result core.LineString
 	dim := preferDim(x.SrsDimension, inheritDim)
-	srsName := preferSrsName(x.SrsName, inheritSrsName)
+	srsName := preferSrsName(x.SRSReferenceGroup.SrsName, inheritSrsName)
 	for i, cm := range x.CurveMember {
 		ls, err := lineStringFromCurveProperty(&cm, dim, srsName, resolver)
 		if err != nil {

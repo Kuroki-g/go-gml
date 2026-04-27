@@ -18,12 +18,12 @@ func decodeLineStringElement(dec *xml.Decoder, se xml.StartElement) (core.Geomet
 	if err != nil {
 		return core.Geometry{}, err
 	}
-	return core.Geometry{Value: ls, SRSName: x.SrsName}, nil
+	return core.Geometry{Value: ls, SRSName: x.SRSReferenceGroup.SrsName}, nil
 }
 
 func lineStringFromXML(x *gen.LineStringType, inheritDim *uint, inheritSrsName *string) (core.LineString, error) {
 	resolvedDim := preferDim(x.SrsDimension, inheritDim)
-	resolvedSrsName := preferSrsName(x.SrsName, inheritSrsName)
+	resolvedSrsName := preferSrsName(x.SRSReferenceGroup.SrsName, inheritSrsName)
 	if x.PosList != nil {
 		return core.LineStringFromPosListString(x.PosList.Value, preferDim(x.PosList.SrsDimension, resolvedDim), preferSrsName(x.PosList.SrsName, resolvedSrsName))
 	}

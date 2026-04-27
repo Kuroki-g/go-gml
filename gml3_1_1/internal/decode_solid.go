@@ -16,11 +16,11 @@ func (r *Reader) handleSolid(dec *xml.Decoder, se xml.StartElement) (core.Geomet
 		return core.Geometry{}, fmt.Errorf("gml: Solid: %w", err)
 	}
 	dim := preferDim(x.SrsDimension, r.globalDim)
-	solid, err := solidFromXML(&x, dim, x.SrsName, r.resolver)
+	solid, err := solidFromXML(&x, dim, x.SRSReferenceGroup.SrsName, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
 	}
-	return core.Geometry{Value: solid, SRSName: x.SrsName}, nil
+	return core.Geometry{Value: solid, SRSName: x.SRSReferenceGroup.SrsName}, nil
 }
 
 // handleCompositeSolid decodes a gml:CompositeSolid and returns a core.Solid
@@ -32,11 +32,11 @@ func (r *Reader) handleCompositeSolid(dec *xml.Decoder, se xml.StartElement) (co
 		return core.Geometry{}, fmt.Errorf("gml: CompositeSolid: %w", err)
 	}
 	dim := preferDim(x.SrsDimension, r.globalDim)
-	solid, err := solidFromSolidPropertyMembers(x.SolidMember, dim, x.SrsName, r.resolver)
+	solid, err := solidFromSolidPropertyMembers(x.SolidMember, dim, x.SRSReferenceGroup.SrsName, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
 	}
-	return core.Geometry{Value: solid, SRSName: x.SrsName}, nil
+	return core.Geometry{Value: solid, SRSName: x.SRSReferenceGroup.SrsName}, nil
 }
 
 // handleMultiSolid decodes a gml:MultiSolid and returns a core.MultiSolid.
@@ -48,27 +48,27 @@ func (r *Reader) handleMultiSolid(dec *xml.Decoder, se xml.StartElement) (core.G
 		return core.Geometry{}, fmt.Errorf("gml: MultiSolid: %w", err)
 	}
 	dim := preferDim(x.SrsDimension, r.globalDim)
-	solids, err := solidsFromSolidPropertyMembers(x.SolidMember, dim, x.SrsName, r.resolver)
+	solids, err := solidsFromSolidPropertyMembers(x.SolidMember, dim, x.SRSReferenceGroup.SrsName, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
 	}
 	if x.SolidMembers != nil {
 		for i := range x.SolidMembers.Solid {
-			s, err := solidFromXML(&x.SolidMembers.Solid[i], dim, x.SrsName, r.resolver)
+			s, err := solidFromXML(&x.SolidMembers.Solid[i], dim, x.SRSReferenceGroup.SrsName, r.resolver)
 			if err != nil {
 				return core.Geometry{}, fmt.Errorf("gml: MultiSolid solidMembers[%d]: %w", i, err)
 			}
 			solids = append(solids, s)
 		}
 		for i := range x.SolidMembers.CompositeSolid {
-			s, err := solidFromCompositeSolid(&x.SolidMembers.CompositeSolid[i], dim, x.SrsName, r.resolver)
+			s, err := solidFromCompositeSolid(&x.SolidMembers.CompositeSolid[i], dim, x.SRSReferenceGroup.SrsName, r.resolver)
 			if err != nil {
 				return core.Geometry{}, fmt.Errorf("gml: MultiSolid solidMembers CompositeSolid[%d]: %w", i, err)
 			}
 			solids = append(solids, s)
 		}
 	}
-	return core.Geometry{Value: solids, SRSName: x.SrsName}, nil
+	return core.Geometry{Value: solids, SRSName: x.SRSReferenceGroup.SrsName}, nil
 }
 
 // solidFromSolidPropertyMembers merges a slice of SolidPropertyType into one core.Solid.
@@ -154,7 +154,7 @@ func solidFromCompositeSolid(x *gen.CompositeSolidType, dim *uint, inheritSrsNam
 }
 
 func solidFromXML(x *gen.SolidType, dim *uint, inheritSrsName *string, resolver *curveResolver) (core.Solid, error) {
-	srsName := preferSrsName(x.SrsName, inheritSrsName)
+	srsName := preferSrsName(x.SRSReferenceGroup.SrsName, inheritSrsName)
 	var s core.Solid
 	if x.Exterior != nil {
 		mp, err := multiPolygonFromSurfaceProperty(x.Exterior, dim, srsName, resolver)

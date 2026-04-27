@@ -88,7 +88,7 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 				return fmt.Errorf("OrientableSurface %q: %w", id, err)
 			}
 			if x.BaseSurface != nil {
-				if poly, err := polygonFromSurfaceProperty(x.BaseSurface, preferDim(x.SrsDimension, nil), x.SrsName, resolver); err == nil {
+				if poly, err := polygonFromSurfaceProperty(x.BaseSurface, preferDim(x.SrsDimension, nil), x.SRSReferenceGroup.SrsName, resolver); err == nil {
 					resolver.polygonByID[id] = poly
 				}
 			}

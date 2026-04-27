@@ -17,7 +17,7 @@ func decodePointElement(dec *xml.Decoder, se xml.StartElement) (core.Geometry, e
 	if err != nil {
 		return core.Geometry{}, err
 	}
-	return core.Geometry{Value: pt, SRSName: x.SrsName}, nil
+	return core.Geometry{Value: pt, SRSName: x.SRSReferenceGroup.SrsName}, nil
 }
 
 func pointFromXML(x *gen.PointType) (core.Point, error) {
