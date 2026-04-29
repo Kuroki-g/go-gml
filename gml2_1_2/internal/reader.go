@@ -4,6 +4,7 @@ import (
 	"encoding/xml"
 	"fmt"
 	"io"
+	"iter"
 
 	core "github.com/Kuroki-g/go-gml/core"
 )
@@ -61,6 +62,26 @@ var handlers = map[string]handlerFunc{
 	gmlLineString: decodeLineStringElement,
 	gmlPolygon:    decodePolygonElement,
 	gmlBox:        decodeBoxElement,
+}
+
+// Geometries returns an iterator over all geometry elements in the GML stream.
+func (r *Reader) Geometries() iter.Seq2[*core.Geometry, error] {
+	return func(yield func(*core.Geometry, error) bool) {
+		for {
+			g, err := r.Next()
+			if err == io.EOF {
+				return
+			}
+			if err != nil {
+				yield(nil, err)
+				return
+			}
+			gc := g
+			if !yield(&gc, nil) {
+				return
+			}
+		}
+	}
 }
 
 // Next returns the next geometry found in the stream.
