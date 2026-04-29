@@ -29,4 +29,10 @@ const (
 	gmlEnvelopeWithTimePeriod = "EnvelopeWithTimePeriod"
 	gmlDomainSet              = "domainSet"
 	gmlRangeSet               = "rangeSet"
+
+	// AbstractGMLType / AbstractFeatureType property elements.
+	gmlMetaDataProperty = "metaDataProperty"
+	gmlDescription      = "description"
+	gmlName             = "name"
+	gmlLocation         = "location"
 )
