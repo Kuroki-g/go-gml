@@ -74,12 +74,9 @@ func (r *Resolver) resolveComplexType(ct *parse.ComplexType, visiting map[string
 			}
 			attrFields := r.resolveBaseRestrictionAttrs(ct.Derivation.Base, ct.Source, visiting, prohibited, ct.Attrs, ct.AttrGroups)
 			ct.Fields = append(ct.Fields, attrFields...)
-			// Base is now resolved; copy its Embeds then add own.
+			// restriction: attributeGroup refs in restriction body are constraints on
+			// inherited attrs, not new additions. Copy base embeds only.
 			ct.Embeds = r.copyBaseEmbeds(ct.Derivation.Base, ct.Source)
-			for _, agRef := range ct.AttrGroups {
-				agNS, agName := r.resolveQName(agRef, ct.Source)
-				ct.Embeds = appendEmbed(ct.Embeds, parse.EmbedRef{XSDName: agName, NS: agNS, Kind: "attributeGroup"})
-			}
 			r.addGroupEmbeds(ct)
 		}
 		return
