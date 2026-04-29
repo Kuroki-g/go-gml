@@ -80,12 +80,17 @@ func Generate(types []*parse.ComplexType, pkgName string, skipAbstract bool, wit
 
 // writeAttrGroupStructs generates struct definitions for all attributeGroups
 // referenced by at least one of the given types, each emitted exactly once.
+// AttributeGroups belonging to a mapped external namespace are skipped because
+// they are already defined in the external package.
 func writeAttrGroupStructs(sb *strings.Builder, types []*parse.ComplexType, attrGroups map[string]*parse.AttrGroup, withDoc bool, aliases map[string]string, usedAliases map[string]bool) {
 	seen := make(map[string]bool)
 	for _, ct := range types {
 		for _, em := range ct.Embeds {
 			if em.Kind != "attributeGroup" {
 				continue
+			}
+			if _, ok := aliases[em.NS]; ok {
+				continue // defined in external mapped package
 			}
 			key := em.NS + " " + em.XSDName
 			if seen[key] {
@@ -134,6 +139,13 @@ func writeStruct(sb *strings.Builder, ct *parse.ComplexType, withDoc bool, alias
 	// Emit attributeGroup embeds before own fields.
 	for _, em := range ct.Embeds {
 		if em.Kind != "attributeGroup" {
+			continue
+		}
+		if alias, ok := aliases[em.NS]; ok {
+			sb.WriteString("\t")
+			sb.WriteString(alias + "." + parse.GoTypeName(em.XSDName))
+			sb.WriteString("\n")
+			usedAliases[alias] = true
 			continue
 		}
 		key := em.NS + " " + em.XSDName
