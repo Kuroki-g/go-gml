@@ -115,3 +115,13 @@ This work is distributed under the W3C Software and Document License.
 https://www.w3.org/copyright/software-license-2023/
 
 -----------------------------------------------------------------------
+
+`docs/schemas/ksj` files follow:
+
+-----------------------------------------------------------------------
+
+出典：「国土数値情報 行政区域データ製品仕様書」（国土交通省）
+https://nlftp.mlit.go.jp/ksj/jpgis/jpgis_shiyou.html
+License: PDL1.0 https://www.digital.go.jp/resources/open_data/public_data_license_v1.0
+
+-----------------------------------------------------------------------
