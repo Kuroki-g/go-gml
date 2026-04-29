@@ -15,14 +15,14 @@ func (r *Reader) handleTriangulatedSurface(dec *xml.Decoder, se xml.StartElement
 		return core.Geometry{}, fmt.Errorf("gml: TriangulatedSurface: %w", err)
 	}
 	dim := preferDim(x.SrsDimension, r.globalDim)
-	mp, err := multiPolygonFromTrianglePatchArrayProperty(x.TrianglePatches, dim, x.SrsName, r.resolver)
+	mp, err := multiPolygonFromTrianglePatchArrayProperty(x.TrianglePatches, dim, x.SRSReferenceGroup.SrsName, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
 	}
 	if id != "" {
 		r.resolver.multiPolygonByID[id] = mp
 	}
-	return core.Geometry{Value: mp, SRSName: x.SrsName}, nil
+	return core.Geometry{Value: mp, SRSName: x.SRSReferenceGroup.SrsName}, nil
 }
 
 func (r *Reader) handleTin(dec *xml.Decoder, se xml.StartElement) (core.Geometry, error) {
@@ -32,14 +32,14 @@ func (r *Reader) handleTin(dec *xml.Decoder, se xml.StartElement) (core.Geometry
 		return core.Geometry{}, fmt.Errorf("gml: Tin: %w", err)
 	}
 	dim := preferDim(x.SrsDimension, r.globalDim)
-	mp, err := multiPolygonFromTrianglePatchArrayProperty(x.TrianglePatches, dim, x.SrsName, r.resolver)
+	mp, err := multiPolygonFromTrianglePatchArrayProperty(x.TrianglePatches, dim, x.SRSReferenceGroup.SrsName, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
 	}
 	if id != "" {
 		r.resolver.multiPolygonByID[id] = mp
 	}
-	return core.Geometry{Value: mp, SRSName: x.SrsName}, nil
+	return core.Geometry{Value: mp, SRSName: x.SRSReferenceGroup.SrsName}, nil
 }
 
 func multiPolygonFromTrianglePatchArrayProperty(tp *gen.TrianglePatchArrayPropertyType, dim *uint, srsName *string, resolver *curveResolver) (core.MultiPolygon, error) {

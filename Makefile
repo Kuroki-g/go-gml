@@ -7,13 +7,9 @@ help:
 	@echo "  test             go test ./..."
 	@echo "  cover            カバレッジレポート生成"
 	@echo ""
-	@echo "xsd2go-lite (code generator)"
-	@echo "  xsd2go-build     バイナリビルド"
-	@echo "  xsd2go-test      ユニットテスト実行"
-	@echo "  xsd2go-cover     カバレッジレポート生成"
-	@echo "  xsd2go-gen [GML_VERSION=3.2.1|3.1.1|2.1.2]"
-	@echo "               GML XSD → gml<version>/generated/geometry.go 生成"
-	@echo "               デフォルト: GML_VERSION=3.2.1"
+	@echo "xsd2go-lite2 (code generator)"
+	@echo "  xsd2go2-build    バイナリビルド"
+	@echo "  xsd2go2-test     ユニットテスト実行"
 	@echo ""
 	@echo "fuzz"
 	@echo "  fuzz-gen         fuzz seed corpus 生成 (gml*/testdata/fuzz/FuzzReader/)"
@@ -29,8 +25,8 @@ help:
 	@echo "  gml-parser-build バイナリビルド"
 	@echo "  gml-parser-run   inspect サブコマンド実行 (testdata/N03)"
 
-XSD2GO_DIR := cmd/xsd2go-lite
-XSD2GO_BIN := $(XSD2GO_DIR)/xsd2go-lite
+XSD2GO2_DIR := cmd/xsd2go-lite2
+XSD2GO2_BIN := $(XSD2GO2_DIR)/xsd2go-lite2
 SCHEMA_DIR := docs/schemas
 
 # ---- xsd2go-gen version configuration ----
@@ -68,6 +64,8 @@ test:
 		echo "=== $$m ==="; \
 		go -C $$m test -count=1 ./...; \
 	done
+	@echo "=== xsd2go-lite2 ==="
+	GONOSUMDB='*' GOWORK=off go test -C $(XSD2GO2_DIR) -count=1 ./...
 
 cover:
 	@for m in $(MODULES); do \
@@ -85,26 +83,22 @@ CHECK_COVERAGE_DIR := cmd/check-coverage
 check-coverage:
 	go run ./$(CHECK_COVERAGE_DIR)/
 
-# ---- xsd2go-lite (code generator) ----
+# ---- xsd2go-lite2 (code generator) ----
 
-.PHONY: xsd2go-build xsd2go-test xsd2go-cover xsd2go-gen
+.PHONY: xsd2go2-build xsd2go2-test xsd2go-gen
 
-xsd2go-build:
-	cd $(XSD2GO_DIR) && GOWORK=off go build -o xsd2go-lite .
+xsd2go2-build:
+	GONOSUMDB='*' GOWORK=off go build -C $(XSD2GO2_DIR) -o xsd2go-lite2 .
 
-xsd2go-test:
-	cd $(XSD2GO_DIR) && GOWORK=off go test -count=1 ./...
-
-xsd2go-cover:
-	cd $(XSD2GO_DIR) && GOWORK=off go test -count=1 -coverprofile=$(GOTMPDIR)/cover_xsd2go.out ./...
-	go tool cover -func=$(GOTMPDIR)/cover_xsd2go.out
+xsd2go2-test:
+	GONOSUMDB='*' GOWORK=off go test -C $(XSD2GO2_DIR) -count=1 ./...
 
 XLINK_NS  := http://www.w3.org/1999/xlink
 XLINK_XSD := $(SCHEMA_DIR)/xlink/xlink.xsd
 
-xsd2go-gen: xsd2go-build
+xsd2go-gen: xsd2go2-build
 	@test -n "$(_GEN_OUT)" || (echo "Unknown GML_VERSION=$(GML_VERSION). Valid values: 3.2.1, 3.1.1, 2.1.2" >&2 && exit 1)
-	$(XSD2GO_BIN) \
+	$(XSD2GO2_BIN) \
 		-n "$(_GEN_NS)" \
 		-p gml \
 		--with-doc \
@@ -123,14 +117,14 @@ CITYGML20_BLDG_XSD := $(SCHEMA_DIR)/citygml/building/2.0/building.xsd
 XAL2_NS  := urn:oasis:names:tc:ciq:xsdschema:xAL:2.0
 
 .PHONY: citygml2_0-gen
-citygml2_0-gen: xsd2go-build
-	$(XSD2GO_BIN) \
+citygml2_0-gen: xsd2go2-build
+	$(XSD2GO2_BIN) \
 		-n "$(XAL2_NS)" \
 		-p generated \
 		--with-doc \
 		-o citygml2_0/generated/xal.go \
 		$(XAL_XSD)
-	$(XSD2GO_BIN) \
+	$(XSD2GO2_BIN) \
 		-n "$(CITYGML20_NS)" \
 		-p generated \
 		--with-doc \
@@ -140,7 +134,7 @@ citygml2_0-gen: xsd2go-build
 		--map-namespace "$(GML311_NS)=github.com/Kuroki-g/go-gml/gml3_1_1/generated" \
 		-o citygml2_0/generated/core.go \
 		$(CITYGML20_XSD)
-	$(XSD2GO_BIN) \
+	$(XSD2GO2_BIN) \
 		-n "http://www.opengis.net/citygml/building/2.0" \
 		-p generated \
 		--with-doc \

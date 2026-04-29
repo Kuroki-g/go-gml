@@ -33,7 +33,7 @@ func decodePolygonElement(dec *xml.Decoder, se xml.StartElement, fallbackDim *ui
 	if err != nil {
 		return core.Geometry{}, err
 	}
-	return core.Geometry{Value: poly, SRSName: x.SrsName}, nil
+	return core.Geometry{Value: poly, SRSName: x.SRSReferenceGroup.SrsName}, nil
 }
 
 // ringFromLinearRing builds a Ring from a decoded LinearRingType.
@@ -44,7 +44,7 @@ func ringFromLinearRing(lr *gen.LinearRingType, inheritDim *uint, inheritSrsName
 		return nil, fmt.Errorf("gml: nil LinearRing")
 	}
 	dim := preferDim(lr.SrsDimension, inheritDim)
-	srsName := preferSrsName(lr.SrsName, inheritSrsName)
+	srsName := preferSrsName(lr.SRSReferenceGroup.SrsName, inheritSrsName)
 	if lr.PosList != nil {
 		return core.RingFromPosListString(lr.PosList.Value, preferDim(lr.PosList.SrsDimension, dim), preferSrsName(lr.PosList.SrsName, srsName))
 	}
@@ -71,7 +71,7 @@ func ringFromLinearRing(lr *gen.LinearRingType, inheritDim *uint, inheritSrsName
 
 func polygonFromXML(x *gen.PolygonType, fallbackDim *uint, fallbackSrsName *string) (core.Polygon, error) {
 	dim := preferDim(x.SrsDimension, fallbackDim)
-	srsName := preferSrsName(x.SrsName, fallbackSrsName)
+	srsName := preferSrsName(x.SRSReferenceGroup.SrsName, fallbackSrsName)
 	var rings []core.Ring
 	if x.Exterior != nil && x.Exterior.LinearRing != nil {
 		r, err := ringFromLinearRing(x.Exterior.LinearRing, dim, srsName)

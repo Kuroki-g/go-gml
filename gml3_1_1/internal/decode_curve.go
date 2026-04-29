@@ -69,7 +69,7 @@ func (r *Reader) handleCurve(dec *xml.Decoder, se xml.StartElement) (core.Geomet
 	if err != nil {
 		return core.Geometry{}, err
 	}
-	return core.Geometry{Value: ls, SRSName: x.SrsName}, nil
+	return core.Geometry{Value: ls, SRSName: x.SRSReferenceGroup.SrsName}, nil
 }
 
 // cacheOrientableCurve decodes a gml:OrientableCurve and caches it by gml:id.
@@ -90,7 +90,7 @@ func lineStringFromCurve(x *gen.CurveType, inheritDim *uint, inheritSrsName *str
 		return nil, fmt.Errorf("gml: Curve has no LineStringSegment")
 	}
 	var result core.LineString
-	curveSrsName := preferSrsName(x.SrsName, inheritSrsName)
+	curveSrsName := preferSrsName(x.SRSReferenceGroup.SrsName, inheritSrsName)
 	for i, seg := range x.Segments.LineStringSegment {
 		var ls core.LineString
 		var err error

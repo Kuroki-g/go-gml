@@ -23,7 +23,7 @@ func (r *Reader) handleCompositeSurface(dec *xml.Decoder, se xml.StartElement) (
 	if id != "" {
 		r.resolver.multiPolygonByID[id] = mp
 	}
-	return core.Geometry{Value: mp, SRSName: x.SrsName}, nil
+	return core.Geometry{Value: mp, SRSName: x.SRSReferenceGroup.SrsName}, nil
 }
 
 // handleOrientableSurface decodes a gml:OrientableSurface and returns a Polygon.
@@ -34,23 +34,23 @@ func (r *Reader) handleOrientableSurface(dec *xml.Decoder, se xml.StartElement) 
 		return core.Geometry{}, fmt.Errorf("gml: OrientableSurface: %w", err)
 	}
 	if x.BaseSurface == nil {
-		return core.Geometry{Value: core.Polygon(nil), SRSName: x.SrsName}, nil
+		return core.Geometry{Value: core.Polygon(nil), SRSName: x.SRSReferenceGroup.SrsName}, nil
 	}
-	poly, err := polygonFromSurfaceProperty(x.BaseSurface, preferDim(x.SrsDimension, r.globalDim), x.SrsName, r.resolver)
+	poly, err := polygonFromSurfaceProperty(x.BaseSurface, preferDim(x.SrsDimension, r.globalDim), x.SRSReferenceGroup.SrsName, r.resolver)
 	if err != nil {
 		return core.Geometry{}, err
 	}
 	if id != "" {
 		r.resolver.polygonByID[id] = poly
 	}
-	return core.Geometry{Value: poly, SRSName: x.SrsName}, nil
+	return core.Geometry{Value: poly, SRSName: x.SRSReferenceGroup.SrsName}, nil
 }
 
 // multiPolygonFromCompositeSurface returns one Polygon per surfaceMember.
 // Nested CompositeSurface members are flattened into the result.
 func multiPolygonFromCompositeSurface(x *gen.CompositeSurfaceType, resolver *curveResolver, fallbackDim *uint, fallbackSrsName *string) (core.MultiPolygon, error) {
 	dim := preferDim(x.SrsDimension, fallbackDim)
-	srsName := preferSrsName(x.SrsName, fallbackSrsName)
+	srsName := preferSrsName(x.SRSReferenceGroup.SrsName, fallbackSrsName)
 	var result core.MultiPolygon
 	for i, m := range x.SurfaceMember {
 		if m.CompositeSurface != nil {

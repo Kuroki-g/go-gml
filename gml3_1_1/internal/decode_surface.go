@@ -32,7 +32,7 @@ func decodeSurfaceElement(dec *xml.Decoder, se xml.StartElement, resolver *curve
 	if err != nil {
 		return core.Geometry{}, err
 	}
-	return core.Geometry{Value: poly, SRSName: x.SrsName}, nil
+	return core.Geometry{Value: poly, SRSName: x.SRSReferenceGroup.SrsName}, nil
 }
 
 func polygonFromSurface(x *gen.SurfaceType, resolver *curveResolver, fallbackDim *uint, fallbackSrsName *string) (core.Polygon, error) {
@@ -40,7 +40,7 @@ func polygonFromSurface(x *gen.SurfaceType, resolver *curveResolver, fallbackDim
 		return core.Polygon{}, nil
 	}
 	dim := preferDim(x.SrsDimension, fallbackDim)
-	srsName := preferSrsName(x.SrsName, fallbackSrsName)
+	srsName := preferSrsName(x.SRSReferenceGroup.SrsName, fallbackSrsName)
 	return polygonFromSurfacePatchArrayProperty(x.Patches, dim, srsName, resolver)
 }
 
@@ -120,7 +120,7 @@ func ringFromAbstractRingProperty(prop *gen.AbstractRingPropertyType, inheritDim
 	if prop.LinearRing != nil {
 		lr := prop.LinearRing
 		dim := preferDim(lr.SrsDimension, inheritDim)
-		srsName := preferSrsName(lr.SrsName, inheritSrsName)
+		srsName := preferSrsName(lr.SRSReferenceGroup.SrsName, inheritSrsName)
 		if lr.PosList == nil {
 			return nil, nil
 		}
@@ -143,7 +143,7 @@ func ringFromAbstractRingProperty(prop *gen.AbstractRingPropertyType, inheritDim
 func ringFromRingType(ring *gen.RingType, inheritDim *uint, inheritSrsName *string, resolver *curveResolver) (core.Ring, error) {
 	var pts core.Ring
 	dim := preferDim(ring.SrsDimension, inheritDim)
-	srsName := preferSrsName(ring.SrsName, inheritSrsName)
+	srsName := preferSrsName(ring.SRSReferenceGroup.SrsName, inheritSrsName)
 	for i := range ring.CurveMember {
 		ls, err := lineStringFromCurveProperty(&ring.CurveMember[i], dim, srsName, resolver)
 		if err != nil {

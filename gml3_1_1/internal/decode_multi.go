@@ -24,7 +24,7 @@ func decodeMultiPointElement(dec *xml.Decoder, se xml.StartElement) (core.Geomet
 		}
 		pts = append(pts, pt)
 	}
-	return core.Geometry{Value: pts, SRSName: x.SrsName}, nil
+	return core.Geometry{Value: pts, SRSName: x.SRSReferenceGroup.SrsName}, nil
 }
 
 // ---- multi-curve / multi-linestring ----
@@ -37,7 +37,7 @@ func (r *Reader) handleMultiCurve(dec *xml.Decoder, se xml.StartElement) (core.G
 	dim := preferDim(x.SrsDimension, r.globalDim)
 	var lines core.MultiLineString
 	for i := range x.CurveMember {
-		ls, err := lineStringFromCurveProperty(&x.CurveMember[i], dim, x.SrsName, r.resolver)
+		ls, err := lineStringFromCurveProperty(&x.CurveMember[i], dim, x.SRSReferenceGroup.SrsName, r.resolver)
 		if err != nil {
 			return core.Geometry{}, fmt.Errorf("gml: %s curveMember[%d]: %w", se.Name.Local, i, err)
 		}
@@ -46,13 +46,13 @@ func (r *Reader) handleMultiCurve(dec *xml.Decoder, se xml.StartElement) (core.G
 		}
 	}
 	if x.CurveMembers != nil {
-		extra, err := lineStringsFromCurveArrayProperty(x.CurveMembers, dim, x.SrsName, r.resolver)
+		extra, err := lineStringsFromCurveArrayProperty(x.CurveMembers, dim, x.SRSReferenceGroup.SrsName, r.resolver)
 		if err != nil {
 			return core.Geometry{}, fmt.Errorf("gml: %s curveMembers: %w", se.Name.Local, err)
 		}
 		lines = append(lines, extra...)
 	}
-	return core.Geometry{Value: lines, SRSName: x.SrsName}, nil
+	return core.Geometry{Value: lines, SRSName: x.SRSReferenceGroup.SrsName}, nil
 }
 
 // ---- multi-surface / multi-polygon ----
@@ -65,20 +65,20 @@ func (r *Reader) handleMultiSurface(dec *xml.Decoder, se xml.StartElement) (core
 	dim := preferDim(x.SrsDimension, r.globalDim)
 	var polys core.MultiPolygon
 	for i := range x.SurfaceMember {
-		mp, err := multiPolygonFromSurfaceProperty(&x.SurfaceMember[i], dim, x.SrsName, r.resolver)
+		mp, err := multiPolygonFromSurfaceProperty(&x.SurfaceMember[i], dim, x.SRSReferenceGroup.SrsName, r.resolver)
 		if err != nil {
 			return core.Geometry{}, fmt.Errorf("gml: %s surfaceMember[%d]: %w", se.Name.Local, i, err)
 		}
 		polys = append(polys, mp...)
 	}
 	if x.SurfaceMembers != nil {
-		extra, err := polygonsFromSurfaceArrayProperty(x.SurfaceMembers, dim, x.SrsName, r.resolver)
+		extra, err := polygonsFromSurfaceArrayProperty(x.SurfaceMembers, dim, x.SRSReferenceGroup.SrsName, r.resolver)
 		if err != nil {
 			return core.Geometry{}, fmt.Errorf("gml: %s surfaceMembers: %w", se.Name.Local, err)
 		}
 		polys = append(polys, extra...)
 	}
-	return core.Geometry{Value: polys, SRSName: x.SrsName}, nil
+	return core.Geometry{Value: polys, SRSName: x.SRSReferenceGroup.SrsName}, nil
 }
 
 // ---- envelope ----
@@ -181,7 +181,7 @@ func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDi
 	}
 	for i := range a.Tin {
 		t := &a.Tin[i]
-		mp, err := multiPolygonFromTrianglePatchArrayProperty(t.TrianglePatches, inheritDim, preferSrsName(t.SrsName, inheritSrsName), resolver)
+		mp, err := multiPolygonFromTrianglePatchArrayProperty(t.TrianglePatches, inheritDim, preferSrsName(t.SRSReferenceGroup.SrsName, inheritSrsName), resolver)
 		if err != nil {
 			return nil, fmt.Errorf("Tin[%d]: %w", i, err)
 		}
@@ -189,7 +189,7 @@ func polygonsFromSurfaceArrayProperty(a *gen.SurfaceArrayPropertyType, inheritDi
 	}
 	for i := range a.TriangulatedSurface {
 		ts := &a.TriangulatedSurface[i]
-		mp, err := multiPolygonFromTrianglePatchArrayProperty(ts.TrianglePatches, inheritDim, preferSrsName(ts.SrsName, inheritSrsName), resolver)
+		mp, err := multiPolygonFromTrianglePatchArrayProperty(ts.TrianglePatches, inheritDim, preferSrsName(ts.SRSReferenceGroup.SrsName, inheritSrsName), resolver)
 		if err != nil {
 			return nil, fmt.Errorf("TriangulatedSurface[%d]: %w", i, err)
 		}
