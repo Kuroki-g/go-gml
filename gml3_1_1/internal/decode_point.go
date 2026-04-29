@@ -27,6 +27,16 @@ func pointFromXML(x *gen.PointType) (core.Point, error) {
 	if x.Coordinates != nil {
 		return core.PointFromCoordinatesString(x.Coordinates.Value, derefStrOr(x.Coordinates.Cs, ","), derefStrOr(x.Coordinates.Ts, " "), derefStrOr(x.Coordinates.Decimal, "."))
 	}
+	if x.Coord != nil {
+		coords := []float64{x.Coord.X}
+		if x.Coord.Y != nil {
+			coords = append(coords, *x.Coord.Y)
+		}
+		if x.Coord.Z != nil {
+			coords = append(coords, *x.Coord.Z)
+		}
+		return core.PointFromFlat(coords, uint(len(coords)))
+	}
 	return core.Point{}, fmt.Errorf("gml: Point has no coordinate data")
 }
 

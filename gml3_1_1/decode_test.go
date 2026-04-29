@@ -25,6 +25,47 @@ func TestDecode_Point(t *testing.T) {
 	}
 }
 
+func TestDecode_Point_Coord(t *testing.T) {
+	const ns = `xmlns:gml="http://www.opengis.net/gml"`
+	tests := []struct {
+		name string
+		src  string
+		want core.Point
+	}{
+		{
+			name: "XY",
+			src:  `<gml:Point ` + ns + `><gml:coord><gml:X>1</gml:X><gml:Y>2</gml:Y></gml:coord></gml:Point>`,
+			want: core.Point{1, 2},
+		},
+		{
+			name: "XYZ",
+			src:  `<gml:Point ` + ns + `><gml:coord><gml:X>1</gml:X><gml:Y>2</gml:Y><gml:Z>3</gml:Z></gml:coord></gml:Point>`,
+			want: core.Point{1, 2, 3},
+		},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			r := gml.NewReader(strings.NewReader(""))
+			g, err := r.Decode(strings.NewReader(tc.src))
+			if err != nil {
+				t.Fatalf("Decode: %v", err)
+			}
+			pt, ok := g.Value.(core.Point)
+			if !ok {
+				t.Fatalf("expected Point, got %T", g.Value)
+			}
+			if len(pt) != len(tc.want) {
+				t.Fatalf("len=%d want %d: %v", len(pt), len(tc.want), pt)
+			}
+			for i := range tc.want {
+				if pt[i] != tc.want[i] {
+					t.Fatalf("coord[%d]=%v want %v", i, pt[i], tc.want[i])
+				}
+			}
+		})
+	}
+}
+
 func TestDecode_Polygon(t *testing.T) {
 	const src = `<gml:Polygon xmlns:gml="http://www.opengis.net/gml">` +
 		`<gml:exterior><gml:LinearRing>` +
