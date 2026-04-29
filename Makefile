@@ -7,15 +7,7 @@ help:
 	@echo "  test             go test ./..."
 	@echo "  cover            カバレッジレポート生成"
 	@echo ""
-	@echo "xsd2go-lite (code generator)"
-	@echo "  xsd2go-build     バイナリビルド"
-	@echo "  xsd2go-test      ユニットテスト実行"
-	@echo "  xsd2go-cover     カバレッジレポート生成"
-	@echo "  xsd2go-gen [GML_VERSION=3.2.1|3.1.1|2.1.2]"
-	@echo "               GML XSD → gml<version>/generated/geometry.go 生成"
-	@echo "               デフォルト: GML_VERSION=3.2.1"
-	@echo ""
-	@echo "xsd2go-lite2 (next-gen code generator)"
+	@echo "xsd2go-lite2 (code generator)"
 	@echo "  xsd2go2-build    バイナリビルド"
 	@echo "  xsd2go2-test     ユニットテスト実行"
 	@echo ""
@@ -33,8 +25,6 @@ help:
 	@echo "  gml-parser-build バイナリビルド"
 	@echo "  gml-parser-run   inspect サブコマンド実行 (testdata/N03)"
 
-XSD2GO_DIR  := cmd/xsd2go-lite
-XSD2GO_BIN  := $(XSD2GO_DIR)/xsd2go-lite
 XSD2GO2_DIR := cmd/xsd2go-lite2
 XSD2GO2_BIN := $(XSD2GO2_DIR)/xsd2go-lite2
 SCHEMA_DIR := docs/schemas
@@ -93,23 +83,9 @@ CHECK_COVERAGE_DIR := cmd/check-coverage
 check-coverage:
 	go run ./$(CHECK_COVERAGE_DIR)/
 
-# ---- xsd2go-lite (code generator) ----
+# ---- xsd2go-lite2 (code generator) ----
 
-.PHONY: xsd2go-build xsd2go-test xsd2go-cover xsd2go-gen
-
-xsd2go-build:
-	cd $(XSD2GO_DIR) && GOWORK=off go build -o xsd2go-lite .
-
-xsd2go-test:
-	cd $(XSD2GO_DIR) && GOWORK=off go test -count=1 ./...
-
-xsd2go-cover:
-	cd $(XSD2GO_DIR) && GOWORK=off go test -count=1 -coverprofile=$(GOTMPDIR)/cover_xsd2go.out ./...
-	go tool cover -func=$(GOTMPDIR)/cover_xsd2go.out
-
-# ---- xsd2go-lite2 (next-gen code generator) ----
-
-.PHONY: xsd2go2-build xsd2go2-test
+.PHONY: xsd2go2-build xsd2go2-test xsd2go-gen
 
 xsd2go2-build:
 	GONOSUMDB='*' GOWORK=off go build -C $(XSD2GO2_DIR) -o xsd2go-lite2 .
