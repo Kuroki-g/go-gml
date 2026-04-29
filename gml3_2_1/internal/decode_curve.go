@@ -18,6 +18,7 @@ type curveResolver struct {
 	lineStringByID   map[string]core.LineString
 	gridByID         map[string]*gridBounds
 	solidByID        map[string]core.Solid
+	pointByID        map[string]core.Point
 }
 
 func newCurveResolver() *curveResolver {
@@ -29,6 +30,7 @@ func newCurveResolver() *curveResolver {
 		lineStringByID:   make(map[string]core.LineString),
 		gridByID:         make(map[string]*gridBounds),
 		solidByID:        make(map[string]core.Solid),
+		pointByID:        make(map[string]core.Point),
 	}
 }
 

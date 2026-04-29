@@ -74,7 +74,6 @@ type handlerFunc func(*xml.Decoder, xml.StartElement) (core.Geometry, error)
 var handlers = map[string]handlerFunc{
 	gmlPoint:      decodePointElement,
 	gmlLineString: decodeLineStringElement,
-	gmlMultiPoint: decodeMultiPointElement,
 }
 
 // Geometries returns an iterator over all geometry elements in the GML stream.
@@ -163,6 +162,8 @@ func (r *Reader) Next() (core.Geometry, error) {
 			return r.handleCompositeSurface(r.dec, se)
 		case gmlOrientableSurface:
 			return r.handleOrientableSurface(r.dec, se)
+		case gmlMultiPoint:
+			return r.handleMultiPoint(r.dec, se)
 		case gmlMultiCurve, gmlMultiLineString:
 			return r.handleMultiCurve(r.dec, se)
 		case gmlMultiSurface, gmlMultiPolygon:

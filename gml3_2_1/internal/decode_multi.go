@@ -3,6 +3,7 @@ package internal
 import (
 	"encoding/xml"
 	"fmt"
+	"strings"
 
 	core "github.com/Kuroki-g/go-gml/core"
 	gen "github.com/Kuroki-g/go-gml/gml3_2_1/generated"
@@ -10,7 +11,7 @@ import (
 
 // ---- multi-point ----
 
-func decodeMultiPointElement(dec *xml.Decoder, se xml.StartElement) (core.Geometry, error) {
+func (r *Reader) handleMultiPoint(dec *xml.Decoder, se xml.StartElement) (core.Geometry, error) {
 	var x gen.MultiPointType
 	if err := dec.DecodeElement(&x, &se); err != nil {
 		return core.Geometry{}, fmt.Errorf("gml: MultiPoint: %w", err)
@@ -18,9 +19,22 @@ func decodeMultiPointElement(dec *xml.Decoder, se xml.StartElement) (core.Geomet
 	var pts core.MultiPoint
 	dim := preferDim(x.SrsDimension, nil)
 	for i := range x.PointMember {
-		pt, err := fromPointProperty(&x.PointMember[i], i, dim)
+		m := &x.PointMember[i]
+		if m.Point == nil {
+			if m.Href == nil {
+				continue
+			}
+			id := strings.TrimPrefix(*m.Href, "#")
+			pt, ok := r.resolver.pointByID[id]
+			if !ok {
+				return core.Geometry{}, fmt.Errorf("gml: MultiPoint: unresolved xlink:href %q", *m.Href)
+			}
+			pts = append(pts, pt)
+			continue
+		}
+		pt, err := fromPointProperty(m, i, dim)
 		if err != nil {
-			continue // xlink:href or missing Point — skip
+			return core.Geometry{}, fmt.Errorf("gml: MultiPoint: pointMember[%d]: %w", i, err)
 		}
 		pts = append(pts, pt)
 	}

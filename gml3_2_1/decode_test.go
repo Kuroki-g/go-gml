@@ -276,6 +276,89 @@ func TestNext_GlobalDim_PropagatedToPolygon(t *testing.T) {
 	}
 }
 
+// TestNext_MultiPoint_HrefResolved verifies that pointMember xlink:href referencing a
+// Point defined earlier in the document is resolved and included in the MultiPoint.
+func TestNext_MultiPoint_HrefResolved(t *testing.T) {
+	const src = `<root ` + gmlNS + `>
+<gml:Point gml:id="PT1"><gml:pos>1 2</gml:pos></gml:Point>
+<gml:MultiPoint>
+  <gml:pointMember xlink:href="#PT1"/>
+</gml:MultiPoint>
+</root>`
+	r := gml.NewReader(strings.NewReader(src))
+	var mp core.MultiPoint
+	for {
+		g, err := r.Next()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			t.Fatalf("Next: %v", err)
+		}
+		if m, ok := g.Value.(core.MultiPoint); ok {
+			mp = m
+		}
+	}
+	if len(mp) != 1 {
+		t.Fatalf("MultiPoint len=%d want 1: xlink:href not resolved", len(mp))
+	}
+	if len(mp[0]) != 2 || mp[0][0] != 1 || mp[0][1] != 2 {
+		t.Fatalf("unexpected point %v", mp[0])
+	}
+}
+
+// TestNext_MultiPoint_HrefForwardResolved verifies that pointMember xlink:href referencing
+// a Point defined later in the document is resolved via prescan.
+func TestNext_MultiPoint_HrefForwardResolved(t *testing.T) {
+	const src = `<root ` + gmlNS + `>
+<gml:MultiPoint>
+  <gml:pointMember xlink:href="#PT1"/>
+</gml:MultiPoint>
+<gml:Point gml:id="PT1"><gml:pos>3 4</gml:pos></gml:Point>
+</root>`
+	r := gml.NewReader(strings.NewReader(src))
+	var mp core.MultiPoint
+	for {
+		g, err := r.Next()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			t.Fatalf("Next: %v", err)
+		}
+		if m, ok := g.Value.(core.MultiPoint); ok {
+			mp = m
+		}
+	}
+	if len(mp) != 1 {
+		t.Fatalf("MultiPoint len=%d want 1: forward xlink:href not resolved", len(mp))
+	}
+	if len(mp[0]) != 2 || mp[0][0] != 3 || mp[0][1] != 4 {
+		t.Fatalf("unexpected point %v", mp[0])
+	}
+}
+
+// TestNext_MultiPoint_HrefUnresolved verifies that pointMember xlink:href referencing
+// a non-existent ID returns an error.
+func TestNext_MultiPoint_HrefUnresolved(t *testing.T) {
+	const src = `<root ` + gmlNS + `>
+<gml:MultiPoint>
+  <gml:pointMember xlink:href="#NONEXISTENT"/>
+</gml:MultiPoint>
+</root>`
+	r := gml.NewReader(strings.NewReader(src))
+	for {
+		_, err := r.Next()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			return // expected
+		}
+	}
+	t.Fatal("expected error for unresolved xlink:href, got none")
+}
+
 // TestNext_CompositeSurfaceSubPolygonHref verifies Fix 2: a Polygon with gml:id nested
 // inside a CompositeSurface that prescan consumes can be resolved via xlink:href
 // from another element in the same document.

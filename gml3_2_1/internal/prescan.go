@@ -43,6 +43,14 @@ func preScanGeometries(dec *xml.Decoder, resolver *curveResolver) error {
 			continue
 		}
 		switch se.Name.Local {
+		case gmlPoint:
+			var x gen.PointType
+			if err := dec.DecodeElement(&x, &se); err != nil {
+				return fmt.Errorf("Point %q: %w", id, err)
+			}
+			if pt, err := pointFromXML(&x); err == nil {
+				resolver.pointByID[id] = pt
+			}
 		case gmlLineString:
 			var x gen.LineStringType
 			if err := dec.DecodeElement(&x, &se); err != nil {
